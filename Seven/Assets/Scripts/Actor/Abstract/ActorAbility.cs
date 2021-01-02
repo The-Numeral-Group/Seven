@@ -7,24 +7,24 @@ using UnityEngine;
     public string title;                //This is a good idea we should keep it (as abilityName)
     public abstract void DoAbility();   //This translates into/is split into Invoke and InternInvoke
 }*/
-/*ActorAbility is split between an Interface and an Abstract class to make things easy for
+/*ActorAbility is split between two Abstract classes to make things easy for
 individuals needing to hold ActorAbilities. 
 
 We want the types an ability takes and returns to be changable between abilities, 
-so we need to make ActorAbilityFunction generic. We add the ActorAbility Interface on top
+so we need to make ActorAbilityFunction generic. We add the ActorAbility class on top
 of that to make sure that individuals who need to hold ability references don't need to 
 specify type.*/
 
-/*This interface makes sure that every public method in ActorAbilityFunction
+/*This abstract class makes sure that every public method in ActorAbilityFunction
 is public while also hiding the generic types ActorAbilityFunction uses*/
-public interface ActorAbility
+public abstract class ActorAbility : MonoBehaviour
 {
-    bool getUsable();
-    IEnumerator coolDown(float cooldownDuration);
-    void Invoke(ref Actor user);
+    public abstract bool getUsable();
+    public abstract IEnumerator coolDown(float cooldownDuration);
+    public abstract void Invoke(ref Actor user);
 }
 
-public abstract class ActorAbilityFunction<InvokeParam, InvokeReturn> : MonoBehaviour, ActorAbility
+public abstract class ActorAbilityFunction<InvokeParam, InvokeReturn> : ActorAbility
 {
     //public fields
     public float cooldownPeriod;
@@ -35,11 +35,11 @@ public abstract class ActorAbilityFunction<InvokeParam, InvokeReturn> : MonoBeha
     how to do read-only properties that can be changed within
     the class*/
     private bool usable = true;
-    public bool getUsable(){return usable;}
+    public override bool getUsable(){return usable;}
 
     /*IEnumerator for using coroutines to run ability cooldowns.
     If you don't want a cooldown, pass in 0.0f*/
-    public IEnumerator coolDown(float cooldownDuration)
+    public override IEnumerator coolDown(float cooldownDuration)
     {
         usable = false;
         yield return new WaitForSeconds(cooldownDuration);
@@ -57,7 +57,7 @@ public abstract class ActorAbilityFunction<InvokeParam, InvokeReturn> : MonoBeha
     The ref keyword is used here to allow Invoke to make changes directly
     to the user object. C# Objects are passed to functions by reference anyways,
     but it's the thought that counts.*/
-    public void Invoke(ref Actor user)
+    public override void Invoke(ref Actor user)
     {
         //by default, Invoke just does InternInvoke with no arguments
         if(usable)

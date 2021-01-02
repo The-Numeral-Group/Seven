@@ -37,17 +37,20 @@ public class ActorMovement : MonoBehaviour
     {
         if(this.movementLocked)
         {
-            //moving
-            movementController.Move(dragDirection);
+            //moving. the first bool is crouching and the second is jumping
+            //these will both end up being false because we don't use that functionality
+            //also, it takes a float and not a vector? weird
+            //doesn't matter we can mod it as we need
+            movementController.Move(dragDirection.magnitude * Time.deltaTime, false, false);
         }
         else
         {
             //calculate a composite movement vector
-            Vector2 moveComposite = movementDirection * speed * time.deltaTime;
+            Vector2 moveComposite = movementDirection * speed * Time.deltaTime;
             moveComposite += dragDirection;
 
             //actually moving
-            movementController.Move(moveComposite);
+            movementController.Move(moveComposite.magnitude, false, false);
 
             //update the direction the actor is facing
             this.gameObject.SendMessage("DoActorUpdateFacing", movementDirection);
