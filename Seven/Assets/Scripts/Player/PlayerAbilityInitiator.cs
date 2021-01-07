@@ -2,9 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAbilityInitiator : MonoBehaviour
+public class PlayerAbilityInitiator : ActorAbilityInitiator
 {
-    // Start is called before the first frame update
+    /*these are the two abilities that the player sees on their UI.*/
+    public ActorAbility selectedAbilityAlpha;
+    public ActorAbility selectedAbilityBeta;
+
+    /*This is the player's implicit dodge. Switch this out
+    to change how the player dodges*/
+    public ActorAbility playerDodge;
+
+    /*This is the player's implicit attaack. Switch this out
+    to change how the player attacks*/
+    public ActorAbility playerAttack;
+    
+    /*// Start is called before the first frame update
     void Start()
     {
         
@@ -14,5 +26,15 @@ public class PlayerAbilityInitiator : MonoBehaviour
     void Update()
     {
         
+    }*/
+
+    public override void DoAttack()
+    {
+
+    }
+
+    public void DoDodge()
+    {
+
     }
 }

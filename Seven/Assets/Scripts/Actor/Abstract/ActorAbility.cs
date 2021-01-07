@@ -34,7 +34,7 @@ public abstract class ActorAbilityFunction<InvokeParam, InvokeReturn> : ActorAbi
     yes it could be a property but I (Thomas) can't figure
     how to do read-only properties that can be changed within
     the class*/
-    private bool usable = true;
+    protected bool usable = true;
     public override bool getUsable(){return usable;}
 
     /*IEnumerator for using coroutines to run ability cooldowns.

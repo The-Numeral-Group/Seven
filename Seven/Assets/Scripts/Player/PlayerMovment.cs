@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerMovment : MonoBehaviour
+//we get the character controller from ActorMovement
+[RequireComponent(typeof(PlayerInput))]
+public class PlayerMovment : ActorMovement
 {
     // Start is called before the first frame update
-    void Start()
+    /*void Start()
     {
         
     }
@@ -14,5 +17,10 @@ public class PlayerMovment : MonoBehaviour
     void Update()
     {
         
+    }*/
+
+    void OnMovement(InputValue input)
+    {
+        this.MoveActor(input.Get<Vector2>());
     }
 }

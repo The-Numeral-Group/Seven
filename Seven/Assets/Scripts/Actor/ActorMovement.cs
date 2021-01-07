@@ -2,25 +2,36 @@
 //using System.Collections.Generic;
 using UnityEngine;
 
+/*the rigidbody property hides a similar property of all
+gameObjects. However, that property is obsolete so we're
+just gonna ignore that warning. This pragma line hides the warning*/
+#pragma warning disable CS0108
+//this is needed to actually do the moving in-game
 [RequireComponent(typeof(CharacterController2D))]
 public class ActorMovement : MonoBehaviour
 {
     public float speed;
-    public bool movementLocked{ get; private set; }
+
+    public bool movementLocked{ get; protected set; }
+    public Vector2 movementDirection{ get; protected set; }
+    public Vector2 dragDirection{ get; protected set; }
+
+    public Rigidbody2D rigidbody{ get; protected set; }
+
     private CharacterController2D movementController;
-    private Vector2 movementDirection, dragDirection;
     /*This script might also require some extra data for working
     with animations. It'll need to be added later.*/
 
     protected virtual void Awake()
     {
-        movementDirection = dragDirection = Vector2.zero;
+        this.movementDirection = this.dragDirection = Vector2.zero;
         this.movementLocked = false;
     }
 
     protected virtual void Start()
     {
         movementController = this.gameObject.GetComponent<CharacterController2D>();
+        this.rigidbody = this.gameObject.GetComponent<Rigidbody2D>();
     }
 
     /*This method makes the mover take a step every 1/60 of a second
@@ -41,23 +52,23 @@ public class ActorMovement : MonoBehaviour
             //these will both end up being false because we don't use that functionality
             //also, it takes a float and not a vector? weird
             //doesn't matter we can mod it as we need
-            movementController.Move(dragDirection.magnitude * Time.deltaTime, false, false);
+            movementController.Move(this.dragDirection.magnitude * Time.deltaTime, false, false);
         }
         else
         {
             //calculate a composite movement vector
-            Vector2 moveComposite = movementDirection * speed * Time.deltaTime;
-            moveComposite += dragDirection;
+            Vector2 moveComposite = this.movementDirection * speed * Time.deltaTime;
+            moveComposite += this.dragDirection;
 
             //actually moving
             movementController.Move(moveComposite.magnitude, false, false);
 
             //update the direction the actor is facing
-            this.gameObject.SendMessage("DoActorUpdateFacing", movementDirection);
+            this.gameObject.SendMessage("DoActorUpdateFacing", this.movementDirection);
 
             /*Only needed if character can still move. If movement is locked, we assume
             that the drag needs to stop after this movement instance*/
-            dragDirection = Vector2.zero;
+            this.dragDirection = Vector2.zero;
         }
         
     }
@@ -66,7 +77,7 @@ public class ActorMovement : MonoBehaviour
     protected virtual void MoveActor(Vector2 direction)
     {
         //the vector is normalized by default to let speed control... well... speed.
-        movementDirection = direction.normalized;
+        this.movementDirection = direction.normalized;
     }
 
     /*This method is for when other things want to move the actor. MoveActor has
@@ -76,7 +87,7 @@ public class ActorMovement : MonoBehaviour
     public virtual void DragActor(Vector2 direction, float actorMoveDisable)
     {
         //this vector isn't normalized because its intensity is independent of the actor's speed
-        dragDirection = direction;
+        this.dragDirection = direction;
         StartCoroutine(LockActorMovement(actorMoveDisable));
     }
 
