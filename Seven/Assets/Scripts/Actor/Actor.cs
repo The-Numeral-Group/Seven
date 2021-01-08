@@ -19,10 +19,16 @@ public class Actor : MonoBehaviour
         
     }
 
-    void Start()
+    protected virtual void Start()
     {
         //all of these need to be in Start to make sure they exist
-        faceAnchor = this.gameObject.transform.Find("FaceAnchor").transform;
+
+        //faceAnchor = this.gameObject.transform.Find("FaceAnchor").transform;
+        //Alternatively I (Ram) think we can create the face anchor when the actor gets instatiated into the scene rather than having the face anchor already exist in the prefab.
+        //pros and cons to both sides, so whatever you all prefer between the two I am down for.
+        GameObject facingDirection = new GameObject("FaceAnchor");
+        facingDirection.transform.parent = this.gameObject.transform;
+        faceAnchor = facingDirection.gameObject.transform;
         this.myAbilityInitiator = this.gameObject.GetComponent<ActorAbilityInitiator>();
         this.myEffectHandler = this.gameObject.GetComponent<ActorEffectHandler>();
         this.myHealth = this.gameObject.GetComponent<ActorHealth>();
@@ -42,9 +48,13 @@ public class Actor : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void DoActorUpdateFacing()
+    public void DoActorUpdateFacing(Vector2 newDirection)
     {
         //Do something that updates the transform of the faceanchor
         //Not sure what this will do in the long run
+        if (newDirection != Vector2.zero)
+        {
+            faceAnchor.position = newDirection;
+        }
     }
 }
