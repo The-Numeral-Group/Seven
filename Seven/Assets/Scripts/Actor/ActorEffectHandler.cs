@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Actor))]
+/*ActorEffectHandler does need an actor, but if you make
+two components require each other, you can't remove either in
+the inspector, which is a massive pain.*/
+//[RequireComponent(typeof(Actor))]
 public class ActorEffectHandler : MonoBehaviour
 {
     private Actor hostActor;

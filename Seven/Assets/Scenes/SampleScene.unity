@@ -216,11 +216,11 @@ GameObject:
   - component: {fileID: 435056450}
   - component: {fileID: 435056449}
   - component: {fileID: 435056448}
-  - component: {fileID: 435056447}
   - component: {fileID: 435056446}
+  - component: {fileID: 435056443}
+  - component: {fileID: 435056447}
   - component: {fileID: 435056445}
   - component: {fileID: 435056444}
-  - component: {fileID: 435056443}
   - component: {fileID: 435056442}
   - component: {fileID: 435056441}
   m_Layer: 0
@@ -288,7 +288,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Mouse and Keyboard
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 435056440}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 936183e0f4f8f3a7196066185f2d780b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7cbdfba2883df87cab07a4fc179cfe99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &435056445
@@ -313,25 +313,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 435056440}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ea1840496bd4bbee954a96d68f537c1, type: 3}
+  m_Script: {fileID: 11500000, guid: f7edf6075af9db168ac779dc17a891a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 400
-  m_CrouchSpeed: 0.36
-  m_MovementSmoothing: 0.05
-  m_AirControl: 0
-  m_WhatIsGround:
-    serializedVersion: 2
-    m_Bits: 0
-  m_GroundCheck: {fileID: 0}
-  m_CeilingCheck: {fileID: 0}
-  m_CrouchDisableCollider: {fileID: 0}
-  OnLandEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  OnCrouchEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!50 &435056446
 Rigidbody2D:
   serializedVersion: 4
