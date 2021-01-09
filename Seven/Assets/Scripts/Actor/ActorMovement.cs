@@ -7,7 +7,7 @@ gameObjects. However, that property is obsolete so we're
 just gonna ignore that warning. This pragma line hides the warning*/
 #pragma warning disable CS0108
 //this is needed to actually do the moving in-game
-[RequireComponent(typeof(CharacterController2D))]
+[RequireComponent(typeof(SimpleController2D))]
 public class ActorMovement : MonoBehaviour
 {
     public float speed;
@@ -18,7 +18,7 @@ public class ActorMovement : MonoBehaviour
 
     public Rigidbody2D rigidbody{ get; protected set; }
 
-    private CharacterController2D movementController;
+    private SimpleController2D movementController;
     /*This script might also require some extra data for working
     with animations. It'll need to be added later.*/
 
@@ -30,7 +30,7 @@ public class ActorMovement : MonoBehaviour
 
     protected virtual void Start()
     {
-        movementController = this.gameObject.GetComponent<CharacterController2D>();
+        movementController = this.gameObject.GetComponent<SimpleController2D>();
         this.rigidbody = this.gameObject.GetComponent<Rigidbody2D>();
     }
 
@@ -48,11 +48,7 @@ public class ActorMovement : MonoBehaviour
     {
         if(this.movementLocked)
         {
-            //moving. the first bool is crouching and the second is jumping
-            //these will both end up being false because we don't use that functionality
-            //also, it takes a float and not a vector? weird
-            //doesn't matter we can mod it as we need
-            movementController.Move(this.dragDirection.magnitude * Time.deltaTime, false, false);
+            movementController.Move(this.dragDirection * Time.deltaTime);
         }
         else
         {
@@ -61,7 +57,7 @@ public class ActorMovement : MonoBehaviour
             moveComposite += this.dragDirection;
 
             //actually moving
-            movementController.Move(moveComposite.magnitude, false, false);
+            movementController.Move(moveComposite);
 
             //update the direction the actor is facing
             this.gameObject.SendMessage("DoActorUpdateFacing", this.movementDirection);

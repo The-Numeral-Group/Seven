@@ -2,17 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerActor : MonoBehaviour
+public class PlayerActor : Actor
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    /*Right now, Player doesn't have any functionality
+    that can't be shunted off into a subclass component,
+    so this file is just blank right now.*/
 }
