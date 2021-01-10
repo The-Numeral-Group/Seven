@@ -17,12 +17,9 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     public ActorAbility playerAttack;
 
     //Don't know if this is needed, but just using the player actor to pass by ref to the invoke for attack and dodge.
-    public Actor playerActor;
-
-    void Start()
-    {
-        playerActor = this.gameObject.GetComponent<Actor>();
-    }
+    //It is, and every actor probably needs it since each ability needs their user. I've added it to
+    //  ActorAbilityInitiator, so now it's innate to the class -Thomas
+    //public Actor playerActor;
 
     /*// Update is called once per frame
     void Update()
@@ -39,7 +36,7 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     public override void DoAttack()
     {
         //this.gameObject.SendMessage("DoWeaponAttack");
-        playerAttack.Invoke(ref playerActor);
+        playerAttack.Invoke(ref userActor);
     }
 
     public void OnDodge()
@@ -49,6 +46,6 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
 
     public void DoDodge()
     {
-        playerDodge.Invoke(ref playerActor);
+        playerDodge.Invoke(ref userActor);
     }
 }
