@@ -21,11 +21,11 @@ public class GluttonySin : MonoBehaviour, ActorEffect
     //when this thing gets walked into...
     void OnTriggerEnter2D(Collider2D collider){
         Debug.Log("collision with food!");
-        //currently gets parent because that's how player collision works right now
-        PlayerEffectHandler collidedEffectHandler 
-            = collider.gameObject.transform.parent.gameObject.GetComponent<PlayerEffectHandler>();
 
-        //if the thing we collided with has a PlayerEffectHandler component,
+        //aquire the ActorEffectHandler of whoever ran into the food
+        var collidedEffectHandler = collider.gameObject.GetComponent<ActorEffectHandler>();
+
+        //if the thing we collided with has an ActorEffectHandler component,
         //apply ourselves to it
         if(collidedEffectHandler != null){
             collidedEffectHandler.AddEffect(this);
@@ -35,15 +35,15 @@ public class GluttonySin : MonoBehaviour, ActorEffect
     }
 
     
-    public bool ApplyEffect(ref PlayerActor player){
+    public bool ApplyEffect(ref Actor actor){
         if(GluttonySin.appliedGluts < GluttonySin.maxGluts){
-            var health = player.getHealthObject();
-            var movement = player.getMovementObject();
+            var health = actor.myHealth;
+            var movement = actor.myMovement;
 
-            health.maxHealth += (int)(health.startingMaxHealth * this.healthIncrease);
-            health.currentHealth += (int)(health.startingMaxHealth * this.healthIncrease);
+            health.maxHealth += health.startingMaxHealth * this.healthIncrease;
+            health.currentHealth += health.startingMaxHealth * this.healthIncrease;
 
-            movement.speed -= movement.startingSpeed * this.speedDecrease;
+            movement.speed -= movement.speed * this.speedDecrease;
 
             ++GluttonySin.appliedGluts;
 
@@ -56,15 +56,15 @@ public class GluttonySin : MonoBehaviour, ActorEffect
         return false;
     }
 
-    public void RemoveEffect(ref PlayerActor player){
+    public void RemoveEffect(ref Actor actor){
         if(GluttonySin.appliedGluts > 0){
-            var health = player.getHealthObject();
-            var movement = player.getMovementObject();
+            var health = actor.myHealth;
+            var movement = actor.myMovement;
 
-            health.maxHealth -= (int)(health.startingMaxHealth * this.healthIncrease);
-            health.currentHealth -= (int)(health.startingMaxHealth * this.healthIncrease);
+            health.maxHealth -= health.startingMaxHealth * this.healthIncrease;
+            health.currentHealth -= health.startingMaxHealth * this.healthIncrease;
 
-            movement.speed += movement.startingSpeed * this.speedDecrease;
+            movement.speed += movement.speed * this.speedDecrease;
 
             --GluttonySin.appliedGluts;
         }

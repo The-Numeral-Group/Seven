@@ -33,20 +33,20 @@ public class ActorWeakPoint : ActorHealth
     }*/
 
     //new in a method declaration means "use me rather than my superclass's version"
-    public override void takeDamage(int damageTaken){
+    public override void takeDamage(float damageTaken){
 
         //take the damage to the weakpoint
-        this.currentHealth -= (int)Mathf.Floor(damageTaken * (1.0f - damageResistance));
+        this.currentHealth -= Mathf.Floor(damageTaken * (1.0f - damageResistance));
 
         //then deal the damage to the owner
         if(bypassDamageResistance){
             //We divide by 100 - ownerHealth.damage resistance to cancel out the damage resistance
             //in the owner, with is * 100 - ownerHealth.damageResistance
-            ownerHealth.takeDamage((int)Mathf.Floor(
+            ownerHealth.takeDamage(Mathf.Floor(
                 damageTaken * damageMultiplier / (1.0f - ownerHealth.damageResistance)));
         }
         else{
-            ownerHealth.takeDamage((int)Mathf.Floor(damageTaken * damageMultiplier));
+            ownerHealth.takeDamage(Mathf.Floor(damageTaken * damageMultiplier));
         }
 
         //if the attack killed the thing
