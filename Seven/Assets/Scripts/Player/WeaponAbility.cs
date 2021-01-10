@@ -22,7 +22,7 @@ public class WeaponAbility : ActorAbilityFunction<GameObject, int>
     {
         this.hitConnected = false;
         this.actor = this.gameObject.GetComponent<Actor>();
-        this.weaponObject = Instantiate(startingWeaponObject, this.gameObject.transform.position, Quaternion.identity);
+        this.weaponObject = Instantiate(this.startingWeaponObject, this.gameObject.transform) as GameObject;
         //Note From Ram: Keeping the below comment from posterity.
         //the weapon isn't following the game object, I've heard this helps? 
         this.weaponObject.transform.localPosition = weaponPositionScale;
@@ -44,11 +44,11 @@ public class WeaponAbility : ActorAbilityFunction<GameObject, int>
     /*OnAttack is the function the input system will call to perform an attack. 
     If this ends up being moved out of this class
     just uncomment the send message line.*/
-    public void OnAttack()
+    /*public void OnAttack()
     {
         //this.gameObject.SendMessage("DoWeaponAttack");
         this.DoWeaponAttack();
-    }
+    }*/
 
     /*DoWeaponAttack is used to receive the message to call the invoke function of the ability class.
     If we call invoke directly from ability initiator or this isn't needed.

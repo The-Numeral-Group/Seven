@@ -19,9 +19,9 @@ public class PlayerMovment : ActorMovement
         
     }*/
 
-    public void OnMovement(InputValue input)
+    void OnMovement(InputValue input)
     {
-        Debug.Log(input.isPressed);
+        //Debug.Log(input.isPressed);
         base.MoveActor(input.Get<Vector2>());
     }
 }

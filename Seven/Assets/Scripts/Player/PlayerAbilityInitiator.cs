@@ -15,14 +15,16 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     /*This is the player's implicit attaack. Switch this out
     to change how the player attacks*/
     public ActorAbility playerAttack;
-    
-    /*// Start is called before the first frame update
+
+    //Don't know if this is needed, but just using the player actor to pass by ref to the invoke for attack and dodge.
+    public Actor playerActor;
+
     void Start()
     {
-        
+        playerActor = this.gameObject.GetComponent<Actor>();
     }
 
-    // Update is called once per frame
+    /*// Update is called once per frame
     void Update()
     {
         
@@ -36,11 +38,17 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
 
     public override void DoAttack()
     {
+        //this.gameObject.SendMessage("DoWeaponAttack");
+        playerAttack.Invoke(ref playerActor);
+    }
 
+    public void OnDodge()
+    {
+        DoDodge();
     }
 
     public void DoDodge()
     {
-
+        playerDodge.Invoke(ref playerActor);
     }
 }

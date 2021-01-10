@@ -494,12 +494,44 @@
         {
             "name": "Mouse and Keyboard",
             "bindingGroup": "Mouse and Keyboard",
-            "devices": []
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": true,
+                    "isOR": false
+                }
+            ]
         },
         {
             "name": "Gamepad",
             "bindingGroup": "Gamepad",
-            "devices": []
+            "devices": [
+                {
+                    "devicePath": "<DualShockGamepad>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<XInputController>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<SwitchProControllerHID>",
+                    "isOptional": true,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<DualShock4GampadiOS>",
+                    "isOptional": true,
+                    "isOR": false
+                }
+            ]
         }
     ]
 }
