@@ -14,6 +14,14 @@ public class Actor : MonoBehaviour
     //turned this into a property 'cause why not?
     public Transform faceAnchor{ get; protected set; }
 
+<<<<<<< HEAD
+    void Awake()
+    {
+        
+    }
+
+=======
+>>>>>>> ada0dbce8cd0e298d1cbda566cdb58ae43b26de9
     protected virtual void Start()
     {
         //all of these need to be in Start to make sure they exist
