@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 //we get the character controller from ActorMovement
 [RequireComponent(typeof(PlayerInput))]
-public class PlayerMovment : ActorMovement
+public class PlayerMovement : ActorMovement
 {
     // Start is called before the first frame update
     /*void Start()
