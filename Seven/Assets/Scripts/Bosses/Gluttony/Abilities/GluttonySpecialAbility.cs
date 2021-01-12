@@ -7,7 +7,7 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
     //The sprite to be spawned in to show the attack. We could replace this with vfx.
     public GameObject specialAbilitySprite;
     //The actor this ability will target. Specifically their movement component 
-    public ActorMovement targetActor;
+    public Actor targetActor;
     //How far away to spawn the specialAbilitySprite relative to the owner of the ability
     public Vector2 distanceFromActor = new Vector2(0f, -6f);
 
@@ -59,7 +59,7 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
         {
             yield return new WaitForFixedUpdate();
             //I (Ram) am not sure if I need to normalize the drag direction vector.
-            targetActor.DragActor(destination - this.targetActor.gameObject.transform.position, 0.0f);
+            targetActor.myMovement.DragActor(destination - this.targetActor.gameObject.transform.position, 0.0f);
         }
     }
 
