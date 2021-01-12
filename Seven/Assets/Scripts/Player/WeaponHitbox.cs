@@ -37,4 +37,9 @@ public class WeaponHitbox : MonoBehaviour
             enemyHealth.takeDamage(this.damage);
         }
     }
+
+    public void PrintDamage()
+    {
+        Debug.Log(damage);
+    }
 }

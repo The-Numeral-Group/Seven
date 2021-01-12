@@ -20,7 +20,7 @@ public class TestBoss : MonoBehaviour
     public GameObject sin_item;
 
     GameObject player;
-    GameObject camera;
+    new GameObject camera;
 
     Rigidbody2D rb;
     PolygonCollider2D pc;
