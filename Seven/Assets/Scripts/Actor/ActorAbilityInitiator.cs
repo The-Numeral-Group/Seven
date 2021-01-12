@@ -6,9 +6,12 @@ using UnityEngine;
 public class ActorAbilityInitiator : MonoBehaviour
 {
     public abilityDict abilities;//{ get; private set;}
-    
-    void Awake(){
-        //this.abilities = new abilityDict();
+
+    protected Actor userActor;
+
+    private void Start()
+    {
+        userActor = this.gameObject.GetComponent<Actor>();
     }
 
     public virtual void DoAttack()

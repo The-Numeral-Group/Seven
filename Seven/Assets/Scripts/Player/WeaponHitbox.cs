@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))] //I (Ram) do not know if it is correct to require the 2d collider.
 public class WeaponHitbox : MonoBehaviour
 {
     public int damage { get; set; }

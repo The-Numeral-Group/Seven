@@ -7,17 +7,12 @@
 public class Actor : MonoBehaviour
 {
     //this is how autoproperties work in C#
-    public ActorAbilityInitiator myAbilityInitiator{ get; private set; }
-    public ActorEffectHandler myEffectHandler{ get; private set; }
-    public ActorHealth myHealth{ get; private set; }
-    public ActorMovement myMovement{ get; private set; }
+    public ActorAbilityInitiator myAbilityInitiator{ get; protected set; }
+    public ActorEffectHandler myEffectHandler{ get; protected set; }
+    public ActorHealth myHealth{ get; protected set; }
+    public ActorMovement myMovement{ get; protected set; }
     //turned this into a property 'cause why not?
-    public Transform faceAnchor{ get; private set; }
-
-    void Awake()
-    {
-        
-    }
+    public Transform faceAnchor{ get; protected set; }
 
     protected virtual void Start()
     {
@@ -32,7 +27,7 @@ public class Actor : MonoBehaviour
         this.myAbilityInitiator = this.gameObject.GetComponent<ActorAbilityInitiator>();
         this.myEffectHandler = this.gameObject.GetComponent<ActorEffectHandler>();
         this.myHealth = this.gameObject.GetComponent<ActorHealth>();
-        this.myMovement = this.gameObject.GetComponent<ActorMovement>();    
+        this.myMovement = this.gameObject.GetComponent<ActorMovement>(); 
     }
 
     public virtual void DoActorDamageEffect()
