@@ -27,9 +27,9 @@ public class WeaponHitbox : MonoBehaviour
         wp.hitConnected = true;
         //try to get the enemy's health object
         var enemyHealth = collider.gameObject.GetComponent<ActorHealth>();
-        /*I (Ram) commented out the weakpoint code because I don't believe it is in the new repo.
+
         //or a weakpoint if there's no regular health
-        if(enemyHealth == null){collider.gameObject.GetComponent<ActorWeakPoint>();}*/
+        if(enemyHealth == null){collider.gameObject.GetComponent<ActorWeakPoint>();}
 
         //if the enemy can take damage (if it has an ActorHealth component),
         //hurt them. Do nothing if they can't take damage.
