@@ -80,11 +80,11 @@ public class ActorMovement : MonoBehaviour
     priority, but callers are able to time out MoveActor by specifying a float value
     greater than 0.0f. Using 0.0f or lower will let the actor keep their movement, but
     you'll probably need to keep calling DragActor for extended drags where the player can move.*/
-    public virtual void DragActor(Vector2 direction, float actorMoveDisable)
+    public virtual void DragActor(Vector2 direction)//, float actorMoveDisable)
     {
         //this vector isn't normalized because its intensity is independent of the actor's speed
         this.dragDirection = direction;
-        StartCoroutine(LockActorMovement(actorMoveDisable));
+        //StartCoroutine(LockActorMovement(actorMoveDisable));
     }
 
     /*If something ever needs to lock an Actor's movement, this is the method
@@ -96,6 +96,8 @@ public class ActorMovement : MonoBehaviour
         {
             this.movementLocked = true;
             yield return new WaitForSeconds(actorMoveDisable);
+            //(Ram) note to self: this is where the line to stop the extra frame of drag application goes.
+            this.dragDirection = Vector2.zero;
             this.movementLocked = false;
         }
         else
