@@ -10,12 +10,13 @@ public class WeaponHitbox : MonoBehaviour
     void Start()
     {
         //Assuming the Hierarchy of objects is Actor->weapon->weaponhitbox
-        wp = this.transform.parent.transform.parent.gameObject.GetComponent<WeaponAbility>();
+        //wp = this.transform.parent.transform.parent.gameObject.GetComponent<WeaponAbility>();
+        wp = this.gameObject.GetComponentInParent(typeof(WeaponAbility)) as WeaponAbility;
     }
 
     void OnCollisionEnter2D(Collision2D collider)
     {
-        if (wp == null)
+        if (!wp)
         {
             Debug.Log("Error: This WeaponHitbox is not the grandchild of an object with a WeaponAbility Script");
             return;
