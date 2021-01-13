@@ -47,7 +47,8 @@ public class Dodge : ActorAbilityFunction<ActorMovement, int>
             new Vector2((Mathf.Log(1f/ (Time.deltaTime * drag + 1))/-Time.deltaTime),
                 (Mathf.Log(1f/ (Time.deltaTime * drag + 1))/-Time.deltaTime)));
         
-        args[0].DragActor(dodgeVelocity, movementLockForDodge);
+        args[0].DragActor(dodgeVelocity);
+        StartCoroutine(args[0].LockActorMovement(movementLockForDodge));
 
         return 0;
     }
