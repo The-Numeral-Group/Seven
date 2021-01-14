@@ -222,7 +222,7 @@ public class TestBoss : MonoBehaviour
     {
         pc.enabled = true;
         ShakeCamera bossCamera = camera.GetComponent<ShakeCamera>();
-        bossCamera.cameraShake(2.0f, 0.2f);
+        bossCamera.CameraShake(2.0f, 0.2f);
         Vector2 currentPos = new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y);
         Vector2 desiredPos = new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y);
         desiredPos.y -= fallHeightOffset;
@@ -294,7 +294,7 @@ public class TestBoss : MonoBehaviour
         // Drag player to gluttony
         currentPos = new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y);
         PlayerMovement playerMov = player.GetComponent<PlayerMovement>();
-        playerMov.DragActor(currentPos, 0.0f);
+        playerMov.DragActor(currentPos);
    
         yield return null;
     }

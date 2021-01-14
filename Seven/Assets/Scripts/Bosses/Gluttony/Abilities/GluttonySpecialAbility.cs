@@ -14,13 +14,16 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
     //Ideally duration and cooldown are the same.
     public float duration = 5f;
 
+    //if at 0 the targetActor will not get dragged.
+    public float specialSpeed = 1f;
+
     private void Start()
     {
         //Start is there in order to make sure an actor has been selected as the target.
         //There is definitely a cleaner way of doing this that I (Ram) have not bothered thinking of.
         if (this.targetActor == null)
         {
-            Debug.Log("No valid ActorMovement target/object provided for GluttonySpecial Attack");
+            Debug.Log("GluttonySpecialAbility: No valid Actor target provided.");
         }
     }
 
@@ -53,13 +56,15 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
     }
     
     //Drags the target actor in the direction of the destination vector
-    private IEnumerator DragTargetActor(Vector3 destination)
+    private IEnumerator DragTargetActor(Vector3 spawnPos)
     {
         while (true)
         {
             yield return new WaitForFixedUpdate();
             //I (Ram) am not sure if I need to normalize the drag direction vector.
-            targetActor.myMovement.DragActor(destination - this.targetActor.gameObject.transform.position, 0.0f);
+            Vector2 destination = (spawnPos - this.targetActor.gameObject.transform.position).normalized;
+            destination = destination * this.specialSpeed;
+            targetActor.myMovement.DragActor(destination);
         }
     }
 

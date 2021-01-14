@@ -17,7 +17,7 @@ public class ShakeCamera : MonoBehaviour
         }
     }
 
-    public void cameraShake(float amt, float length)
+    public void CameraShake(float amt, float length)
     {
         this.shakeAmount = amt;
         InvokeRepeating("BeginShake", 0, 0.01f);
