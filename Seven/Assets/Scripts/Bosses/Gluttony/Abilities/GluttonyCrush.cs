@@ -6,7 +6,7 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
 {
     //Shadow object should for now have a cript that will tie it's movement with Gluttony.
     public GameObject startingShadowSprite;
-    //the offet being used to spawn the shadowSprite
+    //the offet being used to spawn the shadowSprite on the target
     public Vector2 distanceFromActor = new Vector2(0, -6);
     //The sin object which will be spawned after the crush.
     public GameObject sin;
@@ -74,7 +74,9 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     {
         user.myMovement.DragActor(direction);
         yield return new WaitForSeconds(this.jumpDuration);
-        GameObject shadowSprite = Instantiate(this.startingShadowSprite, this.targetActor.transform.position, Quaternion.identity);
+        GameObject shadowSprite = Instantiate(this.startingShadowSprite, new Vector3(this.targetActor.transform.position.x + this.distanceFromActor.x, 
+                                              this.targetActor.transform.position.y + this.distanceFromActor.y, this.targetActor.transform.position.z), Quaternion.identity);
+        shadowSprite.transform.parent = this.gameObject.transform;
         IEnumerator trackTarget = TrackTargetWithShadow(user);
         IEnumerator crush = Crush(user, shadowSprite, trackTarget);
         StartCoroutine(trackTarget);
@@ -104,12 +106,17 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
         yield return new WaitForSeconds(this.trackDuration);
         StopCoroutine(toStop);
         user.myMovement.DragActor(Vector2.zero);
+        shadowSprite.transform.parent = null;
         yield return new WaitForSeconds(this.crushDelay);
+        Vector2 direction = shadowSprite.transform.position - this.gameObject.transform.position;
+        float timeToArrival = Vector2.Distance(shadowSprite.transform.position, this.gameObject.transform.position) / this.fallSpeed;
+        user.myMovement.DragActor(direction);
+        yield return new WaitForSeconds(timeToArrival);
         
         //The folliwing movement handling is placeholder code.
         //movement should ideally be handled by DragACtor.
         //Will change once I (Ram) think of a better way to drag an actor to a specified location.
-        Vector2 desiredPos = shadowSprite.transform.position;
+        /*Vector2 desiredPos = shadowSprite.transform.position;
         Vector2 currentPos = this.gameObject.transform.position;
         for (float i = 0.0f; i < 1.0f; i += Time.deltaTime * this.fallSpeed)
         {
@@ -117,7 +124,8 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
             this.gameObject.transform.position = new Vector3(result.x, result.y, this.gameObject.transform.position.y);
             yield return null;
         }
-        //Above is temporary code to facilitate movement.
+        //Above is temporary code to facilitate movement.*/
+
 
         AfterMathOfCrush(shadowSprite);
     }
