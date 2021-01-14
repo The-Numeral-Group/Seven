@@ -17,6 +17,7 @@ public class ActorHealth : MonoBehaviour
     //Public Properties (Publicly Accessable)
     public float maxHealth { get; set; }
     public float currentHealth { get; set; }
+    public bool vulnerable { get; set; }
 
     void Awake(){
         this.maxHealth = startingMaxHealth;
