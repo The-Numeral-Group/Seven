@@ -65,7 +65,16 @@ public class MultiActor : MonoBehaviour
         /*we don't know if the index actually exists, ?[] 
         will make newPhase null if it doesn't. The ?. before
         transform has a similar effect*/
-        Transform newPhase = actorPhases?[index]?.transform;
+        //also screw you more ternaries
+        Transform newPhase;
+        if(index < this.actorPhases.Count)
+        {
+            newPhase = actorPhases?[index]?.transform;
+        }
+        else
+        {
+            return null;
+        }
 
         //Check if oldPhase actually exists. Some phases
         //might destroy themselves when they end.
@@ -111,7 +120,9 @@ public class MultiActorTransitionController : MonoBehaviour
 {
     public MultiActor hostMultiActor = null;
 
-    /*Tuples let us pair arbitrary data together really easy-like. This lets us use
+    /*Tuples let us pair arbitrary data together really easy-like. This lets us use two
+    seperate objects as an argument for a SendMessage, so we can pass an initialization function
+    into our next phase!
     */
     public void NextPhase(Tuple<Actor, Action<Actor>> args)
     {
@@ -123,11 +134,13 @@ public class MultiActorTransitionController : MonoBehaviour
         {
             /*This version of Invoke is Action.Invoke, not ActorAbility.Invoke
             Action is a subclass of the standard C# type Delegate*/
+            if(args.Item2 != null){Debug.Log("we do have delegates");}
+            else{Debug.Log("The delegates are null");}
             args.Item2?.Invoke(newPhase);
         }
         else
         {
-            Debug.LogWarning("MultiActor attempted to shift to phase " + lastPhaseIndex + 1 + ", which doesn't exist");
+            Debug.LogWarning("MultiActor attempted to shift to phase " + (lastPhaseIndex + 1) + ", which doesn't exist");
         }
     }
 
