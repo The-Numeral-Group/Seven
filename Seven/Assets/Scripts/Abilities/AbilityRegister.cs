@@ -26,5 +26,8 @@
     public static string PLAYER_ATTACK  = "";
     public static string PLAYER_DODGE   = "";
 
+    public static string GLUTTONY_BITE          = "";
+    public static string GLUTTONY_CRUSH         = "";
+    public static string GLUTTONY_PHASEZERO_SPECIAL = "";
     public static string GLUTTONY_PROJECTILE    = ""; 
 }

@@ -10,12 +10,22 @@ public class GluttonyActor : Actor
 {
 
     [Tooltip("When Gluttony's health is lower or equal than this, it's start launching projectiles.")]
-    public float projectileHealthGate;
+    public float projectileHealthGate = 5.0f;
 
     [Tooltip("Controls how many times should Gluttony use normal attacks before using it's special.")]
     public int specialAttackGate = 7;
 
+    [Tooltip("How far away the player should be before Gluttony tries to crush them.")]
+    public float crushRange = 60f;
+
+    [Tooltip("How close the player should be before Gluttony tries to bite them.")]
+    public float biteRange = 25f;
+
     private int specialAttackCounter = 0;
+
+    /*We need to save an additional reference to this script because 'this' is read-only.
+    The player reference is just for convinience*/
+    private Actor gluttony;
     private Actor player;
 
     public State currentState;
@@ -23,10 +33,7 @@ public class GluttonyActor : Actor
     {
         WALK,
         PHYSICAL_CRUSH,
-        AFTER_CRUSH,
         PHYSICAL_BITE,
-        AFTER_BITE,
-        BEFORE_PHASE0_SPECIAL,
         PHASE0_SPECIAL,
         LAUNCH_PROJECTILE,
         NULL,
@@ -37,7 +44,18 @@ public class GluttonyActor : Actor
     {
         base.Start();
 
-        //player = 
+        var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
+
+        if(playerObject != null)
+        {
+            Debug.LogWarning("GluttonyActor: Gluttony can't find the player!");
+        }
+        else
+        {
+            player = playerObject.GetComponent<Actor>();
+        }
+
+        gluttony = this.gameObject.GetComponent<GluttonyActor>(); 
     }
 
     // Update is called once per frame
@@ -63,55 +81,96 @@ public class GluttonyActor : Actor
                 if (specialAttackCounter >= specialAttackGate)
                 {
                     specialAttackCounter = 0;
-                    currentState = State.BEFORE_PHASE0_SPECIAL;
+                    currentState = State.PHASE0_SPECIAL;
                 }
                 else
                 {
-                    CheckDistance();
-                    StartCoroutine(WalkToTarget());
+                    stepTowardsPlayer();
+                    
+                    currentState = decideNextState();
                 }
                 break;
 
             case State.PHYSICAL_CRUSH:
-                StartCoroutine(MoveToTarget());
+                /*100% trusting that the Crush ability will handle the entire Crush
+                Semirelated, but Gluttony will try to crush 100% of the time if the player is
+                far enough. If Crush isn't open at the time, Gluttony will just keep walking*/
+                var crush = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_CRUSH];
+
+                if(crush.getUsable())
+                {
+                    crush.Invoke(ref gluttony);
+                }
+
+                currentState = State.WALK;
+
                 break;
 
-            case State.AFTER_CRUSH:
-                break;
+            //case State.AFTER_CRUSH:
+            //    break;
 
             case State.PHYSICAL_BITE:
-                StartCoroutine(PhysicalBite());
+                /*Bite hasn't been implemented yet, but this will probably use a
+                "If usable invoke if not just walk" check similar to crush and special*/
+                var bite = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_BITE];
+
+                if(bite.getUsable())
+                {
+                    bite.Invoke(ref gluttony);
+                }
+
+                currentState = State.WALK;
+
+                
                 break;
 
-            case State.AFTER_BITE:
-                break;
+            //case State.AFTER_BITE:
+            //    break;
 
-            case State.BEFORE_PHASE0_SPECIAL:
-                StartCoroutine(PhaseOne_SpecialA());
-                break;
+            //case State.BEFORE_PHASE0_SPECIAL:
+            //    StartCoroutine(PhaseOne_SpecialA());
+            //    break;
 
             case State.PHASE0_SPECIAL:
-                StartCoroutine(PhaseOne_SpecialA_Activated());
+                var special = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_PHASEZERO_SPECIAL];
+
+                if(special.getUsable())
+                {
+                    special.Invoke(ref gluttony);
+                }
+
+                currentState = State.WALK;
+
                 break;
 
             case State.LAUNCH_PROJECTILE:
-                StartCoroutine(GenerateProjectiles());
+                var proj = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_PROJECTILE];
+
+                if(proj.getUsable())
+                {
+                    proj.Invoke(ref gluttony);
+                }
+
+                currentState = State.WALK;
+
                 break;
 
             case State.NULL:
                 break;
 
             default:
+                Debug.LogWarning("GluttonyActor: Gluttony has fallen out of its state machine!");
                 break;
         }
     }
 
     //GetMovementDirection isn't needed, an equivilant exists in ActorMovement
+    //Similarly, many coroutines and substates have been migrated to relevant Abilities
 
     bool ShouldProjectile()
     {
         //get the projectile ability, if it exists
-        var projectiles = this.myAbilityInitiator.abilityDict?[AbilityRegister.GLUTTONY_PROJECTILE];
+        var projectiles = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_PROJECTILE];
 
         //if it doesn't exist, don't shoot it
         if(projectiles == null){return false;}
@@ -129,6 +188,40 @@ public class GluttonyActor : Actor
     
     void stepTowardsPlayer()
     {
-        //this.my
+        var myPos = this.gameObject.transform.position;
+        var playerPos = player.gameObject.transform.position;
+
+        /*Fun Fact! Because positions are vectors, the normalized difference between
+        posA (myPos) and posB (playerPos) is the direction from posA to posB.*/
+        var directionToPlayer = (myPos - playerPos).normalized;
+
+        this.myMovement.MoveActor(directionToPlayer);
+    }
+
+    State decideNextState()
+    {
+        var distanceToPlayer = Vector2.Distance(player.transform.position, this.gameObject.transform.position);
+        //this bool will crash the game if GLUTTONY_BITE isn't correctly defined or if there's no bite ability at all
+        bool biteReady = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_BITE].getUsable();
+        
+        State nextState;  
+
+        //var biteExists = this.myAbilityInitiator.abilityDict[AbilityRegister.GLUTTONY_BITE]?.getUsable();
+        //bool biteReady = abilities.TryGetValue(AbilityRegister.GLUTTONY_BITE) ? abilities[AbilityRegister.GLUTTONY_BITE].getUsable() : false
+
+        if(distanceToPlayer >= crushRange)
+        {
+            nextState = State.PHYSICAL_CRUSH;
+        }
+        else if(distanceToPlayer <= biteRange && biteReady)
+        {
+            nextState = State.PHYSICAL_BITE;
+        }
+        else
+        {
+            nextState = State.WALK;
+        }
+
+        return nextState;
     }
 }
