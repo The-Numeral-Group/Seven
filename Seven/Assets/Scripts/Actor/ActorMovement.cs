@@ -97,7 +97,7 @@ public class ActorMovement : MonoBehaviour
             this.movementLocked = true;
             yield return new WaitForSeconds(actorMoveDisable);
             //(Ram) note to self: this is where the line to stop the extra frame of drag application goes.
-            this.dragDirection = Vector2.zero;
+            //this.dragDirection = Vector2.zero;
             this.movementLocked = false;
         }
         else

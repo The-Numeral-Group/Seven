@@ -5,7 +5,7 @@ using UnityEngine;
 public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
 {
     //The sprite to be spawned in to show the attack. We could replace this with vfx.
-    public GameObject specialAbilitySprite;
+    public GameObject toInstantiateAbilitySprite;
     //The actor this ability will target. Specifically their movement component 
     public Actor targetActor;
     //How far away to spawn the specialAbilitySprite relative to the owner of the ability
@@ -43,13 +43,13 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
         Vector3 spawnPos = new Vector3(args[0].gameObject.transform.position.x + this.distanceFromActor.x,
                                        args[0].gameObject.transform.position.y + this.distanceFromActor.y,
                                        args[0].gameObject.transform.position.z); 
-        GameObject specialAbility = Instantiate(this.specialAbilitySprite, spawnPos, Quaternion.identity);
+        GameObject specialAbilitySprite = Instantiate(this.toInstantiateAbilitySprite, spawnPos, Quaternion.identity);
 
         //I (Ram) Do not have a full understanding of how invoke repeating works.
         //0.02 is 1/50th of a second. I Believe fixedupdate runs at 50fps. Therefore Invoke Repeating is called 50 times per seconds in sync with fixedupdate.
         //InvokeRepeating("DragTargetActor", 0, 0.02f);
         IEnumerator dragTargetActor = DragTargetActor(spawnPos);
-        IEnumerator stopSpecialAbility = StopSpecialAbility(dragTargetActor, specialAbility);
+        IEnumerator stopSpecialAbility = StopSpecialAbility(dragTargetActor, specialAbilitySprite);
         StartCoroutine(dragTargetActor); //Thse two must be done hand in hand. The second coroutine is responsible for killing the first
         StartCoroutine(stopSpecialAbility);
         return 0;
