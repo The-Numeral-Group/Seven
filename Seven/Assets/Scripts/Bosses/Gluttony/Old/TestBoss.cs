@@ -318,7 +318,7 @@ public class TestBoss : MonoBehaviour
         {
             GameObject proj = Instantiate(projectile, this.gameObject.transform.position, Quaternion.identity) as GameObject;
             Vector2 direction = new Vector2(Mathf.Cos(i * dtheta), Mathf.Sin(i * dtheta));
-            proj.GetComponent<GluttonyProjectile>().initializeProjectile(direction);
+            //proj.GetComponent<GluttonyProjectile>().initializeProjectile(direction);
             yield return new WaitForSeconds(0.1f);
         }
         yield return new WaitForSeconds(1);

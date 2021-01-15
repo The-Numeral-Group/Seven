@@ -5,7 +5,7 @@ using UnityEngine;
 public class GluttonyCrush : ActorAbilityFunction<Actor, int>
 {
     //Shadow object should for now have a cript that will tie it's movement with Gluttony.
-    public GameObject startingShadowSprite;
+    public GameObject toInstantiateShadowSprite;
     //the offet being used to spawn the shadowSprite on the target
     public Vector2 distanceFromActor = new Vector2(0, -6);
     //The sin object which will be spawned after the crush.
@@ -61,8 +61,9 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
         Vector2 destination = new Vector2(this.targetActor.transform.position.x, this.targetActor.transform.position.y + this.verticalOffset);
         Vector2 direction = (destination - new Vector2(args[0].transform.position.x, args[0].transform.position.y)).normalized;
         direction = direction * this.jumpSpeed;
-        StartCoroutine(args[0].myMovement.LockActorMovement(this.totalAbilityDuration));
-        StartCoroutine(JumpUp(args[0], direction));
+        IEnumerator initialMovementLock = args[0].myMovement.LockActorMovement(this.totalAbilityDuration);
+        StartCoroutine(initialMovementLock);
+        StartCoroutine(JumpUp(args[0], direction, initialMovementLock));
         return 0;
     }
 
@@ -70,15 +71,15 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     //Moves the ability user to in the defined direction.
     //Instatiates an object to represent its final destination.
     //Calls both Part 2 and 3 of this process.
-    private IEnumerator JumpUp(Actor user, Vector2 direction)
+    private IEnumerator JumpUp(Actor user, Vector2 direction, IEnumerator initialMovementLock)
     {
         user.myMovement.DragActor(direction);
         yield return new WaitForSeconds(this.jumpDuration);
-        GameObject shadowSprite = Instantiate(this.startingShadowSprite, new Vector3(this.targetActor.transform.position.x + this.distanceFromActor.x, 
+        GameObject shadowSprite = Instantiate(this.toInstantiateShadowSprite, new Vector3(this.targetActor.transform.position.x + this.distanceFromActor.x, 
                                               this.targetActor.transform.position.y + this.distanceFromActor.y, this.targetActor.transform.position.z), Quaternion.identity);
         shadowSprite.transform.parent = this.gameObject.transform;
         IEnumerator trackTarget = TrackTargetWithShadow(user);
-        IEnumerator crush = Crush(user, shadowSprite, trackTarget);
+        IEnumerator crush = Crush(user, shadowSprite, trackTarget, initialMovementLock);
         StartCoroutine(trackTarget);
         StartCoroutine(crush);
     }
@@ -100,18 +101,21 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     //Stops part 2 after a specified duration as passed.
     //Will then move the ability user towards the shadowSprites position.
     //Starts the aftermath function which performs the abilities efx.
-    //RIGHT NOW CRUSH USES TEMPORARY CODE TO MOVE THE OBJECT UNTIL A BETTER WAY IS IMPLEMENTED WHICH UTILIZES DRAGACTOR
-    private IEnumerator Crush(Actor user, GameObject shadowSprite, IEnumerator toStop)
+    private IEnumerator Crush(Actor user, GameObject shadowSprite, IEnumerator stopTrack, IEnumerator initialLockMovement)
     {
         yield return new WaitForSeconds(this.trackDuration);
-        StopCoroutine(toStop);
+        StopCoroutine(stopTrack);
         user.myMovement.DragActor(Vector2.zero);
         shadowSprite.transform.parent = null;
         yield return new WaitForSeconds(this.crushDelay);
         Vector2 direction = shadowSprite.transform.position - this.gameObject.transform.position;
         float timeToArrival = Vector2.Distance(shadowSprite.transform.position, this.gameObject.transform.position) / this.fallSpeed;
         user.myMovement.DragActor(direction);
+        //I (Ram) do not know what will happen if a StopCoroutine is used on a coroutine that has already stopped.
+        StopCoroutine(initialLockMovement);
+        StartCoroutine(user.myMovement.LockActorMovement(timeToArrival));
         yield return new WaitForSeconds(timeToArrival);
+        user.myMovement.DragActor(Vector2.zero);
         
         //The folliwing movement handling is placeholder code.
         //movement should ideally be handled by DragACtor.
