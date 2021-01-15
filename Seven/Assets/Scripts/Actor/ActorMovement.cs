@@ -10,10 +10,11 @@ just gonna ignore that warning. This pragma line hides the warning*/
 [RequireComponent(typeof(SimpleController2D))]
 public class ActorMovement : MonoBehaviour
 {
+    protected Actor hostActor;
+
     public float speed;
 
     public bool movementLocked{ get; protected set; }
-    public bool isMoving { get; protected set; }
     public Vector2 movementDirection{ get; protected set; }
     public Vector2 dragDirection{ get; protected set; }
 
@@ -23,44 +24,37 @@ public class ActorMovement : MonoBehaviour
     /*This script might also require some extra data for working
     with animations. It'll need to be added later.*/
 
-    public ActorAnimationHandler myAnimationHandler { get; protected set; }
-
-
     protected virtual void Awake()
     {
+        hostActor = this.GetComponent<Actor>();
         this.movementDirection = this.dragDirection = Vector2.zero;
         this.movementLocked = false;
-        this.isMoving = false;
     }
 
     protected virtual void Start()
     {
         movementController = this.gameObject.GetComponent<SimpleController2D>();
         this.rigidbody = this.gameObject.GetComponent<Rigidbody2D>();
-        this.myAnimationHandler = this.gameObject.GetComponent<ActorAnimationHandler>();
     }
 
     /*This method makes the mover take a step every 1/60 of a second
     even if that step goes nowhere and there is no visual step*/
     protected virtual void FixedUpdate()
     {
-        CheckIfMoving();
         InternalMoveActor();
         AnimateWalkActor();
     }
 
-    /*This method checks if the actor is moving or not.
-    I (Mingun) ended up not using this method for the animator but
-    I will leave it in case we need it in the future*/
-    protected virtual void CheckIfMoving()
+    /*This method checks if the actor is moving or not.*/
+    public bool isMoving()
     {
         if (this.movementDirection == Vector2.zero)
         {
-            this.isMoving = false;
+            return false;
         }
         else
         {
-            this.isMoving = true;
+            return true;
         }
     }
 
@@ -96,8 +90,7 @@ public class ActorMovement : MonoBehaviour
     moving or not, and if it is moving, which direction the actor is moving.*/
     protected virtual void AnimateWalkActor()
     {
-        myAnimationHandler.animateWalk(movementDirection);
-
+        hostActor.myAnimationHandler.animateWalk();
     }
 
     /*This method is for when the actor wants to move itself*/

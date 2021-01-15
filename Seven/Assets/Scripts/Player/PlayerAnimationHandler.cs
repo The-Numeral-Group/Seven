@@ -4,44 +4,51 @@ using UnityEngine;
 
 public class PlayerAnimationHandler : ActorAnimationHandler
 {
-    public Animator playerAnimator;
     public Vector2 movementDirection;
-    public bool isMoving;
 
-    void Start()
+    public override void animateWalk()
     {
-        playerAnimator = this.gameObject.GetComponent<Animator>();
-        this.movementDirection = Vector2.zero;
-    }
-
-    public override void animateWalk(Vector2 movementDirection)
-    {
-        this.movementDirection = movementDirection;
-        checkWalking();
-        if (this.isMoving)
+        movementDirection = myMovement.movementDirection;
+        if (myMovement.isMoving())
         {
-            playerAnimator.SetBool("player_walking", true);
-            playerAnimator.SetFloat("player_H", movementDirection.x);
-            playerAnimator.SetFloat("player_V", movementDirection.y);
+            Animator.SetBool("player_walking", true);
+            Animator.SetFloat("player_H", movementDirection.x);
+            Animator.SetFloat("player_V", movementDirection.y);
         }
         else
         {
-            playerAnimator.SetBool("player_walking", false);
-            playerAnimator.SetFloat("player_H", 0);
-            playerAnimator.SetFloat("player_V", 0);
+            Animator.SetBool("player_walking", false);
+            Animator.SetFloat("player_H", 0);
+            Animator.SetFloat("player_V", 0);
         }
 
     }
 
-    public void checkWalking()
+    /*Since we have no animation right now, I (Mingun) have just added 1 second delay that
+     will turn off the animation. When we get to use animation later, I will make sure 
+     the animation will be turned off by itself, not with having a delay that turns off the 
+     animation.*/
+    public override void animateAttack()
     {
-        if (this.movementDirection == Vector2.zero)
-        {
-            this.isMoving = false;
-        }
-        else
-        {
-            this.isMoving = true;
-        }
+        StartCoroutine(tempAnimateAttack());
     }
+
+    private IEnumerator tempAnimateAttack()
+    {
+        Animator.SetBool("player_attacking", true);
+        yield return new WaitForSeconds(1);
+        Animator.SetBool("player_attacking", false);
+    }
+    public override void animateDodge()
+    {
+        StartCoroutine(tempAnimateDodge());
+    }
+
+    private IEnumerator tempAnimateDodge()
+    {
+        Animator.SetBool("player_dodging", true);
+        yield return new WaitForSeconds(1);
+        Animator.SetBool("player_dodging", false);
+    }
+
 }
