@@ -24,5 +24,7 @@
     */
 
     public static string PLAYER_ATTACK  = "";
-    public static string PLAYER_DODGE   = ""; 
+    public static string PLAYER_DODGE   = "";
+
+    public static string GLUTTONY_PROJECTILE    = ""; 
 }

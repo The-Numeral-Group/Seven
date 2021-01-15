@@ -70,7 +70,7 @@ public class ActorMovement : MonoBehaviour
     }
 
     /*This method is for when the actor wants to move itself*/
-    protected virtual void MoveActor(Vector2 direction)
+    public virtual void MoveActor(Vector2 direction)
     {
         //the vector is normalized by default to let speed control... well... speed.
         this.movementDirection = direction.normalized;
