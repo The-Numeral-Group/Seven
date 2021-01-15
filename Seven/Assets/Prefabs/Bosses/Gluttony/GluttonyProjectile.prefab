@@ -12,7 +12,11 @@ GameObject:
   - component: {fileID: 3033589395181301066}
   - component: {fileID: 3033589395181301067}
   - component: {fileID: 3033589395181301060}
-  - component: {fileID: 3033589395181301061}
+  - component: {fileID: 2224662566219003105}
+  - component: {fileID: 18225691244702679}
+  - component: {fileID: 114865208885683515}
+  - component: {fileID: 9025764853802258676}
+  - component: {fileID: 4945694119891724030}
   m_Layer: 0
   m_Name: GluttonyProjectile
   m_TagString: Untagged
@@ -118,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7edf6075af9db168ac779dc17a891a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3033589395181301061
+--- !u!114 &2224662566219003105
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,8 +131,69 @@ MonoBehaviour:
   m_GameObject: {fileID: 3033589395181301062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4da398338ed62cc44a8a1fca733a7b6c, type: 3}
+  m_Script: {fileID: 11500000, guid: c0d1d5e7c31d60a4bac75dc1bef3276a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  projectileDuration: 20
+  startingMaxHealth: 100
+  damageResistance: 0
+--- !u!114 &18225691244702679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3033589395181301062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad4c5db7541dcc56b1980217c563312, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114865208885683515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3033589395181301062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a351bad815628f7c6ac55909bf9b707e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileHealthGate: 5
+  specialAttackGate: 7
+  crushRange: 60
+  biteRange: 25
+  currentState: 0
+--- !u!114 &9025764853802258676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3033589395181301062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e68ae2f28d6a78df855efffa9f722d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilities:
+    m_keys: []
+    m_values: []
+  Crush: {fileID: 0}
+  Bite: {fileID: 0}
+  PhaseZeroSpecial: {fileID: 0}
+  Projectile: {fileID: 0}
+--- !u!114 &4945694119891724030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3033589395181301062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453e150335b52ac4884472bf0e1bd9cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
