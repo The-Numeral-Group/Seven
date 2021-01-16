@@ -28,8 +28,9 @@ public class PlayerAnimationHandler : ActorAnimationHandler
      will turn off the animation. When we get to use animation later, I will make sure 
      the animation will be turned off by itself, not with having a delay that turns off the 
      animation.*/
-    public override void animateAttack()
+    public void animateAttack()
     {
+        Debug.Log(movementDirection);
         StartCoroutine(tempAnimateAttack());
     }
 
@@ -39,7 +40,7 @@ public class PlayerAnimationHandler : ActorAnimationHandler
         yield return new WaitForSeconds(1);
         Animator.SetBool("player_attacking", false);
     }
-    public override void animateDodge()
+    public void animateDodge()
     {
         StartCoroutine(tempAnimateDodge());
     }
