@@ -7,7 +7,7 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
     //The sprite to be spawned in to show the attack. We could replace this with vfx.
     public GameObject toInstantiateAbilitySprite;
     //The actor this ability will target. Specifically their movement component 
-    public Actor targetActor;
+    private Actor targetActor;
     //How far away to spawn the specialAbilitySprite relative to the owner of the ability
     public Vector2 distanceFromActor = new Vector2(0f, -6f);
 
@@ -19,26 +19,28 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
 
     private void Start()
     {
-        //Start is there in order to make sure an actor has been selected as the target.
-        //There is definitely a cleaner way of doing this that I (Ram) have not bothered thinking of.
-        if (this.targetActor == null)
+        var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
+        if(playerObject == null)
         {
-            Debug.Log("GluttonySpecialAbility: No valid Actor target provided.");
+            Debug.LogWarning("GluttonyCrush: Gluttony can't find the player!");
+        }
+        else
+        {
+            this.targetActor = playerObject.GetComponent<Actor>();
         }
     }
-
     public override void Invoke(ref Actor user)
     {
         //If we have not referenced a target this ability will not initiate.
         if(usable && this.targetActor)
         {
-            InternInvoke(user);
             StartCoroutine(coolDown(cooldownPeriod));
+            InternInvoke(user);
         }
     }
 
     //The ability will spawn a sprite to visual the move. The target actor is then dragged towards that stop for the specified duration.
-    protected override int InternInvoke(Actor[] args)
+    protected override int InternInvoke(params Actor[] args)
     {
         Vector3 spawnPos = new Vector3(args[0].gameObject.transform.position.x + this.distanceFromActor.x,
                                        args[0].gameObject.transform.position.y + this.distanceFromActor.y,

@@ -27,8 +27,9 @@ public class GluttonyActor : Actor
     The player reference is just for convinience*/
     private Actor gluttony;
     private Actor player;
-
     public State currentState;
+
+    private ActorAbility currAbility;
     public enum State
     {
         WALK,
@@ -46,7 +47,7 @@ public class GluttonyActor : Actor
 
         var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
 
-        if(playerObject != null)
+        if(playerObject == null)
         {
             Debug.LogWarning("GluttonyActor: Gluttony can't find the player!");
         }
@@ -55,7 +56,8 @@ public class GluttonyActor : Actor
             player = playerObject.GetComponent<Actor>();
         }
 
-        gluttony = this.gameObject.GetComponent<GluttonyActor>(); 
+        gluttony = this.gameObject.GetComponent<GluttonyActor>();
+        gluttony.myHealth.vulnerable = true; 
     }
 
     // Update is called once per frame
@@ -70,12 +72,10 @@ public class GluttonyActor : Actor
         {
             //Moved the functions in update to walk to avoid the stuttering that occurs on ground pound.
             case State.WALK:
-                if(ShouldProjectile())
+                if (currAbility && !currAbility.getUsable())
                 {
-                    currentState = State.LAUNCH_PROJECTILE;
+                    break;
                 }
-                
-                
                 // check for special attack counter.
                 // if it is 7, activate special attack. 
                 if (specialAttackCounter >= specialAttackGate)
@@ -83,10 +83,14 @@ public class GluttonyActor : Actor
                     specialAttackCounter = 0;
                     currentState = State.PHASE0_SPECIAL;
                 }
+                else if (ShouldProjectile())
+                {
+                    currentState = State.LAUNCH_PROJECTILE;
+                }
                 else
                 {
                     stepTowardsPlayer();
-                    
+                    currAbility = null;
                     currentState = decideNextState();
                 }
                 break;
@@ -99,15 +103,13 @@ public class GluttonyActor : Actor
 
                 if(crush.getUsable())
                 {
+                    currAbility = crush;
                     crush.Invoke(ref gluttony);
                 }
 
                 currentState = State.WALK;
 
                 break;
-
-            //case State.AFTER_CRUSH:
-            //    break;
 
             case State.PHYSICAL_BITE:
                 /*Bite hasn't been implemented yet, but this will probably use a
@@ -116,6 +118,7 @@ public class GluttonyActor : Actor
 
                 if(bite.getUsable())
                 {
+                    currAbility = bite;
                     bite.Invoke(ref gluttony);
                 }
 
@@ -124,18 +127,12 @@ public class GluttonyActor : Actor
                 
                 break;
 
-            //case State.AFTER_BITE:
-            //    break;
-
-            //case State.BEFORE_PHASE0_SPECIAL:
-            //    StartCoroutine(PhaseOne_SpecialA());
-            //    break;
-
             case State.PHASE0_SPECIAL:
                 var special = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_PHASEZERO_SPECIAL];
 
                 if(special.getUsable())
                 {
+                    currAbility = special;
                     special.Invoke(ref gluttony);
                 }
 
@@ -148,6 +145,7 @@ public class GluttonyActor : Actor
 
                 if(proj.getUsable())
                 {
+                    currAbility = proj;
                     proj.Invoke(ref gluttony);
                 }
 
@@ -193,7 +191,7 @@ public class GluttonyActor : Actor
 
         /*Fun Fact! Because positions are vectors, the normalized difference between
         posA (myPos) and posB (playerPos) is the direction from posA to posB.*/
-        var directionToPlayer = (myPos - playerPos).normalized;
+        var directionToPlayer = (playerPos - myPos).normalized;
 
         this.myMovement.MoveActor(directionToPlayer);
     }

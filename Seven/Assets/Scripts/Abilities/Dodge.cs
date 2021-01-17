@@ -28,8 +28,8 @@ public class Dodge : ActorAbilityFunction<ActorMovement, int>
     {
         if(usable)
         {
-            InternInvoke(user.myMovement);
             StartCoroutine(coolDown(cooldownPeriod));
+            InternInvoke(user.myMovement);
         }
     }
 

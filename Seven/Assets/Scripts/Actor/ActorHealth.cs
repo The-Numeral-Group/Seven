@@ -33,7 +33,7 @@ public class ActorHealth : MonoBehaviour
 
     public virtual void takeDamage(float damageTaken){
         var damage = Mathf.Floor(damageTaken * (1.0f - damageResistance));
-        //Debug.Log("taking " + damage + " damage");
+        Debug.Log("taking " + damage + " damage");
 
         //take the damage
         this.currentHealth -= damage;

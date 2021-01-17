@@ -30,14 +30,14 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
     {
         if(usable)
         {
+            StartCoroutine(coolDown(cooldownPeriod));
             InternInvoke(user);
-            //StartCoroutine(coolDown(cooldownPeriod));
         }
     }
 
     //Internal invoke does some checks to make sure variables values are properly set
     //It will also clear any projectiles from the scene this ability spawned in preparation for spawning new projectiles.
-    protected override int InternInvoke(Actor[] args)
+    protected override int InternInvoke(params Actor[] args)
     {
         if (this.duration <= 0f || this.projectileSpawnTime <= 0f)
         {

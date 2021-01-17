@@ -17,7 +17,7 @@ public class GluttonyAbilityInitiator : ActorAbilityInitiator
         AbilityRegister.GLUTTONY_CRUSH = "Gluttony" + nameof(Crush);
 
         this.abilities.Add("Gluttony" + nameof(Bite), Bite);
-        AbilityRegister.GLUTTONY_BITE = "Gluttony" + nameof(Crush);
+        AbilityRegister.GLUTTONY_BITE = "Gluttony" + nameof(Bite);
 
         this.abilities.Add("Gluttony" + nameof(PhaseZeroSpecial), PhaseZeroSpecial);
         AbilityRegister.GLUTTONY_PHASEZERO_SPECIAL = "Gluttony" + nameof(PhaseZeroSpecial);

@@ -11,7 +11,7 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     //The sin object which will be spawned after the crush.
     public GameObject sin;
     //The actor this move is meant to target
-    public Actor targetActor;
+    private Actor targetActor;
     public float fallSpeed = 10;
     public float jumpSpeed = 10;
     private ShakeCamera cam = null;
@@ -29,6 +29,15 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
         //Compount all the coroutine delays to get the total duration of the ability.
         this.totalAbilityDuration = this.jumpDuration + this.trackDuration + this.crushDelay;
         var camObjects = FindObjectsOfType<ShakeCamera>();
+        var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
+        if(playerObject == null)
+        {
+            Debug.LogWarning("GluttonyCrush: Gluttony can't find the player!");
+        }
+        else
+        {
+            this.targetActor = playerObject.GetComponent<Actor>();
+        }
         if (camObjects.Length > 0)
         {
             cam = camObjects[0];
@@ -36,11 +45,6 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
         else
         {
             Debug.Log("Gluttony Crush: does not have access to a camera that can shake");
-        }
-
-        if (this.targetActor == null)
-        {
-            Debug.Log("Gluttony Crush: No valid ActorMovement target/object provided");
         }
     }
 
@@ -52,11 +56,21 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
         yield return new WaitForSeconds(cooldownDuration);
         //usable = true;
     }
+    public override void Invoke(ref Actor user)//(ref Actor user)
+    {
+        //by default, Invoke just does InternInvoke with no arguments
+        if(usable)
+        {
+            StartCoroutine(coolDown(cooldownPeriod));
+            InternInvoke(user);
+        }
+        
+    }
 
     //Used as a way to start the three-part coroutine that makes up the ability.
     //Initiates the first portion which is JumpUp.
     //Passes the direction to jump towards.
-    protected override int InternInvoke(Actor[] args)
+    protected override int InternInvoke(params Actor[] args)
     {
         Vector2 destination = new Vector2(this.targetActor.transform.position.x, this.targetActor.transform.position.y + this.verticalOffset);
         Vector2 direction = (destination - new Vector2(args[0].transform.position.x, args[0].transform.position.y)).normalized;
@@ -77,8 +91,8 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
         yield return new WaitForSeconds(this.jumpDuration);
         GameObject shadowSprite = Instantiate(this.toInstantiateShadowSprite, new Vector3(this.targetActor.transform.position.x + this.distanceFromActor.x, 
                                               this.targetActor.transform.position.y + this.distanceFromActor.y, this.targetActor.transform.position.z), Quaternion.identity);
-        shadowSprite.transform.parent = this.gameObject.transform;
-        IEnumerator trackTarget = TrackTargetWithShadow(user);
+        shadowSprite.transform.parent = this.targetActor.transform;
+        IEnumerator trackTarget = TrackTargetWithShadow(user, shadowSprite);
         IEnumerator crush = Crush(user, shadowSprite, trackTarget, initialMovementLock);
         StartCoroutine(trackTarget);
         StartCoroutine(crush);
@@ -87,9 +101,11 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     //Part 2 of the 3 steps to perform crush.
     //Tracks the targets movement by having the ability user mimic it's user movementdirection and speed.
     //Loops infinitely, but is stopped by Part 3.
-    private IEnumerator TrackTargetWithShadow(Actor user)
+    private IEnumerator TrackTargetWithShadow(Actor user, GameObject shadowSprite)
     {
         //WORK IS PAUSED UNTIL I SORT OUT SOME METHODS REGARDING DRAGACTOR
+        user.transform.position = new Vector3(this.targetActor.transform.position.x, this.targetActor.transform.position.y + this.verticalOffset,user.transform.position.z);
+        shadowSprite.transform.parent = user.gameObject.transform;
         while(true)
         {
             yield return new WaitForFixedUpdate();
@@ -108,9 +124,9 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
         user.myMovement.DragActor(Vector2.zero);
         shadowSprite.transform.parent = null;
         yield return new WaitForSeconds(this.crushDelay);
-        Vector2 direction = shadowSprite.transform.position - this.gameObject.transform.position;
-        float timeToArrival = Vector2.Distance(shadowSprite.transform.position, this.gameObject.transform.position) / this.fallSpeed;
-        user.myMovement.DragActor(direction);
+        Vector2 direction = (shadowSprite.transform.position - user.gameObject.transform.position).normalized;
+        float timeToArrival = Vector2.Distance(shadowSprite.transform.position, user.gameObject.transform.position) / this.fallSpeed;
+        user.myMovement.DragActor(direction * fallSpeed);
         //I (Ram) do not know what will happen if a StopCoroutine is used on a coroutine that has already stopped.
         StopCoroutine(initialLockMovement);
         StartCoroutine(user.myMovement.LockActorMovement(timeToArrival));
@@ -131,16 +147,16 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
         //Above is temporary code to facilitate movement.*/
 
 
-        AfterMathOfCrush(shadowSprite);
+        AfterMathOfCrush(user, shadowSprite);
     }
     
     //This function handles everything that must be done after the crush has been performed.
     //This will shake the camera, spawn a sin object, and destroy the shadow.
-    private void AfterMathOfCrush(GameObject shadowSprite)
+    private void AfterMathOfCrush(Actor user, GameObject shadowSprite)
     {
-        this.cam.CameraShake(2.0f, 0.2f);
+        //this.cam.CameraShake(2.0f, 0.2f);
         Destroy(shadowSprite);
-        Instantiate(this.sin, this.gameObject.transform.position, Quaternion.identity);
+        //Instantiate(this.sin, user.gameObject.transform.position, Quaternion.identity);
         usable = true;
     }
 }

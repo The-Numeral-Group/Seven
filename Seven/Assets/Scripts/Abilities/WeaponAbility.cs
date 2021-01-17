@@ -10,7 +10,7 @@ Note: The template paramters Gameobject and int were chosen arbitrarily.*/
 public class WeaponAbility : ActorAbilityFunction<Actor, int>
 {
     public GameObject startingWeaponObject;
-    public int duration;
+    public float duration;
     public Vector2 weaponPositionScale = new Vector2(0.1f, 0.1f);
     public List<int> damagePerHitbox = new List<int>();
     private GameObject weaponObject;
@@ -59,14 +59,14 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
         //by default, Invoke just does InternInvoke with no arguments
         if(usable)
         {
-            InternInvoke(user);
             StartCoroutine(coolDown(cooldownPeriod));
+            InternInvoke(user);
         }
         
     }
 
     //The internal invoke for weapon ability activates the weapon prefab attached to the actor object.
-    protected override int InternInvoke(Actor[] args)
+    protected override int InternInvoke(params Actor[] args)
     {
         this.weaponObject.SetActive(true);
         this.hitConnected = false;
