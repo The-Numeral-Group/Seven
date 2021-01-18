@@ -29,5 +29,9 @@
     public static string GLUTTONY_BITE          = "";
     public static string GLUTTONY_CRUSH         = "";
     public static string GLUTTONY_PHASEZERO_SPECIAL = "";
-    public static string GLUTTONY_PROJECTILE    = ""; 
+    public static string GLUTTONY_PROJECTILE    = "";
+
+    public static string GHOSTKNIGHT_SLASH = "";
+    public static string GHOSTKNIGHT_PROJECTILE = "";
+    public static string GHOSTKNIGHT_SPECIAL = "";
 }
