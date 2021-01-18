@@ -11,6 +11,7 @@ public class Actor : MonoBehaviour
     public ActorEffectHandler myEffectHandler{ get; protected set; }
     public ActorHealth myHealth{ get; protected set; }
     public ActorMovement myMovement{ get; protected set; }
+    public ActorAnimationHandler myAnimationHandler { get; protected set; }
     //turned this into a property 'cause why not?
     public Transform faceAnchor{ get; protected set; }
 
@@ -27,7 +28,8 @@ public class Actor : MonoBehaviour
         this.myAbilityInitiator = this.gameObject.GetComponent<ActorAbilityInitiator>();
         this.myEffectHandler = this.gameObject.GetComponent<ActorEffectHandler>();
         this.myHealth = this.gameObject.GetComponent<ActorHealth>();
-        this.myMovement = this.gameObject.GetComponent<ActorMovement>(); 
+        this.myMovement = this.gameObject.GetComponent<ActorMovement>();
+        this.myAnimationHandler = this.gameObject.GetComponent<ActorAnimationHandler>();
     }
 
     public virtual void DoActorDamageEffect()

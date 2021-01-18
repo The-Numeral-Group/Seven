@@ -20,6 +20,7 @@ is public while also hiding the generic types ActorAbilityFunction uses*/
 public abstract class ActorAbility : MonoBehaviour
 {
     public abstract bool getUsable();
+    public abstract bool getIsFinished();
     public abstract IEnumerator coolDown(float cooldownDuration);
     public abstract void Invoke(ref Actor user);
 }
@@ -37,6 +38,13 @@ public abstract class ActorAbilityFunction<InvokeParam, InvokeReturn> : ActorAbi
     //Update: Now usable is protected.
     protected bool usable = true;
     public override bool getUsable(){return usable;}
+
+    /*private accessors much like usable
+    isFinished is used to signify if an ability is in use.
+    Invoke by default should set it, it is the abilities responsibility
+    reset it.*/
+    protected bool isFinished = true;
+    public override bool getIsFinished(){return isFinished;}
 
     /*IEnumerator for using coroutines to run ability cooldowns.
     If you don't want a cooldown, pass in 0.0f*/
@@ -63,6 +71,7 @@ public abstract class ActorAbilityFunction<InvokeParam, InvokeReturn> : ActorAbi
         //by default, Invoke just does InternInvoke with no arguments
         if(usable)
         {
+            isFinished = false;
             InternInvoke(new InvokeParam[0]);
             StartCoroutine(coolDown(cooldownPeriod));
         }
