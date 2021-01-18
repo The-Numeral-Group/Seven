@@ -28,6 +28,7 @@ public class Dodge : ActorAbilityFunction<ActorMovement, int>
     {
         if(usable)
         {
+            isFinished = false;
             StartCoroutine(coolDown(cooldownPeriod));
             InternInvoke(user.myMovement);
         }
@@ -49,7 +50,7 @@ public class Dodge : ActorAbilityFunction<ActorMovement, int>
         
         args[0].DragActor(dodgeVelocity);
         StartCoroutine(args[0].LockActorMovement(movementLockForDodge));
-
+        isFinished = true;
         return 0;
     }
 }
