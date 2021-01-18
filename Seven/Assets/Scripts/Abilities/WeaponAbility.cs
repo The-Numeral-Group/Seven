@@ -59,6 +59,7 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
         //by default, Invoke just does InternInvoke with no arguments
         if(usable)
         {
+            isFinished = false;
             StartCoroutine(coolDown(cooldownPeriod));
             InternInvoke(user);
         }
@@ -90,6 +91,7 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
     {
         yield return new WaitForSeconds(this.duration);
         this.weaponObject.SetActive(false);
+        isFinished = true;
     }
 
 }
