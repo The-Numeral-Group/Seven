@@ -243,11 +243,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &784522461 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5187959127492769972, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
-  m_PrefabInstance: {fileID: 2144648005}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1766122757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -310,7 +305,7 @@ PrefabInstance:
     - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: targets.Array.data[0]
       value: 
-      objectReference: {fileID: 784522461}
+      objectReference: {fileID: 0}
     - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: playerTransform
       value: 
@@ -325,79 +320,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
---- !u!1001 &2144648005
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5187959127492769959, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5187959127492769959, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5187959127492769959, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5187959127492769959, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5187959127492769959, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5187959127492769959, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5187959127492769959, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5187959127492769959, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5187959127492769959, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5187959127492769959, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5187959127492769959, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5187959127492769963, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
-      propertyPath: cooldownPeriod
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5187959127492769966, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
-      propertyPath: crushRange
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5187959127492769966, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
-      propertyPath: biteRange
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5187959127492769966, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
-      propertyPath: specialAttackGate
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5187959127492769972, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
-      propertyPath: m_Name
-      value: Gluttony
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
 --- !u!1001 &7512802453606289077
 PrefabInstance:
   m_ObjectHideFlags: 0
