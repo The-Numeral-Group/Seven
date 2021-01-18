@@ -10,6 +10,8 @@ just gonna ignore that warning. This pragma line hides the warning*/
 [RequireComponent(typeof(SimpleController2D))]
 public class ActorMovement : MonoBehaviour
 {
+    protected Actor hostActor;
+
     public float speed;
 
     public bool movementLocked{ get; protected set; }
@@ -24,6 +26,7 @@ public class ActorMovement : MonoBehaviour
 
     protected virtual void Awake()
     {
+        hostActor = this.GetComponent<Actor>();
         this.movementDirection = this.dragDirection = Vector2.zero;
         this.movementLocked = false;
     }
@@ -39,14 +42,27 @@ public class ActorMovement : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         InternalMoveActor();
+        AnimateWalkActor();
     }
 
+    /*This method checks if the actor is moving or not.*/
+    public bool isMoving()
+    {
+        if (this.movementDirection == Vector2.zero)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 
     /*This method is called regularly, and actually makes the character controller
     call to literally move the actor.*/
     protected virtual void InternalMoveActor()
     {
-        if(this.movementLocked)
+        if (this.movementLocked)
         {
             movementController.Move(this.dragDirection * Time.deltaTime);
         }
@@ -67,6 +83,14 @@ public class ActorMovement : MonoBehaviour
             this.dragDirection = Vector2.zero;
         }
         
+    }
+
+    /*This method triggers the walking animation for the actor
+    The animator will need the movementDirection vector to see if the actor is 
+    moving or not, and if it is moving, which direction the actor is moving.*/
+    protected virtual void AnimateWalkActor()
+    {
+        hostActor.myAnimationHandler.animateWalk();
     }
 
     /*This method is for when the actor wants to move itself*/

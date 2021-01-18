@@ -21,7 +21,7 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     //  ActorAbilityInitiator, so now it's innate to the class -Thomas
     //public Actor playerActor;
 
-    /*// Update is called once per frame
+    /* Update is called once per frame
     void Update()
     {
         
@@ -35,7 +35,10 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
 
     public override void DoAttack()
     {
-        //this.gameObject.SendMessage("DoWeaponAttack");
+        /* Casting ActorAnimationHandler to PlayerAnimationHandler to avoid 
+         * having all the child's functions requierd to be visible in the parent class*/
+        PlayerAnimationHandler playerAnimationHandler = myAnimationHandler as PlayerAnimationHandler;
+        playerAnimationHandler.animateAttack();
         playerAttack.Invoke(ref userActor);
     }
 
@@ -46,6 +49,10 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
 
     public void DoDodge()
     {
+        /* Casting ActorAnimationHandler to PlayerAnimationHandler to avoid 
+         * having all the child's functions requierd to be visible in the parent class*/
+        PlayerAnimationHandler playerAnimationHandler = myAnimationHandler as PlayerAnimationHandler;
+        playerAnimationHandler.animateDodge();
         playerDodge.Invoke(ref userActor);
     }
 }
