@@ -388,6 +388,10 @@ PrefabInstance:
       propertyPath: biteRange
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5187959127492769966, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
+      propertyPath: specialAttackGate
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5187959127492769972, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
       propertyPath: m_Name
       value: Gluttony

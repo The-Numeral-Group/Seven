@@ -105,10 +105,10 @@ public class GluttonyActor : Actor
                 {
                     currAbility = crush;
                     crush.Invoke(ref gluttony);
+                    specialAttackCounter++;
                 }
 
                 currentState = State.WALK;
-
                 break;
 
             case State.PHYSICAL_BITE:
@@ -120,6 +120,7 @@ public class GluttonyActor : Actor
                 {
                     currAbility = bite;
                     bite.Invoke(ref gluttony);
+                    specialAttackCounter++;
                 }
 
                 currentState = State.WALK;
@@ -147,6 +148,7 @@ public class GluttonyActor : Actor
                 {
                     currAbility = proj;
                     proj.Invoke(ref gluttony);
+                    specialAttackCounter++;
                 }
 
                 currentState = State.WALK;
