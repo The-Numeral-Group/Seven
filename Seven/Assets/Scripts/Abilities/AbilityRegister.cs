@@ -18,13 +18,15 @@
     a value that doesn't exist in AbilityRegister, the compiler will simply tell it to
     fuck off! No more magic number strings!
 
-    Anyways, to add stuff to the register, just add a public static string variable like the one below.
+    Anyways, to add stuff to the register, just add a public static string variable like the ones below.
     You should always use this registry when accessing an ability outside of an Actor's home strcuture 
     (i.e. abilities that belong to other actors).
     */
 
-    public static string PLAYER_ATTACK  = "";
-    public static string PLAYER_DODGE   = "";
+    public static string PLAYER_ATTACK      = "";
+    public static string PLAYER_DODGE       = "";
+    public static string PLAYER_SELECTED_A  = "";
+    public static string PLAYER_SELECTED_B  = "";
 
     public static string GLUTTONY_BITE          = "";
     public static string GLUTTONY_CRUSH         = "";

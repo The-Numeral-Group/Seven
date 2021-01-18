@@ -16,6 +16,23 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     to change how the player attacks*/
     public ActorAbility playerAttack;
 
+    void Awake()
+    {
+        //Manual initialization, 'cause I (Thomas) have come to realize it can't be done automatically
+
+        this.abilities.Add("Player" + nameof(selectedAbilityAlpha), selectedAbilityAlpha);
+        AbilityRegister.PLAYER_SELECTED_A = "Player" + nameof(selectedAbilityAlpha);
+
+        this.abilities.Add("Player" + nameof(selectedAbilityBeta), selectedAbilityBeta);
+        AbilityRegister.PLAYER_SELECTED_B = "Player" + nameof(selectedAbilityBeta);
+
+        this.abilities.Add("" + nameof(playerAttack), playerAttack);
+        AbilityRegister.PLAYER_ATTACK = "" + nameof(playerAttack);
+
+        this.abilities.Add("" + nameof(playerDodge), playerDodge);
+        AbilityRegister.PLAYER_DODGE = "" + nameof(playerDodge);
+    }
+
     //Don't know if this is needed, but just using the player actor to pass by ref to the invoke for attack and dodge.
     //It is, and every actor probably needs it since each ability needs their user. I've added it to
     //  ActorAbilityInitiator, so now it's innate to the class -Thomas
