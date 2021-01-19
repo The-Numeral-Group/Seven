@@ -2,49 +2,69 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*Though weapon attacks are being treated as an ability, 
-I assume they would not be invoked by the ability Initiator 
-seeing as weapon attacks are engaged by OnAttack. 
-But that can be changed since the whole weapon sequence is initiated by the OnAttack call.
-Note: The template paramters Gameobject and int were chosen arbitrarily.*/
+/*WeaponAbility class
+Intantiates a weapon object and performs a weapon attack with that object.*/
 public class WeaponAbility : ActorAbilityFunction<Actor, int>
 {
+    //Prefab to be instantiated as a weapon for w/e actor is using this ability.
+    [Tooltip("The weapon prefab this ability will use.")]
     public GameObject startingWeaponObject;
+    //The duration of the swing. Used by SheathWeapon coroutine
+    [Tooltip("The duration of the weapon swing. AKA how long the animation should take.")]
     public float duration;
+    //The scale that determines the local position of a weapon relative to it's owner.
+    [Tooltip("The scalar used to position the weapon relative to its' user.")]
     public Vector2 weaponPositionScale = new Vector2(0.1f, 0.1f);
+    //A list of damage per each hitbox on the weapon.
+    [Tooltip("A list to contain the damage for each hitbox of a weapon. Default value is 0.")]
     public List<int> damagePerHitbox = new List<int>();
-    private GameObject weaponObject;
-    //private Actor actor;
+    //A pointer to the instatiation of the starting weapon object.
+    GameObject weaponObject;
+    /*A reference to the SheatheWeapon Coroutine. Used to cancel the coroutine if another call to
+    this ability is being initiated*/
+    IEnumerator sheathe;
 
-    //hitConnected variable is used to check if the current version of the attack connected.
-    //It used as a flag for weapons with multiple hit boxes.
+    /*hitConnected variable is used to check if the current version of the attack connected.
+    It used as a flag for weapons with multiple hit boxes. It is intended to be set in weaponability
+    as well as the hitbox class.*/
     public bool hitConnected { get; set; }
 
-    protected void Start()
+    //Initializing fields
+    protected virtual void Awake()
     {
         this.hitConnected = false;
-        //this.actor = this.gameObject.GetComponent<Actor>();
-        this.weaponObject = Instantiate(this.startingWeaponObject, this.gameObject.transform) as GameObject;
-        //Note From Ram: Keeping the below comment from posterity.
+        sheathe = SheatheWeapon();
+    }
+
+    //Initializing mono behavior fields.
+    protected virtual void Start()
+    {
+        weaponObject = Instantiate(startingWeaponObject, this.gameObject.transform);
+        //Note From Ram: Keeping the below comment for posterity.
         //the weapon isn't following the game object, I've heard this helps? 
-        this.weaponObject.transform.localPosition = weaponPositionScale;
-        //Unsure if the below line is necessary but adding it just in case. Making sure the weapon is a child of the actor.
-        this.weaponObject.transform.parent = this.gameObject.transform;
-        this.weaponObject.SetActive(false);
+        weaponObject.transform.localPosition = weaponPositionScale;
+        /*Unsure if the below line is necessary. Adding it just in case. 
+        Making sure the weapon is a child of the actor.*/
+        weaponObject.transform.parent = this.gameObject.transform;
+        weaponObject.SetActive(false);
 
         //Setup the damage for each hitbox in the weapon.
-        for (int i = 0; i < this.weaponObject.transform.childCount; i++)
+        for (int i = 0; i < weaponObject.transform.childCount; i++)
         {
-            WeaponHitbox hb = this.weaponObject.transform.GetChild(i).GetComponent<WeaponHitbox>();
+            //assume the weapon prefab is setup as: object->object with hitbox component.
+            WeaponHitbox hb = weaponObject.transform.GetChild(i).GetComponent<WeaponHitbox>();
             if (!hb)
             {
-                Debug.Log("Current weapon abiltiy is instantiating a weapon without a WeaponHitbox Component");
+                Debug.Log("WeaponAbility: Current weapon abiltiy is instantiating a weapon without" + 
+                        "a WeaponHitbox Component");
+                Debug.Log("WeaponAbility: Weaponprefab should be: " +  
+                        "spriteObject->childObject(child should contain hibox)");
             }
             else
             {
-                if (i < this.damagePerHitbox.Count)
+                if (i < damagePerHitbox.Count)
                 {
-                    hb.damage = this.damagePerHitbox[i];
+                    hb.damage = damagePerHitbox[i];
                 }
                 else
                 {
@@ -54,44 +74,42 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
         }
     }
 
+    /*Similar to ActorAbilityFunction's invoke method
+    Passes the users Actor component to InternInvoke*/
     public override void Invoke(ref Actor user)
     {
         //by default, Invoke just does InternInvoke with no arguments
-        if(usable)
+        if(this.usable)
         {
-            isFinished = false;
+            this.isFinished = false;
+            StopCoroutine(sheathe);
+            sheathe = SheatheWeapon();
             StartCoroutine(coolDown(cooldownPeriod));
             InternInvoke(user);
         }
         
     }
 
-    //The internal invoke for weapon ability activates the weapon prefab attached to the actor object.
+    /*The internal invoke for weapon ability activates the weapon prefab attached to the actor object.
+    In the future it will likely need to control how the weaponPrefab is swung in some manner.*/
     protected override int InternInvoke(params Actor[] args)
     {
-        this.weaponObject.SetActive(true);
         this.hitConnected = false;
-        this.weaponObject.transform.localPosition = args[0].faceAnchor.position * weaponPositionScale;
-        StartCoroutine(SheathWeapon()); //Remove this call if we use the overriden coolDown coroutine.
+        weaponObject.SetActive(true);
+        weaponObject.transform.localPosition = args[0].faceAnchor.position * weaponPositionScale;
+        StartCoroutine(sheathe);
         return 0;
     }
-
-    //if we want the actual cooldown on the weapon swing to reflect if the weapon is active or inactive.
-    /*public override IEnumerator coolDown(float cooldownDuration)
+    
+    /*SheatheWeapon controls how long the weapon object remains active on screen.
+    Use SheathWeapon if there will be no cooldown on the weapon swing.
+    This coroutine is being used because we still want some time to elapse 
+    before the weapon is set to inactive.*/
+    public IEnumerator SheatheWeapon()
     {
-        usable = false;
-        yield return new WaitForSeconds(cooldownDuration);
-        this.weaponObject.SetActive(false);
-        usable = true;
-    }*/
-
-    //Use SheathWeapon if there will be no cooldown on the weapon swing.
-    //This coroutine is being used because we still want some time to elapse before the weapon is set to inactive.
-    public IEnumerator SheathWeapon()
-    {
-        yield return new WaitForSeconds(this.duration);
-        this.weaponObject.SetActive(false);
-        isFinished = true;
+        yield return new WaitForSeconds(duration);
+        weaponObject.SetActive(false);
+        this.isFinished = true;
     }
 
 }

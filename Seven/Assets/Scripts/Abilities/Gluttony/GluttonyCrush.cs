@@ -2,32 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*Gluttonys crush ability
+currently the camera shake seems to be procuding weird efx.
+Camera shake has been commented out for the time being*/
 public class GluttonyCrush : ActorAbilityFunction<Actor, int>
 {
     //Shadow object should for now have a cript that will tie it's movement with Gluttony.
+    [Tooltip("Prefab that will be instantiated to the target actors position.")]
     public GameObject toInstantiateShadowSprite;
     //the offet being used to spawn the shadowSprite on the target
+    [Tooltip("The offset for the position of the shadow sprite relative to the target actor.")]
     public Vector2 distanceFromActor = new Vector2(0, -6);
     //The sin object which will be spawned after the crush.
+    [Tooltip("The sin prefab to be instantiated.")]
     public GameObject sin;
-    //The actor this move is meant to target
-    private Actor targetActor;
-    public float fallSpeed = 10;
-    public float jumpSpeed = 10;
-    private ShakeCamera cam = null;
-    private float jumpDuration = 1f;
-    private float trackDuration = 2f;
-    private float crushDelay = 1f;
-    private float totalAbilityDuration;
-
     //How high gluttony jumps into the air;
-    private float verticalOffset = 120f;
+    [Tooltip("How high the user will move off screen.")]
+    float verticalOffset = 120f;
+    //The speed at which the user will fall.
+    [Tooltip("How fast the user will fall. verticalOffset / fallSpeed = second(s) user takes to fall.")]
+    public float fallSpeed = 120;
+    //The speed at which the user will be moved offscreen
+    [Tooltip("How fast the user will jump offscreen.")]
+    public float jumpSpeed = 10;
+    //How long the user will wait before tracking target
+    [Tooltip("How long the user will wait before tracking the target.")]
+    public float jumpDuration = 1f;
+    //How long the user will track the target
+    [Tooltip("How long the user will track the target.")]
+    public float trackDuration = 2f;
+    //How long the user will be stationary after the crush
+    [Tooltip("How long the user will be stationary after crush.")]
+    public float crushDelay = 1f;
+    //The sum of the above three durations. Used to lock the movement of the user.
+    float totalAbilityDuration;
+    //The actor this move is meant to target
+    Actor targetActor;
+    //pointer to the main camera shake component to initialize camera efx
+    ShakeCamera cam = null;
 
-    // Start is called before the first frame update
-    void Start()
+    //Initialize member variables
+    void Awake()
     {
         //Compount all the coroutine delays to get the total duration of the ability.
         this.totalAbilityDuration = this.jumpDuration + this.trackDuration + this.crushDelay;
+    }
+
+    //Initializing monobehavior fields
+    void Start()
+    {
         var camObjects = FindObjectsOfType<ShakeCamera>();
         var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
         if(playerObject == null)
@@ -36,7 +59,7 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
         }
         else
         {
-            this.targetActor = playerObject.GetComponent<Actor>();
+            targetActor = playerObject.GetComponent<Actor>();
         }
         if (camObjects.Length > 0)
         {
@@ -48,63 +71,62 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
         }
     }
 
-    //Similar to AbilityFunctions base cooldown, but usable is set to true outside of this function.
-    //The move should only be usable when the move is completed.
-    public override IEnumerator coolDown(float cooldownDuration)
-    {
-        usable = false;
-        yield return new WaitForSeconds(cooldownDuration);
-        //usable = true;
-    }
+    /*Similar to the Invoke for ActorAbilityFunction but explicitly checks if the move has been
+    finished. Passes the users actor component to interninvoke*/
     public override void Invoke(ref Actor user)//(ref Actor user)
     {
-        //by default, Invoke just does InternInvoke with no arguments
-        if(usable)
+        if(this.usable && targetActor && this.isFinished)
         {
+            this.isFinished = false;
             StartCoroutine(coolDown(cooldownPeriod));
             InternInvoke(user);
         }
-        
     }
 
-    //Used as a way to start the three-part coroutine that makes up the ability.
-    //Initiates the first portion which is JumpUp.
-    //Passes the direction to jump towards.
+    /*Used as a way to start the three-part coroutine that makes up the ability.
+    Initiates the first portion which is JumpUp.
+    Passes the direction to jump towards.*/
     protected override int InternInvoke(params Actor[] args)
     {
-        Vector2 destination = new Vector2(this.targetActor.transform.position.x, this.targetActor.transform.position.y + this.verticalOffset);
-        Vector2 direction = (destination - new Vector2(args[0].transform.position.x, args[0].transform.position.y)).normalized;
-        direction = direction * this.jumpSpeed;
-        IEnumerator initialMovementLock = args[0].myMovement.LockActorMovement(this.totalAbilityDuration);
+        Vector2 destination = new Vector2(targetActor.transform.position.x, 
+                                            targetActor.transform.position.y + verticalOffset);
+        Vector2 direction = (destination - new Vector2(args[0].transform.position.x, 
+                                                        args[0].transform.position.y)).normalized;
+        direction = direction * jumpSpeed;
+        IEnumerator initialMovementLock = args[0].myMovement.LockActorMovement(totalAbilityDuration);
         StartCoroutine(initialMovementLock);
         StartCoroutine(JumpUp(args[0], direction, initialMovementLock));
         return 0;
     }
 
-    //Part 1 of the 3 steps to perform crush.
-    //Moves the ability user to in the defined direction.
-    //Instatiates an object to represent its final destination.
-    //Calls both Part 2 and 3 of this process.
-    private IEnumerator JumpUp(Actor user, Vector2 direction, IEnumerator initialMovementLock)
+    /*Part 1 of the 3 steps to perform crush.
+    Moves the ability user to in the defined direction.
+    Instatiates an object to represent its final destination.
+    Calls both Part 2 and 3 of this process.*/
+    IEnumerator JumpUp(Actor user, Vector2 direction, IEnumerator initialMovementLock)
     {
         user.myMovement.DragActor(direction);
-        yield return new WaitForSeconds(this.jumpDuration);
-        GameObject shadowSprite = Instantiate(this.toInstantiateShadowSprite, new Vector3(this.targetActor.transform.position.x + this.distanceFromActor.x, 
-                                              this.targetActor.transform.position.y + this.distanceFromActor.y, this.targetActor.transform.position.z), Quaternion.identity);
-        shadowSprite.transform.parent = this.targetActor.transform;
+        yield return new WaitForSeconds(jumpDuration);
+        GameObject shadowSprite = Instantiate(toInstantiateShadowSprite, 
+                                            new Vector3(targetActor.transform.position.x + distanceFromActor.x, 
+                                            targetActor.transform.position.y + distanceFromActor.y, 
+                                            targetActor.transform.position.z), Quaternion.identity);
+        shadowSprite.transform.parent = targetActor.transform;
         IEnumerator trackTarget = TrackTargetWithShadow(user, shadowSprite);
         IEnumerator crush = Crush(user, shadowSprite, trackTarget, initialMovementLock);
         StartCoroutine(trackTarget);
         StartCoroutine(crush);
     }
 
-    //Part 2 of the 3 steps to perform crush.
-    //Tracks the targets movement by having the ability user mimic it's user movementdirection and speed.
-    //Loops infinitely, but is stopped by Part 3.
-    private IEnumerator TrackTargetWithShadow(Actor user, GameObject shadowSprite)
+    /*Part 2 of the 3 steps to perform crush.
+    Tracks the targets movement by having the ability user mimic its' 
+    targets movementdirection and speed.
+    Loops infinitely, but is stopped by Part 3.*/
+    IEnumerator TrackTargetWithShadow(Actor user, GameObject shadowSprite)
     {
-        //WORK IS PAUSED UNTIL I SORT OUT SOME METHODS REGARDING DRAGACTOR
-        user.transform.position = new Vector3(this.targetActor.transform.position.x, this.targetActor.transform.position.y + this.verticalOffset,user.transform.position.z);
+        user.transform.position = new Vector3(targetActor.transform.position.x, 
+                                                targetActor.transform.position.y + 
+                                                verticalOffset,user.transform.position.z);
         shadowSprite.transform.parent = user.gameObject.transform;
         while(true)
         {
@@ -113,50 +135,37 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
         }
     }
 
-    //Part 3 of the 3 steps to perform crush.
-    //Stops part 2 after a specified duration as passed.
-    //Will then move the ability user towards the shadowSprites position.
-    //Starts the aftermath function which performs the abilities efx.
-    private IEnumerator Crush(Actor user, GameObject shadowSprite, IEnumerator stopTrack, IEnumerator initialLockMovement)
+    /*Part 3 of the 3 steps to perform crush.
+    Stops part 2 after a specified duration as passed.
+    Will then move the ability user towards the shadowSprites position.
+    Starts the aftermath function which performs the abilities efx.*/
+    IEnumerator Crush(Actor user, GameObject shadowSprite, IEnumerator stopTrack, IEnumerator initialLockMovement)
     {
-        yield return new WaitForSeconds(this.trackDuration);
+        yield return new WaitForSeconds(trackDuration);
         StopCoroutine(stopTrack);
         user.myMovement.DragActor(Vector2.zero);
         shadowSprite.transform.parent = null;
-        yield return new WaitForSeconds(this.crushDelay);
+        yield return new WaitForSeconds(crushDelay);
         Vector2 direction = (shadowSprite.transform.position - user.gameObject.transform.position).normalized;
-        float timeToArrival = Vector2.Distance(shadowSprite.transform.position, user.gameObject.transform.position) / this.fallSpeed;
+        float timeToArrival = Vector2.Distance(shadowSprite.transform.position, 
+                                                user.gameObject.transform.position) / fallSpeed;
         user.myMovement.DragActor(direction * fallSpeed);
+
         //I (Ram) do not know what will happen if a StopCoroutine is used on a coroutine that has already stopped.
         StopCoroutine(initialLockMovement);
         StartCoroutine(user.myMovement.LockActorMovement(timeToArrival));
         yield return new WaitForSeconds(timeToArrival);
         user.myMovement.DragActor(Vector2.zero);
-        
-        //The folliwing movement handling is placeholder code.
-        //movement should ideally be handled by DragACtor.
-        //Will change once I (Ram) think of a better way to drag an actor to a specified location.
-        /*Vector2 desiredPos = shadowSprite.transform.position;
-        Vector2 currentPos = this.gameObject.transform.position;
-        for (float i = 0.0f; i < 1.0f; i += Time.deltaTime * this.fallSpeed)
-        {
-            Vector2 result = Vector2.Lerp(currentPos, desiredPos, i);
-            this.gameObject.transform.position = new Vector3(result.x, result.y, this.gameObject.transform.position.y);
-            yield return null;
-        }
-        //Above is temporary code to facilitate movement.*/
-
-
         AfterMathOfCrush(user, shadowSprite);
     }
     
-    //This function handles everything that must be done after the crush has been performed.
-    //This will shake the camera, spawn a sin object, and destroy the shadow.
-    private void AfterMathOfCrush(Actor user, GameObject shadowSprite)
+    /*This function handles everything that must be done after the crush has been performed.
+    This will shake the camera, spawn a sin object, and destroy the shadow.*/
+    void AfterMathOfCrush(Actor user, GameObject shadowSprite)
     {
         //this.cam.CameraShake(2.0f, 0.2f);
         Destroy(shadowSprite);
-        //Instantiate(this.sin, user.gameObject.transform.position, Quaternion.identity);
-        usable = true;
+        Instantiate(sin, user.gameObject.transform.position, Quaternion.identity);
+        this.isFinished = true;
     }
 }
