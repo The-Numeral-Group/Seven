@@ -24,4 +24,9 @@ public class PlayerMovement : ActorMovement
         //Debug.Log(input);
         base.MoveActor(input.Get<Vector2>());
     }
+
+    public override void AnimateWalkActor()
+    {
+        hostActor.myAnimationHandler.animateWalk();
+    }
 }

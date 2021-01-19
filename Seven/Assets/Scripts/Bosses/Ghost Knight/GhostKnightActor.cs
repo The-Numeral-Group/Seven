@@ -67,10 +67,6 @@ public class GhostKnightActor : Actor
         switch (state)
         {
             case State.WALK:
-                if (currAbility && !currAbility.getUsable())
-                {
-                    break;
-                }
                 // check for special attack counter.
                 // if it is 7, activate special attack. 
                 if (specialAttackCounter >= specialAttackGate)
@@ -93,6 +89,7 @@ public class GhostKnightActor : Actor
                 {
                     currAbility = slash;
                     slash.Invoke(ref ghostKnight);
+                    specialAttackCounter++;
                 }
 
                 currentState = State.WALK;
@@ -106,6 +103,7 @@ public class GhostKnightActor : Actor
                 {
                     currAbility = proj;
                     proj.Invoke(ref ghostKnight);
+                    specialAttackCounter++;
                 }
 
                 currentState = State.WALK;
@@ -145,15 +143,27 @@ public class GhostKnightActor : Actor
     State decideNextState()
     {
         var distanceToPlayer = Vector2.Distance(player.transform.position, this.gameObject.transform.position);
-        bool slashReady = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_SLASH].getUsable();
-        bool projectileReady = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_PROJECTILE].getUsable();
 
+        var slash = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_SLASH];
+        var proj = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_PROJECTILE];
+        bool slashReady = false;
+        bool projReady = false;
+
+        if(proj)
+        {
+            projReady = proj.getUsable();
+        }
+        if (slash)
+        {
+            slashReady = slash.getUsable();
+        }
+
+        // Determines which attack the ghost knight will perform.
         int whichAtt = (int)Random.Range(1, projectileRatio + 2);
-        Debug.Log(whichAtt);
 
         State nextState;
 
-        if ((whichAtt == 1) && projectileReady)
+        if ((whichAtt == 1) && projReady)
         {
             nextState = State.LAUNCH_PROJECTILE;
         }

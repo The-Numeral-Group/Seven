@@ -87,10 +87,11 @@ public class ActorMovement : MonoBehaviour
 
     /*This method triggers the walking animation for the actor
     The animator will need the movementDirection vector to see if the actor is 
-    moving or not, and if it is moving, which direction the actor is moving.*/
-    protected virtual void AnimateWalkActor()
+    moving or not, and if it is moving, which direction the actor is moving.
+    Also, this method will get overriden in child class.*/
+    public virtual void AnimateWalkActor()
     {
-        hostActor.myAnimationHandler.animateWalk();
+
     }
 
     /*This method is for when the actor wants to move itself*/
@@ -116,7 +117,7 @@ public class ActorMovement : MonoBehaviour
     an argument of 0.0f (or less) will unlock movement immediately*/
     public IEnumerator LockActorMovement(float actorMoveDisable)
     {
-        if(actorMoveDisable > 0.0f)
+        if (actorMoveDisable > 0.0f)
         {
             this.movementLocked = true;
             yield return new WaitForSeconds(actorMoveDisable);
