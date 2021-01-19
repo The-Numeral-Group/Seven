@@ -30,7 +30,7 @@ public class Dodge : ActorAbilityFunction<Actor, int>
     /*InternInvoke performs a dodge on user's ActorMovement component*/
     protected override int InternInvoke(params Actor[] args)
     {
-        args[0].myHealth.vulnerable = fa;se;
+        args[0].myHealth.vulnerable = false;
         //we assume that the needed ActorMovement is the first thing
         //in args, that's what the 0 is for.
 
