@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &491072254 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7512802453659592075, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
-  m_PrefabInstance: {fileID: 7512802453606289077}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &519420029
 AudioListener:
   m_ObjectHideFlags: 0
@@ -260,7 +255,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c8e59eb5840af44a950c4bf0de49e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAnimator: {fileID: 1711407483}
+  Animator: {fileID: 0}
+  myMovement: {fileID: 0}
+  movementDirection: {x: 0, y: 0}
 --- !u!95 &1711407483
 Animator:
   serializedVersion: 3
