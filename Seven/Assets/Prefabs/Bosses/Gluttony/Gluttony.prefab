@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a351bad815628f7c6ac55909bf9b707e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  specialAttackGate: 3
+  specialAttackGate: 7
   crushRange: 20
   biteRange: 10
   currentState: 0
