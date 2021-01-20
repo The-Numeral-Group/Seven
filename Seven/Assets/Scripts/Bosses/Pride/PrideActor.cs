@@ -11,7 +11,7 @@ public class PrideActor : Actor
 
     [Tooltip("How many of Pride's weakSpot GameObjects need to be destroyed before it enters" + 
         " its next Phase (enter -1 to prevent phase change and 0 to start it after the next" + 
-            " weakSpot is destroyed").")]
+            " weakSpot is destroyed.")]
     public int weakSpotGate = 3;
 
     [Header("Attacks")]
@@ -297,7 +297,7 @@ public class PrideActor : Actor
         var midScaleZ = initialScaleZ;
 
         //internal timer to stop the shrink once enough time has passed
-        var shrinkTimer = 0;
+        var shrinkTimer = 0f;
 
         while(shrinkTimer < effectTime)
         {
