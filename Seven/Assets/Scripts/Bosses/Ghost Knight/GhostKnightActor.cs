@@ -9,7 +9,7 @@ Ghost Knight's boss fight
 public class GhostKnightActor : Actor
 {
 
-    [Tooltip("Controls how many times should Gluttony use normal attacks before using it's special.")]
+    [Tooltip("Indicates which nth attack Ghost Knight performs the special attack")]
     public int specialAttackGate = 7;
 
     [Tooltip("How close the player should be before Ghost Knight tries to slash them")]
@@ -18,16 +18,25 @@ public class GhostKnightActor : Actor
     [Tooltip("Chance of picking projectile attack compared to slash attack. (1 = 1:1, 2 = 1:2, and so on)")]
     public float projectileRatio = 3f;
 
-    private int specialAttackCounter = 0;
+    private int specialAttackCounter = 1;
 
     private Actor ghostKnight;
     private Actor player;
-    public State currentState;
 
+    public State currentState;
     private ActorAbility currAbility;
+
+    private ActorAbility slash;
+    private ActorAbility proj;
+    private ActorAbility special;
+
+    ///private GhostKnightSlash slash;
+    //private GhostKnightProjectile projectile;
+    //private GhostKnightSpecial special;
 
     public enum State
     {
+        WAITING,
         WALK,
         PHYSICAL_SLASH,
         LAUNCH_PROJECTILE,
@@ -43,7 +52,7 @@ public class GhostKnightActor : Actor
 
         var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
 
-        if(playerObject == null)
+        if (playerObject == null)
         {
             Debug.LogWarning("GhostKnightActor: Ghost Knight can't find the player!");
         }
@@ -52,14 +61,29 @@ public class GhostKnightActor : Actor
             player = playerObject.GetComponent<Actor>();
         }
 
+        slash = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_SLASH];
+        proj = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_PROJECTILE];
+        special = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_SPECIAL];
+
         ghostKnight = this.gameObject.GetComponent<GhostKnightActor>();
         ghostKnight.myHealth.vulnerable = true;
+        currentState = State.WAITING;
+        currAbility = null;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        EvaluateState(currentState);
+        if (currAbility != null)
+        {
+            checkIfAbilityDone();
+        }
+        if ((currentState == State.WAITING) || (currentState == State.WALK))
+        {
+            decideNextState();
+            EvaluateState(currentState);
+        }
+  
     }
 
     void EvaluateState(State state)
@@ -67,59 +91,26 @@ public class GhostKnightActor : Actor
         switch (state)
         {
             case State.WALK:
-                // check for special attack counter.
-                // if it is 7, activate special attack. 
-                if (specialAttackCounter >= specialAttackGate)
-                {
-                    specialAttackCounter = 0;
-                    currentState = State.SPECIAL;
-                }
-                else
-                {
-                    stepTowardsPlayer();
-                    currAbility = null;
-                    currentState = decideNextState();
-                }
+                stepTowardsPlayer();            
                 break;
 
             case State.PHYSICAL_SLASH:
-                var slash = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_SLASH];
 
-                if(slash.getUsable())
-                {
-                    currAbility = slash;
-                    slash.Invoke(ref ghostKnight);
-                    specialAttackCounter++;
-                }
-
-                currentState = State.WALK;
+                slash.Invoke(ref ghostKnight);
+                specialAttackCounter++;
 
                 break;
 
             case State.LAUNCH_PROJECTILE:
-                var proj = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_PROJECTILE];
 
-                if (proj.getUsable())
-                {
-                    currAbility = proj;
-                    proj.Invoke(ref ghostKnight);
-                    specialAttackCounter++;
-                }
-
-                currentState = State.WALK;
+                proj.Invoke(ref ghostKnight);
+                specialAttackCounter++;
 
                 break;
 
             case State.SPECIAL:
-                var special = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_SPECIAL];
 
-                if (special.getUsable())
-                {
-                    currAbility = special;
-                    special.Invoke(ref ghostKnight);
-                }
-
-                currentState = State.WALK;
+                special.Invoke(ref ghostKnight);
 
                 break;
 
@@ -140,42 +131,46 @@ public class GhostKnightActor : Actor
 
         this.myMovement.MoveActor(directionToPlayer);
     }
-    State decideNextState()
+    void checkIfAbilityDone()
+    {
+        // If the currAbility has finished, reset.
+        if (currAbility.getIsFinished())
+        {
+            currAbility = null;
+            currentState = State.WAITING;
+        }
+    }
+    void decideNextState()
     {
         var distanceToPlayer = Vector2.Distance(player.transform.position, this.gameObject.transform.position);
 
-        var slash = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_SLASH];
-        var proj = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_PROJECTILE];
-        bool slashReady = false;
-        bool projReady = false;
-
-        if(proj)
-        {
-            projReady = proj.getUsable();
-        }
-        if (slash)
-        {
-            slashReady = slash.getUsable();
-        }
+        bool slashReady = slash.getUsable(), projReady = proj.getUsable(), specialReady = special.getUsable();
 
         // Determines which attack the ghost knight will perform.
-        int whichAtt = (int)Random.Range(1, projectileRatio + 2);
+         int whichAtt = (int)Random.Range(1, projectileRatio + 2);
 
-        State nextState;
-
-        if ((whichAtt == 1) && projReady)
+        // check for special attack counter.
+        // if it is 7, activate special attack. 
+        if ((specialAttackCounter >= specialAttackGate) && specialReady)
         {
-            nextState = State.LAUNCH_PROJECTILE;
+            specialAttackCounter = 1;
+            currentState = State.SPECIAL;
+            currAbility = special;
+        }
+        else if ((whichAtt == 1) && projReady)
+        {
+            currentState = State.LAUNCH_PROJECTILE;
+            currAbility = proj;
         }
         else if ((whichAtt != 1) && (distanceToPlayer <= slashRange) && slashReady)
         {
-            nextState = State.PHYSICAL_SLASH;
+            currentState = State.PHYSICAL_SLASH;
+            currAbility = slash;
         }
         else
         {
-            nextState = State.WALK;
+            currentState = State.WALK;
         }
 
-        return nextState;
     }
 }

@@ -25,8 +25,9 @@ public class GhostKnightProjectile : ActorAbilityFunction<Actor, int>
     {
         if (usable)
         {
-            StartCoroutine(coolDown(cooldownPeriod));
+            isFinished = false;
             InternInvoke(user);
+            StartCoroutine(coolDown(cooldownPeriod));
         }
     }
     protected override int InternInvoke(params Actor[] args)
@@ -72,6 +73,7 @@ public class GhostKnightProjectile : ActorAbilityFunction<Actor, int>
             GameObject ghostKnightProjectile = Instantiate(this.toInstantiateProjectile, projPos, Quaternion.identity);
             this.projectileManager.Add(ghostKnightProjectile);
         }
+        isFinished = true;
         StartCoroutine(DestroyProjectiles());
     }
 

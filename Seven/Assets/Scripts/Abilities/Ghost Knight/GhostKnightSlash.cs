@@ -16,10 +16,12 @@ public class GhostKnightSlash : ActorAbilityFunction<Actor, int>
     {
         if (usable)
         {
-            StartCoroutine(coolDown(cooldownPeriod));
+            isFinished = false;
             InternInvoke(user);
+            StartCoroutine(coolDown(cooldownPeriod));
         }
     }
+
     protected override int InternInvoke(params Actor[] args)
     {
         if (this.duration <= 0f)
@@ -47,14 +49,14 @@ public class GhostKnightSlash : ActorAbilityFunction<Actor, int>
     private void PerformVSlash(Actor user)
     {
         Vector2 userPos = user.gameObject.transform.position;
-        Debug.Log(user.myMovement.movementDirection);
+        //Debug.Log(user.myMovement.movementDirection);
         GameObject ghostKnightSlash = Instantiate(this.vSlash, userPos, Quaternion.identity);
         StartCoroutine(DestroySlashObject(ghostKnightSlash));
     }
     private void PerformHSlash(Actor user)
     {
         Vector2 userPos = user.gameObject.transform.position;
-        Debug.Log(user.myMovement.movementDirection);
+        //Debug.Log(user.myMovement.movementDirection);
         GameObject ghostKnightSlash = Instantiate(this.hSlash, userPos, Quaternion.identity);
         StartCoroutine(DestroySlashObject(ghostKnightSlash));
     }
@@ -62,5 +64,6 @@ public class GhostKnightSlash : ActorAbilityFunction<Actor, int>
     {
         yield return new WaitForSeconds(this.animationDuration);
         Destroy(obj);
+        isFinished = true;
     }
 }
