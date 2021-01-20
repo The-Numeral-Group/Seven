@@ -5,9 +5,16 @@ using UnityEngine;
 public class PrideActor : Actor
 {
     //FIELDS---------------------------------------------------------------------------------------
+    [Header("Weak Spots")]
     [Tooltip("Put every GameObject that the player needs to destroy to kill Pride in this list.")]
     public List<ActorWeakPoint> weakSpots;
 
+    [Tooltip("How many of Pride's weakSpot GameObjects need to be destroyed before it enters" + 
+        " its next Phase (enter -1 to prevent phase change and 0 to start it after the next" + 
+            " weakSpot is destroyed").")]
+    public int weakSpotGate = 3;
+
+    [Header("Attacks")]
     [Tooltip("Controls how many times should Pride use normal attacks before using it's special.")]
     public int specialAttackGate = 7;
 
@@ -19,14 +26,17 @@ public class PrideActor : Actor
         " a short-range attack at them.")]
     public float punchRange = 25f;
 
-    [Tooltip("How upscaled (how many times bigger) Pride is at max health (will decrease" +  
-        " proportionally based on number of weak spots).")]
-    public float maxSize = 10f;
+    [Header("Shrink-on-Damage Effects")]
+    [Tooltip("How downscaled (how many times smaller) Pride is at minimum health (will decrease" +  
+        " proportionally based on number of weak spots). It is assumed Pride's default size is"
+            + " its largest.")]
+    public float finalSize = 0.25f;
 
-    [Tooltip("How upscaled (how many times bigger) Pride is at minimum health (will decrease" +  
-        " proportionally based on number of weak spots).")]
-    public float minSize = 5f;
+    [Tooltip("How many seconds should it take for Pride to shrink from one size to another" +
+        " when it takes damage")]
+    public float shrinkTime = 1f;
 
+    [Header("Stat Overrides")]
     [Tooltip("How much slower Pride is than the player.")]
     public float speedModifier = -5f;
 
@@ -34,6 +44,11 @@ public class PrideActor : Actor
         " but slower.")]
     public bool overrideDefaultSpeed = true;
 
+    [Tooltip("Wheter or not Pride should ignore damage that doesn't come from" +
+        " weakSpot destruction")]
+    public bool overrideDamageImmunity = false;
+
+    [Header("Other")]
     [Tooltip("What Pride is currently doing. Change this to make Pride do something.")]
     public State currentState;
 
@@ -59,6 +74,9 @@ public class PrideActor : Actor
 
     //internal counter to track when Pride should use its special
     private int specialAttackCounter = 0;
+
+    //internal counter to track when Pride should enter its next phase
+    private int weakSpotsDestroyed = 0;
 
     //METHODS--------------------------------------------------------------------------------------
     /*Aquires references to needed actor components, then sets Pride's speed based on
@@ -88,6 +106,14 @@ public class PrideActor : Actor
         if(overrideDefaultSpeed)
         {
             this.myMovement.speed = player.myMovement.speed + speedModifier;
+        }
+
+        /*adjust damage resistance if we (design) want Pride to only be hurt by
+        weakSpot destruction.*/
+        if(!overrideDamageImmunity)
+        {
+            //300% damage immunity is arbitrary, weakSpots will hurt Pride anyways
+            this.myHealth.damageResistance = 3f;
         }
 
         //ensure that the ActorWeakPoints used to hurt Pride are correctly assigned
@@ -227,5 +253,81 @@ public class PrideActor : Actor
         }
 
         return nextState;
+    }
+    /*Manages and executes any effects that occur when this actor takes damage.
+    For Pride specifically, it gets smaller when it gets hurt.
+    
+    After a specified number of damage instances, Pride will enter its next phase,
+    if a sin is not present.*/
+    public override void DoActorDamageEffect(float damage)
+    {
+        //if no damage was actually dealt, we can simply skip the method
+        if(damage > 0)
+        {
+            ++weakSpotsDestroyed;
+            StartCoroutine(ShrinkEffect(shrinkTime));
+        }
+    }
+
+    IEnumerator ShrinkEffect(float effectTime)
+    {
+        //Pride's Transform, which controls its size.
+        Transform prideTransform = this.gameObject.GetComponent<Transform>();
+        //All of Pride's scale values
+        var initialScaleX = prideTransform.localScale.x;
+        var initialScaleY = prideTransform.localScale.y;
+        var initialScaleZ = prideTransform.localScale.z;
+
+        /*1 represents 100% of Pride's size. We divide the net change in Pride's size
+        by the amount of statues there are to get how small Pride should get each time
+        it gets hurt.*/
+        var percentDecrease = (1 - finalSize) / weakSpots.Count;
+        //All of Pride's (calculated) final scale values
+        var finalScaleX = initialScaleX * percentDecrease;
+        var finalScaleY = initialScaleY * percentDecrease;
+        var finalScaleZ = initialScaleZ * percentDecrease;
+        Vector3 estimatedFinalScale = new Vector3(finalScaleX, finalScaleY, finalScaleZ);
+
+        /*The shrink rate, based on how long the effect should take. It's negative to 
+        make the values go down*/
+        var sizeChangePerSecond = -(percentDecrease / effectTime);
+        //middleman variables to hold new shrink values
+        var midScaleX = initialScaleX;
+        var midScaleY = initialScaleY;
+        var midScaleZ = initialScaleZ;
+
+        //internal timer to stop the shrink once enough time has passed
+        var shrinkTimer = 0;
+
+        while(shrinkTimer < effectTime)
+        {
+            /*Recalculate the new size values by interpolating (estimating the value between)
+            midScale and finalScale. Once they are the same, the shrink will stop.*/
+            midScaleX = Mathf.Lerp(midScaleX, finalScaleX, sizeChangePerSecond);
+            midScaleY = Mathf.Lerp(midScaleY, finalScaleY, sizeChangePerSecond);
+            midScaleZ = Mathf.Lerp(midScaleZ, finalScaleZ, sizeChangePerSecond);
+
+            //actually set the new transform
+            prideTransform.localScale = new Vector3(midScaleX, midScaleY, midScaleZ);
+
+            //increment internal timer
+            shrinkTimer += Time.deltaTime;
+
+            //pause execution to let the frame finish
+            yield return null;
+        }
+
+        //If the lerp didn't scale fully scale, manually correct the error
+        /*if(!prideTransform.localScale.Equals(estimatedFinalScale))
+        {
+            prideTransform.localScale = estimatedFinalScale;
+        }*/
+
+        //If enough statues have been destroyed, then ITS TIME
+        if(weakSpotsDestroyed >= weakSpotGate)
+        {
+            ///TO-DO: WRITE IN PHASE TRANSITION
+        }
+
     }
 }

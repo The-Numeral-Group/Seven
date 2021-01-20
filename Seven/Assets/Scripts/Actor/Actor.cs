@@ -32,7 +32,7 @@ public class Actor : MonoBehaviour
         this.myAnimationHandler = this.gameObject.GetComponent<ActorAnimationHandler>();
     }
 
-    public virtual void DoActorDamageEffect()
+    public virtual void DoActorDamageEffect(float damage)
     {
         //Do anything that should happen on taking damage
         //no effect by default
