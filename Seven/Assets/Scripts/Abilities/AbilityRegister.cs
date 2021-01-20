@@ -32,4 +32,8 @@
     public static string GLUTTONY_CRUSH         = "";
     public static string GLUTTONY_PHASEZERO_SPECIAL = "";
     public static string GLUTTONY_PROJECTILE    = ""; 
+
+    public static string PRIDE_CLOSE_ATTACK = "";
+    public static string PRIDE_FAR_ATTACK   = "";
+    public static string PRIDE_SPECIAL      = "";
 }
