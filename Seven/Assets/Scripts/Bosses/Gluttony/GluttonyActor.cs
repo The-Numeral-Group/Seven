@@ -8,10 +8,6 @@ Gluttony's boss fight
 */
 public class GluttonyActor : Actor
 {
-
-    [Tooltip("When Gluttony's health is lower or equal than this, it's start launching projectiles.")]
-    public float projectileHealthGate = 5.0f;
-
     [Tooltip("Controls how many times should Gluttony use normal attacks before using it's special.")]
     public int specialAttackGate = 7;
 
@@ -21,12 +17,12 @@ public class GluttonyActor : Actor
     [Tooltip("How close the player should be before Gluttony tries to bite them.")]
     public float biteRange = 25f;
 
-    private int specialAttackCounter = 0;
+    int specialAttackCounter = 0;
 
     /*We need to save an additional reference to this script because 'this' is read-only.
     The player reference is just for convinience*/
-    private Actor gluttony;
-    private Actor player;
+    Actor gluttony;
+    Actor player;
     public State currentState;
 
     private ActorAbility currAbility;
@@ -72,20 +68,17 @@ public class GluttonyActor : Actor
         {
             //Moved the functions in update to walk to avoid the stuttering that occurs on ground pound.
             case State.WALK:
-                if (currAbility && !currAbility.getUsable())
+                
+                if (currAbility && !currAbility.getIsFinished())
                 {
                     break;
-                }
-                // check for special attack counter.
-                // if it is 7, activate special attack. 
-                if (specialAttackCounter >= specialAttackGate)
+                } 
+                else if (specialAttackCounter >= specialAttackGate)
                 {
+                    // check for special attack counter.
+                    // if it is 7, activate special attack.
                     specialAttackCounter = 0;
                     currentState = State.PHASE0_SPECIAL;
-                }
-                else if (ShouldProjectile())
-                {
-                    currentState = State.LAUNCH_PROJECTILE;
                 }
                 else
                 {
@@ -118,14 +111,13 @@ public class GluttonyActor : Actor
 
                 if(bite.getUsable())
                 {
+                    Debug.Log("In Bite");
                     currAbility = bite;
                     bite.Invoke(ref gluttony);
                     specialAttackCounter++;
                 }
 
                 currentState = State.WALK;
-
-                
                 break;
 
             case State.PHASE0_SPECIAL:
@@ -133,12 +125,12 @@ public class GluttonyActor : Actor
 
                 if(special.getUsable())
                 {
+                    Debug.Log("In Special Ability");
                     currAbility = special;
                     special.Invoke(ref gluttony);
                 }
 
                 currentState = State.WALK;
-
                 break;
 
             case State.LAUNCH_PROJECTILE:
@@ -152,7 +144,6 @@ public class GluttonyActor : Actor
                 }
 
                 currentState = State.WALK;
-
                 break;
 
             case State.NULL:
@@ -161,28 +152,6 @@ public class GluttonyActor : Actor
             default:
                 Debug.LogWarning("GluttonyActor: Gluttony has fallen out of its state machine!");
                 break;
-        }
-    }
-
-    //GetMovementDirection isn't needed, an equivilant exists in ActorMovement
-    //Similarly, many coroutines and substates have been migrated to relevant Abilities
-
-    bool ShouldProjectile()
-    {
-        //get the projectile ability, if it exists
-        var projectiles = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_PROJECTILE];
-
-        //if it doesn't exist, don't shoot it
-        if(projectiles == null){return false;}
-
-        //if the projectiles are off cooldown and Gluttony is under the health gate, return true
-        if(this.myHealth.currentHealth <= projectileHealthGate && projectiles.getUsable())
-        {
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
     
@@ -211,11 +180,25 @@ public class GluttonyActor : Actor
 
         if(distanceToPlayer >= crushRange)
         {
-            nextState = State.PHYSICAL_CRUSH;
+            int weight = Random.Range(0, 3);
+            if (weight / 2 == 1)
+            {
+                nextState = State.LAUNCH_PROJECTILE;
+            }
+            else
+            {
+                nextState = State.PHYSICAL_CRUSH;
+            }
+            /*this movement call is unessecary but added just in case there is an instance where
+            movement isn't locked for an ability.*/
+            this.myMovement.MoveActor(Vector2.zero);
         }
         else if(distanceToPlayer <= biteRange && biteReady)
         {
             nextState = State.PHYSICAL_BITE;
+            /*this movement call is unessecary but added just in case there is an instance where
+            movement isn't locked for an ability.*/
+            this.myMovement.MoveActor(Vector2.zero);
         }
         else
         {

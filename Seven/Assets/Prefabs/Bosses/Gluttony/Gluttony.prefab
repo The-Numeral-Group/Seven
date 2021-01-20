@@ -194,8 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a351bad815628f7c6ac55909bf9b707e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileHealthGate: 5
-  specialAttackGate: 7
+  specialAttackGate: 3
   crushRange: 20
   biteRange: 10
   currentState: 0
@@ -233,9 +232,9 @@ MonoBehaviour:
   cooldownPeriod: 10
   abilityName: Soecial Ability P1
   toInstantiateAbilitySprite: {fileID: 7414617650634565902, guid: 6a2149f7700a5a34db6594d1b70f1a23, type: 3}
-  distanceFromActor: {x: 0, y: -6}
+  distanceFromActor: {x: 0, y: -1}
   duration: 5
-  specialSpeed: 1
+  specialSpeed: 0.05
 --- !u!114 &5187959127492769961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,9 +271,12 @@ MonoBehaviour:
   abilityName: Crush
   toInstantiateShadowSprite: {fileID: 7812086123874225860, guid: 5723a55f6f9372a449ff826976fc11d3, type: 3}
   distanceFromActor: {x: 0, y: -1}
-  sin: {fileID: 0}
+  sin: {fileID: 4884980593627948291, guid: b26069da63922c147b50c4930bb1b515, type: 3}
   fallSpeed: 120
   jumpSpeed: 10
+  jumpDuration: 1
+  trackDuration: 2
+  crushDelay: 1
 --- !u!114 &5187959127492769963
 MonoBehaviour:
   m_ObjectHideFlags: 0

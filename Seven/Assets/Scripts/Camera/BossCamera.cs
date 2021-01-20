@@ -48,7 +48,7 @@ public class BossCamera : MonoBehaviour
         {
             for (int i = 0; i < this.targets.Count; i++)
             {
-                if (!targets[i].activeSelf)
+                if (targets[i] == null || !targets[i].activeSelf)
                 {
                     continue;
                 }

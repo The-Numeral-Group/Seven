@@ -40,6 +40,7 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
     {
         if(this.usable && this.isFinished)
         {
+            this.isFinished = false;
             StartCoroutine(coolDown(cooldownPeriod));
             InternInvoke(user);
         }
@@ -50,6 +51,7 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
     spawning new projectiles.*/
     protected override int InternInvoke(params Actor[] args)
     {
+        Debug.Log("In Projectile");
         if (duration <= 0f || projectileSpawnTime <= 0f)
         {
             Debug.Log("GluttonPhaseChange: duration/projectileSpawn must be greater than 0");
@@ -84,12 +86,14 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
     depening on distance from centerPos*/
     IEnumerator MoveToCenter(Actor user)
     {
-        Vector2 direction = centerPos - new Vector2(user.gameObject.transform.position.x, user.gameObject.transform.position.y);
+        Vector2 direction = centerPos - new Vector2(user.gameObject.transform.position.x, 
+                                                     user.gameObject.transform.position.y);
         direction.Normalize();
         float distance = Vector2.Distance(centerPos, user.gameObject.transform.position);
         float speed = distance / (duration - projectileSpawnTime - projectileDelay);
         user.myMovement.DragActor(direction * speed);
         yield return new WaitForSeconds(duration - projectileSpawnTime - projectileDelay);
+        user.myMovement.DragActor(Vector2.zero);
         StartCoroutine(SpawnProjectiles(user));
     }
 
@@ -100,15 +104,17 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
     {
         yield return new WaitForSeconds(projectileDelay);
         int i = 0;
-        float dtheta = (2/numProjectiles) * Mathf.PI; //(360/angle) * (pi/180)
+        float dtheta = (2f/numProjectiles) * Mathf.PI; //(360/angle) * (pi/180)
         while(i < numProjectiles)
         {
-            Vector2 direction = new Vector2(Mathf.Cos(i*dtheta), Mathf.Sin(i*dtheta)); 
-            GameObject gluttonyProjectile = Instantiate(toInstantiateProjectile, user.gameObject.transform.position, Quaternion.identity);
+            Vector2 direction = new Vector2(Mathf.Cos(i*dtheta), Mathf.Sin(i*dtheta));
+            GameObject gluttonyProjectile = Instantiate(toInstantiateProjectile, 
+                                            user.gameObject.transform.position, Quaternion.identity);
             ActorMovement currProjectile = gluttonyProjectile.GetComponent<ActorMovement>();
             projectileManager.Add(gluttonyProjectile);
             currProjectile.DragActor(direction);
             yield return new WaitForSeconds(projectileSpawnTime/numProjectiles);
+            i++;
         }
         if (cooldownPeriod > duration)
         {

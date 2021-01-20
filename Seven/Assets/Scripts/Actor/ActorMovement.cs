@@ -90,7 +90,7 @@ public class ActorMovement : MonoBehaviour
     moving or not, and if it is moving, which direction the actor is moving.*/
     protected virtual void AnimateWalkActor()
     {
-        hostActor.myAnimationHandler.animateWalk();
+        //hostActor.myAnimationHandler.animateWalk();
     }
 
     /*This method is for when the actor wants to move itself*/

@@ -41,6 +41,7 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
         //If we have not referenced a target this ability will not initiate.
         if(this.usable && targetActor && this.isFinished)
         {
+            this.isFinished = false;
             StartCoroutine(coolDown(cooldownPeriod));
             InternInvoke(user);
         }
