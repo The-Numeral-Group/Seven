@@ -39,7 +39,7 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     //The actor this move is meant to target
     Actor targetActor;
     //pointer to the main camera shake component to initialize camera efx
-    ShakeCamera cam = null;
+    BaseCamera cam;
 
     //Initialize member variables
     void Awake()
@@ -51,7 +51,7 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     //Initializing monobehavior fields
     void Start()
     {
-        var camObjects = FindObjectsOfType<ShakeCamera>();
+        var camObjects = FindObjectsOfType<BaseCamera>();
         var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
         if(playerObject == null)
         {
@@ -163,7 +163,7 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     This will shake the camera, spawn a sin object, and destroy the shadow.*/
     void AfterMathOfCrush(Actor user, GameObject shadowSprite)
     {
-        //this.cam.CameraShake(2.0f, 0.2f);
+        cam.Shake(2.0f, 0.2f);
         Destroy(shadowSprite);
         Instantiate(sin, user.gameObject.transform.position, Quaternion.identity);
         this.isFinished = true;

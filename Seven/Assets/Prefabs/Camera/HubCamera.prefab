@@ -97,14 +97,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f64318f08b4c3a745b1ef440ecf59ac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
-  POI: []
+  targetPOIs: []
   offset: {x: 0, y: 10}
-  minDistanceToPOI: 20
-  maxZoom: 40
+  cameraSmoothRate: 0.5
+  breakingDistance: 20
+  defaultZoom: 40
   minZoom: 17
   zoomSpeed: 5
-  smoothTime: 0.5
 --- !u!114 &184813372446191150
 MonoBehaviour:
   m_ObjectHideFlags: 0
