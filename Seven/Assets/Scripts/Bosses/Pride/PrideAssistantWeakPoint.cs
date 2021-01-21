@@ -23,7 +23,8 @@ public class PrideAssistantWeakPoint : ActorWeakPoint
 
         this.ownerHealth.takeDamage(dam);
 
-        this.gameObject.SetActive(false);
+        this.gameObject.GetComponent<PrideSin>().enabled = true;
+        this.enabled = false;
     }
 
 

@@ -276,7 +276,7 @@ public class PrideActor : Actor
         //All of Pride's scale values
         var initialScaleX = prideTransform.localScale.x;
         var initialScaleY = prideTransform.localScale.y;
-        var initialScaleZ = prideTransform.localScale.z;
+        //var initialScaleZ = prideTransform.localScale.z;
 
         /*1 represents 100% of Pride's size. We divide the net change in Pride's size
         by the amount of statues there are to get how small Pride should get each time
@@ -285,8 +285,8 @@ public class PrideActor : Actor
         //All of Pride's (calculated) final scale values
         var finalScaleX = initialScaleX * percentDecrease;
         var finalScaleY = initialScaleY * percentDecrease;
-        var finalScaleZ = initialScaleZ * percentDecrease;
-        Vector3 estimatedFinalScale = new Vector3(finalScaleX, finalScaleY, finalScaleZ);
+        //var finalScaleZ = initialScaleZ * percentDecrease;
+        Vector3 estimatedFinalScale = new Vector3(finalScaleX, finalScaleY, 1);
 
         /*The shrink rate, based on how long the effect should take. It's negative to 
         make the values go down*/
@@ -294,7 +294,7 @@ public class PrideActor : Actor
         //middleman variables to hold new shrink values
         var midScaleX = initialScaleX;
         var midScaleY = initialScaleY;
-        var midScaleZ = initialScaleZ;
+        //var midScaleZ = initialScaleZ;
 
         //internal timer to stop the shrink once enough time has passed
         var shrinkTimer = 0f;
@@ -305,10 +305,10 @@ public class PrideActor : Actor
             midScale and finalScale. Once they are the same, the shrink will stop.*/
             midScaleX = Mathf.Lerp(midScaleX, finalScaleX, sizeChangePerSecond);
             midScaleY = Mathf.Lerp(midScaleY, finalScaleY, sizeChangePerSecond);
-            midScaleZ = Mathf.Lerp(midScaleZ, finalScaleZ, sizeChangePerSecond);
+            //midScaleZ = Mathf.Lerp(midScaleZ, finalScaleZ, sizeChangePerSecond);
 
             //actually set the new transform
-            prideTransform.localScale = new Vector3(midScaleX, midScaleY, midScaleZ);
+            prideTransform.localScale = new Vector3(midScaleX, midScaleY, 1);
 
             //increment internal timer
             shrinkTimer += Time.deltaTime;

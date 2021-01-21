@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Input System/Player Controller.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Player/Input System/Player Controller.inputactions'
 
 using System;
 using System.Collections;
@@ -43,7 +43,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Dialogue Advance"",
+                    ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""ab44af4d-fe42-4316-bf76-baf8bb7026a7"",
                     ""expectedControlType"": ""Button"",
@@ -430,7 +430,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse;Mouse and Keyboard"",
-                    ""action"": ""Dialogue Advance"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -441,7 +441,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Dialogue Advance"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -452,7 +452,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Dialogue Advance"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -507,12 +507,44 @@ public class @PlayerController : IInputActionCollection, IDisposable
         {
             ""name"": ""Mouse and Keyboard"",
             ""bindingGroup"": ""Mouse and Keyboard"",
-            ""devices"": []
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                }
+            ]
         },
         {
             ""name"": ""Gamepad"",
             ""bindingGroup"": ""Gamepad"",
-            ""devices"": []
+            ""devices"": [
+                {
+                    ""devicePath"": ""<DualShockGamepad>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<XInputController>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<SwitchProControllerHID>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<DualShock4GampadiOS>"",
+                    ""isOptional"": true,
+                    ""isOR"": false
+                }
+            ]
         }
     ]
 }");
@@ -521,7 +553,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
-        m_Player_DialogueAdvance = m_Player.FindAction("Dialogue Advance", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_UIMouse = m_Player.FindAction("UI Mouse", throwIfNotFound: true);
     }
 
@@ -575,7 +607,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Dodge;
-    private readonly InputAction m_Player_DialogueAdvance;
+    private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_UIMouse;
     public struct PlayerActions
     {
@@ -584,7 +616,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
-        public InputAction @DialogueAdvance => m_Wrapper.m_Player_DialogueAdvance;
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @UIMouse => m_Wrapper.m_Player_UIMouse;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -604,9 +636,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Dodge.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                 @Dodge.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
                 @Dodge.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDodge;
-                @DialogueAdvance.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDialogueAdvance;
-                @DialogueAdvance.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDialogueAdvance;
-                @DialogueAdvance.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDialogueAdvance;
+                @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @UIMouse.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUIMouse;
                 @UIMouse.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUIMouse;
                 @UIMouse.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUIMouse;
@@ -623,9 +655,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Dodge.started += instance.OnDodge;
                 @Dodge.performed += instance.OnDodge;
                 @Dodge.canceled += instance.OnDodge;
-                @DialogueAdvance.started += instance.OnDialogueAdvance;
-                @DialogueAdvance.performed += instance.OnDialogueAdvance;
-                @DialogueAdvance.canceled += instance.OnDialogueAdvance;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
                 @UIMouse.started += instance.OnUIMouse;
                 @UIMouse.performed += instance.OnUIMouse;
                 @UIMouse.canceled += instance.OnUIMouse;
@@ -656,7 +688,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
-        void OnDialogueAdvance(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
         void OnUIMouse(InputAction.CallbackContext context);
     }
 }
