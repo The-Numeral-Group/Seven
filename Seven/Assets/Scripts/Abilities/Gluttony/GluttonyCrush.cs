@@ -107,15 +107,18 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     {
         user.myMovement.DragActor(direction);
         yield return new WaitForSeconds(jumpDuration);
-        GameObject shadowSprite = Instantiate(toInstantiateShadowSprite, 
-                                            new Vector3(targetActor.transform.position.x + distanceFromActor.x, 
-                                            targetActor.transform.position.y + distanceFromActor.y, 
-                                            targetActor.transform.position.z), Quaternion.identity);
-        shadowSprite.transform.parent = targetActor.transform;
-        IEnumerator trackTarget = TrackTargetWithShadow(user, shadowSprite);
-        IEnumerator crush = Crush(user, shadowSprite, trackTarget, initialMovementLock);
-        StartCoroutine(trackTarget);
-        StartCoroutine(crush);
+        if (targetActor)
+        {
+            GameObject shadowSprite = Instantiate(toInstantiateShadowSprite, 
+                                        new Vector3(targetActor.transform.position.x + distanceFromActor.x, 
+                                        targetActor.transform.position.y + distanceFromActor.y, 
+                                        targetActor.transform.position.z), Quaternion.identity);
+            shadowSprite.transform.parent = targetActor.transform;
+            IEnumerator trackTarget = TrackTargetWithShadow(user, shadowSprite);
+            IEnumerator crush = Crush(user, shadowSprite, trackTarget, initialMovementLock);
+            StartCoroutine(trackTarget);
+            StartCoroutine(crush);
+        }
     }
 
     /*Part 2 of the 3 steps to perform crush.
@@ -128,7 +131,7 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
                                                 targetActor.transform.position.y + 
                                                 verticalOffset,user.transform.position.z);
         shadowSprite.transform.parent = user.gameObject.transform;
-        while(true)
+        while(true && targetActor)
         {
             yield return new WaitForFixedUpdate();
             user.myMovement.DragActor(targetActor.myMovement.movementDirection * targetActor.myMovement.speed);

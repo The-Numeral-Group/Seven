@@ -313,7 +313,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossCamera
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4905909914710698995, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
 --- !u!1001 &1602876628
 PrefabInstance:

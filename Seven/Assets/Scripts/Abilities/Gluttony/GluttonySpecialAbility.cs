@@ -27,11 +27,11 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
         var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
         if(playerObject == null)
         {
-            Debug.LogWarning("GluttonyCrush: Gluttony can't find the player!");
+            Debug.LogWarning("GluttonySpecialP1: Gluttony can't find the player!");
         }
         else
         {
-            this.targetActor = playerObject.GetComponent<Actor>();
+            targetActor = playerObject.GetComponent<Actor>();
         }
     }
 
@@ -65,7 +65,7 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
     //Drags the target actor in the direction of the destination vector
     IEnumerator DragTargetActor(Vector3 spawnPos)
     {
-        while (true)
+        while (true && targetActor)
         {
             yield return new WaitForFixedUpdate();
             //I (Ram) am not sure if I need to normalize the drag direction vector.
@@ -82,5 +82,27 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
         StopCoroutine(toStop);
         Destroy(toDestroy);
         this.isFinished = true;
+    }
+
+    //Kill the player if they get sucked up by gluttony when this move is active.
+    void OnCollisionEnter2D(Collision2D collider)
+    {
+        if (!this.isFinished && collider.gameObject == targetActor.gameObject)
+        {
+             var enemyHealth = collider.gameObject.GetComponent<ActorHealth>();
+
+            //or a weakpoint if there's no regular health
+            if(enemyHealth == null){collider.gameObject.GetComponent<ActorWeakPoint>();}
+
+            //if the enemy can take damage (if it has an ActorHealth component),
+            //hurt them. Do nothing if they can't take damage.
+            if(enemyHealth != null){
+                if (!enemyHealth.vulnerable)
+                {
+                    return;
+                }
+                enemyHealth.takeDamage(enemyHealth.currentHealth);
+            }
+        }
     }
 }
