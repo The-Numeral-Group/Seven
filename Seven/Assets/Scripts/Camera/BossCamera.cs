@@ -28,14 +28,20 @@ public class BossCamera : BaseCamera
     This function is utilized by MoveCamera*/
     protected override Vector3 GetCenterPos()
     {
+        if (!playerTransform)
+        {
+            return Vector3.zero;
+        }
         var bounds = new Bounds(playerTransform.position, Vector3.zero);
         bounds.Encapsulate(playerTransform.position);
         if (targetPOIs.Count > 0)
         {
             for (int i = 0; i < targetPOIs.Count; i++)
             {
-                if (targetPOIs[i].gameObject == null || !targetPOIs[i].gameObject.activeSelf)
+                if (targetPOIs[i] == null || !targetPOIs[i].gameObject.activeSelf)
                 {
+                    targetPOIs.RemoveAt(i);
+                    i--;
                     continue;
                 }
                 float targetDist = Vector2.Distance(new Vector2(playerTransform.position.x, 

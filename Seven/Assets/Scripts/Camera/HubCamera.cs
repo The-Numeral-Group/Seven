@@ -73,6 +73,10 @@ public class HubCamera : BaseCamera
     This function is utilized by MoveCamera.*/
     protected override Vector3 GetCenterPos()
     {
+        if (!playerTransform)
+        {
+            return Vector3.zero;
+        }
         var bounds = new Bounds(playerTransform.position, Vector3.zero);
         bounds.Encapsulate(playerTransform.position);
         closeToPOI = false;
