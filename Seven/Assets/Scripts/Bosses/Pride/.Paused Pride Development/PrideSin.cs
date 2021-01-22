@@ -10,11 +10,33 @@ using UnityEngine.InputSystem;
 public class PrideSin : MonoBehaviour, ActorEffect
 {
     //FIELDS---------------------------------------------------------------------------------------
+    [Header("Control Variables")]
     [Tooltip("The amount of interaction presses are needed for the statue to be built.")]
     public int buildsToFinish = 7;
 
     [Tooltip("The amount of interaction presses that have already been built.")]
     public int currentBuilds = 0;
+
+    [Header("Sin Effects")]
+    [Tooltip("How much bigger should the target get when they commit this sin.")]
+    public float scaleFactor = 1.1f;
+
+    [Tooltip("How much the range of the target's attack should be multiplied by.")]
+    public float rangeFactor = 1.1f;
+
+    [Tooltip("How much the damage of the target's attack should be multiplied by.")]
+    public float damageFactor = 1.1f;
+
+    /*The design doc just said "decrease dodge effectiveness". I (Thomas) am interpreting this
+    as "make it go a smaller distance and make it lockout for longer".*/
+    //[Tooltip()]
+
+    [Header("Other")]
+    [Tooltip("The type of the player's dodge ability script (must be specified ahead of time).")]
+    public Type dodgeType;
+
+    [Tooltip("The type of the player's attack ability script (must be specified ahead of time).")]
+    public Type attackType;
 
     [Tooltip("The UI Canvas that displays the interaction prompt when the player is in range.")]
     public GameObject interactUI;
@@ -30,9 +52,12 @@ public class PrideSin : MonoBehaviour, ActorEffect
 
     /*Both of these are references to two of the player's abilities. They both require a class to
     be typed down to a subclass, which is inherently shady. Be ready for weird stuff because of
-    this, ESPECIALLY if these abilities are replaced with different kinds of abilities.*/
-    private Dodge playerDodge; 
-    private WeaponAbility playerAttack;
+    this, ESPECIALLY if these abilities are replaced with different kinds of abilities.
+    
+    So, you know, very fragile. Be careful. Might want to talk to design about it...*/
+    //private Dodge playerDodge; 
+    //private WeaponAbility playerAttack;
+    //but we're gonna summon them later, sit tight
 
     //METHODS--------------------------------------------------------------------------------------
     // Start is called before the first frame update
@@ -41,10 +66,10 @@ public class PrideSin : MonoBehaviour, ActorEffect
         interactUI.SetActive(false);
 
         player = GameObject.FindWithTag("Player").GetComponent<Actor>();
-        //INSTEAD OF CHANGING THE ABILITIES, REPLACE THEM WITH DIFFERENT ABILITIES
-        //SCALE THOSE DIFFERENT ABILITIES WITH CURRENT BUILDS
-        //playerDodge = player.myAbilityInitiator.abilities[AbilityRegister.PLAYER_ATTACK];
-        //playerAttack = player.myAbilityInitiator.abilities[AbilityRegister.PLAYER_DODGE];
+
+        //again, these will break if the ability types are wrong
+        //playerDodge = player.myAbilityInitiator.abilities[AbilityRegister.PLAYER_ATTACK] as Dodge;
+        //playerAttack = player.myAbilityInitiator.abilities[AbilityRegister.PLAYER_DODGE] as WeaponAbility;
     }
 
     // Called when a trigger volume attached to this GameObject is entered
@@ -75,9 +100,38 @@ public class PrideSin : MonoBehaviour, ActorEffect
     -Increase Range of player's attack
     -Increase Size of player's attack
     -Increase Damage of player's attack
-    -Decrease Dodge effectiveness (decrease distance, increase lockout time)*/
+    -Decrease Dodge effectiveness (decrease distance, increase lockout time)
+    
+    All of these changes need to be applied on a type-by-type basis. If the types
+    of these abilites changes, this code will also need to be adjusted (unless the
+    new type is a subtype of WeaponAbility and Dodge)*/
     public bool ApplyEffect(ref Actor actor)
     {
+        var abl = actor.myAbilityInitiator.abilities;
+        attackType attack = abl[AbilityRegister.PLAYER_ATTACK] as attackType;
+        dodgeType dodge = abl[AbilityRegister.PLAYER_DODGE] as Dodge;
+
+        if(attack == null || dodge == null)
+        {
+            Debug.LogWarning("PrideSin: Player's attack or dodge cannot be resolved to a type," + 
+                " probably due to a mismatch between PrideSin and PlayerAbilityInitiator." + 
+                    " Because of this, they cannot be modified");
+            return false;
+        }
+
+        //Increase the target's size
+        actor.gameObject.GetComponent<Transform>().localScale *= scaleFactor;
+
+        //Increase attack range (for WeaponAbility that's weaponPositionScale)
+        attack.weaponPositionScale *= rangeFactor;
+
+        //Increase attack damage (for WeaponAbility that's each value in damagePerHitbox)
+        foreach(int damage in attack.damagePerHitbox)
+        {
+            damage *= damageFactor;
+        }
+
+
         return true;
     }
 
