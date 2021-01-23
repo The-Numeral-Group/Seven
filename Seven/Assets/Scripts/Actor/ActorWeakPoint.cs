@@ -34,7 +34,7 @@ public class ActorWeakPoint : ActorHealth
 
     //new in a method declaration means "use me rather than my superclass's version"
     public override void takeDamage(float damageTaken){
-        if (!vulnerable)
+        if (!this.vulnerable)
         {
             return;
         }

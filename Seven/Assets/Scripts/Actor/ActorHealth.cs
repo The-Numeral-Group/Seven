@@ -32,7 +32,7 @@ public class ActorHealth : MonoBehaviour
     }*/
 
     public virtual void takeDamage(float damageTaken){
-        if (!vulnerable)
+        if (!this.vulnerable)
         {
             return;
         }
