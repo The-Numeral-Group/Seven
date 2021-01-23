@@ -14,7 +14,7 @@ public class WeaponHitbox : MonoBehaviour
         wp = this.gameObject.GetComponentInParent(typeof(WeaponAbility)) as WeaponAbility;
     }
 
-    void OnCollisionEnter2D(Collision2D collider)
+    void OnTriggerEnter2D(Collider2D collider)
     {
         if (!wp)
         {
