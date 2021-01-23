@@ -34,10 +34,6 @@ public class WeaponHitbox : MonoBehaviour
         //if the enemy can take damage (if it has an ActorHealth component),
         //hurt them. Do nothing if they can't take damage.
         if(enemyHealth != null){
-            if (!enemyHealth.vulnerable)
-            {
-                return;
-            }
             wp.hitConnected = true;
             enemyHealth.takeDamage(this.damage);
         }

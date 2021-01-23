@@ -34,7 +34,10 @@ public class ActorWeakPoint : ActorHealth
 
     //new in a method declaration means "use me rather than my superclass's version"
     public override void takeDamage(float damageTaken){
-
+        if (!vulnerable)
+        {
+            return;
+        }
         //take the damage to the weakpoint
         this.currentHealth -= Mathf.Floor(damageTaken * (1.0f - damageResistance));
 

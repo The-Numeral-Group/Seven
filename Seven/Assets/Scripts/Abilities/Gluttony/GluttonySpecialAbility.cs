@@ -96,11 +96,8 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
 
             //if the enemy can take damage (if it has an ActorHealth component),
             //hurt them. Do nothing if they can't take damage.
-            if(enemyHealth != null){
-                if (!enemyHealth.vulnerable)
-                {
-                    return;
-                }
+            if(enemyHealth != null)
+            {
                 enemyHealth.takeDamage(enemyHealth.currentHealth);
             }
         }
