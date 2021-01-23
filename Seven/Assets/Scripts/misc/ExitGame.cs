@@ -35,7 +35,7 @@ public class ExitGame : MonoBehaviour
 
     void Resume()
     {
-        pauseMenuUI.SetActive(true);
+        pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GAME_IS_PAUSED = false;
     }
