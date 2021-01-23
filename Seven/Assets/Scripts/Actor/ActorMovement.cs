@@ -91,7 +91,7 @@ public class ActorMovement : MonoBehaviour
     Also, this method will get overriden in child class.*/
     public virtual void AnimateWalkActor()
     {
-
+        //hostActor.myAnimationHandler.animateWalk();
     }
 
     /*This method is for when the actor wants to move itself*/

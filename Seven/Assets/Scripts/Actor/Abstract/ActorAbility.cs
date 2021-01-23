@@ -28,7 +28,11 @@ public abstract class ActorAbility : MonoBehaviour
 public abstract class ActorAbilityFunction<InvokeParam, InvokeReturn> : ActorAbility
 {
     //public fields
+    //Handles the cooldown of an ability
+    [Tooltip("How long an ability will be on cooldown after its' use.")]
     public float cooldownPeriod;
+    //Name for the ability
+    [Tooltip("Name of the ability. Currently does nothing.")]
     public string abilityName;
 
     /*private with accessor so others can look without changing

@@ -8,6 +8,7 @@ public class GluttonyProjectileMovement : ActorMovement
 {
     //How long thiss projectile will last for. Must be greated thatn 0.
     public float projectileDuration = 20f;
+    public int damage = 1;
 
     //Calls base actormovement start then starts a coroutine to destroy itself after a duration set by projectileDuraction.
     //Will also lock the movement of the projectile so movementdirection in ActorMovement has no bearing on it.
@@ -34,16 +35,42 @@ public class GluttonyProjectileMovement : ActorMovement
     }
 
     //Given a direction
-    public IEnumerator StopProjectile(float stopDelay)
+    IEnumerator StopProjectile(float stopDelay)
     {
         
         yield return new WaitForSeconds(stopDelay);
         base.DragActor(Vector2.zero);
     }
 
-    public IEnumerator DestroySelf()
+    IEnumerator DestroySelf()
     {
         yield return new WaitForSeconds(this.projectileDuration);
         Destroy(this.gameObject);
+    }
+
+    void OnCollisionEnter2D(Collision2D collider)
+    {
+        if (collider.gameObject.tag != "Player")
+        {
+            return;
+        }
+        else
+        {
+            var enemyHealth = collider.gameObject.GetComponent<ActorHealth>();
+
+            //or a weakpoint if there's no regular health
+            if(enemyHealth == null){collider.gameObject.GetComponent<ActorWeakPoint>();}
+
+            //if the enemy can take damage (if it has an ActorHealth component),
+            //hurt them. Do nothing if they can't take damage.
+            if(enemyHealth != null){
+                if (!enemyHealth.vulnerable)
+                {
+                    return;
+                }
+                enemyHealth.takeDamage(damage);
+                Destroy(this.gameObject);
+            }
+        }
     }   
 }

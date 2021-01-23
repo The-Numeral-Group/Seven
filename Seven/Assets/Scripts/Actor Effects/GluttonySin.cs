@@ -20,6 +20,11 @@ public class GluttonySin : MonoBehaviour, ActorEffect
 
     //when this thing gets walked into...
     void OnTriggerEnter2D(Collider2D collider){
+        //The sin should only be triggered on player collision
+        if (collider.gameObject.tag != "Player")
+        {
+            return;
+        }
         Debug.Log("collision with food!");
 
         //aquire the ActorEffectHandler of whoever ran into the food
@@ -30,8 +35,6 @@ public class GluttonySin : MonoBehaviour, ActorEffect
         if(collidedEffectHandler != null){
             collidedEffectHandler.AddEffect(this);
         }
-        
-
     }
 
     
