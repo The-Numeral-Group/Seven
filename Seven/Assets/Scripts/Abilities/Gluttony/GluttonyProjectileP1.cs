@@ -59,7 +59,6 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
     //Similar to ActorAbilityFunction invoke but checks the isFinished flag.
     public override void Invoke(ref Actor user)
     {
-        Debug.Log("A");
         if(this.usable && this.isFinished)
         {
             this.isFinished = false;
@@ -73,9 +72,7 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
     spawning new projectiles.*/
     protected override int InternInvoke(params Actor[] args)
     {
-        Debug.Log("In Projectile");
         
-
         for (int i = 0; i < PROJECTILE_MANAGER.Count; i++)
         {
             GameObject toDestroy = PROJECTILE_MANAGER[i];
