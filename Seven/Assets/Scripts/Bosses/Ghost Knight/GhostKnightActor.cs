@@ -29,6 +29,7 @@ public class GhostKnightActor : Actor
     private ActorAbility slash;
     private ActorAbility proj;
     private ActorAbility special;
+    private ActorAbility knockBack;
 
     ///private GhostKnightSlash slash;
     //private GhostKnightProjectile projectile;
@@ -64,6 +65,7 @@ public class GhostKnightActor : Actor
         slash = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_SLASH];
         proj = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_PROJECTILE];
         special = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_SPECIAL];
+        knockBack = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_KNOCKBACK];
 
         ghostKnight = this.gameObject.GetComponent<GhostKnightActor>();
         ghostKnight.myHealth.vulnerable = true;
@@ -147,7 +149,11 @@ public class GhostKnightActor : Actor
         bool slashReady = slash.getUsable(), projReady = proj.getUsable(), specialReady = special.getUsable();
 
         // Determines which attack the ghost knight will perform.
-         int whichAtt = (int)Random.Range(1, projectileRatio + 2);
+        // int whichAtt = (int)Random.Range(1, projectileRatio + 2);
+        //*** TESTING PROJ ***//
+
+        int whichAtt = 1;
+
 
         // check for special attack counter.
         // if it is 7, activate special attack. 
@@ -172,5 +178,12 @@ public class GhostKnightActor : Actor
             currentState = State.WALK;
         }
 
+    }
+    void OnCollisionEnter2D(Collision2D collider)
+    {
+        if (collider.gameObject.tag == "Player")
+        {
+            knockBack.Invoke(ref ghostKnight);
+        }
     }
 }

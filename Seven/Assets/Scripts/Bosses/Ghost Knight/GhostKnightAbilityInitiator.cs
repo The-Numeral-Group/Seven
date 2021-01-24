@@ -7,6 +7,7 @@ public class GhostKnightAbilityInitiator : ActorAbilityInitiator
     public ActorAbility Slash;
     public ActorAbility Projectile;
     public ActorAbility Special;
+    public ActorAbility knockBack;
 
     void Awake()
     {
@@ -18,5 +19,8 @@ public class GhostKnightAbilityInitiator : ActorAbilityInitiator
 
         this.abilities.Add("GhostKnight" + nameof(Special), Special);
         AbilityRegister.GHOSTKNIGHT_SPECIAL = "GhostKnight" + nameof(Special);
+
+        this.abilities.Add("GhostKnight" + nameof(knockBack), knockBack);
+        AbilityRegister.GHOSTKNIGHT_KNOCKBACK = "GhostKnight" + nameof(knockBack);
     }
 }

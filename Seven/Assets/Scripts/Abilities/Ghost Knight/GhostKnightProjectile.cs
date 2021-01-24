@@ -57,10 +57,10 @@ public class GhostKnightProjectile : ActorAbilityFunction<Actor, int>
         user.myMovement.DragActor(direction * speed);
         yield return new WaitForSeconds(this.duration - this.projectileSpawnTime);
         user.myMovement.DragActor(Vector2.zero);
-        SpawnProjectiles(user);
+        StartCoroutine(SpawnProjectiles(user));
     }
 
-    private void SpawnProjectiles(Actor user)
+    private IEnumerator SpawnProjectiles(Actor user)
     {
 
         float[,] offset = new float[,] { { -offsetValue, 0 }, { offsetValue, 0 }, 
@@ -73,8 +73,9 @@ public class GhostKnightProjectile : ActorAbilityFunction<Actor, int>
             GameObject ghostKnightProjectile = Instantiate(this.toInstantiateProjectile, projPos, Quaternion.identity);
             this.projectileManager.Add(ghostKnightProjectile);
         }
-        isFinished = true;
         StartCoroutine(DestroyProjectiles());
+        yield return new WaitForSeconds(this.projectileSpawnTime);
+        isFinished = true;
     }
 
     private IEnumerator DestroyProjectiles()

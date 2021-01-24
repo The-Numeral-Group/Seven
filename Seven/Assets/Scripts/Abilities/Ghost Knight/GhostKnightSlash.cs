@@ -62,7 +62,7 @@ public class GhostKnightSlash : ActorAbilityFunction<Actor, int>
     }
     private IEnumerator DestroySlashObject(GameObject obj)
     {
-        yield return new WaitForSeconds(this.animationDuration);
+        yield return new WaitForSeconds(this.duration);
         Destroy(obj);
         isFinished = true;
     }

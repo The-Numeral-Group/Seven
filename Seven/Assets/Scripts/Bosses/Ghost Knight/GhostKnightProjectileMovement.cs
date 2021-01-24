@@ -10,6 +10,8 @@ public class GhostKnightProjectileMovement : ActorMovement
 
     private Actor player;
 
+    public int damage = 1;
+
     protected override void Start()
     {
         base.Start();
@@ -29,5 +31,32 @@ public class GhostKnightProjectileMovement : ActorMovement
         var playerPos = player.gameObject.transform.position;
 
         this.movementDirection = (playerPos - myPos).normalized;
+    }
+    void OnCollisionEnter2D(Collision2D collider)
+    {
+        // Only collide with player
+        if (collider.gameObject.tag == "Player")
+        {
+            var playerHealth = collider.gameObject.GetComponent<ActorHealth>();
+
+            //or a weakpoint if there's no regular health
+            if (playerHealth == null) { collider.gameObject.GetComponent<ActorWeakPoint>(); }
+
+            //if the enemy can take damage (if it has an ActorHealth component),
+            //hurt them. Do nothing if they can't take damage.
+            if (playerHealth != null)
+            {
+                if (!playerHealth.vulnerable)
+                {
+                    return;
+                }
+                playerHealth.takeDamage(damage);
+                Destroy(this.gameObject);
+            }
+        }
+        else // If Collide with something else, then just pass through
+        {
+            Physics2D.IgnoreCollision(collider.collider, this.gameObject.GetComponent<CircleCollider2D>());
+        }
     }
 }
