@@ -14,25 +14,29 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
     //How long this entire process should take.
     [SerializeField]
     [Tooltip("How long the ability should take to execute as a whole.")]
-    float duration = 10f;
+    protected float duration = 10f;
     //Time it will take to spawn the projectiles
     [SerializeField]
     [Tooltip("Of the duration time, how much goes towards spawning projectiles. Must be < duration.")]
-    float projectileSpawnTime = 2f;
+    protected float projectileSpawnTime = 2f;
     //Delay before projectile spawning starts
     [SerializeField]
     [Tooltip("The delay between reaching the centerPos and spawningProjectiles. Must be < duration.")]
-    float projectileDelay = 1f;
+    protected float projectileDelay = 1f;
     //Number of projectiles to spawn.
     [Tooltip("The number of projectiles the user will spawn.")]
     public int numProjectiles = 8;
     //A list that is used to manage the projectiles spawned by this user
-    List<GameObject> projectileManager;
+    protected static List<GameObject> PROJECTILE_MANAGER;
 
     //Initialize monobehavior fields
-    void Start()
+    protected void Start()
     {
-        projectileManager = new List<GameObject>();
+        if (PROJECTILE_MANAGER != null)
+        {
+            PROJECTILE_MANAGER.Clear();
+        }
+        PROJECTILE_MANAGER = new List<GameObject>();
     }
 
     //Similar to ActorAbilityFunction invoke but checks the isFinished flag.
@@ -66,12 +70,12 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
             projectileDelay = 1f;
         }
 
-        for (int i = 0; i < projectileManager.Count; i++)
+        for (int i = 0; i < PROJECTILE_MANAGER.Count; i++)
         {
-            GameObject toDestroy = projectileManager[i];
+            GameObject toDestroy = PROJECTILE_MANAGER[i];
             Destroy(toDestroy);
         }
-        projectileManager.Clear();
+        PROJECTILE_MANAGER.Clear();
         
         StartCoroutine(args[0].myMovement.LockActorMovement(duration));
         StartCoroutine(MoveToCenter(args[0]));
@@ -100,7 +104,7 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
     /*Part 2 of this 2 part ability
     This Coroutine will spawn projectiles around the user after they ahve reached the center.
     Projectiles are spawned one after another with a minor delay inbetween spawns.*/
-    IEnumerator SpawnProjectiles(Actor user)
+    protected virtual IEnumerator SpawnProjectiles(Actor user)
     {
         yield return new WaitForSeconds(projectileDelay);
         int i = 0;
@@ -111,7 +115,7 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
             GameObject gluttonyProjectile = Instantiate(toInstantiateProjectile, 
                                             user.gameObject.transform.position, Quaternion.identity);
             ActorMovement currProjectile = gluttonyProjectile.GetComponent<ActorMovement>();
-            projectileManager.Add(gluttonyProjectile);
+            PROJECTILE_MANAGER.Add(gluttonyProjectile);
             currProjectile.DragActor(direction);
             yield return new WaitForSeconds(projectileSpawnTime/numProjectiles);
             i++;
