@@ -104,10 +104,26 @@ public class GluttonyP2Actor : Actor
         if (weight <= specialWeight && specialReady)
         {
             nextState = State.SPECIAL;
+            if (specialWeight - 25f >= 0)
+            {
+                specialWeight -= 25f;
+            }
+            else
+            {
+                specialWeight = 0.0f;
+            }
         }
         else if (projReady)
         {
             nextState = State.PROJECTILE;
+            if (specialWeight + 25f <= 100)
+            {
+                specialWeight += 25f;
+            }
+            else
+            {
+                specialWeight = 100f;
+            }
         }
         return nextState;
     }
