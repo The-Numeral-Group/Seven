@@ -29,6 +29,23 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
     //A list that is used to manage the projectiles spawned by this user
     protected static List<GameObject> PROJECTILE_MANAGER;
 
+    protected void Awake()
+    {
+        if (duration <= 0f || projectileSpawnTime <= 0f)
+        {
+            Debug.Log("GluttonPhaseChange: duration/projectileSpawn must be greater than 0");
+            duration = 10f;
+            projectileSpawnTime = 2f;
+        }
+        else if (duration <= projectileDelay + projectileSpawnTime)
+        {
+            Debug.Log("GluttonPhaseChange: duration must be greater than spawnTime + projectileDelay.");
+            duration = 10f;
+            projectileSpawnTime = 2f;
+            projectileDelay = 1f;
+        }
+    }
+
     //Initialize monobehavior fields
     protected void Start()
     {
@@ -42,6 +59,7 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
     //Similar to ActorAbilityFunction invoke but checks the isFinished flag.
     public override void Invoke(ref Actor user)
     {
+        Debug.Log("A");
         if(this.usable && this.isFinished)
         {
             this.isFinished = false;
@@ -56,19 +74,7 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
     protected override int InternInvoke(params Actor[] args)
     {
         Debug.Log("In Projectile");
-        if (duration <= 0f || projectileSpawnTime <= 0f)
-        {
-            Debug.Log("GluttonPhaseChange: duration/projectileSpawn must be greater than 0");
-            duration = 10f;
-            projectileSpawnTime = 2f;
-        }
-        else if (duration <= projectileDelay + projectileSpawnTime)
-        {
-            Debug.Log("GluttonPhaseChange: duration must be greater than spawnTime + projectileDelay.");
-            duration = 10f;
-            projectileSpawnTime = 2f;
-            projectileDelay = 1f;
-        }
+        
 
         for (int i = 0; i < PROJECTILE_MANAGER.Count; i++)
         {

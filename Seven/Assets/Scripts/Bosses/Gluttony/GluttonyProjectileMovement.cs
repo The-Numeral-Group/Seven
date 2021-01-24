@@ -61,11 +61,11 @@ public class GluttonyProjectileMovement : ActorMovement
         
         yield return new WaitForSeconds(stopDelay);
         base.DragActor(Vector2.zero);
-        if (makeStatic)
+        /*if (makeStatic)
         {
             //https://answers.unity.com/questions/1301204/how-to-change-rigidbody2d-body-type-or-change-whet.html
             this.rigidbody.bodyType = RigidbodyType2D.Static;
-        }
+        }*/
     }
 
     IEnumerator DestroySelf()
