@@ -27,7 +27,7 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
     [Tooltip("The number of projectiles the user will spawn.")]
     public int numProjectiles = 8;
     //A list that is used to manage the projectiles spawned by this user
-    protected static List<GameObject> PROJECTILE_MANAGER;
+    protected static List<GameObject> PROJECTILE_MANAGER = new List<GameObject>();
 
     protected void Awake()
     {
@@ -46,16 +46,6 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
         }
     }
 
-    //Initialize monobehavior fields
-    protected void Start()
-    {
-        if (PROJECTILE_MANAGER != null)
-        {
-            PROJECTILE_MANAGER.Clear();
-        }
-        PROJECTILE_MANAGER = new List<GameObject>();
-    }
-
     //Similar to ActorAbilityFunction invoke but checks the isFinished flag.
     public override void Invoke(ref Actor user)
     {
@@ -72,13 +62,13 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
     spawning new projectiles.*/
     protected override int InternInvoke(params Actor[] args)
     {
-        
-        for (int i = 0; i < PROJECTILE_MANAGER.Count; i++)
+        Debug.Log("Projectile count: " + GluttonyProjectileP1.PROJECTILE_MANAGER.Count);
+        for (int i = 0; i < GluttonyProjectileP1.PROJECTILE_MANAGER.Count; i++)
         {
-            GameObject toDestroy = PROJECTILE_MANAGER[i];
+            GameObject toDestroy = GluttonyProjectileP1.PROJECTILE_MANAGER[i];
             Destroy(toDestroy);
         }
-        PROJECTILE_MANAGER.Clear();
+        GluttonyProjectileP1.PROJECTILE_MANAGER.Clear();
         
         StartCoroutine(args[0].myMovement.LockActorMovement(duration));
         StartCoroutine(MoveToCenter(args[0]));
@@ -118,7 +108,7 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
             GameObject gluttonyProjectile = Instantiate(toInstantiateProjectile, 
                                             user.gameObject.transform.position, Quaternion.identity);
             ActorMovement currProjectile = gluttonyProjectile.GetComponent<ActorMovement>();
-            PROJECTILE_MANAGER.Add(gluttonyProjectile);
+            GluttonyProjectileP1.PROJECTILE_MANAGER.Add(gluttonyProjectile);
             currProjectile.DragActor(direction);
             yield return new WaitForSeconds(projectileSpawnTime/numProjectiles);
             i++;

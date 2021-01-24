@@ -36,6 +36,8 @@ public class GluttonyActor : Actor
         NULL,
     }
 
+    bool changingPhase = false;
+
     // Start is called before the first frame update
     new void Start()
     {
@@ -59,6 +61,14 @@ public class GluttonyActor : Actor
     // Update is called once per frame
     void FixedUpdate()
     {
+        //might need to move this check outside of fixed update;
+        if (this.myHealth.currentHealth <= 5 && !changingPhase)
+        {
+            changingPhase = true;
+            System.Tuple<Actor, System.Action<Actor>> p2 = 
+                new System.Tuple<Actor, System.Action<Actor>>(gluttony, null);
+            gameObject.SendMessage("NextPhase", p2);
+        }
         EvaluateState(currentState);
     }
 

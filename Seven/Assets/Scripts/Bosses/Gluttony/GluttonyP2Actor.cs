@@ -60,12 +60,14 @@ public class GluttonyP2Actor : Actor
                 }
                 break;
             case State.PROJECTILE:
+            Debug.Log("Phase 2: projectile");
                 var proj = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_PHASETWO_PROJECTILE];
                 currAbility = proj;
                 proj.Invoke(ref gluttony);
                 currentState = State.WALK;
                 break;
             case State.SPECIAL:
+                Debug.Log("Phase 2: special");
                 var special = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_PHASETWO_SPECIAL];
                 currAbility = special;
                 special.Invoke(ref gluttony);

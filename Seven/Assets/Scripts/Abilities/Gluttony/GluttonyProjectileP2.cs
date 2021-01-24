@@ -10,7 +10,6 @@ public class GluttonyProjectileP2 : GluttonyProjectileP1
     Differentiates in that they will not be spawned in front of or behind.*/
     protected override IEnumerator SpawnProjectiles(Actor user)
     {
-        Debug.Log("p2");
         yield return new WaitForSeconds(projectileDelay);
         int i = 0;
         float dtheta = (2f/numProjectiles) * Mathf.PI; //(360/angle) * (pi/180)
@@ -26,7 +25,7 @@ public class GluttonyProjectileP2 : GluttonyProjectileP1
             GameObject gluttonyProjectile = Instantiate(toInstantiateProjectile, 
                                             user.gameObject.transform.position, Quaternion.identity); 
             ActorMovement currProjectile = gluttonyProjectile.GetComponent<ActorMovement>();
-            PROJECTILE_MANAGER.Add(gluttonyProjectile);
+            GluttonyProjectileP1.PROJECTILE_MANAGER.Add(gluttonyProjectile);
             currProjectile.DragActor(direction);
             yield return new WaitForSeconds(projectileSpawnTime/numProjectiles);
         }
