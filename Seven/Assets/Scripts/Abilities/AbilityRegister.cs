@@ -36,5 +36,4 @@
     public static string GHOSTKNIGHT_SLASH = "";
     public static string GHOSTKNIGHT_PROJECTILE = "";
     public static string GHOSTKNIGHT_SPECIAL = "";
-    public static string GHOSTKNIGHT_KNOCKBACK = "";
 }

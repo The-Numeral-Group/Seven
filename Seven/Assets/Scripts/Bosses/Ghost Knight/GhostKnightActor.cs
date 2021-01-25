@@ -18,6 +18,9 @@ public class GhostKnightActor : Actor
     [Tooltip("Chance of picking projectile attack compared to slash attack. (1 = 1:1, 2 = 1:2, and so on)")]
     public float projectileRatio = 3f;
 
+    [Tooltip("Ghost Knight's physical contact damage")]
+    public float damage = 1f;
+
     private int specialAttackCounter = 1;
 
     private Actor ghostKnight;
@@ -29,7 +32,6 @@ public class GhostKnightActor : Actor
     private ActorAbility slash;
     private ActorAbility proj;
     private ActorAbility special;
-    private ActorAbility knockBack;
 
     ///private GhostKnightSlash slash;
     //private GhostKnightProjectile projectile;
@@ -45,7 +47,7 @@ public class GhostKnightActor : Actor
         NULL,
     }
 
-    
+
     // Start is called before the first frame update
     new void Start()
     {
@@ -65,7 +67,6 @@ public class GhostKnightActor : Actor
         slash = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_SLASH];
         proj = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_PROJECTILE];
         special = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_SPECIAL];
-        knockBack = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_KNOCKBACK];
 
         ghostKnight = this.gameObject.GetComponent<GhostKnightActor>();
         ghostKnight.myHealth.vulnerable = true;
@@ -85,7 +86,7 @@ public class GhostKnightActor : Actor
             decideNextState();
             EvaluateState(currentState);
         }
-  
+
     }
 
     void EvaluateState(State state)
@@ -93,7 +94,7 @@ public class GhostKnightActor : Actor
         switch (state)
         {
             case State.WALK:
-                stepTowardsPlayer();            
+                stepTowardsPlayer();
                 break;
 
             case State.PHYSICAL_SLASH:
@@ -179,11 +180,28 @@ public class GhostKnightActor : Actor
         }
 
     }
-    void OnCollisionEnter2D(Collision2D collider)
+    // Handles the physical contact with the player effect.
+    // Knockback Effect is handled with Point Effector 2D Component.
+    void OnTriggerEnter2D(Collider2D collider)
     {
+        // Only collide with player
         if (collider.gameObject.tag == "Player")
         {
-            knockBack.Invoke(ref ghostKnight);
+            var playerHealth = collider.gameObject.GetComponent<ActorHealth>();
+
+            //or a weakpoint if there's no regular health
+            if (playerHealth == null) { collider.gameObject.GetComponent<ActorWeakPoint>(); }
+
+            //if the enemy can take damage (if it has an ActorHealth component),
+            //hurt them. Do nothing if they can't take damage.
+            if (playerHealth != null)
+            {
+                if (!playerHealth.vulnerable)
+                {
+                    return;
+                }
+                playerHealth.takeDamage(damage);
+            }
         }
     }
 }
