@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponHitbox : MonoBehaviour
 {
     public int damage { get; set; }
-    WeaponAbility wp;
+    protected WeaponAbility wp;
 
     void Start()
     {
@@ -14,7 +14,7 @@ public class WeaponHitbox : MonoBehaviour
         wp = this.gameObject.GetComponentInParent(typeof(WeaponAbility)) as WeaponAbility;
     }
 
-    void OnCollisionEnter2D(Collision2D collider)
+    protected virtual void OnCollisionEnter2D(Collision2D collider)
     {
         if (!wp)
         {
