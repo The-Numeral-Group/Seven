@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 8538570507512397887}
   - component: {fileID: 8538570507512397886}
   - component: {fileID: 3644810451997314016}
+  - component: {fileID: 6993817129811903206}
   m_Layer: 0
   m_Name: Pride
   m_TagString: Untagged
@@ -201,7 +202,7 @@ MonoBehaviour:
     m_keys: []
     m_values: []
   Close: {fileID: 3644810451997314016}
-  Far: {fileID: 0}
+  Far: {fileID: 6993817129811903206}
   Special: {fileID: 0}
 --- !u!114 &3644810451997314016
 MonoBehaviour:
@@ -221,3 +222,19 @@ MonoBehaviour:
   duration: 0
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 
+--- !u!114 &6993817129811903206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8538570507512397883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0678434b9bf342b8d9dd1fafe3f68735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  waveProjectile: {fileID: 327392200524578098, guid: e6602bd27c8a41152837f8df50672888, type: 3}
+  target: {fileID: 0}
