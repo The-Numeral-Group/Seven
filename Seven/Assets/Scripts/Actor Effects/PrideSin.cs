@@ -12,11 +12,12 @@ public class PrideSin : MonoBehaviour, ActorEffect
     //FIELDS---------------------------------------------------------------------------------------
     [Header("Control Variables")]
     [Tooltip("The amount of interaction presses are needed for the statue to be built.")]
-    public int buildsToFinish = 7;
+    public int buildsToFinish = 3;
 
     [Tooltip("The amount of interaction presses that have already been built.")]
     public int currentBuilds = 0;
 
+    /*
     [Header("Sin Effects")]
     [Tooltip("How much bigger should the target get when they commit this sin.")]
     public float scaleFactor = 1.1f;
@@ -26,20 +27,25 @@ public class PrideSin : MonoBehaviour, ActorEffect
 
     [Tooltip("How much the damage of the target's attack should be multiplied by.")]
     public float damageFactor = 1.1f;
+    */
 
     /*The design doc just said "decrease dodge effectiveness". I (Thomas) am interpreting this
     as "make it go a smaller distance and make it lockout for longer".*/
     //[Tooltip()]
 
     [Header("Other")]
+    /*
     [Tooltip("The type of the player's dodge ability script (must be specified ahead of time).")]
     public Type dodgeType;
 
     [Tooltip("The type of the player's attack ability script (must be specified ahead of time).")]
-    public Type attackType;
+    public Type attackType;*/
 
     [Tooltip("The UI Canvas that displays the interaction prompt when the player is in range.")]
     public GameObject interactUI;
+
+    [Tooltip("The amount of statues that the player has fully built.")]
+    public static int finishedBuilds = 0;
 
     //whether or not the statue is fully built
     private bool built;
@@ -54,7 +60,9 @@ public class PrideSin : MonoBehaviour, ActorEffect
     be typed down to a subclass, which is inherently shady. Be ready for weird stuff because of
     this, ESPECIALLY if these abilities are replaced with different kinds of abilities.
     
-    So, you know, very fragile. Be careful. Might want to talk to design about it...*/
+    So, you know, very fragile. Be careful. Might want to talk to design about it...
+    
+    Just kidding! Design cut it. Currently, PrideSin does nothing.*/
     //private Dodge playerDodge; 
     //private WeaponAbility playerAttack;
     //but we're gonna summon them later, sit tight
@@ -94,7 +102,10 @@ public class PrideSin : MonoBehaviour, ActorEffect
         }
     }
 
-    /*Applies the Actor effect. What that means for Pride:
+    /*Currently, PrideSin does nothing
+    
+    ---OLD COMMENTS---  
+    Applies the Actor effect. What that means for Pride:
     
     -Increase target size
     -Increase Range of player's attack
@@ -107,6 +118,7 @@ public class PrideSin : MonoBehaviour, ActorEffect
     new type is a subtype of WeaponAbility and Dodge)*/
     public bool ApplyEffect(ref Actor actor)
     {
+        /*
         var abl = actor.myAbilityInitiator.abilities;
         attackType attack = abl[AbilityRegister.PLAYER_ATTACK] as attackType;
         dodgeType dodge = abl[AbilityRegister.PLAYER_DODGE] as Dodge;
@@ -131,10 +143,11 @@ public class PrideSin : MonoBehaviour, ActorEffect
             damage *= damageFactor;
         }
 
-
+        */
         return true;
     }
 
+    //Currently, PrideSin does nothing
     public void RemoveEffect(ref Actor actor)
     {
 
@@ -158,6 +171,7 @@ public class PrideSin : MonoBehaviour, ActorEffect
         {
             player.myEffectHandler.AddEffect(this);
             built = true;
+            ++PrideSin.finishedBuilds;
         }
     }
 
