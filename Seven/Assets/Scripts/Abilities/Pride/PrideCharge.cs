@@ -60,6 +60,24 @@ public class PrideCharge : ActorAbilityFunction<Actor, IEnumerator>
         
     }
 
+    public override void Invoke(ref Actor user, params object[] args)
+    {
+        if(usable)
+        {
+            isFinished = false;
+            userMover = user.myMovement;
+            if(target == null && args[0] is Actor)
+            {
+                StartCoroutine(InternInvoke((Actor)args[0]));
+            }
+            else
+            {
+                StartCoroutine(InternInvoke(target));
+            }
+            //the cooldown is started in InternInvoke
+        }
+    }
+
     /*InternInvoke the actual ability. Wraps two coroutines so the ability and its cooldown
     can be effectively chained, one after the other.*/
     protected override IEnumerator InternInvoke(params Actor[] args)
