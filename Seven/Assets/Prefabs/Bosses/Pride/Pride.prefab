@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 8538570507512397886}
   - component: {fileID: 3644810451997314016}
   - component: {fileID: 6993817129811903206}
+  - component: {fileID: 9204889072216693494}
   m_Layer: 0
   m_Name: Pride
   m_TagString: Untagged
@@ -237,4 +238,24 @@ MonoBehaviour:
   cooldownPeriod: 0
   abilityName: 
   waveProjectile: {fileID: 327392200524578098, guid: e6602bd27c8a41152837f8df50672888, type: 3}
+  target: {fileID: 0}
+--- !u!114 &9204889072216693494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8538570507512397883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aca9db07dad50dbc86c41dbad8b7b32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  chargeSpeed: 25
+  chargeDamage: 0
+  followUp: {fileID: 3644810451997314016}
+  maxChargeDistance: 200
+  maxChargeTime: 10
   target: {fileID: 0}

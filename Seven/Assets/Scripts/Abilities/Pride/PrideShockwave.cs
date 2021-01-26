@@ -22,7 +22,6 @@ public class PrideShockwave : ActorAbilityFunction<GameObject, int>
     InternInvoke.*/
     public override void Invoke(ref Actor user)
     {
-        //by default, Invoke just does InternInvoke with no arguments
         if(usable)
         {
             isFinished = false;
