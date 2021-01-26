@@ -4,6 +4,7 @@ using System.Collections;
 //This is a class for the gluttony projectile.
 //It inherits from actor movement.
 //Initiating its movement is meant to be called by other actors.
+[RequireComponent(typeof(Collider2D))]
 public class GluttonyProjectileMovement : ActorMovement
 {
     //How long this projectile will last for. Must be greated thatn 0.
@@ -57,8 +58,7 @@ public class GluttonyProjectileMovement : ActorMovement
 
     //Given a direction
     IEnumerator StopProjectile(float stopDelay)
-    {
-        
+    {   
         yield return new WaitForSeconds(stopDelay);
         base.DragActor(Vector2.zero);
         /*if (makeStatic)
@@ -76,7 +76,7 @@ public class GluttonyProjectileMovement : ActorMovement
 
     void OnCollisionEnter2D(Collision2D collider)
     {
-        if (collider.gameObject.tag != "Player")
+        if (collider.gameObject.tag != "Player" || makeStatic)
         {
             return;
         }
@@ -90,7 +90,7 @@ public class GluttonyProjectileMovement : ActorMovement
             //if the enemy can take damage (if it has an ActorHealth component),
             //hurt them. Do nothing if they can't take damage.
             if(enemyHealth != null){
-                if (!enemyHealth.vulnerable)
+                if (!enemyHealth.vulnerable || makeStatic)
                 {
                     return;
                 }

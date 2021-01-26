@@ -60,7 +60,7 @@ public class GluttonyP2Actor : Actor
                 }
                 break;
             case State.PROJECTILE:
-            Debug.Log("Phase 2: projectile");
+                Debug.Log("Phase 2: projectile");
                 var proj = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_PHASETWO_PROJECTILE];
                 currAbility = proj;
                 proj.Invoke(ref gluttony);
@@ -105,6 +105,7 @@ public class GluttonyP2Actor : Actor
         float weight = Random.Range(0.0f, 100f);
         if (weight <= specialWeight && specialReady)
         {
+            this.myMovement.MoveActor(Vector2.zero);
             nextState = State.SPECIAL;
             if (specialWeight - 25f >= 0)
             {
@@ -114,9 +115,11 @@ public class GluttonyP2Actor : Actor
             {
                 specialWeight = 0.0f;
             }
+            Debug.Log(specialWeight);
         }
         else if (projReady)
         {
+            this.myMovement.MoveActor(Vector2.zero);
             nextState = State.PROJECTILE;
             if (specialWeight + 25f <= 100)
             {
@@ -126,6 +129,7 @@ public class GluttonyP2Actor : Actor
             {
                 specialWeight = 100f;
             }
+            Debug.Log(specialWeight);
         }
         return nextState;
     }

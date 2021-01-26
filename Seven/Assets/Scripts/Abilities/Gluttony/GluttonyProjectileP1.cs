@@ -11,10 +11,6 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
     //The projectile that gluttony will spawn. Must have an ActorMovement component.
     [Tooltip("The projectile gluttony will spawn. The prefab must have its own ActorMovement component.")]
     public GameObject toInstantiateProjectile;
-    //How long this entire process should take.
-    [SerializeField]
-    [Tooltip("How long the ability should take to execute as a whole.")]
-    protected float duration = 10f;
     //Time it will take to spawn the projectiles
     [SerializeField]
     [Tooltip("Of the duration time, how much goes towards spawning projectiles. Must be < duration.")]
@@ -31,18 +27,11 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
 
     protected void Awake()
     {
-        if (duration <= 0f || projectileSpawnTime <= 0f)
+        if (projectileDelay < 0f || projectileSpawnTime <= 0f)
         {
-            Debug.Log("GluttonPhaseChange: duration/projectileSpawn must be greater than 0");
-            duration = 10f;
-            projectileSpawnTime = 2f;
-        }
-        else if (duration <= projectileDelay + projectileSpawnTime)
-        {
-            Debug.Log("GluttonPhaseChange: duration must be greater than spawnTime + projectileDelay.");
-            duration = 10f;
-            projectileSpawnTime = 2f;
+            Debug.LogWarning("GluttonPhaseChange: duration/projectileSpawn must be greater than 0");
             projectileDelay = 1f;
+            projectileSpawnTime = 2f;
         }
     }
 
@@ -62,7 +51,6 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
     spawning new projectiles.*/
     protected override int InternInvoke(params Actor[] args)
     {
-        Debug.Log("Projectile count: " + GluttonyProjectileP1.PROJECTILE_MANAGER.Count);
         for (int i = 0; i < GluttonyProjectileP1.PROJECTILE_MANAGER.Count; i++)
         {
             GameObject toDestroy = GluttonyProjectileP1.PROJECTILE_MANAGER[i];
@@ -70,7 +58,6 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
         }
         GluttonyProjectileP1.PROJECTILE_MANAGER.Clear();
         
-        StartCoroutine(args[0].myMovement.LockActorMovement(duration));
         StartCoroutine(MoveToCenter(args[0]));
         return 0;
     }
@@ -87,9 +74,10 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
                                                      user.gameObject.transform.position.y);
         direction.Normalize();
         float distance = Vector2.Distance(centerPos, user.gameObject.transform.position);
-        float speed = distance / (duration - projectileSpawnTime - projectileDelay);
-        user.myMovement.DragActor(direction * speed);
-        yield return new WaitForSeconds(duration - projectileSpawnTime - projectileDelay);
+        float time = distance / user.myMovement.speed;
+        StartCoroutine(user.myMovement.LockActorMovement(time + projectileDelay + projectileSpawnTime));
+        user.myMovement.DragActor(direction * user.myMovement.speed);
+        yield return new WaitForSeconds(time);
         user.myMovement.DragActor(Vector2.zero);
         StartCoroutine(SpawnProjectiles(user));
     }
@@ -107,6 +95,8 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
             Vector2 direction = new Vector2(Mathf.Cos(i*dtheta), Mathf.Sin(i*dtheta));
             GameObject gluttonyProjectile = Instantiate(toInstantiateProjectile, 
                                             user.gameObject.transform.position, Quaternion.identity);
+            Physics2D.IgnoreCollision(user.gameObject.GetComponent<Collider2D>(), 
+                gluttonyProjectile.GetComponent<Collider2D>());
             ActorMovement currProjectile = gluttonyProjectile.GetComponent<ActorMovement>();
             GluttonyProjectileP1.PROJECTILE_MANAGER.Add(gluttonyProjectile);
             currProjectile.DragActor(direction);

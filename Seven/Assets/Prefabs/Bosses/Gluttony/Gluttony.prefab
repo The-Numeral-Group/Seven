@@ -52,6 +52,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 277050698679241077}
     m_Modifications:
+    - target: {fileID: 5154218350806903878, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5187959127492769953, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
+      propertyPath: m_Mass
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 5187959127492769959, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -96,6 +104,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5187959127492769963, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
+      propertyPath: weaponPositionScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5187959127492769963, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
+      propertyPath: weaponPositionScale.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5187959127492769972, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
       propertyPath: m_Name
       value: GluttonyP1
@@ -118,6 +134,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 277050698679241077}
     m_Modifications:
+    - target: {fileID: 8671992475356646027, guid: 92ebd305de4fba94ea72505f8480f2e3, type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8671992475356646028, guid: 92ebd305de4fba94ea72505f8480f2e3, type: 3}
+      propertyPath: specialSpeedModifier
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8671992475356646028, guid: 92ebd305de4fba94ea72505f8480f2e3, type: 3}
+      propertyPath: chargeDelay
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8671992475356646030, guid: 92ebd305de4fba94ea72505f8480f2e3, type: 3}
       propertyPath: m_Name
       value: GluttonyP2
@@ -168,6 +196,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8671992475356646031, guid: 92ebd305de4fba94ea72505f8480f2e3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8671992475356646037, guid: 92ebd305de4fba94ea72505f8480f2e3, type: 3}
+      propertyPath: m_Mass
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8671992475356646037, guid: 92ebd305de4fba94ea72505f8480f2e3, type: 3}
+      propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

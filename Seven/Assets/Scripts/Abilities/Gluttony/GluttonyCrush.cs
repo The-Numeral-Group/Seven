@@ -67,7 +67,7 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
         }
         else
         {
-            Debug.Log("Gluttony Crush: does not have access to a camera that can shake");
+            Debug.LogWarning("Gluttony Crush: does not have access to a camera that can shake");
         }
     }
 
@@ -105,6 +105,7 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     Calls both Part 2 and 3 of this process.*/
     IEnumerator JumpUp(Actor user, Vector2 direction, IEnumerator initialMovementLock)
     {
+        user.gameObject.GetComponent<Collider2D>().enabled = false;
         user.myMovement.DragActor(direction);
         yield return new WaitForSeconds(jumpDuration);
         if (targetActor)
@@ -130,6 +131,7 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
         user.transform.position = new Vector3(targetActor.transform.position.x, 
                                                 targetActor.transform.position.y + 
                                                 verticalOffset,user.transform.position.z);
+        
         shadowSprite.transform.parent = user.gameObject.transform;
         while(true && targetActor)
         {
@@ -166,6 +168,7 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     This will shake the camera, spawn a sin object, and destroy the shadow.*/
     void AfterMathOfCrush(Actor user, GameObject shadowSprite)
     {
+        user.gameObject.GetComponent<Collider2D>().enabled = true;
         cam.Shake(2.0f, 0.2f);
         Destroy(shadowSprite);
         Instantiate(sin, user.gameObject.transform.position, Quaternion.identity);

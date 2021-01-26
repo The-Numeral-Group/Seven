@@ -10,13 +10,16 @@ public class GluttonySpecialP2 : ActorAbilityFunction<Actor, int>
     //The delay between when the user acquires its target and charges.
     [Tooltip("How much time the user will take to track its target.")]
     public float chargeDelay = 1f;
-    //The length in seconds of the charge
-    [Tooltip("How long the charge will last for.")]
-    public float chargeDuration = 4f;
     //The actor the user will target. Only requires their transform.position
     Actor targetActor;
     //Variable in charge of the direction the user will charge in
     Vector2 direction;
+    //reference to camera for shake
+    BaseCamera cam;
+    //reference to first lockmovement
+    IEnumerator stopLock;
+    IEnumerator track;
+    IEnumerator charge;
 
     //Initialize member variables
     void Awake()
@@ -36,6 +39,16 @@ public class GluttonySpecialP2 : ActorAbilityFunction<Actor, int>
         {
             targetActor = playerObject.GetComponent<Actor>();
         }
+
+        var camObjects = FindObjectsOfType<BaseCamera>();
+        if (camObjects.Length > 0)
+        {
+            cam = camObjects[0];
+        }
+        else
+        {
+            Debug.LogWarning("GluttonySpecialP2: does not have access to a camera that can shake");
+        }
     }
 
     /*Invoke passes a reference of the user to the InternInvoke method
@@ -52,10 +65,12 @@ public class GluttonySpecialP2 : ActorAbilityFunction<Actor, int>
     }
     protected override int InternInvoke(params Actor[] args)
     {
-        IEnumerator track = TrackTarget(args[0]);
-        StartCoroutine(args[0].myMovement.LockActorMovement(chargeDelay + chargeDuration));
+        track = TrackTarget(args[0]);
+        charge = Charge(args[0]);
+        stopLock = args[0].myMovement.LockActorMovement(chargeDelay + 30f);
+        StartCoroutine(stopLock);
         StartCoroutine(track);
-        StartCoroutine(Charge(args[0], track));
+        StartCoroutine(charge);
         return 0;
     }
 
@@ -63,17 +78,30 @@ public class GluttonySpecialP2 : ActorAbilityFunction<Actor, int>
     {
         while (true && targetActor)
         {
-            direction = targetActor.transform.position - user.transform.position;
+            direction = targetActor.transform.position - user.gameObject.transform.position;
             yield return new WaitForFixedUpdate();
         }
     }
     
-    IEnumerator Charge(Actor user, IEnumerator stopTrack)
+    IEnumerator Charge(Actor user)
     {
         yield return new WaitForSeconds(chargeDelay);
-        StopCoroutine(stopTrack);
+        StopCoroutine(track);
         user.myMovement.DragActor(direction.normalized * user.myMovement.speed * specialSpeedModifier);
-        yield return new WaitForSeconds(chargeDuration);
-        this.isFinished = true;
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (!isFinished)
+        {
+            cam.Shake(2.0f, 0.2f); 
+            //StopAllCoroutines(); cannot dfo stop all coroutines cause it will stop the cooldown coroutine.
+            StopCoroutine(stopLock);
+            StopCoroutine(charge);
+            StopCoroutine(track);
+            this.gameObject.GetComponent<Actor>().myMovement.DragActor(Vector2.zero);
+            isFinished = true;
+            StartCoroutine(this.gameObject.GetComponent<Actor>().myMovement.LockActorMovement(0f));
+        }
     }
 }

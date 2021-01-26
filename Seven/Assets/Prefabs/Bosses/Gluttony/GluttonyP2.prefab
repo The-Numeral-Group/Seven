@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8671992475356646034}
   - component: {fileID: 8671992475356646037}
   - component: {fileID: 8671992475356646036}
+  - component: {fileID: 6982606246321848295}
+  - component: {fileID: 620857871452320275}
   - component: {fileID: 8671992475356646039}
   - component: {fileID: 8671992475356646038}
   - component: {fileID: 8671992475356646025}
@@ -104,10 +106,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -128,7 +130,43 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
+  m_Radius: 1
+--- !u!58 &6982606246321848295
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8671992475356646030}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
   m_Radius: 1.28
+--- !u!250 &620857871452320275
+PointEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8671992475356646030}
+  m_Enabled: 1
+  m_UseColliderMask: 0
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceMagnitude: 200
+  m_ForceVariation: 0
+  m_DistanceScale: 2000
+  m_ForceSource: 0
+  m_ForceTarget: 0
+  m_ForceMode: 0
+  m_Drag: 0
+  m_AngularDrag: 0
 --- !u!114 &8671992475356646039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453e150335b52ac4884472bf0e1bd9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 2
 --- !u!114 &8671992475356646026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,7 +264,6 @@ MonoBehaviour:
   abilityName: 
   centerPos: {x: 0, y: 0}
   toInstantiateProjectile: {fileID: 1358877168113409280, guid: 0b20b77679356944bb916f0b5b0aff9f, type: 3}
-  duration: 10
   projectileSpawnTime: 2
   projectileDelay: 1
   numProjectiles: 8
@@ -242,8 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f94b985d38052344585126336153121f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 30
+  cooldownPeriod: 20
   abilityName: 
-  specialSpeedModifier: 1.5
-  chargeDelay: 1
-  chargeDuration: 4
+  specialSpeedModifier: 5
+  chargeDelay: 3
