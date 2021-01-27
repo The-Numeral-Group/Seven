@@ -221,4 +221,23 @@ public class GluttonyActor : Actor
 
         return nextState;
     }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.tag != "Player")
+        {
+            return;
+        }
+        Debug.Log("Player touch");
+        var enemyHealth = collider.gameObject.GetComponent<ActorHealth>();
+
+        //or a weakpoint if there's no regular health
+        if(enemyHealth == null){collider.gameObject.GetComponent<ActorWeakPoint>();}
+
+        //if the enemy can take damage (if it has an ActorHealth component),
+        //hurt them. Do nothing if they can't take damage.
+        if(enemyHealth != null){
+            enemyHealth.takeDamage(1f);
+        }
+    }
 }

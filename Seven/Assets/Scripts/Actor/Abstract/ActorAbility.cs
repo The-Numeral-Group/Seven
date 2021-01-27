@@ -23,7 +23,6 @@ public abstract class ActorAbility : MonoBehaviour
     public abstract bool getIsFinished();
     public abstract IEnumerator coolDown(float cooldownDuration);
     public abstract void Invoke(ref Actor user);
-    public abstract void Invoke(ref Actor user, params object[] args);
 }
 
 public abstract class ActorAbilityFunction<InvokeParam, InvokeReturn> : ActorAbility
@@ -35,10 +34,6 @@ public abstract class ActorAbilityFunction<InvokeParam, InvokeReturn> : ActorAbi
     //Name for the ability
     [Tooltip("Name of the ability. Currently does nothing.")]
     public string abilityName;
-
-    [Tooltip("Whether this ability should try to execute even if" + 
-        " it can't use the provided arguments")]
-    public bool invokeBlankWhenBadArguments = true;
 
     /*private with accessor so others can look without changing
     yes it could be a property but I (Thomas) can't figure
@@ -85,22 +80,6 @@ public abstract class ActorAbilityFunction<InvokeParam, InvokeReturn> : ActorAbi
             StartCoroutine(coolDown(cooldownPeriod));
         }
         
-    }
-
-    /*Same as the above method, but this overload allows an arbitrary number of
-    Object objects to be passed in to assist the ability. It's up to the ability
-    to figure out what to do with these additional arguments, and what to do if
-    it gets something it doesn't expect.*/
-    public override void Invoke(ref Actor user, params object[] args)
-    {
-        //by default, Invoke just does InternInvoke with the provided arguments
-        //it's also just implicitly convert the args and give it to InternInvoke
-        if(usable)
-        {
-            isFinished = false;
-            InternInvoke(easyArgConvert(args));
-            StartCoroutine(coolDown(cooldownPeriod));
-        }
     }
 
     /*The only abstract method. The abilities should do their actual abilitying

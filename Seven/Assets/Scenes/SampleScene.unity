@@ -461,6 +461,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gluttony
       objectReference: {fileID: 0}
+    - target: {fileID: 812322307624830605, guid: 14cb367d77b0fb44ca8f6c8563dc4baa, type: 3}
+      propertyPath: m_ForceMagnitude
+      value: 4000
+      objectReference: {fileID: 0}
+    - target: {fileID: 812322307624830605, guid: 14cb367d77b0fb44ca8f6c8563dc4baa, type: 3}
+      propertyPath: m_DistanceScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4559713488845160906, guid: 14cb367d77b0fb44ca8f6c8563dc4baa, type: 3}
+      propertyPath: m_DistanceScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4559713488845160906, guid: 14cb367d77b0fb44ca8f6c8563dc4baa, type: 3}
+      propertyPath: m_ForceMagnitude
+      value: 4000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4926725152884623644, guid: 14cb367d77b0fb44ca8f6c8563dc4baa, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14cb367d77b0fb44ca8f6c8563dc4baa, type: 3}
 --- !u!1 &519420028
