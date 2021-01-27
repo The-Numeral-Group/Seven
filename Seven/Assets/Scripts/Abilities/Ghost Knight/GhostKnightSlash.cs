@@ -49,14 +49,16 @@ public class GhostKnightSlash : ActorAbilityFunction<Actor, int>
     private void PerformVSlash(Actor user)
     {
         Vector2 userPos = user.gameObject.transform.position;
-        //Debug.Log(user.myMovement.movementDirection);
+        userPos.x += user.myMovement.movementDirection.x * 3;
+        userPos.y += user.myMovement.movementDirection.y * 3;
         GameObject ghostKnightSlash = Instantiate(this.vSlash, userPos, Quaternion.identity);
         StartCoroutine(DestroySlashObject(ghostKnightSlash));
     }
     private void PerformHSlash(Actor user)
     {
         Vector2 userPos = user.gameObject.transform.position;
-        //Debug.Log(user.myMovement.movementDirection);
+        userPos.x += user.myMovement.movementDirection.x * 3;
+        userPos.y += user.myMovement.movementDirection.y * 3;
         GameObject ghostKnightSlash = Instantiate(this.hSlash, userPos, Quaternion.identity);
         StartCoroutine(DestroySlashObject(ghostKnightSlash));
     }

@@ -43,6 +43,11 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     private IEnumerator Vanish(Actor user)
     {
         SpriteRenderer gkSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+        CircleCollider2D collider = this.gameObject.GetComponent<CircleCollider2D>();
+
+        // turn off collider
+        collider.enabled = false;
+
         float opacity = 1f;
         while (opacity > 0f)
         {
@@ -61,6 +66,8 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     private IEnumerator Reappear(Actor user)
     {
         SpriteRenderer gkSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+        CircleCollider2D collider = this.gameObject.GetComponent<CircleCollider2D>();
+
         float opacity = 0f;
         while (opacity < 1f)
         {
@@ -68,6 +75,10 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
             gkSpriteRenderer.color = new Color(1f, 1f, 1f, opacity);
             yield return new WaitForSeconds(this.duration_appear / 10);
         }
+
+        // turn on collider when ghost knight is fully visible
+        collider.enabled = true;
+
         isFinished = true;
     }
 }

@@ -21,6 +21,10 @@ public class GhostKnightActor : Actor
     [Tooltip("Ghost Knight's physical contact damage")]
     public float damage = 1f;
 
+    [Tooltip("Delay before Ghost Knight starts attacking")]
+    public float introDelay = 2f;
+    private bool attackEnabled = false;
+
     private int specialAttackCounter = 1;
 
     private Actor ghostKnight;
@@ -70,23 +74,38 @@ public class GhostKnightActor : Actor
 
         ghostKnight = this.gameObject.GetComponent<GhostKnightActor>();
         ghostKnight.myHealth.vulnerable = true;
-        currentState = State.WAITING;
+        currentState = State.WALK;
         currAbility = null;
+
+        StartCoroutine(introDelayStart());
+    }
+
+    // When the game starts, the ghost knight will try to cast any attack with movementDirection
+    // of vector zero. This will cause some issue with knockback, casting abilities that require position.
+    // To avoid this, I have added a short delay before the ghost knight attacks. 
+    // When the game starts, the ghost knight will walk for short time then try to attack. 
+    private IEnumerator introDelayStart()
+    {
+        EvaluateState(currentState);
+        yield return new WaitForSeconds(this.introDelay);
+        attackEnabled = true;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (currAbility != null)
+        if (attackEnabled)
         {
-            checkIfAbilityDone();
+            if (currAbility != null)
+            {
+                checkIfAbilityDone();
+            }
+            if ((currentState == State.WAITING) || (currentState == State.WALK))
+            {
+                decideNextState();
+                EvaluateState(currentState);
+            }
         }
-        if ((currentState == State.WAITING) || (currentState == State.WALK))
-        {
-            decideNextState();
-            EvaluateState(currentState);
-        }
-
     }
 
     void EvaluateState(State state)
@@ -150,10 +169,7 @@ public class GhostKnightActor : Actor
         bool slashReady = slash.getUsable(), projReady = proj.getUsable(), specialReady = special.getUsable();
 
         // Determines which attack the ghost knight will perform.
-        // int whichAtt = (int)Random.Range(1, projectileRatio + 2);
-        //*** TESTING PROJ ***//
-
-        int whichAtt = 1;
+        int whichAtt = (int)Random.Range(1, projectileRatio + 2);
 
 
         // check for special attack counter.

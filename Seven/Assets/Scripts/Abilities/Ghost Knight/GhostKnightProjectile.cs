@@ -8,10 +8,10 @@ public class GhostKnightProjectile : ActorAbilityFunction<Actor, int>
     public Vector2 centerPos = Vector2.zero;
     //The projectile that ghost knight will spawn. Must have an ActorMovement component.
     public GameObject toInstantiateProjectile;
-    //How long this entire process should take.
-    public float duration = 2f;
     //How long the projectiles will last for. Must be greated thatn 0.
     public float projectileDuration = 5f;
+    //Time ghost knight will take to move to center.
+    public float travelDuration = 1f;
     //Time it will take to spawn the projectiles.
     public float projectileSpawnTime = 1f;
     //Number of projectiles to spawn.
@@ -32,14 +32,14 @@ public class GhostKnightProjectile : ActorAbilityFunction<Actor, int>
     }
     protected override int InternInvoke(params Actor[] args)
     {
-        if (this.duration <= 0f || this.projectileSpawnTime <= 0f)
+        if (this.travelDuration <= 0f || this.projectileSpawnTime <= 0f)
         {
             Debug.Log("GhostKnightPhaseChange: duration/projectileDelay must be greater than 0");
-            this.duration = 10f;
+            this.travelDuration = 10f;
             this.projectileSpawnTime = 2f;
         }
 
-        StartCoroutine(args[0].myMovement.LockActorMovement(this.duration));
+        StartCoroutine(args[0].myMovement.LockActorMovement(this.travelDuration));
         StartCoroutine(MoveToCenter(args[0]));
         return 0;
     }
@@ -53,9 +53,9 @@ public class GhostKnightProjectile : ActorAbilityFunction<Actor, int>
         Vector2 direction = this.centerPos - new Vector2(user.gameObject.transform.position.x, user.gameObject.transform.position.y);
         direction.Normalize();
         float distance = Vector2.Distance(this.centerPos, user.gameObject.transform.position);
-        float speed = distance / (this.duration - this.projectileSpawnTime);
+        float speed = distance / (this.travelDuration);
         user.myMovement.DragActor(direction * speed);
-        yield return new WaitForSeconds(this.duration - this.projectileSpawnTime);
+        yield return new WaitForSeconds(this.travelDuration);
         user.myMovement.DragActor(Vector2.zero);
         StartCoroutine(SpawnProjectiles(user));
     }
