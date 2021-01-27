@@ -108,7 +108,7 @@ public abstract class ActorAbilityFunction<InvokeParam, InvokeReturn> : ActorAbi
     protected abstract InvokeReturn InternInvoke(params InvokeParam[] args);
 
     /*Just a wrapper for Array.ConvertAll, since it has a really long signature*/
-    InvokeParam[] easyArgConvert(object[] inputArray)
+    protected InvokeParam[] easyArgConvert(object[] inputArray)
     {
         return System.Array.ConvertAll<object, InvokeParam>(inputArray, (object x) => 
             {
