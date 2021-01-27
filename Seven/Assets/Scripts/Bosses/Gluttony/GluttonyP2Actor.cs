@@ -70,7 +70,7 @@ public class GluttonyP2Actor : Actor
                 Debug.Log("Phase 2: special");
                 var special = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_PHASETWO_SPECIAL];
                 currAbility = special;
-                special.Invoke(ref gluttony);
+                special.Invoke(ref gluttony, player);
                 currentState = State.WALK;
                 break;
             case State.NULL:

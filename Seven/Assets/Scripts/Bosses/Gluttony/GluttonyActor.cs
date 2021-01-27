@@ -104,7 +104,7 @@ public class GluttonyActor : Actor
                 far enough. If Crush isn't open at the time, Gluttony will just keep walking*/
                 var crush = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_CRUSH];
                 currAbility = crush;
-                crush.Invoke(ref gluttony);
+                crush.Invoke(ref gluttony, player);
                 specialAttackCounter++;
 
                 currentState = State.WALK;
@@ -126,7 +126,7 @@ public class GluttonyActor : Actor
                 var special = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_PHASEZERO_SPECIAL];
                 Debug.Log("In Special Ability");
                 currAbility = special;
-                special.Invoke(ref gluttony);
+                special.Invoke(ref gluttony, player);
 
                 currentState = State.WALK;
                 break;
