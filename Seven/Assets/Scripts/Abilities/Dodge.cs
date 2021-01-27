@@ -19,7 +19,7 @@ public class Dodge : ActorAbilityFunction<Actor, int>
     passes an actors movement component to InternalInvoke*/
     public override void Invoke(ref Actor user)
     {
-        if(this.usable)
+        if(this.usable && isFinished)
         {
             this.isFinished = false;
             StartCoroutine(coolDown(cooldownPeriod));
@@ -43,8 +43,8 @@ public class Dodge : ActorAbilityFunction<Actor, int>
             new Vector2((Mathf.Log(1f/ (Time.deltaTime * drag + 1))/-Time.deltaTime),
                 (Mathf.Log(1f/ (Time.deltaTime * drag + 1))/-Time.deltaTime)));
         StartCoroutine(args[0].myMovement.LockActorMovement(movementLockForDodge));
+        StartCoroutine(MakeVulnerable(args[0]));
         args[0].myMovement.DragActor(dodgeVelocity);
-        isFinished = true;
         return 0;
     }
 
