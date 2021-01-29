@@ -10,7 +10,10 @@ public class GhostKnightProjectileMovement : ActorMovement
 
     private Actor player;
 
+    public float projectileDuration = 5f;
     public int damage = 1;
+
+    private float projectileSpeed = 0.1f;
 
     protected override void Start()
     {
@@ -18,13 +21,14 @@ public class GhostKnightProjectileMovement : ActorMovement
 
         var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
         player = playerObject.GetComponent<Actor>();
+
+        StartCoroutine(DestroySelf());
     }
     protected override void FixedUpdate()
     {
         FollowPlayer();
         InternalMoveActor();
     }
-
     private void FollowPlayer()
     {
         var myPos = this.gameObject.transform.position;
@@ -32,6 +36,23 @@ public class GhostKnightProjectileMovement : ActorMovement
 
         this.movementDirection = (playerPos - myPos).normalized;
     }
+
+    protected override void InternalMoveActor()
+    {
+        //calculate a composite movement vector
+        Vector2 moveComposite = this.movementDirection * projectileSpeed;
+
+        //actually moving
+        movementController.Move(moveComposite);
+
+    }
+
+    IEnumerator DestroySelf()
+    {
+        yield return new WaitForSeconds(this.projectileDuration);
+        Destroy(this.gameObject);
+    }
+
     void OnCollisionEnter2D(Collision2D collider)
     {
         // Only collide with player

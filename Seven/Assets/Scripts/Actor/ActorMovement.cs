@@ -18,12 +18,9 @@ public class ActorMovement : MonoBehaviour
     public Vector2 movementDirection{ get; protected set; }
     public Vector2 dragDirection{ get; protected set; }
 
-    // For now, it is possible to set the force value in other scripts.
-    public float force{ get; set; }
-
     public Rigidbody2D rigidbody{ get; protected set; }
 
-    private SimpleController2D movementController;
+    protected SimpleController2D movementController;
     /*This script might also require some extra data for working
     with animations. It'll need to be added later.*/
 
@@ -32,7 +29,6 @@ public class ActorMovement : MonoBehaviour
         hostActor = this.GetComponent<Actor>();
         this.movementDirection = this.dragDirection = Vector2.zero;
         this.movementLocked = false;
-        this.force = Time.deltaTime;
     }
 
     protected virtual void Start()
@@ -68,7 +64,7 @@ public class ActorMovement : MonoBehaviour
     {
         if (this.movementLocked)
         {
-            movementController.Move(this.dragDirection * this.force);
+            movementController.Move(this.dragDirection * Time.deltaTime);
         }
         else
         {
@@ -80,7 +76,7 @@ public class ActorMovement : MonoBehaviour
             movementController.Move(moveComposite);
 
             //update the direction the actor is facing
-            //this.gameObject.SendMessage("DoActorUpdateFacing", this.movementDirection);
+            this.gameObject.SendMessage("DoActorUpdateFacing", this.movementDirection);
 
             /*Only needed if character can still move. If movement is locked, we assume
             that the drag needs to stop after this movement instance*/
