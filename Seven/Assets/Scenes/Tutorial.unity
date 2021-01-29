@@ -837,7 +837,7 @@ PrefabInstance:
       objectReference: {fileID: -2262647735747319561, guid: 6ddc22ace49a8854d9206e150aa9b5c3, type: 3}
     - target: {fileID: 7512802453659592073, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_LinearDrag
-      value: 0.05
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7512802453659592074, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: cooldownPeriod
