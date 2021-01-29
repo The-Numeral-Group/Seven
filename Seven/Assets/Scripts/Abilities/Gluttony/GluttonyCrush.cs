@@ -39,7 +39,7 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     //The actor this move is meant to target
     Actor targetActor;
     //pointer to the main camera shake component to initialize camera efx
-    ShakeCamera cam = null;
+    BaseCamera cam;
 
     //Initialize member variables
     void Awake()
@@ -51,7 +51,7 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     //Initializing monobehavior fields
     void Start()
     {
-        var camObjects = FindObjectsOfType<ShakeCamera>();
+        var camObjects = FindObjectsOfType<BaseCamera>();
         var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
         if(playerObject == null)
         {
@@ -107,15 +107,18 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     {
         user.myMovement.DragActor(direction);
         yield return new WaitForSeconds(jumpDuration);
-        GameObject shadowSprite = Instantiate(toInstantiateShadowSprite, 
-                                            new Vector3(targetActor.transform.position.x + distanceFromActor.x, 
-                                            targetActor.transform.position.y + distanceFromActor.y, 
-                                            targetActor.transform.position.z), Quaternion.identity);
-        shadowSprite.transform.parent = targetActor.transform;
-        IEnumerator trackTarget = TrackTargetWithShadow(user, shadowSprite);
-        IEnumerator crush = Crush(user, shadowSprite, trackTarget, initialMovementLock);
-        StartCoroutine(trackTarget);
-        StartCoroutine(crush);
+        if (targetActor)
+        {
+            GameObject shadowSprite = Instantiate(toInstantiateShadowSprite, 
+                                        new Vector3(targetActor.transform.position.x + distanceFromActor.x, 
+                                        targetActor.transform.position.y + distanceFromActor.y, 
+                                        targetActor.transform.position.z), Quaternion.identity);
+            shadowSprite.transform.parent = targetActor.transform;
+            IEnumerator trackTarget = TrackTargetWithShadow(user, shadowSprite);
+            IEnumerator crush = Crush(user, shadowSprite, trackTarget, initialMovementLock);
+            StartCoroutine(trackTarget);
+            StartCoroutine(crush);
+        }
     }
 
     /*Part 2 of the 3 steps to perform crush.
@@ -128,7 +131,7 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
                                                 targetActor.transform.position.y + 
                                                 verticalOffset,user.transform.position.z);
         shadowSprite.transform.parent = user.gameObject.transform;
-        while(true)
+        while(true && targetActor)
         {
             yield return new WaitForFixedUpdate();
             user.myMovement.DragActor(targetActor.myMovement.movementDirection * targetActor.myMovement.speed);
@@ -163,7 +166,7 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     This will shake the camera, spawn a sin object, and destroy the shadow.*/
     void AfterMathOfCrush(Actor user, GameObject shadowSprite)
     {
-        //this.cam.CameraShake(2.0f, 0.2f);
+        cam.Shake(2.0f, 0.2f);
         Destroy(shadowSprite);
         Instantiate(sin, user.gameObject.transform.position, Quaternion.identity);
         this.isFinished = true;

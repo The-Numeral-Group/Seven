@@ -116,10 +116,7 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
             yield return new WaitForSeconds(projectileSpawnTime/numProjectiles);
             i++;
         }
-        if (cooldownPeriod > duration)
-        {
-            yield return new WaitForSeconds(cooldownPeriod - duration);
-        }
+
         this.isFinished = true;
     }
 }

@@ -93,13 +93,9 @@ public class GluttonyActor : Actor
                 Semirelated, but Gluttony will try to crush 100% of the time if the player is
                 far enough. If Crush isn't open at the time, Gluttony will just keep walking*/
                 var crush = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_CRUSH];
-
-                if(crush.getUsable())
-                {
-                    currAbility = crush;
-                    crush.Invoke(ref gluttony);
-                    specialAttackCounter++;
-                }
+                currAbility = crush;
+                crush.Invoke(ref gluttony);
+                specialAttackCounter++;
 
                 currentState = State.WALK;
                 break;
@@ -108,40 +104,29 @@ public class GluttonyActor : Actor
                 /*Bite hasn't been implemented yet, but this will probably use a
                 "If usable invoke if not just walk" check similar to crush and special*/
                 var bite = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_BITE];
-
-                if(bite.getUsable())
-                {
-                    Debug.Log("In Bite");
-                    currAbility = bite;
-                    bite.Invoke(ref gluttony);
-                    specialAttackCounter++;
-                }
+                Debug.Log("In Bite");
+                currAbility = bite;
+                bite.Invoke(ref gluttony);
+                specialAttackCounter++;
 
                 currentState = State.WALK;
                 break;
 
             case State.PHASE0_SPECIAL:
                 var special = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_PHASEZERO_SPECIAL];
-
-                if(special.getUsable())
-                {
-                    Debug.Log("In Special Ability");
-                    currAbility = special;
-                    special.Invoke(ref gluttony);
-                }
+                Debug.Log("In Special Ability");
+                currAbility = special;
+                special.Invoke(ref gluttony);
 
                 currentState = State.WALK;
                 break;
 
             case State.LAUNCH_PROJECTILE:
                 var proj = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_PROJECTILE];
-
-                if(proj.getUsable())
-                {
-                    currAbility = proj;
-                    proj.Invoke(ref gluttony);
-                    specialAttackCounter++;
-                }
+                Debug.Log("In Projectile");
+                currAbility = proj;
+                proj.Invoke(ref gluttony);
+                specialAttackCounter++;
 
                 currentState = State.WALK;
                 break;
@@ -171,6 +156,8 @@ public class GluttonyActor : Actor
     {
         var distanceToPlayer = Vector2.Distance(player.transform.position, this.gameObject.transform.position);
         //this bool will crash the game if GLUTTONY_BITE isn't correctly defined or if there's no bite ability at all
+        bool crushReady = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_CRUSH].getUsable();
+        bool projReady = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_PROJECTILE].getUsable();
         bool biteReady = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_BITE].getUsable();
         
         State nextState;  
@@ -181,13 +168,30 @@ public class GluttonyActor : Actor
         if(distanceToPlayer >= crushRange)
         {
             int weight = Random.Range(0, 3);
+            /*I (Ram) am aware below is bad coding practice. It is in place as a temporary measure
+            for the time being to have something that can be played around with. The checks are there
+            to stop gluttony from swapping states if the move is on cooldown.*/
             if (weight / 2 == 1)
             {
-                nextState = State.LAUNCH_PROJECTILE;
+                if (projReady)
+                {
+                    nextState = State.LAUNCH_PROJECTILE;
+                }
+                else
+                {
+                    nextState = State.WALK;
+                }
             }
             else
             {
-                nextState = State.PHYSICAL_CRUSH;
+                if (crushReady)
+                {
+                    nextState = State.PHYSICAL_CRUSH;
+                }
+                else
+                {
+                    nextState = State.WALK;
+                }
             }
             /*this movement call is unessecary but added just in case there is an instance where
             movement isn't locked for an ability.*/

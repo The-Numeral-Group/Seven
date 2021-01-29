@@ -9,7 +9,8 @@ public class PlayerActor : Actor
     protected override void Start()
     {
         base.Start();
-        this.myHealth.vulnerable = true;
+        //Setting to false for testing
+        this.myHealth.vulnerable = false;
         //The following needs to be moved over to the weapon ability script.
         /*weaponObject = Instantiate(startingWeaponObject, this.gameObject.transform.position, Quaternion.identity);
         //Note From Ram: Keeping the below comment from posterity.
