@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GhostKnight Projectile
   - GhostKnight
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Player
   - 'GhostKnight '
   - GhostKnight Projectile
-  - 
+  - Weapon
   - 
   - 
   - 

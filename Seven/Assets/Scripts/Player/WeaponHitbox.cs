@@ -12,9 +12,13 @@ public class WeaponHitbox : MonoBehaviour
         //Assuming the Hierarchy of objects is Actor->weapon->weaponhitbox
         //wp = this.transform.parent.transform.parent.gameObject.GetComponent<WeaponAbility>();
         wp = this.gameObject.GetComponentInParent(typeof(WeaponAbility)) as WeaponAbility;
+        this.damage = 1;
     }
 
-    void OnCollisionEnter2D(Collision2D collider)
+    // Have to use TriggerEnter2D instead of ColliderEnter2D since
+    // bosses will have "Is Trigger" enalbed in their collider. 
+    // (This is true for ghost knight, not sure about other bosses)
+    void OnTriggerEnter2D(Collider2D collider)
     {
         if (!wp)
         {
@@ -29,11 +33,12 @@ public class WeaponHitbox : MonoBehaviour
         var enemyHealth = collider.gameObject.GetComponent<ActorHealth>();
 
         //or a weakpoint if there's no regular health
-        if(enemyHealth == null){collider.gameObject.GetComponent<ActorWeakPoint>();}
+        if (enemyHealth == null) { collider.gameObject.GetComponent<ActorWeakPoint>(); }
 
         //if the enemy can take damage (if it has an ActorHealth component),
         //hurt them. Do nothing if they can't take damage.
-        if(enemyHealth != null){
+        if (enemyHealth != null)
+        {
             wp.hitConnected = true;
             enemyHealth.takeDamage(this.damage);
         }
