@@ -14,6 +14,9 @@ public class Dodge : ActorAbilityFunction<Actor, int>
     [Tooltip("Duration of the dodge process")]
     public float dodgeDuration;
 
+    [Tooltip("Duration of how long the player will be invincible, must be greater than dodgeDuration")]
+    public float invincibleDuration;
+
     private float drag = 0.05f;
 
     /*Similar to ActorAbilityFunction Invoke
@@ -34,11 +37,11 @@ public class Dodge : ActorAbilityFunction<Actor, int>
         args[0].myHealth.vulnerable = false;
         StartCoroutine(args[0].myMovement.LockActorMovement(dodgeDuration));
         StartCoroutine(MakeVulnerable(args[0]));
-        StartCoroutine(performDodge(args[0]));
+        performDodge(args[0]);
         return 0;
     }
 
-    private IEnumerator performDodge(Actor user)
+    private void performDodge(Actor user)
     {
 
         Vector2 velocity = user.myMovement.movementDirection;
@@ -50,13 +53,11 @@ public class Dodge : ActorAbilityFunction<Actor, int>
                 (Mathf.Log(1f / (Time.deltaTime * drag + 1)) / -Time.deltaTime)));
 
         user.myMovement.DragActor(dodgeVelocity);
-        yield return new WaitForSeconds(dodgeDuration);
-        isFinished = true;
     }
 
     IEnumerator MakeVulnerable(Actor user)
     {
-        yield return new WaitForSeconds(dodgeDuration);
+        yield return new WaitForSeconds(invincibleDuration);
         isFinished = true;
         user.myHealth.vulnerable = true;
 

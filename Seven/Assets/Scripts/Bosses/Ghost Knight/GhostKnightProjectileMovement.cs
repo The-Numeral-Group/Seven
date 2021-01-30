@@ -67,11 +67,10 @@ public class GhostKnightProjectileMovement : ActorMovement
             //hurt them. Do nothing if they can't take damage.
             if (playerHealth != null)
             {
-                if (!playerHealth.vulnerable)
+                if (playerHealth.vulnerable)
                 {
-                    return;
+                    playerHealth.takeDamage(damage);
                 }
-                playerHealth.takeDamage(damage);
                 Destroy(this.gameObject);
             }
         }
