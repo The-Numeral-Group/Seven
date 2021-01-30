@@ -55,9 +55,9 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
             WeaponHitbox hb = weaponObject.transform.GetChild(i).GetComponent<WeaponHitbox>();
             if (!hb)
             {
-                Debug.Log("WeaponAbility: Current weapon abiltiy is instantiating a weapon without" + 
+                Debug.LogWarning("WeaponAbility: Current weapon abiltiy is instantiating a weapon without" + 
                         "a WeaponHitbox Component");
-                Debug.Log("WeaponAbility: Weaponprefab should be: " +  
+                Debug.LogWarning("WeaponAbility: Weaponprefab should be: " +  
                         "spriteObject->childObject(child should contain hibox)");
             }
             else
@@ -82,8 +82,6 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
         if(this.usable)
         {
             this.isFinished = false;
-            StopCoroutine(sheathe);
-            sheathe = SheatheWeapon();
             StartCoroutine(coolDown(cooldownPeriod));
             InternInvoke(user);
         }
@@ -95,6 +93,8 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
     protected override int InternInvoke(params Actor[] args)
     {
         this.hitConnected = false;
+        StopCoroutine(sheathe);
+        sheathe = SheatheWeapon();
         weaponObject.SetActive(true);
         weaponObject.transform.localPosition = args[0].faceAnchor.position * weaponPositionScale;
         StartCoroutine(sheathe);

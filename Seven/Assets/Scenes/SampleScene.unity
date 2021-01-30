@@ -461,6 +461,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gluttony
       objectReference: {fileID: 0}
+    - target: {fileID: 277050698679241078, guid: 14cb367d77b0fb44ca8f6c8563dc4baa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 812322307624830605, guid: 14cb367d77b0fb44ca8f6c8563dc4baa, type: 3}
       propertyPath: m_ForceMagnitude
       value: 4000

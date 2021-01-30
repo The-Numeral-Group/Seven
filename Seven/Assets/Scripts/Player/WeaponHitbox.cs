@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class WeaponHitbox : MonoBehaviour
 {
+    //The damage for this hitbox. Should get set outside of the class.
     public int damage { get; set; }
     WeaponAbility wp;
 
-    void Start()
-    {
-        //Assuming the Hierarchy of objects is Actor->weapon->weaponhitbox
-        //wp = this.transform.parent.transform.parent.gameObject.GetComponent<WeaponAbility>();
-        wp = this.gameObject.GetComponentInParent(typeof(WeaponAbility)) as WeaponAbility;
-    }
-
+    //OnTrigger function
     void OnTriggerEnter2D(Collider2D collider)
     {
+        /*I moved the wp getcomponent into the collider function. I realize this is inefficient but
+        For bosses, since the parent object is swapped and the gameobjects are set to false in right
+        away, there was an issue where the getcomponent was unable to find the weaponAbility when it
+        was called during the start function*/
+        wp = this.gameObject.GetComponentInParent(typeof(WeaponAbility)) as WeaponAbility;
         if (!wp)
         {
-            Debug.Log("Error: This WeaponHitbox is not the grandchild of an object with a WeaponAbility Script");
+            Debug.LogWarning("Error: This WeaponHitbox is not the grandchild of an object with a WeaponAbility Script");
             return;
         }
         if (wp.hitConnected) //Check to see
