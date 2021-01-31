@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
-GluttonyActor's main function is to run the State Machine that powers
-Gluttony's boss fight
-*/
+/*GluttonyActor's main function is to run the State Machine that powers
+Gluttony's boss fight*/
+//[RequireComponent(typeof(Effector2D))]
 public class GluttonyActor : Actor
 {
     [Tooltip("Controls how many times should Gluttony use normal attacks before using it's special.")]
@@ -44,7 +43,6 @@ public class GluttonyActor : Actor
         base.Start();
 
         var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
-
         if(playerObject == null)
         {
             Debug.LogWarning("GluttonyActor: Gluttony can't find the player!");
@@ -55,7 +53,7 @@ public class GluttonyActor : Actor
         }
 
         gluttony = this.gameObject.GetComponent<GluttonyActor>();
-        gluttony.myHealth.vulnerable = true; 
+        gluttony.myHealth.vulnerable = true;
     }
 
     // Update is called once per frame
@@ -228,7 +226,7 @@ public class GluttonyActor : Actor
         {
             return;
         }
-        Debug.Log("Player touch");
+        //bounceEffector.enabled = true;
         var enemyHealth = collider.gameObject.GetComponent<ActorHealth>();
 
         //or a weakpoint if there's no regular health

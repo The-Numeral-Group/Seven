@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4427828567296203064}
   m_Layer: 15
   m_Name: WeaponHitbox
-  m_TagString: Player
+  m_TagString: Player Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

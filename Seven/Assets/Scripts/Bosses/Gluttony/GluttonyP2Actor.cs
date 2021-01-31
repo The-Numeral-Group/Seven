@@ -83,14 +83,21 @@ public class GluttonyP2Actor : Actor
 
     void stepTowardsPlayer()
     {
+        /*
         var myPos = this.gameObject.transform.position;
         var playerPos = player.gameObject.transform.position;
 
-        /*Fun Fact! Because positions are vectors, the normalized difference between
-        posA (myPos) and posB (playerPos) is the direction from posA to posB.*/
         var directionToPlayer = (playerPos - myPos).normalized;
 
-        this.myMovement.MoveActor(directionToPlayer);
+        this.myMovement.MoveActor(directionToPlayer);*/
+        var myPos = this.gameObject.transform.position;
+        var playerPos = player.gameObject.transform.position;
+
+        var directionToPlayer = playerPos - myPos;
+        var playerDirection = player.myMovement.movementDirection * player.myMovement.speed;
+        var travelDirection = new Vector2(directionToPlayer.x, directionToPlayer.y) + playerDirection;
+
+        this.myMovement.MoveActor(travelDirection.normalized);
     }
 
     State decideNextState()

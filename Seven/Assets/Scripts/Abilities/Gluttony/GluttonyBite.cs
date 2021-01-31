@@ -24,6 +24,10 @@ public class GluttonyBite : WeaponAbility
     //Very similar to weaponability internalinvoke, but in this case args[0] is the target.
     protected override int InternInvoke(params Actor[] args)
     {
+        if (!args[0])
+        {
+            return 0;
+        }
         StartCoroutine(user.myMovement.LockActorMovement(duration));
         this.hitConnected = false;
         StopCoroutine(sheathe);

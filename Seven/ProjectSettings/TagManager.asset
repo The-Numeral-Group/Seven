@@ -9,6 +9,7 @@ TagManager:
   - Environment
   - Boss
   - Sin
+  - Player Weapon
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Boss Projectile
   - Player Projectile
   - Sin
-  - 
+  - Boss Effector
   - 
   - 
   - 
