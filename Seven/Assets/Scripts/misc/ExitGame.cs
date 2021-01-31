@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //Credit for code
 //https://www.youtube.com/watch?v=JivuXdrIHK0
@@ -8,7 +9,9 @@ using UnityEngine;
 public class ExitGame : MonoBehaviour
 {
     public GameObject pauseMenuUI;
+    public GameObject gameOverUI;
     public static bool GAME_IS_PAUSED = false;
+    public static bool GAME_IS_OVER = false;
 
     private Actor boss;
     private Actor player;
@@ -39,14 +42,22 @@ public class ExitGame : MonoBehaviour
             boss = bossObject.GetComponent<Actor>();
         }
 
+        Time.timeScale = 1f;
+        GAME_IS_PAUSED = false;
+        pauseMenuUI.SetActive(false);
+        gameOverUI.SetActive(false);
+
     }
 
     // This is for tutorial scene
     public void Update()
     {
-        if (boss.myHealth.currentHealth == 0f || player.myHealth.currentHealth <= 1f)
+        if (boss.myHealth.currentHealth == 0f || player.myHealth.currentHealth == 1f)
         {
-            //EditorExit();
+            GAME_IS_OVER = true;
+            gameOverUI.SetActive(true);
+            Time.timeScale = 0f;
+            GAME_IS_PAUSED = true;
         }
     }
 
@@ -56,21 +67,27 @@ public class ExitGame : MonoBehaviour
         Application.Quit();
     }
 
-    // Exits Unity Editor
-    public void EditorExit()
-    {
-        UnityEditor.EditorApplication.isPlaying = false;
-    }
-    
     void OnMenu()
     {
         if (!GAME_IS_PAUSED)
         {
             Pause();
         }
-        else
+        else // Press Escape twice, exits the game.
+        { 
+            Exit();
+        }
+    }
+
+    void OnResume()
+    {
+        if(GAME_IS_PAUSED)
         {
             Resume();
+        }
+        if (GAME_IS_OVER)
+        {
+            SceneManager.LoadScene("Tutorial");
         }
     }
 
@@ -84,6 +101,7 @@ public class ExitGame : MonoBehaviour
     void Resume()
     {
         pauseMenuUI.SetActive(false);
+        gameOverUI.SetActive(false);
         Time.timeScale = 1f;
         GAME_IS_PAUSED = false;
     }

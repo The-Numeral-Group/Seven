@@ -7,6 +7,8 @@ TagManager:
   - GhostKnight Projectile
   - GhostKnight
   - Boss
+  - PauseUI
+  - GameOverUI
   layers:
   - Default
   - TransparentFX
