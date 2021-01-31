@@ -57,7 +57,6 @@ public class Dodge : ActorAbilityFunction<Actor, int>
     IEnumerator MakeVulnerable(Actor user)
     {
         yield return new WaitForSeconds(dodgeDuration);
-        isFinished = true;
         user.myHealth.vulnerable = true;
 
     }

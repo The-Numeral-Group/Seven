@@ -36,10 +36,6 @@ public abstract class ActorAbilityFunction<InvokeParam, InvokeReturn> : ActorAbi
     [Tooltip("Name of the ability. Currently does nothing.")]
     public string abilityName;
 
-    [Tooltip("Whether this ability should try to execute even if" + 
-        " it can't use the provided arguments")]
-    public bool invokeBlankWhenBadArguments = true;
-
     /*private with accessor so others can look without changing
     yes it could be a property but I (Thomas) can't figure
     how to do read-only properties that can be changed within
@@ -87,7 +83,7 @@ public abstract class ActorAbilityFunction<InvokeParam, InvokeReturn> : ActorAbi
         
     }
 
-    /*Same as the above method, but this overload allows an arbitrary number of
+     /*Same as the above method, but this overload allows an arbitrary number of
     Object objects to be passed in to assist the ability. It's up to the ability
     to figure out what to do with these additional arguments, and what to do if
     it gets something it doesn't expect.*/
