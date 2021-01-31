@@ -6,6 +6,6 @@ public class PlayerActor : Actor
     {
         base.Start();
         //Setting to true for testing
-        //this.myHealth.vulnerable = true;
+        this.myHealth.vulnerable = true;
     }
 }
