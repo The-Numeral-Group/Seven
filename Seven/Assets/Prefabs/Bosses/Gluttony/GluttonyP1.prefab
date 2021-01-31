@@ -328,7 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldownPeriod: 10
   abilityName: Bite
-  startingWeaponObject: {fileID: 7573367737500984201, guid: bfab2a95a7b826b4ab10b4994c287025, type: 3}
+  startingWeaponObject: {fileID: 9164763553348272604, guid: 156b463534977e54199a7c7bdbc713c6, type: 3}
   duration: 5
   weaponPositionScale: {x: 2, y: 2}
   damagePerHitbox: 
