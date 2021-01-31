@@ -116,7 +116,7 @@ public class GluttonyActor : Actor
                 var bite = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_BITE];
                 Debug.Log("In Bite");
                 currAbility = bite;
-                bite.Invoke(ref gluttony);
+                bite.Invoke(ref gluttony, player);
                 specialAttackCounter++;
 
                 currentState = State.WALK;
@@ -155,11 +155,11 @@ public class GluttonyActor : Actor
         var myPos = this.gameObject.transform.position;
         var playerPos = player.gameObject.transform.position;
 
-        /*Fun Fact! Because positions are vectors, the normalized difference between
-        posA (myPos) and posB (playerPos) is the direction from posA to posB.*/
-        var directionToPlayer = (playerPos - myPos).normalized;
+        var directionToPlayer = playerPos - myPos;
+        var playerDirection = player.myMovement.movementDirection * player.myMovement.speed;
+        var travelDirection = new Vector2(directionToPlayer.x, directionToPlayer.y) + playerDirection;
 
-        this.myMovement.MoveActor(directionToPlayer);
+        this.myMovement.MoveActor(travelDirection.normalized);
     }
 
     State decideNextState()
