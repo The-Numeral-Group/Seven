@@ -9,11 +9,12 @@ public class Dodge : ActorAbilityFunction<Actor, int>
 {
     //how far the actor goes when they doddge
     [Tooltip("How far the actor will dodge.")]
-    public float dodgeDistance = 15.0f;
+    public float dodgeDistance;
 
-    //how long before the actor can move after dodging
-    [Tooltip("How long it will for the actor to be able to move after dodging.")]
-    public float movementLockForDodge = 1.0f;
+    [Tooltip("Duration of the dodge process")]
+    public float dodgeDuration;
+
+    private float drag = 0.05f;
 
     /*Similar to ActorAbilityFunction Invoke
     passes an actors movement component to InternalInvoke*/
@@ -22,8 +23,8 @@ public class Dodge : ActorAbilityFunction<Actor, int>
         if(this.usable && isFinished)
         {
             this.isFinished = false;
-            StartCoroutine(coolDown(cooldownPeriod));
             InternInvoke(user);
+            StartCoroutine(coolDown(cooldownPeriod));
         }
     }
 
@@ -31,26 +32,31 @@ public class Dodge : ActorAbilityFunction<Actor, int>
     protected override int InternInvoke(params Actor[] args)
     {
         args[0].myHealth.vulnerable = false;
-        //we assume that the needed ActorMovement is the first thing
-        //in args, that's what the 0 is for.
+        StartCoroutine(args[0].myMovement.LockActorMovement(dodgeDuration));
+        StartCoroutine(MakeVulnerable(args[0]));
+        StartCoroutine(performDodge(args[0]));
+        return 0;
+    }
 
-        Vector2 velocity = args[0].myMovement.movementDirection;
-        float drag = args[0].myMovement.rigidbody.drag;
+    private IEnumerator performDodge(Actor user)
+    {
+
+        Vector2 velocity = user.myMovement.movementDirection;
 
         /*to dodge, we boost forward and lock movement for 1 second. This calculation
         was written by Ram for the prototype*/
-        Vector2 dodgeVelocity = velocity + Vector2.Scale(velocity, dodgeDistance * 
-            new Vector2((Mathf.Log(1f/ (Time.deltaTime * drag + 1))/-Time.deltaTime),
-                (Mathf.Log(1f/ (Time.deltaTime * drag + 1))/-Time.deltaTime)));
-        StartCoroutine(args[0].myMovement.LockActorMovement(movementLockForDodge));
-        StartCoroutine(MakeVulnerable(args[0]));
-        args[0].myMovement.DragActor(dodgeVelocity);
-        return 0;
+        Vector2 dodgeVelocity = velocity + Vector2.Scale(velocity, dodgeDistance *
+            new Vector2((Mathf.Log(1f / (Time.deltaTime * drag + 1)) / -Time.deltaTime),
+                (Mathf.Log(1f / (Time.deltaTime * drag + 1)) / -Time.deltaTime)));
+
+        user.myMovement.DragActor(dodgeVelocity);
+        yield return new WaitForSeconds(dodgeDuration);
+        isFinished = true;
     }
 
     IEnumerator MakeVulnerable(Actor user)
     {
-        yield return new WaitForSeconds(movementLockForDodge);
+        yield return new WaitForSeconds(dodgeDuration);
         isFinished = true;
         user.myHealth.vulnerable = true;
 

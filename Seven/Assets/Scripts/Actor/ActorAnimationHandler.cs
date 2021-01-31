@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+//using System.Collections.Generic;
 using UnityEngine;
 
 public class ActorAnimationHandler : MonoBehaviour
@@ -8,14 +8,10 @@ public class ActorAnimationHandler : MonoBehaviour
 
     public Animator Animator;
 
-    public ActorMovement myMovement;
-
-
-    private void Start()
+    protected virtual void Start()
     {
         hostActor = this.GetComponent<Actor>();
         Animator = this.gameObject.GetComponent<Animator>();
-        this.myMovement = hostActor.myMovement;
     }
     
     /*For now, all the actors will have walkAnimation, so only this function is included
