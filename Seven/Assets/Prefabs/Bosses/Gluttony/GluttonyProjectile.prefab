@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3853690349331572263}
   - component: {fileID: -3532670461098579280}
   - component: {fileID: -7552541702120447692}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: GluttonyProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -59,13 +59,13 @@ public class GluttonyProjectileMovement : ActorMovement
     //Given a direction
     IEnumerator StopProjectile(float stopDelay)
     {   
+        if (makeStatic)
+        {
+            this.gameObject.layer = LayerMask.NameToLayer("Transparent");
+        }
         yield return new WaitForSeconds(stopDelay);
         base.DragActor(Vector2.zero);
-        /*if (makeStatic)
-        {
-            //https://answers.unity.com/questions/1301204/how-to-change-rigidbody2d-body-type-or-change-whet.html
-            this.rigidbody.bodyType = RigidbodyType2D.Static;
-        }*/
+        this.gameObject.layer = LayerMask.NameToLayer("Boss Projectile");
     }
 
     IEnumerator DestroySelf()

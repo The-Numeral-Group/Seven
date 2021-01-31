@@ -6,6 +6,9 @@ TagManager:
   tags:
   - GhostKnight Projectile
   - GhostKnight
+  - Environment
+  - Boss
+  - Sin
   layers:
   - Default
   - TransparentFX
@@ -20,6 +23,10 @@ TagManager:
   - Player
   - 'GhostKnight '
   - GhostKnight Projectile
+  - Boss
+  - Boss Projectile
+  - Player Projectile
+  - Sin
   - 
   - 
   - 
@@ -34,11 +41,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Transparent
   m_SortingLayers:
   - name: Default
     uniqueID: 0
