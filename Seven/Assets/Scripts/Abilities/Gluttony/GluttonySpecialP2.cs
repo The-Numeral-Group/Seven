@@ -16,9 +16,11 @@ public class GluttonySpecialP2 : ActorAbilityFunction<Actor, int>
     Vector2 direction;
     //reference to camera for shake
     BaseCamera cam;
-    //reference to first lockmovement
+    //IEnumerators reference the movementlock coroutine.
     IEnumerator stopLock;
+    //IEnumerator referencing the tracktarget coroutine.
     IEnumerator track;
+    //IEnumerator referencing the charge coroutine.
     IEnumerator charge;
 
     //Initialize member variables
@@ -56,6 +58,9 @@ public class GluttonySpecialP2 : ActorAbilityFunction<Actor, int>
             StartCoroutine(coolDown(cooldownPeriod));
         }
     }
+
+    /*Locks the users movements and starts the two coroutines that correspond to each part of the
+    ability*/
     protected override int InternInvoke(params Actor[] args)
     {
         track = TrackTarget(args[0]);
@@ -67,6 +72,8 @@ public class GluttonySpecialP2 : ActorAbilityFunction<Actor, int>
         return 0;
     }
 
+    /*Part 1 of the ability. Calculates a vector between the user and the target.
+    Keeps finding a direction vector until the duration is up.*/
     IEnumerator TrackTarget(Actor targetActor)
     {
         while (true && targetActor)
@@ -76,6 +83,9 @@ public class GluttonySpecialP2 : ActorAbilityFunction<Actor, int>
         }
     }
     
+    /*Part 2 of the ability. Stops the track coroutine after a duration.
+    Then charge drags the user in the direction set by tracktarget. 
+    The user is dragged for the remainder LockActorMovement*/
     IEnumerator Charge()
     {
         yield return new WaitForSeconds(chargeDelay);
@@ -83,6 +93,8 @@ public class GluttonySpecialP2 : ActorAbilityFunction<Actor, int>
         this.user.myMovement.DragActor(direction.normalized * this.user.myMovement.speed * specialSpeedModifier);
     }
 
+    /*This oncollision is responsible for setting the finished flag for the ability. The moment the
+    the user collides with any valid object the finished flag is set.*/ 
     void OnCollisionEnter2D(Collision2D other)
     {
         if (!isFinished)

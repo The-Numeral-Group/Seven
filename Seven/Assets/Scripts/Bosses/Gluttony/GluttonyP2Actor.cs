@@ -8,8 +8,11 @@ public class GluttonyP2Actor : Actor
     Actor gluttony;
     //reference to the player
     Actor player;
+    //Pointer to the current ability in use
     ActorAbility currAbility;
+    //Initial weight for the special.
     float specialWeight = 50f;
+    //The current state the actor is in.
     public State currentState;
     public enum State
     {
@@ -43,6 +46,7 @@ public class GluttonyP2Actor : Actor
         EvaluateState(currentState);
     }
 
+    //Function operates as the state machine.
     void EvaluateState(State state)
     {
         switch(state)
@@ -81,6 +85,8 @@ public class GluttonyP2Actor : Actor
         }
     }
 
+    /*Moves Gluttony towards the player. It will also read the players movement to give gluttony
+    a better path towards the player*/
     void stepTowardsPlayer()
     {
         /*
@@ -100,6 +106,8 @@ public class GluttonyP2Actor : Actor
         this.myMovement.MoveActor(travelDirection.normalized);
     }
 
+    /*The state logic for phase 2 gluttony. Uses weights to choose to either use the projectile
+    attack or special attack.*/
     State decideNextState()
     {
         bool specialReady = 
@@ -141,6 +149,7 @@ public class GluttonyP2Actor : Actor
         return nextState;
     }
 
+    //Damages the player if they touch gluttony.
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.tag != "Player")
