@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8339427917257392395}
   - component: {fileID: 6385179671307395200}
   - component: {fileID: 7380622624676843008}
-  - component: {fileID: -9198942225697649496}
+  - component: {fileID: 184813372446191150}
   m_Layer: 0
   m_Name: HubCamera
   m_TagString: MainCamera
@@ -97,15 +97,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f64318f08b4c3a745b1ef440ecf59ac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
-  POI: []
+  targetPOIs: []
   offset: {x: 0, y: 10}
-  minDistanceToPOI: 20
-  maxZoom: 40
+  cameraSmoothRate: 0.5
+  breakingDistance: 20
+  defaultZoom: 40
   minZoom: 17
   zoomSpeed: 5
-  smoothTime: 0.5
---- !u!114 &-9198942225697649496
+--- !u!114 &184813372446191150
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

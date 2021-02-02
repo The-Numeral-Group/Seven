@@ -4,6 +4,7 @@
 [RequireComponent(typeof(ActorEffectHandler))]
 [RequireComponent(typeof(ActorMovement))]
 [RequireComponent(typeof(ActorAbilityInitiator))]
+[RequireComponent(typeof(ActorAnimationHandler))]
 public class Actor : MonoBehaviour
 {
     //this is how autoproperties work in C#

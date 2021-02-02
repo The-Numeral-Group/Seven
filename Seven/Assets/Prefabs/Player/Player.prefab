@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7512802453659592075}
   - component: {fileID: 7512802453659592072}
   - component: {fileID: 7512802453659592073}
+  - component: {fileID: 7924922232441966684}
   - component: {fileID: 7512802453659592078}
   - component: {fileID: 7512802453659592077}
   - component: {fileID: 7512802453659592079}
@@ -20,6 +21,8 @@ GameObject:
   - component: {fileID: 7512802453659592064}
   - component: {fileID: 7512802453659592181}
   - component: {fileID: 7512802453659592074}
+  - component: {fileID: 1711407483}
+  - component: {fileID: 1711407482}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -112,7 +115,33 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!61 &7924922232441966684
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7512802453659592065}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.16, y: 0.16}
+  m_EdgeRadius: 0
 --- !u!114 &7512802453659592078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +161,6 @@ MonoBehaviour:
   selectedAbilityBeta: {fileID: 0}
   playerDodge: {fileID: 7512802453659592074}
   playerAttack: {fileID: 7512802453659592181}
-  playerActor: {fileID: 0}
 --- !u!114 &7512802453659592077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0845a27915610e48aa81aff3ac10a634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
 --- !u!114 &7512802453659592079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +269,9 @@ MonoBehaviour:
   cooldownPeriod: 0
   abilityName: WeaponAttack
   startingWeaponObject: {fileID: 7573367737500984201, guid: bfab2a95a7b826b4ab10b4994c287025, type: 3}
-  hitConnected: 0
+  duration: 1
+  weaponPositionScale: {x: 0.1, y: 0.1}
+  damagePerHitbox: 0a000000
 --- !u!114 &7512802453659592074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,3 +288,37 @@ MonoBehaviour:
   abilityName: Dodge
   dodgeDistance: 15
   movementLockForDodge: 1
+--- !u!95 &1711407483
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7512802453659592065}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 65cb18468c1cf03498f40e27a842aa25, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1711407482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7512802453659592065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8e59eb5840af44a950c4bf0de49e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 0}
+  myMovement: {fileID: 0}
+  movementDirection: {x: 0, y: 0}

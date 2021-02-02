@@ -18,31 +18,21 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
     //if at 0 the targetActor will not get dragged.
     [Tooltip("The speed at which the target is dragged. if 0 no drag")]
     public float specialSpeed = 1f;
-    //The actor this ability will target. Specifically their movement component 
-    Actor targetActor;
-
-    //Initialize monobehavior fields
-    void Start()
-    {
-        var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
-        if(playerObject == null)
-        {
-            Debug.LogWarning("GluttonyCrush: Gluttony can't find the player!");
-        }
-        else
-        {
-            this.targetActor = playerObject.GetComponent<Actor>();
-        }
-    }
+    //Reference to the user of the ability
+    public Actor user { get; private set; }
+    public Actor targetActor { get; private set; }
 
     //Similar to ActortAbilityFunction Invoke. additional checks for valid target and isFinished
-    public override void Invoke(ref Actor user)
+    public override void Invoke(ref Actor user, params object[] args)
     {
-        //If we have not referenced a target this ability will not initiate.
-        if(this.usable && targetActor && this.isFinished)
+        //by default, Invoke just does InternInvoke with the provided arguments
+        //it's also just implicitly convert the args and give it to InternInvoke
+        this.user = user;
+        if(usable)
         {
+            isFinished = false;
+            InternInvoke(easyArgConvert(args));
             StartCoroutine(coolDown(cooldownPeriod));
-            InternInvoke(user);
         }
     }
 
@@ -50,9 +40,10 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
     The target actor is then dragged towards that stop for the specified duration.*/
     protected override int InternInvoke(params Actor[] args)
     {
-        Vector3 spawnPos = new Vector3(args[0].gameObject.transform.position.x + distanceFromActor.x,
-                                       args[0].gameObject.transform.position.y + distanceFromActor.y,
-                                       args[0].gameObject.transform.position.z); 
+        this.targetActor = args[0];
+        Vector3 spawnPos = new Vector3(this.user.gameObject.transform.position.x + distanceFromActor.x,
+                                       this.user.gameObject.transform.position.y + distanceFromActor.y,
+                                       this.user.gameObject.transform.position.z); 
         GameObject specialAbilitySprite = Instantiate(toInstantiateAbilitySprite, spawnPos, Quaternion.identity);
         IEnumerator dragTargetActor = DragTargetActor(spawnPos);
         IEnumerator stopSpecialAbility = StopSpecialAbility(dragTargetActor, specialAbilitySprite);
@@ -64,13 +55,13 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
     //Drags the target actor in the direction of the destination vector
     IEnumerator DragTargetActor(Vector3 spawnPos)
     {
-        while (true)
+        while (true && this.targetActor)
         {
             yield return new WaitForFixedUpdate();
             //I (Ram) am not sure if I need to normalize the drag direction vector.
-            Vector2 destination = (spawnPos - targetActor.gameObject.transform.position).normalized;
+            Vector2 destination = (spawnPos - this.targetActor.gameObject.transform.position).normalized;
             destination = destination * specialSpeed;
-            targetActor.myMovement.DragActor(destination);
+            this.targetActor.myMovement.DragActor(destination);
         }
     }
 
@@ -81,5 +72,24 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
         StopCoroutine(toStop);
         Destroy(toDestroy);
         this.isFinished = true;
+    }
+
+    //Kill the player if they get sucked up by gluttony when this move is active.
+    void OnCollisionEnter2D(Collision2D collider)
+    {
+        if (!this.isFinished && collider.gameObject == this.targetActor.gameObject)
+        {
+             var enemyHealth = collider.gameObject.GetComponent<ActorHealth>();
+
+            //or a weakpoint if there's no regular health
+            if(enemyHealth == null){collider.gameObject.GetComponent<ActorWeakPoint>();}
+
+            //if the enemy can take damage (if it has an ActorHealth component),
+            //hurt them. Do nothing if they can't take damage.
+            if(enemyHealth != null)
+            {
+                enemyHealth.takeDamage(enemyHealth.currentHealth);
+            }
+        }
     }
 }

@@ -32,6 +32,10 @@ public class ActorHealth : MonoBehaviour
     }*/
 
     public virtual void takeDamage(float damageTaken){
+        if (!this.vulnerable)
+        {
+            return;
+        }
         var damage = Mathf.Floor(damageTaken * (1.0f - damageResistance));
         Debug.Log("taking " + damage + " damage");
 

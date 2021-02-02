@@ -98,11 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641928aff9e98344d9a97c769596f3ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
-  targets: []
-  maxDistance: 50
+  targetPOIs: []
   offset: {x: 0, y: 2}
-  smoothTime: 0.5
+  cameraSmoothRate: 0.5
+  breakingDistance: 50
 --- !u!114 &4905909914710698995
 MonoBehaviour:
   m_ObjectHideFlags: 0

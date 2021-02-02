@@ -34,9 +34,13 @@ public class ActorWeakPoint : ActorHealth
     /*Similar to ActorHealth, the method to call when this component should take damage. However.
     this version has special functionality to interact with damage resistance of related
     ActorHealths.*/
-    public override void takeDamage(float damageTaken)
-    {
 
+    //new in a method declaration means "use me rather than my superclass's version"
+    public override void takeDamage(float damageTaken){
+        if (!this.vulnerable)
+        {
+            return;
+        }
         //take the damage to the weakpoint
         this.currentHealth -= Mathf.Floor(damageTaken * (1.0f - damageResistance));
 

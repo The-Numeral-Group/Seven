@@ -6,8 +6,11 @@ public class PlayerAnimationHandler : ActorAnimationHandler
 {
     public Vector2 movementDirection;
 
+    public ActorMovement myMovement;
+
     public override void animateWalk()
     {
+        myMovement = hostActor.myMovement;
         movementDirection = myMovement.movementDirection;
         if (myMovement.isMoving())
         {
@@ -30,7 +33,6 @@ public class PlayerAnimationHandler : ActorAnimationHandler
      animation.*/
     public void animateAttack()
     {
-        Debug.Log(movementDirection);
         StartCoroutine(tempAnimateAttack());
     }
 

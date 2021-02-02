@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - GhostKnight Projectile
+  - GhostKnight
+  - Environment
+  - Boss
+  - Sin
+  - Player Weapon
   layers:
   - Default
   - TransparentFX
@@ -13,6 +19,16 @@ TagManager:
   - UI
   - 
   - 
+  - Background
+  - Wall
+  - Player
+  - 'GhostKnight '
+  - GhostKnight Projectile
+  - Boss
+  - Boss Projectile
+  - Player Projectile
+  - Sin
+  - Boss Effector
   - 
   - 
   - 
@@ -26,17 +42,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Transparent
   m_SortingLayers:
   - name: Default
     uniqueID: 0

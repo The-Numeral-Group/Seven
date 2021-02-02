@@ -11,13 +11,10 @@ GameObject:
   - component: {fileID: 3033589395181301065}
   - component: {fileID: 3033589395181301066}
   - component: {fileID: 3033589395181301067}
-  - component: {fileID: 3033589395181301060}
-  - component: {fileID: 2224662566219003105}
-  - component: {fileID: 18225691244702679}
-  - component: {fileID: 114865208885683515}
-  - component: {fileID: 9025764853802258676}
-  - component: {fileID: 4945694119891724030}
-  m_Layer: 0
+  - component: {fileID: 3853690349331572263}
+  - component: {fileID: -3532670461098579280}
+  - component: {fileID: -7552541702120447692}
+  m_Layer: 14
   m_Name: GluttonyProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -101,7 +98,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 500
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -110,7 +107,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3033589395181301060
+--- !u!58 &3853690349331572263
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3033589395181301062}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.08
+--- !u!114 &-3532670461098579280
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7edf6075af9db168ac779dc17a891a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2224662566219003105
+--- !u!114 &-7552541702120447692
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,70 +144,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3033589395181301062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0d1d5e7c31d60a4bac75dc1bef3276a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4da398338ed62cc44a8a1fca733a7b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMaxHealth: 100
-  damageResistance: 0
---- !u!114 &18225691244702679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3033589395181301062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad4c5db7541dcc56b1980217c563312, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114865208885683515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3033589395181301062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a351bad815628f7c6ac55909bf9b707e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileHealthGate: 5
-  specialAttackGate: 7
-  crushRange: 60
-  biteRange: 25
-  currentState: 0
-  currAbility: {fileID: 0}
---- !u!114 &9025764853802258676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3033589395181301062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e68ae2f28d6a78df855efffa9f722d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  abilities:
-    m_keys: []
-    m_values: []
-  Crush: {fileID: 0}
-  Bite: {fileID: 0}
-  PhaseZeroSpecial: {fileID: 0}
-  Projectile: {fileID: 0}
---- !u!114 &4945694119891724030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3033589395181301062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 453e150335b52ac4884472bf0e1bd9cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
+  speed: 5
+  projectileDuration: 20
+  damage: 1
+  stopDelayRange: {x: 1.5, y: 2}
+  makeStatic: 0

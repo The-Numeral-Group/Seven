@@ -36,10 +36,10 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     public float crushDelay = 1f;
     //The sum of the above three durations. Used to lock the movement of the user.
     float totalAbilityDuration;
-    //The actor this move is meant to target
-    Actor targetActor;
+    //Reference to the user of the ability
+    public Actor user { get; private set; }
     //pointer to the main camera shake component to initialize camera efx
-    ShakeCamera cam = null;
+    BaseCamera cam;
 
     //Initialize member variables
     void Awake()
@@ -51,35 +51,29 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     //Initializing monobehavior fields
     void Start()
     {
-        var camObjects = FindObjectsOfType<ShakeCamera>();
-        var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
-        if(playerObject == null)
-        {
-            Debug.LogWarning("GluttonyCrush: Gluttony can't find the player!");
-        }
-        else
-        {
-            targetActor = playerObject.GetComponent<Actor>();
-        }
+        var camObjects = FindObjectsOfType<BaseCamera>();
         if (camObjects.Length > 0)
         {
             cam = camObjects[0];
         }
         else
         {
-            Debug.Log("Gluttony Crush: does not have access to a camera that can shake");
+            Debug.LogWarning("Gluttony Crush: does not have access to a camera that can shake");
         }
     }
 
     /*Similar to the Invoke for ActorAbilityFunction but explicitly checks if the move has been
     finished. Passes the users actor component to interninvoke*/
-    public override void Invoke(ref Actor user)//(ref Actor user)
+    public override void Invoke(ref Actor user, params object[] args)
     {
-        if(this.usable && targetActor && this.isFinished)
+        //by default, Invoke just does InternInvoke with the provided arguments
+        //it's also just implicitly convert the args and give it to InternInvoke
+        this.user = user;
+        if(usable)
         {
-            this.isFinished = false;
+            isFinished = false;
+            InternInvoke(easyArgConvert(args));
             StartCoroutine(coolDown(cooldownPeriod));
-            InternInvoke(user);
         }
     }
 
@@ -88,12 +82,12 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     Passes the direction to jump towards.*/
     protected override int InternInvoke(params Actor[] args)
     {
-        Vector2 destination = new Vector2(targetActor.transform.position.x, 
-                                            targetActor.transform.position.y + verticalOffset);
-        Vector2 direction = (destination - new Vector2(args[0].transform.position.x, 
-                                                        args[0].transform.position.y)).normalized;
+        Vector2 destination = new Vector2(args[0].transform.position.x, 
+                                            args[0].transform.position.y + verticalOffset);
+        Vector2 direction = (destination - new Vector2(this.user.transform.position.x, 
+                                                        this.user.transform.position.y)).normalized;
         direction = direction * jumpSpeed;
-        IEnumerator initialMovementLock = args[0].myMovement.LockActorMovement(totalAbilityDuration);
+        IEnumerator initialMovementLock = this.user.myMovement.LockActorMovement(totalAbilityDuration);
         StartCoroutine(initialMovementLock);
         StartCoroutine(JumpUp(args[0], direction, initialMovementLock));
         return 0;
@@ -103,35 +97,46 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     Moves the ability user to in the defined direction.
     Instatiates an object to represent its final destination.
     Calls both Part 2 and 3 of this process.*/
-    IEnumerator JumpUp(Actor user, Vector2 direction, IEnumerator initialMovementLock)
+    IEnumerator JumpUp(Actor targetActor, Vector2 direction, IEnumerator initialMovementLock)
     {
-        user.myMovement.DragActor(direction);
+        var actorColliders = this.user.gameObject.GetComponents<Collider2D>();
+        foreach(var actorCollider in actorColliders)
+        {
+            actorCollider.enabled = false;
+        }
+        this.user.myMovement.DragActor(direction);
         yield return new WaitForSeconds(jumpDuration);
-        GameObject shadowSprite = Instantiate(toInstantiateShadowSprite, 
-                                            new Vector3(targetActor.transform.position.x + distanceFromActor.x, 
-                                            targetActor.transform.position.y + distanceFromActor.y, 
-                                            targetActor.transform.position.z), Quaternion.identity);
-        shadowSprite.transform.parent = targetActor.transform;
-        IEnumerator trackTarget = TrackTargetWithShadow(user, shadowSprite);
-        IEnumerator crush = Crush(user, shadowSprite, trackTarget, initialMovementLock);
-        StartCoroutine(trackTarget);
-        StartCoroutine(crush);
+        if (targetActor)
+        {
+            GameObject shadowSprite = Instantiate(toInstantiateShadowSprite, 
+                                        new Vector3(targetActor.transform.position.x + distanceFromActor.x, 
+                                        targetActor.transform.position.y + distanceFromActor.y, 
+                                        targetActor.transform.position.z), Quaternion.identity);
+            shadowSprite.transform.parent = targetActor.transform;
+            IEnumerator trackTarget = TrackTargetWithShadow(targetActor, shadowSprite);
+            IEnumerator crush = Crush(shadowSprite, trackTarget, initialMovementLock);
+            StartCoroutine(trackTarget);
+            StartCoroutine(crush);
+        }
     }
 
     /*Part 2 of the 3 steps to perform crush.
     Tracks the targets movement by having the ability user mimic its' 
     targets movementdirection and speed.
     Loops infinitely, but is stopped by Part 3.*/
-    IEnumerator TrackTargetWithShadow(Actor user, GameObject shadowSprite)
+    IEnumerator TrackTargetWithShadow(Actor targetActor, GameObject shadowSprite)
     {
-        user.transform.position = new Vector3(targetActor.transform.position.x, 
+        this.user.transform.position = new Vector3(targetActor.transform.position.x, 
                                                 targetActor.transform.position.y + 
-                                                verticalOffset,user.transform.position.z);
-        shadowSprite.transform.parent = user.gameObject.transform;
-        while(true)
+                                                verticalOffset, this.user.transform.position.z);
+        
+        shadowSprite.transform.parent = this.user.gameObject.transform;
+        while(true && targetActor)
         {
             yield return new WaitForFixedUpdate();
-            user.myMovement.DragActor(targetActor.myMovement.movementDirection * targetActor.myMovement.speed);
+            Vector2 direction = new Vector2(targetActor.transform.position.x - shadowSprite.transform.position.x,
+                targetActor.transform.position.y - shadowSprite.transform.position.y + distanceFromActor.y);
+            this.user.myMovement.DragActor(direction.normalized * targetActor.myMovement.speed);
         }
     }
 
@@ -139,33 +144,38 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     Stops part 2 after a specified duration as passed.
     Will then move the ability user towards the shadowSprites position.
     Starts the aftermath function which performs the abilities efx.*/
-    IEnumerator Crush(Actor user, GameObject shadowSprite, IEnumerator stopTrack, IEnumerator initialLockMovement)
+    IEnumerator Crush(GameObject shadowSprite, IEnumerator stopTrack, IEnumerator initialLockMovement)
     {
         yield return new WaitForSeconds(trackDuration);
         StopCoroutine(stopTrack);
-        user.myMovement.DragActor(Vector2.zero);
+        this.user.myMovement.DragActor(Vector2.zero);
         shadowSprite.transform.parent = null;
         yield return new WaitForSeconds(crushDelay);
-        Vector2 direction = (shadowSprite.transform.position - user.gameObject.transform.position).normalized;
+        Vector2 direction = (shadowSprite.transform.position - this.user.gameObject.transform.position).normalized;
         float timeToArrival = Vector2.Distance(shadowSprite.transform.position, 
-                                                user.gameObject.transform.position) / fallSpeed;
-        user.myMovement.DragActor(direction * fallSpeed);
+                                                this.user.gameObject.transform.position) / fallSpeed;
+        this.user.myMovement.DragActor(direction * fallSpeed);
 
         //I (Ram) do not know what will happen if a StopCoroutine is used on a coroutine that has already stopped.
         StopCoroutine(initialLockMovement);
-        StartCoroutine(user.myMovement.LockActorMovement(timeToArrival));
+        StartCoroutine(this.user.myMovement.LockActorMovement(timeToArrival));
         yield return new WaitForSeconds(timeToArrival);
-        user.myMovement.DragActor(Vector2.zero);
-        AfterMathOfCrush(user, shadowSprite);
+        this.user.myMovement.DragActor(Vector2.zero);
+        AfterMathOfCrush(shadowSprite);
     }
     
     /*This function handles everything that must be done after the crush has been performed.
     This will shake the camera, spawn a sin object, and destroy the shadow.*/
-    void AfterMathOfCrush(Actor user, GameObject shadowSprite)
+    void AfterMathOfCrush(GameObject shadowSprite)
     {
-        //this.cam.CameraShake(2.0f, 0.2f);
+        var actorColliders = this.user.gameObject.GetComponents<Collider2D>();
+        foreach(var actorCollider in actorColliders)
+        {
+            actorCollider.enabled = true;
+        }
+        cam.Shake(2.0f, 0.2f);
         Destroy(shadowSprite);
-        Instantiate(sin, user.gameObject.transform.position, Quaternion.identity);
+        Instantiate(sin, this.user.gameObject.transform.position, Quaternion.identity);
         this.isFinished = true;
     }
 }

@@ -2,16 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
-GluttonyActor's main function is to run the State Machine that powers
-Gluttony's boss fight
-*/
+/*GluttonyActor's main function is to run the State Machine that powers
+Gluttony's boss fight*/
+//[RequireComponent(typeof(Effector2D))]
 public class GluttonyActor : Actor
 {
-
-    [Tooltip("When Gluttony's health is lower or equal than this, it's start launching projectiles.")]
-    public float projectileHealthGate = 5.0f;
-
     [Tooltip("Controls how many times should Gluttony use normal attacks before using it's special.")]
     public int specialAttackGate = 7;
 
@@ -21,12 +16,12 @@ public class GluttonyActor : Actor
     [Tooltip("How close the player should be before Gluttony tries to bite them.")]
     public float biteRange = 25f;
 
-    private int specialAttackCounter = 0;
+    int specialAttackCounter = 0;
 
     /*We need to save an additional reference to this script because 'this' is read-only.
     The player reference is just for convinience*/
-    private Actor gluttony;
-    private Actor player;
+    Actor gluttony;
+    Actor player;
     public State currentState;
 
     private ActorAbility currAbility;
@@ -40,13 +35,14 @@ public class GluttonyActor : Actor
         NULL,
     }
 
+    bool changingPhase = false;
+
     // Start is called before the first frame update
     new void Start()
     {
         base.Start();
 
         var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
-
         if(playerObject == null)
         {
             Debug.LogWarning("GluttonyActor: Gluttony can't find the player!");
@@ -57,12 +53,20 @@ public class GluttonyActor : Actor
         }
 
         gluttony = this.gameObject.GetComponent<GluttonyActor>();
-        gluttony.myHealth.vulnerable = true; 
+        gluttony.myHealth.vulnerable = true;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        //might need to move this check outside of fixed update;
+        if (this.myHealth.currentHealth <= 5 && !changingPhase)
+        {
+            changingPhase = true;
+            System.Tuple<Actor, System.Action<Actor>> p2 = 
+                new System.Tuple<Actor, System.Action<Actor>>(gluttony, null);
+            gameObject.SendMessage("NextPhase", p2);
+        }
         EvaluateState(currentState);
     }
 
@@ -72,20 +76,17 @@ public class GluttonyActor : Actor
         {
             //Moved the functions in update to walk to avoid the stuttering that occurs on ground pound.
             case State.WALK:
-                if (currAbility && !currAbility.getUsable())
+                
+                if (currAbility && !currAbility.getIsFinished())
                 {
                     break;
-                }
-                // check for special attack counter.
-                // if it is 7, activate special attack. 
-                if (specialAttackCounter >= specialAttackGate)
+                } 
+                else if (specialAttackCounter >= specialAttackGate)
                 {
+                    // check for special attack counter.
+                    // if it is 7, activate special attack.
                     specialAttackCounter = 0;
                     currentState = State.PHASE0_SPECIAL;
-                }
-                else if (ShouldProjectile())
-                {
-                    currentState = State.LAUNCH_PROJECTILE;
                 }
                 else
                 {
@@ -100,13 +101,9 @@ public class GluttonyActor : Actor
                 Semirelated, but Gluttony will try to crush 100% of the time if the player is
                 far enough. If Crush isn't open at the time, Gluttony will just keep walking*/
                 var crush = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_CRUSH];
-
-                if(crush.getUsable())
-                {
-                    currAbility = crush;
-                    crush.Invoke(ref gluttony);
-                    specialAttackCounter++;
-                }
+                currAbility = crush;
+                crush.Invoke(ref gluttony, player);
+                specialAttackCounter++;
 
                 currentState = State.WALK;
                 break;
@@ -115,44 +112,31 @@ public class GluttonyActor : Actor
                 /*Bite hasn't been implemented yet, but this will probably use a
                 "If usable invoke if not just walk" check similar to crush and special*/
                 var bite = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_BITE];
-
-                if(bite.getUsable())
-                {
-                    currAbility = bite;
-                    bite.Invoke(ref gluttony);
-                    specialAttackCounter++;
-                }
+                Debug.Log("In Bite");
+                currAbility = bite;
+                bite.Invoke(ref gluttony, player);
+                specialAttackCounter++;
 
                 currentState = State.WALK;
-
-                
                 break;
 
             case State.PHASE0_SPECIAL:
                 var special = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_PHASEZERO_SPECIAL];
-
-                if(special.getUsable())
-                {
-                    currAbility = special;
-                    special.Invoke(ref gluttony);
-                }
+                Debug.Log("In Special Ability");
+                currAbility = special;
+                special.Invoke(ref gluttony, player);
 
                 currentState = State.WALK;
-
                 break;
 
             case State.LAUNCH_PROJECTILE:
                 var proj = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_PROJECTILE];
-
-                if(proj.getUsable())
-                {
-                    currAbility = proj;
-                    proj.Invoke(ref gluttony);
-                    specialAttackCounter++;
-                }
+                Debug.Log("In Projectile");
+                currAbility = proj;
+                proj.Invoke(ref gluttony);
+                specialAttackCounter++;
 
                 currentState = State.WALK;
-
                 break;
 
             case State.NULL:
@@ -163,45 +147,25 @@ public class GluttonyActor : Actor
                 break;
         }
     }
-
-    //GetMovementDirection isn't needed, an equivilant exists in ActorMovement
-    //Similarly, many coroutines and substates have been migrated to relevant Abilities
-
-    bool ShouldProjectile()
-    {
-        //get the projectile ability, if it exists
-        var projectiles = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_PROJECTILE];
-
-        //if it doesn't exist, don't shoot it
-        if(projectiles == null){return false;}
-
-        //if the projectiles are off cooldown and Gluttony is under the health gate, return true
-        if(this.myHealth.currentHealth <= projectileHealthGate && projectiles.getUsable())
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
     
     void stepTowardsPlayer()
     {
         var myPos = this.gameObject.transform.position;
         var playerPos = player.gameObject.transform.position;
 
-        /*Fun Fact! Because positions are vectors, the normalized difference between
-        posA (myPos) and posB (playerPos) is the direction from posA to posB.*/
-        var directionToPlayer = (playerPos - myPos).normalized;
+        var directionToPlayer = playerPos - myPos;
+        var playerDirection = player.myMovement.movementDirection * player.myMovement.speed;
+        var travelDirection = new Vector2(directionToPlayer.x, directionToPlayer.y) + playerDirection;
 
-        this.myMovement.MoveActor(directionToPlayer);
+        this.myMovement.MoveActor(travelDirection.normalized);
     }
 
     State decideNextState()
     {
         var distanceToPlayer = Vector2.Distance(player.transform.position, this.gameObject.transform.position);
         //this bool will crash the game if GLUTTONY_BITE isn't correctly defined or if there's no bite ability at all
+        bool crushReady = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_CRUSH].getUsable();
+        bool projReady = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_PROJECTILE].getUsable();
         bool biteReady = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_BITE].getUsable();
         
         State nextState;  
@@ -211,11 +175,42 @@ public class GluttonyActor : Actor
 
         if(distanceToPlayer >= crushRange)
         {
-            nextState = State.PHYSICAL_CRUSH;
+            int weight = Random.Range(0, 3);
+            /*I (Ram) am aware below is bad coding practice. It is in place as a temporary measure
+            for the time being to have something that can be played around with. The checks are there
+            to stop gluttony from swapping states if the move is on cooldown.*/
+            if (weight / 2 == 1)
+            {
+                if (projReady)
+                {
+                    nextState = State.LAUNCH_PROJECTILE;
+                }
+                else
+                {
+                    nextState = State.WALK;
+                }
+            }
+            else
+            {
+                if (crushReady)
+                {
+                    nextState = State.PHYSICAL_CRUSH;
+                }
+                else
+                {
+                    nextState = State.WALK;
+                }
+            }
+            /*this movement call is unessecary but added just in case there is an instance where
+            movement isn't locked for an ability.*/
+            this.myMovement.MoveActor(Vector2.zero);
         }
         else if(distanceToPlayer <= biteRange && biteReady)
         {
             nextState = State.PHYSICAL_BITE;
+            /*this movement call is unessecary but added just in case there is an instance where
+            movement isn't locked for an ability.*/
+            this.myMovement.MoveActor(Vector2.zero);
         }
         else
         {
@@ -223,5 +218,24 @@ public class GluttonyActor : Actor
         }
 
         return nextState;
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.tag != "Player")
+        {
+            return;
+        }
+        //bounceEffector.enabled = true;
+        var enemyHealth = collider.gameObject.GetComponent<ActorHealth>();
+
+        //or a weakpoint if there's no regular health
+        if(enemyHealth == null){collider.gameObject.GetComponent<ActorWeakPoint>();}
+
+        //if the enemy can take damage (if it has an ActorHealth component),
+        //hurt them. Do nothing if they can't take damage.
+        if(enemyHealth != null){
+            enemyHealth.takeDamage(1f);
+        }
     }
 }
