@@ -79,6 +79,10 @@ public class PrideRubbleProjectile : MonoBehaviour
     /*Starts the rubble!*/
     public void Launch(Vector2 targetPoint)
     {
+        /*An explicit cast is added here, even though Vector3 implicitly converts
+        to Vector2, to remove the ambiguity between subtracting the this.gameObject's position as
+        a Vector3 or a Vector2*/
+        launchDirection = ((Vector2)this.gameObject.transform.position - targetPoint).normalized;
         //S H M O O V E
         moveFunction = new Action<Vector2>(InternalMovement);
     }

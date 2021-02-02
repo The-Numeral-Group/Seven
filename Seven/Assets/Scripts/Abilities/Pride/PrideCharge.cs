@@ -26,7 +26,7 @@ public class PrideCharge : ActorAbilityFunction<Actor, IEnumerator>
     public float maxChargeTime = 10.0f;
 
     //an internal reference to the player, PrideCharge's only target.
-    [Tooltip("A target Actor to launch the shockwave at.")]
+    [Tooltip("A target Actor to charge at.")]
     public Actor target;
 
     //The actorMovement that's going to be controlling the charge
@@ -120,7 +120,7 @@ public class PrideCharge : ActorAbilityFunction<Actor, IEnumerator>
             //take one step forward
             userMover.MoveActor(mD);
 
-            //if the user and target are touching...
+            //if the user and target alaunch the shockwave
             if(userCollider.IsTouching(targetCollider))
             {
                 //arbitrarily max out the charge timer to auto-end the charge
@@ -139,8 +139,8 @@ public class PrideCharge : ActorAbilityFunction<Actor, IEnumerator>
             //hurt them.
             arg.myHealth.takeDamage(chargeDamage);
 
-            var userActor = userMover.gameObject.GetComponent<Actor>();
-            followUp?.Invoke(ref userActor);
+            //var userActor = userMover.gameObject.GetComponent<Actor>();
+            followUp?.Invoke(ref arg);
         }
     }
 }

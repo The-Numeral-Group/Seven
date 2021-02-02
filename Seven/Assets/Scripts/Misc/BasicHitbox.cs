@@ -15,7 +15,7 @@ public class BasicHitbox : MonoBehaviour
     public bool hitAlreadyLanded = false;
 
     //METHODS--------------------------------------------------------------------------------------
-    void OnTriggerEnter2D(Collider2D collided)
+    protected virtual void OnTriggerEnter2D(Collider2D collided)
     {
         if(!hitAlreadyLanded)
         {

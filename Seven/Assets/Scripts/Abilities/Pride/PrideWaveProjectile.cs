@@ -100,6 +100,15 @@ public class PrideWaveProjectile : BasicHitbox
         Destroy(this.gameObject);
     }
 
+    protected override void OnTriggerEnter2D(Collider2D collided)
+    {
+        base.OnTriggerEnter2D(collided);
+        if(destroyOnHit)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     /*Starts the wave!*/
     public void Launch(Vector2 targetPoint)
     {
