@@ -23,23 +23,26 @@
     (i.e. abilities that belong to other actors).
     */
 
+    //PLAYER---------------------------------------------------------------------------------------
     public static string PLAYER_ATTACK      = "";
     public static string PLAYER_DODGE       = "";
     public static string PLAYER_SELECTED_A  = "";
     public static string PLAYER_SELECTED_B  = "";
 
+    //GLUTTONY-------------------------------------------------------------------------------------
     public static string GLUTTONY_BITE          = "";
     public static string GLUTTONY_CRUSH         = "";
     public static string GLUTTONY_PHASEZERO_SPECIAL = "";
     public static string GLUTTONY_PROJECTILE    = ""; 
-
-    public static string PRIDE_CLOSE_ATTACK = "";
-    public static string PRIDE_FAR_ATTACK   = "";
-    public static string PRIDE_SPECIAL      = "";
-    public static string GLUTTONY_PROJECTILE    = "";
     public static string GLUTTONY_PHASETWO_SPECIAL = "";
     public static string GLUTTONY_PHASETWO_PROJECTILE = "";  
 
+    //PRIDE----------------------------------------------------------------------------------------
+    public static string PRIDE_CLOSE_ATTACK = "";
+    public static string PRIDE_FAR_ATTACK   = "";
+    public static string PRIDE_SPECIAL      = "";
+
+    //GHOST KNIGHT---------------------------------------------------------------------------------
     public static string GHOSTKNIGHT_SLASH = "";
     public static string GHOSTKNIGHT_PROJECTILE = "";
     public static string GHOSTKNIGHT_SPECIAL = "";
