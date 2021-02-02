@@ -11,8 +11,8 @@ public class PrideShockwave : ActorAbilityFunction<GameObject, int>
         " can be configured by that game object).")]
     public PrideWaveProjectile waveProjectile;
 
-    [Tooltip("A target object to launch the shockwave at.")]
-    public GameObject target;
+    //[Tooltip("A target object to launch the shockwave at.")]
+    //public GameObject target;
 
     //A middleman variable to hold the wave projectile between methods
     private GameObject waveObj;
@@ -28,11 +28,31 @@ public class PrideShockwave : ActorAbilityFunction<GameObject, int>
             waveObj = 
                 Instantiate(waveObj, user.gameObject.transform.position, Quaternion.identity);
 
-            InternInvoke(target);
+            InternInvoke(GameObject.FindWithTag("Player"));
             StartCoroutine(coolDown(cooldownPeriod));
         }
         
     }
+
+    public override void Invoke(ref Actor user, params object[] args)
+    {
+        if(usable)
+        {
+            isFinished = false;
+            if(args[0] is GameObject)
+            {
+                InternInvoke((GameObject)args[0]);
+            }
+            else
+            {
+                Debug.LogWarning("PrideShockwave: invalid target. Projectile not launched");
+                isFinished = true;
+                return;
+            }
+            //the cooldown is started in InternInvoke
+        }
+    }
+
     /*Launch the projectile. The anticipated argument is the gameObject being shot at. The 
     gameObject may-or-may-not have an ActorHealth component.*/
     protected override int InternInvoke(params GameObject[] args)

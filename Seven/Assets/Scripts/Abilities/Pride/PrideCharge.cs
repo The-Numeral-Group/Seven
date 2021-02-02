@@ -26,8 +26,8 @@ public class PrideCharge : ActorAbilityFunction<Actor, IEnumerator>
     public float maxChargeTime = 10.0f;
 
     //an internal reference to the player, PrideCharge's only target.
-    [Tooltip("A target Actor to charge at.")]
-    public Actor target;
+    //[Tooltip("A target Actor to charge at.")]
+    //public Actor target;
 
     //The actorMovement that's going to be controlling the charge
     ActorMovement userMover;
@@ -52,6 +52,13 @@ public class PrideCharge : ActorAbilityFunction<Actor, IEnumerator>
     {
         if(usable)
         {
+            var target = GameObject.FindWithTag("Player").GetComponent<Actor>();
+            if(target == user)
+            {
+                Debug.LogWarning("PrideCharge: ability has no supported no-argument invoke" +
+                    " when the user is the player.");
+                return;
+            }
             isFinished = false;
             userMover = user.myMovement;
             StartCoroutine(InternInvoke(target));
@@ -66,13 +73,16 @@ public class PrideCharge : ActorAbilityFunction<Actor, IEnumerator>
         {
             isFinished = false;
             userMover = user.myMovement;
-            if(target == null && args[0] is Actor)
+            if(args[0] is Actor && args[0] as Actor != user)
             {
                 StartCoroutine(InternInvoke((Actor)args[0]));
             }
             else
             {
-                StartCoroutine(InternInvoke(target));
+                Debug.LogWarning("PrideCharge: ability cannot be targeted at its user");
+                isFinished = true;
+                return;
+                //StartCoroutine(InternInvoke(target));
             }
             //the cooldown is started in InternInvoke
         }

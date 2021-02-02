@@ -22,11 +22,13 @@ public class ActorWeakPoint : ActorHealth
     {
         if(ownerHealth == null)
         {
-            ownerHealth = this.gameObject.transform.parent.gameObject.GetComponent<ActorHealth>();
+            var parent = this.gameObject.transform.parent;
+            ownerHealth = parent != null ? parent.gameObject.GetComponent<ActorHealth>() : null;
 
             if(ownerHealth == null)
             {
-                Debug.LogError("ActorWeakPoint: Weakpoint GameObject can't take damage!");
+                Debug.LogWarning("ActorWeakPoint: Weakpoint GameObject starting with no owner," + 
+                    " damage cannot be sent anywhere.");
             }
         }
     }

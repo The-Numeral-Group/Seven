@@ -105,7 +105,8 @@ public class PrideActor : Actor
         //adjust speed if we (design) want the "almost as fast as player" thing
         if(overrideDefaultSpeed)
         {
-            this.myMovement.speed = player.myMovement.speed + speedModifier;
+            var newSpeed = player.myMovement.speed + speedModifier;
+            this.myMovement.speed = newSpeed >= 1f ? newSpeed : 1f;
         }
 
         /*adjust damage resistance if we (design) want Pride to only be hurt by
@@ -126,6 +127,10 @@ public class PrideActor : Actor
     // FixedUpdate is called once every 60th of a second, regardless of framerate
     void FixedUpdate()
     {
+        ///DEBUG
+        Debug.Log("Pride State: " + currentState);
+        currentState = State.WALK;
+        ///END DEBUG
         EvaluateState(currentState);
     }
 
@@ -225,6 +230,8 @@ public class PrideActor : Actor
         /*Fun Fact! Because positions are vectors, the normalized difference between
         posB (myPos) and posA (playerPos) is the direction from posA to posB.*/
         var directionToPlayer = (playerPos - myPos).normalized;
+
+        Debug.Log("Pride moving in this direction: " + directionToPlayer);
 
         this.myMovement.MoveActor(directionToPlayer);
     }
