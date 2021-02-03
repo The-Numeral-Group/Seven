@@ -47,7 +47,14 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     //this is the method called by an input press
     public void OnAttack()
     {
-        DoAttack();
+        if (ActiveSpeaker.ACTIVE_NPC)
+        {
+            gameObject.SendMessage("StartTalking");
+        }
+        else
+        {
+            DoAttack();
+        }
     }
 
     public override void DoAttack()
