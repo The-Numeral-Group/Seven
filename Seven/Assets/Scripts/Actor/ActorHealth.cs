@@ -54,6 +54,8 @@ public class ActorHealth : MonoBehaviour
             that the game vomits if we try to kill something that cannot die,
             but I just don't know how*/
             this.gameObject.SendMessage("DoActorDeath");//, null, RequireReciever);
+
+
         }
     }
 

@@ -37,8 +37,6 @@ public class GhostKnightActor : Actor
     private ActorAbility proj;
     private ActorAbility special;
 
-    private PointEffector2D pointEffector;
-
     public enum State
     {
         WAITING,
@@ -69,8 +67,6 @@ public class GhostKnightActor : Actor
         slash = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_SLASH];
         proj = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_PROJECTILE];
         special = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_SPECIAL];
-
-        pointEffector = this.gameObject.GetComponent<PointEffector2D>();
 
         ghostKnight = this.gameObject.GetComponent<GhostKnightActor>();
         ghostKnight.myHealth.vulnerable = true;
@@ -196,6 +192,8 @@ public class GhostKnightActor : Actor
         }
 
     }
+    
+    
     // Handles the physical contact with the player effect.
     // Knockback Effect is handled with Point Effector 2D Component.
     void OnTriggerEnter2D(Collider2D collider)
@@ -203,7 +201,6 @@ public class GhostKnightActor : Actor
         // Only collide with player
         if (collider.gameObject.tag == "Player")
         {
-            pointEffector.enabled = true;
 
             var playerHealth = collider.gameObject.GetComponent<ActorHealth>();
 
@@ -220,11 +217,6 @@ public class GhostKnightActor : Actor
                 }
                 playerHealth.takeDamage(damage);
             }
-        }
-        else
-        {
-            //Debug.Log(collider);
-            pointEffector.enabled = false;
         }
     }
 }

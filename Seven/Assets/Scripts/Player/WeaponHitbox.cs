@@ -15,10 +15,7 @@ public class WeaponHitbox : MonoBehaviour
         this.damage = 1;
     }
 
-    // Have to use TriggerEnter2D instead of ColliderEnter2D since
-    // bosses will have "Is Trigger" enalbed in their collider. 
-    // (This is true for ghost knight, not sure about other bosses)
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnCollisionEnter2D(Collision2D collider)
     {
         if (!wp)
         {

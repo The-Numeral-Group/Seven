@@ -7,52 +7,49 @@ using UnityEngine.UI;
 public class UIHealth : MonoBehaviour
 {
     public GameObject actor;
-    public Text health;
+    public Text text;
 
-    private ActorHealth actorHealth; 
-    private float currHealth;
+    private MultiActor multiActor;
+    private ActorHealth actorHealth;
 
     // Start is called before the first frame update
     void Start()
     {
-        this.actorHealth = actor.GetComponent<ActorHealth>();
+        // Way to check the type of gameObject.
+        // gameObject must have either tag "Player" or "Boss" to indicate which type.
+        if (actor.tag == "Player")
+        {
+            // If actor is player, simply just look for the ActorHealth script.
+            actorHealth = actor.GetComponent<ActorHealth>();
+        }
+        else if(actor.tag == "Boss")
+        {
+            // If actor is boss, get multiActor.
+            multiActor = actor.GetComponent<MultiActor>();          
+        }
+        else
+        {
+            Debug.Log("UIHealth: GameObject tag is missing!");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 actorPos = actor.transform.position;
-        Vector2 newPos = Vector2.zero;
-
-        // I (Mingun) know this is just hardcoding coordinates based on the actor type.
-        // Just keep in mind that this UI script is just temporary and will definitely be changed in the future.
-
-        if (actor.gameObject.tag == "Player")
+        if(actor == null)
         {
-            if (actorHealth.currentHealth >= 10)
-            {
-                newPos.x = actorPos.x + 0.5f;
-            }
-            else
-            {
-                newPos.x = actorPos.x + 0.8f;
-            }
-            newPos.y = actorPos.y + 1.2f;
+            Debug.Log("UIHealth: Actor is null!");
         }
-        else // Ghost Knight
+        else
         {
-            if (actorHealth.currentHealth >= 10)
+            // If boss, update actorHealth based on which actor it is currently on.
+            if(actor.tag == "Boss")
             {
-                newPos.x = actorPos.x + 0.5f;
+                var currentActor = multiActor.transform.parent;
+                actorHealth = currentActor.GetComponent<ActorHealth>();
             }
-            else
-            {
-                newPos.x = actorPos.x + 0.8f;
-            }
-            newPos.y = actorPos.y + 3.5f;
+            text.text = actor.tag + " HP: " + actorHealth.currentHealth.ToString();
         }
 
-        transform.position = newPos;
-        health.text = "HP: " + actorHealth.currentHealth.ToString();
     }
 }

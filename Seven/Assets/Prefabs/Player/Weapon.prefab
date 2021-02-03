@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4373617126883332891}
   - component: {fileID: 459280851514274025}
-  m_Layer: 13
+  m_Layer: 15
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,6 +157,10 @@ PrefabInstance:
     - target: {fileID: 5176166884178600380, guid: 2d1d2cf9730fb00449a35a37a735df5f, type: 3}
       propertyPath: m_Name
       value: WeaponHitbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 5176166884178600380, guid: 2d1d2cf9730fb00449a35a37a735df5f, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d1d2cf9730fb00449a35a37a735df5f, type: 3}

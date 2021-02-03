@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class GhostKnightSlash : ActorAbilityFunction<Actor, int>
 {
-    //The Slash Object that ghost knight will spawn.
-    public GameObject vSlash;
-    public GameObject hSlash;
     //How long this entire process should take.
     public float duration = 2f;
     //How long the attack animation lasts;
     public float animationDuration = 1f;
+
+    GhostKnightAnimationHandler ghostKnightAnimationHandler;
 
     public override void Invoke(ref Actor user)
     {
@@ -30,6 +29,9 @@ public class GhostKnightSlash : ActorAbilityFunction<Actor, int>
             this.duration = 2f;
         }
         StartCoroutine(args[0].myMovement.LockActorMovement(duration));
+
+        ghostKnightAnimationHandler = args[0].myAnimationHandler as GhostKnightAnimationHandler;
+
         int whichAtt = (int)Random.Range(1, 3);
         if (whichAtt == 1)
         {
@@ -42,30 +44,19 @@ public class GhostKnightSlash : ActorAbilityFunction<Actor, int>
         return 0;
     }
     
-    /* Right now, Slash spawns an object (red rectangle) to indicate the slash range
-       For the final version, Slash won't spawn any object. Instead, animation will
-       do the job for revealing the slash range. You can insert collider in animation 
-       and that will do the job for hurting the player */
     private void PerformVSlash(Actor user)
     {
-        Vector2 userPos = user.gameObject.transform.position;
-        userPos.x += user.myMovement.movementDirection.x * 3;
-        userPos.y += user.myMovement.movementDirection.y * 3;
-        GameObject ghostKnightSlash = Instantiate(this.vSlash, userPos, Quaternion.identity);
-        StartCoroutine(DestroySlashObject(ghostKnightSlash));
+        ghostKnightAnimationHandler.animateVSlash();
+        StartCoroutine(SlashFinished());
     }
     private void PerformHSlash(Actor user)
     {
-        Vector2 userPos = user.gameObject.transform.position;
-        userPos.x += user.myMovement.movementDirection.x * 3;
-        userPos.y += user.myMovement.movementDirection.y * 3;
-        GameObject ghostKnightSlash = Instantiate(this.hSlash, userPos, Quaternion.identity);
-        StartCoroutine(DestroySlashObject(ghostKnightSlash));
+        ghostKnightAnimationHandler.animateHSlash();
+        StartCoroutine(SlashFinished());
     }
-    private IEnumerator DestroySlashObject(GameObject obj)
+    private IEnumerator SlashFinished()
     {
         yield return new WaitForSeconds(this.duration);
-        Destroy(obj);
         isFinished = true;
     }
 }

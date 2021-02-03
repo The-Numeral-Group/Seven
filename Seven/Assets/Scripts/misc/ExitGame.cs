@@ -13,35 +13,20 @@ public class ExitGame : MonoBehaviour
     public static bool GAME_IS_PAUSED = false;
     public static bool GAME_IS_OVER = false;
 
-    private Actor boss;
-    private Actor player;
+    public GameObject boss;
+    public GameObject player;
 
     private ActorHealth bossHealth;
     private ActorHealth playerHealth;
 
+    private MultiActor bossActor;
+
     public void Awake()
-    {
-        var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
-        var bossObject = GameObject.FindGameObjectsWithTag("Boss")?[0];
+    {   
+        playerHealth = player.GetComponent<ActorHealth>();
 
-        if (playerObject == null)
-        {
-            Debug.LogWarning("ExitGame: Cannot find player");
-        }
-        else
-        {
-            player = playerObject.GetComponent<Actor>();
-        }
-
-        if (bossObject == null)
-        {
-            Debug.LogWarning("ExitGame: Cannot find boss");
-        }
-        else
-        {
-            boss = bossObject.GetComponent<Actor>();
-        }
-
+        bossActor = boss.GetComponent<MultiActor>();
+        
         Time.timeScale = 1f;
         GAME_IS_PAUSED = false;
         pauseMenuUI.SetActive(false);
@@ -52,7 +37,10 @@ public class ExitGame : MonoBehaviour
     // This is for tutorial scene
     public void Update()
     {
-        if (boss.myHealth.currentHealth == 0f || player.myHealth.currentHealth == 1f)
+        var currentActor = bossActor.transform.parent;
+        bossHealth = currentActor.GetComponent<ActorHealth>();
+
+        if (bossHealth.currentHealth == 0f || playerHealth.currentHealth == 0f)
         {
             GAME_IS_OVER = true;
             gameOverUI.SetActive(true);

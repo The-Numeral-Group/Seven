@@ -21,11 +21,11 @@ TagManager:
   - Background
   - Wall
   - Player
-  - 'GhostKnight '
-  - GhostKnight Projectile
+  - Boss
+  - Boss Effector
+  - Boss Projectile
+  - Boss Physical
   - Weapon
-  - 
-  - 
   - 
   - 
   - 

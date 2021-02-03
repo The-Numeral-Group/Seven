@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1116733311778260015}
   - component: {fileID: 1116733311778260000}
   - component: {fileID: 1116733311778260001}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: GhostKnightProjectile
   m_TagString: GhostKnight Projectile
   m_Icon: {fileID: 0}
