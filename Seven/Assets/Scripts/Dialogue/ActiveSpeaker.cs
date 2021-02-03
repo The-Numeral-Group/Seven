@@ -8,14 +8,11 @@ DO NOT ATTACH THIS OBJECT TO THE PLAYER*/
 [RequireComponent(typeof(Collider2D))]
 public class ActiveSpeaker : MonoBehaviour
 {
-    //Name of the speaker
-    [Tooltip("The name of the speaker.")]
-    public string speakerName = "Default";
     //The starting string used to initiate the yarn node
-    [Tooltip("The starting string used to initiate the yarn node. Should be the name of the node.")]
+    [Tooltip("The starting string used to initiate the yarn node. Should be the name of the node")]
     public string yarnStartNode = "Start";
     //The actual yarn diablogue file the speaker will read from
-    [Tooltip("The yarn file the speaker will read from.")]
+    [Tooltip("The yarn file the speaker will read from")]
     public YarnProgram yarnDialogue;
     //A reference to the the most valid talking target for the player
     public static ActiveSpeaker ACTIVE_NPC { get; private set; }
@@ -29,9 +26,6 @@ public class ActiveSpeaker : MonoBehaviour
     GameObject chatIndicatorPrefab = null;
     //The instantiated chat object from the prefab
     GameObject chatIndicator;
-
-    //Temporary reference variable
-    public DialogueMenu dm;
 
     //Setup non monobehaviour member variables
     void Awake()
@@ -62,7 +56,6 @@ public class ActiveSpeaker : MonoBehaviour
                 chatIndicator.transform.localPosition.z);
             chatIndicator.SetActive(false);
         }
-        dm.dialogueRunner.Add(yarnDialogue);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
