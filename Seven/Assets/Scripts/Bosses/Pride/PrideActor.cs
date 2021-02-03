@@ -40,6 +40,9 @@ public class PrideActor : Actor
     [Tooltip("How much slower Pride is than the player.")]
     public float speedModifier = -5f;
 
+    [Tooltip("How fast Pride should be at the bare minimum.")]
+    public float speedMinimum = 2f;
+
     [Tooltip("Whether or not Pride should override his default speed with the player's speed" + 
         " but slower.")]
     public bool overrideDefaultSpeed = true;
@@ -106,7 +109,7 @@ public class PrideActor : Actor
         if(overrideDefaultSpeed)
         {
             var newSpeed = player.myMovement.speed + speedModifier;
-            this.myMovement.speed = newSpeed >= 1f ? newSpeed : 1f;
+            this.myMovement.speed = newSpeed >= speedMinimum ? newSpeed : speedMinimum;
         }
 
         /*adjust damage resistance if we (design) want Pride to only be hurt by
@@ -129,7 +132,7 @@ public class PrideActor : Actor
     {
         ///DEBUG
         Debug.Log("Pride State: " + currentState);
-        currentState = State.WALK;
+        //currentState = State.WALK;
         ///END DEBUG
         EvaluateState(currentState);
     }

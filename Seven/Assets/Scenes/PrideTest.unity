@@ -770,10 +770,10 @@ MonoBehaviour:
   cooldownPeriod: 3
   abilityName: Punch
   invokeBlankWhenBadArguments: 1
-  startingWeaponObject: {fileID: 29805943602572810, guid: 7de7503086c608268b306ad7ffadce4e, type: 3}
+  startingWeaponObject: {fileID: 3869898009536138324, guid: 208d7a05a6da0f00786a9386d3137408, type: 3}
   duration: 3
-  weaponPositionScale: {x: 0.1, y: 0.1}
-  damagePerHitbox: 
+  weaponPositionScale: {x: 7.6, y: 7.5}
+  damagePerHitbox: 0a000000
 --- !u!114 &7105809578875763626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -816,7 +816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453e150335b52ac4884472bf0e1bd9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 5
 --- !u!114 &8497438267143715085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -971,6 +971,7 @@ MonoBehaviour:
   finalSize: 0.25
   shrinkTime: 1
   speedModifier: -5
+  speedMinimum: 2
   overrideDefaultSpeed: 1
   overrideDamageImmunity: 0
   currentState: 0

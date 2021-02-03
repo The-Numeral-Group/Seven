@@ -137,7 +137,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""c7945362-a0d5-41b5-a234-a13975e447b1"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/o"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse;Mouse and Keyboard"",
@@ -148,7 +148,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""372bd0c5-9c2a-493b-b467-9cf234185897"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/t"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse;Mouse and Keyboard"",
@@ -159,7 +159,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""72617d8b-f27d-4c4d-9b97-d82d7f8b607a"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse;Mouse and Keyboard"",
@@ -170,7 +170,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""38bb1711-2972-4d5b-bfaf-b086a05db939"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse;Mouse and Keyboard"",
