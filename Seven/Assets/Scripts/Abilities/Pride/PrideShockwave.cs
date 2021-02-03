@@ -26,7 +26,7 @@ public class PrideShockwave : ActorAbilityFunction<GameObject, int>
         {
             isFinished = false;
             waveObj = 
-                Instantiate(waveObj, user.gameObject.transform.position, Quaternion.identity);
+                Instantiate(this.gameObject, user.gameObject.transform.position, Quaternion.identity);
 
             InternInvoke(GameObject.FindWithTag("Player"));
             StartCoroutine(coolDown(cooldownPeriod));

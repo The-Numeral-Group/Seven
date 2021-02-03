@@ -26,7 +26,7 @@ public class PrideRubbleThrow : ActorAbilityFunction<GameObject, int>
         {
             isFinished = false;
             rubbleObj = 
-                Instantiate(rubbleObj, user.gameObject.transform.position, Quaternion.identity);
+                Instantiate(this.gameObject, user.gameObject.transform.position, Quaternion.identity);
 
             InternInvoke(target);
             StartCoroutine(coolDown(cooldownPeriod));

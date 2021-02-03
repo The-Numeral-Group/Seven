@@ -252,7 +252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7512802453659592075, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.7946
+      value: -7.3
       objectReference: {fileID: 0}
     - target: {fileID: 7512802453659592075, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -296,11 +296,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7512802453659592075, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7512802453659592075, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
@@ -767,12 +767,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c006b1f6d0a9cd261b30cd24244da098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 3
+  cooldownPeriod: 10
   abilityName: Punch
   invokeBlankWhenBadArguments: 1
-  startingWeaponObject: {fileID: 3869898009536138324, guid: 208d7a05a6da0f00786a9386d3137408, type: 3}
-  duration: 3
-  weaponPositionScale: {x: 7.6, y: 7.5}
+  startingWeaponObject: {fileID: 9164763553348272604, guid: 156b463534977e54199a7c7bdbc713c6, type: 3}
+  duration: 5
+  weaponPositionScale: {x: 2, y: 2}
   damagePerHitbox: 0a000000
 --- !u!114 &7105809578875763626
 MonoBehaviour:
@@ -789,7 +789,7 @@ MonoBehaviour:
   cooldownPeriod: 5
   abilityName: Shockwave
   invokeBlankWhenBadArguments: 1
-  waveProjectile: {fileID: 327392200524578098, guid: e6602bd27c8a41152837f8df50672888, type: 3}
+  waveProjectile: {fileID: 4207768581422549534, guid: b37626e6f681f7c279be6dae70fb7cc3, type: 3}
 --- !u!114 &8497438267143715080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -921,7 +921,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8497438267143715191}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.052676, y: 0.8170062, z: -0.036017545}
+  m_LocalPosition: {x: 11.89, y: 0.8170062, z: -0.036017545}
   m_LocalScale: {x: 25, y: 25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -943,8 +943,8 @@ MonoBehaviour:
     m_keys: []
     m_values: []
   Close: {fileID: 3532819360141832876}
-  Far: {fileID: 7105809578875763626}
-  Special: {fileID: 8948012962348000186}
+  Far: {fileID: 0}
+  Special: {fileID: 0}
 --- !u!114 &8497438267143715187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -966,8 +966,8 @@ MonoBehaviour:
   - {fileID: 572218196}
   weakSpotGate: 3
   specialAttackGate: 7
-  waveRange: 60
-  punchRange: 25
+  waveRange: 1000
+  punchRange: 10
   finalSize: 0.25
   shrinkTime: 1
   speedModifier: -5

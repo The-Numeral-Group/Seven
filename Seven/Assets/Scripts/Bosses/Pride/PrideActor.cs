@@ -131,8 +131,8 @@ public class PrideActor : Actor
     void FixedUpdate()
     {
         ///DEBUG
-        Debug.Log("Pride State: " + currentState);
         //currentState = State.WALK;
+        Debug.Log("Pride State: " + currentState);
         ///END DEBUG
         EvaluateState(currentState);
     }
@@ -246,6 +246,8 @@ public class PrideActor : Actor
     State decideNextState()
     {
         var distanceToPlayer = Vector2.Distance(player.transform.position, this.gameObject.transform.position);
+        ///DEBUG
+        Debug.Log("Dist to player: " + distanceToPlayer);
         
         State nextState;  
 
@@ -276,6 +278,11 @@ public class PrideActor : Actor
         {
             ++weakSpotsDestroyed;
             StartCoroutine(ShrinkEffect(shrinkTime));
+
+            if(weakSpotsDestroyed >= weakSpotGate)
+            {
+                Debug.Log("PrideAcctor: Pride should now phase change, but that'll be done later");
+            }
         }
     }
 

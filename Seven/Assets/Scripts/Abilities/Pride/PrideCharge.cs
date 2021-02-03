@@ -125,7 +125,7 @@ public class PrideCharge : ActorAbilityFunction<Actor, IEnumerator>
             var targetPos = arg.gameObject.transform.position;
 
             //calculate the normalized direction from user to target
-            var mD = (chargePos - targetPos).normalized;
+            var mD = (targetPos - chargePos).normalized;
 
             //take one step forward
             userMover.MoveActor(mD);
@@ -146,11 +146,12 @@ public class PrideCharge : ActorAbilityFunction<Actor, IEnumerator>
         //if the target and user are still touching...
         if(userCollider.IsTouching(targetCollider))
         {
+            Debug.Log("Charge connected");
             //hurt them.
             arg.myHealth.takeDamage(chargeDamage);
 
-            //var userActor = userMover.gameObject.GetComponent<Actor>();
-            followUp?.Invoke(ref arg);
+            var userActor = userMover.gameObject.GetComponent<Actor>();
+            followUp?.Invoke(ref userActor);
         }
     }
 }

@@ -25,6 +25,9 @@ public class Actor : MonoBehaviour
         //pros and cons to both sides, so whatever you all prefer between the two I am down for.
         GameObject facingDirection = new GameObject("FaceAnchor");
         facingDirection.transform.parent = this.gameObject.transform;
+        ///DEBUG
+        facingDirection.transform.localPosition = new Vector3(0,0,0);
+        ///DEBUG
         faceAnchor = facingDirection.gameObject.transform;
         this.myAbilityInitiator = this.gameObject.GetComponent<ActorAbilityInitiator>();
         this.myEffectHandler = this.gameObject.GetComponent<ActorEffectHandler>();
