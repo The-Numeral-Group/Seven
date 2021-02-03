@@ -10,6 +10,7 @@ TagManager:
   - Boss
   - Sin
   - Player Weapon
+  - UI
   layers:
   - Default
   - TransparentFX

@@ -1,0 +1,9 @@
+title: TestNpc.Start
+tags: 
+colorID: 0
+position: 319,146
+---
+TestNpc: Who are you?
+-> Hello.
+    TestNpc: Don't touch me.
+===

@@ -47,7 +47,14 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     //this is the method called by an input press
     public void OnAttack()
     {
-        DoAttack();
+        if (ActiveSpeaker.ACTIVE_NPC)
+        {
+            gameObject.SendMessage("StartTalking");
+        }
+        else 
+        {
+            DoAttack();
+        }
     }
 
     public override void DoAttack()
@@ -55,7 +62,7 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
         /* Casting ActorAnimationHandler to PlayerAnimationHandler to avoid 
          * having all the child's functions requierd to be visible in the parent class*/
         PlayerAnimationHandler playerAnimationHandler = myAnimationHandler as PlayerAnimationHandler;
-        playerAnimationHandler.animateAttack();
+        //playerAnimationHandler.animateAttack();
         playerAttack.Invoke(ref userActor);
     }
 
