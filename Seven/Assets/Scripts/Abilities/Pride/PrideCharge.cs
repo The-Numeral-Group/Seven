@@ -95,6 +95,7 @@ public class PrideCharge : ActorAbilityFunction<Actor, IEnumerator>
         usable = false;
         origin = userMover.gameObject.transform.position;
         yield return StartCoroutine(AbilityFunc(args[0]));
+        isFinished = true;
         yield return StartCoroutine(coolDown(cooldownPeriod));
     }
 
@@ -142,6 +143,9 @@ public class PrideCharge : ActorAbilityFunction<Actor, IEnumerator>
                 chargeTimer += Time.deltaTime;
             }
         }
+
+        //return the user to their original speed;
+        userMover.speed = originalSpeed;
 
         //if the target and user are still touching...
         if(userCollider.IsTouching(targetCollider))
