@@ -178,7 +178,7 @@ public class PrideActor : Actor
                 if(wave.getUsable())
                 {
                     currAbility = wave;
-                    wave.Invoke(ref pride);
+                    wave.Invoke(ref pride, player);
                     specialAttackCounter++;
                 }
 
@@ -192,7 +192,7 @@ public class PrideActor : Actor
                 if(punch.getUsable())
                 {
                     currAbility = punch;
-                    punch.Invoke(ref pride);
+                    punch.Invoke(ref pride, player);
                     specialAttackCounter++;
                 }
 
@@ -206,7 +206,7 @@ public class PrideActor : Actor
                 if(special.getUsable())
                 {
                     currAbility = special;
-                    special.Invoke(ref pride);
+                    special.Invoke(ref pride, player);
                 }
 
                 currentState = State.WALK;

@@ -155,7 +155,7 @@ public class PrideCharge : ActorAbilityFunction<Actor, IEnumerator>
             arg.myHealth.takeDamage(chargeDamage);
 
             var userActor = userMover.gameObject.GetComponent<Actor>();
-            followUp?.Invoke(ref userActor);
+            followUp?.Invoke(ref userActor, arg);
         }
     }
 }
