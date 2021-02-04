@@ -17,6 +17,7 @@ public class WeaponHitbox : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collider)
     {
+        Debug.Log(collider.gameObject);
         if (!wp)
         {
             Debug.Log("Error: This WeaponHitbox is not the grandchild of an object with a WeaponAbility Script");

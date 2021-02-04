@@ -84,7 +84,7 @@ public class GhostKnightActor : Actor
     {
         EvaluateState(currentState);
         yield return new WaitForSeconds(this.introDelay);
-        attackEnabled = true;
+        this.attackEnabled = true;
     }
 
     // Update is called once per frame
@@ -148,6 +148,7 @@ public class GhostKnightActor : Actor
         var directionToPlayer = (playerPos - myPos).normalized;
 
         this.myMovement.MoveActor(directionToPlayer);
+
     }
     void checkIfAbilityDone()
     {

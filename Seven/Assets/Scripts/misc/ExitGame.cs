@@ -69,7 +69,7 @@ public class ExitGame : MonoBehaviour
 
     void OnResume()
     {
-        if(GAME_IS_PAUSED)
+        if (GAME_IS_PAUSED)
         {
             Resume();
         }
