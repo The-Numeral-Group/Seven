@@ -8,12 +8,12 @@ public class MenuManager : MonoBehaviour
     //Reference to the dialoguemenu. Reference expected to be set through inspector
     [SerializeField]
     [Tooltip("Reference to the dialoguemenu object.")]
-    DialogueMenu dialogueMenu;
+    DialogueMenu dialogueMenu = null;
     //static reference to the Dialogue menu;
     public static DialogueMenu DIALOGUE_MENU;
 
     //Set static members to the inspector references
-    void Start()
+    void Awake()
     {
         DIALOGUE_MENU = dialogueMenu;
         if (!DIALOGUE_MENU)
