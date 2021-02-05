@@ -234,7 +234,9 @@ public class PrideActor : Actor
         posB (myPos) and posA (playerPos) is the direction from posA to posB.*/
         var directionToPlayer = (playerPos - myPos).normalized;
 
+        ///DEBUG
         Debug.Log("Pride moving in this direction: " + directionToPlayer);
+        ///DEBUG
 
         this.myMovement.MoveActor(directionToPlayer);
     }
@@ -247,7 +249,8 @@ public class PrideActor : Actor
     {
         var distanceToPlayer = Vector2.Distance(player.transform.position, this.gameObject.transform.position);
         ///DEBUG
-        Debug.Log("Dist to player: " + distanceToPlayer);
+        //Debug.Log("Dist to player: " + distanceToPlayer);
+        ///DEBUG
         
         State nextState;  
 

@@ -56,7 +56,7 @@ public class PrideRubbleProjectile : MonoBehaviour
 
     /*What happens when things enter this object's collider*/
     void OnCollisionEnter2D(Collision2D collidedObject)
-    {
+    {   
         //if the collided thing has an actorHealth, damage it
         collidedObject.gameObject.GetComponent<ActorHealth>()?.takeDamage(damageValue);
 
@@ -82,7 +82,7 @@ public class PrideRubbleProjectile : MonoBehaviour
         /*An explicit cast is added here, even though Vector3 implicitly converts
         to Vector2, to remove the ambiguity between subtracting the this.gameObject's position as
         a Vector3 or a Vector2*/
-        launchDirection = ((Vector2)this.gameObject.transform.position - targetPoint).normalized;
+        launchDirection = (targetPoint - (Vector2)this.gameObject.transform.position).normalized;
         //S H M O O V E
         moveFunction = new Action<Vector2>(InternalMovement);
     }

@@ -76,7 +76,8 @@ public class ActorMovement : MonoBehaviour
             movementController.Move(moveComposite);
 
             //update the direction the actor is facing
-            this.gameObject.SendMessage("DoActorUpdateFacing", this.movementDirection);
+            this.gameObject.SendMessage("DoActorUpdateFacing", 
+                this.movementDirection, SendMessageOptions.DontRequireReceiver);
 
             /*Only needed if character can still move. If movement is locked, we assume
             that the drag needs to stop after this movement instance*/
