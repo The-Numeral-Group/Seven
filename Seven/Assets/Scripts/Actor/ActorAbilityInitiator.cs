@@ -14,7 +14,7 @@ public class ActorAbilityInitiator : MonoBehaviour
     private void Start()
     {
         userActor = this.gameObject.GetComponent<Actor>();
-        myAnimationHandler = userActor.myAnimationHandler;
+        //myAnimationHandler = userActor.myAnimationHandler;
     }
 
     public virtual void DoAttack()
