@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7512802453659592065, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7512802453659592075, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -258,7 +262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
       propertyPath: minZoom
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
       propertyPath: breakingDistance
@@ -270,6 +274,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
       propertyPath: targetPOIs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1043959556}
+    - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
+      propertyPath: targetPOIs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1043959556}
+    - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
+      propertyPath: targetPOIs.Array.data[2]
       value: 
       objectReference: {fileID: 1043959556}
     - target: {fileID: 8339427917257392395, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
@@ -329,7 +341,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 4.16
+  m_Radius: 39.45
 --- !u!212 &1043959555
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -555,9 +567,9 @@ MonoBehaviour:
   m_MoveRepeatRate: 0.1
   m_ActionsAsset: {fileID: -944628639613478452, guid: f2b25c0f2308d9d488d05d99d74e1d6c, type: 3}
   m_PointAction: {fileID: -1103300847216331073, guid: f2b25c0f2308d9d488d05d99d74e1d6c, type: 3}
-  m_MoveAction: {fileID: 0}
-  m_SubmitAction: {fileID: 0}
-  m_CancelAction: {fileID: 0}
+  m_MoveAction: {fileID: 3228188121958084754, guid: f2b25c0f2308d9d488d05d99d74e1d6c, type: 3}
+  m_SubmitAction: {fileID: -4375518172513173372, guid: f2b25c0f2308d9d488d05d99d74e1d6c, type: 3}
+  m_CancelAction: {fileID: -4082406018292775676, guid: f2b25c0f2308d9d488d05d99d74e1d6c, type: 3}
   m_LeftClickAction: {fileID: -7694304127354689564, guid: f2b25c0f2308d9d488d05d99d74e1d6c, type: 3}
   m_MiddleClickAction: {fileID: 0}
   m_RightClickAction: {fileID: 0}
@@ -747,13 +759,13 @@ PrefabInstance:
       propertyPath: dialogueMenu
       value: 
       objectReference: {fileID: 1600650294}
+    - target: {fileID: 8081415500026683232, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
+      propertyPath: canvasTransform
+      value: 
+      objectReference: {fileID: 1215875191}
     - target: {fileID: 8081415500026683233, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
       propertyPath: m_Name
       value: MenuManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 8081415500026683233, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8081415500026683247, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
       propertyPath: m_LocalPosition.x

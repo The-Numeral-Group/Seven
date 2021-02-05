@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueMenu: {fileID: 0}
+  canvasTransform: {fileID: 0}
