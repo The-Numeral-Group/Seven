@@ -6,6 +6,7 @@ using UnityEngine;
 DO NOT ATTACH THIS OBJECT TO THE PLAYER*/
 //Credit for this concept: https://www.youtube.com/watch?v=CJu0ObGDQHY&t=317s
 [RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class ActiveSpeaker : MonoBehaviour
 {
     //Name of the speaker
@@ -24,11 +25,15 @@ public class ActiveSpeaker : MonoBehaviour
     //Offset the chat indicator object from the speaker
     [Tooltip("How much you want to offset the chat indicator from the speaker.")]
     public Vector2 offset = new Vector2(0, 5);
+    //Reference to the objects sprite renderer
+    public SpriteRenderer spriteInfo { get; private set;}
     //A gameobject sprite that shows the npc can be talked with.
     [SerializeField]
     GameObject chatIndicatorPrefab = null;
     //The instantiated chat object from the prefab
     GameObject chatIndicator;
+    //flag used to tell if this npc is talking.
+    bool isTalking;
 
     //Setup non monobehaviour member variables
     void Awake()
@@ -43,8 +48,7 @@ public class ActiveSpeaker : MonoBehaviour
         if (this.gameObject.CompareTag("Player"))
         {
             Debug.LogWarning("ActiveSpeaker: This component should not be attached to the player");
-            var activeSpeaker = this.gameObject.GetComponent<ActiveSpeaker>();
-            activeSpeaker.enabled = false;
+            this.enabled = false;
         }
         else if (!chatIndicatorPrefab)
         {
@@ -61,6 +65,7 @@ public class ActiveSpeaker : MonoBehaviour
             chatIndicator.SetActive(false);
 
             MenuManager.DIALOGUE_MENU.dialogueRunner.Add(yarnDialogue);
+            spriteInfo = GetComponent<SpriteRenderer>();
         }
     }
 
@@ -92,5 +97,11 @@ public class ActiveSpeaker : MonoBehaviour
     void SetActiveSpeaker(bool value)
     {
         ACTIVE_NPC = value ? this : null;
+    }
+
+    public void SetIsTalking(bool value)
+    {
+        isTalking = value;
+        SetChatIndicator(!value);
     }
 }
