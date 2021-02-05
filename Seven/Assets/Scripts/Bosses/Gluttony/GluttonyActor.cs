@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
-GluttonyActor's main function is to run the State Machine that powers
-Gluttony's boss fight
-*/
+/*GluttonyActor's main function is to run the State Machine that powers
+Gluttony's boss fight*/
+//[RequireComponent(typeof(Effector2D))]
 public class GluttonyActor : Actor
 {
     [Tooltip("Controls how many times should Gluttony use normal attacks before using it's special.")]
@@ -36,13 +35,14 @@ public class GluttonyActor : Actor
         NULL,
     }
 
+    bool changingPhase = false;
+
     // Start is called before the first frame update
     new void Start()
     {
         base.Start();
 
         var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
-
         if(playerObject == null)
         {
             Debug.LogWarning("GluttonyActor: Gluttony can't find the player!");
@@ -53,12 +53,20 @@ public class GluttonyActor : Actor
         }
 
         gluttony = this.gameObject.GetComponent<GluttonyActor>();
-        gluttony.myHealth.vulnerable = true; 
+        gluttony.myHealth.vulnerable = true;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        //might need to move this check outside of fixed update;
+        if (this.myHealth.currentHealth <= 5 && !changingPhase)
+        {
+            changingPhase = true;
+            System.Tuple<Actor, System.Action<Actor>> p2 = 
+                new System.Tuple<Actor, System.Action<Actor>>(gluttony, null);
+            gameObject.SendMessage("NextPhase", p2);
+        }
         EvaluateState(currentState);
     }
 
@@ -94,7 +102,7 @@ public class GluttonyActor : Actor
                 far enough. If Crush isn't open at the time, Gluttony will just keep walking*/
                 var crush = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_CRUSH];
                 currAbility = crush;
-                crush.Invoke(ref gluttony);
+                crush.Invoke(ref gluttony, player);
                 specialAttackCounter++;
 
                 currentState = State.WALK;
@@ -106,7 +114,7 @@ public class GluttonyActor : Actor
                 var bite = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_BITE];
                 Debug.Log("In Bite");
                 currAbility = bite;
-                bite.Invoke(ref gluttony);
+                bite.Invoke(ref gluttony, player);
                 specialAttackCounter++;
 
                 currentState = State.WALK;
@@ -116,7 +124,7 @@ public class GluttonyActor : Actor
                 var special = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_PHASEZERO_SPECIAL];
                 Debug.Log("In Special Ability");
                 currAbility = special;
-                special.Invoke(ref gluttony);
+                special.Invoke(ref gluttony, player);
 
                 currentState = State.WALK;
                 break;
@@ -145,11 +153,11 @@ public class GluttonyActor : Actor
         var myPos = this.gameObject.transform.position;
         var playerPos = player.gameObject.transform.position;
 
-        /*Fun Fact! Because positions are vectors, the normalized difference between
-        posA (myPos) and posB (playerPos) is the direction from posA to posB.*/
-        var directionToPlayer = (playerPos - myPos).normalized;
+        var directionToPlayer = playerPos - myPos;
+        var playerDirection = player.myMovement.movementDirection * player.myMovement.speed;
+        var travelDirection = new Vector2(directionToPlayer.x, directionToPlayer.y) + playerDirection;
 
-        this.myMovement.MoveActor(directionToPlayer);
+        this.myMovement.MoveActor(travelDirection.normalized);
     }
 
     State decideNextState()
@@ -210,5 +218,24 @@ public class GluttonyActor : Actor
         }
 
         return nextState;
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.tag != "Player")
+        {
+            return;
+        }
+        //bounceEffector.enabled = true;
+        var enemyHealth = collider.gameObject.GetComponent<ActorHealth>();
+
+        //or a weakpoint if there's no regular health
+        if(enemyHealth == null){collider.gameObject.GetComponent<ActorWeakPoint>();}
+
+        //if the enemy can take damage (if it has an ActorHealth component),
+        //hurt them. Do nothing if they can't take damage.
+        if(enemyHealth != null){
+            enemyHealth.takeDamage(1f);
+        }
     }
 }
