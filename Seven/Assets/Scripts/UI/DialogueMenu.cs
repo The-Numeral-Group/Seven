@@ -8,4 +8,6 @@ public class DialogueMenu : BaseUI
     public DialogueRunner dialogueRunner;
     //Set the speakerNameTextBox. Expected to be set through Inspector.
     public Text speakerNameTextBox;
+    //reference to the chat bubble;
+    public RectTransform chatBubble;
 }
