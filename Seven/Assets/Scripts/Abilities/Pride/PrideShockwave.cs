@@ -9,7 +9,7 @@ public class PrideShockwave : ActorAbilityFunction<GameObject, int>
     //FIELDS---------------------------------------------------------------------------------------
     [Tooltip("The shockwave projectile that this ability launches (the effects of the shockwave" + 
         " can be configured by that game object).")]
-    public PrideWaveProjectile waveProjectile;
+    public GameObject waveProjectile;
 
     //[Tooltip("A target object to launch the shockwave at.")]
     //public GameObject target;
@@ -26,7 +26,7 @@ public class PrideShockwave : ActorAbilityFunction<GameObject, int>
         {
             isFinished = false;
             waveObj = 
-                Instantiate(this.gameObject, user.gameObject.transform.position, Quaternion.identity);
+                Instantiate(waveProjectile, user.gameObject.transform.position, Quaternion.identity);
 
             InternInvoke(GameObject.FindWithTag("Player"));
             StartCoroutine(coolDown(cooldownPeriod));
@@ -38,18 +38,22 @@ public class PrideShockwave : ActorAbilityFunction<GameObject, int>
     {
         if(usable)
         {
+            GameObject target = null;
+
             isFinished = false;
+            waveObj = 
+                Instantiate(waveProjectile, user.faceAnchor.position, Quaternion.identity);
+
             if(args[0] is GameObject)
             {
-                InternInvoke((GameObject)args[0]);
+                target = args[0] as GameObject;
             }
-            else
+            else if(args[0] is MonoBehaviour)
             {
-                Debug.LogWarning("PrideShockwave: invalid target. Projectile not launched");
-                isFinished = true;
-                return;
+                target = (args[0] as MonoBehaviour).gameObject;
             }
-            //the cooldown is started in InternInvoke
+            InternInvoke(target);
+            StartCoroutine(coolDown(cooldownPeriod));
         }
     }
 
@@ -57,10 +61,19 @@ public class PrideShockwave : ActorAbilityFunction<GameObject, int>
     gameObject may-or-may-not have an ActorHealth component.*/
     protected override int InternInvoke(params GameObject[] args)
     {
-        waveObj.GetComponent<PrideWaveProjectile>().Launch(args[0].transform.position);
-        
-        isFinished = true;
+        if(args[0] == null)
+        {
+            Debug.LogWarning("PrideShockwave: can't launch projectile without a target");
+            Destroy(waveObj);
+            isFinished = true;
 
+            return -1;
+        }
+        else
+        {
+            waveObj.GetComponent<PrideWaveProjectile>()?.Launch(args[0].transform.position);
+            isFinished = true;
+        }
         return 0;
     }
 }

@@ -71,7 +71,7 @@ public class PrideRubbleThrow : ActorAbilityFunction<GameObject, int>
         }
         else
         {
-            rubbleObj.GetComponent<PrideRubbleProjectile>().Launch(args[0].transform.position);
+            rubbleObj.GetComponent<PrideRubbleProjectile>()?.Launch(args[0].transform.position);
             isFinished = true;
         }
         return 0;

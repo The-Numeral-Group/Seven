@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(ActorMovement))]
 public class PrideWaveProjectile : BasicHitbox
 {
@@ -86,11 +87,15 @@ public class PrideWaveProjectile : BasicHitbox
 
         //if the wave still exists, gradually increase it (since it's supposed to act like a cone)
         var currentWaveWidth = this.gameObject.transform.localScale.x;
-        this.gameObject.transform.localScale = new Vector3(
-            Mathf.Lerp(currentWaveWidth, maxWaveWidth, waveGrowth),
+        if(currentWaveWidth < maxWaveWidth)
+        {
+            this.gameObject.transform.localScale = new Vector3(
+            currentWaveWidth + waveGrowth,
             this.gameObject.transform.localScale.y,
             this.gameObject.transform.localScale.z
         );
+        }
+        
     }
 
     /*Simple coroutine timer for tracking the expiration time of the wave*/
@@ -116,7 +121,7 @@ public class PrideWaveProjectile : BasicHitbox
         origin = this.gameObject.transform.position;
 
         //set travel direction
-        launchDirection = (origin - targetPoint).normalized;
+        launchDirection = (targetPoint - origin).normalized;
 
         //rotate towards the thing
         this.gameObject.transform.rotation = 
