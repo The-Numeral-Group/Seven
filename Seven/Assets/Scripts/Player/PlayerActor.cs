@@ -29,12 +29,14 @@ public class PlayerActor : Actor
     public void OnDialogueEnd()
     {
         this.isTalking = false;
+        ActiveSpeaker.ACTIVE_NPC.SetIsTalking(false);
         playerInput.SwitchCurrentActionMap("Player");
         this.myHealth.enabled = true;
     }
 
     /*Engages the dialogue sequence. Disables the players health component, and sets its
-    movement direction to 0. Essentially locks the player in place and makes them invulnerable.*/
+    movement direction to 0. Essentially locks the player in place and makes them invulnerable.
+    Requires ActiveSpeaker to have been set.*/
     public void StartTalking()
     {
         if (isTalking)
@@ -47,7 +49,8 @@ public class PlayerActor : Actor
         this.myMovement.MoveActor(Vector2.zero);
         this.myHealth.enabled = false;
 
-        MenuManager.DIALOGUE_MENU.speakerNameTextBox.text = ActiveSpeaker.ACTIVE_NPC.speakerName;
+        //MenuManager.DIALOGUE_MENU.speakerNameTextBox.text = ActiveSpeaker.ACTIVE_NPC.speakerName;
+        ActiveSpeaker.ACTIVE_NPC.SetIsTalking(true);
         MenuManager.DIALOGUE_MENU.dialogueRunner.StartDialogue(ActiveSpeaker.ACTIVE_NPC.yarnStartNode);
     }
 }
