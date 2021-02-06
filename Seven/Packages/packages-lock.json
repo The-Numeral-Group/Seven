@@ -203,13 +203,13 @@
       }
     },
     "dev.yarnspinner.unity": {
-      "version": "1.2.7",
+      "version": "https://github.com/YarnSpinnerTool/YarnSpinner-Unity.git",
       "depth": 0,
-      "source": "registry",
+      "source": "git",
       "dependencies": {
         "com.unity.textmeshpro": "1.4.1"
       },
-      "url": "https://package.openupm.com"
+      "hash": "e050b45804f57dece1ee04b562fa7bdc46f486c4"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
