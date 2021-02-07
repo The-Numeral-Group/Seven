@@ -56,7 +56,7 @@ public class GluttonyP2Actor : Actor
                 {
                     break;
                 }
-                else
+                else if (player != null)
                 {
                     stepTowardsPlayer();
                     currAbility = null;

@@ -113,6 +113,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5187959127492769960, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
+      propertyPath: gluttonyEffector
+      value: 
+      objectReference: {fileID: 6452026514318370897}
     - target: {fileID: 5187959127492769963, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
       propertyPath: weaponPositionScale.x
       value: 3
@@ -295,6 +299,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab39d40d38276bc41a91a28abfe88d21, type: 3}
+--- !u!1 &6452026514318370897 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3785848153828190862, guid: ab39d40d38276bc41a91a28abfe88d21, type: 3}
+  m_PrefabInstance: {fileID: 7854342863401140959}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1191728069231222763 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9046013549415357748, guid: ab39d40d38276bc41a91a28abfe88d21, type: 3}
