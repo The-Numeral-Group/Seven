@@ -384,6 +384,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gluttony
       objectReference: {fileID: 0}
+    - target: {fileID: 4910926297128836596, guid: 14cb367d77b0fb44ca8f6c8563dc4baa, type: 3}
+      propertyPath: specialAttackGate
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14cb367d77b0fb44ca8f6c8563dc4baa, type: 3}
 --- !u!1 &519420028
