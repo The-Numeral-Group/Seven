@@ -37,7 +37,7 @@ public class ActorHealth : MonoBehaviour
             return;
         }
         var damage = Mathf.Floor(damageTaken * (1.0f - damageResistance));
-        Debug.Log("taking " + damage + " damage");
+        Debug.Log(this.gameObject.name + " taking " + damage + " damage");
 
         //take the damage
         this.currentHealth -= damage;

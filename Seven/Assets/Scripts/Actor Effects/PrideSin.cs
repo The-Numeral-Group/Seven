@@ -83,14 +83,20 @@ public class PrideSin : MonoBehaviour, ActorEffect
     // Called when a trigger volume attached to this GameObject is entered
     public void OnTriggerEnter2D()
     {
-        ToggleBuildActive(true);
+        if(this.enabled)
+        {
+            ToggleBuildActive(true);
+        }
     }
 
 
     // Called when a trigger volume attached to this GameObject is exited
     public void OnTriggerExit2D()
     {
-        ToggleBuildActive(false);
+        if(this.enabled)
+        {
+            ToggleBuildActive(false);
+        }
     }
 
     // Called when the Player presses the "Interact" button

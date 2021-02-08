@@ -16,15 +16,19 @@ public class PrideAssistantWeakPoint : ActorWeakPoint
     hurt Pride, as Pride takes damage whenever one of its statues (weakpoints) is destroyed.*/
     public void DoActorDeath()
     {
-        var totalWeakPoints = this.ownerHealth.gameObject.GetComponent<PrideActor>().weakSpots.Count;
+        ///DEBUG
+        Debug.Log("PrideAssistantWeakPoint: dead");
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
+        ///DEBUG
+        int totalWeakPoints 
+            = this.ownerHealth.gameObject.GetComponent<PrideActor>().weakSpots.Count;
 
         var dam = (this.ownerHealth.maxHealth / totalWeakPoints);
         dam /= (1.0f - this.ownerHealth.damageResistance);
 
         this.ownerHealth.takeDamage(dam);
 
-        //Reenable this when PrideSin is done
-        //this.gameObject.GetComponent<PrideSin>().enabled = true;
+        this.gameObject.GetComponent<PrideSin>().enabled = true;
         this.enabled = false;
     }
 

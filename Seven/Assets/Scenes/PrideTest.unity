@@ -685,6 +685,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6805785097378387141, guid: d98f55af9fdbea43f9ee4b3a89167fa9, type: 3}
+      propertyPath: startingMaxHealth
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6805785097378387142, guid: d98f55af9fdbea43f9ee4b3a89167fa9, type: 3}
       propertyPath: m_Name
       value: Pride Statue (5)
@@ -959,7 +963,7 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 8497438267143715193}
+  Close: {fileID: 0}
   Far: {fileID: 0}
   Special: {fileID: 0}
 --- !u!114 &8497438267143715187
@@ -1010,7 +1014,6 @@ GameObject:
   - component: {fileID: 8497438267143715187}
   - component: {fileID: 8497438267143715186}
   - component: {fileID: 8497438267143715192}
-  - component: {fileID: 8497438267143715193}
   m_Layer: 0
   m_Name: PrideP1
   m_TagString: Untagged
@@ -1044,19 +1047,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &8497438267143715193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8497438267143715191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0678434b9bf342b8d9dd1fafe3f68735, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldownPeriod: 1000
-  abilityName: fsdfsd
-  invokeBlankWhenBadArguments: 1
-  waveProjectile: {fileID: 5210746168989830567, guid: e6602bd27c8a41152837f8df50672888, type: 3}
