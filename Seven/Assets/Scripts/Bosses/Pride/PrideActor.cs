@@ -252,6 +252,7 @@ public class PrideActor : Actor
         //Debug.Log("Dist to player: " + distanceToPlayer);
         ///DEBUG
         
+        /*///DEBUG
         State nextState;  
 
         if(distanceToPlayer >= waveRange)
@@ -268,6 +269,8 @@ public class PrideActor : Actor
         }
 
         return nextState;
+        ///DEBUG*/
+        return State.WALK;
     }
     /*Manages and executes any effects that occur when this actor takes damage.
     For Pride specifically, it gets smaller when it gets hurt.

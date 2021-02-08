@@ -16,6 +16,33 @@ public class WeaponHitbox : MonoBehaviour
         away, there was an issue where the getcomponent was unable to find the weaponAbility when it
         was called during the start function*/
         wp = this.gameObject.GetComponentInParent(typeof(WeaponAbility)) as WeaponAbility;
+        
+        //DEBUG
+        //OnCollisionEnter2D(collider.collider);
+        if (!wp)
+        {
+            Debug.LogWarning("Error: This WeaponHitbox is not the grandchild of an object with a WeaponAbility Script");
+            return;
+        }
+        if (wp.hitConnected) //Check to see
+        {
+            return;
+        }
+        Debug.Log("WeaponHitbox: collided with " + collider.gameObject.name);
+        //try to get the enemy's health object
+        var enemyHealth = collider.gameObject.GetComponent<ActorHealth>();
+
+        //or a weakpoint if there's no regular health
+        if(enemyHealth == null){enemyHealth = collider.gameObject.GetComponent<ActorWeakPoint>();}
+
+        //if the enemy can take damage (if it has an ActorHealth component),
+        //hurt them. Do nothing if they can't take damage.
+        if(enemyHealth != null){
+            Debug.Log("WeaponHitbox: Health was found on " + enemyHealth.gameObject.name);
+            wp.hitConnected = true;
+            enemyHealth.takeDamage(this.damage);
+        }
+        //DEBUG
     }
 
     protected virtual void OnCollisionEnter2D(Collision2D collider)
@@ -29,6 +56,7 @@ public class WeaponHitbox : MonoBehaviour
         {
             return;
         }
+        Debug.Log("WeaponHitbox: collided with " + collider.gameObject.name);
         //try to get the enemy's health object
         var enemyHealth = collider.gameObject.GetComponent<ActorHealth>();
 

@@ -22,6 +22,7 @@ public class ActorHealth : MonoBehaviour
     void Awake(){
         this.maxHealth = startingMaxHealth;
         this.currentHealth = this.maxHealth;
+        this.vulnerable = true;
     }
     
     /*// Start is called before the first frame update

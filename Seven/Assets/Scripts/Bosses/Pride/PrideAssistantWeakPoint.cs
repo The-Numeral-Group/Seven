@@ -5,11 +5,17 @@ using UnityEngine;
 public class PrideAssistantWeakPoint : ActorWeakPoint
 {
     //METHODS--------------------------------------------------------------------------------------
-    /*Awake is called when a component is set to Active. For this particular component, we use 
+    /*Start is called on the first frame of the scene. For this particular component, we use 
     it to hard code damage never being able to directly harm Pride.*/
-    void Awake()
+    void Start()
     {
         this.bypassDamageResistance = false;
+    }
+
+    public override void takeDamage(float damageTaken)
+    {
+        Debug.Log("PrideAssistantWeakPoint: actually hit");
+        base.takeDamage(damageTaken);
     }
 
     /*What happens when an ActorHealth on this GameObject hits 0 HP. It's used here to actually
@@ -20,6 +26,7 @@ public class PrideAssistantWeakPoint : ActorWeakPoint
         Debug.Log("PrideAssistantWeakPoint: dead");
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
         ///DEBUG
+        
         int totalWeakPoints 
             = this.ownerHealth.gameObject.GetComponent<PrideActor>().weakSpots.Count;
 
