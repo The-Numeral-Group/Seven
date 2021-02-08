@@ -116,8 +116,8 @@ public class PrideActor : Actor
         weakSpot destruction.*/
         if(!overrideDamageImmunity)
         {
-            //300% damage immunity is arbitrary, weakSpots will hurt Pride anyways
-            this.myHealth.damageResistance = 3f;
+            //100% damage immunity is arbitrary, weakSpots will hurt Pride anyways
+            this.myHealth.damageResistance = 1f;
         }
 
         //ensure that the ActorWeakPoints used to hurt Pride are correctly assigned
@@ -132,7 +132,7 @@ public class PrideActor : Actor
     {
         ///DEBUG
         //currentState = State.WALK;
-        Debug.Log("Pride State: " + currentState);
+        //Debug.Log("Pride State: " + currentState);
         ///END DEBUG
         EvaluateState(currentState);
     }
@@ -235,7 +235,7 @@ public class PrideActor : Actor
         var directionToPlayer = (playerPos - myPos).normalized;
 
         ///DEBUG
-        Debug.Log("Pride moving in this direction: " + directionToPlayer);
+        //Debug.Log("Pride moving in this direction: " + directionToPlayer);
         ///DEBUG
 
         this.myMovement.MoveActor(directionToPlayer);

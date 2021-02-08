@@ -12,18 +12,18 @@ public class PrideAssistantWeakPoint : ActorWeakPoint
         this.bypassDamageResistance = false;
     }
 
-    public override void takeDamage(float damageTaken)
+    /*public override void takeDamage(float damageTaken, bool bypassDamageResistance=false)
     {
         Debug.Log("PrideAssistantWeakPoint: actually hit");
         base.takeDamage(damageTaken);
-    }
+    }*/
 
     /*What happens when an ActorHealth on this GameObject hits 0 HP. It's used here to actually
     hurt Pride, as Pride takes damage whenever one of its statues (weakpoints) is destroyed.*/
     public void DoActorDeath()
     {
         ///DEBUG
-        Debug.Log("PrideAssistantWeakPoint: dead");
+        //Debug.Log("PrideAssistantWeakPoint: dead");
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
         ///DEBUG
         
@@ -31,9 +31,9 @@ public class PrideAssistantWeakPoint : ActorWeakPoint
             = this.ownerHealth.gameObject.GetComponent<PrideActor>().weakSpots.Count;
 
         var dam = (this.ownerHealth.maxHealth / totalWeakPoints);
-        dam /= (1.0f - this.ownerHealth.damageResistance);
+        //dam /= (1.0f - this.ownerHealth.damageResistance);
 
-        this.ownerHealth.takeDamage(dam);
+        this.ownerHealth.takeDamage(dam, true);
 
         this.gameObject.GetComponent<PrideSin>().enabled = true;
         this.enabled = false;

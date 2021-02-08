@@ -177,7 +177,7 @@ PrefabInstance:
     - target: {fileID: 6805785097378387141, guid: d98f55af9fdbea43f9ee4b3a89167fa9, type: 3}
       propertyPath: ownerHealth
       value: 
-      objectReference: {fileID: 8497438267143715080}
+      objectReference: {fileID: 0}
     - target: {fileID: 6805785097378387142, guid: d98f55af9fdbea43f9ee4b3a89167fa9, type: 3}
       propertyPath: m_Name
       value: Pride Statue
@@ -1121,7 +1121,7 @@ MonoBehaviour:
   speedModifier: -5
   speedMinimum: 2
   overrideDefaultSpeed: 1
-  overrideDamageImmunity: 1
+  overrideDamageImmunity: 0
   currentState: 0
 --- !u!1 &8497438267143715191
 GameObject:

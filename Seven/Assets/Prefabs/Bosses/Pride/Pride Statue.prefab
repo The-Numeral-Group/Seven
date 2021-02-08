@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96dc481b2e43cea6e9277d19683f1981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMaxHealth: 100
+  startingMaxHealth: 5
   damageResistance: 0
   ownerHealth: {fileID: 8538570507512397892, guid: 236772de0cf82a61c8ec5f4bedf78c80, type: 3}
   damageMultiplier: 1

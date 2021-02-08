@@ -28,7 +28,7 @@ public class WeaponHitbox : MonoBehaviour
         {
             return;
         }
-        Debug.Log("WeaponHitbox: collided with " + collider.gameObject.name);
+        //Debug.Log("WeaponHitbox: collided with " + collider.gameObject.name);
         //try to get the enemy's health object
         var enemyHealth = collider.gameObject.GetComponent<ActorHealth>();
 
@@ -38,7 +38,7 @@ public class WeaponHitbox : MonoBehaviour
         //if the enemy can take damage (if it has an ActorHealth component),
         //hurt them. Do nothing if they can't take damage.
         if(enemyHealth != null){
-            Debug.Log("WeaponHitbox: Health was found on " + enemyHealth.gameObject.name);
+            //Debug.Log("WeaponHitbox: Health was found on " + enemyHealth.gameObject.name);
             wp.hitConnected = true;
             enemyHealth.takeDamage(this.damage);
         }

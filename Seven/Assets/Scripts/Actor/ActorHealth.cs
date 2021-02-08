@@ -32,12 +32,22 @@ public class ActorHealth : MonoBehaviour
             
     }*/
 
-    public virtual void takeDamage(float damageTaken){
+    public virtual void takeDamage(float damageTaken, bool bypassDamageResistance=false){
         if (!this.vulnerable)
         {
             return;
         }
-        var damage = Mathf.Floor(damageTaken * (1.0f - damageResistance));
+
+        float damage;
+        if(bypassDamageResistance)
+        {
+            damage = damageTaken;
+        }
+        else
+        {
+            damage = Mathf.Lerp(damageTaken, 0, damageResistance);
+        }
+        //var damage = Mathf.Floor(damageTaken * (1.0f - damageResistance));
         Debug.Log(this.gameObject.name + " taking " + damage + " damage");
 
         //take the damage
