@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: -4332445788766981374}
-  - component: {fileID: 7512802453659592074}
   - component: {fileID: 1711407483}
   - component: {fileID: 4115977272152067170}
   - component: {fileID: 3560292058236041534}
@@ -22,6 +21,7 @@ GameObject:
   - component: {fileID: 4115977272152067180}
   - component: {fileID: 4115977272152067183}
   - component: {fileID: 4115977272152067189}
+  - component: {fileID: 7512802453659592074}
   - component: {fileID: 4115977272152067190}
   - component: {fileID: 1857178619}
   m_Layer: 10
@@ -45,23 +45,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7512802453659592074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4115977272152067185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 831d4eb40aaec838ca2d456e55407ee4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldownPeriod: 0.5
-  abilityName: Dodge
-  dodgeDistance: 15
-  dodgeDuration: 0
-  invincibleDuration: 0
 --- !u!95 &1711407483
 Animator:
   serializedVersion: 3
@@ -322,6 +305,23 @@ MonoBehaviour:
   duration: 1
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 01000000
+--- !u!114 &7512802453659592074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115977272152067185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 831d4eb40aaec838ca2d456e55407ee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0.5
+  abilityName: Dodge
+  dodgeDistance: 15
+  dodgeDuration: 0
+  invincibleDuration: 0
 --- !u!114 &4115977272152067190
 MonoBehaviour:
   m_ObjectHideFlags: 0
