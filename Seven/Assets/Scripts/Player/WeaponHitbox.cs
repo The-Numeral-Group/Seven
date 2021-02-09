@@ -9,7 +9,7 @@ public class WeaponHitbox : MonoBehaviour
     protected WeaponAbility wp;
 
     //OnTrigger function
-    void OnTriggerEnter2D(Collider2D collider)
+    protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
         /*I moved the wp getcomponent into the collider function. I realize this is inefficient but
         For bosses, since the parent object is swapped and the gameobjects are set to false in right

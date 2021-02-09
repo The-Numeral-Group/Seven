@@ -132,7 +132,7 @@ public class PrideActor : Actor
     {
         ///DEBUG
         //currentState = State.WALK;
-        //Debug.Log("Pride State: " + currentState);
+        Debug.Log("Pride State: " + currentState);
         ///END DEBUG
         EvaluateState(currentState);
     }
@@ -249,10 +249,8 @@ public class PrideActor : Actor
     {
         var distanceToPlayer = Vector2.Distance(player.transform.position, this.gameObject.transform.position);
         ///DEBUG
-        //Debug.Log("Dist to player: " + distanceToPlayer);
+        Debug.Log("Dist to player: " + distanceToPlayer);
         ///DEBUG
-        
-        /*///DEBUG
         State nextState;  
 
         if(distanceToPlayer >= waveRange)
@@ -269,8 +267,7 @@ public class PrideActor : Actor
         }
 
         return nextState;
-        ///DEBUG*/
-        return State.WALK;
+        
     }
     /*Manages and executes any effects that occur when this actor takes damage.
     For Pride specifically, it gets smaller when it gets hurt.
@@ -305,9 +302,10 @@ public class PrideActor : Actor
         by the amount of statues there are to get how small Pride should get each time
         it gets hurt.*/
         var percentDecrease = (1 - finalSize) / weakSpots.Count;
+        Debug.Log("PrideActor: shrinking by " + percentDecrease + "%");
         //All of Pride's (calculated) final scale values
-        var finalScaleX = initialScaleX * percentDecrease;
-        var finalScaleY = initialScaleY * percentDecrease;
+        var finalScaleX = initialScaleX * (1 - percentDecrease);
+        var finalScaleY = initialScaleY * (1 - percentDecrease);
         //var finalScaleZ = initialScaleZ * percentDecrease;
         Vector3 estimatedFinalScale = new Vector3(finalScaleX, finalScaleY, 1);
 
@@ -326,8 +324,8 @@ public class PrideActor : Actor
         {
             /*Recalculate the new size values by interpolating (estimating the value between)
             midScale and finalScale. Once they are the same, the shrink will stop.*/
-            midScaleX = Mathf.Lerp(midScaleX, finalScaleX, sizeChangePerSecond);
-            midScaleY = Mathf.Lerp(midScaleY, finalScaleY, sizeChangePerSecond);
+            midScaleX = Mathf.Lerp(midScaleX, finalScaleX, shrinkTimer/effectTime);
+            midScaleY = Mathf.Lerp(midScaleY, finalScaleY, shrinkTimer/effectTime);
             //midScaleZ = Mathf.Lerp(midScaleZ, finalScaleZ, sizeChangePerSecond);
 
             //actually set the new transform

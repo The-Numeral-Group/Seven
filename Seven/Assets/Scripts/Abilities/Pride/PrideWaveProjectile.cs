@@ -107,6 +107,9 @@ public class PrideWaveProjectile : BasicHitbox
 
     protected override void OnTriggerEnter2D(Collider2D collided)
     {
+        ///DEBUG
+        Debug.Log("PrideWaveProjectile: hit " + collided.gameObject.name);
+        ///DEBUG
         base.OnTriggerEnter2D(collided);
         if(destroyOnHit)
         {
