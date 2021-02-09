@@ -8,21 +8,21 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4115977272152067168}
-  - component: {fileID: 4115977272152067171}
-  - component: {fileID: 4115977272152067170}
-  - component: {fileID: 3560292058236041534}
-  - component: {fileID: 4115977272152067180}
-  - component: {fileID: 4115977272152067183}
-  - component: {fileID: 4115977272152067182}
-  - component: {fileID: 4115977272152067177}
-  - component: {fileID: 4115977272152067176}
-  - component: {fileID: 4115977272152067179}
-  - component: {fileID: 4115977272152067178}
-  - component: {fileID: 4115977272152067189}
-  - component: {fileID: 4115977272152067188}
-  - component: {fileID: 4115977272152067191}
-  - component: {fileID: 4115977272152067190}
+  - component: {fileID: 7512802453659592075}
+  - component: {fileID: 7512802453659592072}
+  - component: {fileID: 7512802453659592073}
+  - component: {fileID: 7924922232441966684}
+  - component: {fileID: 7512802453659592078}
+  - component: {fileID: 7512802453659592077}
+  - component: {fileID: 7512802453659592079}
+  - component: {fileID: 7512802453659592076}
+  - component: {fileID: 7512802453659592066}
+  - component: {fileID: 7512802453659592067}
+  - component: {fileID: 7512802453659592064}
+  - component: {fileID: 7512802453659592181}
+  - component: {fileID: 7512802453659592074}
+  - component: {fileID: 1711407483}
+  - component: {fileID: 1711407482}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2262647735747319561, guid: 6ddc22ace49a8854d9206e150aa9b5c3, type: 3}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -114,7 +114,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!60 &3560292058236041534
 PolygonCollider2D:
@@ -285,8 +285,8 @@ MonoBehaviour:
   startingWeaponObject: {fileID: 7573367737500984201, guid: bfab2a95a7b826b4ab10b4994c287025, type: 3}
   duration: 1
   weaponPositionScale: {x: 0.1, y: 0.1}
-  damagePerHitbox: 0a000000
---- !u!114 &4115977272152067188
+  damagePerHitbox: 01000000
+--- !u!114 &7512802453659592074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -300,10 +300,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldownPeriod: 0.5
   abilityName: Dodge
-  invokeBlankWhenBadArguments: 1
-  dodgeDistance: 40
-  dodgeDuration: 0.1
---- !u!95 &4115977272152067191
+  dodgeDistance: 15
+  dodgeDuration: 0
+--- !u!95 &1711407483
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
