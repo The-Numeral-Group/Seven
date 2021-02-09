@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 918259120041244284}
   - component: {fileID: 7308148373329474796}
   m_Layer: 0
-  m_Name: KnockbackPunchWeapon
+  m_Name: PulsePunchWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856b27c8759802c41963358cde2bbe69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 20
 --- !u!1 &5771370353643076459
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackDirection: {x: 0, y: 0}
-  knockbackIntensity: 5
+  knockbackIntensity: 2
   forceOppositeKnockbackDirection: 1
 --- !u!61 &6318928990884420043
 BoxCollider2D:

@@ -108,7 +108,21 @@ public class PrideActor : Actor
         //adjust speed if we (design) want the "almost as fast as player" thing
         if(overrideDefaultSpeed)
         {
-            var newSpeed = player.myMovement.speed + speedModifier;
+            ///DEBUG
+            /*this is for a bug where (probably) Pride's Start runs before Player's, causing
+            Player's components to be missing from PlayerActor*/
+            float newSpeed;
+            if(!player.myMovement)
+            {
+                Debug.Log("PrideActor: missing player Actor?");
+                //haha dont ever do this I'm just doing right now for debugging
+                newSpeed = player.gameObject.GetComponent<ActorMovement>().speed + speedModifier;
+            }
+            else
+            {
+                newSpeed = player.myMovement.speed + speedModifier;
+            }
+            ///DEBUG
             this.myMovement.speed = newSpeed >= speedMinimum ? newSpeed : speedMinimum;
         }
 
@@ -282,11 +296,59 @@ public class PrideActor : Actor
             ++weakSpotsDestroyed;
             StartCoroutine(ShrinkEffect(shrinkTime));
 
-            if(weakSpotsDestroyed >= weakSpotGate)
+            if(weakSpotsDestroyed >= weakSpotGate 
+                && !player.myEffectHandler.EffectPresent<PrideSin>())
             {
-                Debug.Log("PrideAcctor: Pride should now phase change, but that'll be done later");
+                ///DEBUG
+                Debug.Log("PrideActor: Phase change!");
+                ///DEBUG
+                this.gameObject.SendMessage(
+                    "NextPhase", 
+                    new System.Tuple<Actor, System.Action<Actor>>(
+                        this, 
+                        new System.Action<Actor>(InitializePhase)
+                    )
+                );
             }
         }
+    }
+
+    /*Initializes the next phase of the fight. I (Thomas) assume that the next phase of Pride
+    is a different version of Pride, which is why I use a type conversion on the incoming phase.*/
+    void InitializePhase(Actor actor)
+    {
+        //getting actor components
+        PrideActor startingPhase = this;
+        PrideActor newPhase;
+        if(actor is PrideActor)
+        {
+            newPhase = actor as PrideActor;
+        }
+        else
+        {
+            Debug.LogError("PrideActor: attempted to change phase to something that isn't Pride");
+            return;
+        }
+
+        //assign weakpoints to new phase
+        newPhase.weakSpots = startingPhase.weakSpots;
+
+        //high count is arbitrary, it just needs to be high to prevent unintended phase change
+        newPhase.weakSpotGate = newPhase.weakSpots.Count * 10;
+
+        //assign new phase to weakpoints
+        foreach (ActorWeakPoint weakSpot in newPhase.weakSpots)
+        {
+            weakSpot.ownerHealth = newPhase.myHealth;
+        }
+
+        //match the old phase's health
+        newPhase.myHealth.currentHealth = startingPhase.myHealth.currentHealth;
+
+        //match the old phase's size
+        newPhase.gameObject.transform.localScale = startingPhase.gameObject.transform.localScale;
+
+        //and I think that's everything...
     }
 
     IEnumerator ShrinkEffect(float effectTime)
