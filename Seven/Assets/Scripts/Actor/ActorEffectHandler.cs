@@ -75,6 +75,12 @@ public class ActorEffectHandler : MonoBehaviour
         return appliedEffects.Find(effect => effect is TypeToLocate) != null;
     }
 
+    //Returns the number of instances of an effect of the specified type  present in appliedEffects
+    public int EffectPresentCount<TypeToLocate>()
+    {
+        return appliedEffects.FindAll(effect => effect is TypeToLocate).Count;
+    }
+
     public void SubtractEffectByType<TypeToSubtract>()
     {
         //Does RemoveEffectByType remove the first instance of a typed effect? how does it choose?

@@ -9,9 +9,9 @@ public class PrideActor : Actor
     [Tooltip("Put every GameObject that the player needs to destroy to kill Pride in this list.")]
     public List<ActorWeakPoint> weakSpots;
 
-    [Tooltip("How many of Pride's weakSpot GameObjects need to be destroyed before it enters" + 
+    [Tooltip("How many of Pride's weakSpot GameObjects need to be rebuilt before it enters" + 
         " its next Phase (enter -1 to prevent phase change and 0 to start it after the next" + 
-            " weakSpot is destroyed.")]
+            " weakSpot is rebuilt.")]
     public int weakSpotGate = 3;
 
     [Header("Attacks")]
@@ -296,8 +296,8 @@ public class PrideActor : Actor
             ++weakSpotsDestroyed;
             StartCoroutine(ShrinkEffect(shrinkTime));
 
-            if(weakSpotsDestroyed >= weakSpotGate 
-                && !player.myEffectHandler.EffectPresent<PrideSin>())
+            if(player.myEffectHandler.EffectPresentCount<PrideSin>() >= weakSpotGate 
+                && weakSpotGate >= 0)
             {
                 ///DEBUG
                 Debug.Log("PrideActor: Phase change!");
