@@ -11,12 +11,23 @@ public class GhostKnightIdleActor : Actor
     private bool changingPhase = false;
 
     Actor ghostKnight;
+
+    GameObject ghostKnightEffector;
+    PointEffector2D pointEffector;
     
     
     // Start is called before the first frame update
     new void Start()
     {
         ghostKnight = this.gameObject.GetComponent<GhostKnightIdleActor>();
+        ghostKnightEffector = GameObject.FindGameObjectWithTag("Boss Effector");
+
+        if(ghostKnightEffector == null)
+        {
+            Debug.Log("GhostKnightIdleActor: Cannot find the Effector object!");
+        }
+
+        ghostKnightEffector.SetActive(false);
         StartCoroutine(introDelayStart());
     }
 
@@ -32,6 +43,9 @@ public class GhostKnightIdleActor : Actor
         if(attackPhase && !changingPhase)
         {
             changingPhase = true;
+
+            ghostKnightEffector.SetActive(true);
+
             System.Tuple<Actor, System.Action<Actor>> ghostKnightFight =
                 new System.Tuple<Actor, System.Action<Actor>>(ghostKnight, null);
             gameObject.SendMessage("NextPhase", ghostKnightFight);
