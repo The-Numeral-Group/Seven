@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 277050698679241077}
   - component: {fileID: 277050698679241076}
-  m_Layer: 13
+  m_Layer: 11
   m_Name: Gluttony
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -133,6 +133,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5187959127492769972, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20367e464a0c15c4da41074926435ac1, type: 3}
 --- !u!4 &4910926297128836605 stripped
@@ -174,6 +178,10 @@ PrefabInstance:
     - target: {fileID: 8671992475356646030, guid: 92ebd305de4fba94ea72505f8480f2e3, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8671992475356646030, guid: 92ebd305de4fba94ea72505f8480f2e3, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8671992475356646031, guid: 92ebd305de4fba94ea72505f8480f2e3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -227,6 +235,10 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8671992475356646038, guid: 92ebd305de4fba94ea72505f8480f2e3, type: 3}
+      propertyPath: startingMaxHealth
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92ebd305de4fba94ea72505f8480f2e3, type: 3}
 --- !u!4 &8899485673867673105 stripped
@@ -247,7 +259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3785848153828190862, guid: ab39d40d38276bc41a91a28abfe88d21, type: 3}
       propertyPath: m_Layer
-      value: 17
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3785848153828190862, guid: ab39d40d38276bc41a91a28abfe88d21, type: 3}
       propertyPath: m_TagString

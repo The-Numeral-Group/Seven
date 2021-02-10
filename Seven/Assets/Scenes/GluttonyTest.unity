@@ -354,13 +354,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gluttony
       objectReference: {fileID: 0}
+    - target: {fileID: 277050698679241078, guid: 14cb367d77b0fb44ca8f6c8563dc4baa, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910926297128836590, guid: 14cb367d77b0fb44ca8f6c8563dc4baa, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4910926297128836596, guid: 14cb367d77b0fb44ca8f6c8563dc4baa, type: 3}
       propertyPath: specialAttackGate
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 6452026514318370897, guid: 14cb367d77b0fb44ca8f6c8563dc4baa, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 8899485673867673096, guid: 14cb367d77b0fb44ca8f6c8563dc4baa, type: 3}
       propertyPath: startingMaxHealth
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8899485673867673104, guid: 14cb367d77b0fb44ca8f6c8563dc4baa, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14cb367d77b0fb44ca8f6c8563dc4baa, type: 3}
@@ -658,11 +674,11 @@ PrefabInstance:
       objectReference: {fileID: 119208404}
     - target: {fileID: 4115977272152067189, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: weaponPositionScale.x
-      value: 2
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 4115977272152067189, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: weaponPositionScale.y
-      value: 2
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 7512802453659592065, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_Name

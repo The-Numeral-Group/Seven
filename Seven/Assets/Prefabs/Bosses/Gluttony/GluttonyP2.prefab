@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 8671992475356646026}
   - component: {fileID: 8671992475356646029}
   - component: {fileID: 8671992475356646028}
-  m_Layer: 13
+  m_Layer: 11
   m_Name: GluttonyP2
   m_TagString: Boss
   m_Icon: {fileID: 0}

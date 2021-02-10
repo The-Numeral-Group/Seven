@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 5187959127492769961}
   - component: {fileID: 5187959127492769962}
   - component: {fileID: 5187959127492769963}
-  m_Layer: 13
+  m_Layer: 11
   m_Name: GluttonyP1
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -232,6 +232,7 @@ MonoBehaviour:
   cooldownPeriod: 10
   abilityName: Soecial Ability P1
   toInstantiateAbilitySprite: {fileID: 7414617650634565902, guid: 6a2149f7700a5a34db6594d1b70f1a23, type: 3}
+  gluttonyEffector: {fileID: 0}
   distanceFromActor: {x: 0, y: -1}
   duration: 5
   specialSpeed: 0.05
