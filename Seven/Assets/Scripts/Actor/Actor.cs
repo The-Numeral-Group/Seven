@@ -43,11 +43,7 @@ public class Actor : MonoBehaviour
     {
         //Do anything that should happen on death
         //destroys the gameobject by default
-
-        // I(Mingun) currently disabled this for now.
-        // This is to prevent game keep running after an actor died. 
-        // In the future, switch this back.
-        //Destroy(this.gameObject);
+        Destroy(this.gameObject);
     }
 
     public void DoActorUpdateFacing(Vector2 newDirection)

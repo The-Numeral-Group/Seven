@@ -384,14 +384,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gluttony
       objectReference: {fileID: 0}
-    - target: {fileID: 4910926297128836596, guid: 14cb367d77b0fb44ca8f6c8563dc4baa, type: 3}
-      propertyPath: specialAttackGate
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8899485673867673096, guid: 14cb367d77b0fb44ca8f6c8563dc4baa, type: 3}
-      propertyPath: startingMaxHealth
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14cb367d77b0fb44ca8f6c8563dc4baa, type: 3}
 --- !u!1 &519420028
@@ -518,7 +510,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1562341910261810668, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: orthographic size
-      value: 5.17
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4321893605475107958, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_LocalPosition.x
