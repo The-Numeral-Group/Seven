@@ -89,6 +89,20 @@ public class PrideActor : Actor
         //get component references
         base.Start();
 
+        /*adjust damage resistance if we (design) want Pride to only be hurt by
+        weakSpot destruction.*/
+        if(!overrideDamageImmunity)
+        {
+            //100% damage immunity is arbitrary, weakSpots will hurt Pride anyways
+            this.myHealth.damageResistance = 1f;
+        }
+
+        //ensure that the ActorWeakPoints used to hurt Pride are correctly assigned
+        foreach(ActorWeakPoint weakSpot in weakSpots)
+        {
+            weakSpot.ownerHealth = this.myHealth;
+        }
+
         //find player...
         var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
 
@@ -125,20 +139,6 @@ public class PrideActor : Actor
             ///DEBUG
             this.myMovement.speed = newSpeed >= speedMinimum ? newSpeed : speedMinimum;
         }
-
-        /*adjust damage resistance if we (design) want Pride to only be hurt by
-        weakSpot destruction.*/
-        if(!overrideDamageImmunity)
-        {
-            //100% damage immunity is arbitrary, weakSpots will hurt Pride anyways
-            this.myHealth.damageResistance = 1f;
-        }
-
-        //ensure that the ActorWeakPoints used to hurt Pride are correctly assigned
-        foreach(ActorWeakPoint weakSpot in weakSpots)
-        {
-            weakSpot.ownerHealth = this.myHealth;
-        }
     }
 
     // FixedUpdate is called once every 60th of a second, regardless of framerate
@@ -167,6 +167,7 @@ public class PrideActor : Actor
                 //Check if Pride is busy doing an ability, and thus shouldn't act
                 if (currAbility && !currAbility.getUsable())
                 {
+                    this.myMovement.MoveActor(new Vector2(0, 0));
                     break;
                 }
 
@@ -261,17 +262,22 @@ public class PrideActor : Actor
     Yes, this was copied from Gluttony.*/
     State decideNextState()
     {
-        var distanceToPlayer = Vector2.Distance(player.transform.position, this.gameObject.transform.position);
+        var distanceToPlayer 
+            = Vector2.Distance(player.transform.position, this.gameObject.transform.position);
+        var punchReady 
+            = this.myAbilityInitiator.abilities[AbilityRegister.PRIDE_CLOSE_ATTACK].getUsable();
+        var projReady
+            = this.myAbilityInitiator.abilities[AbilityRegister.PRIDE_FAR_ATTACK].getUsable();
         ///DEBUG
-        Debug.Log("Dist to player: " + distanceToPlayer);
+        //Debug.Log("Dist to player: " + distanceToPlayer);
         ///DEBUG
         State nextState;  
 
-        if(distanceToPlayer >= waveRange)
+        if(distanceToPlayer >= waveRange && projReady)
         {
             nextState = State.PHYSICAL_SHOCKWAVE;
         }
-        else if(distanceToPlayer <= punchRange)
+        else if(distanceToPlayer <= punchRange && punchReady)
         {
             nextState = State.PHYSICAL_PUNCH;
         }

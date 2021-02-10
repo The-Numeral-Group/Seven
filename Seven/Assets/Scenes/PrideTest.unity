@@ -1421,7 +1421,7 @@ MonoBehaviour:
   - {fileID: 572218196}
   weakSpotGate: 3
   specialAttackGate: 7
-  waveRange: 10
+  waveRange: 30
   punchRange: 5
   finalSize: 0.25
   shrinkTime: 1
@@ -1535,7 +1535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0678434b9bf342b8d9dd1fafe3f68735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 10
+  cooldownPeriod: 3
   abilityName: shockwave
   invokeBlankWhenBadArguments: 1
   waveProjectile: {fileID: 5210746168989830567, guid: e6602bd27c8a41152837f8df50672888, type: 3}
