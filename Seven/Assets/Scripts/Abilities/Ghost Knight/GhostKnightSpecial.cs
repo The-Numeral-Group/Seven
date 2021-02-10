@@ -16,6 +16,9 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
 
     private Actor player;
 
+    // Ghost Knight Effector object
+    public GameObject gkEffector; 
+
     public override void Invoke(ref Actor user)
     {
         if (usable)
@@ -43,7 +46,8 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     private IEnumerator Vanish(Actor user)
     {
         SpriteRenderer gkSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-        CircleCollider2D collider = this.gameObject.GetComponent<CircleCollider2D>();
+
+        PolygonCollider2D collider = gkEffector.GetComponent<PolygonCollider2D>();
 
         // turn off collider
         collider.enabled = false;
@@ -66,7 +70,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     private IEnumerator Reappear(Actor user)
     {
         SpriteRenderer gkSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-        CircleCollider2D collider = this.gameObject.GetComponent<CircleCollider2D>();
+        PolygonCollider2D collider = gkEffector.GetComponent<PolygonCollider2D>();
 
         float opacity = 0f;
         while (opacity < 1f)
