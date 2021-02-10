@@ -37,6 +37,10 @@ public class GhostKnightActor : Actor
     private ActorAbility proj;
     private ActorAbility special;
 
+    ///private GhostKnightSlash slash;
+    //private GhostKnightProjectile projectile;
+    //private GhostKnightSpecial special;
+
     public enum State
     {
         WAITING,
@@ -84,7 +88,7 @@ public class GhostKnightActor : Actor
     {
         EvaluateState(currentState);
         yield return new WaitForSeconds(this.introDelay);
-        this.attackEnabled = true;
+        attackEnabled = true;
     }
 
     // Update is called once per frame
@@ -148,7 +152,6 @@ public class GhostKnightActor : Actor
         var directionToPlayer = (playerPos - myPos).normalized;
 
         this.myMovement.MoveActor(directionToPlayer);
-
     }
     void checkIfAbilityDone()
     {
@@ -193,8 +196,6 @@ public class GhostKnightActor : Actor
         }
 
     }
-    
-    
     // Handles the physical contact with the player effect.
     // Knockback Effect is handled with Point Effector 2D Component.
     void OnTriggerEnter2D(Collider2D collider)
@@ -202,7 +203,6 @@ public class GhostKnightActor : Actor
         // Only collide with player
         if (collider.gameObject.tag == "Player")
         {
-
             var playerHealth = collider.gameObject.GetComponent<ActorHealth>();
 
             //or a weakpoint if there's no regular health

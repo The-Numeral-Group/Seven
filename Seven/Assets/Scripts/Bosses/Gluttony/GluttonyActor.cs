@@ -88,7 +88,7 @@ public class GluttonyActor : Actor
                     specialAttackCounter = 0;
                     currentState = State.PHASE0_SPECIAL;
                 }
-                else if (player != null)
+                else
                 {
                     stepTowardsPlayer();
                     currAbility = null;

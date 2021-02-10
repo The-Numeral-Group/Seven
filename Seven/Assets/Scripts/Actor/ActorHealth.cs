@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /*I just copied and modified the original ActorHealth.cs
 I dropped the require component since ActorHealth doesn't need it
@@ -21,12 +19,9 @@ public class ActorHealth : MonoBehaviour
     public float currentHealth { get; set; }
     public bool vulnerable { get; set; }
 
-    private SpriteRenderer spriteRenderer;
-
     void Awake(){
         this.maxHealth = startingMaxHealth;
         this.currentHealth = this.maxHealth;
-        this.spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
     }
     
     /*// Start is called before the first frame update
@@ -46,7 +41,6 @@ public class ActorHealth : MonoBehaviour
 
         //take the damage
         this.currentHealth -= damage;
-        StartCoroutine(FlashRed());
 
         //if the attack killed the thing
         if(this.currentHealth <= 0){
@@ -54,16 +48,6 @@ public class ActorHealth : MonoBehaviour
             that the game vomits if we try to kill something that cannot die,
             but I just don't know how*/
             this.gameObject.SendMessage("DoActorDeath");//, null, RequireReciever);
-
-
         }
-    }
-
-    // A visual indicator if actor has received damage.
-    private IEnumerator FlashRed()
-    {
-        spriteRenderer.color = Color.red;
-        yield return new WaitForSeconds(0.3f);
-        spriteRenderer.color = Color.white;
     }
 }
