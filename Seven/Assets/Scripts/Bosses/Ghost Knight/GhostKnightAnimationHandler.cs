@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class GhostKnightAnimationHandler : ActorAnimationHandler
 {
-    public Vector2 movementDirection;
 
-    public ActorMovement myMovement;
-
-    public override void animateWalk()
+    public void animateVSlash()
     {
-        myMovement = hostActor.myMovement;
-        movementDirection = myMovement.movementDirection;
+        Animator.SetTrigger("vSlash");
+    }
+
+    public void animateHSlash()
+    {
+        Animator.SetTrigger("hSlash");
     }
 }

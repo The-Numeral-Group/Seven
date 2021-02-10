@@ -6,10 +6,11 @@ TagManager:
   tags:
   - GhostKnight Projectile
   - GhostKnight
-  - Environment
   - Boss
-  - Sin
+  - Boss Effector
   - Player Weapon
+  - Sin
+  - Environment
   layers:
   - Default
   - TransparentFX
@@ -22,16 +23,11 @@ TagManager:
   - Background
   - Wall
   - Player
-  - 'GhostKnight '
-  - GhostKnight Projectile
   - Boss
-  - Boss Projectile
-  - Player Projectile
-  - Sin
   - Boss Effector
-  - 
-  - 
-  - 
+  - Boss Projectile
+  - Boss Physical
+  - Weapon
   - 
   - 
   - 
@@ -43,6 +39,11 @@ TagManager:
   - 
   - 
   - Transparent
+  - 
+  - 
+  - 
+  - 
+  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0

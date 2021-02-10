@@ -7,6 +7,9 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
     //The sprite to be spawned in to show the attack. We could replace this with vfx.
     [Tooltip("The prefab that will be used to represent the visual part of the ability.")]
     public GameObject toInstantiateAbilitySprite;
+    //reference to the gluttony effector
+    [Tooltip("Reference to the gluttony effector. Should be a gameobject not a prefab.")]
+    public GameObject gluttonyEffector;
     //How far away to spawn the specialAbilitySprite relative to the owner of the ability
     [Tooltip("How far away to spawn the prefab relative to the user.")]
     public Vector2 distanceFromActor = new Vector2(0f, -6f);
@@ -47,6 +50,7 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
         GameObject specialAbilitySprite = Instantiate(toInstantiateAbilitySprite, spawnPos, Quaternion.identity);
         IEnumerator dragTargetActor = DragTargetActor(spawnPos);
         IEnumerator stopSpecialAbility = StopSpecialAbility(dragTargetActor, specialAbilitySprite);
+        gluttonyEffector.SetActive(false);
         StartCoroutine(dragTargetActor); //Thse two must be done hand in hand. The second coroutine is responsible for killing the first
         StartCoroutine(stopSpecialAbility);
         return 0;
@@ -55,13 +59,13 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
     //Drags the target actor in the direction of the destination vector
     IEnumerator DragTargetActor(Vector3 spawnPos)
     {
-        while (true && this.targetActor)
+        while (true && this.targetActor != null)
         {
-            yield return new WaitForFixedUpdate();
             //I (Ram) am not sure if I need to normalize the drag direction vector.
             Vector2 destination = (spawnPos - this.targetActor.gameObject.transform.position).normalized;
             destination = destination * specialSpeed;
             this.targetActor.myMovement.DragActor(destination);
+            yield return new WaitForFixedUpdate();
         }
     }
 
@@ -71,6 +75,7 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
         yield return new WaitForSeconds(duration);
         StopCoroutine(toStop);
         Destroy(toDestroy);
+        gluttonyEffector.SetActive(true);
         this.isFinished = true;
     }
 
