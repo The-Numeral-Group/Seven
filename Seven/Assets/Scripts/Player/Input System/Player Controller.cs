@@ -466,6 +466,17 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""57458fbd-c0b1-4cc8-b30c-317f24067ebd"",
+                    ""path"": ""<Keyboard>/semicolon"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""f032c016-695b-4cbc-9936-3af605e2d7c5"",
                     ""path"": ""<Mouse>/press"",
                     ""interactions"": """",
