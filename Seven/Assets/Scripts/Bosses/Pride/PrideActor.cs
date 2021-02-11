@@ -9,10 +9,14 @@ public class PrideActor : Actor
     [Tooltip("Put every GameObject that the player needs to destroy to kill Pride in this list.")]
     public List<ActorWeakPoint> weakSpots;
 
-    [Tooltip("How many of Pride's weakSpot GameObjects need to be rebuilt before it enters" + 
+    [Tooltip("How many of Pride's weakSpot GameObjects need to be destroyed before it enters" + 
         " its next Phase (enter -1 to prevent phase change and 0 to start it after the next" + 
             " weakSpot is rebuilt.")]
     public int weakSpotGate = 3;
+
+    [Tooltip("How many of Pride's weakSpot GameObjects need to be rebuilt to prevent" + 
+        " Pride from changing phase. This should probably be less than WeakSpotGate.")]
+    public int sinGate = 2;
 
     [Header("Attacks")]
     [Tooltip("Controls how many times should Pride use normal attacks before using it's special.")]
@@ -301,21 +305,6 @@ public class PrideActor : Actor
         {
             ++weakSpotsDestroyed;
             StartCoroutine(ShrinkEffect(shrinkTime));
-
-            if(player.myEffectHandler.EffectPresentCount<PrideSin>() >= weakSpotGate 
-                && weakSpotGate >= 0)
-            {
-                ///DEBUG
-                Debug.Log("PrideActor: Phase change!");
-                ///DEBUG
-                this.gameObject.SendMessage(
-                    "NextPhase", 
-                    new System.Tuple<Actor, System.Action<Actor>>(
-                        this, 
-                        new System.Action<Actor>(InitializePhase)
-                    )
-                );
-            }
         }
     }
 
@@ -412,11 +401,24 @@ public class PrideActor : Actor
             prideTransform.localScale = estimatedFinalScale;
         }*/
 
-        //If enough statues have been destroyed, then ITS TIME
-        if(weakSpotsDestroyed >= weakSpotGate)
-        {
-            ///TO-DO: WRITE IN PHASE TRANSITION
-        }
+        //If enough statues have been destroyed, and not enough have been built, then ITS TIME
+        bool shouldPhaseChange = 
+                player.myEffectHandler.EffectPresentCount<PrideSin>() < sinGate && 
+                weakSpotsDestroyed >= weakSpotGate && 
+                weakSpotGate >= 0;
 
+        if(shouldPhaseChange)
+        {
+            ///DEBUG
+            Debug.Log("PrideActor: Phase change!");
+            ///DEBUG
+            this.gameObject.SendMessage(
+                "NextPhase", 
+                new System.Tuple<Actor, System.Action<Actor>>(
+                    this, 
+                    new System.Action<Actor>(InitializePhase)
+                )
+            );
+        }
     }
 }
