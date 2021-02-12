@@ -41,6 +41,7 @@ public class HubCamera : BaseCamera
     protected override void MoveCamera()
     {
         Vector3 cameraPosition = GetCenterPos();
+        cameraPosition = FocusCamOnChatBubble(cameraPosition);
         if (!closeToPOI)
         {
             cameraPosition = cameraPosition + new Vector3(offset.x, offset.y, cameraPosition.z);

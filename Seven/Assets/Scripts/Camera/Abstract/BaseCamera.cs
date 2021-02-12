@@ -62,6 +62,8 @@ public abstract class BaseCamera : MonoBehaviour
     //How a camera gets its focus point. Functionality should be implemented on a class by class basis.
     protected abstract Vector3 GetCenterPos();
 
+    /*Shakes the camera. 1st argument is how long the shake will occur, while the second is
+    argument pertains to how long the shake lasts.*/
     public virtual void Shake(float duration, float magnitude)
     {
         if (shakePointer != null)
@@ -71,6 +73,8 @@ public abstract class BaseCamera : MonoBehaviour
         shakePointer = ShakeCamera(duration, magnitude);
         StartCoroutine(shakePointer);
     }
+
+    /*Coroutine used to actually shake the camera. It is called from Shake function*/
     IEnumerator ShakeCamera(float duration, float magnitude)
     {
         float elapsed = 0.0f;
@@ -87,5 +91,20 @@ public abstract class BaseCamera : MonoBehaviour
             elapsed += Time.deltaTime;
             yield return new WaitForFixedUpdate();
         }
+    }
+
+    /*adjust the cameras position to accomodate for any dialogue box on screen.
+    Takes in the current camera focus point as an argument, then modifies it by bounding that point
+    with the chat bubble position. Returns that calucated point as Vector3.*/
+    protected virtual Vector3 FocusCamOnChatBubble(Vector3 currentBoundsPos)
+    {
+        var bounds = new Bounds(currentBoundsPos, Vector3.zero);
+        if (MenuManager.DIALOGUE_MENU.gameObject.activeSelf)
+        {
+            Vector3 dialogBubblePos = 
+                cam.ScreenToWorldPoint(MenuManager.DIALOGUE_MENU.chatBubble.localPosition);
+            bounds.Encapsulate(dialogBubblePos);
+        }
+        return bounds.center;
     }
 }

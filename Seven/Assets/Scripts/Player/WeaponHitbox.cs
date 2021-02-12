@@ -8,6 +8,7 @@ public class WeaponHitbox : MonoBehaviour
     public int damage { get; set; }
     protected WeaponAbility wp;
 
+    
     //OnTrigger function
     protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
@@ -15,10 +16,10 @@ public class WeaponHitbox : MonoBehaviour
         For bosses, since the parent object is swapped and the gameobjects are set to false in right
         away, there was an issue where the getcomponent was unable to find the weaponAbility when it
         was called during the start function*/
+
         wp = this.gameObject.GetComponentInParent(typeof(WeaponAbility)) as WeaponAbility;
-        
-        //DEBUG
-        //OnCollisionEnter2D(collider.collider);
+        this.damage = 1;
+
         if (!wp)
         {
             Debug.LogWarning("Error: This WeaponHitbox is not the grandchild of an object with a WeaponAbility Script");
@@ -61,11 +62,12 @@ public class WeaponHitbox : MonoBehaviour
         var enemyHealth = collider.gameObject.GetComponent<ActorHealth>();
 
         //or a weakpoint if there's no regular health
-        if(enemyHealth == null){collider.gameObject.GetComponent<ActorWeakPoint>();}
+        if (enemyHealth == null) { collider.gameObject.GetComponent<ActorWeakPoint>(); }
 
         //if the enemy can take damage (if it has an ActorHealth component),
         //hurt them. Do nothing if they can't take damage.
-        if(enemyHealth != null){
+        if (enemyHealth != null)
+        {
             wp.hitConnected = true;
             enemyHealth.takeDamage(this.damage);
         }

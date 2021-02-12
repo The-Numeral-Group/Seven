@@ -16,6 +16,11 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
 
     private Actor player;
 
+    // Ghost Knight Effector object
+    public GameObject gkEffector;
+
+    public GameObject glintObject;
+
     public override void Invoke(ref Actor user)
     {
         if (usable)
@@ -43,10 +48,13 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     private IEnumerator Vanish(Actor user)
     {
         SpriteRenderer gkSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-        CircleCollider2D collider = this.gameObject.GetComponent<CircleCollider2D>();
 
-        // turn off collider
-        collider.enabled = false;
+
+        // Set both actors to be invincible.
+        user.myHealth.vulnerable = false;
+
+        // Turn off effector so player doesn't get knockback when Ghost Knight is invisible.
+        gkEffector.SetActive(false);
 
         float opacity = 1f;
         while (opacity > 0f)
@@ -55,7 +63,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
             gkSpriteRenderer.color = new Color(1f, 1f, 1f, opacity);
             yield return new WaitForSeconds(this.duration_vanish_start / 10);
         }
-        yield return new WaitForSeconds(this.duration_vanish);
+        yield return new WaitForSeconds(this.duration_vanish/2);
         Teleport(user);
     }
     private void Teleport(Actor user)
@@ -65,8 +73,10 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     }
     private IEnumerator Reappear(Actor user)
     {
+        Instantiate(this.glintObject, user.transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(this.duration_vanish / 2);
+
         SpriteRenderer gkSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-        CircleCollider2D collider = this.gameObject.GetComponent<CircleCollider2D>();
 
         float opacity = 0f;
         while (opacity < 1f)
@@ -76,8 +86,12 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
             yield return new WaitForSeconds(this.duration_appear / 10);
         }
 
-        // turn on collider when ghost knight is fully visible
-        collider.enabled = true;
+
+        // Set both actors to be no longer invincible.
+        user.myHealth.vulnerable = true;
+
+        // Turn back the effector on.
+        gkEffector.SetActive(true);
 
         isFinished = true;
     }

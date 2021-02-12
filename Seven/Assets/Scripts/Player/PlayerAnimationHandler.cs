@@ -21,8 +21,6 @@ public class PlayerAnimationHandler : ActorAnimationHandler
         else
         {
             Animator.SetBool("player_walking", false);
-            Animator.SetFloat("player_H", 0);
-            Animator.SetFloat("player_V", 0);
         }
 
     }

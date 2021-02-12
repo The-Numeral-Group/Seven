@@ -1,0 +1,9 @@
+title: TestNpc.Start
+tags: 
+colorID: 0
+position: 859,388
+---
+Billy: Who are you?
+-> Hello.
+    Billy: Don't Touch me.
+===
