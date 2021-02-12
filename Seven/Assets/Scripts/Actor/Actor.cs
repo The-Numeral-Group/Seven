@@ -56,7 +56,7 @@ public class Actor : MonoBehaviour
         //Not sure what this will do in the long run
         if (newDirection != Vector2.zero)
         {
-            faceAnchor.position = newDirection;
+            faceAnchor.localPosition = newDirection;
         }
     }
 }

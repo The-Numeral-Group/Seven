@@ -122,7 +122,7 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
     By default it performs the players version.*/
     protected virtual void SpawnWeapon(params Actor[] args)
     {
-        weaponObject.transform.localPosition = user.faceAnchor.position * weaponPositionScale;
+        weaponObject.transform.localPosition = user.faceAnchor.localPosition * weaponPositionScale;
     }
     
     /*SheatheWeapon controls how long the weapon object remains active on screen.
