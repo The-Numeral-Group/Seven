@@ -64,7 +64,10 @@ public class ActiveSpeaker : MonoBehaviour
                 chatIndicator.transform.localPosition.z);
             chatIndicator.SetActive(false);
 
-            MenuManager.DIALOGUE_MENU.dialogueRunner.Add(yarnDialogue);
+            if(MenuManager.DIALOGUE_MENU)
+            {
+                MenuManager.DIALOGUE_MENU.dialogueRunner.Add(yarnDialogue);
+            }
             spriteInfo = GetComponent<SpriteRenderer>();
         }
     }

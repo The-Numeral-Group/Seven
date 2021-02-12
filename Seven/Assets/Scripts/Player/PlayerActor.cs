@@ -7,7 +7,8 @@ public class PlayerActor : Actor
     //Flag to notify if the player is talking with another actor
     public bool isTalking { get; set; }
     //Reference to the PlayerInput cokponent for input map swapping.
-    PlayerInput playerInput;
+    [HideInInspector]
+    public PlayerInput playerInput;
 
     //Initialize non monobehaviour fields
     void Awake()
@@ -24,16 +25,6 @@ public class PlayerActor : Actor
         playerInput = GetComponent<PlayerInput>();
     }
 
-    /*Callback from the dialogue system finishing a conversation.
-    Players health component is reenabled.*/
-    public void OnDialogueEnd()
-    {
-        this.isTalking = false;
-        ActiveSpeaker.ACTIVE_NPC.SetIsTalking(false);
-        playerInput.SwitchCurrentActionMap("Player");
-        this.myHealth.enabled = true;
-    }
-
     /*Engages the dialogue sequence. Disables the players health component, and sets its
     movement direction to 0. Essentially locks the player in place and makes them invulnerable.
     Requires ActiveSpeaker to have been set.*/
@@ -44,6 +35,7 @@ public class PlayerActor : Actor
             Debug.LogWarning("Player Actor: Player is already talking.");
             return;
         }
+        MenuManager.StartDialogue();
         this.isTalking = true;
         playerInput.SwitchCurrentActionMap("UI");
         this.myMovement.MoveActor(Vector2.zero);
@@ -51,6 +43,5 @@ public class PlayerActor : Actor
 
         //MenuManager.DIALOGUE_MENU.speakerNameTextBox.text = ActiveSpeaker.ACTIVE_NPC.speakerName;
         ActiveSpeaker.ACTIVE_NPC.SetIsTalking(true);
-        MenuManager.DIALOGUE_MENU.dialogueRunner.StartDialogue(ActiveSpeaker.ACTIVE_NPC.yarnStartNode);
     }
 }

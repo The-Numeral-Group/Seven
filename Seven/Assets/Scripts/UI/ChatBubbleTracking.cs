@@ -29,8 +29,8 @@ public class ChatBubbleTracking : MonoBehaviour
             Camera.main.WorldToViewportPoint(ActiveSpeaker.ACTIVE_NPC.gameObject.transform.position 
             + new Vector3(0f, ActiveSpeaker.ACTIVE_NPC.spriteInfo.size.y / 2, 0f));
         Vector2 proportionalPosition = new Vector2(
-            viewPortPosition.x * MenuManager.CANVAS_TRANSFORM.sizeDelta.x,
-            (viewPortPosition.y * MenuManager.CANVAS_TRANSFORM.sizeDelta.y) + rectTranform.rect.height / 2);
+            viewPortPosition.x * MenuManager.DIALOGUE_CANVAS_TRANSFORM.sizeDelta.x,
+            (viewPortPosition.y * MenuManager.DIALOGUE_CANVAS_TRANSFORM.sizeDelta.y) + rectTranform.rect.height / 2);
         return proportionalPosition;
     }
 }

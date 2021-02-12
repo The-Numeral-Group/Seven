@@ -10,4 +10,19 @@ public class DialogueMenu : BaseUI
     public Text speakerNameTextBox;
     //reference to the chat bubble;
     public RectTransform chatBubble;
+
+    public void OnDialogueEndCallback()
+    {
+        var player = GameObject.Find("/Player");
+        ActiveSpeaker.ACTIVE_NPC.SetIsTalking(false);
+        if (!player)
+        {
+            Debug.LogWarning("DialogueMenu: OnDialogueFinish callback cannot find the player object.");
+            return;
+        }
+        PlayerActor pActor = player.GetComponent<PlayerActor>();
+        pActor.isTalking = false;
+        pActor.playerInput.SwitchCurrentActionMap("Player");
+        pActor.myHealth.enabled = true;
+    }
 }

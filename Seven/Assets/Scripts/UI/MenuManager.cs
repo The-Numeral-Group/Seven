@@ -14,22 +14,47 @@ public class MenuManager : MonoBehaviour
     //Reference to the canvas rectTransform
     [SerializeField]
     [Tooltip("Reference to the canvas rectangular transform.")]
-    RectTransform canvasTransform = null;
+    RectTransform dialogueCanvasTransform = null;
     //static reference to the Canvas transform
-    public static RectTransform CANVAS_TRANSFORM;
+    public static RectTransform DIALOGUE_CANVAS_TRANSFORM;
 
     //Set static members to the inspector references
     void Awake()
     {
+        //Setup dialogue menu references
+        if(!dialogueMenu)
+        {
+            var dMenu = GameObject.Find("/DialogueMenu");
+            if (dMenu) 
+            {
+                dialogueMenu = dMenu.GetComponent<DialogueMenu>();
+            }
+        }
         DIALOGUE_MENU = dialogueMenu;
         if (!DIALOGUE_MENU)
         {
             Debug.LogWarning("MenuManager: DialogMenu not hooked up properly.");
-        }
-        CANVAS_TRANSFORM = canvasTransform;
-        if (!CANVAS_TRANSFORM)
+        } 
+        else 
         {
-            Debug.LogWarning("MenuManager: CanvasTransform not hooked up properly.");
+            if (!dialogueCanvasTransform)
+            {
+                dialogueCanvasTransform = dialogueMenu.gameObject.GetComponent<RectTransform>();
+            }
+            DIALOGUE_CANVAS_TRANSFORM = dialogueCanvasTransform;
+            if (!DIALOGUE_CANVAS_TRANSFORM)
+            {
+                Debug.LogWarning("MenuManager: CanvasTransform not hooked up properly.");
+            }
         }
+    }
+
+    public static void StartDialogue()
+    {
+        if(!DIALOGUE_MENU)
+        {
+            Debug.LogWarning("MenuManager: DialogMenu not hooked up properly.");
+        }
+        DIALOGUE_MENU.dialogueRunner.StartDialogue(ActiveSpeaker.ACTIVE_NPC.yarnStartNode);
     }
 }
