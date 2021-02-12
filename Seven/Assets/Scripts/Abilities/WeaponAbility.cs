@@ -88,6 +88,12 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
         
     }
 
+    //Auotcalls no-target invoke, because WeaponAbility's InternInvoke also takes the user
+    public override void Invoke(ref Actor user, params object[] args)
+    {
+        Invoke(ref user);
+    }
+
     /*The internal invoke for weapon ability activates the weapon prefab attached to the actor object.
     In the future it will likely need to control how the weaponPrefab is swung in some manner.*/
     protected override int InternInvoke(params Actor[] args)
@@ -105,7 +111,7 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
     By default it performs the players version.*/
     protected virtual void SpawnWeapon(Actor user)
     {
-        weaponObject.transform.localPosition = user.faceAnchor.position * weaponPositionScale;
+        weaponObject.transform.localPosition = user.faceAnchor.localPosition * weaponPositionScale;
     }
     
     /*SheatheWeapon controls how long the weapon object remains active on screen.

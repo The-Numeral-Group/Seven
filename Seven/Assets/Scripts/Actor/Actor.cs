@@ -53,7 +53,7 @@ public class Actor : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void DoActorUpdateFacing(Vector2 newDirection)
+    public virtual void DoActorUpdateFacing(Vector2 newDirection)
     {
         //Do something that updates the transform of the faceanchor
         //Not sure what this will do in the long run
