@@ -11,8 +11,8 @@ public class PrideRubbleThrow : ActorAbilityFunction<GameObject, int>
         " can be configured by that game object).")]
     public GameObject rubbleProjectile;
 
-    [Tooltip("A target object to launch the shockwave at.")]
-    public GameObject target;
+    [Tooltip("Where the projectile should spawn relative to the user's faceAnchor.")]
+    public Vector2 projectileScale = new Vector2(1, 1);
 
     //A middleman variable to hold the wave projectile between methods
     private GameObject rubbleObj;
@@ -25,10 +25,10 @@ public class PrideRubbleThrow : ActorAbilityFunction<GameObject, int>
         if(usable)
         {
             isFinished = false;
-            rubbleObj = 
-                Instantiate(rubbleProjectile, user.gameObject.transform.position, Quaternion.identity);
+            rubbleObj = InstantiateProjectile(rubbleProjectile, user.faceAnchor, projectileScale);
+                //Instantiate(rubbleProjectile, user.faceAnchor.position * projectileScale, Quaternion.identity);
 
-            InternInvoke(target);
+            InternInvoke(GameObject.FindWithTag("Player"));
             StartCoroutine(coolDown(cooldownPeriod));
         }
         
@@ -38,10 +38,12 @@ public class PrideRubbleThrow : ActorAbilityFunction<GameObject, int>
     {
         if(usable)
         {
-            isFinished = false;
-            rubbleObj = 
-                Instantiate(rubbleProjectile, user.faceAnchor.position, Quaternion.identity);
+            GameObject target = null;
 
+            isFinished = false;
+            rubbleObj = InstantiateProjectile(rubbleProjectile, user.faceAnchor, projectileScale);
+                //Instantiate(rubbleProjectile, user.faceAnchor.position * projectileScale, Quaternion.identity);
+            
             if(args[0] is GameObject)
             {
                 target = args[0] as GameObject;
@@ -75,5 +77,26 @@ public class PrideRubbleThrow : ActorAbilityFunction<GameObject, int>
             isFinished = true;
         }
         return 0;
+    }
+
+    /*Creates the projectile object relative to the faceAnchor to make adjusting its spawn position
+    with the inspector easier. Projectiles will still end and be launched parentless however,
+    as their movement methods assume that projectiles have no parents.*/
+    GameObject InstantiateProjectile(GameObject projPrefab, Transform faceAnchor, Vector2 offset)
+    {
+        //Instantiate the projectile as a child of faceAnchor
+        GameObject obj = Instantiate(projPrefab, faceAnchor);
+
+        //make it a child of faceAnchor's parent
+        obj.transform.parent = faceAnchor.parent;
+
+        //adjust projectile's position to match the faceAnchor's (with offset)
+        obj.transform.localPosition = faceAnchor.localPosition * offset;
+
+        //deparent the projectile
+        obj.transform.parent = null;
+        
+        //return the projectile
+        return obj;
     }
 }

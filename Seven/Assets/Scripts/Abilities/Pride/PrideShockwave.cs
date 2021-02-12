@@ -11,6 +11,9 @@ public class PrideShockwave : ActorAbilityFunction<GameObject, int>
         " can be configured by that game object).")]
     public GameObject waveProjectile;
 
+    [Tooltip("Where the projectile should spawn relative to the user's faceAnchor.")]
+    public Vector2 projectileScale = new Vector2(0.1f, 0.1f);
+
     //[Tooltip("A target object to launch the shockwave at.")]
     //public GameObject target;
 
@@ -25,8 +28,7 @@ public class PrideShockwave : ActorAbilityFunction<GameObject, int>
         if(usable)
         {
             isFinished = false;
-            waveObj = 
-                Instantiate(waveProjectile, user.gameObject.transform.position, Quaternion.identity);
+            waveObj = InstantiateProjectile(waveProjectile, user.faceAnchor, projectileScale);
 
             InternInvoke(GameObject.FindWithTag("Player"));
             StartCoroutine(coolDown(cooldownPeriod));
@@ -41,8 +43,8 @@ public class PrideShockwave : ActorAbilityFunction<GameObject, int>
             GameObject target = null;
 
             isFinished = false;
-            waveObj = 
-                Instantiate(waveProjectile, user.faceAnchor.position, Quaternion.identity);
+            waveObj = InstantiateProjectile(waveProjectile, user.faceAnchor, projectileScale);
+                //Instantiate(waveProjectile, user.faceAnchor.localPosition * projectileScale, Quaternion.identity);
 
             if(args[0] is GameObject)
             {
@@ -75,5 +77,26 @@ public class PrideShockwave : ActorAbilityFunction<GameObject, int>
             isFinished = true;
         }
         return 0;
+    }
+
+    /*Creates the projectile object relative to the faceAnchor to make adjusting its spawn position
+    with the inspector easier. Projectiles will still end and be launched parentless however,
+    as their movement methods assume that projectiles have no parents.*/
+    GameObject InstantiateProjectile(GameObject projPrefab, Transform faceAnchor, Vector2 offset)
+    {
+        //Instantiate the projectile as a child of faceAnchor
+        GameObject obj = Instantiate(projPrefab, faceAnchor);
+
+        //make it a child of faceAnchor's parent
+        obj.transform.parent = faceAnchor.parent;
+
+        //adjust projectile's position to match the faceAnchor's (with offset)
+        obj.transform.localPosition = faceAnchor.localPosition * offset;
+
+        //deparent the projectile
+        obj.transform.parent = null;
+        
+        //return the projectile
+        return obj;
     }
 }

@@ -142,7 +142,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockbackDirection: {x: 0, y: 0}
-  knockbackIntensity: 50
+  knockbackIntensity: 10
+  knockbackDuration: 1
   forceOppositeKnockbackDirection: 1
 --- !u!61 &6318928990884420043
 BoxCollider2D:

@@ -11,6 +11,11 @@ public class KnockbackWeaponHitbox : WeaponHitbox
     [Tooltip("How intense the knockback force should be.")]
     public float knockbackIntensity;
 
+    ///DEBUG
+    //[Tooltip("How long the knockback should last.")]
+    //public float knockbackDuration;
+    ///DEBUG
+
     [Tooltip("Whether knockbackDirection should be overriden by whichever direction is 'away'" + 
         " from the knockback source (that is, by a vector that points from this box to whoever" +
             " got hit).")]
@@ -87,6 +92,9 @@ public class KnockbackWeaponHitbox : WeaponHitbox
         Rigidbody2D enemyRigid = enemyHealth.gameObject.GetComponent<Rigidbody2D>();
         if(!enemyRigid)
         {
+            ///DEBUG
+            Debug.Log("KnockbackWeaponHitbox: Aborting Knockback...");
+            ///DEBUG
             return;
         }
 
@@ -94,13 +102,21 @@ public class KnockbackWeaponHitbox : WeaponHitbox
         {
             var boxPos = this.gameObject.transform.position;
             var enemyPos = enemyHealth.gameObject.transform.position;
-            var antinormalVec = (boxPos - enemyPos).normalized;
+            Vector2 antinormalVec = (enemyPos - boxPos).normalized;
+            ///DEBUG
+            Debug.Log("KnockbackWeaponHitbox: attempting to launch " + enemyRigid.gameObject.name + " with force of " + antinormalVec * knockbackIntensity);
+            Debug.DrawRay(enemyPos, antinormalVec * knockbackIntensity, Color.green, 0.5f);
+            
             enemyRigid.AddForce(antinormalVec * knockbackIntensity, ForceMode2D.Impulse);
+            //var enemyMove = enemyHealth.gameObject.GetComponent<ActorMovement>();
+            //enemyMove?.LockActorMovement(knockbackDuration);
+            //enemyMove?.DragActor(antinormalVec * knockbackIntensity);
+            ///DEBUG
         }
         else
         {
             //these next two lines are one line, just fyi
-            enemyRigid.AddForce(knockbackDirection * knockbackIntensity, ForceMode2D.Impulse);
+            //enemyRigid.AddForce(knockbackDirection * knockbackIntensity, ForceMode2D.Impulse);
         }
     }
 }
