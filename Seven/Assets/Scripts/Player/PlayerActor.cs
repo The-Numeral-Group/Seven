@@ -9,8 +9,6 @@ public class PlayerActor : Actor
     //Reference to the PlayerInput cokponent for input map swapping.
     [HideInInspector]
     public PlayerInput playerInput;
-    //used for helping swap menus.
-    string inputMapString = "UI";
 
     //Initialize non monobehaviour fields
     void Awake()
@@ -49,15 +47,13 @@ public class PlayerActor : Actor
 
     void OnMenu()
     {
-        this.myMovement.MoveActor(Vector2.zero);
-        playerInput.SwitchCurrentActionMap(inputMapString);
-        if (inputMapString == "UI")
+        if (playerInput.currentActionMap.name == "UI")
         {
-            inputMapString = "Player";
+            playerInput.SwitchCurrentActionMap("Player");
         }
         else
         {
-            inputMapString = "UI";
+            playerInput.SwitchCurrentActionMap("UI");
         }
         MenuManager.StartPauseMenu();
     }
