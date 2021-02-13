@@ -25,4 +25,13 @@ public class DialogueMenu : BaseUI
         pActor.playerInput.SwitchCurrentActionMap("Player");
         pActor.myHealth.enabled = true;
     }
+
+    //override baseui hide method.
+    public override void Hide()
+    {
+        Debug.Log("DialogueMenu: Closing Dialogue menu.");
+        MenuManager.CURRENT_MENU = null;
+        dialogueRunner.dialogueUI.DialogueComplete();
+        //OnDialogueEndCallback();
+    }
 }
