@@ -30,6 +30,8 @@ public class BattleUI : BaseUI
         UpdateReferences();
         UpdateSlider(ref playerHealth, ref playerSlider);
         UpdateSlider(ref bossHealth, ref bossSlider);
+        //IMPORTANT: Remove this in the future
+        TemporaryDeathCheckFunction();
     }
 
     //Set references for the player and boss actors
@@ -63,6 +65,7 @@ public class BattleUI : BaseUI
         }
     }
 
+    //Update references to player and boss if need be.
     void UpdateReferences()
     {
         if (playerActor && !playerHealth)
@@ -88,11 +91,23 @@ public class BattleUI : BaseUI
         }
     }
 
+    //Updates the slider values of an object. i.e. increments/decrements health
     void UpdateSlider(ref ActorHealth objectHealth, ref Slider uiSlider)
     {
         if (objectHealth)
         {
             uiSlider.value = objectHealth.currentHealth;
+        }
+    }
+
+    //This function should be removed once we are done with stopping the game one player death
+    //for testing purposes.
+    void TemporaryDeathCheckFunction()
+    {
+        if (bossHealth.currentHealth == 0f || playerHealth.currentHealth == 0f)
+        {
+            MenuManager.StartGameOver();
+            this.gameObject.SetActive(false);
         }
     }
 }

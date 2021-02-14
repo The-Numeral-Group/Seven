@@ -23,8 +23,16 @@ public class MenuManager : MonoBehaviour
     BattleUI battleUI;
     //Static reference ot the Battle UI
     public static BattleUI BATTLE_UI;
+    //Reference to the Game Over UI. Must be set through inspector 
+    [Tooltip("Reference to the gameover ui child object. Must be set via inspector.")]
+    [SerializeField]
+    GameOver gameOver = null;
+    //Static reference to game over
+    public static GameOver GAME_OVER;
+
     //pointer to the current opened menu.
     public static BaseUI CURRENT_MENU;
+    public static bool GAME_IS_OVER = false;
 
     //Set static members to the inspector references
     void Awake()
@@ -32,9 +40,11 @@ public class MenuManager : MonoBehaviour
         SetReferences<DialogueMenu>(ref dialogueMenu, ref DIALOGUE_MENU, "/DialogueMenu");
         SetReferences<PauseMenu>(ref pauseMenu, ref PAUSE_MENU, "/PauseMenu");
         SetReferences<BattleUI>(ref battleUI, ref BATTLE_UI, "/BattleUI");
+        GAME_OVER = gameOver;
+        GAME_OVER.gameObject.SetActive(false);
         if (PAUSE_MENU)
         {
-            PAUSE_MENU.gameObject.SetActive(false);
+            PAUSE_MENU.Hide();
         }
     }
 
@@ -58,7 +68,7 @@ public class MenuManager : MonoBehaviour
         if (!CURRENT_MENU && PAUSE_MENU)
         {
             CURRENT_MENU = PAUSE_MENU;
-            PAUSE_MENU.gameObject.SetActive(true);
+            PAUSE_MENU.Show();
             PAUSE_MENU.PauseGame();
             return true;
         }
@@ -93,5 +103,22 @@ public class MenuManager : MonoBehaviour
         {
             Debug.LogWarning("MenuManager: " + objectName + " not hooked up properly.");
         }
+    }
+
+    public static void StartGameOver()
+    {
+        GAME_IS_OVER = true;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<PlayerActor>().playerInput.SwitchCurrentActionMap("UI");
+        if (PAUSE_MENU)
+        {
+            PAUSE_MENU.Hide();
+        }
+        if (BATTLE_UI)
+        {
+            BATTLE_UI.Hide();
+        }
+        Time.timeScale = 0f;
+        GAME_OVER.Show();
     }
 }

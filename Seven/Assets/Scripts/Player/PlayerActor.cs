@@ -47,6 +47,13 @@ public class PlayerActor : Actor
 
     void OnMenu()
     {
+        this.myMovement.MoveActor(Vector2.zero);
+        //Temporary measure
+        if (MenuManager.GAME_IS_OVER)
+        {
+            return;
+        }
+
         if (playerInput.currentActionMap.name == "UI")
         {
             playerInput.SwitchCurrentActionMap("Player");
