@@ -1321,11 +1321,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!1 &2077045391 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 661469260769139079, guid: 4fd57652e3fd50c4cba3355da66050d8, type: 3}
-  m_PrefabInstance: {fileID: 8411390098400197494}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4115977273667405722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1400,7 +1395,7 @@ PrefabInstance:
     - target: {fileID: 1857178619, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: backgroundMenuUI
       value: 
-      objectReference: {fileID: 2077045391}
+      objectReference: {fileID: 0}
     - target: {fileID: 3560292058236041534, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
       value: 19
