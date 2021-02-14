@@ -11,12 +11,6 @@ public class MenuManager : MonoBehaviour
     DialogueMenu dialogueMenu = null;
     //static reference to the Dialogue menu;
     public static DialogueMenu DIALOGUE_MENU;
-    //Reference to the canvas rectTransform
-    [SerializeField]
-    [Tooltip("Reference to the canvas rectangular transform.")]
-    RectTransform dialogueCanvasTransform;
-    //static reference to the Canvas transform
-    public static RectTransform DIALOGUE_CANVAS_TRANSFORM;
     //reference to the Pause Menu. Expected to be set via Inspector.
     [Tooltip("Refernce to the Pause Menu gameobject in scene.")]
     [SerializeField]
@@ -33,15 +27,6 @@ public class MenuManager : MonoBehaviour
         SetReferences<DialogueMenu>(ref dialogueMenu, ref DIALOGUE_MENU, "/DialogueMenu");
         SetReferences<PauseMenu>(ref pauseMenu, ref PAUSE_MENU, "/PauseMenu");
         PAUSE_MENU.gameObject.SetActive(false);
-        if (!dialogueCanvasTransform)
-        {
-            dialogueCanvasTransform = dialogueMenu.gameObject.GetComponent<RectTransform>();
-        }
-        DIALOGUE_CANVAS_TRANSFORM = dialogueCanvasTransform;
-        if (!DIALOGUE_CANVAS_TRANSFORM)
-        {
-            Debug.LogWarning("MenuManager: CanvasTransform not hooked up properly.");
-        }
     }
 
     /*Starts the dialogue menu via yarnspinner. Will crash if activenpc has not already been set.
