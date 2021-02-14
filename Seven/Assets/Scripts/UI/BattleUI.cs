@@ -104,6 +104,10 @@ public class BattleUI : BaseUI
     //for testing purposes.
     void TemporaryDeathCheckFunction()
     {
+        if (!bossHealth || !playerHealth)
+        {
+            return;
+        }
         if (bossHealth.currentHealth == 0f || playerHealth.currentHealth == 0f)
         {
             MenuManager.StartGameOver();
