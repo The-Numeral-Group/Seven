@@ -37,9 +37,9 @@ public class MenuManager : MonoBehaviour
     //Set static members to the inspector references
     void Awake()
     {
-        SetReferences<DialogueMenu>(ref dialogueMenu, ref DIALOGUE_MENU, "/DialogueMenu");
-        SetReferences<PauseMenu>(ref pauseMenu, ref PAUSE_MENU, "/PauseMenu");
-        SetReferences<BattleUI>(ref battleUI, ref BATTLE_UI, "/BattleUI");
+        SetReferences<DialogueMenu>(ref dialogueMenu, ref DIALOGUE_MENU, "DialogueMenu");
+        SetReferences<PauseMenu>(ref pauseMenu, ref PAUSE_MENU, "PauseMenu");
+        SetReferences<BattleUI>(ref battleUI, ref BATTLE_UI, "BattleUI");
         GAME_OVER = gameOver;
         GAME_OVER.gameObject.SetActive(false);
         if (PAUSE_MENU)
