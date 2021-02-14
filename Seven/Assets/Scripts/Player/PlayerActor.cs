@@ -55,6 +55,13 @@ public class PlayerActor : Actor
         {
             playerInput.SwitchCurrentActionMap("UI");
         }
-        MenuManager.StartPauseMenu();
+        bool value = MenuManager.StartPauseMenu();
+        if (!value)
+        {
+            /*WARNING: there is a potential redundancy with this line. a menus close callback function
+            should reset the players input map. This was added solely for the case where there is issue
+            with regards to menumanagers current menu reference.*/
+            playerInput.SwitchCurrentActionMap("Player");
+        }
     }
 }
