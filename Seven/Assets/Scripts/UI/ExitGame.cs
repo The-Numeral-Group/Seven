@@ -10,6 +10,8 @@ public class ExitGame : MonoBehaviour
 {
     public GameObject pauseMenuUI;
     public GameObject gameOverUI;
+    public GameObject backgroundMenuUI;
+
     public static bool GAME_IS_PAUSED = false;
     public static bool GAME_IS_OVER = false;
 
@@ -31,6 +33,7 @@ public class ExitGame : MonoBehaviour
         GAME_IS_PAUSED = false;
         pauseMenuUI.SetActive(false);
         gameOverUI.SetActive(false);
+        backgroundMenuUI.SetActive(false);
 
     }
 
@@ -44,6 +47,7 @@ public class ExitGame : MonoBehaviour
         {
             GAME_IS_OVER = true;
             gameOverUI.SetActive(true);
+            backgroundMenuUI.SetActive(true);
             Time.timeScale = 0f;
             GAME_IS_PAUSED = true;
         }
@@ -83,6 +87,7 @@ public class ExitGame : MonoBehaviour
     {
         GAME_IS_PAUSED = true;
         pauseMenuUI.SetActive(true);
+        backgroundMenuUI.SetActive(true);
         Time.timeScale = 0f;
     }
 
@@ -90,6 +95,7 @@ public class ExitGame : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         gameOverUI.SetActive(false);
+        backgroundMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GAME_IS_PAUSED = false;
     }
