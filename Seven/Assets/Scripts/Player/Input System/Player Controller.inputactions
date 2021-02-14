@@ -530,7 +530,7 @@
                 },
                 {
                     "name": "Select",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "56b7ddeb-c728-472b-9f7f-606051d17ecb",
                     "expectedControlType": "Button",
                     "processors": "",
