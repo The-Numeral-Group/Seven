@@ -34,10 +34,19 @@ public class DialogueMenu : BaseUI
         }
     }
 
+    //Callback function used by the dialoguemenu ui object
     public void OnDialogueEndCallback()
     {
         var player = GameObject.Find("/Player");
         ActiveSpeaker.ACTIVE_NPC.SetIsTalking(false);
+
+        /*This line can cause an issue requiring the player to re-enter an npc's collision box
+        to re-engage dialogue if the npc is in npcmode.*/
+        if (!ActiveSpeaker.ACTIVE_NPC.npcMode)
+        {
+            ActiveSpeaker.ACTIVE_NPC = null;
+        }
+
         if (!player)
         {
             Debug.LogWarning("DialogueMenu: OnDialogueFinish callback cannot find the player object.");
@@ -48,6 +57,32 @@ public class DialogueMenu : BaseUI
         pActor.playerInput.SwitchCurrentActionMap("Player");
         pActor.myHealth.enabled = true;
         MenuManager.CURRENT_MENU = null;
+    }
+
+    /*Function to be utilized outside of class to start dialogue. Requires a gameobject to be passed in.
+    The gameobject should reference a scene element which has n AcitveSpeaker component.*/
+    public void StartDialogue(GameObject npc)
+    {
+        ActiveSpeaker newSpeaker = npc.GetComponent<ActiveSpeaker>();
+        if (!newSpeaker)
+        {
+            Debug.LogWarning("DialogueMenu: gameobject passed to StartDialogue() does not contain" + 
+                " an ActiveSpeaker component");
+            return;
+        }
+        var player = GameObject.Find("/Player");
+        if (!player)
+        {
+            Debug.LogWarning("DialogueMenu: StartDialogue() cannot find the player object.");
+            return;
+        }
+        ActiveSpeaker.ACTIVE_NPC = newSpeaker;
+        ActiveSpeaker.ACTIVE_NPC.SetIsTalking(true);
+        PlayerActor pActor = player.GetComponent<PlayerActor>();
+        pActor.playerInput.SwitchCurrentActionMap("UI");
+        MenuManager.StartDialogue();
+        pActor.isTalking = true;
+        pActor.myHealth.enabled = false;
     }
 
     //override baseui hide method.
