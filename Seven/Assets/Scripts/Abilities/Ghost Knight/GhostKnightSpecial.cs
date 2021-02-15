@@ -107,6 +107,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     private IEnumerator PerformCombinationVSlash(Actor user)
     {
         ghostKnightAnimationHandler.animateVSlash();
+        user.myMovement.DragActor(new Vector2(0.0f, -0.5f));
         yield return new WaitForSeconds(this.duration_slash);
 
         StartCoroutine(PerformCombinationHSlash(user));
@@ -116,7 +117,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     {
         ghostKnightAnimationHandler.animateHSlash();
         yield return new WaitForSeconds(this.duration_slash);
-
+        user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
         isFinished = true;
     }
 }
