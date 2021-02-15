@@ -5,8 +5,8 @@ using UnityEngine;
 public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
 {
     //How long this entire process should take.
-    // duration = duration_vanish_start + duration_vanish + duration_appear
-    public float duration = 5f;
+    // duration = duration_vanish_start + duration_vanish + duration_appear + 2 * duration_slash
+    public float duration = 9f;
     //How long the vanising start process should take.
     public float duration_vanish_start = 1f;
     //How long the ghost knight should be invisible for.
@@ -14,12 +14,17 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     //How long the reappearing process should take.
     public float duration_appear = 1f;
 
+    // Delay between each slash performing.
+    public float duration_slash = 2f;
+
     private Actor player;
 
     // Ghost Knight Effector object
     public GameObject gkEffector;
 
     public GameObject glintObject;
+
+    GhostKnightAnimationHandler ghostKnightAnimationHandler;
 
     public override void Invoke(ref Actor user)
     {
@@ -41,6 +46,9 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
             Debug.Log("GhostKnightPhaseChange: duration must be greater than 0");
             this.duration = 2f;
         }
+
+        ghostKnightAnimationHandler = args[0].myAnimationHandler as GhostKnightAnimationHandler;
+
         StartCoroutine(args[0].myMovement.LockActorMovement(duration));
         StartCoroutine(Vanish(args[0]));
         return 0;
@@ -93,6 +101,23 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
         // Turn back the effector on.
         gkEffector.SetActive(true);
 
+        StartCoroutine(PerformCombinationVSlash(user));
+    }
+    
+    private IEnumerator PerformCombinationVSlash(Actor user)
+    {
+        ghostKnightAnimationHandler.animateVSlash();
+        user.myMovement.DragActor(new Vector2(0.0f, -0.5f));
+        yield return new WaitForSeconds(this.duration_slash);
+
+        StartCoroutine(PerformCombinationHSlash(user));
+    }
+
+    private IEnumerator PerformCombinationHSlash(Actor user)
+    {
+        ghostKnightAnimationHandler.animateHSlash();
+        yield return new WaitForSeconds(this.duration_slash);
+        user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
         isFinished = true;
     }
 }

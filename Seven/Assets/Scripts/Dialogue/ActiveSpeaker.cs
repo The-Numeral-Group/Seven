@@ -19,9 +19,9 @@ public class ActiveSpeaker : MonoBehaviour
     [Tooltip("The yarn file the speaker will read from.")]
     public YarnProgram yarnDialogue;
     //A reference to the the most valid talking target for the player
-    public static ActiveSpeaker ACTIVE_NPC { get; private set; }
+    public static ActiveSpeaker ACTIVE_NPC { get; set; }
     //Set whether this speaker is being interacted with as an npc.
-    public bool npcMode {get; set;}
+    public bool npcMode;
     //Offset the chat indicator object from the speaker
     [Tooltip("How much you want to offset the chat indicator from the speaker.")]
     public Vector2 offset = new Vector2(0, 5);
@@ -34,13 +34,6 @@ public class ActiveSpeaker : MonoBehaviour
     GameObject chatIndicator;
     //flag used to tell if this npc is talking.
     bool isTalking;
-
-    //Setup non monobehaviour member variables
-    void Awake()
-    {
-        //Set to true for testing purposes
-        npcMode = true;
-    }
 
     //Initialize monobehaviour fields
     void Start()
@@ -64,7 +57,10 @@ public class ActiveSpeaker : MonoBehaviour
                 chatIndicator.transform.localPosition.z);
             chatIndicator.SetActive(false);
 
-            MenuManager.DIALOGUE_MENU.dialogueRunner.Add(yarnDialogue);
+            if(MenuManager.DIALOGUE_MENU)
+            {
+                MenuManager.DIALOGUE_MENU.dialogueRunner.Add(yarnDialogue);
+            }
             spriteInfo = GetComponent<SpriteRenderer>();
         }
     }
@@ -91,7 +87,10 @@ public class ActiveSpeaker : MonoBehaviour
 
     void SetChatIndicator(bool value)
     {
-        chatIndicator.SetActive(value);
+        if (npcMode)
+        {
+            chatIndicator.SetActive(value);
+        }
     }
 
     void SetActiveSpeaker(bool value)

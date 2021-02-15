@@ -99,7 +99,7 @@ public abstract class BaseCamera : MonoBehaviour
     protected virtual Vector3 FocusCamOnChatBubble(Vector3 currentBoundsPos)
     {
         var bounds = new Bounds(currentBoundsPos, Vector3.zero);
-        if (MenuManager.DIALOGUE_MENU.gameObject.activeSelf)
+        if (MenuManager.DIALOGUE_MENU && MenuManager.DIALOGUE_MENU.dialogueRunner.gameObject.activeSelf)
         {
             Vector3 dialogBubblePos = 
                 cam.ScreenToWorldPoint(MenuManager.DIALOGUE_MENU.chatBubble.localPosition);

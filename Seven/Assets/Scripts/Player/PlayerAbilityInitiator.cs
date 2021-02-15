@@ -79,4 +79,9 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
         playerAnimationHandler.animateDodge();
         playerDodge.Invoke(ref userActor);
     }
+
+    public void OnInteract()
+    {
+        Debug.Log("test");
+    }
 }
