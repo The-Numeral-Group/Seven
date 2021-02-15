@@ -51,25 +51,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""UI Mouse"",
-                    ""type"": ""Button"",
-                    ""id"": ""39c581d4-2136-4fbc-9cd3-5afba9868ea1"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""Menu"",
                     ""type"": ""Button"",
                     ""id"": ""5a338077-2593-45a2-a323-a718537ec06a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Resume"",
-                    ""type"": ""Button"",
-                    ""id"": ""5d510932-5c85-491b-b8bf-4004378485a2"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -548,17 +532,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""action"": ""Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""afef2e92-0ad1-4f13-896e-a46311d3b0ab"",
-                    ""path"": ""<Keyboard>/#(R)"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Resume"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -576,9 +549,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Navigate"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Value"",
                     ""id"": ""4eaa052a-a96a-4481-a9cb-c288ad051528"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -600,8 +573,16 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Cancel"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""e0855eef-5bab-4f84-88c3-479a83da5946"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""bc1e19f3-2088-46a9-9a25-ab1aac2ab929"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -1091,6 +1072,28 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7aad294c-f07b-4ea0-a43c-db58df7a8a79"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""724d087a-ea13-46ea-a8cc-40ec1f0a97ea"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1146,9 +1149,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_UIMouse = m_Player.FindAction("UI Mouse", throwIfNotFound: true);
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
-        m_Player_Resume = m_Player.FindAction("Resume", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
@@ -1156,6 +1157,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         m_UI_LeftClick = m_UI.FindAction("Left Click", throwIfNotFound: true);
         m_UI_Select = m_UI.FindAction("Select", throwIfNotFound: true);
         m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
+        m_UI_Menu = m_UI.FindAction("Menu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1209,9 +1211,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_UIMouse;
     private readonly InputAction m_Player_Menu;
-    private readonly InputAction m_Player_Resume;
     public struct PlayerActions
     {
         private @PlayerController m_Wrapper;
@@ -1220,9 +1220,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
-        public InputAction @UIMouse => m_Wrapper.m_Player_UIMouse;
         public InputAction @Menu => m_Wrapper.m_Player_Menu;
-        public InputAction @Resume => m_Wrapper.m_Player_Resume;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1244,15 +1242,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                @UIMouse.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUIMouse;
-                @UIMouse.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUIMouse;
-                @UIMouse.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUIMouse;
                 @Menu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 @Menu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 @Menu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
-                @Resume.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResume;
-                @Resume.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResume;
-                @Resume.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnResume;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1269,15 +1261,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
-                @UIMouse.started += instance.OnUIMouse;
-                @UIMouse.performed += instance.OnUIMouse;
-                @UIMouse.canceled += instance.OnUIMouse;
                 @Menu.started += instance.OnMenu;
                 @Menu.performed += instance.OnMenu;
                 @Menu.canceled += instance.OnMenu;
-                @Resume.started += instance.OnResume;
-                @Resume.performed += instance.OnResume;
-                @Resume.canceled += instance.OnResume;
             }
         }
     }
@@ -1291,6 +1277,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_LeftClick;
     private readonly InputAction m_UI_Select;
     private readonly InputAction m_UI_Cancel;
+    private readonly InputAction m_UI_Menu;
     public struct UIActions
     {
         private @PlayerController m_Wrapper;
@@ -1300,6 +1287,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         public InputAction @LeftClick => m_Wrapper.m_UI_LeftClick;
         public InputAction @Select => m_Wrapper.m_UI_Select;
         public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
+        public InputAction @Menu => m_Wrapper.m_UI_Menu;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1324,6 +1312,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Cancel.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
                 @Cancel.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
                 @Cancel.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
+                @Menu.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
+                @Menu.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
+                @Menu.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1343,6 +1334,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Cancel.started += instance.OnCancel;
                 @Cancel.performed += instance.OnCancel;
                 @Cancel.canceled += instance.OnCancel;
+                @Menu.started += instance.OnMenu;
+                @Menu.performed += instance.OnMenu;
+                @Menu.canceled += instance.OnMenu;
             }
         }
     }
@@ -1371,9 +1365,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnUIMouse(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
-        void OnResume(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -1382,5 +1374,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnLeftClick(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
+        void OnMenu(InputAction.CallbackContext context);
     }
 }
