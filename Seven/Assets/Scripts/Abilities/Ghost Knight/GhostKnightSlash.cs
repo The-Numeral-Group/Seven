@@ -6,8 +6,8 @@ public class GhostKnightSlash : ActorAbilityFunction<Actor, int>
 {
     //How long this entire process should take.
     public float duration = 2f;
-    //How long the attack animation lasts;
-    public float animationDuration = 1f;
+    //Time when ghost knight moves forward
+    public float moveForward = 1f;
 
     GhostKnightAnimationHandler ghostKnightAnimationHandler;
 
@@ -47,16 +47,18 @@ public class GhostKnightSlash : ActorAbilityFunction<Actor, int>
     private void PerformVSlash(Actor user)
     {
         ghostKnightAnimationHandler.animateVSlash();
-        StartCoroutine(SlashFinished());
+
+        StartCoroutine(SlashFinished(user));
     }
     private void PerformHSlash(Actor user)
     {
         ghostKnightAnimationHandler.animateHSlash();
-        StartCoroutine(SlashFinished());
+
+        StartCoroutine(SlashFinished(user));
     }
-    private IEnumerator SlashFinished()
+    private IEnumerator SlashFinished(Actor user)
     {
-        yield return new WaitForSeconds(this.duration);
+        yield return new WaitForSeconds(this.duration - this.moveForward);
         isFinished = true;
     }
 }
