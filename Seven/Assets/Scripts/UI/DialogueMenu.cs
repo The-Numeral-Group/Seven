@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using Yarn.Unity;
 
 //In the dialogue canvas, make sure the screen space is set to camera, and add w/e camera to it.
@@ -18,6 +19,9 @@ public class DialogueMenu : BaseUI
 
     //reference to the ui menus canvas transform
     RectTransform canvasTransform;
+
+    public delegate void TestDelegate();
+    TestDelegate dialogueDelegateCallback;
 
     //Initialize non inspector set fields.
     void Start()
@@ -40,13 +44,6 @@ public class DialogueMenu : BaseUI
         var player = GameObject.Find("/Player");
         ActiveSpeaker.ACTIVE_NPC.SetIsTalking(false);
 
-        /*This line can cause an issue requiring the player to re-enter an npc's collision box
-        to re-engage dialogue if the npc is in npcmode.*/
-        if (!ActiveSpeaker.ACTIVE_NPC.npcMode)
-        {
-            ActiveSpeaker.ACTIVE_NPC = null;
-        }
-
         if (!player)
         {
             Debug.LogWarning("DialogueMenu: OnDialogueFinish callback cannot find the player object.");
@@ -57,11 +54,23 @@ public class DialogueMenu : BaseUI
         pActor.playerInput.SwitchCurrentActionMap("Player");
         pActor.myHealth.enabled = true;
         MenuManager.CURRENT_MENU = null;
+        /*This line can cause an issue requiring the player to re-enter an npc's collision box
+        to re-engage dialogue if the npc is in npcmode.*/
+        if (!ActiveSpeaker.ACTIVE_NPC.npcMode)
+        {
+            ActiveSpeaker.ACTIVE_NPC = null;
+            if (dialogueDelegateCallback != null)
+            {
+                dialogueDelegateCallback();
+            }
+            dialogueDelegateCallback = null;
+        }
     }
 
     /*Function to be utilized outside of class to start dialogue. Requires a gameobject to be passed in.
-    The gameobject should reference a scene element which has n AcitveSpeaker component.*/
-    public void StartDialogue(GameObject npc)
+    The gameobject should reference a scene element which has n AcitveSpeaker component. the passed in method
+    will be called once the dialogue finished*/
+    public void StartDialogue(GameObject npc, TestDelegate method = null)
     {
         ActiveSpeaker newSpeaker = npc.GetComponent<ActiveSpeaker>();
         if (!newSpeaker)
@@ -80,6 +89,7 @@ public class DialogueMenu : BaseUI
         ActiveSpeaker.ACTIVE_NPC.SetIsTalking(true);
         PlayerActor pActor = player.GetComponent<PlayerActor>();
         pActor.playerInput.SwitchCurrentActionMap("UI");
+        dialogueDelegateCallback = method;
         MenuManager.StartDialogue();
         pActor.isTalking = true;
         pActor.myHealth.enabled = false;
