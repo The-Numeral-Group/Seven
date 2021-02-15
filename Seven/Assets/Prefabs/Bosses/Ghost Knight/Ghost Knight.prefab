@@ -359,7 +359,7 @@ MonoBehaviour:
   cooldownPeriod: 10
   abilityName: Slash
   duration: 2
-  animationDuration: 1
+  moveForward: 1
 --- !u!1 &220097795038076212
 GameObject:
   m_ObjectHideFlags: 0
