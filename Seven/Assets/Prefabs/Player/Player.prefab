@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 4115977272152067189}
   - component: {fileID: 7512802453659592074}
   - component: {fileID: 4115977272152067190}
-  - component: {fileID: 1857178619}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -301,6 +300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldownPeriod: 0
   abilityName: WeaponAttack
+  invokeBlankWhenBadArguments: 1
   startingWeaponObject: {fileID: 7573367737500984201, guid: bfab2a95a7b826b4ab10b4994c287025, type: 3}
   duration: 1
   weaponPositionScale: {x: 0.1, y: 0.1}
@@ -319,6 +319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldownPeriod: 0.5
   abilityName: Dodge
+  invokeBlankWhenBadArguments: 1
   dodgeDistance: 15
   dodgeDuration: 0
   invincibleDuration: 0
@@ -337,19 +338,3 @@ MonoBehaviour:
   Animator: {fileID: 0}
   movementDirection: {x: 0, y: 0}
   myMovement: {fileID: 0}
---- !u!114 &1857178619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4115977272152067185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88b5ca3f105946a43a8b516e536312e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 0}
-  gameOverUI: {fileID: 0}
-  boss: {fileID: 0}
-  player: {fileID: 4115977272152067185}
