@@ -65,6 +65,16 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     }
     private IEnumerator Reappear(Actor user)
     {
+<<<<<<< Updated upstream
+=======
+        Instantiate(this.glintObject, user.transform.position, Quaternion.identity);
+
+        // Perform VSlash while appearing.
+        PerformCombinationVSlash(user);
+
+        yield return new WaitForSeconds(this.duration_vanish / 4);
+
+>>>>>>> Stashed changes
         SpriteRenderer gkSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
         CircleCollider2D collider = this.gameObject.GetComponent<CircleCollider2D>();
 
@@ -79,6 +89,29 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
         // turn on collider when ghost knight is fully visible
         collider.enabled = true;
 
+<<<<<<< Updated upstream
+=======
+        // Set both actors to be no longer invincible.
+        user.myHealth.vulnerable = true;
+
+        // Turn back the effector on.
+        gkEffector.SetActive(true);
+
+        StartCoroutine(PerformCombinationHSlash(user));
+    }
+    
+    private void PerformCombinationVSlash(Actor user)
+    {
+        ghostKnightAnimationHandler.animateVSlash();
+        user.myMovement.DragActor(new Vector2(0.0f, -0.5f));
+    }
+
+    private IEnumerator PerformCombinationHSlash(Actor user)
+    {
+        ghostKnightAnimationHandler.animateHSlash();
+        yield return new WaitForSeconds(this.duration_slash);
+        user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
+>>>>>>> Stashed changes
         isFinished = true;
     }
 }
