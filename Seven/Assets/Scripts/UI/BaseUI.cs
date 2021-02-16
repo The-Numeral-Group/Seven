@@ -19,6 +19,7 @@ public abstract class BaseUI : MonoBehaviour
     /*disable the menu*/
     public virtual void Hide()
     {
+        MenuManager.CURRENT_MENU = null;
         this.gameObject.SetActive(false);
     }
 }

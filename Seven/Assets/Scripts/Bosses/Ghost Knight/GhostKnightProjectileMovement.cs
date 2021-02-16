@@ -12,8 +12,11 @@ public class GhostKnightProjectileMovement : ActorMovement
 
     public float projectileDuration = 5f;
     public int damage = 1;
+    public float before_fadeAway = 4.5f;
+    public float fadeAway_duration = 0.5f;
 
     private float projectileSpeed = 0.1f;
+
 
     protected override void Start()
     {
@@ -49,7 +52,17 @@ public class GhostKnightProjectileMovement : ActorMovement
 
     IEnumerator DestroySelf()
     {
-        yield return new WaitForSeconds(this.projectileDuration);
+        yield return new WaitForSeconds(this.before_fadeAway);
+
+        SpriteRenderer projSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+
+        float opacity = 1f;
+        while (opacity > 0f)
+        {
+            opacity -= 0.1f;
+            projSpriteRenderer.color = new Color(1f, 1f, 1f, opacity);
+            yield return new WaitForSeconds(this.fadeAway_duration / 10);
+        }
         Destroy(this.gameObject);
     }
 
@@ -67,11 +80,10 @@ public class GhostKnightProjectileMovement : ActorMovement
             //hurt them. Do nothing if they can't take damage.
             if (playerHealth != null)
             {
-                if (!playerHealth.vulnerable)
+                if (playerHealth.vulnerable)
                 {
-                    return;
+                    playerHealth.takeDamage(damage);
                 }
-                playerHealth.takeDamage(damage);
                 Destroy(this.gameObject);
             }
         }

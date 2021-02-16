@@ -20,12 +20,19 @@ public class Actor : MonoBehaviour
     {
         //all of these need to be in Start to make sure they exist
 
-        //faceAnchor = this.gameObject.transform.Find("FaceAnchor").transform;
         //Alternatively I (Ram) think we can create the face anchor when the actor gets instatiated into the scene rather than having the face anchor already exist in the prefab.
         //pros and cons to both sides, so whatever you all prefer between the two I am down for.
-        GameObject facingDirection = new GameObject("FaceAnchor");
-        facingDirection.transform.parent = this.gameObject.transform;
-        faceAnchor = facingDirection.gameObject.transform;
+        this.faceAnchor = this.gameObject.transform.Find("FaceAnchor");
+        ///DEBUG
+        if(!this.faceAnchor)
+        {
+            GameObject facingDirection = new GameObject("FaceAnchor");
+            facingDirection.transform.parent = this.gameObject.transform;
+            facingDirection.transform.localPosition = new Vector3(0,0,0);
+            this.faceAnchor = facingDirection.gameObject.transform;
+        }
+        ///DEBUG
+        
         this.myAbilityInitiator = this.gameObject.GetComponent<ActorAbilityInitiator>();
         this.myEffectHandler = this.gameObject.GetComponent<ActorEffectHandler>();
         this.myHealth = this.gameObject.GetComponent<ActorHealth>();
@@ -33,7 +40,7 @@ public class Actor : MonoBehaviour
         this.myAnimationHandler = this.gameObject.GetComponent<ActorAnimationHandler>();
     }
 
-    public virtual void DoActorDamageEffect()
+    public virtual void DoActorDamageEffect(float damage)
     {
         //Do anything that should happen on taking damage
         //no effect by default
@@ -43,16 +50,20 @@ public class Actor : MonoBehaviour
     {
         //Do anything that should happen on death
         //destroys the gameobject by default
-        Destroy(this.gameObject);
+
+        // I(Mingun) currently disabled this for now.
+        // This is to prevent game keep running after an actor died. 
+        // In the future, switch this back.
+        //Destroy(this.gameObject);
     }
 
-    public void DoActorUpdateFacing(Vector2 newDirection)
+    public virtual void DoActorUpdateFacing(Vector2 newDirection)
     {
         //Do something that updates the transform of the faceanchor
         //Not sure what this will do in the long run
         if (newDirection != Vector2.zero)
         {
-            faceAnchor.position = newDirection;
+            faceAnchor.localPosition = newDirection;
         }
     }
 }

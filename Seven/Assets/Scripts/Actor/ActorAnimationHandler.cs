@@ -8,7 +8,7 @@ public class ActorAnimationHandler : MonoBehaviour
 
     public Animator Animator;
 
-    protected virtual void Start()
+    public virtual void Start()
     {
         hostActor = this.GetComponent<Actor>();
         Animator = this.gameObject.GetComponent<Animator>();

@@ -29,6 +29,9 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
     as well as the hitbox class.*/
     public bool hitConnected { get; set; }
 
+    //Reference to the user of this ability.
+    public Actor user { get; protected set; }
+
     //Initializing fields
     protected virtual void Awake()
     {
@@ -81,11 +84,25 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
         //by default, Invoke just does InternInvoke with no arguments
         if(this.usable)
         {
+            this.user = user;
             this.isFinished = false;
             StartCoroutine(coolDown(cooldownPeriod));
-            InternInvoke(user);
+            InternInvoke(new Actor[0]);
         }
         
+    }
+
+    //Invoke which receives an object array as an additional parameter. Meant to be used to pass in
+    //targets or other actors.
+    public override void Invoke(ref Actor user, params object[] args)
+    {
+        if(this.usable)
+        {
+            this.user = user;
+            this.isFinished = false;
+            StartCoroutine(coolDown(cooldownPeriod));
+            InternInvoke(easyArgConvert(args));
+        }
     }
 
     /*The internal invoke for weapon ability activates the weapon prefab attached to the actor object.
@@ -96,16 +113,16 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
         StopCoroutine(sheathe);
         sheathe = SheatheWeapon();
         weaponObject.SetActive(true);
-        SpawnWeapon(args[0]);
+        SpawnWeapon(args);
         StartCoroutine(sheathe);
         return 0;
     }
 
     /*This function is meant to be overriiden by other weapon ability derived classes.
     By default it performs the players version.*/
-    protected virtual void SpawnWeapon(Actor user)
+    protected virtual void SpawnWeapon(params Actor[] args)
     {
-        weaponObject.transform.localPosition = user.faceAnchor.position * weaponPositionScale;
+        weaponObject.transform.localPosition = user.faceAnchor.localPosition * weaponPositionScale;
     }
     
     /*SheatheWeapon controls how long the weapon object remains active on screen.

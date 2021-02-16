@@ -4,52 +4,82 @@ using UnityEngine;
 
 public class ActorWeakPoint : ActorHealth
 {
-    public ActorHealth ownerHealth;    //The object that this weakpoint effects
+    //FIELDS---------------------------------------------------------------------------------------
+    [Tooltip("The ActorHealth that this weak point is weak for.")]
+    public ActorHealth ownerHealth;
+
+    [Tooltip("How much damage done to this weak point should be increased for when it is" + 
+        " applied to the owner's health.")]
     public float damageMultiplier = 1.0f;
+
+    [Tooltip("If the owner has any damage resistance, whether or not damage from this" + 
+        " weak point should bypass it.")]
     public bool bypassDamageResistance = true;
 
-    //ActorHealth ownerHealth;
+    //METHODS--------------------------------------------------------------------------------------
     // Start is called before the first frame update
     void Start()
     {
-        /*if(owner == null){
-            owner = this.gameObject.transform.parent.gameObject;
+        if(ownerHealth == null)
+        {
+            var parent = this.gameObject.transform.parent;
+            ownerHealth = parent != null ? parent.gameObject.GetComponent<ActorHealth>() : null;
 
-            if(owner == null){Debug.LogError("Weakpoint created without owner!");}
-        }
-        ownerHealth = owner.GetComponent<ActorHealth>();
-        if(ownerHealth == null){Debug.LogError("Weakpoint owner can't take damage!");}*/
-
-        if(ownerHealth == null){
-            ownerHealth = this.gameObject.transform.parent.gameObject.GetComponent<ActorHealth>();
-            if(ownerHealth == null){Debug.LogError("Weakpoint owner can't take damage!");}
+            if(ownerHealth == null)
+            {
+                Debug.LogWarning("ActorWeakPoint: Weakpoint GameObject starting with no owner," + 
+                    " damage cannot be sent anywhere.");
+            }
         }
     }
 
-    /*// Update is called once per frame
-    void Update()
-    {
-        
-    }*/
+    /*Similar to ActorHealth, the method to call when this component should take damage. However.
+    this version has special functionality to interact with damage resistance of related
+    ActorHealths.*/
 
     //new in a method declaration means "use me rather than my superclass's version"
-    public override void takeDamage(float damageTaken){
+    public override void takeDamage(float damageTaken, bool bypassDamageResistance=false){
         if (!this.vulnerable)
         {
+            Debug.Log("ActorWeakPoint: returning  'cause not vulnerable");
             return;
         }
-        //take the damage to the weakpoint
-        this.currentHealth -= Mathf.Floor(damageTaken * (1.0f - damageResistance));
 
-        //then deal the damage to the owner
-        if(bypassDamageResistance){
-            //We divide by 100 - ownerHealth.damage resistance to cancel out the damage resistance
-            //in the owner, with is * 100 - ownerHealth.damageResistance
-            ownerHealth.takeDamage(Mathf.Floor(
-                damageTaken * damageMultiplier / (1.0f - ownerHealth.damageResistance)));
+        float damage;
+        if(bypassDamageResistance)
+        {
+            damage = damageTaken;
         }
-        else{
-            ownerHealth.takeDamage(Mathf.Floor(damageTaken * damageMultiplier));
+        else
+        {
+            damage = Mathf.Lerp(damageTaken, 0, damageResistance);
+        }
+        //var damage = Mathf.Floor(damageTaken * (1.0f - damageResistance));
+        Debug.Log(this.gameObject.name + " taking " + damage + " damage");
+
+        //take the damage
+        this.currentHealth -= damage;
+
+        /*//take the damage to the weakpoint
+        this.currentHealth -= Mathf.Floor(damageTaken * (1.0f - damageResistance));
+        ///DEBUG
+        Debug.Log(this.gameObject.name + " taking " + Mathf.Floor(damageTaken * (1.0f - damageResistance)));*/
+
+        /*then deal the damage to the owner. When bypassing damage resistance, the damage
+        is divided by 1 minus the owner's damage resistance, which mathematically cancels
+        it out. If the damage doesn't get to bypass resistance, it's dealt like normal.*/
+        if(ownerHealth)
+        {
+            ownerHealth.takeDamage(damageTaken * damageMultiplier, bypassDamageResistance);
+            /*if(bypassDamageResistance)
+            {
+                var dam = (damageTaken * damageMultiplier) / (1.0f - ownerHealth.damageResistance);
+                ownerHealth.takeDamage(dam);
+            }
+            else
+            {
+                ownerHealth.takeDamage(damageTaken * damageMultiplier);
+            }*/
         }
 
         //if the attack killed the thing

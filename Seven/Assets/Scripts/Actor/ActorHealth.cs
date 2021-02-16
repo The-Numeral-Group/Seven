@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 /*I just copied and modified the original ActorHealth.cs
 I dropped the require component since ActorHealth doesn't need it
@@ -19,9 +21,13 @@ public class ActorHealth : MonoBehaviour
     public float currentHealth { get; set; }
     public bool vulnerable { get; set; }
 
+    private SpriteRenderer spriteRenderer;
+
     void Awake(){
         this.maxHealth = startingMaxHealth;
         this.currentHealth = this.maxHealth;
+        this.vulnerable = true;
+        this.spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
     }
     
     /*// Start is called before the first frame update
@@ -31,16 +37,30 @@ public class ActorHealth : MonoBehaviour
             
     }*/
 
-    public virtual void takeDamage(float damageTaken){
+    public virtual void takeDamage(float damageTaken, bool bypassDamageResistance=false){
         if (!this.vulnerable)
         {
             return;
         }
-        var damage = Mathf.Floor(damageTaken * (1.0f - damageResistance));
-        Debug.Log("taking " + damage + " damage");
+
+        float damage;
+        if(bypassDamageResistance)
+        {
+            damage = damageTaken;
+        }
+        else
+        {
+            damage = Mathf.Lerp(damageTaken, 0, damageResistance);
+        }
+        //var damage = Mathf.Floor(damageTaken * (1.0f - damageResistance));
+        Debug.Log(this.gameObject.name + " taking " + damage + " damage");
 
         //take the damage
         this.currentHealth -= damage;
+        StartCoroutine(FlashRed());
+
+        //trigger actor damage effects
+        this.gameObject.SendMessage("DoActorDamageEffect", damage);
 
         //if the attack killed the thing
         if(this.currentHealth <= 0){
@@ -48,6 +68,16 @@ public class ActorHealth : MonoBehaviour
             that the game vomits if we try to kill something that cannot die,
             but I just don't know how*/
             this.gameObject.SendMessage("DoActorDeath");//, null, RequireReciever);
+
+
         }
+    }
+
+    // A visual indicator if actor has received damage.
+    private IEnumerator FlashRed()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.3f);
+        spriteRenderer.color = Color.white;
     }
 }

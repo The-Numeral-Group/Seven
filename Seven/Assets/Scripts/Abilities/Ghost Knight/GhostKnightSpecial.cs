@@ -5,8 +5,8 @@ using UnityEngine;
 public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
 {
     //How long this entire process should take.
-    // duration = duration_vanish_start + duration_vanish + duration_appear
-    public float duration = 5f;
+    // duration = duration_vanish_start + duration_vanish + duration_appear + 2 * duration_slash
+    public float duration = 9f;
     //How long the vanising start process should take.
     public float duration_vanish_start = 1f;
     //How long the ghost knight should be invisible for.
@@ -14,7 +14,17 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     //How long the reappearing process should take.
     public float duration_appear = 1f;
 
+    // Delay between each slash performing.
+    public float duration_slash = 2f;
+
     private Actor player;
+
+    // Ghost Knight Effector object
+    public GameObject gkEffector;
+
+    public GameObject glintObject;
+
+    GhostKnightAnimationHandler ghostKnightAnimationHandler;
 
     public override void Invoke(ref Actor user)
     {
@@ -36,6 +46,9 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
             Debug.Log("GhostKnightPhaseChange: duration must be greater than 0");
             this.duration = 2f;
         }
+
+        ghostKnightAnimationHandler = args[0].myAnimationHandler as GhostKnightAnimationHandler;
+
         StartCoroutine(args[0].myMovement.LockActorMovement(duration));
         StartCoroutine(Vanish(args[0]));
         return 0;
@@ -43,10 +56,13 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     private IEnumerator Vanish(Actor user)
     {
         SpriteRenderer gkSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-        CircleCollider2D collider = this.gameObject.GetComponent<CircleCollider2D>();
 
-        // turn off collider
-        collider.enabled = false;
+
+        // Set both actors to be invincible.
+        user.myHealth.vulnerable = false;
+
+        // Turn off effector so player doesn't get knockback when Ghost Knight is invisible.
+        gkEffector.SetActive(false);
 
         float opacity = 1f;
         while (opacity > 0f)
@@ -55,7 +71,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
             gkSpriteRenderer.color = new Color(1f, 1f, 1f, opacity);
             yield return new WaitForSeconds(this.duration_vanish_start / 10);
         }
-        yield return new WaitForSeconds(this.duration_vanish);
+        yield return new WaitForSeconds(this.duration_vanish/2);
         Teleport(user);
     }
     private void Teleport(Actor user)
@@ -65,8 +81,6 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     }
     private IEnumerator Reappear(Actor user)
     {
-<<<<<<< Updated upstream
-=======
         Instantiate(this.glintObject, user.transform.position, Quaternion.identity);
 
         // Perform VSlash while appearing.
@@ -74,9 +88,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
 
         yield return new WaitForSeconds(this.duration_vanish / 4);
 
->>>>>>> Stashed changes
         SpriteRenderer gkSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-        CircleCollider2D collider = this.gameObject.GetComponent<CircleCollider2D>();
 
         float opacity = 0f;
         while (opacity < 1f)
@@ -86,11 +98,6 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
             yield return new WaitForSeconds(this.duration_appear / 10);
         }
 
-        // turn on collider when ghost knight is fully visible
-        collider.enabled = true;
-
-<<<<<<< Updated upstream
-=======
         // Set both actors to be no longer invincible.
         user.myHealth.vulnerable = true;
 
@@ -111,7 +118,6 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
         ghostKnightAnimationHandler.animateHSlash();
         yield return new WaitForSeconds(this.duration_slash);
         user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
->>>>>>> Stashed changes
         isFinished = true;
     }
 }
