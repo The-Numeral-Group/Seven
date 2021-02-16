@@ -16,6 +16,10 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     to change how the player attacks*/
     public ActorAbility playerAttack;
 
+    /*This is the player's implicit interact. Switch this out
+    to change how the player interacts*/
+    public ActorAbility playerInteract;
+
     void Awake()
     {
         //Manual initialization, 'cause I (Thomas) have come to realize it can't be done automatically
@@ -31,6 +35,9 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
 
         this.abilities.Add("" + nameof(playerDodge), playerDodge);
         AbilityRegister.PLAYER_DODGE = "" + nameof(playerDodge);
+
+        this.abilities.Add("" + nameof(playerInteract), playerInteract);
+        AbilityRegister.PLAYER_INTERACT = "" + nameof(playerInteract);
     }
 
     //Don't know if this is needed, but just using the player actor to pass by ref to the invoke for attack and dodge.
@@ -82,6 +89,11 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
 
     public void OnInteract()
     {
-        Debug.Log("test");
+        DoInteract();
+    }
+
+    public void DoInteract()
+    {
+        playerInteract.Invoke(ref userActor);
     }
 }

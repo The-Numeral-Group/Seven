@@ -309,7 +309,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 685d2eafc0f01f241992f94c52c7369b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -321,6 +321,40 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &399828205 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4115977272152067185, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+  m_PrefabInstance: {fileID: 4115977273667405722}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &399828207 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4115977272152067189, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+  m_PrefabInstance: {fileID: 4115977273667405722}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399828205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dd238a1ebebf7947894c73e11d2176f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &399828220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399828205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c47ffbd226d6574cba191b60e33feeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: Interact
+  invokeBlankWhenBadArguments: 1
+  playerInteractableHitbox: {fileID: 5205291255293058949, guid: 9bcc378dc75e37742a1203e9d0bd29fb, type: 3}
+  duration: 0.3
+  objectPositionScale: {x: 1.5, y: 1.5}
 --- !u!1001 &435954427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -614,8 +648,8 @@ PrefabInstance:
 
         WASD - Move
 
-        Enter
-        -  Interact'
+        Right
+        Click -  Interact'
       objectReference: {fileID: 0}
     - target: {fileID: 3838137145705206022, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -904,9 +938,10 @@ GameObject:
   m_Component:
   - component: {fileID: 877801485}
   - component: {fileID: 877801486}
+  - component: {fileID: 877801487}
   m_Layer: 25
   m_Name: SwordTouched
-  m_TagString: Untagged
+  m_TagString: InteractiveObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -941,6 +976,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.1}
   serializedVersion: 2
   m_Radius: 0.05
+--- !u!114 &877801487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877801484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094fb4132fb343d47b3edc73e2368462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1029591772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1524,7 +1571,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1612,7 +1659,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7512802453659592074, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
   m_PrefabInstance: {fileID: 4115977273667405722}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 399828205}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 831d4eb40aaec838ca2d456e55407ee4, type: 3}
@@ -2215,7 +2262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4115977272152067179, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4115977272152067180, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: playerDodge
@@ -2225,6 +2272,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4115977272152067180, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: playerInteract
+      value: 
+      objectReference: {fileID: 399828220}
+    - target: {fileID: 4115977272152067180, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: playerAttack
+      value: 
+      objectReference: {fileID: 399828207}
     - target: {fileID: 4115977272152067185, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2243,7 +2298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4115977272152067189, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4115977272152067190, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_Enabled
