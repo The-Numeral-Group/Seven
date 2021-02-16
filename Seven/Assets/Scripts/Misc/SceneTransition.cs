@@ -5,7 +5,7 @@ public class SceneTransition : MonoBehaviour
 {
     public string sceneToLoad = "";
     // Start is called before the first frame update
-    private void OnTrigger2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {

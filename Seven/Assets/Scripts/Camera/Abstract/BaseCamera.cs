@@ -31,7 +31,7 @@ public abstract class BaseCamera : MonoBehaviour
     //Initialize monobehaviour fields.
     protected virtual void Start()
     {
-        var player = GameObject.FindGameObjectsWithTag("Player")?[0];
+        var player = GameObject.FindGameObjectWithTag("Player");
         if (player)
         {
             playerTransform = player.transform;
@@ -39,6 +39,7 @@ public abstract class BaseCamera : MonoBehaviour
         else
         {
             Debug.Log("Camera: Camera does not have a player object to follow.");
+            playerTransform = null;
         }
         cam = GetComponent<Camera>();
     }
