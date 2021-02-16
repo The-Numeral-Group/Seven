@@ -272,7 +272,7 @@ MonoBehaviour:
     m_values: []
   selectedAbilityAlpha: {fileID: 0}
   selectedAbilityBeta: {fileID: 0}
-  playerDodge: {fileID: 0}
+  playerDodge: {fileID: 7512802453659592074}
   playerAttack: {fileID: 4115977272152067189}
 --- !u!114 &4115977272152067183
 MonoBehaviour:

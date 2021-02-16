@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 //Base abstract class for ui related classes.
 public abstract class BaseUI : MonoBehaviour
@@ -21,5 +22,10 @@ public abstract class BaseUI : MonoBehaviour
     {
         MenuManager.CURRENT_MENU = null;
         this.gameObject.SetActive(false);
+    }
+
+    public virtual void LoadScene(string sceneToLoad)
+    {
+        SceneManager.LoadScene(sceneToLoad);
     }
 }
