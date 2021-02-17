@@ -9,7 +9,7 @@ public abstract class ActorAbilityModifier
 {
     //FIELDS---------------------------------------------------------------------------------------
     //the dictionary that holds all of the desired changes, stored on a member-by-member basis
-    private changeDict changes;
+    protected changeDict changes;
 
     //the dictionary that holds all of the desired function calls, stored on a '
     //method-by-method basis
@@ -23,7 +23,7 @@ public abstract class ActorAbilityModifier
         //calls = new changeDict();
 
         //and fill them with the desired changes
-        InitializeChanges(changes);
+        //InitializeChanges(changes);
     }
     
     //METHODS--------------------------------------------------------------------------------------
