@@ -10,11 +10,6 @@ public class GameOver : BaseUI
     [Tooltip("Reference to this ui objects exit button.")]
     public Button exitButton;
 
-    public void CloseApplication()
-    {
-        Application.Quit();
-    }
-
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
