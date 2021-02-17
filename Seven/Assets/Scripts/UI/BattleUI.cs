@@ -9,6 +9,9 @@ public class BattleUI : BaseUI
     //reference to the boss' health bar slider. should be set through the inspector.
     [Tooltip("Reference to the boss' health bar slider ui object.")]
     public Slider bossSlider;
+    //refernce to the boss text label. Should be handled via inspector
+    [Tooltip("Reference to the bosses text label.")]
+    public Text bossText;
     //reference to the player
     ActorHealth playerHealth;
     //reference to the player object;
@@ -87,6 +90,7 @@ public class BattleUI : BaseUI
                 bossSlider.gameObject.SetActive(true);
                 bossSlider.maxValue = bossHealth.maxHealth;
                 bossSlider.value = bossHealth.currentHealth;
+                bossText.text = boss.name;
             }
         }
     }
