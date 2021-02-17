@@ -31,14 +31,12 @@ public class PlayerAnimationHandler : ActorAnimationHandler
      animation.*/
     public void animateAttack()
     {
-        StartCoroutine(tempAnimateAttack());
+        doAnimateAttack();
     }
 
-    private IEnumerator tempAnimateAttack()
+    private void doAnimateAttack()
     {
-        Animator.SetBool("player_attacking", true);
-        yield return new WaitForSeconds(1);
-        Animator.SetBool("player_attacking", false);
+        Animator.SetTrigger("player_attacking");
     }
     public void animateDodge()
     {
