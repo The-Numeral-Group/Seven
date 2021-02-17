@@ -8,10 +8,14 @@ public class WeaponHitbox : MonoBehaviour
     public int damage { get; set; }
     protected WeaponAbility wp;
 
+    ActorSoundManager soundManager;
+
     
     //OnTrigger function
     protected virtual void OnTriggerEnter2D(Collider2D collider)
     {
+        this.soundManager = this.gameObject.GetComponent<ActorSoundManager>();
+
         /*I moved the wp getcomponent into the collider function. I realize this is inefficient but
         For bosses, since the parent object is swapped and the gameobjects are set to false in right
         away, there was an issue where the getcomponent was unable to find the weaponAbility when it
@@ -40,6 +44,7 @@ public class WeaponHitbox : MonoBehaviour
         //hurt them. Do nothing if they can't take damage.
         if(enemyHealth != null){
             //Debug.Log("WeaponHitbox: Health was found on " + enemyHealth.gameObject.name);
+            this.soundManager.PlaySound("AttackLands");
             wp.hitConnected = true;
             enemyHealth.takeDamage(this.damage);
         }

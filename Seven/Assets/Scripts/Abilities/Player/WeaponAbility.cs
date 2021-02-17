@@ -109,6 +109,8 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
     In the future it will likely need to control how the weaponPrefab is swung in some manner.*/
     protected override int InternInvoke(params Actor[] args)
     {
+        user.mySoundManager.PlaySound("PlayerAttack");
+
         this.hitConnected = false;
         StopCoroutine(sheathe);
         sheathe = SheatheWeapon();
@@ -122,6 +124,7 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
     By default it performs the players version.*/
     protected virtual void SpawnWeapon(params Actor[] args)
     {
+        //user.mySoundManager.PlaySound("PlayerAttack");
         weaponObject.transform.localPosition = user.faceAnchor.localPosition * weaponPositionScale;
     }
     
