@@ -26,6 +26,7 @@
     //PLAYER---------------------------------------------------------------------------------------
     public static string PLAYER_ATTACK      = "";
     public static string PLAYER_DODGE       = "";
+    public static string PLAYER_INTERACT    = "";
     public static string PLAYER_SELECTED_A  = "";
     public static string PLAYER_SELECTED_B  = "";
 

@@ -82,7 +82,11 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     private IEnumerator Reappear(Actor user)
     {
         Instantiate(this.glintObject, user.transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(this.duration_vanish / 2);
+
+        // Perform VSlash while appearing.
+        PerformCombinationVSlash(user);
+
+        yield return new WaitForSeconds(this.duration_vanish / 4);
 
         SpriteRenderer gkSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
 
@@ -94,23 +98,19 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
             yield return new WaitForSeconds(this.duration_appear / 10);
         }
 
-
         // Set both actors to be no longer invincible.
         user.myHealth.vulnerable = true;
 
         // Turn back the effector on.
         gkEffector.SetActive(true);
 
-        StartCoroutine(PerformCombinationVSlash(user));
+        StartCoroutine(PerformCombinationHSlash(user));
     }
     
-    private IEnumerator PerformCombinationVSlash(Actor user)
+    private void PerformCombinationVSlash(Actor user)
     {
         ghostKnightAnimationHandler.animateVSlash();
         user.myMovement.DragActor(new Vector2(0.0f, -0.5f));
-        yield return new WaitForSeconds(this.duration_slash);
-
-        StartCoroutine(PerformCombinationHSlash(user));
     }
 
     private IEnumerator PerformCombinationHSlash(Actor user)

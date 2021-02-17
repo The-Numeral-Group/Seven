@@ -19,12 +19,6 @@ public class PlayerMovement : ActorMovement
         
     }*/
 
-    ///DEBUG
-    void OnInteract()
-    {
-        Debug.Log("PlayerMovement: interact input");
-    }
-    ///DEBUG
 
     void OnMovement(InputValue input)
     {
