@@ -22,11 +22,5 @@ public class ActorAnimationHandler : MonoBehaviour
     public virtual void animateWalk()
     {
 
-    }
-
-    public virtual void AnimateTrigger(string trigger)
-    {
-      Animator.SetTrigger(trigger);
-    }
-
+    }  
 }
