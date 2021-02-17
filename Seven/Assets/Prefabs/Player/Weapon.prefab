@@ -15,9 +15,10 @@ MonoBehaviour:
   sounds:
   - name: AttackLands
     audioClip: {fileID: 8300000, guid: 977fc00b06fa1d84abaaef8e00df9b78, type: 3}
-    volume: 0.2
+    volume: 0.1
     pitch: 1
     loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
 --- !u!1 &7573367737500984201
 GameObject:

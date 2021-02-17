@@ -56,6 +56,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     private IEnumerator Vanish(Actor user)
     {
         SpriteRenderer gkSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+        user.mySoundManager.PlaySound("SpecialVanish");
 
 
         // Set both actors to be invincible.
@@ -85,6 +86,9 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
 
         // Perform VSlash while appearing.
         PerformCombinationVSlash(user);
+
+        // Play glint audio
+        user.mySoundManager.PlaySound("SpecialEyeGlint");
 
         yield return new WaitForSeconds(this.duration_vanish / 4);
 

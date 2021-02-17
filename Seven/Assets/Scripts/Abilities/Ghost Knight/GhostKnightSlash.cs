@@ -11,11 +11,16 @@ public class GhostKnightSlash : ActorAbilityFunction<Actor, int>
 
     GhostKnightAnimationHandler ghostKnightAnimationHandler;
 
+    public bool slashPlaySound = false;
+
+    Actor user;
+
     public override void Invoke(ref Actor user)
     {
         if (usable)
         {
             isFinished = false;
+            this.user = user;
             InternInvoke(user);
             StartCoroutine(coolDown(cooldownPeriod));
         }
@@ -43,7 +48,16 @@ public class GhostKnightSlash : ActorAbilityFunction<Actor, int>
         }
         return 0;
     }
-    
+
+    public void Update()
+    {
+        if(slashPlaySound)
+        {
+            slashPlaySound = false;
+            user.mySoundManager.PlaySound("PhysicalSwing");
+        }
+    }
+
     private void PerformVSlash(Actor user)
     {
         ghostKnightAnimationHandler.animateVSlash();

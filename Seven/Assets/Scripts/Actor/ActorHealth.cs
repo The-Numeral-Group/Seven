@@ -9,6 +9,8 @@ are floats now.*/
 
 public class ActorHealth : MonoBehaviour
 {
+    protected Actor hostActor;
+
     //Public Fields (Inspector Accessable)
     public float startingMaxHealth = 100.0f;
     //this value determines how resistant to damage this thing is
@@ -24,6 +26,7 @@ public class ActorHealth : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     void Awake(){
+        hostActor = this.GetComponent<Actor>();
         this.maxHealth = startingMaxHealth;
         this.currentHealth = this.maxHealth;
         this.vulnerable = true;
@@ -58,6 +61,9 @@ public class ActorHealth : MonoBehaviour
         //take the damage
         this.currentHealth -= damage;
         StartCoroutine(FlashRed());
+
+        //Play Audio
+        hostActor.mySoundManager.PlaySound("TakeDamage");
 
         //trigger actor damage effects
         this.gameObject.SendMessage("DoActorDamageEffect", damage);

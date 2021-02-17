@@ -62,6 +62,7 @@ public class GhostKnightProjectile : ActorAbilityFunction<Actor, int>
 
     private IEnumerator SpawnProjectiles(Actor user)
     {
+        user.mySoundManager.PlaySound("ProjectileAppears");
 
         float[,] offset = new float[,] { { -offsetValue, 0 }, { offsetValue, 0 }, 
                                          { 0, offsetValue }, { 0, -offsetValue } };

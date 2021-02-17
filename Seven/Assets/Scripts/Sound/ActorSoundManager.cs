@@ -10,6 +10,8 @@ public class ActorSoundManager : MonoBehaviour
 
     public static ActorSoundManager instance;
 
+    private static Dictionary<string, float> soundTimerDictionary = new Dictionary<string, float>();
+
     void Awake()
     {
         // This is for preventing sound getting cutoff after scene transition.
@@ -34,6 +36,37 @@ public class ActorSoundManager : MonoBehaviour
 
             s.source.playOnAwake = s.playOnAwake;
             s.source.loop = s.loop;
+
+            if (s.hasCooldown)
+            {
+                soundTimerDictionary[s.name] = -s.audioClip.length;
+            }
+        }
+    }
+
+    private static bool CanPlaySound(SoundAudioClip sound)
+    {
+        if (soundTimerDictionary.ContainsKey(sound.name))
+        {
+            float lastTimePlayed = soundTimerDictionary[sound.name];
+            if (lastTimePlayed + sound.audioClip.length < Time.time)
+            {
+                soundTimerDictionary[sound.name] = Time.time;
+                return true;
+            }
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    private void UpdateLastPlayedSound(SoundAudioClip sound)
+    {
+        if (soundTimerDictionary.ContainsKey(sound.name))
+        {
+            soundTimerDictionary[sound.name] = Time.time - sound.audioClip.length;
         }
     }
 
@@ -45,6 +78,22 @@ public class ActorSoundManager : MonoBehaviour
             Debug.Log("SoundManager.PlaySound: Cannot find " + name);
             return;
         }
+
+        if (!CanPlaySound(s)) return;
         s.source.Play();
+    }
+
+    public void StopSound (string name)
+    {
+        SoundAudioClip s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.Log("SoundManager.StopSound: Cannot find " + name);
+            return;
+        }
+
+        UpdateLastPlayedSound(s);
+
+        s.source.Stop();
     }
 }

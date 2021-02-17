@@ -20,6 +20,9 @@ public class BattleUI : BaseUI
     //reference to the bosses health component
     ActorHealth bossHealth;
 
+    //reference to all the audio sources;
+    private AudioSource[] allAudioSources;
+
     void Start()
     {
         SetReferences();
@@ -110,8 +113,19 @@ public class BattleUI : BaseUI
         }
         if (bossHealth.currentHealth == 0f || playerHealth.currentHealth == 0f)
         {
+            StopAllAudio();
             MenuManager.StartGameOver();
             this.gameObject.SetActive(false);
+        }
+    }
+
+    // Stop all the audio when game is over.
+    // Source: https://answers.unity.com/questions/194110/how-to-stop-all-audio.html
+    void StopAllAudio()
+    {
+        allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
+        foreach (AudioSource audioS in allAudioSources) {
+            audioS.Stop();
         }
     }
 }

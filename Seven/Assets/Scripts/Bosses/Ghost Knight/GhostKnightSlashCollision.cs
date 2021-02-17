@@ -30,6 +30,7 @@ public class GhostKnightSlashCollision : MonoBehaviour
                 {
                     return;
                 }
+                this.gameObject.GetComponent<ActorSoundManager>().PlaySound("AttackHit");
                 playerHealth.takeDamage(damage);
             }
         }

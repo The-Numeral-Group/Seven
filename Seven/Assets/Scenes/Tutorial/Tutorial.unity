@@ -212,38 +212,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &91731530
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 91731531}
-  m_Layer: 0
-  m_Name: SoundManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &91731531
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 91731530}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 989661980}
-  - {fileID: 1247714486}
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &173384999 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3838137145630887551, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
@@ -260,6 +228,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 220097795840936156, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
   m_PrefabInstance: {fileID: 220097795559556439}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &500667298 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8415373318680778200, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
+  m_PrefabInstance: {fileID: 220097795559556439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &500667302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500667298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: AttackHit
+    audioClip: {fileID: 8300000, guid: 584e6f25298056744b2780c8e8374d41, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
 --- !u!1 &640692231
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,7 +429,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1647299124}
     m_Modifications:
     - target: {fileID: 6919360707961699820, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -467,7 +461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6919360707961699820, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6919360707961699820, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -527,85 +521,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
---- !u!1 &989661979
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 989661980}
-  - component: {fileID: 989661981}
-  m_Layer: 0
-  m_Name: Player SoundManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &989661980
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 989661979}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 91731531}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &989661981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 989661979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: PlayerAttack
-    audioClip: {fileID: 8300000, guid: 588eb4ca11bea9e47a1dd2d07feb350b, type: 3}
-    volume: 0.5
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-    source: {fileID: 0}
-  - name: PlayerAttackLands
-    audioClip: {fileID: 8300000, guid: 977fc00b06fa1d84abaaef8e00df9b78, type: 3}
-    volume: 0.5
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-    source: {fileID: 0}
-  - name: PlayerDodge
-    audioClip: {fileID: 8300000, guid: 220e4663e67bbba448ecf80f080920a4, type: 3}
-    volume: 0.5
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-    source: {fileID: 0}
-  - name: PlayerRun
-    audioClip: {fileID: 8300000, guid: 34048c22e0f7eb540b79d06d5fc641ee, type: 3}
-    volume: 0.5
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-    source: {fileID: 0}
-  - name: PlayerTakeDamage
-    audioClip: {fileID: 8300000, guid: 4bc4ce74f4e53894b93f36e40bb9c7ce, type: 3}
-    volume: 0.5
-    pitch: 0
-    loop: 0
-    playOnAwake: 0
-    source: {fileID: 0}
 --- !u!1 &1098766828
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,6 +706,32 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4905909914710698995, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+--- !u!1 &1157585705 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8415373318957554022, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
+  m_PrefabInstance: {fileID: 220097795559556439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1157585709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157585705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: AttackHit
+    audioClip: {fileID: 8300000, guid: 584e6f25298056744b2780c8e8374d41, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
 --- !u!1 &1161176613
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,81 +952,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!1 &1172101173
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1172101174}
-  - component: {fileID: 1172101175}
-  m_Layer: 0
-  m_Name: GhostKnight SoundManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1172101174
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1172101173}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1247714486}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1172101175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1172101173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds: []
---- !u!1 &1247714485
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1247714486}
-  m_Layer: 0
-  m_Name: Boss SoundManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1247714486
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1247714485}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1172101174}
-  m_Father: {fileID: 91731531}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1379711769
 GameObject:
   m_ObjectHideFlags: 0
@@ -1230,6 +1096,61 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
+--- !u!1 &1647299123 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 220097794664941643, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
+  m_PrefabInstance: {fileID: 220097795559556439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1647299124 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 220097794664941642, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
+  m_PrefabInstance: {fileID: 220097795559556439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1647299139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647299123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: ProjectileAppears
+    audioClip: {fileID: 8300000, guid: 0289ccdd4e6ebea48a922a853743e4a8, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: PhysicalSwing
+    audioClip: {fileID: 8300000, guid: 48d196584c7b9924e8da2b8ebd629ff4, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    hasCooldown: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: SpecialVanish
+    audioClip: {fileID: 8300000, guid: 35eafbdb08251b644b51bfa610c4c49f, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: SpecialEyeGlint
+    audioClip: {fileID: 8300000, guid: 2527b287308dba446a88168f945b5cda, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
 --- !u!1 &1651863773 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4115977272152067185, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
@@ -1250,30 +1171,34 @@ MonoBehaviour:
   sounds:
   - name: PlayerAttack
     audioClip: {fileID: 8300000, guid: aa60d782111c7e446a572e1b1fdc3244, type: 3}
-    volume: 0.2
+    volume: 0.15
     pitch: 1
     loop: 0
+    hasCooldown: 0
     playOnAwake: 0
     source: {fileID: 0}
   - name: PlayerDodge
-    audioClip: {fileID: 8300000, guid: 220e4663e67bbba448ecf80f080920a4, type: 3}
-    volume: 0.5
-    pitch: 0
+    audioClip: {fileID: 8300000, guid: d6520d245b93e96459a89092ab0f5cfa, type: 3}
+    volume: 0.05
+    pitch: 1
     loop: 0
+    hasCooldown: 0
     playOnAwake: 0
     source: {fileID: 0}
   - name: PlayerRun
-    audioClip: {fileID: 8300000, guid: 34048c22e0f7eb540b79d06d5fc641ee, type: 3}
-    volume: 0.5
-    pitch: 0
-    loop: 0
+    audioClip: {fileID: 8300000, guid: 2ca8f777ab5665341af0ce0585dfb8a0, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    hasCooldown: 1
     playOnAwake: 0
     source: {fileID: 0}
-  - name: PlayerTakeDamage
+  - name: TakeDamage
     audioClip: {fileID: 8300000, guid: 4bc4ce74f4e53894b93f36e40bb9c7ce, type: 3}
-    volume: 0.5
-    pitch: 0
+    volume: 0.2
+    pitch: 1
     loop: 0
+    hasCooldown: 0
     playOnAwake: 0
     source: {fileID: 0}
 --- !u!1001 &1735762136
@@ -1521,6 +1446,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 220097794664941643, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 220097794664941680, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: m_Enabled
       value: 1

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8008841276372044683}
   - component: {fileID: 1116733311778260000}
   - component: {fileID: 1116733311778260001}
+  - component: {fileID: 9163132021627025001}
   m_Layer: 13
   m_Name: GhostKnightProjectile
   m_TagString: GhostKnight Projectile
@@ -172,3 +173,32 @@ MonoBehaviour:
   damage: 1
   before_fadeAway: 4.5
   fadeAway_duration: 0.5
+--- !u!114 &9163132021627025001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116733311778260002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: ProjectileHit
+    audioClip: {fileID: 8300000, guid: 76fd72dec1fd67249923abb879019550, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: ProjectileMiss
+    audioClip: {fileID: 8300000, guid: 248a18e3d4005514facec855ecfb0bb9, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}

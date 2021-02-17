@@ -17,6 +17,8 @@ public class GhostKnightProjectileMovement : ActorMovement
 
     private float projectileSpeed = 0.1f;
 
+    ActorSoundManager soundManager;
+
 
     protected override void Start()
     {
@@ -24,6 +26,8 @@ public class GhostKnightProjectileMovement : ActorMovement
 
         var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
         player = playerObject.GetComponent<Actor>();
+
+        this.soundManager = this.gameObject.GetComponent<ActorSoundManager>();
 
         StartCoroutine(DestroySelf());
     }
@@ -63,6 +67,7 @@ public class GhostKnightProjectileMovement : ActorMovement
             projSpriteRenderer.color = new Color(1f, 1f, 1f, opacity);
             yield return new WaitForSeconds(this.fadeAway_duration / 10);
         }
+        this.soundManager.PlaySound("ProjectileMiss");
         Destroy(this.gameObject);
     }
 
@@ -82,6 +87,7 @@ public class GhostKnightProjectileMovement : ActorMovement
             {
                 if (playerHealth.vulnerable)
                 {
+                    this.soundManager.PlaySound("ProjectileHit");
                     playerHealth.takeDamage(damage);
                 }
                 Destroy(this.gameObject);

@@ -16,6 +16,7 @@ public class SoundAudioClip
     public float pitch;
 
     public bool loop;
+    public bool hasCooldown;
 
     public bool playOnAwake;
 

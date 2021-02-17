@@ -24,6 +24,14 @@ public class PlayerMovement : ActorMovement
     {
         //Debug.Log(input);
         base.MoveActor(input.Get<Vector2>());
+        if(input.Get<Vector2>() == Vector2.zero)
+        {
+            hostActor.mySoundManager.StopSound("PlayerRun");
+        }
+        else
+        {
+            hostActor.mySoundManager.PlaySound("PlayerRun");
+        }
     }
 
     public override void AnimateWalkActor()

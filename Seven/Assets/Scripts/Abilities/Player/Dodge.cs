@@ -43,6 +43,7 @@ public class Dodge : ActorAbilityFunction<Actor, int>
 
     private void performDodge(Actor user)
     {
+        user.mySoundManager.PlaySound("PlayerDodge");
 
         Vector2 velocity = user.myMovement.movementDirection;
 
