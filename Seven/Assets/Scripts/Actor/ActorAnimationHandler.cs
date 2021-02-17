@@ -24,4 +24,9 @@ public class ActorAnimationHandler : MonoBehaviour
 
     }
 
+    public virtual void AnimateTrigger(string trigger)
+    {
+      Animator.SetTrigger(trigger);
+    }
+
 }
