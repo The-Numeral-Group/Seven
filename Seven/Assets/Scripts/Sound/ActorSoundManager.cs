@@ -80,6 +80,7 @@ public class ActorSoundManager : MonoBehaviour
         }
 
         if (!CanPlaySound(s)) return;
+
         s.source.Play();
     }
 
@@ -95,5 +96,18 @@ public class ActorSoundManager : MonoBehaviour
         UpdateLastPlayedSound(s);
 
         s.source.Stop();
+    }
+
+    public void PlaySoundAtClip (string name)
+    {
+        SoundAudioClip s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.Log("SoundManager.StopSound: Cannot find " + name);
+            return;
+        }
+        if (!CanPlaySound(s)) return;
+
+        AudioSource.PlayClipAtPoint(s.audioClip, Vector2.zero);
     }
 }

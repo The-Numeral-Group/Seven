@@ -1151,6 +1151,14 @@ MonoBehaviour:
     hasCooldown: 0
     playOnAwake: 0
     source: {fileID: 0}
+  - name: TakeDamage
+    audioClip: {fileID: 8300000, guid: 977fc00b06fa1d84abaaef8e00df9b78, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
 --- !u!1 &1651863773 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4115977272152067185, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
@@ -1195,7 +1203,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: TakeDamage
     audioClip: {fileID: 8300000, guid: 4bc4ce74f4e53894b93f36e40bb9c7ce, type: 3}
-    volume: 0.2
+    volume: 0
     pitch: 1
     loop: 0
     hasCooldown: 0
@@ -1448,7 +1456,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 220097794664941643, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 220097794664941680, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: m_Enabled

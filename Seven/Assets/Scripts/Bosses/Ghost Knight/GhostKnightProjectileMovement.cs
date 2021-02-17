@@ -27,7 +27,7 @@ public class GhostKnightProjectileMovement : ActorMovement
         var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
         player = playerObject.GetComponent<Actor>();
 
-        this.soundManager = this.gameObject.GetComponent<ActorSoundManager>();
+        this.soundManager = this.gameObject.GetComponentInChildren<ActorSoundManager>();
 
         StartCoroutine(DestroySelf());
     }
@@ -67,12 +67,11 @@ public class GhostKnightProjectileMovement : ActorMovement
             projSpriteRenderer.color = new Color(1f, 1f, 1f, opacity);
             yield return new WaitForSeconds(this.fadeAway_duration / 10);
         }
-        this.soundManager.PlaySound("ProjectileMiss");
         Destroy(this.gameObject);
     }
 
     void OnCollisionEnter2D(Collision2D collider)
-    {
+    { 
         // Only collide with player
         if (collider.gameObject.tag == "Player")
         {
@@ -87,7 +86,7 @@ public class GhostKnightProjectileMovement : ActorMovement
             {
                 if (playerHealth.vulnerable)
                 {
-                    this.soundManager.PlaySound("ProjectileHit");
+                    soundManager.PlaySoundAtClip("ProjectileHit");
                     playerHealth.takeDamage(damage);
                 }
                 Destroy(this.gameObject);

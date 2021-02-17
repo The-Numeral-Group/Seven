@@ -1,25 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &4984541244978814451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4246050340651027817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: AttackLands
-    audioClip: {fileID: 8300000, guid: 977fc00b06fa1d84abaaef8e00df9b78, type: 3}
-    volume: 0.1
-    pitch: 1
-    loop: 0
-    playOnAwake: 0
-    source: {fileID: 0}
 --- !u!1 &7573367737500984201
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,11 +164,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d1d2cf9730fb00449a35a37a735df5f, type: 3}
---- !u!1 &4246050340651027817 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5176166884178600380, guid: 2d1d2cf9730fb00449a35a37a735df5f, type: 3}
-  m_PrefabInstance: {fileID: 9023085078220467413}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5290471918118499646 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3770630264331737579, guid: 2d1d2cf9730fb00449a35a37a735df5f, type: 3}
