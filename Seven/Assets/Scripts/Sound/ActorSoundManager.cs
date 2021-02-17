@@ -81,6 +81,8 @@ public class ActorSoundManager : MonoBehaviour
 
         if (!CanPlaySound(s)) return;
 
+        //Debug.Log(s.name);
+
         s.source.Play();
     }
 

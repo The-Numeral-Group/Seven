@@ -13,6 +13,7 @@ public class GhostKnightIdleActor : Actor
     Actor ghostKnight;
 
     GameObject ghostKnightEffector;
+
     PointEffector2D pointEffector;
     
     
@@ -28,6 +29,7 @@ public class GhostKnightIdleActor : Actor
         }
 
         ghostKnightEffector.SetActive(false);
+
         StartCoroutine(introDelayStart());
     }
 
@@ -40,7 +42,7 @@ public class GhostKnightIdleActor : Actor
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(attackPhase && !changingPhase)
+        if (attackPhase && !changingPhase)
         {
             changingPhase = true;
 

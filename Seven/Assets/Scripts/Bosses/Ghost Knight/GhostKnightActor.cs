@@ -22,7 +22,7 @@ public class GhostKnightActor : Actor
     public float damage = 1f;
 
     [Tooltip("Delay before Ghost Knight starts attacking")]
-    public float introDelay = 2f;
+    public float introDelay = 1f;
     private bool attackEnabled = false;
 
     private int specialAttackCounter = 1;

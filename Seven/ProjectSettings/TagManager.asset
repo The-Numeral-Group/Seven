@@ -12,6 +12,7 @@ TagManager:
   - Sin
   - Environment
   - InteractiveObject
+  - Boss Audio Source
   layers:
   - Default
   - TransparentFX
