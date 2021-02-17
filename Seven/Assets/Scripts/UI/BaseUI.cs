@@ -28,4 +28,9 @@ public abstract class BaseUI : MonoBehaviour
     {
         SceneManager.LoadScene(sceneToLoad);
     }
+
+    public virtual void CloseApplication()
+    {
+        Application.Quit();
+    }
 }

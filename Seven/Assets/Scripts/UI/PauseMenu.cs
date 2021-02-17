@@ -28,13 +28,7 @@ public class PauseMenu : BaseUI
         GAME_IS_PAUSED = true;
         Time.timeScale = 0f;
     }
-
-    //Closes the game.
-    public void CloseApplication()
-    {
-        Application.Quit();
-    }
-
+    
     //Overriding base class ui.
     public override void Hide()
     {

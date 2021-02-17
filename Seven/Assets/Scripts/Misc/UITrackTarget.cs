@@ -15,7 +15,6 @@ public class UITrackTarget : MonoBehaviour
         Vector2 proportionalPosition = new Vector2(
             viewPortPosition.x * canvasTransform.sizeDelta.x,
             viewPortPosition.y * canvasTransform.sizeDelta.y);
-        Debug.Log(proportionalPosition);
         myTransform.localPosition = proportionalPosition;
     }
 }
