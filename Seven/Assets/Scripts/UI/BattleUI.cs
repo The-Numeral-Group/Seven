@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BattleUI : BaseUI
 {
@@ -115,7 +116,13 @@ public class BattleUI : BaseUI
         {
             return;
         }
-        if (bossHealth.currentHealth == 0f || playerHealth.currentHealth == 0f)
+        if (bossHealth.currentHealth == 0f)
+        {
+            StopAllAudio();
+            SceneManager.LoadScene("Hub");
+
+        }
+        if (playerHealth.currentHealth == 0f)
         {
             StopAllAudio();
             MenuManager.StartGameOver();
