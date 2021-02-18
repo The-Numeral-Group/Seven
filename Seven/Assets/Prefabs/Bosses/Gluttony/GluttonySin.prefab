@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1249415992599038189}
   - component: {fileID: 3022472630925232730}
   - component: {fileID: 3628580575664349640}
-  m_Layer: 16
+  m_Layer: 13
   m_Name: GluttonySin
   m_TagString: Sin
   m_Icon: {fileID: 0}

@@ -24,6 +24,8 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
     public int numProjectiles = 8;
     //A list that is used to manage the projectiles spawned by this user
     protected static List<GameObject> PROJECTILE_MANAGER = new List<GameObject>();
+    //reference to the animationd handler. must be cast as gluttony animation handler.
+    GluttonyP1AnimationHandler gluttonyAnimationHandler;
 
     protected void Awake()
     {
@@ -41,6 +43,7 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
         if(this.usable && this.isFinished)
         {
             this.isFinished = false;
+            gluttonyAnimationHandler = user.myAnimationHandler as GluttonyP1AnimationHandler;
             StartCoroutine(coolDown(cooldownPeriod));
             InternInvoke(user);
         }
@@ -76,8 +79,10 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
         float distance = Vector2.Distance(centerPos, user.gameObject.transform.position);
         float time = distance / user.myMovement.speed;
         StartCoroutine(user.myMovement.LockActorMovement(time + projectileDelay + projectileSpawnTime));
+        gluttonyAnimationHandler.AnimateWalk(true, direction);
         user.myMovement.DragActor(direction * user.myMovement.speed);
         yield return new WaitForSeconds(time);
+        gluttonyAnimationHandler.AnimateWalk(false, direction);
         user.myMovement.DragActor(Vector2.zero);
         StartCoroutine(SpawnProjectiles(user));
     }
@@ -88,6 +93,7 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
     protected virtual IEnumerator SpawnProjectiles(Actor user)
     {
         yield return new WaitForSeconds(projectileDelay);
+        gluttonyAnimationHandler.Animator.SetTrigger("Projectile");
         int i = 0;
         float dtheta = (2f/numProjectiles) * Mathf.PI; //(360/angle) * (pi/180)
         while(i < numProjectiles)

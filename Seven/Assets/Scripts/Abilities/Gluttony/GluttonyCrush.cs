@@ -27,6 +27,8 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     public float jumpSpeed = 10;
     //How long the user will wait before tracking target
     [Tooltip("How long the user will wait before tracking the target.")]
+    public float jumpDelay = 1f;
+    [Tooltip("How long the user will wait before tracking the target.")]
     public float jumpDuration = 1f;
     //How long the user will track the target
     [Tooltip("How long the user will track the target.")]
@@ -40,12 +42,14 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     public Actor user { get; private set; }
     //pointer to the main camera shake component to initialize camera efx
     BaseCamera cam;
+    //reference to the animationd handler. must be cast as gluttony animation handler.
+    GluttonyP1AnimationHandler gluttonyAnimationHandler;
 
     //Initialize member variables
     void Awake()
     {
         //Compount all the coroutine delays to get the total duration of the ability.
-        this.totalAbilityDuration = this.jumpDuration + this.trackDuration + this.crushDelay;
+        totalAbilityDuration = jumpDelay + jumpDuration + trackDuration + crushDelay;
     }
 
     //Initializing monobehavior fields
@@ -69,6 +73,7 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
         //by default, Invoke just does InternInvoke with the provided arguments
         //it's also just implicitly convert the args and give it to InternInvoke
         this.user = user;
+        gluttonyAnimationHandler = user.myAnimationHandler as GluttonyP1AnimationHandler;
         if(usable)
         {
             isFinished = false;
@@ -104,6 +109,9 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
         {
             actorCollider.enabled = false;
         }
+        gluttonyAnimationHandler.Animator.SetTrigger("Jump");
+        gluttonyAnimationHandler.Animator.SetBool("isRising", true);
+        yield return new WaitForSeconds(jumpDelay);
         this.user.myMovement.DragActor(direction);
         yield return new WaitForSeconds(jumpDuration);
         if (targetActor)
@@ -147,6 +155,7 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     IEnumerator Crush(GameObject shadowSprite, IEnumerator stopTrack, IEnumerator initialLockMovement)
     {
         yield return new WaitForSeconds(trackDuration);
+        gluttonyAnimationHandler.Animator.SetBool("isRising", false);
         StopCoroutine(stopTrack);
         this.user.myMovement.DragActor(Vector2.zero);
         shadowSprite.transform.parent = null;
@@ -160,6 +169,7 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
         StopCoroutine(initialLockMovement);
         StartCoroutine(this.user.myMovement.LockActorMovement(timeToArrival));
         yield return new WaitForSeconds(timeToArrival);
+        gluttonyAnimationHandler.Animator.SetTrigger("Landed");
         this.user.myMovement.DragActor(Vector2.zero);
         AfterMathOfCrush(shadowSprite);
     }
