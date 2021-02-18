@@ -8,6 +8,8 @@ public class PlayerAnimationHandler : ActorAnimationHandler
 
     public ActorMovement myMovement;
 
+    private float prevX, prevY;
+
     public override void animateWalk()
     {
         myMovement = hostActor.myMovement;
@@ -17,6 +19,8 @@ public class PlayerAnimationHandler : ActorAnimationHandler
             Animator.SetBool("player_walking", true);
             Animator.SetFloat("player_H", movementDirection.x);
             Animator.SetFloat("player_V", movementDirection.y);
+            prevX = movementDirection.x;
+            prevY = movementDirection.y;
         }
         else
         {
@@ -36,8 +40,9 @@ public class PlayerAnimationHandler : ActorAnimationHandler
 
     private void doAnimateAttack()
     {
-        Animator.SetFloat("playerAttack_H", movementDirection.x);
-        Animator.SetFloat("playerAttack_V", movementDirection.y);
+        Animator.SetFloat("playerAttack_H", prevX);
+        Animator.SetFloat("playerAttack_V", prevY);
+
         Animator.SetTrigger("player_attacking");
     }
     public void animateDodge()
