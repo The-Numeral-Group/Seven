@@ -11,6 +11,7 @@ public class GluttonyProjectileP2 : GluttonyProjectileP1
     protected override IEnumerator SpawnProjectiles(Actor user)
     {
         yield return new WaitForSeconds(projectileDelay);
+        gluttonyAnimationHandler.Animator.SetTrigger("Projectile");
         int i = 0;
         float dtheta = (2f/numProjectiles) * Mathf.PI; //(360/angle) * (pi/180)
         while(i < numProjectiles)
