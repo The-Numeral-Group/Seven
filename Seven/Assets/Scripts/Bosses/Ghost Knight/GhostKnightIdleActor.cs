@@ -20,6 +20,8 @@ public class GhostKnightIdleActor : Actor
     // Start is called before the first frame update
     new void Start()
     {
+        base.Start();
+        this.myHealth.vulnerable = false;
         ghostKnight = this.gameObject.GetComponent<GhostKnightIdleActor>();
         ghostKnightEffector = GameObject.FindGameObjectWithTag("Boss Effector");
 
