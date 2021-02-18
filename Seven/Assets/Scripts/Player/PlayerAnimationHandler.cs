@@ -36,6 +36,8 @@ public class PlayerAnimationHandler : ActorAnimationHandler
 
     private void doAnimateAttack()
     {
+        Animator.SetFloat("playerAttack_H", movementDirection.x);
+        Animator.SetFloat("playerAttack_V", movementDirection.y);
         Animator.SetTrigger("player_attacking");
     }
     public void animateDodge()

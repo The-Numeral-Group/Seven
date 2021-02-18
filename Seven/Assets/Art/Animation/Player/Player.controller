@@ -330,6 +330,18 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: playerAttack_H
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: playerAttack_V
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   - m_Name: player_walking
     m_Type: 4
     m_DefaultFloat: 0
@@ -539,8 +551,8 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: player_H
     m_Mirror: 0
-  m_BlendParameter: player_H
-  m_BlendParameterY: player_V
+  m_BlendParameter: playerAttack_H
+  m_BlendParameterY: playerAttack_V
   m_MinThreshold: 0
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
