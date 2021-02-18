@@ -22,6 +22,8 @@ public class GluttonySpecialP2 : ActorAbilityFunction<Actor, int>
     IEnumerator track;
     //IEnumerator referencing the charge coroutine.
     IEnumerator charge;
+    //reference to the animationd handler. must be cast as gluttony animation handler.
+    protected GluttonyP1AnimationHandler gluttonyAnimationHandler;
 
     //Initialize member variables
     void Awake()
@@ -54,6 +56,7 @@ public class GluttonySpecialP2 : ActorAbilityFunction<Actor, int>
         if(usable)
         {
             isFinished = false;
+            gluttonyAnimationHandler = user.myAnimationHandler as GluttonyP1AnimationHandler;
             InternInvoke(easyArgConvert(args));
             StartCoroutine(coolDown(cooldownPeriod));
         }
@@ -67,6 +70,7 @@ public class GluttonySpecialP2 : ActorAbilityFunction<Actor, int>
         charge = Charge();
         stopLock = this.user.myMovement.LockActorMovement(chargeDelay + 30f);
         StartCoroutine(stopLock);
+        gluttonyAnimationHandler.Animator.SetBool("isCharging", true);
         StartCoroutine(track);
         StartCoroutine(charge);
         return 0;
@@ -79,6 +83,7 @@ public class GluttonySpecialP2 : ActorAbilityFunction<Actor, int>
         while (true && targetActor)
         {
             direction = targetActor.transform.position - this.user.gameObject.transform.position;
+            gluttonyAnimationHandler.Flip(direction);
             yield return new WaitForFixedUpdate();
         }
     }
@@ -104,6 +109,7 @@ public class GluttonySpecialP2 : ActorAbilityFunction<Actor, int>
             StopCoroutine(stopLock);
             StopCoroutine(charge);
             StopCoroutine(track);
+            gluttonyAnimationHandler.Animator.SetBool("isCharging", false);
             this.user.myMovement.DragActor(Vector2.zero);
             isFinished = true;
             StartCoroutine(this.user.myMovement.LockActorMovement(0f));

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(GluttonyP1AnimationHandler))]
 public class GluttonyP2Actor : Actor
 {
     //reference to the user
@@ -21,6 +22,9 @@ public class GluttonyP2Actor : Actor
         SPECIAL,
         NULL,
     }
+
+    //Reference to the derived animation handler;
+    GluttonyP1AnimationHandler gluttonyAnimHandler;
     //Initiliaze monobehaviour fields.
     protected override void Start()
     {
@@ -38,7 +42,8 @@ public class GluttonyP2Actor : Actor
         }
 
         gluttony = this.gameObject.GetComponent<Actor>();
-        gluttony.myHealth.vulnerable = true; 
+        gluttony.myHealth.vulnerable = true;
+        gluttonyAnimHandler = this.myAnimationHandler as GluttonyP1AnimationHandler; 
     }
 
     void FixedUpdate()
@@ -104,6 +109,7 @@ public class GluttonyP2Actor : Actor
         var travelDirection = new Vector2(directionToPlayer.x, directionToPlayer.y) + playerDirection;
 
         this.myMovement.MoveActor(travelDirection.normalized);
+        gluttonyAnimHandler.AnimateWalk(true, travelDirection);
     }
 
     /*The state logic for phase 2 gluttony. Uses weights to choose to either use the projectile
@@ -130,7 +136,7 @@ public class GluttonyP2Actor : Actor
             {
                 specialWeight = 0.0f;
             }
-            Debug.Log(specialWeight);
+            gluttonyAnimHandler.AnimateWalk(false, Vector2.zero);
         }
         else if (projReady)
         {
@@ -144,7 +150,7 @@ public class GluttonyP2Actor : Actor
             {
                 specialWeight = 100f;
             }
-            Debug.Log(specialWeight);
+            gluttonyAnimHandler.AnimateWalk(false, Vector2.zero);
         }
         return nextState;
     }

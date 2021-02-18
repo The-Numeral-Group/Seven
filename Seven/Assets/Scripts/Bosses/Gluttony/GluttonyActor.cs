@@ -4,7 +4,7 @@ using UnityEngine;
 
 /*GluttonyActor's main function is to run the State Machine that powers
 Gluttony's boss fight*/
-//[RequireComponent(typeof(Effector2D))]
+[RequireComponent(typeof(GluttonyP1AnimationHandler))]
 public class GluttonyActor : Actor
 {
     [Tooltip("Controls how many times should Gluttony use normal attacks before using it's special.")]
@@ -23,6 +23,8 @@ public class GluttonyActor : Actor
     Actor gluttony;
     Actor player;
     public State currentState;
+    //Reference to the derived animation handler;
+    GluttonyP1AnimationHandler gluttonyAnimHandler;
 
     private ActorAbility currAbility;
     public enum State
@@ -52,6 +54,7 @@ public class GluttonyActor : Actor
 
         gluttony = this.gameObject.GetComponent<GluttonyActor>();
         gluttony.myHealth.vulnerable = true;
+        gluttonyAnimHandler = this.myAnimationHandler as GluttonyP1AnimationHandler;
     }
 
     // Update is called once per frame
@@ -112,6 +115,7 @@ public class GluttonyActor : Actor
                 var bite = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_BITE];
                 Debug.Log("In Bite");
                 currAbility = bite;
+                gluttonyAnimHandler.Animator.SetTrigger("Bite");
                 bite.Invoke(ref gluttony, player);
                 specialAttackCounter++;
 
@@ -156,6 +160,7 @@ public class GluttonyActor : Actor
         var travelDirection = new Vector2(directionToPlayer.x, directionToPlayer.y) + playerDirection;
 
         this.myMovement.MoveActor(travelDirection.normalized);
+        gluttonyAnimHandler.AnimateWalk(true, travelDirection);
     }
 
     State decideNextState()
@@ -182,6 +187,7 @@ public class GluttonyActor : Actor
                 if (projReady)
                 {
                     nextState = State.LAUNCH_PROJECTILE;
+                    gluttonyAnimHandler.AnimateWalk(false, Vector2.zero);
                 }
                 else
                 {
@@ -193,6 +199,7 @@ public class GluttonyActor : Actor
                 if (crushReady)
                 {
                     nextState = State.PHYSICAL_CRUSH;
+                    gluttonyAnimHandler.AnimateWalk(false, Vector2.zero);
                 }
                 else
                 {
@@ -209,6 +216,7 @@ public class GluttonyActor : Actor
             /*this movement call is unessecary but added just in case there is an instance where
             movement isn't locked for an ability.*/
             this.myMovement.MoveActor(Vector2.zero);
+            gluttonyAnimHandler.AnimateWalk(false, Vector2.zero);
         }
         else
         {
