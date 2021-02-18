@@ -1,0 +1,1762 @@
+fileFormatVersion: 2
+guid: ea8cfebb044d19847872b52070c0fde6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3996998178533338150
+    second: gluttony_rough_spritesheet_0
+  - first:
+      213: 2894380122504497308
+    second: gluttony_rough_spritesheet_1
+  - first:
+      213: 3718355697103421088
+    second: gluttony_rough_spritesheet_2
+  - first:
+      213: -414921943292848131
+    second: gluttony_rough_spritesheet_3
+  - first:
+      213: 5352826167086418640
+    second: gluttony_rough_spritesheet_4
+  - first:
+      213: 3567145750187797403
+    second: gluttony_rough_spritesheet_5
+  - first:
+      213: -9151430975009388556
+    second: gluttony_rough_spritesheet_6
+  - first:
+      213: 4517196756089455852
+    second: gluttony_rough_spritesheet_7
+  - first:
+      213: 524828691543638910
+    second: gluttony_rough_spritesheet_8
+  - first:
+      213: -8382435922758773606
+    second: gluttony_rough_spritesheet_9
+  - first:
+      213: 6975407525472240593
+    second: gluttony_rough_spritesheet_10
+  - first:
+      213: -2217725590497352329
+    second: gluttony_rough_spritesheet_11
+  - first:
+      213: 7606142619929762984
+    second: gluttony_rough_spritesheet_12
+  - first:
+      213: -5496874410845554444
+    second: gluttony_rough_spritesheet_13
+  - first:
+      213: 8114537302133982118
+    second: gluttony_rough_spritesheet_14
+  - first:
+      213: 45736554795038359
+    second: gluttony_rough_spritesheet_15
+  - first:
+      213: 288546922962712373
+    second: gluttony_rough_spritesheet_16
+  - first:
+      213: 2093475916211884533
+    second: gluttony_rough_spritesheet_17
+  - first:
+      213: 3388744571252270105
+    second: gluttony_rough_spritesheet_18
+  - first:
+      213: -54263841272200327
+    second: gluttony_rough_spritesheet_19
+  - first:
+      213: -4355443855907323332
+    second: gluttony_rough_spritesheet_20
+  - first:
+      213: 3132299490962396504
+    second: gluttony_rough_spritesheet_21
+  - first:
+      213: -6349692221959360183
+    second: gluttony_rough_spritesheet_22
+  - first:
+      213: -2757641335511130140
+    second: gluttony_rough_spritesheet_23
+  - first:
+      213: -2864239832344766194
+    second: gluttony_rough_spritesheet_24
+  - first:
+      213: 2579782939892421435
+    second: gluttony_rough_spritesheet_25
+  - first:
+      213: 652918356191802734
+    second: gluttony_rough_spritesheet_26
+  - first:
+      213: 6253714075520430003
+    second: gluttony_rough_spritesheet_27
+  - first:
+      213: -2934846701499473926
+    second: gluttony_rough_spritesheet_28
+  - first:
+      213: -1559567774026959297
+    second: gluttony_rough_spritesheet_29
+  - first:
+      213: -2295136986193199127
+    second: gluttony_rough_spritesheet_30
+  - first:
+      213: -2315818692898181512
+    second: gluttony_rough_spritesheet_31
+  - first:
+      213: 4168346516981393261
+    second: gluttony_rough_spritesheet_32
+  - first:
+      213: -2496625187106020165
+    second: gluttony_rough_spritesheet_33
+  - first:
+      213: 8630786537432174650
+    second: gluttony_rough_spritesheet_34
+  - first:
+      213: -7586203526770076091
+    second: gluttony_rough_spritesheet_35
+  - first:
+      213: 6670457497571776222
+    second: gluttony_rough_spritesheet_36
+  - first:
+      213: 1885387548678610297
+    second: gluttony_rough_spritesheet_37
+  - first:
+      213: -6981887780492337083
+    second: gluttony_rough_spritesheet_38
+  - first:
+      213: -6081645522159007035
+    second: gluttony_rough_spritesheet_39
+  - first:
+      213: -2759144175517228471
+    second: gluttony_rough_spritesheet_40
+  - first:
+      213: 284109213120314228
+    second: gluttony_rough_spritesheet_41
+  - first:
+      213: 3064966682235438799
+    second: gluttony_rough_spritesheet_42
+  - first:
+      213: 3124087481054939132
+    second: gluttony_rough_spritesheet_43
+  - first:
+      213: 2167651544997868886
+    second: gluttony_rough_spritesheet_44
+  - first:
+      213: 455754134406537932
+    second: gluttony_rough_spritesheet_45
+  - first:
+      213: -2887522025315498125
+    second: gluttony_rough_spritesheet_46
+  - first:
+      213: -4074079678569657611
+    second: gluttony_rough_spritesheet_47
+  - first:
+      213: 7765143888216490718
+    second: gluttony_rough_spritesheet_48
+  - first:
+      213: 4451255502705166889
+    second: gluttony_rough_spritesheet_49
+  - first:
+      213: 4823337859487082567
+    second: gluttony_rough_spritesheet_50
+  - first:
+      213: 8935507859699666495
+    second: gluttony_rough_spritesheet_51
+  - first:
+      213: 3089359241238999123
+    second: gluttony_rough_spritesheet_52
+  - first:
+      213: 5066391144165487674
+    second: gluttony_rough_spritesheet_53
+  - first:
+      213: -3485771810856460881
+    second: gluttony_rough_spritesheet_54
+  - first:
+      213: -5734852794602646654
+    second: gluttony_rough_spritesheet_55
+  - first:
+      213: -951352559264288881
+    second: gluttony_rough_spritesheet_56
+  - first:
+      213: 8158461439432487396
+    second: gluttony_rough_spritesheet_57
+  - first:
+      213: 3876783117965327830
+    second: gluttony_rough_spritesheet_58
+  - first:
+      213: 8252432912317456949
+    second: gluttony_rough_spritesheet_59
+  - first:
+      213: -5051451131004581243
+    second: gluttony_rough_spritesheet_60
+  - first:
+      213: -5723085466516589117
+    second: gluttony_rough_spritesheet_61
+  - first:
+      213: 4277757241096907587
+    second: gluttony_rough_spritesheet_62
+  - first:
+      213: -2249160946969984263
+    second: gluttony_rough_spritesheet_63
+  - first:
+      213: 8113148338126763637
+    second: gluttony_rough_spritesheet_64
+  - first:
+      213: -1117057294605885922
+    second: gluttony_rough_spritesheet_65
+  - first:
+      213: 1786000096754481856
+    second: gluttony_rough_spritesheet_66
+  - first:
+      213: -8181899100205376558
+    second: gluttony_rough_spritesheet_67
+  - first:
+      213: -6458375611706382571
+    second: gluttony_rough_spritesheet_68
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8640
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad313a8655fc788c0800000000000000
+      internalID: -3996998178533338150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 8640
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9805d6e267ea2820800000000000000
+      internalID: 2894380122504497308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 8640
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ae366a4ec04a9330800000000000000
+      internalID: 3718355697103421088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 3240
+        y: 8640
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df7d380e0b6ed3af0800000000000000
+      internalID: -414921943292848131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 8640
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0da0a99d90f094a40800000000000000
+      internalID: 5352826167086418640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 5400
+        y: 8640
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9becf5092c018130800000000000000
+      internalID: 3567145750187797403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 8640
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f70f0cb3069ff080800000000000000
+      internalID: -9151430975009388556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 7560
+        y: 8640
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce4424b348e40be30800000000000000
+      internalID: 4517196756089455852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 7560
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e73446f0ae0984700800000000000000
+      internalID: 524828691543638910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 7560
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a945d77b0fa9bab80800000000000000
+      internalID: -8382435922758773606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 7560
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d30c57ef20adc060800000000000000
+      internalID: 6975407525472240593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 3240
+        y: 7560
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 775ac11535e0931e0800000000000000
+      internalID: -2217725590497352329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 7560
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ac5fdbe9627e8960800000000000000
+      internalID: 7606142619929762984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 5400
+        y: 7560
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f8bd96d8dd27b3b0800000000000000
+      internalID: -5496874410845554444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 7560
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a34a520fa0ac9070800000000000000
+      internalID: 8114537302133982118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 7560
+        y: 7560
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 796fecd772d72a000800000000000000
+      internalID: 45736554795038359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 6480
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 537793cc5ef110400800000000000000
+      internalID: 288546922962712373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 6480
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f115ab01458d0d10800000000000000
+      internalID: 2093475916211884533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 6480
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9146604bb3d370f20800000000000000
+      internalID: 3388744571252270105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 3240
+        y: 6480
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97382d8e2573f3ff0800000000000000
+      internalID: -54263841272200327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 6480
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c328c71a3ea5e83c0800000000000000
+      internalID: -4355443855907323332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 5400
+        y: 6480
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85553f89ac9287b20800000000000000
+      internalID: 3132299490962396504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 6480
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9413d05f09c51e7a0800000000000000
+      internalID: -6349692221959360183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 7560
+        y: 6480
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4efdce2e0d3eab9d0800000000000000
+      internalID: -2757641335511130140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5400
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e09d0914c0d2048d0800000000000000
+      internalID: -2864239832344766194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 5400
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3396e16aea3dc320800000000000000
+      internalID: 2579782939892421435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 5400
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e65f42029c1af0900800000000000000
+      internalID: 652918356191802734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 3240
+        y: 5400
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bf614e61d7a9c650800000000000000
+      internalID: 6253714075520430003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 5400
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aff95e679745547d0800000000000000
+      internalID: -2934846701499473926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 5400
+        y: 5400
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f36f9f95f5d4b5ae0800000000000000
+      internalID: -1559567774026959297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_30
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 5400
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eff71b32190620e0800000000000000
+      internalID: -2295136986193199127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_31
+      rect:
+        serializedVersion: 2
+        x: 7560
+        y: 5400
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87e28952b2f8cdfd0800000000000000
+      internalID: -2315818692898181512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4320
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d67a9658211f8d930800000000000000
+      internalID: 4168346516981393261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_33
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 4320
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb4a049be943a5dd0800000000000000
+      internalID: -2496625187106020165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_34
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 4320
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a305edfb0a6b6c770800000000000000
+      internalID: 8630786537432174650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_35
+      rect:
+        serializedVersion: 2
+        x: 3240
+        y: 4320
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 546dd09f51468b690800000000000000
+      internalID: -7586203526770076091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_36
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 4320
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed65b10a0c9329c50800000000000000
+      internalID: 6670457497571776222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_37
+      rect:
+        serializedVersion: 2
+        x: 5400
+        y: 4320
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97ddeee7cfd3a2a10800000000000000
+      internalID: 1885387548678610297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_38
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 4320
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5402d162e0a5b1f90800000000000000
+      internalID: -6981887780492337083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_39
+      rect:
+        serializedVersion: 2
+        x: 7560
+        y: 4320
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ca0ed99e97a99ba0800000000000000
+      internalID: -6081645522159007035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3240
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 942253eadfc85b9d0800000000000000
+      internalID: -2759144175517228471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_41
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 3240
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47bb375f2db51f300800000000000000
+      internalID: 284109213120314228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_42
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 3240
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc60d0765f2f88a20800000000000000
+      internalID: 3064966682235438799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_43
+      rect:
+        serializedVersion: 2
+        x: 3240
+        y: 3240
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf7468b030dfa5b20800000000000000
+      internalID: 3124087481054939132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_44
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 3240
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 655bc60789b051e10800000000000000
+      internalID: 2167651544997868886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_45
+      rect:
+        serializedVersion: 2
+        x: 5400
+        y: 3240
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc2a73678f9235600800000000000000
+      internalID: 455754134406537932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_46
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 3240
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37704f744067de7d0800000000000000
+      internalID: -2887522025315498125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_47
+      rect:
+        serializedVersion: 2
+        x: 7560
+        y: 3240
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fac7342e16f577c0800000000000000
+      internalID: -4074079678569657611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2160
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed280fe893553cb60800000000000000
+      internalID: 7765143888216490718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_49
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 2160
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92a8e33cb4906cd30800000000000000
+      internalID: 4451255502705166889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_50
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 2160
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 748ab626a30ffe240800000000000000
+      internalID: 4823337859487082567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_51
+      rect:
+        serializedVersion: 2
+        x: 3240
+        y: 2160
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3e0c195e0d410c70800000000000000
+      internalID: 8935507859699666495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_52
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 2160
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 350fe9d9cdb9fda20800000000000000
+      internalID: 3089359241238999123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_53
+      rect:
+        serializedVersion: 2
+        x: 5400
+        y: 2160
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a343b2917ef6f4640800000000000000
+      internalID: 5066391144165487674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_54
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 2160
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fad94d5a10d00afc0800000000000000
+      internalID: -3485771810856460881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_55
+      rect:
+        serializedVersion: 2
+        x: 7560
+        y: 2160
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2839d8294c5b960b0800000000000000
+      internalID: -5734852794602646654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1080
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8fa4e843ed1cc2f0800000000000000
+      internalID: -951352559264288881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_57
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 1080
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e1781b247da83170800000000000000
+      internalID: 8158461439432487396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_58
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 1080
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ddfd89a4b91dc530800000000000000
+      internalID: 3876783117965327830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_59
+      rect:
+        serializedVersion: 2
+        x: 3240
+        y: 1080
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 532ac6fa208868270800000000000000
+      internalID: 8252432912317456949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_60
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 1080
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58a0a38c5f3a5e9b0800000000000000
+      internalID: -5051451131004581243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_61
+      rect:
+        serializedVersion: 2
+        x: 5400
+        y: 1080
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c5f31527148390b0800000000000000
+      internalID: -5723085466516589117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_62
+      rect:
+        serializedVersion: 2
+        x: 6480
+        y: 1080
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34bafe6db85ad5b30800000000000000
+      internalID: 4277757241096907587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_63
+      rect:
+        serializedVersion: 2
+        x: 7560
+        y: 1080
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f24c29090069c0e0800000000000000
+      internalID: -2249160946969984263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_64
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 576b810ad61b79070800000000000000
+      internalID: 8113148338126763637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_65
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 0
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1ed1491f4a6f70f0800000000000000
+      internalID: -1117057294605885922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_66
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 0
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ca3dd710a529c810800000000000000
+      internalID: 1786000096754481856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_67
+      rect:
+        serializedVersion: 2
+        x: 3240
+        y: 0
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2db9b203e1e047e80800000000000000
+      internalID: -8181899100205376558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gluttony_rough_spritesheet_68
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 0
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 517e13e599d3f56a0800000000000000
+      internalID: -6458375611706382571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
