@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 8671992475356646028}
   - component: {fileID: 2506885082448390623}
   - component: {fileID: 3288084705120337061}
+  - component: {fileID: 4231822093492628343}
   m_Layer: 11
   m_Name: GluttonyP2
   m_TagString: Boss
@@ -281,3 +282,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4231822093492628343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8671992475356646030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds: []

@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 7512802453659592074}
   - component: {fileID: 889948524402226234}
   - component: {fileID: 4115977272152067190}
+  - component: {fileID: 809726809053908821}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -100,9 +101,9 @@ PolygonCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 2.5, y: 2.5}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -110,20 +111,21 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.013041807, y: 0.089888535}
-      - {x: -0.054344974, y: 0.05858539}
-      - {x: -0.05380145, y: -0.07945647}
-      - {x: -0.035, y: -0.080536716}
-      - {x: -0.035229757, y: -0.11043209}
-      - {x: 0.03491783, y: -0.11040528}
-      - {x: 0.033199415, y: -0.080847606}
-      - {x: 0.053258896, y: -0.07950596}
-      - {x: 0.053967413, y: -0.030378036}
-      - {x: 0.064405106, y: -0.006817137}
-      - {x: 0.06532509, y: 0.009763734}
-      - {x: 0.07456103, y: 0.042508535}
-      - {x: 0.08434501, y: 0.0615192}
-      - {x: 0.06271437, y: 0.0904321}
+    - - {x: 0.29, y: -0.21}
+      - {x: 0.3333356, y: 0.32812995}
+      - {x: 0.35999998, y: 0.7}
+      - {x: 0.32561493, y: 0.794637}
+      - {x: 0.24463707, y: 0.97586685}
+      - {x: -0.07170362, y: 1.0170966}
+      - {x: -0.12650996, y: 0.63875824}
+      - {x: -0.14, y: 0.61}
+      - {x: -0.16593835, y: 0.34323105}
+      - {x: -0.16198188, y: 0.019071996}
+      - {x: -0.17, y: -0.08}
+      - {x: -0.17999999, y: -0.29999998}
+      - {x: -0.10740307, y: -0.40709674}
+      - {x: 0.03177613, y: -0.4901181}
+      - {x: 0.20896775, y: -0.49083143}
 --- !u!212 &4115977272152067171
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -164,7 +166,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 7345663322208169106, guid: 6d1da0f5337dfdb42900704104729344, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -359,3 +361,48 @@ MonoBehaviour:
   Animator: {fileID: 0}
   movementDirection: {x: 0, y: 0}
   myMovement: {fileID: 0}
+--- !u!114 &809726809053908821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115977272152067185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: PlayerAttack
+    audioClip: {fileID: 8300000, guid: aa60d782111c7e446a572e1b1fdc3244, type: 3}
+    volume: 0.15
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: PlayerDodge
+    audioClip: {fileID: 8300000, guid: d6520d245b93e96459a89092ab0f5cfa, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: PlayerRun
+    audioClip: {fileID: 8300000, guid: 2ca8f777ab5665341af0ce0585dfb8a0, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    hasCooldown: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: TakeDamage
+    audioClip: {fileID: 8300000, guid: 4bc4ce74f4e53894b93f36e40bb9c7ce, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}

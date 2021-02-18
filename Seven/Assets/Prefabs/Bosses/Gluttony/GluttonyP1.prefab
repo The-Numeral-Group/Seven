@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 5187959127492769961}
   - component: {fileID: 5187959127492769962}
   - component: {fileID: 5187959127492769963}
+  - component: {fileID: 5252541960059701746}
   m_Layer: 11
   m_Name: GluttonyP1
   m_TagString: Boss
@@ -231,6 +232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldownPeriod: 10
   abilityName: Soecial Ability P1
+  invokeBlankWhenBadArguments: 1
   toInstantiateAbilitySprite: {fileID: 7414617650634565902, guid: 6a2149f7700a5a34db6594d1b70f1a23, type: 3}
   gluttonyEffector: {fileID: 0}
   distanceFromActor: {x: 0, y: -1}
@@ -250,6 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldownPeriod: 30
   abilityName: Projectile P1
+  invokeBlankWhenBadArguments: 1
   centerPos: {x: 0, y: 0}
   toInstantiateProjectile: {fileID: 3033589395181301062, guid: 9fed1bd80b385f14ab052e95cc9e565c, type: 3}
   projectileSpawnTime: 2
@@ -269,11 +272,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldownPeriod: 30
   abilityName: Crush
+  invokeBlankWhenBadArguments: 1
   toInstantiateShadowSprite: {fileID: 7812086123874225860, guid: 5723a55f6f9372a449ff826976fc11d3, type: 3}
   distanceFromActor: {x: 0, y: -1}
   sin: {fileID: 4884980593627948291, guid: b26069da63922c147b50c4930bb1b515, type: 3}
   fallSpeed: 120
   jumpSpeed: 10
+  jumpDelay: 1
   jumpDuration: 1
   trackDuration: 2
   crushDelay: 1
@@ -291,7 +296,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldownPeriod: 10
   abilityName: Bite
+  invokeBlankWhenBadArguments: 1
   startingWeaponObject: {fileID: 9164763553348272604, guid: 156b463534977e54199a7c7bdbc713c6, type: 3}
   duration: 5
   weaponPositionScale: {x: 2, y: 2}
   damagePerHitbox: 
+--- !u!114 &5252541960059701746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187959127492769972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds: []
