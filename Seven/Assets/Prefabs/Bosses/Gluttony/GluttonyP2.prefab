@@ -20,6 +20,8 @@ GameObject:
   - component: {fileID: 8671992475356646026}
   - component: {fileID: 8671992475356646029}
   - component: {fileID: 8671992475356646028}
+  - component: {fileID: 2506885082448390623}
+  - component: {fileID: 3288084705120337061}
   m_Layer: 11
   m_Name: GluttonyP2
   m_TagString: Boss
@@ -224,6 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldownPeriod: 30
   abilityName: 
+  invokeBlankWhenBadArguments: 1
   centerPos: {x: 0, y: 0}
   toInstantiateProjectile: {fileID: 1358877168113409280, guid: 0b20b77679356944bb916f0b5b0aff9f, type: 3}
   projectileSpawnTime: 2
@@ -243,5 +246,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldownPeriod: 20
   abilityName: 
+  invokeBlankWhenBadArguments: 1
   specialSpeedModifier: 5
   chargeDelay: 3
+--- !u!114 &2506885082448390623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8671992475356646030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae9fb71561093b429dc04ea6675aa09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 3288084705120337061}
+--- !u!95 &3288084705120337061
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8671992475356646030}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 44565fc926d761c43891492c0420710e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

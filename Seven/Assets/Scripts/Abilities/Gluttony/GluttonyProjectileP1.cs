@@ -25,7 +25,7 @@ public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
     //A list that is used to manage the projectiles spawned by this user
     protected static List<GameObject> PROJECTILE_MANAGER = new List<GameObject>();
     //reference to the animationd handler. must be cast as gluttony animation handler.
-    GluttonyP1AnimationHandler gluttonyAnimationHandler;
+    protected GluttonyP1AnimationHandler gluttonyAnimationHandler;
 
     protected void Awake()
     {

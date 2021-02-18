@@ -8,11 +8,12 @@ public class GluttonyP1AnimationHandler : ActorAnimationHandler
     bool facingRight = true;
     public virtual void AnimateWalk(bool value, Vector2 direction)
     {
-        if (!hostActor)
-        {
-            Debug.Log("No reference");
-            return;
-        }
+        Flip(direction);
+        Animator.SetBool("isWalking", value);
+    }
+
+    public void Flip(Vector2 direction)
+    {
         Vector3 flip = transform.localScale;
         if (direction.x < 0 && facingRight)
         {
@@ -25,6 +26,5 @@ public class GluttonyP1AnimationHandler : ActorAnimationHandler
             facingRight = true;
         }
         transform.localScale = flip;
-        Animator.SetBool("isWalking", value);
     }
 }
