@@ -10,8 +10,6 @@ public class GluttonySpecialP2 : ActorAbilityFunction<Actor, int>
     //The delay between when the user acquires its target and charges.
     [Tooltip("How much time the user will take to track its target.")]
     public float chargeDelay = 1f;
-    //reference to the user of the ability
-    public Actor user { get; private set;}
     //Variable in charge of the direction the user will charge in
     Vector2 direction;
     //reference to camera for shake

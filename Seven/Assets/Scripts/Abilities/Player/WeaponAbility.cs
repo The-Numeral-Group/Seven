@@ -29,9 +29,6 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
     as well as the hitbox class.*/
     public bool hitConnected { get; set; }
 
-    //Reference to the user of this ability.
-    public Actor user { get; protected set; }
-
     //Initializing fields
     protected virtual void Awake()
     {
