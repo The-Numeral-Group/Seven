@@ -55,6 +55,9 @@ public abstract class ActorAbilityFunction<InvokeParam, InvokeReturn> : ActorAbi
     protected bool isFinished = true;
     public override bool getIsFinished(){return isFinished;}
 
+    //the user of the ability, for when such information is important
+    protected Actor user;
+
     /*IEnumerator for using coroutines to run ability cooldowns.
     If you don't want a cooldown, pass in 0.0f*/
     public override IEnumerator coolDown(float cooldownDuration)
@@ -77,6 +80,7 @@ public abstract class ActorAbilityFunction<InvokeParam, InvokeReturn> : ActorAbi
     but it's the thought that counts.*/
     public override void Invoke(ref Actor user)
     {
+        this.user = user;
         //by default, Invoke just does InternInvoke with no arguments
         if(usable)
         {
@@ -93,6 +97,7 @@ public abstract class ActorAbilityFunction<InvokeParam, InvokeReturn> : ActorAbi
     it gets something it doesn't expect.*/
     public override void Invoke(ref Actor user, params object[] args)
     {
+        this.user = user;
         //by default, Invoke just does InternInvoke with the provided arguments
         //it's also just implicitly convert the args and give it to InternInvoke
         if(usable)
