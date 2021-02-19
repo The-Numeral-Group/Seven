@@ -21,8 +21,7 @@ public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
     //if at 0 the targetActor will not get dragged.
     [Tooltip("The speed at which the target is dragged. if 0 no drag")]
     public float specialSpeed = 1f;
-    //Reference to the user of the ability
-    public Actor user { get; private set; }
+    //reference the target actor
     public Actor targetActor { get; private set; }
 
     //Similar to ActortAbilityFunction Invoke. additional checks for valid target and isFinished

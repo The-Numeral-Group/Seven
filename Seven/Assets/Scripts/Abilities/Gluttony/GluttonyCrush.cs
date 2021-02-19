@@ -38,8 +38,6 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     public float crushDelay = 1f;
     //The sum of the above three durations. Used to lock the movement of the user.
     float totalAbilityDuration;
-    //Reference to the user of the ability
-    public Actor user { get; private set; }
     //pointer to the main camera shake component to initialize camera efx
     BaseCamera cam;
     //reference to the animationd handler. must be cast as gluttony animation handler.
