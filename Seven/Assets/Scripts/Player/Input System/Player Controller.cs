@@ -586,6 +586,14 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Right Click"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""c0010cfc-b259-4efb-a2dd-b68b2ae52142"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -1020,17 +1028,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7417a7b3-2061-4501-a1ae-2d805aa72209"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse;Mouse and Keyboard"",
-                    ""action"": ""Select"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""8d171dd8-3dc9-4aa5-8da5-626d645d3001"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
@@ -1044,17 +1041,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""b10715a0-d90d-4709-b050-d4e964dc07fc"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse;Mouse and Keyboard"",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""06b9d02f-1125-4de2-820e-d7722172631a"",
-                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse;Mouse and Keyboard"",
@@ -1092,6 +1078,17 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""95b2df55-f25a-45c2-9829-7f9991924ce4"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse and Keyboard"",
+                    ""action"": ""Right Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1158,6 +1155,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         m_UI_Select = m_UI.FindAction("Select", throwIfNotFound: true);
         m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
         m_UI_Menu = m_UI.FindAction("Menu", throwIfNotFound: true);
+        m_UI_RightClick = m_UI.FindAction("Right Click", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1278,6 +1276,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_Select;
     private readonly InputAction m_UI_Cancel;
     private readonly InputAction m_UI_Menu;
+    private readonly InputAction m_UI_RightClick;
     public struct UIActions
     {
         private @PlayerController m_Wrapper;
@@ -1288,6 +1287,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
         public InputAction @Select => m_Wrapper.m_UI_Select;
         public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
         public InputAction @Menu => m_Wrapper.m_UI_Menu;
+        public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1315,6 +1315,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Menu.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
                 @Menu.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
                 @Menu.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
+                @RightClick.started -= m_Wrapper.m_UIActionsCallbackInterface.OnRightClick;
+                @RightClick.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnRightClick;
+                @RightClick.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnRightClick;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1337,6 +1340,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Menu.started += instance.OnMenu;
                 @Menu.performed += instance.OnMenu;
                 @Menu.canceled += instance.OnMenu;
+                @RightClick.started += instance.OnRightClick;
+                @RightClick.performed += instance.OnRightClick;
+                @RightClick.canceled += instance.OnRightClick;
             }
         }
     }
@@ -1375,5 +1381,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnSelect(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
+        void OnRightClick(InputAction.CallbackContext context);
     }
 }

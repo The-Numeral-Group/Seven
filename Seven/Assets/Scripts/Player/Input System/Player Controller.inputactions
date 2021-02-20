@@ -573,6 +573,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Right Click",
+                    "type": "PassThrough",
+                    "id": "c0010cfc-b259-4efb-a2dd-b68b2ae52142",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -1007,17 +1015,6 @@
                 },
                 {
                     "name": "",
-                    "id": "7417a7b3-2061-4501-a1ae-2d805aa72209",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse;Mouse and Keyboard",
-                    "action": "Select",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "8d171dd8-3dc9-4aa5-8da5-626d645d3001",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
@@ -1031,17 +1028,6 @@
                     "name": "",
                     "id": "b10715a0-d90d-4709-b050-d4e964dc07fc",
                     "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse;Mouse and Keyboard",
-                    "action": "Cancel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "06b9d02f-1125-4de2-820e-d7722172631a",
-                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse;Mouse and Keyboard",
@@ -1079,6 +1065,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "95b2df55-f25a-45c2-9829-7f9991924ce4",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse and Keyboard",
+                    "action": "Right Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
