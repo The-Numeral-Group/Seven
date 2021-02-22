@@ -36,13 +36,6 @@ public class PlayerActor : Actor
             return;
         }
         MenuManager.StartDialogue();
-        this.isTalking = true;
-        playerInput.SwitchCurrentActionMap("UI");
-        this.myMovement.MoveActor(Vector2.zero);
-        this.myHealth.enabled = false;
-
-        //MenuManager.DIALOGUE_MENU.speakerNameTextBox.text = ActiveSpeaker.ACTIVE_NPC.speakerName;
-        ActiveSpeaker.ACTIVE_NPC.SetIsTalking(true);
     }
 
     void OnMenu()

@@ -53,7 +53,15 @@ public class DialogueMenu : BaseUI
         pActor.isTalking = false;
         pActor.playerInput.SwitchCurrentActionMap("Player");
         pActor.myHealth.enabled = true;
-        MenuManager.CURRENT_MENU = null;
+        if (MenuManager.CURRENT_MENU == this)
+        {
+            MenuManager.CURRENT_MENU = null;
+        }
+        else
+        {
+            Debug.LogWarning("DialogueMenu: Dialogue is ending, but menu managers current menu" + 
+            " is not pointing o the dialoguemenu.");
+        }
         /*This line can cause an issue requiring the player to re-enter an npc's collision box
         to re-engage dialogue if the npc is in npcmode.*/
         if (!ActiveSpeaker.ACTIVE_NPC.npcMode)
@@ -79,20 +87,9 @@ public class DialogueMenu : BaseUI
                 " an ActiveSpeaker component");
             return;
         }
-        var player = GameObject.Find("/Player");
-        if (!player)
-        {
-            Debug.LogWarning("DialogueMenu: StartDialogue() cannot find the player object.");
-            return;
-        }
         ActiveSpeaker.ACTIVE_NPC = newSpeaker;
-        ActiveSpeaker.ACTIVE_NPC.SetIsTalking(true);
-        PlayerActor pActor = player.GetComponent<PlayerActor>();
-        pActor.playerInput.SwitchCurrentActionMap("UI");
         dialogueDelegateCallback = method;
         MenuManager.StartDialogue();
-        pActor.isTalking = true;
-        pActor.myHealth.enabled = false;
     }
 
     //override baseui hide method.

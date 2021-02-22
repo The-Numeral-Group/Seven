@@ -23,15 +23,16 @@ public class MenuManager : MonoBehaviour
     BattleUI battleUI;
     //Static reference ot the Battle UI
     public static BattleUI BATTLE_UI;
-    //Reference to the Game Over UI. Must be set through inspector 
+    /*Reference to the Game Over UI. Must be set through inspector because currently
+    gameover object is a child of the the menumanager object.*/
     [Tooltip("Reference to the gameover ui child object. Must be set via inspector.")]
     [SerializeField]
     GameOver gameOver = null;
     //Static reference to game over
     public static GameOver GAME_OVER;
-
     //pointer to the current opened menu.
     public static BaseUI CURRENT_MENU;
+    //Gameover flag
     public static bool GAME_IS_OVER = false;
 
     //Set static members to the inspector references
@@ -57,6 +58,24 @@ public class MenuManager : MonoBehaviour
             Debug.LogWarning("MenuManager: DialogMenu not hooked up properly.");
             return;
         }
+        if (CURRENT_MENU)
+        {
+            Debug.LogWarning("MenuManager: There is already a menu active - " + CURRENT_MENU.GetType());
+            return;
+        }
+        var player = GameObject.Find("/Player");
+        if (!player)
+        {
+            Debug.LogWarning("MenuManager: StartDialogue() cannot find the player object.");
+            return;
+        }
+        ActiveSpeaker.ACTIVE_NPC.SetIsTalking(true);
+        PlayerActor pActor = player.GetComponent<PlayerActor>();
+        pActor.playerInput.SwitchCurrentActionMap("UI");
+        pActor.isTalking = true;
+        pActor.myHealth.enabled = false;
+        pActor.myMovement.MoveActor(Vector2.zero);
+        
         CURRENT_MENU = DIALOGUE_MENU;
         DIALOGUE_MENU.dialogueRunner.StartDialogue(ActiveSpeaker.ACTIVE_NPC.yarnStartNode);
     }
