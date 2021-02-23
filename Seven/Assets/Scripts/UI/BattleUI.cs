@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public class BattleUI : BaseUI
@@ -7,36 +8,35 @@ public class BattleUI : BaseUI
     //reference to the players health bar slide. should be set through inspector.
     [Tooltip("Reference to the players health bar slider ui object.")]
     public Slider playerSlider;
+    ///////
+    class BossBar
+    {
+        public GameObject bossContainer;
+        public Slider bossSlider;
+        public Text bossText;
+        public MultiActor bossMultiActor;
+        public GameObject boss;
+        public ActorHealth bossHealth;
+    }
     //Reference to the ui elements containing the bosses information. Must be set through inspector
     [Tooltip("Reference to the boss' ui container.")]
-    public GameObject bossContainer;
-    //reference to the boss' health bar slider. should be set through the inspector.
-    [Tooltip("Reference to the boss' health bar slider ui object.")]
-    public Slider bossSlider;
-    //refernce to the boss text label. Should be handled via inspector
-    [Tooltip("Reference to the bosses text label.")]
-    public Text bossText;
+    public GameObject bossContainers;
+    //Reference to the prefab used to create the boss bars.
+    [Tooltip("Reference to the prefab used to create boss health bars.")]
+    public GameObject bossBar;
+    List<BossBar> bossList;
+    ///////
     //reference to the player
     ActorHealth playerHealth;
     //reference to the player object;
     Actor playerActor;
-    //reference to the boss
-    MultiActor bossMultiActor;
-    //reference to current phase of the boss
-    GameObject boss;
-    //reference to the bosses health component
-    ActorHealth bossHealth;
-
-    public class BossBar : MonoBehaviour
-    {
-        public GameObject bossContainer {get; set;}
-        public Slider bossSlider {get; set;}
-        public Text bossText {get; set;}
-    }
-
     //reference to all the audio sources;
     private AudioSource[] allAudioSources;
 
+    void Awake()
+    {
+        bossList = new List<BossBar>();
+    }
     void Start()
     {
         SetReferences();
@@ -46,9 +46,12 @@ public class BattleUI : BaseUI
     {
         UpdateReferences();
         UpdateSlider(ref playerHealth, ref playerSlider);
-        UpdateSlider(ref bossHealth, ref bossSlider);
-        //IMPORTANT: Remove this in the future
-        TemporaryDeathCheckFunction();
+        foreach(var bBar in bossList)
+        {
+            UpdateSlider(ref bBar.bossHealth, ref bBar.bossSlider);
+            //IMPORTANT: Remove this in the future
+            TemporaryDeathCheckFunction(bBar);
+        }
     }
 
     //Set references for the player and boss actors
@@ -70,15 +73,25 @@ public class BattleUI : BaseUI
     //used to set references to the boss object.
     public void SetBossReference()
     {
-        var bObject = GameObject.FindGameObjectWithTag("Boss");
-        if (!bObject)
+        var bObjects = GameObject.FindObjectsOfType<MultiActor>();
+        if (bObjects.Length == 0)
         {
             Debug.LogWarning("BattleUI: Cannot locate the boss object in the scene.");
         }
         else
         {
-            //a boss is expected to be a multi actor object
-            bossMultiActor = bObject.GetComponentInChildren<MultiActor>();
+            foreach(var bObject in bObjects)
+            {
+                BossBar bBar = new BossBar();
+                GameObject bar = Instantiate(bossBar, bossContainers.transform);
+                //a boss is expected to be a multi actor object
+                //bossMultiActor = bObject.GetComponentInChildren<MultiActor>();
+                bBar.bossContainer = bar;
+                bBar.bossSlider = bar.GetComponentInChildren<Slider>();
+                bBar.bossText = bar.GetComponentInChildren<Text>();
+                bBar.bossMultiActor = bObject.GetComponentInParent<MultiActor>();
+                bossList.Add(bBar);
+            }
         }
     }
 
@@ -91,20 +104,23 @@ public class BattleUI : BaseUI
             playerSlider.maxValue = playerHealth.maxHealth;
             playerSlider.value = playerHealth.maxHealth;
         }
-        if (bossMultiActor && bossMultiActor.gameObject.transform.parent != boss)
+        foreach(var bBar in bossList)
         {
-            boss = bossMultiActor.gameObject.transform.parent.gameObject;
-            bossHealth = boss.GetComponent<ActorHealth>();
-            if (!bossHealth)
+            if (bBar.bossMultiActor && bBar.bossMultiActor.gameObject.transform.parent != bBar.boss)
             {
-                bossContainer.SetActive(false);
-            }
-            else
-            {
-                bossContainer.SetActive(true);
-                bossSlider.maxValue = bossHealth.maxHealth;
-                bossSlider.value = bossHealth.currentHealth;
-                bossText.text = boss.name;
+                bBar.boss = bBar.bossMultiActor.gameObject.transform.parent.gameObject;
+                bBar.bossHealth = bBar.boss.GetComponent<ActorHealth>();
+                if (!bBar.bossHealth)
+                {
+                    bBar.bossContainer.SetActive(false);
+                }
+                else
+                {
+                    bBar.bossContainer.SetActive(true);
+                    bBar.bossSlider.maxValue = bBar.bossHealth.maxHealth;
+                    bBar.bossSlider.value = bBar.bossHealth.currentHealth;
+                    bBar.bossText.text = bBar.boss.name;
+                }
             }
         }
     }
@@ -120,13 +136,13 @@ public class BattleUI : BaseUI
 
     //This function should be removed once we are done with stopping the game one player death
     //for testing purposes.
-    void TemporaryDeathCheckFunction()
+    void TemporaryDeathCheckFunction(BossBar bBar)
     {
-        if (!bossHealth || !playerHealth)
+        if (!bBar.bossHealth || !playerHealth)
         {
             return;
         }
-        if (bossHealth.currentHealth == 0f)
+        if (bBar.bossHealth.currentHealth == 0f)
         {
             StopAllAudio();
             SceneManager.LoadScene("Hub");
