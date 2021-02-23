@@ -27,6 +27,13 @@ public class BattleUI : BaseUI
     //reference to the bosses health component
     ActorHealth bossHealth;
 
+    public class BossBar : MonoBehaviour
+    {
+        public GameObject bossContainer {get; set;}
+        public Slider bossSlider {get; set;}
+        public Text bossText {get; set;}
+    }
+
     //reference to all the audio sources;
     private AudioSource[] allAudioSources;
 
