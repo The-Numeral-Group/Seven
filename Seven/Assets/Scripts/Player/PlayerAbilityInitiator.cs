@@ -54,7 +54,7 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     //this is the method called by an input press
     public void OnAttack()
     {
-        if (ActiveSpeaker.ACTIVE_NPC)
+        if (ActiveSpeaker.ACTIVE_NPC && ActiveSpeaker.ACTIVE_NPC.npcMode)
         {
             gameObject.SendMessage("StartTalking");
         }
