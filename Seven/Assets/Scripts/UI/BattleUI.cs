@@ -7,6 +7,9 @@ public class BattleUI : BaseUI
     //reference to the players health bar slide. should be set through inspector.
     [Tooltip("Reference to the players health bar slider ui object.")]
     public Slider playerSlider;
+    //Reference to the ui elements containing the bosses information. Must be set through inspector
+    [Tooltip("Reference to the boss' ui container.")]
+    public GameObject bossContainer;
     //reference to the boss' health bar slider. should be set through the inspector.
     [Tooltip("Reference to the boss' health bar slider ui object.")]
     public Slider bossSlider;
@@ -87,11 +90,11 @@ public class BattleUI : BaseUI
             bossHealth = boss.GetComponent<ActorHealth>();
             if (!bossHealth)
             {
-                bossSlider.gameObject.SetActive(false);
+                bossContainer.SetActive(false);
             }
             else
             {
-                bossSlider.gameObject.SetActive(true);
+                bossContainer.SetActive(true);
                 bossSlider.maxValue = bossHealth.maxHealth;
                 bossSlider.value = bossHealth.currentHealth;
                 bossText.text = boss.name;
