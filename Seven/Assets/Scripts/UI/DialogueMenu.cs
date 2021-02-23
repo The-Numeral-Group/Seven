@@ -74,6 +74,20 @@ public class DialogueMenu : BaseUI
         pActor.myHealth.enabled = true;
     }
 
+    public void OnLineStartCallback()
+    {
+        //Credit for code: https://www.youtube.com/watch?v=gJrf6ON5UPE&t=333s
+        string lineInfo = dialogueRunner.dialogueUI.untrimmedText;
+        if (lineInfo.Contains(":"))
+        {
+            string name = lineInfo.Substring(0, lineInfo.IndexOf(":"));
+            if (ActiveSpeaker.ACTIVE_NPC.speakerName != name)
+            {
+                //insert to code to find the activespeaker who does share that name;
+            }
+        }
+    }
+
     /*Function to be utilized outside of class to start dialogue. Requires a gameobject to be passed in.
     The gameobject should reference a scene element which has n AcitveSpeaker component. the passed in method
     will be called once the dialogue finished*/

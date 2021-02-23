@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!20 &128169796 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1562341910261810668, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+  m_PrefabInstance: {fileID: 1256967289}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &550851452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138,6 +143,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2200475627425788190, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 128169796}
     - target: {fileID: 2200475627425788191, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -328,14 +337,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3838137145630887551, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
-      propertyPath: bossBar
-      value: 
-      objectReference: {fileID: 1742091852106443169, guid: c83b84db928ff9b44a1b2f7ea6313cff, type: 3}
-    - target: {fileID: 3838137145630887551, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
-      propertyPath: bossContainers
-      value: 
-      objectReference: {fileID: 1387020283}
     - target: {fileID: 3838137146001244881, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -654,8 +655,3 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4905909914710698995, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
---- !u!1 &1387020283 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3724874611025221647, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
-  m_PrefabInstance: {fileID: 671577059}
-  m_PrefabAsset: {fileID: 0}
