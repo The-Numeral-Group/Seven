@@ -41,18 +41,7 @@ public class DialogueMenu : BaseUI
     //Callback function used by the dialoguemenu ui object
     public void OnDialogueEndCallback()
     {
-        var player = GameObject.Find("/Player");
         ActiveSpeaker.ACTIVE_NPC.SetIsTalking(false);
-
-        if (!player)
-        {
-            Debug.LogWarning("DialogueMenu: OnDialogueFinish callback cannot find the player object.");
-            return;
-        }
-        PlayerActor pActor = player.GetComponent<PlayerActor>();
-        pActor.isTalking = false;
-        pActor.playerInput.SwitchCurrentActionMap("Player");
-        pActor.myHealth.enabled = true;
         if (MenuManager.CURRENT_MENU == this)
         {
             MenuManager.CURRENT_MENU = null;
@@ -73,23 +62,61 @@ public class DialogueMenu : BaseUI
             }
             dialogueDelegateCallback = null;
         }
+        var player = GameObject.Find("/Player");
+        if (!player)
+        {
+            Debug.LogWarning("DialogueMenu: OnDialogueFinish callback cannot find the player object.");
+            return;
+        }
+        PlayerActor pActor = player.GetComponent<PlayerActor>();
+        pActor.isTalking = false;
+        pActor.playerInput.SwitchCurrentActionMap("Player");
+        pActor.myHealth.enabled = true;
     }
 
     /*Function to be utilized outside of class to start dialogue. Requires a gameobject to be passed in.
     The gameobject should reference a scene element which has n AcitveSpeaker component. the passed in method
     will be called once the dialogue finished*/
-    public void StartDialogue(GameObject npc, TestDelegate method = null)
+    public void StartDialogue(GameObject npc = null, TestDelegate method = null, bool lockValue = true)
     {
-        ActiveSpeaker newSpeaker = npc.GetComponent<ActiveSpeaker>();
-        if (!newSpeaker)
+        if (MenuManager.CanStartDialogue())
         {
-            Debug.LogWarning("DialogueMenu: gameobject passed to StartDialogue() does not contain" + 
-                " an ActiveSpeaker component");
+            if (npc != null)
+            {
+                ActiveSpeaker newSpeaker = npc.GetComponent<ActiveSpeaker>();
+                if (!newSpeaker)
+                {
+                    Debug.LogWarning("DialogueMenu: gameobject passed to StartDialogue() does not contain" + 
+                        " an ActiveSpeaker component");
+                    return;
+                }
+                ActiveSpeaker.ACTIVE_NPC = newSpeaker;
+                dialogueDelegateCallback = method;
+            }
+            ActiveSpeaker.ACTIVE_NPC.SetIsTalking(true);
+            SetupPlayer(lockValue);
+            dialogueRunner.StartDialogue(ActiveSpeaker.ACTIVE_NPC.yarnStartNode);
+        }
+    }
+
+    /*function is used to setup the player to enter a dialogue sequence. lockValue is used
+    to determine if the player can move during the dialogue sequence.*/
+    public void SetupPlayer(bool lockValue)
+    {
+        var player = GameObject.Find("/Player");
+        if (!player)
+        {
+            Debug.LogWarning("MenuManager: StartDialogue() cannot find the player object.");
             return;
         }
-        ActiveSpeaker.ACTIVE_NPC = newSpeaker;
-        dialogueDelegateCallback = method;
-        MenuManager.StartDialogue();
+        PlayerActor pActor = player.GetComponent<PlayerActor>();
+        if (lockValue)
+        {
+            pActor.playerInput.SwitchCurrentActionMap("UI");
+            pActor.myMovement.MoveActor(Vector2.zero);
+        }
+        pActor.isTalking = true;
+        pActor.myHealth.enabled = false;
     }
 
     //override baseui hide method.

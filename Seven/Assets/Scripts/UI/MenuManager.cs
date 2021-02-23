@@ -50,34 +50,21 @@ public class MenuManager : MonoBehaviour
     }
 
     /*Starts the dialogue menu via yarnspinner. Will crash if activenpc has not already been set.
-    Utilized by the players StartTalking function.*/
-    public static void StartDialogue()
+    Utilized DialogueMenu*/
+    public static bool CanStartDialogue()
     {
         if(!DIALOGUE_MENU)
         {
             Debug.LogWarning("MenuManager: DialogMenu not hooked up properly.");
-            return;
+            return false;
         }
         if (CURRENT_MENU)
         {
             Debug.LogWarning("MenuManager: There is already a menu active - " + CURRENT_MENU.GetType());
-            return;
+            return false;
         }
-        var player = GameObject.Find("/Player");
-        if (!player)
-        {
-            Debug.LogWarning("MenuManager: StartDialogue() cannot find the player object.");
-            return;
-        }
-        ActiveSpeaker.ACTIVE_NPC.SetIsTalking(true);
-        PlayerActor pActor = player.GetComponent<PlayerActor>();
-        pActor.playerInput.SwitchCurrentActionMap("UI");
-        pActor.isTalking = true;
-        pActor.myHealth.enabled = false;
-        pActor.myMovement.MoveActor(Vector2.zero);
-        
         CURRENT_MENU = DIALOGUE_MENU;
-        DIALOGUE_MENU.dialogueRunner.StartDialogue(ActiveSpeaker.ACTIVE_NPC.yarnStartNode);
+        return true;
     }
 
     /*Starts the pause menu. Used as the callback from the playerinputs OnMenu function.

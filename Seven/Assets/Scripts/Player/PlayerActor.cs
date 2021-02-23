@@ -35,7 +35,7 @@ public class PlayerActor : Actor
             Debug.LogWarning("Player Actor: Player is already talking.");
             return;
         }
-        MenuManager.StartDialogue();
+        MenuManager.DIALOGUE_MENU.StartDialogue();
     }
 
     void OnMenu()
