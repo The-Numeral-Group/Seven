@@ -76,6 +76,20 @@ public class DialogueMenu : BaseUI
 
     public void OnLineStartCallback()
     {
+        /*Rams modifications to dialogueui. Credit: https://www.youtube.com/watch?v=gJrf6ON5UPE&t=333s user Shinjingi
+            this.untrimmedText = text;
+            onLineStart?.Invoke();
+            try
+            {
+                text = text.Substring(text.IndexOf(":") + 1);
+                text.Trim();
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Debug.LogWarning("DialogueUI: DoRunLine: Text field not contain a :, there fore text" + 
+                " should be recognized as an options list. Error: " + e);
+            }
+        */
         //Credit for code: https://www.youtube.com/watch?v=gJrf6ON5UPE&t=333s
         string lineInfo = dialogueRunner.dialogueUI.untrimmedText;
         if (lineInfo.Contains(":"))
