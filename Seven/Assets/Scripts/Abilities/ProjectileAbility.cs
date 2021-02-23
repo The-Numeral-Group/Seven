@@ -99,7 +99,7 @@ public class ProjectileAbility : ActorAbilityFunction<Vector2, int>
     {
         Vector2 finalVec = projectileDirection;
 
-        else if(arg is Vector2)
+        if(arg is Vector2)
         {
             finalVec = (Vector2)arg;
         }

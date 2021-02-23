@@ -71,4 +71,10 @@ public class PlayerActor : Actor
             playerInput.SwitchCurrentActionMap("Player");
         }
     }
+
+    public override void DoActorDamageEffect(float damage)
+    {
+        // Play TakeDamage Audio
+        mySoundManager.PlaySound("TakeDamage");
+    }
 }
