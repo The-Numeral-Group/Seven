@@ -41,5 +41,6 @@ public class PauseMenu : BaseUI
     {
         base.Show();
         exitButton.Select();
+        PauseGame();
     }
 }

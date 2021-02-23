@@ -75,7 +75,6 @@ public class MenuManager : MonoBehaviour
         {
             CURRENT_MENU = PAUSE_MENU;
             PAUSE_MENU.Show();
-            PAUSE_MENU.PauseGame();
             return true;
         }
         else
