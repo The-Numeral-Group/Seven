@@ -220,4 +220,10 @@ public class GhostKnightActor : Actor
             }
         }
     }
+
+    public override void DoActorDamageEffect(float damage)
+    {
+        // Play TakeDamage Audio
+        mySoundManager.PlaySound("TakeDamage");
+    }
 }

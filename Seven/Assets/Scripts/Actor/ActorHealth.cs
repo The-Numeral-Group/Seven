@@ -62,9 +62,6 @@ public class ActorHealth : MonoBehaviour
         this.currentHealth -= damage;
         StartCoroutine(FlashRed());
 
-        //Play Audio
-        hostActor.mySoundManager.PlaySound("TakeDamage");
-
         //trigger actor damage effects
         this.gameObject.SendMessage("DoActorDamageEffect", damage);
 
