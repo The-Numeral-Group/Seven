@@ -63,7 +63,7 @@ public class ActiveSpeaker : MonoBehaviour
 
     void Start()
     {
-	if(MenuManager.DIALOGUE_MENU)
+	if(MenuManager.DIALOGUE_MENU && yarnDialogue != null)
 	{
 	    MenuManager.DIALOGUE_MENU.dialogueRunner.Add(yarnDialogue);
 	}
