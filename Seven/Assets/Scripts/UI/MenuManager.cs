@@ -23,15 +23,16 @@ public class MenuManager : MonoBehaviour
     BattleUI battleUI;
     //Static reference ot the Battle UI
     public static BattleUI BATTLE_UI;
-    //Reference to the Game Over UI. Must be set through inspector 
+    /*Reference to the Game Over UI. Must be set through inspector because currently
+    gameover object is a child of the the menumanager object.*/
     [Tooltip("Reference to the gameover ui child object. Must be set via inspector.")]
     [SerializeField]
     GameOver gameOver = null;
     //Static reference to game over
     public static GameOver GAME_OVER;
-
     //pointer to the current opened menu.
     public static BaseUI CURRENT_MENU;
+    //Gameover flag
     public static bool GAME_IS_OVER = false;
 
     //Set static members to the inspector references
@@ -49,16 +50,21 @@ public class MenuManager : MonoBehaviour
     }
 
     /*Starts the dialogue menu via yarnspinner. Will crash if activenpc has not already been set.
-    Utilized by the players StartTalking function.*/
-    public static void StartDialogue()
+    Utilized DialogueMenu*/
+    public static bool CanStartDialogue()
     {
         if(!DIALOGUE_MENU)
         {
             Debug.LogWarning("MenuManager: DialogMenu not hooked up properly.");
-            return;
+            return false;
+        }
+        if (CURRENT_MENU)
+        {
+            Debug.LogWarning("MenuManager: There is already a menu active - " + CURRENT_MENU.GetType());
+            return false;
         }
         CURRENT_MENU = DIALOGUE_MENU;
-        DIALOGUE_MENU.dialogueRunner.StartDialogue(ActiveSpeaker.ACTIVE_NPC.yarnStartNode);
+        return true;
     }
 
     /*Starts the pause menu. Used as the callback from the playerinputs OnMenu function.
@@ -69,7 +75,6 @@ public class MenuManager : MonoBehaviour
         {
             CURRENT_MENU = PAUSE_MENU;
             PAUSE_MENU.Show();
-            PAUSE_MENU.PauseGame();
             return true;
         }
         else

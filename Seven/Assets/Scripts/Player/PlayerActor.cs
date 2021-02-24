@@ -35,14 +35,7 @@ public class PlayerActor : Actor
             Debug.LogWarning("Player Actor: Player is already talking.");
             return;
         }
-        MenuManager.StartDialogue();
-        this.isTalking = true;
-        playerInput.SwitchCurrentActionMap("UI");
-        this.myMovement.MoveActor(Vector2.zero);
-        this.myHealth.enabled = false;
-
-        //MenuManager.DIALOGUE_MENU.speakerNameTextBox.text = ActiveSpeaker.ACTIVE_NPC.speakerName;
-        ActiveSpeaker.ACTIVE_NPC.SetIsTalking(true);
+        MenuManager.DIALOGUE_MENU.StartDialogue();
     }
 
     void OnMenu()

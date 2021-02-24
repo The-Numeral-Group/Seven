@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1562341910261810668}
   - component: {fileID: 4506312283811783783}
   - component: {fileID: 6822378650959853752}
-  - component: {fileID: 4905909914710698995}
   - component: {fileID: -2552359508846621360}
   m_Layer: 0
   m_Name: BossCamera
@@ -102,19 +101,6 @@ MonoBehaviour:
   offset: {x: 0, y: 2}
   cameraSmoothRate: 0.5
   breakingDistance: 50
---- !u!114 &4905909914710698995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7897472732076878603}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dce5238caead814998cf0c680d3f267, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCam: {fileID: 1562341910261810668}
 --- !u!114 &-2552359508846621360
 MonoBehaviour:
   m_ObjectHideFlags: 0
