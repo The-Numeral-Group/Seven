@@ -86,6 +86,24 @@ public class DialogueMenu : BaseUI
             if (ActiveSpeaker.ACTIVE_NPC.speakerName != name)
             {
                 //insert to code to find the activespeaker who does share that name;
+                var speakers = FindObjectsOfType<ActiveSpeaker>();
+                bool found = false;
+                foreach(var speaker in speakers)
+                {
+                    if (speaker.speakerName ==  name)
+                    {
+                        found = true;
+                        ActiveSpeaker.ACTIVE_NPC.SetIsTalking(false);
+                        ActiveSpeaker.ACTIVE_NPC = speaker;
+                        ActiveSpeaker.ACTIVE_NPC.SetIsTalking(true);
+                    }
+                }
+                if (!found)
+                {
+                    Debug.LogWarning("DialogueMenu: There was an parsing the actor names with the line: "
+                    + lineInfo);
+                }
+
             }
         }
     }
