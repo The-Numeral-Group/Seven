@@ -16,6 +16,8 @@ public class DialogueMenu : BaseUI
     //reference to the chat bubble. Currently set to the inspector. Game will crash if null;
     [Tooltip("Reference to the canvas element which hold the chat bubble.")]
     public RectTransform chatBubble;
+    //reference to the text passed in from yarnspinner.
+    public string untrimmedText {get; set;}
 
     //reference to the ui menus canvas transform
     RectTransform canvasTransform;
@@ -76,22 +78,8 @@ public class DialogueMenu : BaseUI
 
     public void OnLineStartCallback()
     {
-        /*Rams modifications to dialogueui. Credit: https://www.youtube.com/watch?v=gJrf6ON5UPE&t=333s user Shinjingi
-            this.untrimmedText = text;
-            onLineStart?.Invoke();
-            try
-            {
-                text = text.Substring(text.IndexOf(":") + 1);
-                text.Trim();
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                Debug.LogWarning("DialogueUI: DoRunLine: Text field not contain a :, there fore text" + 
-                " should be recognized as an options list. Error: " + e);
-            }
-        */
         //Credit for code: https://www.youtube.com/watch?v=gJrf6ON5UPE&t=333s
-        string lineInfo = dialogueRunner.dialogueUI.untrimmedText;
+        string lineInfo = this.untrimmedText;
         if (lineInfo.Contains(":"))
         {
             string name = lineInfo.Substring(0, lineInfo.IndexOf(":"));
