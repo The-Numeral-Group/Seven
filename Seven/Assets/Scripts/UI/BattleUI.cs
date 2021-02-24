@@ -145,7 +145,8 @@ public class BattleUI : BaseUI
         if (bBar.bossHealth.currentHealth == 0f)
         {
             StopAllAudio();
-            SceneManager.LoadScene("Hub");
+            //SceneManager.LoadScene("Hub");
+            MenuManager.BATTLE_UI.Hide();
 
         }
         if (playerHealth.currentHealth == 0f)

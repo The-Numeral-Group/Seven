@@ -6,11 +6,8 @@ public class GhostKnightIdleActor : Actor
 {
     public float introDelay = 2f;
 
-    private bool attackPhase = false;
-
-    private bool changingPhase = false;
-
     Actor ghostKnight;
+    Actor player;
 
     GameObject ghostKnightEffector;
 
@@ -21,7 +18,7 @@ public class GhostKnightIdleActor : Actor
     new void Start()
     {
         base.Start();
-        this.myHealth.vulnerable = false;
+
         ghostKnight = this.gameObject.GetComponent<GhostKnightIdleActor>();
         ghostKnightEffector = GameObject.FindGameObjectWithTag("Boss Effector");
 
@@ -30,12 +27,27 @@ public class GhostKnightIdleActor : Actor
             Debug.Log("GhostKnightIdleActor: Cannot find the Effector object!");
         }
 
+        var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
+
+        if (playerObject == null)
+        {
+            Debug.LogWarning("GhostKnightActor: Ghost Knight can't find the player!");
+        }
+        else
+        {
+            player = playerObject.GetComponent<Actor>();
+        }
+
+        player.myHealth.vulnerable = false;
+        ghostKnight.myHealth.vulnerable = false;
+
         ghostKnightEffector.SetActive(false);
 
-        StartCoroutine(introDelayStart());
+        MenuManager.DIALOGUE_MENU.StartDialogue();
+        //StartCoroutine(introDelayStart());
     }
 
-    private IEnumerator introDelayStart()
+    /*private IEnumerator introDelayStart()
     {
         yield return new WaitForSeconds(this.introDelay);
         this.attackPhase = true;
@@ -54,5 +66,5 @@ public class GhostKnightIdleActor : Actor
                 new System.Tuple<Actor, System.Action<Actor>>(ghostKnight, null);
             gameObject.SendMessage("NextPhase", ghostKnightFight);
         }
-    }
+    }*/
 }

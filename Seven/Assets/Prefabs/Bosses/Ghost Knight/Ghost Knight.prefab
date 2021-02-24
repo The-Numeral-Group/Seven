@@ -43,7 +43,7 @@ Transform:
   m_Children:
   - {fileID: 8415373319009634433}
   m_Father: {fileID: 220097795840936156}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &220097794664941692
 SpriteRenderer:
@@ -316,6 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldownPeriod: 15
   abilityName: Projectile
+  invokeBlankWhenBadArguments: 1
   centerPos: {x: 0, y: 0}
   toInstantiateProjectile: {fileID: 1116733311778260002, guid: fe0d1340115b50d448565aaeace12aab, type: 3}
   projectileDuration: 5
@@ -337,6 +338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldownPeriod: 5
   abilityName: 
+  invokeBlankWhenBadArguments: 1
   duration: 9
   duration_vanish_start: 1
   duration_vanish: 3
@@ -358,8 +360,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldownPeriod: 10
   abilityName: Slash
+  invokeBlankWhenBadArguments: 1
   duration: 2
   moveForward: 1
+  slashPlaySound: 0
 --- !u!1 &220097795038076212
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,7 +384,7 @@ GameObject:
   - component: {fileID: 220097795038076208}
   - component: {fileID: 220097795038076209}
   - component: {fileID: 220097795038076210}
-  m_Layer: 26
+  m_Layer: 11
   m_Name: Ghost Knight Idle
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -399,7 +403,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 220097795840936156}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &220097795038076216
 SpriteRenderer:
@@ -796,8 +800,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 6, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
-  - {fileID: 220097795038076211}
   - {fileID: 220097794664941642}
+  - {fileID: 220097795038076211}
   - {fileID: 220097795208801078}
   m_Father: {fileID: 0}
   m_RootOrder: 0

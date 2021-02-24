@@ -102,6 +102,12 @@ public class GhostKnightActor : Actor
                 EvaluateState(currentState);
             }
         }
+        if(myHealth.currentHealth == 0)
+        {
+            System.Tuple<Actor, System.Action<Actor>> ghostKnightIdle =
+                new System.Tuple<Actor, System.Action<Actor>>(ghostKnight, null);
+            gameObject.SendMessage("NextPhase", ghostKnightIdle);
+        }
     }
 
     void EvaluateState(State state)

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 29d8493966275d14ba47d186fc49865d
+guid: 20b830528a7b342418f2c3c6cf81b4e1
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -10,11 +10,11 @@ ScriptedImporter:
   script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
   baseLanguageID: en-US
   stringIDs:
-  - TestNpc-TestNpc.Start-0
-  - TestNpc-TestNpc.Start-1
-  - TestNpc-TestNpc.Start-2
+  - TestNpc 1-TestNpc.Start-0
+  - TestNpc 1-TestNpc.Start-1
+  - TestNpc 1-TestNpc.Start-2
   compilationStatus: 1
   isSuccesfullyCompiled: 1
   compilationErrorMessage: 
-  baseLanguage: {fileID: 7128917941130120860, guid: 29d8493966275d14ba47d186fc49865d, type: 3}
+  baseLanguage: {fileID: 7128917941130120860, guid: 20b830528a7b342418f2c3c6cf81b4e1, type: 3}
   localizations: []
