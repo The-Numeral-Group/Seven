@@ -57,11 +57,20 @@ public class ActiveSpeaker : MonoBehaviour
                 chatIndicator.transform.localPosition.z);
             chatIndicator.SetActive(false);
 
-            if(MenuManager.DIALOGUE_MENU)
-            {
-                MenuManager.DIALOGUE_MENU.dialogueRunner.Add(yarnDialogue);
-            }
             spriteInfo = GetComponent<SpriteRenderer>();
+        }
+    }
+
+    void Start()
+    {
+	if(MenuManager.DIALOGUE_MENU)
+	{
+	    MenuManager.DIALOGUE_MENU.dialogueRunner.Add(yarnDialogue);
+	}
+	else
+	{
+	    Debug.LogWarning("ActiveSpeaker: The following speaker failed to load their yarnDialogue: " + 
+	    this.gameObject.name);
         }
     }
 
