@@ -18,8 +18,6 @@ public class Interact : ActorAbilityFunction<Actor, int>
 
     public bool hitConnected { get; set; }
 
-    public Actor user { get; protected set; }
-
     protected virtual void Awake()
     {
         this.hitConnected = false;
