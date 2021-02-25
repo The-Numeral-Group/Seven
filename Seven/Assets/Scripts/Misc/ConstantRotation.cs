@@ -18,12 +18,16 @@ public class ConstantRotation : MonoBehaviour
         " for counter-clockwise rotation.")]
     public float rotationRate = 360f;
 
+    //the global tickrate of 60 (it doesn't seem accessible as a readonly value)
     private const float tickRate = 60f;
 
+    //transform of rotating object
     private Transform trans;
 
+    //the vector object needed to perform the rotation
     private Vector3 rotationEulers;
 
+    //calculated degrees of rotation per simulation tick
     private float rotationChange; 
     //METHODS--------------------------------------------------------------------------------------
     // Start is called before the first frame update
