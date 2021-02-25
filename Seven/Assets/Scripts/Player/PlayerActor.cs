@@ -35,6 +35,7 @@ public class PlayerActor : Actor
             Debug.LogWarning("Player Actor: Player is already talking.");
             return;
         }
+        ActiveSpeaker.ACTIVE_NPC = ActiveSpeaker.POTENTIAL_SPEAKER;
         MenuManager.DIALOGUE_MENU.StartDialogue();
     }
 

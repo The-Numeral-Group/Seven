@@ -64,6 +64,7 @@ public class DialogueMenu : BaseUI
             }
             dialogueDelegateCallback = null;
         }
+        ActiveSpeaker.ACTIVE_NPC = null;
         var player = GameObject.Find("/Player");
         if (!player)
         {
@@ -110,7 +111,9 @@ public class DialogueMenu : BaseUI
 
     /*Function to be utilized outside of class to start dialogue. Requires a gameobject to be passed in.
     The gameobject should reference a scene element which has n AcitveSpeaker component. the passed in method
-    will be called once the dialogue finished*/
+    will be called once the dialogue finished
+    IMPORTANT NOTE: THE ONLY TIME NO ARGUMENTS SHOULD BE PASSED IN IS WHEN THE PLAYER INITIATES
+    DIALOGUE MANUALLY THROUGH PRESSING ATTACK NEAR AN NPC WHEN THE NPC IS IN NPCMODE.*/
     public void StartDialogue(GameObject npc = null, TestDelegate method = null, bool lockValue = true)
     {
         if (MenuManager.CanStartDialogue())
@@ -122,10 +125,18 @@ public class DialogueMenu : BaseUI
                 {
                     Debug.LogWarning("DialogueMenu: gameobject passed to StartDialogue() does not contain" + 
                         " an ActiveSpeaker component");
+                    MenuManager.CURRENT_MENU = null;
                     return;
                 }
                 ActiveSpeaker.ACTIVE_NPC = newSpeaker;
                 dialogueDelegateCallback = method;
+            }
+            else if (!ActiveSpeaker.ACTIVE_NPC)
+            {
+                Debug.LogWarning("DialogMenu: No active speaker has been set. If StartDialogue is " +
+                "being called manually, ensure to pass in whatever gameobject you want as the speaker.");
+                MenuManager.CURRENT_MENU = null;
+                return;
             }
             ActiveSpeaker.ACTIVE_NPC.SetIsTalking(true);
             SetupPlayer(lockValue);

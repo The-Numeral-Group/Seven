@@ -18,8 +18,10 @@ public class ActiveSpeaker : MonoBehaviour
     //The actual yarn diablogue file the speaker will read from
     [Tooltip("The yarn file the speaker will read from.")]
     public YarnProgram yarnDialogue;
-    //A reference to the the most valid talking target for the player
+    //A reference to the current activepseaker object which is talking.
     public static ActiveSpeaker ACTIVE_NPC { get; set; }
+    //A reference to the the most valid talking target for the player.
+    public static ActiveSpeaker POTENTIAL_SPEAKER { get; set; }
     //Set whether this speaker is being interacted with as an npc.
     public bool npcMode;
     //Offset the chat indicator object from the speaker
@@ -80,7 +82,7 @@ public class ActiveSpeaker : MonoBehaviour
         if (this.npcMode && collider.CompareTag("Player"))
         {
             SetChatIndicator(true);
-            SetActiveSpeaker(true);
+            SetPotentialSpeaker(true);
         }
     }
 
@@ -90,7 +92,7 @@ public class ActiveSpeaker : MonoBehaviour
         if (this.npcMode && collider.CompareTag("Player"))
         {
             SetChatIndicator(false);
-            SetActiveSpeaker(false);
+            SetPotentialSpeaker(false);
         }
     }
 
@@ -102,9 +104,9 @@ public class ActiveSpeaker : MonoBehaviour
         }
     }
 
-    void SetActiveSpeaker(bool value)
+    void SetPotentialSpeaker(bool value)
     {
-        ACTIVE_NPC = value ? this : null;
+        POTENTIAL_SPEAKER = value ? this : null;
     }
 
     public void SetIsTalking(bool value)
