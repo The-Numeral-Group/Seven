@@ -7,8 +7,12 @@ using UnityEngine;
 //    1. If player is ready to attack or not.
 //    2. Play Attack animation when player is attacking
 //    3. Play Attack audio when player is attacking
+
 public class PlayerWeaponAbility : ActorAbilityFunction<Actor, int>
 {
+    // Check if Player Weapon's Hitbox has already hit the enemy.
+    // This is used to prevent hitting enemy multiple times with just one attack.
+    public bool hitConnected { get; set; }
 
     public override void Invoke(ref Actor user)
     {
@@ -31,6 +35,8 @@ public class PlayerWeaponAbility : ActorAbilityFunction<Actor, int>
 
         // Play Attack Audio
         user.mySoundManager.PlaySound("PlayerAttack");
+
+        this.hitConnected = false;
         return 0;
     }
 

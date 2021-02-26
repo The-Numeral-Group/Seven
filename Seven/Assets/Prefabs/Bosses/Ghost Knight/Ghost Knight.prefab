@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 220097794664941687}
   - component: {fileID: 220097794664941640}
   - component: {fileID: 220097794664941641}
+  - component: {fileID: 1647299139}
   m_Layer: 26
   m_Name: Ghost Knight Fight
   m_TagString: Boss
@@ -364,6 +365,59 @@ MonoBehaviour:
   duration: 2
   moveForward: 1
   slashPlaySound: 0
+--- !u!114 &1647299139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220097794664941643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: ProjectileAppears
+    audioClip: {fileID: 8300000, guid: 0289ccdd4e6ebea48a922a853743e4a8, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: PhysicalSwing
+    audioClip: {fileID: 8300000, guid: 48d196584c7b9924e8da2b8ebd629ff4, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    hasCooldown: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: SpecialVanish
+    audioClip: {fileID: 8300000, guid: 35eafbdb08251b644b51bfa610c4c49f, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: SpecialEyeGlint
+    audioClip: {fileID: 8300000, guid: 2527b287308dba446a88168f945b5cda, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: TakeDamage
+    audioClip: {fileID: 8300000, guid: 977fc00b06fa1d84abaaef8e00df9b78, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
 --- !u!1 &220097795038076212
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +429,7 @@ GameObject:
   - component: {fileID: 220097795038076211}
   - component: {fileID: 220097795038076216}
   - component: {fileID: 220097795038076217}
-  - component: {fileID: 220097795038076218}
+  - component: {fileID: 922525503}
   - component: {fileID: 220097795038076219}
   - component: {fileID: 220097795038076220}
   - component: {fileID: 220097795038076221}
@@ -384,6 +438,7 @@ GameObject:
   - component: {fileID: 220097795038076208}
   - component: {fileID: 220097795038076209}
   - component: {fileID: 220097795038076210}
+  - component: {fileID: 922525502}
   m_Layer: 11
   m_Name: Ghost Knight Idle
   m_TagString: Boss
@@ -477,72 +532,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!60 &220097795038076218
-PolygonCollider2D:
+--- !u!58 &922525503
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 220097795038076212}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.4, y: 5.401319}
-    newSize: {x: 12, y: 12}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.22949064, y: -0.6355441}
-      - {x: 0.23074806, y: -0.39311552}
-      - {x: 0.19384615, y: -0.3151645}
-      - {x: 0.40530062, y: -0.3418568}
-      - {x: 0.45455962, y: -0.20852113}
-      - {x: 0.46908465, y: 0.22723451}
-      - {x: 0.31080428, y: 0.12578645}
-      - {x: 0.24193737, y: 0.37006646}
-      - {x: 0.55280423, y: 0.54640186}
-      - {x: 0.58153844, y: 0.5525278}
-      - {x: 0.18042459, y: 0.6438087}
-      - {x: 0.1247167, y: 0.7486454}
-      - {x: 0.22852667, y: 0.8570562}
-      - {x: 0.23094293, y: 0.95402294}
-      - {x: 0.12017371, y: 1.0787685}
-      - {x: 0.1091166, y: 0.8944502}
-      - {x: 0.07636599, y: 0.91248435}
-      - {x: -0.07846701, y: 0.91559535}
-      - {x: -0.12160631, y: 0.8926099}
-      - {x: -0.11086714, y: 1.0604671}
-      - {x: -0.2374968, y: 0.94074136}
-      - {x: -0.23324351, y: 0.8274979}
-      - {x: -0.09877741, y: 0.75092953}
-      - {x: -0.11457527, y: 0.6405192}
-      - {x: -0.29651976, y: 0.63803244}
-      - {x: -0.50078154, y: 0.56386334}
-      - {x: -0.5670709, y: 0.52629393}
-      - {x: -0.2236432, y: 0.38972145}
-      - {x: -0.43805552, y: 0.20553693}
-      - {x: -0.42326483, y: -0.15192741}
-      - {x: -0.5303632, y: -0.06026607}
-      - {x: -0.56340015, y: -0.08995528}
-      - {x: -0.46742168, y: -0.22004776}
-      - {x: -0.44874468, y: -0.30943862}
-      - {x: -0.42996332, y: -0.5151126}
-      - {x: -0.3198524, y: -0.46887788}
-      - {x: -0.01741964, y: -0.91820645}
-      - {x: 0.10568538, y: -1.0495211}
-      - {x: 0.39690205, y: -1.0331016}
-      - {x: 0.51586, y: -0.70483583}
-      - {x: 0.4091329, y: -0.73367506}
+  serializedVersion: 2
+  m_Radius: 2.7006595
 --- !u!95 &220097795038076219
 Animator:
   serializedVersion: 3
@@ -654,6 +659,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   introDelay: 2
+--- !u!114 &922525502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 220097795038076212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fd89403b09c1874caac8312df28ef1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speakerName: GhostKnight
+  yarnStartNode: GhostKnight.Defeat
+  yarnDialogue: {fileID: 2480198943629176163, guid: 20b830528a7b342418f2c3c6cf81b4e1, type: 3}
+  npcMode: 0
+  offset: {x: 0, y: 5}
+  chatIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
 --- !u!1 &220097795208801079
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,19 +745,8 @@ PolygonCollider2D:
       - {x: 0.55280423, y: 0.54640186}
       - {x: 0.58153844, y: 0.5525278}
       - {x: 0.18042459, y: 0.6438087}
-      - {x: 0.1247167, y: 0.7486454}
-      - {x: 0.22852667, y: 0.8570562}
-      - {x: 0.23094293, y: 0.95402294}
-      - {x: 0.12017371, y: 1.0787685}
-      - {x: 0.1091166, y: 0.8944502}
-      - {x: 0.07636599, y: 0.91248435}
-      - {x: -0.07846701, y: 0.91559535}
-      - {x: -0.12160631, y: 0.8926099}
-      - {x: -0.11086714, y: 1.0604671}
-      - {x: -0.2374968, y: 0.94074136}
-      - {x: -0.23324351, y: 0.8274979}
-      - {x: -0.09877741, y: 0.75092953}
-      - {x: -0.11457527, y: 0.6405192}
+      - {x: 0.13604091, y: 0.64295226}
+      - {x: 0.0044574887, y: 0.64071816}
       - {x: -0.29651976, y: 0.63803244}
       - {x: -0.50078154, y: 0.56386334}
       - {x: -0.5670709, y: 0.52629393}
@@ -818,6 +830,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88a42a50265773cd1a36dcc48c0d331c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &500667302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8415373318680778200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: AttackHit
+    audioClip: {fileID: 8300000, guid: 584e6f25298056744b2780c8e8374d41, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+--- !u!114 &1157585709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8415373318957554022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: AttackHit
+    audioClip: {fileID: 8300000, guid: 584e6f25298056744b2780c8e8374d41, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
 --- !u!1001 &220097794206079712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -873,8 +927,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghost Knight Slash Hitbox
       objectReference: {fileID: 0}
+    - target: {fileID: 8630190690837709700, guid: 5d9c26e9469ec1c4cbc95af75729a6ed, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8630190691114585912, guid: 5d9c26e9469ec1c4cbc95af75729a6ed, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8630190691114585918, guid: 5d9c26e9469ec1c4cbc95af75729a6ed, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d9c26e9469ec1c4cbc95af75729a6ed, type: 3}
+--- !u!1 &8415373318680778200 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8630190691114585912, guid: 5d9c26e9469ec1c4cbc95af75729a6ed, type: 3}
+  m_PrefabInstance: {fileID: 220097794206079712}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8415373318957554022 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8630190690837709702, guid: 5d9c26e9469ec1c4cbc95af75729a6ed, type: 3}
+  m_PrefabInstance: {fileID: 220097794206079712}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8415373319009634433 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8630190690789134945, guid: 5d9c26e9469ec1c4cbc95af75729a6ed, type: 3}
