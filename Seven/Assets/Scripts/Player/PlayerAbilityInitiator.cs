@@ -66,10 +66,6 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
 
     public override void DoAttack()
     {
-        /* Casting ActorAnimationHandler to PlayerAnimationHandler to avoid 
-         * having all the child's functions requierd to be visible in the parent class*/
-        PlayerAnimationHandler playerAnimationHandler = userActor.myAnimationHandler as PlayerAnimationHandler;
-        playerAnimationHandler.animateAttack();
         playerAttack.Invoke(ref userActor);
     }
 

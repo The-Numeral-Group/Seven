@@ -402,7 +402,7 @@ MonoBehaviour:
   speakerName: GhostKnight
   yarnStartNode: GhostKnight.Defeat
   yarnDialogue: {fileID: 2480198943629176163, guid: 20b830528a7b342418f2c3c6cf81b4e1, type: 3}
-  npcMode: 1
+  npcMode: 0
   offset: {x: 0, y: 5}
   chatIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
 --- !u!58 &922525503
@@ -412,7 +412,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 922525489}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -1152,56 +1152,6 @@ MonoBehaviour:
     hasCooldown: 0
     playOnAwake: 0
     source: {fileID: 0}
---- !u!1 &1651863773 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4115977272152067185, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
-  m_PrefabInstance: {fileID: 4115977273667405722}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1651863788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1651863773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: PlayerAttack
-    audioClip: {fileID: 8300000, guid: aa60d782111c7e446a572e1b1fdc3244, type: 3}
-    volume: 0.15
-    pitch: 1
-    loop: 0
-    hasCooldown: 0
-    playOnAwake: 0
-    source: {fileID: 0}
-  - name: PlayerDodge
-    audioClip: {fileID: 8300000, guid: d6520d245b93e96459a89092ab0f5cfa, type: 3}
-    volume: 0.05
-    pitch: 1
-    loop: 0
-    hasCooldown: 0
-    playOnAwake: 0
-    source: {fileID: 0}
-  - name: PlayerRun
-    audioClip: {fileID: 8300000, guid: 2ca8f777ab5665341af0ce0585dfb8a0, type: 3}
-    volume: 0.1
-    pitch: 1
-    loop: 1
-    hasCooldown: 1
-    playOnAwake: 0
-    source: {fileID: 0}
-  - name: TakeDamage
-    audioClip: {fileID: 8300000, guid: 4bc4ce74f4e53894b93f36e40bb9c7ce, type: 3}
-    volume: 0.2
-    pitch: 1
-    loop: 0
-    hasCooldown: 0
-    playOnAwake: 0
-    source: {fileID: 0}
 --- !u!1001 &1735762136
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1456,7 +1406,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7512802453659592074, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
   m_PrefabInstance: {fileID: 4115977273667405722}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1651863773}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 831d4eb40aaec838ca2d456e55407ee4, type: 3}
@@ -1796,12 +1746,21 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 8415373318680778206, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415373318957554020, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8415373319009634433, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5314110631141900831, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
+    - {fileID: 220097795038076218, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
 --- !u!1001 &4115977273667405722
 PrefabInstance:
@@ -1877,6 +1836,14 @@ PrefabInstance:
     - target: {fileID: 1857178619, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: backgroundMenuUI
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 710151200572833705, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1274274346198698562, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: abilityName
+      value: PlayerWeapon
       objectReference: {fileID: 0}
     - target: {fileID: 3560292058236041534, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
@@ -2261,6 +2228,14 @@ PrefabInstance:
     - target: {fileID: 4115977272152067189, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: duration
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115977272152067189, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115977272152067189, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: startingWeaponObject
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7512802453659592074, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: dodgeDuration
