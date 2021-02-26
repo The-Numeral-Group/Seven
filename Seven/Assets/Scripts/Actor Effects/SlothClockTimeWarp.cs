@@ -75,10 +75,16 @@ public class SlothClockTimeWarp : MonoBehaviour
         }
     }
 
+    //adds an arbitrary time change to the handler
+    public void ForceTimeApplication(float timeEffect)
+    {
+        handler.AddEffect(new SlothClockTimeWarp.TimeWarpEffect(timeEffect));
+    }
+
     /*WHAT THE SHIT IT'S A WHOLE DIFFERENT CLASS DECLARATION
     Yes! To allow for individual instances of time changes to have different values,
     a private class is created to be able to handle each effect*/
-    class TimeWarpEffect : ActorEffect 
+    private class TimeWarpEffect : ActorEffect 
     {
         //FIELDS-----------------------------------------------------------------------------------
         //The actual value that got added to the timescale by this class instance
@@ -98,9 +104,9 @@ public class SlothClockTimeWarp : MonoBehaviour
             timescale. If it would, abort the change*/
             if(Time.timeScale - timeChange < SlothClockTimeWarp.effectmin)
             {
-                Debug.LogWarning($"TimeWarpEffect in SlothClockTimeWarp: attempted timescale change" + 
-                    " from {Time.timeScale} to {Time.timeScale} goes under the minimum of" + 
-                        " {SlothClockTimeWarp.effectmin}.");
+                Debug.LogWarning($"TimeWarpEffect in SlothClockTimeWarp: attempted timescale" + 
+                    " change from {Time.timeScale} to {Time.timeScale} goes under the" + 
+                        " minimum of {SlothClockTimeWarp.effectmin}.");
 
                 return false;
             }
@@ -120,7 +126,7 @@ public class SlothClockTimeWarp : MonoBehaviour
     }
 }
 
-class SlothClockObserver : MonoBehaviour
+internal class SlothClockObserver : MonoBehaviour
 {
     //FIELDS---------------------------------------------------------------------------------------
     //The event that gets fired by this observer
