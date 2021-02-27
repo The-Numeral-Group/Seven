@@ -24,8 +24,8 @@ public class GluttonyBite : WeaponAbility
         Actor target = args[0];
         Vector3 attackDirection = 
             (target.gameObject.transform.position - user.gameObject.transform.position).normalized;
+        int flip = user.gameObject.transform.localScale.x > 0 ? 1 : -1;
         weaponObject.transform.localPosition = attackDirection * weaponPositionScale;
-        int flip = user.gameObject.transform.localPosition.x > 0 ? 1 : -1;
         weaponObject.transform.localPosition = new Vector3(weaponObject.transform.localPosition.x * flip, 
                                                weaponObject.transform.localPosition.y,
                                                weaponObject.transform.localPosition.z);
