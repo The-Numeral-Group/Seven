@@ -8,12 +8,15 @@ public class SlothClockTimeWarp : MonoBehaviour
     [Tooltip("All of the objects that are considered when activating a timewarp")]
     public List<GameObject> colliderObjects;
 
+    [Tooltip("An arbitrary ActorEffectHandler to bear the slowdown effects.")]
+    public ActorEffectHandler handler;
+
     [Tooltip("By what percentage timescale should increase when time is warped (A value of 1" + 
         " will increase timescale by 100%).")]
     public float timeFactor = 0.25f;
 
-    [Tooltip("An arbitrary ActorEffectHandler to bear the slowdown effects.")]
-    public ActorEffectHandler handler;
+    [Tooltip("How long a time warp applied by the clock will last.")]
+    public float timeDuration = 10f;
 
     //The lowest the timescale can be driven by this effect
     public const float effectmin = 0.1f;
@@ -65,13 +68,20 @@ public class SlothClockTimeWarp : MonoBehaviour
     void UpdateClock(GameObject obj)
     {
         trackedObjects.Remove(obj);
+        ///DEBUG
+        Debug.Log("ColObj " + obj.name + " activated");
+        ///DEBUG
 
         //if the list is empty...
         if(trackedObjects.Count == 0)
         {
             //reset the list and apply the timewarp
             trackedObjects = new List<GameObject>(colliderObjects);
-            handler.AddEffect(new SlothClockTimeWarp.TimeWarpEffect(timeAdjustment));
+            ///DEBUG
+            Debug.Log("TIME WARP");
+            ///DEBUG
+            //handler.AddEffect(new SlothClockTimeWarp.TimeWarpEffect(timeAdjustment));
+            ForceTimedTimeApplication(timeAdjustment, timeDuration);
         }
     }
 
@@ -79,6 +89,20 @@ public class SlothClockTimeWarp : MonoBehaviour
     public void ForceTimeApplication(float timeEffect)
     {
         handler.AddEffect(new SlothClockTimeWarp.TimeWarpEffect(timeEffect));
+    }
+
+    //adds an arbitrary time change to the handler with a set duration
+    public void ForceTimedTimeApplication(float timeEffect, float duration)
+    {
+        handler.AddTimedEffect(new SlothClockTimeWarp.TimeWarpEffect(timeEffect), duration);
+    }
+
+    //Reset Time.timeScale to 1... just in case...
+    //might have other fallback/error handling responsibilities later
+    public void EmergencyTimeReset()
+    {
+        Debug.LogWarning("SlothClockTimeWarp: timescale forcibly reset to 1");
+        Time.timeScale = 1f;
     }
 
     /*WHAT THE SHIT IT'S A WHOLE DIFFERENT CLASS DECLARATION
