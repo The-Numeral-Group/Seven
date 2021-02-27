@@ -160,7 +160,7 @@ public class GluttonyActor : Actor
         var travelDirection = new Vector2(directionToPlayer.x, directionToPlayer.y) + playerDirection;
 
         this.myMovement.MoveActor(travelDirection.normalized);
-        gluttonyAnimHandler.AnimateWalk(true, travelDirection);
+        gluttonyAnimHandler.AnimateWalk(true, directionToPlayer);
     }
 
     State decideNextState()
