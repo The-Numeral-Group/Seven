@@ -336,8 +336,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSlider: {fileID: 3838137146176063211}
+  playerPos: {fileID: 11400000, guid: 99196f5b96b14c048985c90ceaf6bdff, type: 2}
   bossContainers: {fileID: 3724874611025221647}
   bossBar: {fileID: 1742091852106443169, guid: c83b84db928ff9b44a1b2f7ea6313cff, type: 3}
+  bossPos: {fileID: 0}
 --- !u!1 &3838137146176063221
 GameObject:
   m_ObjectHideFlags: 0

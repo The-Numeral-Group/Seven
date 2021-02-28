@@ -8,6 +8,10 @@ public class BattleUI : BaseUI
     //reference to the players health bar slide. should be set through inspector.
     [Tooltip("Reference to the players health bar slider ui object.")]
     public Slider playerSlider;
+    //reference to the player position scriptable object.
+    //This is here for TemporaryDeathCheckFunction.
+    //This will be moved once we use different way to check death.
+    public VectorValue playerPos;
     ///////
     class BossBar
     {
@@ -25,11 +29,17 @@ public class BattleUI : BaseUI
     [Tooltip("Reference to the prefab used to create boss health bars.")]
     public GameObject bossBar;
     List<BossBar> bossList;
+    //reference to the boss position scriptable object.
+    //This is here for TemporaryDeathCheckFunction.
+    //This will be moved once we use different way to check death.
+    public VectorValue bossPos;
     ///////
     //reference to the player
     ActorHealth playerHealth;
-    //reference to the player object;
+    //reference to the player actor;
     Actor playerActor;
+    //reference to the player gameobject;
+    GameObject playerObject;
     //reference to all the audio sources;
     private AudioSource[] allAudioSources;
 
@@ -64,6 +74,7 @@ public class BattleUI : BaseUI
         }
         else
         {
+            playerObject = pObject;
             //Object with player tag is expected to have actor component.
             playerActor = pObject.GetComponent<Actor>();
         }
@@ -145,9 +156,19 @@ public class BattleUI : BaseUI
         if (bBar.bossHealth.currentHealth == 0f)
         {
             StopAllAudio();
-            //SceneManager.LoadScene("Hub");
             MenuManager.BATTLE_UI.Hide();
 
+            // Save player position Vector;
+            if(playerPos != null)
+            {
+                playerPos.initialValue = playerObject.transform.position;
+            }
+            // Save boss position Vector;
+            if(bossPos != null)
+            {
+                // Since this is only needed for tutorial right now, I (Mingun) put this way to avoid printing errors on console.
+                bossPos.initialValue = bBar.boss.transform.position;
+            }
         }
         if (playerHealth.currentHealth == 0f)
         {
