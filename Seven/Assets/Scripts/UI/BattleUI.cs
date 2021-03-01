@@ -158,17 +158,8 @@ public class BattleUI : BaseUI
             StopAllAudio();
             MenuManager.BATTLE_UI.Hide();
 
-            // Save player position Vector;
-            if(playerPos != null)
-            {
-                playerPos.initialValue = playerObject.transform.position;
-            }
-            // Save boss position Vector;
-            if(bossPos != null)
-            {
-                // Since this is only needed for tutorial right now, I (Mingun) put this way to avoid printing errors on console.
-                bossPos.initialValue = bBar.boss.transform.position;
-            }
+            playerActor.myDataManager.updateActorPosition(playerObject.transform.position);
+            bBar.boss.GetComponent<ActorDataManager>().updateActorPosition(bBar.boss.transform.position);
         }
         if (playerHealth.currentHealth == 0f)
         {

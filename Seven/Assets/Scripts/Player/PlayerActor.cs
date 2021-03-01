@@ -6,6 +6,7 @@ public class PlayerActor : Actor
 {
     //Flag to notify if the player is talking with another actor
     public bool isTalking { get; set; }
+
     //Reference to the PlayerInput cokponent for input map swapping.
     [HideInInspector]
     public PlayerInput playerInput;

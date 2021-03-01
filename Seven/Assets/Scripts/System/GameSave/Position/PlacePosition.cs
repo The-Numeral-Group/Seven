@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlacePosition : MonoBehaviour
 {
     public List<GameObject> GameObjects = new List<GameObject>();
-    public List<VectorValue> ObjectPosition = new List<VectorValue>();
+    //public List<VectorValue> ObjectPosition = new List<VectorValue>();
 
     public float newXPos { get; set; }
     public float newYPos { get; set; }
@@ -14,14 +14,9 @@ public class PlacePosition : MonoBehaviour
     // Place objects when scene loads in
     void Awake()
     {
-        if (GameObjects.Count != ObjectPosition.Count)
-        {
-            Debug.LogWarning("GameObjects and ObjectPosition have different size!");
-        }
-
         for (int i = 0; i < GameObjects.Count; i++)
         {
-            GameObjects[i].transform.position = ObjectPosition[i].initialValue;
+            GameObjects[i].transform.position = GameObjects[i].GetComponent<ActorDataManager>().data.position.initialValue;
         }
     }
 

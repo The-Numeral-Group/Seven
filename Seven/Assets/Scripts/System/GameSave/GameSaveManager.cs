@@ -10,6 +10,7 @@ using UnityEngine;
 // You can save the player's position and use that to place the player after the scene transition.
 public class GameSaveManager : MonoBehaviour
 {
+    // These are the datas that are going to get saved when game is closed
     public List<ScriptableObject> objects = new List<ScriptableObject>();
 
     // Load the Scriptables when you start playing the game
