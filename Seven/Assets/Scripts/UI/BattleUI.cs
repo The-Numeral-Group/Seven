@@ -43,8 +43,9 @@ public class BattleUI : BaseUI
     //reference to all the audio sources;
     private AudioSource[] allAudioSources;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         bossList = new List<BossBar>();
     }
     void Start()
