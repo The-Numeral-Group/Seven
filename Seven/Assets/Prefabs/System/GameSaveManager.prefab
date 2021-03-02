@@ -243,7 +243,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01abed4dda260941bb213ba86c16995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SaveObjects: []
+  SaveObjects:
+  - {fileID: 11400000, guid: ce6e0e07fa4070143bce3729d5080d23, type: 2}
+  - {fileID: 11400000, guid: 99196f5b96b14c048985c90ceaf6bdff, type: 2}
+  - {fileID: 11400000, guid: 860e525606a5caa48a0cc719ce5f73a5, type: 2}
+  - {fileID: 11400000, guid: 01191397bef666e4d9c559cdd5a0f16f, type: 2}
   InGameStoreObjects:
   - {fileID: 11400000, guid: 99196f5b96b14c048985c90ceaf6bdff, type: 2}
   - {fileID: 11400000, guid: ce6e0e07fa4070143bce3729d5080d23, type: 2}

@@ -787,6 +787,7 @@ MonoBehaviour:
   data:
     position: {fileID: 11400000, guid: 99196f5b96b14c048985c90ceaf6bdff, type: 2}
     currentScene: {fileID: 0}
+  gameSaveManager: {fileID: 2998643818376067545, guid: 708a306f945165c49b6382e7c9913445, type: 3}
 --- !u!212 &682692959
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -971,6 +972,7 @@ MonoBehaviour:
   data:
     position: {fileID: 11400000, guid: 860e525606a5caa48a0cc719ce5f73a5, type: 2}
     currentScene: {fileID: 0}
+  gameSaveManager: {fileID: 2998643818376067545, guid: 708a306f945165c49b6382e7c9913445, type: 3}
 --- !u!1001 &809467542
 PrefabInstance:
   m_ObjectHideFlags: 0

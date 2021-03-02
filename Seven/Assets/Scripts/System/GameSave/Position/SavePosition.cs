@@ -11,6 +11,7 @@ public class SavePosition : MonoBehaviour
         {
             GameObjects[i].GetComponent<ActorDataManager>().data.position.RuntimeValue = GameObjects[i].transform.position;
         }
+        this.gameObject.SendMessageUpwards("SaveSaveObjects");
     }
 
 }

@@ -419,6 +419,7 @@ MonoBehaviour:
   data:
     position: {fileID: 11400000, guid: 99196f5b96b14c048985c90ceaf6bdff, type: 2}
     currentScene: {fileID: 11400000, guid: ce6e0e07fa4070143bce3729d5080d23, type: 2}
+  gameSaveManager: {fileID: 2998643818376067545, guid: 708a306f945165c49b6382e7c9913445, type: 3}
 --- !u!1001 &1424081695607092082
 PrefabInstance:
   m_ObjectHideFlags: 0

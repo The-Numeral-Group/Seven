@@ -25,10 +25,10 @@ public class GameSaveManager : MonoBehaviour
     }
 
     // Save the SaveObjects when you stop playing the game
-    private void OnDisable()
+    /*private void OnDisable()
     {
         SaveSaveObjects();
-    }
+    }*/
 
     // Reset all the SaveObjects.
     public void ResetSaveObjects()

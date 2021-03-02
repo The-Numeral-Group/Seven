@@ -434,6 +434,7 @@ MonoBehaviour:
   data:
     position: {fileID: 11400000, guid: 860e525606a5caa48a0cc719ce5f73a5, type: 2}
     currentScene: {fileID: 0}
+  gameSaveManager: {fileID: 2998643818376067545, guid: 708a306f945165c49b6382e7c9913445, type: 3}
 --- !u!1 &220097795208801079
 GameObject:
   m_ObjectHideFlags: 0

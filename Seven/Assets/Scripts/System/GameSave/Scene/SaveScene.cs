@@ -14,6 +14,7 @@ public class SaveScene : MonoBehaviour
         {
             GameObjects[i].GetComponent<ActorDataManager>().data.currentScene.RuntimeValue = SceneManager.GetActiveScene().name;
         }
+        this.gameObject.SendMessageUpwards("SaveSaveObjects");
     }
 
 }
