@@ -3,8 +3,15 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 //Base abstract class for ui related classes.
+[RequireComponent(typeof(Canvas))]
 public abstract class BaseUI : MonoBehaviour
 {
+    protected Canvas canvas;
+    protected virtual void Awake()
+    {
+        canvas = GetComponent<Canvas>();
+        canvas.worldCamera = Camera.main;
+    }
     /*Set the whether the menu is active/visiable*/
     public virtual void SetVisibility(bool value)
     {
