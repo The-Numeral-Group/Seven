@@ -7,6 +7,7 @@ public class PlacePosition : MonoBehaviour
 {
     public List<GameObject> GameObjects = new List<GameObject>();
     //public List<VectorValue> ObjectPosition = new List<VectorValue>();
+    public BoolValue newGame;
 
     public float newXPos { get; set; }
     public float newYPos { get; set; }
@@ -14,9 +15,21 @@ public class PlacePosition : MonoBehaviour
     // Place objects when scene loads in
     void Awake()
     {
-        for (int i = 0; i < GameObjects.Count; i++)
+        if(newGame.RuntimeValue)
         {
-            GameObjects[i].transform.position = GameObjects[i].GetComponent<ActorDataManager>().data.position.initialValue;
+            for (int i = 0; i < GameObjects.Count; i++)
+            {
+                GameObjects[i].transform.position = GameObjects[i].GetComponent<ActorDataManager>().data.position.initialValue;
+            }
+            // No longer a new game.
+            newGame.RuntimeValue = false;
+        }
+        else
+        {
+            for (int i = 0; i < GameObjects.Count; i++)
+            {
+                GameObjects[i].transform.position = GameObjects[i].GetComponent<ActorDataManager>().data.position.RuntimeValue;
+            }
         }
     }
 

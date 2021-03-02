@@ -9,7 +9,7 @@ public class SavePosition : MonoBehaviour
     {
         for (int i = 0; i < GameObjects.Count; i++)
         {
-            GameObjects[i].GetComponent<ActorDataManager>().data.position.initialValue = GameObjects[i].transform.position;
+            GameObjects[i].GetComponent<ActorDataManager>().data.position.RuntimeValue = GameObjects[i].transform.position;
         }
     }
 

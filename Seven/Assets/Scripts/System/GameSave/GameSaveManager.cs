@@ -11,24 +11,27 @@ using UnityEngine;
 public class GameSaveManager : MonoBehaviour
 {
     // These are the datas that are going to get saved when game is closed
-    public List<ScriptableObject> objects = new List<ScriptableObject>();
+    public List<ScriptableObject> SaveObjects = new List<ScriptableObject>();
 
-    // Load the Scriptables when you start playing the game
+    // These are the datas that are going to get saved while game is playing
+    public List<ScriptableObject> InGameStoreObjects = new List<ScriptableObject>();
+
+    // Load the SaveObjects when you start playing the game
     private void OnEnable()
     {
-        LoadScriptables();
+        LoadSaveObjects();
     }
 
-    // Save the Scriptables when you stop playing the game
+    // Save the SaveObjects when you stop playing the game
     private void OnDisable()
     {
-        SaveScriptables();
+        SaveSaveObjects();
     }
 
-    // Reset all the scriptables. 
-    public void ResetScriptables()
+    // Reset all the SaveObjects.
+    public void ResetSaveObjects()
     {
-        for(int i = 0; i < objects.Count; i++)
+        for (int i = 0; i < SaveObjects.Count; i++)
         {
             if (File.Exists(Application.persistentDataPath +
                 string.Format("/{0}.dat", i)))
@@ -39,9 +42,9 @@ public class GameSaveManager : MonoBehaviour
         }
     }
 
-    public void SaveScriptables()
+    public void SaveSaveObjects()
     {
-        for (int i = 0; i < objects.Count; i++)
+        for (int i = 0; i < SaveObjects.Count; i++)
         {
             // Create a file called i.dat for each object. (0.dat, 1.dat, 2.dat, and so on)
             FileStream file = File.Create(Application.persistentDataPath +
@@ -50,7 +53,7 @@ public class GameSaveManager : MonoBehaviour
             BinaryFormatter binary = new BinaryFormatter();
 
             // Convert objects[i] tp json
-            var json = JsonUtility.ToJson(objects[i]);
+            var json = JsonUtility.ToJson(SaveObjects[i]);
 
             // Serialize the json using binary formatter
             binary.Serialize(file, json);
@@ -58,13 +61,13 @@ public class GameSaveManager : MonoBehaviour
         }
     }
 
-    public void LoadScriptables()
+    public void LoadSaveObjects()
     {
-        for (int i = 0; i < objects.Count; i++)
+        for (int i = 0; i < SaveObjects.Count; i++)
         {
             // Check if the File exists
             if (File.Exists(Application.persistentDataPath +
-                string.Format("/{0}.dat", i))) 
+                string.Format("/{0}.dat", i)))
             {
                 // Open the file
                 FileStream file = File.Open(Application.persistentDataPath +
@@ -74,9 +77,45 @@ public class GameSaveManager : MonoBehaviour
 
                 // Take the file -> deserialize it using the binary formatter 
                 // -> Convert it to string -> Override that to objects[i]
-                JsonUtility.FromJsonOverwrite((string)binary.Deserialize(file), objects[i]);
+                JsonUtility.FromJsonOverwrite((string)binary.Deserialize(file), SaveObjects[i]);
                 file.Close();
             }
         }
+    }
+
+    // Rest all the InGameStoreObjects.
+    public void ResetInGameStoreObjects()
+    {
+        for (int i = 0; i < InGameStoreObjects.Count; i++)
+        {
+            var objectType = InGameStoreObjects[i].GetType().ToString();
+            switch (objectType)
+            {
+                case "BoolValue":
+                    var boolObj = InGameStoreObjects[i] as BoolValue;
+                    boolObj.RuntimeValue = boolObj.initialValue;
+                    break;
+                case "FloatValue":
+                    var floatObj = InGameStoreObjects[i] as FloatValue;
+                    floatObj.RuntimeValue = floatObj.initialValue;
+                    break;
+
+                case "StringValue":
+                    var strObj = InGameStoreObjects[i] as StringValue;
+                    strObj.RuntimeValue = strObj.initialValue;
+                    break;
+
+                case "VectorValue":
+                    var vecObj = InGameStoreObjects[i] as VectorValue;
+                    vecObj.RuntimeValue = vecObj.initialValue;
+                    break;
+
+            }
+        }
+    }
+
+    public void SavenInGameStoreObjects()
+    {
+
     }
 }

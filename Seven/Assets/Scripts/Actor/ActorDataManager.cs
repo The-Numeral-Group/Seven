@@ -9,11 +9,11 @@ public class ActorDataManager : MonoBehaviour
 
     public void updateActorPosition(Vector2 newPosition)
     {
-        data.position.initialValue = newPosition;
+        data.position.RuntimeValue = newPosition;
     }
 
     public void updateActorScene(string newScene)
     {
-        data.currentScene.initialValue = newScene;
+        data.currentScene.RuntimeValue = newScene;
     }
 }

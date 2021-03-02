@@ -44,6 +44,6 @@ public class MainMenu : BaseUI
 
     public void loadPlayerSavedScene()
     {
-        SceneManager.LoadScene(playerObject.GetComponent<ActorDataManager>().data.currentScene.initialValue);
+        SceneManager.LoadScene(playerObject.GetComponent<ActorDataManager>().data.currentScene.RuntimeValue);
     }
 }
