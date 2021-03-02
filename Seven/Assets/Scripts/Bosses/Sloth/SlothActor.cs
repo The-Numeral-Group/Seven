@@ -3,6 +3,7 @@ using System.Collections;
 //using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class SlothActor : Actor
 {
@@ -94,7 +95,7 @@ public class SlothActor : Actor
             ///DEBUG
             Debug.Log("SlothActor: Sloth wants to attack because you started moving");
             ///DEBUG
-            ActivateAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_RANGE]);
+            //ActivateAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_RANGE]);
         });
     }
 
@@ -158,10 +159,30 @@ internal class SlothPlayerObserver : MonoBehaviour
     //the coroutine being used to time the ranged attack
     private Coroutine timer;
 
+    //the input action that reads how long the player has been moving
+    private InputAction holdAction;
+
+    //the delegate that invokes when the player moves for too long
+    private Action holdResult;
+
 
     //might want to set this up a little differently, as OTE2D may also
     //respond to entry from other objects, like things walking into it?
     //METHODS--------------------------------------------------------------------------------------
+    //called the first frame this component is active
+    void Start()
+    {
+        /*Add a hold action to the player's movement*/
+        /*holdAction = new InputAction(binding: "*{PrimaryAction}", modifiers: "hold(duration=0.4)");
+
+        //create a delegate to invoke when the hold is done
+        holdResult =  new Action<InputAction.CallbackContext>(
+            (InputAction.CallbackContext c) => {OnMoveHold()}
+        );
+
+        //assign the delegate to the hold action
+        holdAction.performed += holdResult;*/
+    }
 
     //should the player die, this component should cease to exist
     public void DoActorDeath()
@@ -175,20 +196,44 @@ internal class SlothPlayerObserver : MonoBehaviour
         //invoke an attack that occurs on player movement
         playerMove.Invoke();
 
-        //turn on the timer for invoking the attack that occurs if the player doesn't stop moving
+        /*//turn on the timer for invoking the attack that occurs if the player doesn't stop moving
         if(timer != null)
         {
             StopCoroutine(timer);
         }
-        timer = StartCoroutine(MovementTimer(attackDelay));
+        timer = StartCoroutine(MovementTimer(attackDelay));*/
 
 
+    }
+
+    /*void OnMoveHold()
+    {
+        playerStandStill.invoke();
+    }*/
+
+    //what should happen when this object is destroyed
+    void OnDestroy()
+    {
+        //remove the delegate
+        //holdAction -= holdResult;
     }
 
     //waits a number of seconds, then instructs Sloth to attack the player for not standing still
-    IEnumerator MovementTimer(float delay)
+    /*IEnumerator MovementTimer(float delay)
     {
         yield return new WaitForSeconds(delay);
         playerStandStill.Invoke();
-    }
+    }*/
+
+    /*Basic Issue:
+    Want to see how long the Movement Action on the player Action Map has been held
+    There's a thing for that called a HoldInteraction, but I don't know how to add it 
+    to an Action at runtime with code.
+    Maybe there's a different way to do it?
+    
+    So yeah haven't done ranged stuff yet but if the events work for
+    physical then it'll be fine
+    
+    Or, at least, the thing that goes when the player moves too long*/
+    
 }
