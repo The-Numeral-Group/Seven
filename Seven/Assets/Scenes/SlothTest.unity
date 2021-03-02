@@ -195,10 +195,11 @@ GameObject:
   - component: {fileID: 315102717}
   - component: {fileID: 315102716}
   - component: {fileID: 315102715}
-  - component: {fileID: 315102714}
   - component: {fileID: 315102713}
   - component: {fileID: 315102712}
   - component: {fileID: 315102719}
+  - component: {fileID: 315102720}
+  - component: {fileID: 315102714}
   m_Layer: 0
   m_Name: Sloth
   m_TagString: Untagged
@@ -319,12 +320,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 315102708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20390ce726e2308fdbde0e94ece8e77c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6482c41e97ce0059144b769ba6cbf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   abilities:
     m_keys: []
     m_values: []
+  Close: {fileID: 0}
+  Far: {fileID: 0}
+  Special: {fileID: 315102720}
 --- !u!114 &315102715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,6 +415,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.5, y: 4.5}
   m_EdgeRadius: 0
+--- !u!114 &315102720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315102708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f0bedd736a4b40c6b125fda574bb153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 12
+  abilityName: bfbbbrgd
+  invokeBlankWhenBadArguments: 1
+  timeEffect: 0.25
+  timeDuration: 6
+  clock: {fileID: 996509883}
 --- !u!1 &368882756
 GameObject:
   m_ObjectHideFlags: 0

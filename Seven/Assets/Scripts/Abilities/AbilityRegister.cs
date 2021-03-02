@@ -51,4 +51,5 @@
     //SLOTH
     public static string SLOTH_PHYSICAL = "";
     public static string SLOTH_RANGE = "";
+    public static string SLOTH_SPECIAL = "";
 }

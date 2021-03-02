@@ -95,7 +95,7 @@ public class SlothActor : Actor
             ///DEBUG
             Debug.Log("SlothActor: Sloth wants to attack because you started moving");
             ///DEBUG
-            //ActivateAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_RANGE]);
+            ActivateAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_RANGE]);
         });
     }
 
@@ -118,7 +118,8 @@ public class SlothActor : Actor
             //if it isn't less than the limit, then it's time to TIMEWARP
             else
             {
-                //haven't decided if I want the time slow to be an ability
+                attackCount = 0;
+                this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_SPECIAL].Invoke(ref sloth);
             }
         }
     }
