@@ -11,7 +11,17 @@ public class SlothTimeSlow : ActorAbilityFunction<int, int>
 
     [Tooltip("The slow-down clock this ability will use to force the time slow.")]
     public SlothClockTimeWarp clock;
+
+    //the actual amount by which time will be effected
+    private float trueTimeChange;
     //METHODS--------------------------------------------------------------------------------------
+    //Start is called on the first frame this object is active
+    void Awake()
+    {
+        trueTimeChange = Time.timeScale * (-timeEffect);
+    }
+
+    //The actual function of the ability
     protected override int InternInvoke(params int[] args)
     {
         if(clock != null)
@@ -19,7 +29,7 @@ public class SlothTimeSlow : ActorAbilityFunction<int, int>
             ///DEBUG
             Debug.Log("SlothTimeSlow: slow occurring...");
             ///DEBUG
-            clock.ForceTimedTimeApplication(timeEffect, timeDuration);
+            clock.ForceTimedTimeApplication(trueTimeChange, timeDuration);
             return 1;
         }
         else
