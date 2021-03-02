@@ -12,4 +12,9 @@ public class SceneTransition : MonoBehaviour
             SceneManager.LoadScene(sceneToLoad);
         }
     }
+
+    public void loadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 }

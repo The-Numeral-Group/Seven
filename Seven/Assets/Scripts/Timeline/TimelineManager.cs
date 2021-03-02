@@ -17,9 +17,9 @@ public class TimelineManager : MonoBehaviour
         director.Resume();
     }
 
-    public void nextScene()
+    public void loadScene(string name)
     {
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene(name);
     }
 
 }
