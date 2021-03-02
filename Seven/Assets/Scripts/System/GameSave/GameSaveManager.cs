@@ -16,6 +16,8 @@ public class GameSaveManager : MonoBehaviour
     // These are the datas that are going to get saved while game is playing
     public List<ScriptableObject> InGameStoreObjects = new List<ScriptableObject>();
 
+    public BoolValue newGame;
+
     // Load the SaveObjects when you start playing the game
     private void OnEnable()
     {

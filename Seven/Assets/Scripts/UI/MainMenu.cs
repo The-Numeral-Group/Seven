@@ -10,6 +10,8 @@ public class MainMenu : BaseUI
     //public GameObject gameSaveManager;
 
     public GameObject playerObject;
+
+    public BoolValue newGame;
     
     void Start()
     {
@@ -44,6 +46,9 @@ public class MainMenu : BaseUI
 
     public void loadPlayerSavedScene()
     {
-        SceneManager.LoadScene(playerObject.GetComponent<ActorDataManager>().data.currentScene.RuntimeValue);
+        if(!newGame.initialValue)
+        {
+            SceneManager.LoadScene(playerObject.GetComponent<ActorDataManager>().data.currentScene.RuntimeValue);
+        }
     }
 }

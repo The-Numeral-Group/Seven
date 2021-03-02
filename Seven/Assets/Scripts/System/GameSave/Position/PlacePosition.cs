@@ -15,21 +15,9 @@ public class PlacePosition : MonoBehaviour
     // Place objects when scene loads in
     void Awake()
     {
-        if(newGame.RuntimeValue)
+        for (int i = 0; i < GameObjects.Count; i++)
         {
-            for (int i = 0; i < GameObjects.Count; i++)
-            {
-                GameObjects[i].transform.position = GameObjects[i].GetComponent<ActorDataManager>().data.position.initialValue;
-            }
-            // No longer a new game.
-            newGame.RuntimeValue = false;
-        }
-        else
-        {
-            for (int i = 0; i < GameObjects.Count; i++)
-            {
-                GameObjects[i].transform.position = GameObjects[i].GetComponent<ActorDataManager>().data.position.RuntimeValue;
-            }
+            GameObjects[i].transform.position = GameObjects[i].GetComponent<ActorDataManager>().data.position.RuntimeValue;
         }
     }
 

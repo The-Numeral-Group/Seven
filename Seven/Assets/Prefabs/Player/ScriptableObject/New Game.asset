@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b38790b49715e48ab92216a352155a, type: 3}
   m_Name: New Game
   m_EditorClassIdentifier: 
-  initialValue: 1
-  RuntimeValue: 0
+  initialValue: 0
+  RuntimeValue: 1
