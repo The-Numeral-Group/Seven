@@ -29,6 +29,8 @@ public class ActiveSpeaker : MonoBehaviour
     public Vector2 offset = new Vector2(0, 5);
     //Reference to the objects sprite renderer
     public SpriteRenderer spriteInfo { get; private set;}
+    //Reference to the objects collider
+    public Collider2D colliderInfo { get; private set; }
     //A gameobject sprite that shows the npc can be talked with.
     [SerializeField]
     GameObject chatIndicatorPrefab = null;
@@ -38,7 +40,7 @@ public class ActiveSpeaker : MonoBehaviour
     bool isTalking;
 
     //Initialize monobehaviour fields
-    void Awake()
+    void Start()
     {
         if (this.gameObject.CompareTag("Player"))
         {
@@ -52,6 +54,9 @@ public class ActiveSpeaker : MonoBehaviour
         }
         else
         {
+            spriteInfo = GetComponent<SpriteRenderer>();
+            colliderInfo = GetComponent<Collider2D>();
+            colliderInfo.enabled = false;
             chatIndicator = Instantiate(chatIndicatorPrefab, this.gameObject.transform.position,
                 Quaternion.identity);
             chatIndicator.transform.parent = this.gameObject.transform;
@@ -59,7 +64,7 @@ public class ActiveSpeaker : MonoBehaviour
                 chatIndicator.transform.localPosition.z);
             chatIndicator.SetActive(false);
 
-            spriteInfo = GetComponent<SpriteRenderer>();
+            
             if(MenuManager.DIALOGUE_MENU && yarnDialogue != null)
             {
                 MenuManager.DIALOGUE_MENU.dialogueRunner.Add(yarnDialogue);
@@ -69,6 +74,7 @@ public class ActiveSpeaker : MonoBehaviour
                 Debug.LogWarning("ActiveSpeaker: The following speaker failed to load their yarnDialogue: " + 
                 this.gameObject.name);
             }
+            colliderInfo.enabled = true;
         }
     }
 
