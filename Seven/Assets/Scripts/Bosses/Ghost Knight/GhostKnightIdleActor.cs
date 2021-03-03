@@ -43,7 +43,7 @@ public class GhostKnightIdleActor : Actor
 
         ghostKnightEffector.SetActive(false);
 
-        MenuManager.DIALOGUE_MENU.StartDialogue(this.gameObject);
+        //MenuManager.DIALOGUE_MENU.StartDialogue(this.gameObject);
     }
 
     /*private IEnumerator introDelayStart()

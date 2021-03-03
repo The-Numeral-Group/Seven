@@ -769,7 +769,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghost Knight Idle
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7237528255522500623, guid: a1ac01f6588c1724d9195a2d3e5d6a85, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a1ac01f6588c1724d9195a2d3e5d6a85, type: 3}
 --- !u!4 &220097795038076211 stripped
 Transform:

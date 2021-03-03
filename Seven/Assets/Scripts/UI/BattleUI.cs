@@ -161,6 +161,8 @@ public class BattleUI : BaseUI
 
             playerActor.myDataManager.updateActorPosition(playerObject.transform.position);
             bBar.boss.GetComponent<ActorDataManager>().updateActorPosition(bBar.boss.transform.position);
+
+            SceneManager.LoadScene("Tutorial_Cutscene1");
         }
         if (playerHealth.currentHealth == 0f)
         {

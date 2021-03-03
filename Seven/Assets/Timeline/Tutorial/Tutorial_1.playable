@@ -69,6 +69,7 @@ MonoBehaviour:
     m_Objects:
     - {fileID: 3471502518659245102}
     - {fileID: -511863207297931180}
+    - {fileID: -6219738459240115546}
 --- !u!114 &-8302916004007835675
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -226,6 +227,22 @@ MonoBehaviour:
   m_OpenClipOffsetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
   m_ApplyOffsets: 0
+--- !u!114 &-6219738459240115546
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 0.7666666666666667
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: e87511fc2fd49ee4ca90fa9bb22da1fd, type: 2}
 --- !u!114 &-2329010726664936668
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -261,7 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 5.6
+  m_Time: 6.766666666666667
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: ac62fa7f9cde5a74fbeffd22f5f2eca3, type: 2}
@@ -921,7 +938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 3.2
+  m_Time: 4.783333333333333
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: b3f16ab05366bf0448991350aaeab54e, type: 2}
@@ -947,7 +964,7 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 0
+    m_Start: 0.7666666666666667
     m_ClipIn: 0
     m_Asset: {fileID: -8954427102400553779}
     m_Duration: 2
@@ -1012,11 +1029,11 @@ MonoBehaviour:
     m_Recordable: 1
     m_PostExtrapolationMode: 1
     m_PreExtrapolationMode: 1
-    m_PostExtrapolationTime: 1.2000000000000002
-    m_PreExtrapolationTime: 0
+    m_PostExtrapolationTime: 2
+    m_PreExtrapolationTime: 0.7666666666666667
     m_DisplayName: Disappear
   - m_Version: 1
-    m_Start: 3.2
+    m_Start: 4.766666666666667
     m_ClipIn: 0
     m_Asset: {fileID: -8209434147574014954}
     m_Duration: 2

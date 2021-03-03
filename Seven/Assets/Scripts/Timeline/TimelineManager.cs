@@ -6,6 +6,21 @@ using UnityEngine.SceneManagement;
 public class TimelineManager : MonoBehaviour
 {
     public PlayableDirector director;
+
+    public bool loop = true;
+
+    public void loopFromStartTimeline()
+    {
+        if(loop)
+        {
+            director.time = director.initialTime;
+        }
+    }
+
+    public void setLoop(bool newLoop)
+    {
+        this.loop = newLoop;
+    }
     
     void pauseTimeline()
     {
