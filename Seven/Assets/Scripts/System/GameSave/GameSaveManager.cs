@@ -33,6 +33,7 @@ public class GameSaveManager : MonoBehaviour
     // Reset all the SaveObjects.
     public void ResetSaveObjects()
     {
+        newGame.initialValue = true;
         for (int i = 0; i < SaveObjects.Count; i++)
         {
             if (File.Exists(Application.persistentDataPath +
