@@ -148,20 +148,23 @@ public class DialogueMenu : BaseUI
     to determine if the player can move during the dialogue sequence.*/
     public void SetupPlayer(bool lockValue)
     {
-        var player = GameObject.Find("/Player");
+        var player = GameObject.FindGameObjectWithTag("Player");
         if (!player)
         {
             Debug.LogWarning("MenuManager: StartDialogue() cannot find the player object.");
             return;
         }
         PlayerActor pActor = player.GetComponent<PlayerActor>();
-        if (lockValue)
+        if (pActor)
         {
-            pActor.playerInput.SwitchCurrentActionMap("UI");
-            pActor.myMovement.MoveActor(Vector2.zero);
+            if (lockValue)
+            {
+                pActor.playerInput.SwitchCurrentActionMap("UI");
+                pActor.myMovement.MoveActor(Vector2.zero);
+            }
+            pActor.isTalking = true;
+            pActor.myHealth.enabled = false;
         }
-        pActor.isTalking = true;
-        pActor.myHealth.enabled = false;
     }
 
     //override baseui hide method.
