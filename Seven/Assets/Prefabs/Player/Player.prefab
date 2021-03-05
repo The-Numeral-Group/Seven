@@ -223,6 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingMaxHealth: 5
   damageResistance: 0
+  invincibilityDuration: 1
 --- !u!114 &4115977272152067177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,7 +326,7 @@ MonoBehaviour:
   invokeBlankWhenBadArguments: 1
   dodgeDistance: 15
   dodgeDuration: 0
-  invincibleDuration: 0
+  invincibleDuration: 1
 --- !u!114 &889948524402226234
 MonoBehaviour:
   m_ObjectHideFlags: 0
