@@ -42,7 +42,6 @@ public class GluttonyP2Actor : Actor
         }
 
         gluttony = this.gameObject.GetComponent<Actor>();
-        gluttony.myHealth.vulnerable = true;
         gluttonyAnimHandler = this.myAnimationHandler as GluttonyP1AnimationHandler; 
     }
 

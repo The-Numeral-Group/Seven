@@ -15,7 +15,7 @@ public class Dodge : ActorAbilityFunction<Actor, int>
     public float dodgeDuration;
 
     [Tooltip("Duration of how long the player will be invincible, must be greater than dodgeDuration")]
-    public float invincibleDuration;
+    public float invincibleDuration = 1f;
 
     private float drag = 0.05f;
 
@@ -34,9 +34,9 @@ public class Dodge : ActorAbilityFunction<Actor, int>
     /*InternInvoke performs a dodge on user's ActorMovement component*/
     protected override int InternInvoke(params Actor[] args)
     {
-        args[0].myHealth.vulnerable = false;
+        args[0].myHealth.SetVulnerable(false, invincibleDuration);
         StartCoroutine(args[0].myMovement.LockActorMovement(dodgeDuration));
-        StartCoroutine(MakeVulnerable(args[0]));
+        StartCoroutine(ResetDodge(args[0]));
         performDodge(args[0]);
         return 0;
     }
@@ -56,11 +56,9 @@ public class Dodge : ActorAbilityFunction<Actor, int>
         user.myMovement.DragActor(dodgeVelocity);
     }
 
-    IEnumerator MakeVulnerable(Actor user)
+    IEnumerator ResetDodge(Actor user)
     {
-        yield return new WaitForSeconds(invincibleDuration);
+        yield return new WaitForSeconds(dodgeDuration);
         isFinished = true;
-        user.myHealth.vulnerable = true;
-
     }
 }
