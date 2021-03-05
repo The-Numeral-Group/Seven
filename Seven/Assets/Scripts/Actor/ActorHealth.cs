@@ -144,7 +144,7 @@ public class ActorHealth : MonoBehaviour
     then it it wil become vulnerable.
     Pass in a negative value for duration for an object 
     to remain in that state with no duration to reset it*/
-    public void SetVulnerable(bool value, float duration)
+    public void SetVulnerable(bool value, float duration, bool accumulateInvincibility = true)
     {
         this.vulnerable = value;
         StopCoroutine(MakeVulnerablePointer);
@@ -154,7 +154,11 @@ public class ActorHealth : MonoBehaviour
         }
         else
         {
-            MakeVulnerablePointer = ExtendInvulnerability(duration + timeInvulnerable, value);
+            if (accumulateInvincibility)
+            {
+                duration += timeInvulnerable;
+            }
+            MakeVulnerablePointer = ExtendInvulnerability(duration, value);
             StartCoroutine(MakeVulnerablePointer);
         }
     }
