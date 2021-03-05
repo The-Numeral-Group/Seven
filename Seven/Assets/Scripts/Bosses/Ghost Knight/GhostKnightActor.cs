@@ -69,7 +69,6 @@ public class GhostKnightActor : Actor
         special = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_SPECIAL];
 
         ghostKnight = this.gameObject.GetComponent<GhostKnightActor>();
-        ghostKnight.myHealth.vulnerable = true;
         currentState = State.WALK;
         currAbility = null;
 

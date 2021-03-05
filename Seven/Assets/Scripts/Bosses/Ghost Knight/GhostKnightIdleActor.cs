@@ -38,9 +38,9 @@ public class GhostKnightIdleActor : Actor
             player = playerObject.GetComponent<Actor>();
         }
 
-        player.myHealth.vulnerable = false;
-        ghostKnight.myHealth.vulnerable = false;
-
+        player.myHealth.SetVulnerable(false, -1);
+        ghostKnight.myHealth.SetVulnerable(false, -1);
+        
         ghostKnightEffector.SetActive(false);
 
         //MenuManager.DIALOGUE_MENU.StartDialogue(this.gameObject);

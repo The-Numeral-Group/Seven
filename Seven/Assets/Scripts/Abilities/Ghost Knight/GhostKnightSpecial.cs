@@ -60,7 +60,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
 
 
         // Set both actors to be invincible.
-        user.myHealth.vulnerable = false;
+        user.myHealth.SetVulnerable(false, -1);
 
         // Turn off effector so player doesn't get knockback when Ghost Knight is invisible.
         gkEffector.SetActive(false);
@@ -103,7 +103,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
         }
 
         // Set both actors to be no longer invincible.
-        user.myHealth.vulnerable = true;
+        user.myHealth.SetVulnerable(true, -1);
 
         // Turn back the effector on.
         gkEffector.SetActive(true);
