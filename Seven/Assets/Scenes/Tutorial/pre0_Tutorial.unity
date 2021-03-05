@@ -341,9 +341,6 @@ MonoBehaviour:
   cooldownPeriod: 0
   abilityName: Interact
   invokeBlankWhenBadArguments: 1
-  playerInteractableHitbox: {fileID: 5205291255293058949, guid: 9bcc378dc75e37742a1203e9d0bd29fb, type: 3}
-  duration: 0.3
-  objectPositionScale: {x: 1.5, y: 1.5}
 --- !u!1001 &435954427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -617,7 +614,7 @@ GameObject:
   - component: {fileID: 640692232}
   - component: {fileID: 640692234}
   - component: {fileID: 640692233}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Pond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -912,7 +909,7 @@ GameObject:
   - component: {fileID: 841056029}
   - component: {fileID: 841056031}
   - component: {fileID: 841056030}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Gate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1028,12 +1025,12 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.1}
   serializedVersion: 2
-  m_Radius: 0.05
+  m_Radius: 0.22
 --- !u!114 &877801487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1043,9 +1040,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 877801484}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 094fb4132fb343d47b3edc73e2368462, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ba4c85a88d7f4848a5adf03e1cdccd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
+  indicatorOffset: {x: 0, y: 1}
+  sceneToLoad: Tutorial_Cutscene0
 --- !u!1 &1029591772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1246,7 +1246,7 @@ GameObject:
   - component: {fileID: 1161176614}
   - component: {fileID: 1161176616}
   - component: {fileID: 1161176615}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
