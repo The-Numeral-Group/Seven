@@ -279,9 +279,9 @@ GameObject:
   - component: {fileID: 105999089}
   - component: {fileID: 105999091}
   - component: {fileID: 105999090}
-  m_Layer: 9
+  m_Layer: 25
   m_Name: GluttonyDoor
-  m_TagString: Untagged
+  m_TagString: InteractiveObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -338,6 +338,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba4c85a88d7f4848a5adf03e1cdccd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
+  indicatorOffset: {x: 0, y: 5}
   sceneToLoad: GluttonyTest
 --- !u!212 &105999091
 SpriteRenderer:
