@@ -1002,12 +1002,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd89403b09c1874caac8312df28ef1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
+  indicatorOffset: {x: 0, y: 5}
   speakerName: GhostKnight
   yarnStartNode: GhostKnight.Opening.Dialogue
   yarnDialogue: {fileID: 2480198943629176163, guid: 20b830528a7b342418f2c3c6cf81b4e1, type: 3}
   npcMode: 0
-  offset: {x: 0, y: 5}
-  chatIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
 --- !u!58 &688263419
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2462,12 +2462,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd89403b09c1874caac8312df28ef1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
+  indicatorOffset: {x: 0, y: 5}
   speakerName: TheWoman
   yarnStartNode: Test.Start
   yarnDialogue: {fileID: 2480198943629176163, guid: 29d8493966275d14ba47d186fc49865d, type: 3}
   npcMode: 0
-  offset: {x: 0, y: 10}
-  chatIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
 --- !u!212 &2075772340
 SpriteRenderer:
   m_ObjectHideFlags: 0
