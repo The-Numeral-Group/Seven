@@ -30,8 +30,7 @@ public class SlothRangeMarker : MonoBehaviour
         " POSTACTIVE state in SECONDS.")]
     public float grabAttackDuration = 2f;
 
-    [Tooltip("How long the marker should stay on the ground in the POSTACTIVE state" + 
-        " (enter -1 to make the marker last until Sloth dies.)")]
+    [Tooltip("How long the marker should stay on the ground in the POSTACTIVE state.")]
     public float grabDuration = 15f;
 
     //the coroutine being used to handle the marker's timing
@@ -73,7 +72,7 @@ public class SlothRangeMarker : MonoBehaviour
 
     /*Message target for making the marker switch states when it gets struck by Sloth's
     projectiles*/
-    void OnActivateMarker()
+    public void OnActivateMarker()
     {
         //stop any old timings in case this marker is being reset
         if(timer != null)

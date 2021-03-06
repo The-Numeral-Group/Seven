@@ -25,7 +25,7 @@ public class BasicProjectile : MonoBehaviour
     private Vector2 launchDirection = Vector2.zero;
 
     //The rubble's actor movement, which does its actual movement
-    private ActorMovement mover;
+    protected ActorMovement mover;
 
     //METHODS--------------------------------------------------------------------------------------
     // Start is called before the first frame update

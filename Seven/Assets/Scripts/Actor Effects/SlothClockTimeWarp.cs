@@ -160,7 +160,17 @@ internal class SlothClockObserver : MonoBehaviour
     //might want to set this up a little differently, as OTE2D may also
     //respond to entry from other objects, like things walking into it?
     //FIELDS---------------------------------------------------------------------------------------
-    void OnTriggerEnter2D()
+    void Start()
+    {
+        //if the collider doesn't have an ActorHealth, add one that has 100% damage resistance
+        if(this.gameObject.GetComponent<ActorHealth>() == null)
+        {
+            var newHealth = this.gameObject.AddComponent<ActorHealth>();
+            newHealth.damageResistance = 1f;
+        }
+    }
+
+    void DoActorDamageEffect()
     {
         responseEvent.Invoke(this.gameObject);
     }
