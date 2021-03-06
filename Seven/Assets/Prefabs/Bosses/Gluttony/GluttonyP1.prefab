@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 5187959127492769962}
   - component: {fileID: 5187959127492769963}
   - component: {fileID: 5252541960059701746}
+  - component: {fileID: -4852536698293596431}
+  - component: {fileID: 4106624215320319982}
   m_Layer: 11
   m_Name: GluttonyP1
   m_TagString: Boss
@@ -84,7 +86,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 9e083c8e8496ccb8d89a1e814aee4f7f, type: 3}
+  m_Sprite: {fileID: -3996998178533338150, guid: ea8cfebb044d19847872b52070c0fde6, type: 3}
   m_Color: {r: 1, g: 1, b: 0.99607843, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -131,7 +133,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 2.02
 --- !u!114 &5187959127492769954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingMaxHealth: 5
   damageResistance: 0
+  invincibilityDuration: 1
 --- !u!114 &5187959127492769955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,3 +317,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds: []
+--- !u!95 &-4852536698293596431
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187959127492769972}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9c158386693e83d43b4e9cb1783415d4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4106624215320319982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187959127492769972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae9fb71561093b429dc04ea6675aa09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: -4852536698293596431}
