@@ -496,9 +496,9 @@ GameObject:
   - component: {fileID: 424505102}
   - component: {fileID: 424505101}
   - component: {fileID: 424505106}
-  m_Layer: 11
+  m_Layer: 25
   m_Name: Ghost Knight NPC
-  m_TagString: Boss
+  m_TagString: InteractiveObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
