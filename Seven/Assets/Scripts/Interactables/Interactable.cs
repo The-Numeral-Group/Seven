@@ -62,7 +62,7 @@ public abstract class Interactable : MonoBehaviour
         {
             Debug.LogWarning("Interactable: " + this.gameObject.name + " does not have their " + 
             "indicator prefab setup.");
-            interactIndicator = new GameObject();
+            interactIndicator = new GameObject("Interact Indicator");
         }
         else
         {
