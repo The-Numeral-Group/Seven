@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*
 GhostKnightActor's main function is to run the State Machine that powers
@@ -73,6 +74,13 @@ public class GhostKnightActor : Actor
         currAbility = null;
 
         StartCoroutine(introDelayStart());
+    }
+
+    //Function that is called when GhostKnight dies. Starts the next cutscene.
+    public override void DoActorDeath()
+    {
+        GetComponent<ActorDataManager>().updateActorPosition(transform.position);
+        SceneManager.LoadScene("Tutorial_Cutscene1");
     }
 
     // When the game starts, the ghost knight will try to cast any attack with movementDirection
