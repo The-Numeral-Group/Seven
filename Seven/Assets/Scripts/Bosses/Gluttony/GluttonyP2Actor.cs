@@ -50,6 +50,11 @@ public class GluttonyP2Actor : Actor
         EvaluateState(currentState);
     }
 
+    public override void DoActorDeath()
+    {
+        this.gameObject.SetActive(false);
+    }
+
     //Function operates as the state machine.
     void EvaluateState(State state)
     {

@@ -23,8 +23,9 @@ public class Actor : MonoBehaviour
     {
         //all of these need to be in Start to make sure they exist
 
-        //Alternatively I (Ram) think we can create the face anchor when the actor gets instatiated into the scene rather than having the face anchor already exist in the prefab.
-        //pros and cons to both sides, so whatever you all prefer between the two I am down for.
+        /*Alternatively I (Ram) think we can create the face anchor when the actor gets instatiated 
+        into the scene rather than having the face anchor already exist in the prefab.
+        pros and cons to both sides, so whatever you all prefer between the two I am down for.*/
         this.faceAnchor = this.gameObject.transform.Find("FaceAnchor");
         ///DEBUG
         if(!this.faceAnchor)
@@ -49,6 +50,7 @@ public class Actor : MonoBehaviour
     {
         //Do anything that should happen on taking damage
         //no effect by default
+        StartCoroutine(myHealth.MakeInvulnerableAfterDamage());
     }
 
     public virtual void DoActorDeath()

@@ -24,6 +24,18 @@ public class PlayerActor : Actor
         playerInput = GetComponent<PlayerInput>();
     }
 
+    public override void DoActorDeath()
+    {
+        MenuManager.StartGameOver();
+        if (MenuManager.BATTLE_UI)
+        {
+            MenuManager.BATTLE_UI.StopAllAudio();
+            MenuManager.BATTLE_UI.Hide();
+        }
+        this.enabled = false;
+        //this.gameObject.SetActive(false);
+    }
+
     /*Engages the dialogue sequence. Disables the players health component, and sets its
     movement direction to 0. Essentially locks the player in place and makes them invulnerable.
     Requires ActiveSpeaker to have been set.*/

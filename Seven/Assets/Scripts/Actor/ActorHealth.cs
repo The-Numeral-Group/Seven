@@ -106,10 +106,16 @@ public class ActorHealth : MonoBehaviour
 
     /*Coroutine makes the sprite blink, makes the actor invulnerable for a period, and makes the
     actor's sprite flash red on the initial hit.*/
-    IEnumerator MakeInvulnerableAfterDamage()
+    public IEnumerator MakeInvulnerableAfterDamage()
     {
         float blinkSpeed = 0.05f;
         SetVulnerable(false, invincibilityDuration);
+        if (!spriteRenderer)
+        {
+            Debug.LogWarning("ActorHealth: " + this.gameObject.name + " Does not have a spriterenderer.");
+            //https://answers.unity.com/questions/561116/stopping-a-coroutine-within-same-function.html
+            yield break;
+        }
         hitColor = spriteRenderer.color;
         StartCoroutine(FlashRed());
         for (float i = 0; i < invincibilityDuration; i += blinkSpeed * 2)

@@ -57,11 +57,12 @@ public class BattleUI : BaseUI
     {
         UpdateReferences();
         UpdateSlider(ref playerHealth, ref playerSlider);
-        foreach(var bBar in bossList)
+        for(int i = 0; i < bossList.Count; i++)
         {
+            BossBar bBar = bossList[i];
             UpdateSlider(ref bBar.bossHealth, ref bBar.bossSlider);
             //IMPORTANT: Remove this in the future
-            TemporaryDeathCheckFunction(bBar);
+            TemporaryDeathCheckFunction(bBar, ref i);
         }
     }
 
@@ -148,7 +149,7 @@ public class BattleUI : BaseUI
 
     //This function should be removed once we are done with stopping the game one player death
     //for testing purposes.
-    void TemporaryDeathCheckFunction(BossBar bBar)
+    void TemporaryDeathCheckFunction(BossBar bBar,ref int index)
     {
         if (!bBar.bossHealth || !playerHealth)
         {
@@ -157,24 +158,17 @@ public class BattleUI : BaseUI
         if (bBar.bossHealth.currentHealth == 0f)
         {
             StopAllAudio();
-            MenuManager.BATTLE_UI.Hide();
-
+            bossList.Remove(bBar);
+            Destroy(bBar.bossContainer);
+            index--;
             playerActor.myDataManager.updateActorPosition(playerObject.transform.position);
-            bBar.boss.GetComponent<ActorDataManager>().updateActorPosition(bBar.boss.transform.position);
-
-            SceneManager.LoadScene("Tutorial_Cutscene1");
-        }
-        if (playerHealth.currentHealth == 0f)
-        {
-            StopAllAudio();
-            MenuManager.StartGameOver();
-            this.gameObject.SetActive(false);
         }
     }
 
     // Stop all the audio when game is over.
     // Source: https://answers.unity.com/questions/194110/how-to-stop-all-audio.html
-    void StopAllAudio()
+    //I made the function public
+    public void StopAllAudio()
     {
         allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
         foreach (AudioSource audioS in allAudioSources) {
