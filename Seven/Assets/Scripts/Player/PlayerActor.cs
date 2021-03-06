@@ -27,14 +27,14 @@ public class PlayerActor : Actor
     /*Engages the dialogue sequence. Disables the players health component, and sets its
     movement direction to 0. Essentially locks the player in place and makes them invulnerable.
     Requires ActiveSpeaker to have been set.*/
-    public void StartTalking()
+    public void StartTalking(ActiveSpeaker speaker)
     {
         if (isTalking)
         {
             Debug.LogWarning("Player Actor: Player is already talking.");
             return;
         }
-        ActiveSpeaker.ACTIVE_NPC = ActiveSpeaker.POTENTIAL_SPEAKER;
+        ActiveSpeaker.ACTIVE_NPC = speaker;
         MenuManager.DIALOGUE_MENU.StartDialogue();
     }
 

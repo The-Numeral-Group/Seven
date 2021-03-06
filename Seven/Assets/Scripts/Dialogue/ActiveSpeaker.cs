@@ -5,9 +5,8 @@ using UnityEngine;
 /*Activespeaker is a class you can attach to any actor you want to be able to talk to the player.
 DO NOT ATTACH THIS OBJECT TO THE PLAYER*/
 //Credit for this concept: https://www.youtube.com/watch?v=CJu0ObGDQHY&t=317s
-[RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(SpriteRenderer))]
-public class ActiveSpeaker : MonoBehaviour
+public class ActiveSpeaker : Interactable
 {
     //Name of the speaker
     [Tooltip("The name of the speaker.")]
@@ -20,22 +19,10 @@ public class ActiveSpeaker : MonoBehaviour
     public YarnProgram yarnDialogue;
     //A reference to the current activepseaker object which is talking.
     public static ActiveSpeaker ACTIVE_NPC { get; set; }
-    //A reference to the the most valid talking target for the player.
-    public static ActiveSpeaker POTENTIAL_SPEAKER { get; set; }
     //Set whether this speaker is being interacted with as an npc.
     public bool npcMode;
-    //Offset the chat indicator object from the speaker
-    [Tooltip("How much you want to offset the chat indicator from the speaker.")]
-    public Vector2 offset = new Vector2(0, 5);
     //Reference to the objects sprite renderer
     public SpriteRenderer spriteInfo { get; private set;}
-    //Reference to the objects collider
-    public Collider2D colliderInfo { get; private set; }
-    //A gameobject sprite that shows the npc can be talked with.
-    [SerializeField]
-    GameObject chatIndicatorPrefab = null;
-    //The instantiated chat object from the prefab
-    GameObject chatIndicator;
     //flag used to tell if this npc is talking.
     bool isTalking;
 
@@ -47,24 +34,10 @@ public class ActiveSpeaker : MonoBehaviour
             Debug.LogWarning("ActiveSpeaker: This component should not be attached to the player");
             this.enabled = false;
         }
-        else if (!chatIndicatorPrefab)
-        {
-            Debug.LogWarning("ActiveSpeaker: No gameobject assigned to chatIndicator.");
-            this.enabled = false;
-        }
         else
         {
             spriteInfo = GetComponent<SpriteRenderer>();
-            colliderInfo = GetComponent<Collider2D>();
             colliderInfo.enabled = false;
-            chatIndicator = Instantiate(chatIndicatorPrefab, this.gameObject.transform.position,
-                Quaternion.identity);
-            chatIndicator.transform.parent = this.gameObject.transform;
-            chatIndicator.transform.localPosition = new Vector3(offset.x, offset.y, 
-                chatIndicator.transform.localPosition.z);
-            chatIndicator.SetActive(false);
-
-            
             if(MenuManager.DIALOGUE_MENU && yarnDialogue != null)
             {
                 MenuManager.DIALOGUE_MENU.dialogueRunner.Add(yarnDialogue);
@@ -78,42 +51,48 @@ public class ActiveSpeaker : MonoBehaviour
         }
     }
 
+    public override void OnInteract()
+    {
+        if (npcMode)
+        {
+            var player = GameObject.FindGameObjectWithTag("Player");
+            if (player)
+            {
+                player.SendMessage("StartTalking", this);
+            }
+        }
+    }
+
     //Check if the player is in range to talk to this speaker.
-    void OnTriggerEnter2D(Collider2D collider)
+    protected override void OnTriggerEnter2D(Collider2D collider)
     {
         if (this.npcMode && collider.CompareTag("Player"))
         {
-            SetChatIndicator(true);
-            SetPotentialSpeaker(true);
+            ShowIndicator(true);
+            SetPotentialInteractable(true);
         }
     }
 
     //If the player has left the range, this speaker is no longer the active speaker.
-    void OnTriggerExit2D(Collider2D collider)
+    protected override void OnTriggerExit2D(Collider2D collider)
     {
         if (this.npcMode && collider.CompareTag("Player"))
         {
-            SetChatIndicator(false);
-            SetPotentialSpeaker(false);
+            ShowIndicator(false);
+            SetPotentialInteractable(false);
         }
     }
 
-    void SetChatIndicator(bool value)
+    protected override void ShowIndicator(bool value)
     {
         if (npcMode)
         {
-            chatIndicator.SetActive(value);
+            interactIndicator.SetActive(value);
         }
     }
-
-    void SetPotentialSpeaker(bool value)
-    {
-        POTENTIAL_SPEAKER = value ? this : null;
-    }
-
     public void SetIsTalking(bool value)
     {
         isTalking = value;
-        SetChatIndicator(!value);
+        ShowIndicator(!value);
     }
 }
