@@ -6,9 +6,9 @@ public class InteractMenu : BaseUI
 {
     public GameObject target;
     [SerializeField]
-    RectTransform canvasTransform;
+    RectTransform canvasTransform = null;
     [SerializeField]
-    RectTransform uiElementTransform;
+    RectTransform uiElementTransform = null;
     public Vector2 uiElementOffset {get; set;}
 
     protected override void Awake()
