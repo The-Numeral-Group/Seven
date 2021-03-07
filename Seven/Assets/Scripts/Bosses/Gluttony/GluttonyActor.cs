@@ -174,7 +174,7 @@ public class GluttonyActor : Actor
         //var biteExists = this.myAbilityInitiator.abilityDict[AbilityRegister.GLUTTONY_BITE]?.getUsable();
         //bool biteReady = abilities.TryGetValue(AbilityRegister.GLUTTONY_BITE) ? abilities[AbilityRegister.GLUTTONY_BITE].getUsable() : false
 
-        if(distanceToPlayer >= crushRange)
+        if((projReady || crushReady) && distanceToPlayer >= crushRange)
         {
             int weight = Random.Range(0, 3);
             /*I (Ram) am aware below is bad coding practice. It is in place as a temporary measure
