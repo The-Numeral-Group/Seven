@@ -236,6 +236,7 @@ public class GhostKnightActor : Actor
 
     public override void DoActorDamageEffect(float damage)
     {
+        base.DoActorDamageEffect(damage);
         // Play TakeDamage Audio
         mySoundManager.PlaySound("TakeDamage");
     }
