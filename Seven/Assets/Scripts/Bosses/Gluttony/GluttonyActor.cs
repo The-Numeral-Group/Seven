@@ -77,7 +77,6 @@ public class GluttonyActor : Actor
         {
             //Moved the functions in update to walk to avoid the stuttering that occurs on ground pound.
             case State.WALK:
-                
                 if (currAbility && !currAbility.getIsFinished())
                 {
                     break;
@@ -115,7 +114,6 @@ public class GluttonyActor : Actor
                 var bite = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_BITE];
                 Debug.Log("In Bite");
                 currAbility = bite;
-                gluttonyAnimHandler.Animator.SetTrigger("Bite");
                 bite.Invoke(ref gluttony, player);
                 specialAttackCounter++;
 
