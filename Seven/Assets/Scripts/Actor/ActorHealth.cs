@@ -76,7 +76,7 @@ public class ActorHealth : MonoBehaviour
         //take the damage
         this.currentHealth -= damage;
         //StartCoroutine(FlashRed());
-        StartCoroutine(MakeInvulnerableAfterDamage());
+        //StartCoroutine(MakeInvulnerableAfterDamage());
 
         //trigger actor damage effects
         this.gameObject.SendMessage("DoActorDamageEffect", damage);
