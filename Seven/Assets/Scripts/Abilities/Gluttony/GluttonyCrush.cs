@@ -42,6 +42,8 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
     BaseCamera cam;
     //reference to the animationd handler. must be cast as gluttony animation handler.
     GluttonyP1AnimationHandler gluttonyAnimationHandler;
+    //Reference to the gluttonyeffector from multi actor
+    GameObject gluttonyEffector;
 
     //Initialize member variables
     void Awake()
@@ -61,6 +63,26 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
         else
         {
             Debug.LogWarning("Gluttony Crush: does not have access to a camera that can shake");
+        }
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.name == "GluttonyEffector")
+            {
+                gluttonyEffector = child.gameObject;
+            }
+            foreach(Transform grandChild in child.transform)
+            {
+                if (grandChild.gameObject.name == "GluttonyEffector")
+                {
+                    gluttonyEffector = grandChild.gameObject;
+                    Debug.Log("Found Gluttony Effector");
+                    break;
+                }
+            }
+            if (gluttonyEffector)
+            {
+                break;
+            }
         }
     }
 
@@ -90,6 +112,10 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
         Vector2 direction = (destination - new Vector2(this.user.transform.position.x, 
                                                         this.user.transform.position.y)).normalized;
         direction = direction * jumpSpeed;
+        if (gluttonyEffector)
+        {
+            gluttonyEffector.SetActive(false);
+        }
         IEnumerator initialMovementLock = this.user.myMovement.LockActorMovement(totalAbilityDuration);
         StartCoroutine(initialMovementLock);
         StartCoroutine(JumpUp(args[0], direction, initialMovementLock));
@@ -180,6 +206,10 @@ public class GluttonyCrush : ActorAbilityFunction<Actor, int>
         foreach(var actorCollider in actorColliders)
         {
             actorCollider.enabled = true;
+        }
+        if (gluttonyEffector)
+        {
+            gluttonyEffector.SetActive(true);
         }
         cam.Shake(2.0f, 0.2f);
         Destroy(shadowSprite);
