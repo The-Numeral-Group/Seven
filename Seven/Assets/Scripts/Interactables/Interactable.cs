@@ -41,7 +41,7 @@ public abstract class Interactable : MonoBehaviour
         if (other.tag == "Player")
         {
             ShowIndicator(true);
-            SetPotentialInteractable(true);
+            SetPotentialInteractable(true, other.gameObject);
         }
     }
 
@@ -51,7 +51,7 @@ public abstract class Interactable : MonoBehaviour
         if (other.tag == "Player")
         {
             ShowIndicator(false);
-            SetPotentialInteractable(false);
+            SetPotentialInteractable(false, other.gameObject);
         }
     }
 
@@ -81,9 +81,19 @@ public abstract class Interactable : MonoBehaviour
     }
 
     /*Called by the ontriggerenter function. If the player is in range the static reference will call
-    on this object*/
-    protected virtual void SetPotentialInteractable(bool value)
+    on this object. Informs menu manager for where to place the interaction prompt using the player.*/
+    protected virtual void SetPotentialInteractable(bool value, GameObject t)
     {
         Interactable.POTENTIAL_INTERACTABLE = value ? this : null;
+        if (value)
+        {
+            MenuManager.INTERACT_MENU.target = t;
+            MenuManager.INTERACT_MENU.uiElementOffset = new Vector2(1, -1);
+            MenuManager.INTERACT_MENU.Show();
+        }
+        else
+        {
+            MenuManager.INTERACT_MENU.Hide();
+        }
     }
 }
