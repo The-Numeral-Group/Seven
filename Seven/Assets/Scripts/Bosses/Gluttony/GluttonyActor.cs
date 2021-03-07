@@ -64,6 +64,7 @@ public class GluttonyActor : Actor
 
     public override void DoActorDeath()
     {
+        gluttonyAnimHandler.ResetLocalRotation();
         //base.DoActorDeath();
         System.Tuple<Actor, System.Action<Actor>> p2 = 
             new System.Tuple<Actor, System.Action<Actor>>(gluttony, null);

@@ -27,4 +27,14 @@ public class GluttonyP1AnimationHandler : ActorAnimationHandler
         }
         transform.localScale = flip;
     }
+
+    public void ResetLocalRotation()
+    {
+        if (transform.localScale.x < 0)
+        {
+            Vector3 flip = transform.localScale;
+            flip.x *= -1;
+            transform.localScale = flip;
+        }
+    }
 }
