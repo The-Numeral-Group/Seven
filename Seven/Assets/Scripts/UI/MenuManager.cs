@@ -20,9 +20,15 @@ public class MenuManager : MonoBehaviour
     //Reference to the BattleUI. 
     [Tooltip("Reference to the battleui object in scene.")]
     [SerializeField]
-    BattleUI battleUI;
+    BattleUI battleUI = null;
     //Static reference ot the Battle UI
     public static BattleUI BATTLE_UI;
+    //Reference to the interaction menu
+    [SerializeField]
+    [Tooltip("Refereence to InteractMenu ui object. Must be set via inspector.")]
+    InteractMenu interactMenu = null;
+    //static reference to the interact menu
+    public static InteractMenu INTERACT_MENU;
     /*Reference to the Game Over UI. Must be set through inspector because currently
     gameover object is a child of the the menumanager object.*/
     [Tooltip("Reference to the gameover ui child object. Must be set via inspector.")]
@@ -38,11 +44,14 @@ public class MenuManager : MonoBehaviour
     //Set static members to the inspector references
     void Awake()
     {
+        CURRENT_MENU = null;
         SetReferences<DialogueMenu>(ref dialogueMenu, ref DIALOGUE_MENU, "DialogueMenu");
         SetReferences<PauseMenu>(ref pauseMenu, ref PAUSE_MENU, "PauseMenu");
         SetReferences<BattleUI>(ref battleUI, ref BATTLE_UI, "BattleUI");
         GAME_OVER = gameOver;
-        GAME_OVER.gameObject.SetActive(false);
+        INTERACT_MENU = interactMenu;
+        GAME_OVER.Hide();
+        INTERACT_MENU.Hide();
         if (PAUSE_MENU)
         {
             PAUSE_MENU.Hide();
@@ -110,19 +119,21 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    //Function to start the game over sequence. Hides menus and opens the game over ui.
     public static void StartGameOver()
     {
         GAME_IS_OVER = true;
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<PlayerActor>().playerInput.SwitchCurrentActionMap("UI");
-        if (PAUSE_MENU)
+        if (CURRENT_MENU)
         {
-            PAUSE_MENU.Hide();
+            CURRENT_MENU.Hide();
         }
         if (BATTLE_UI)
         {
             BATTLE_UI.Hide();
         }
+        CURRENT_MENU = GAME_OVER;
         Time.timeScale = 0f;
         GAME_OVER.Show();
     }

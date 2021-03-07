@@ -60,6 +60,7 @@ public class ActiveSpeaker : Interactable
             {
                 player.SendMessage("StartTalking", this);
             }
+            MenuManager.INTERACT_MENU.Hide();
         }
     }
 
@@ -69,7 +70,7 @@ public class ActiveSpeaker : Interactable
         if (this.npcMode && collider.CompareTag("Player"))
         {
             ShowIndicator(true);
-            SetPotentialInteractable(true);
+            SetPotentialInteractable(true, collider.gameObject);
         }
     }
 
@@ -79,7 +80,7 @@ public class ActiveSpeaker : Interactable
         if (this.npcMode && collider.CompareTag("Player"))
         {
             ShowIndicator(false);
-            SetPotentialInteractable(false);
+            SetPotentialInteractable(false, collider.gameObject);
         }
     }
 
