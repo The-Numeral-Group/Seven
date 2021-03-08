@@ -80,6 +80,7 @@ public class PlayerActor : Actor
     public override void DoActorDamageEffect(float damage)
     {
         // Play TakeDamage Audio
+        base.DoActorDamageEffect(damage);
         mySoundManager.PlaySound("TakeDamage");
     }
 }
