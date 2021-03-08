@@ -1821,7 +1821,7 @@ PrefabInstance:
       objectReference: {fileID: 7345663322208169106, guid: 6d1da0f5337dfdb42900704104729344, type: 3}
     - target: {fileID: 4115977272152067176, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: startingMaxHealth
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4115977272152067180, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: playerDodge
