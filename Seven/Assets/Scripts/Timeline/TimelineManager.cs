@@ -17,6 +17,14 @@ public class TimelineManager : MonoBehaviour
         }
     }
 
+    public void loopfromSpecificTimeline(float time)
+    {
+        if(loop)
+        {
+            director.time = (double)time;
+        }
+    }
+
     public void setLoop(bool newLoop)
     {
         this.loop = newLoop;

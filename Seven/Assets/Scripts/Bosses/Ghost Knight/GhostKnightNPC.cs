@@ -12,4 +12,10 @@ public class GhostKnightNPC : MonoBehaviour
             MenuManager.DIALOGUE_MENU.StartDialogue(this.gameObject);
         }
     }
+
+    public void playNextDialogue()
+    {
+        this.gameObject.GetComponent<ActiveSpeaker>().yarnStartNode = "GhostKnight.Opening.Dialogue2";
+        MenuManager.DIALOGUE_MENU.StartDialogue(this.gameObject);
+    }
 }

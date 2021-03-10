@@ -573,13 +573,16 @@ MonoBehaviour:
     - {fileID: 11400000, guid: e87511fc2fd49ee4ca90fa9bb22da1fd, type: 2}
     - {fileID: 11400000, guid: ac62fa7f9cde5a74fbeffd22f5f2eca3, type: 2}
     - {fileID: 11400000, guid: b3f16ab05366bf0448991350aaeab54e, type: 2}
+    - {fileID: 11400000, guid: bc1fcfa14756ed141b3019eebd6a1adb, type: 2}
+    - {fileID: 11400000, guid: 3bed5b03733008c4bb792695d99a35a9, type: 2}
+    - {fileID: 11400000, guid: 7a0c43ca1dc73fa4c83516300fa39a51, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 562492861}
           m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
-          m_MethodName: loopFromStartTimeline
-          m_Mode: 1
+          m_MethodName: loopfromSpecificTimeline
+          m_Mode: 4
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -650,6 +653,48 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: Ghost Knight (Cutscene)
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 562492861}
+          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+          m_MethodName: loopfromSpecificTimeline
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 6.75
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 562492861}
+          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+          m_MethodName: setLoop
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 688263420}
+          m_TargetAssemblyTypeName: GhostKnightNPC, Assembly-CSharp
+          m_MethodName: playNextDialogue
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!224 &570330356 stripped
@@ -1005,7 +1050,7 @@ MonoBehaviour:
   interactIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
   indicatorOffset: {x: 0, y: 5}
   speakerName: GhostKnight
-  yarnStartNode: GhostKnight.Opening.Dialogue
+  yarnStartNode: GhostKnight.Opening.Dialogue1
   yarnDialogue: {fileID: 2480198943629176163, guid: 20b830528a7b342418f2c3c6cf81b4e1, type: 3}
   npcMode: 0
 --- !u!58 &688263419

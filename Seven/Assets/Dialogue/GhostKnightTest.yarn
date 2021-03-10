@@ -5,43 +5,42 @@ position: 859,388
 ---
 GhostKnight: Hello
 ===
-title: GhostKnight.Opening.Dialogue
+title: GhostKnight.Opening.Dialogue1
 tags: 
 colorID: 1
 position: 986,208
 ---
 GhostKnight: ENOUGH!
 GhostKnight: You fight well for someone so young. I'm impressed. 
-GhostKnight: Do not be afraid, young warrior for I am not your enemy. 
-GhostKnight: I am the Champion, chosen hero to defeat the Gods of Sin and save the Martyr. 
-//<<wait 10>>
-GhostKnight: ...but perhaps, not anymore. You wield Volutna - the Blade of Willpower.
+GhostKnight: Do not be afraid, young warrior
+GhostKnight: I am not your enemy. 
+GhostKnight: I am the Champion, chosen hero to defeat the Gods of Sin.  
+GhostKnight: ...but perhaps, not anymore. It's been centuries since I have been called that.  
 GhostKnight: I see now that title belongs to you.
-GhostKnight: Forgive me for my ambush
-GhostKnight: I wished to make sure you could handle the task ahead of you.
-GhostKnight: Killing the 6 Gods of Vices to protect the People of Edena. 
-//<<wait 5>>
+GhostKnight: Forgive me for my ambush, I wished to make sure you could handle the task ahead of you.
+GhostKnight: As the Champion, you must kill the 6 Gods of Vices. 
+
 GhostKnight: However, it is more than just that. Take a look behind me. 
 //camera pans up to show the Woman chained up behind the fountain
 
 GhostKnight: The Martyr, an unfortunate soul who sacrificed herself to appease these vile Sins. 
-GhostKnight: When she was laid to die for them, when she was supposed to die, the Sins thought it a sick joke to keep her alive to rot in this hell for centuries.
+GhostKnight: When she was to die for them, the Sins thought it a sick joke to keep her alive to rot in this hell for centuries.
 GhostKnight: Only until all 6 Vices are defeated can she be free. 
 
 TheWoman: H....el.....p.....me........ple......a....se
 
-GhostKnight: I would give my life to see her freedom
-GhostKnight: and unfortunately I have. 
+GhostKnight: I would give my life to see her freedom...
+GhostKnight: ...and unfortunately I have. 
 GhostKnight: This is...
-//<<wait 2>>
+<<wait 2>>
 GhostKnight: ...my greatest regret.
-GhostKnight: Therefore, I must humbly ask you to carry on what I, and what many others before me, have started, so that she may be free
-GhostKnight: and to end this eternal cycle of death.
+GhostKnight: I must humbly ask you to carry on what I, and what many others before me, have started
+GhostKnight: To end this eternal cycle of death.
 
-GhostKnight: HOWEVER, You must stay cautious and vigilant
-GhostKnight: Listen to me carefully for I cannot stress this enough.
+GhostKnight: Now, listen to me carefully for I cannot stress this enough.
 GhostKnight: They are the Gods of Vices.
-GhostKnight: They feed off of Humanity's fears, impulses, and selfish tendencies. They will try to do the same to you and trick you into committing their sin. 
+GhostKnight: They feed off of Humanity's fears, impulses, and selfish tendencies. 
+GhostKnight: They will try to do the same to you and trick you into committing their sin. 
 GhostKnight: Remember why you are fighting them. 
 GhostKnight: Remember who specifically you are fighting when you are fighting them.
 GhostKnight: What it means to fight Gluttony, Pride, Bloodlust, and the rest.
@@ -51,6 +50,12 @@ GhostKnight: Young Champion, stay strong, stay vigilant, and above all
 GhostKnight: Resist Temptation
 
 //Ghost Knight disappears and reappears left of the pool of water
-
-GhostKnight: If you are in need of assistance, come to me. Even though I cannot fight them, I can offer the knowledge of their demise. I've fought them long enough to learn their tricks.
+===
+title: GhostKnight.Opening.Dialogue2
+tags: 
+colorID: 1
+position: 986,208
+---
+GhostKnight: If you are in need of assistance, come to me.
+GhostKnight: Even though I cannot fight them, I can offer knowledge of their demise.
 ===
