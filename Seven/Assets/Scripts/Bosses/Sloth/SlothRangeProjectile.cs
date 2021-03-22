@@ -38,12 +38,29 @@ public class SlothRangeProjectile : BasicProjectile
     //What happens when the projectile actually hits something
     protected override void OnTriggerEnter2D(Collider2D collided)
     {
-        //send the marker activation message to whatever was hit and self-destruct
-        //the options argument will supress errors if the collided object has no such method
-        collided.gameObject.SendMessage("OnActivateMarker", 
-            SendMessageOptions.DontRequireReceiver);
+        //make sure what we're colliding with is not a different range projectile
+        if(collided.gameObject.GetComponent<SlothRangeProjectile>() == null)
+        {
+            ///DEBUG
+            Debug.Log("SlothRangeProjectile: collided with " + collided.gameObject.name);
+            ///DEBUG
+            //deal damage to whatever was hit, if it can take damage
+            collided.gameObject.GetComponent<ActorHealth>()?.takeDamage(this.damage);
+            //send the marker activation message to whatever was hit and self-destruct
+            //the options argument will supress errors if the collided object has no such method
+            collided.gameObject.SendMessage("OnActivateMarker", 
+                SendMessageOptions.DontRequireReceiver);
 
-        Destroy(this.gameObject);
+            //destroy the marker, if the collided object isn't the marker
+            if(collided.gameObject.GetComponent<SlothRangeMarker>() != marker)
+            {
+                Destroy(marker.gameObject);
+            }
+
+            //self destruct
+            Destroy(this.gameObject);
+        }
+        
     }
 
     protected override void InternalMovement(Vector2 movementDirection)

@@ -93,9 +93,9 @@ public class SlothActor : Actor
         observer.playerMove.AddListener(delegate()
         {
             ///DEBUG
-            Debug.Log("SlothActor: Sloth wants to attack because you started moving");
+            //Debug.Log("SlothActor: Sloth wants to attack because you started moving");
             ///DEBUG
-            //ActivateAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_RANGE]);
+            ActivateAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_RANGE]);
         });
     }
 

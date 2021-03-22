@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SlothSlimeMortar : ActorAbilityFunction<ActorMovement, int>
 {
+    //FIELDS---------------------------------------------------------------------------------------
     [Tooltip("The marker object to insantiate for the ability. Will be placed where the" + 
         " projectile will land.")]
     public GameObject groundMarkerPrefab;
@@ -37,6 +38,7 @@ public class SlothSlimeMortar : ActorAbilityFunction<ActorMovement, int>
     //A middleman variable to hold the desired LAUNCH_MODE between methods
     //private LAUNCH_MODE launchMode = LAUNCH_MODE.POINT;
 
+    //METHODS--------------------------------------------------------------------------------------
     // Start is called before the first frame update
     void Start()
     {
@@ -46,10 +48,10 @@ public class SlothSlimeMortar : ActorAbilityFunction<ActorMovement, int>
                 " does not have a BasicProjectile component.");
         }
 
-        if(projectilePrefab.GetComponent<SlothRangeMarker>() == null)
+        if(groundMarkerPrefab.GetComponent<SlothRangeMarker>() == null)
         {
             Debug.LogError("SlothSlimeMortar: the provided marker gameObject" + 
-                " does not have a SlothRangeMarger component.");
+                " does not have a SlothRangeMarker component.");
         }
     }
 
@@ -57,7 +59,7 @@ public class SlothSlimeMortar : ActorAbilityFunction<ActorMovement, int>
     public override void Invoke(ref Actor user)
     {
         this.user = user;
-        //by default, Invoke just does InternInvoke with no arguments
+        //by default, Invoke just does InternInvoke with the player
         if(usable)
         {
             var target = GameObject.FindWithTag("Player")?.GetComponent<ActorMovement>();
@@ -82,8 +84,11 @@ public class SlothSlimeMortar : ActorAbilityFunction<ActorMovement, int>
         //it's also just implicitly convert the args and give it to InternInvoke
         if(usable)
         {
+            var target = ConvertTarget(args[0]);
+            InstantiateMarkers(groundMarkerPrefab, target);
+
             isFinished = false;
-            InternInvoke(ConvertTarget(args[0]));
+            InternInvoke(target);
             StartCoroutine(coolDown(cooldownPeriod));
         }
     }
@@ -94,6 +99,9 @@ public class SlothSlimeMortar : ActorAbilityFunction<ActorMovement, int>
     so yeah that's life.*/
     protected override int InternInvoke(params ActorMovement[] args)
     {
+        ///DEBUG
+        Debug.Log("SlothSlimeMortar: Creating projectiles...");
+        ///DEBUG
         //first, make all the projectiles.
         //this is just a helper variable
         SlothRangeProjectile behaviour;
@@ -130,17 +138,25 @@ public class SlothSlimeMortar : ActorAbilityFunction<ActorMovement, int>
         behaviour.movementNature = SlothRangeProjectile.SlothProjectileNature.ARC;
 
         //and now that they're all set, launch ALL of them! At the same time!
-        directPosition.GetComponent<SlothRangeProjectile>()
+        ///DEBUG
+        /*directPosition.GetComponent<SlothRangeProjectile>()
             .Launch(positionMarker.transform.position, LAUNCH_MODE.POINT);
 
         directLead.GetComponent<SlothRangeProjectile>()
-            .Launch(leadMarker.transform.position, LAUNCH_MODE.POINT);
+            .Launch(leadMarker.transform.position, LAUNCH_MODE.POINT);*/
+        Destroy(directPosition);
+        Destroy(directLead);
+        ///DEBUG
 
+        ///DEBUG
         arcPosition.GetComponent<SlothRangeProjectile>()
             .Launch(positionMarker.transform.position, LAUNCH_MODE.POINT);
 
         arcLead.GetComponent<SlothRangeProjectile>()
             .Launch(leadMarker.transform.position, LAUNCH_MODE.POINT);
+        //Destroy(arcLead);
+        //Destroy(arcPosition);
+        ///DEBUG
 
         //god this method sucks! Hopefully I'll go back and make it not garbage!
 

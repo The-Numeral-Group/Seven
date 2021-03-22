@@ -48,6 +48,9 @@ public class SlothRangeMarker : MonoBehaviour
         //if the marker is active
         if(state == MarkerState.ACTIVE && health != null)
         {
+            ///DEBUG
+            Debug.Log("SlothRangeMarker: hurting " + col.gameObject.name);
+            ///DEBUG
             //hurt whoever walked in
             health.takeDamage(strikeDamage);
 
@@ -63,6 +66,9 @@ public class SlothRangeMarker : MonoBehaviour
                 StopCoroutine(timer);
             }
             //grab whoever moved into the marker
+            ///DEBUG
+            Debug.Log("SlothRangeMarker: grabbing " + col.gameObject.name);
+            ///DEBUG
             timer = StartCoroutine(Grab(move));
 
             //switch to postactive so no-one else can be grabbed
@@ -74,6 +80,7 @@ public class SlothRangeMarker : MonoBehaviour
     projectiles*/
     public void OnActivateMarker()
     {
+        
         //stop any old timings in case this marker is being reset
         if(timer != null)
         {
@@ -89,7 +96,13 @@ public class SlothRangeMarker : MonoBehaviour
     IEnumerator MarkerTiming()
     {
         state = MarkerState.ACTIVE;
+        ///DEBUG
+        Debug.Log("SlothRangeMarker: Marker now ACTIVE");
+        ///DEBUG
         yield return new WaitForSeconds(strikeDuration);
+        ///DEBUG
+        Debug.Log("SlothRangeMarker: Marker now GRABACTIVE");
+        ///DEBUG
         state = MarkerState.GRABACTIVE;
 
         if(grabDuration >= 0)
@@ -99,7 +112,7 @@ public class SlothRangeMarker : MonoBehaviour
         }
         else
         {
-            Debug.Log("SlothRangeMarker: infinite duration marker requested. Currently doens't end" + 
+            Debug.Log("SlothRangeMarker: infinite duration marker requested. Currently doesn't end" + 
                 " when Sloth dies, that's being worked on.");
         }
     }
@@ -108,13 +121,15 @@ public class SlothRangeMarker : MonoBehaviour
     IEnumerator Grab(ActorMovement mov)
     {
         //calculate how the victim needs to be dragged
-        Vector2 dragDir = new Vector2(0, 0);
-        //lock actor movement and move them onto the marker
-        mov.LockActorMovement(grabAttackDuration);
-        mov.DragActor(dragDir);
+        //Vector2 dragDir = mov.gameObject.transform.position - this.gameObject.transform.position;
+        //new Vector2(0, 0);
 
-        //automatically conclude the marker after a few seconds
-        yield return new WaitForSeconds(grabAttackDuration);
+        //lock actor movement and move them onto the marker
+        //mov.DragActor(dragDir);
+        yield return mov.LockActorMovement(grabAttackDuration);
+        ///DEBUG
+        Debug.Log("SlothRangeMarker: grab ended");
+        ///DEBUG
 
         ConcludeMarker();
     }
