@@ -56,6 +56,7 @@ public class SlothActor : Actor
         sloth = this.gameObject.GetComponent<Actor>();
 
         //add sloth sin here
+        player.myEffectHandler.AddEffect(new SlothSin());
 
         //start sloth's dialogue. Sloth's activator is passed as the on-end delegate, and movement
         //remains unlocked so the player can choose to leave
@@ -87,6 +88,7 @@ public class SlothActor : Actor
         activated = true;
 
         //remove sloth sin here
+        player.myEffectHandler.SubtractEffectByType<SlothSin>();
 
         //create an observer and places it on the player
         observer = player.gameObject.AddComponent<SlothPlayerObserver>();
