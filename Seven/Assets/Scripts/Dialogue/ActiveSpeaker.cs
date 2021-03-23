@@ -36,7 +36,8 @@ public class ActiveSpeaker : MonoBehaviour
     bool isTalking;
 
     //Initialize monobehaviour fields
-    void Start()
+    //void Start()
+    void OnEnable()
     {
         if (this.gameObject.CompareTag("Player"))
         {
