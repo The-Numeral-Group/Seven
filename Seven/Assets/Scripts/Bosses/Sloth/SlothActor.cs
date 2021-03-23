@@ -23,6 +23,9 @@ public class SlothActor : Actor
         " Sloth attacks them for not standing still.")]
     public float attackDelay = 6.0f;
 
+    [Tooltip("The Menu Manager that runs Sloth's dialogue")]
+    public MenuManager menuManager;
+
     //How many attacks Sloth has done
     private int attackCount = 0;
 
@@ -52,10 +55,20 @@ public class SlothActor : Actor
         player = GameObject.FindWithTag("Player")?.GetComponent<Actor>();
         sloth = this.gameObject.GetComponent<Actor>();
 
+        //add sloth sin here
+
+        //start sloth's dialogue. Sloth's activator is passed as the on-end delegate, and movement
+        //remains unlocked so the player can choose to leave
+        MenuManager.DIALOGUE_MENU.StartDialogue(
+            this.gameObject, 
+            new DialogueMenu.TestDelegate( () => ActivateSloth() ), 
+            false
+        );
+
         ///DEBUG
         /*sloth starts by talking with the player, but that hasn't been built yet (2/27/21), so
         it's just gonna start throwing hands immediately*/
-        ActivateSloth();
+        //ActivateSloth();
         ///DEBUG
     }
 
@@ -72,6 +85,8 @@ public class SlothActor : Actor
     {
         //we are officially throwing hands
         activated = true;
+
+        //remove sloth sin here
 
         //create an observer and places it on the player
         observer = player.gameObject.AddComponent<SlothPlayerObserver>();

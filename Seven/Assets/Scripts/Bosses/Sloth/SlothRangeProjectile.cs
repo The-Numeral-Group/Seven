@@ -102,6 +102,9 @@ public class SlothRangeProjectile : BasicProjectile
 
             //once calculated, move in the sine'd direction
             mover.MoveActor(rotateHelp(movementDirection, rotArc));
+            ///DEBUG
+            Debug.DrawLine(this.gameObject.transform.position, this.gameObject.transform.position * 1.01f, Color.red, 30f); 
+            ///DEBUG
         }
     }
 
