@@ -1050,8 +1050,8 @@ MonoBehaviour:
   interactIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
   indicatorOffset: {x: 0, y: 5}
   speakerName: GhostKnight
-  yarnStartNode: GhostKnight.Opening.Dialogue1
-  yarnDialogue: {fileID: 2480198943629176163, guid: 20b830528a7b342418f2c3c6cf81b4e1, type: 3}
+  yarnStartNode: GhostKnight.Opening.Dialogue
+  yarnDialogue: {fileID: 0}
   npcMode: 0
 --- !u!58 &688263419
 CircleCollider2D:
@@ -1437,6 +1437,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2200475627425788176, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
+      propertyPath: dialogueFiles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2200475627425788176, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
+      propertyPath: dialogueFiles.Array.data[0]
+      value: 
+      objectReference: {fileID: 2480198943629176163, guid: 20b830528a7b342418f2c3c6cf81b4e1, type: 3}
     - target: {fileID: 2200475627425788187, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
       propertyPath: m_Name
       value: DialogueMenu
