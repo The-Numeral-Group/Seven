@@ -14,9 +14,6 @@ public class ActiveSpeaker : Interactable
     //The starting string used to initiate the yarn node
     [Tooltip("The starting string used to initiate the yarn node. Should be the name of the node.")]
     public string yarnStartNode = "Start";
-    //The actual yarn diablogue file the speaker will read from
-    [Tooltip("The yarn file the speaker will read from.")]
-    public YarnProgram yarnDialogue;
     //A reference to the current activepseaker object which is talking.
     public static ActiveSpeaker ACTIVE_NPC { get; set; }
     //Set whether this speaker is being interacted with as an npc.
