@@ -393,6 +393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingMaxHealth: 5
   damageResistance: 0
+  invincibilityDuration: 1
 --- !u!61 &315102719
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -449,12 +450,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd89403b09c1874caac8312df28ef1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactIndicatorPrefab: {fileID: 0}
+  indicatorOffset: {x: 0, y: 5}
   speakerName: SLOTH TEST
   yarnStartNode: SlothStart
-  yarnDialogue: {fileID: 2480198943629176163, guid: 7031609589a5f33b88b54db2a3f39b2c, type: 3}
   npcMode: 0
-  offset: {x: 0, y: 5}
-  chatIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
 --- !u!114 &315102722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1007,6 +1007,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2087267177}
     m_Modifications:
+    - target: {fileID: 2200475627425788176, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
+      propertyPath: dialogueFiles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2200475627425788176, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
+      propertyPath: dialogueFiles.Array.data[0]
+      value: 
+      objectReference: {fileID: 2480198943629176163, guid: 7031609589a5f33b88b54db2a3f39b2c, type: 3}
     - target: {fileID: 2200475627425788187, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
       propertyPath: m_Name
       value: DialogueMenu

@@ -23,8 +23,8 @@ public class SlothActor : Actor
         " Sloth attacks them for not standing still.")]
     public float attackDelay = 6.0f;
 
-    [Tooltip("The Menu Manager that runs Sloth's dialogue")]
-    public MenuManager menuManager;
+    //[Tooltip("The Menu Manager that runs Sloth's dialogue")]
+    //public MenuManager menuManager;
 
     //How many attacks Sloth has done
     private int attackCount = 0;
@@ -54,6 +54,10 @@ public class SlothActor : Actor
         //get components for ability references
         player = GameObject.FindWithTag("Player")?.GetComponent<Actor>();
         sloth = this.gameObject.GetComponent<Actor>();
+
+        //turn off sloth's ability to get hurt while it's talking
+        //negative values are the "forever" value
+        this.myHealth.SetVulnerable(false, -10f);
 
         //add sloth sin here
         player.myEffectHandler.AddEffect(new SlothSin());
@@ -89,6 +93,10 @@ public class SlothActor : Actor
 
         //remove sloth sin here
         player.myEffectHandler.SubtractEffectByType<SlothSin>();
+
+        //turn on sloth's ability to get hurt while it's talking
+        //negative values are the "forever" value
+        this.myHealth.SetVulnerable(true, -10f);
 
         //create an observer and places it on the player
         observer = player.gameObject.AddComponent<SlothPlayerObserver>();
