@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using Yarn.Unity;
 
 //In the dialogue canvas, make sure the screen space is set to camera, and add w/e camera to it.
@@ -16,6 +17,9 @@ public class DialogueMenu : BaseUI
     //reference to the chat bubble. Currently set to the inspector. Game will crash if null;
     [Tooltip("Reference to the canvas element which hold the chat bubble.")]
     public RectTransform chatBubble;
+    //container for all the yarn dialogue files that need to be loaded into yarnspinner
+    [Tooltip("Drag whatever yarn files the scene requires into this container")]
+    public List<YarnProgram> dialogueFiles;
     //reference to the text passed in from yarnspinner.
     public string untrimmedText {get; set;}
 
@@ -24,6 +28,15 @@ public class DialogueMenu : BaseUI
 
     public delegate void TestDelegate();
     TestDelegate dialogueDelegateCallback;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        foreach(YarnProgram yarnFile in dialogueFiles)
+        {
+            dialogueRunner.Add(yarnFile);
+        }
+    }
 
     //Initialize non inspector set fields.
     void Start()

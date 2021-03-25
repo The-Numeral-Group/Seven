@@ -37,17 +37,6 @@ public class ActiveSpeaker : Interactable
         else
         {
             spriteInfo = GetComponent<SpriteRenderer>();
-            colliderInfo.enabled = false;
-            if(MenuManager.DIALOGUE_MENU && yarnDialogue != null)
-            {
-                MenuManager.DIALOGUE_MENU.dialogueRunner.Add(yarnDialogue);
-            }
-            else
-            {
-                Debug.LogWarning("ActiveSpeaker: The following speaker failed to load their yarnDialogue: " + 
-                this.gameObject.name);
-            }
-            colliderInfo.enabled = true;
         }
     }
 
