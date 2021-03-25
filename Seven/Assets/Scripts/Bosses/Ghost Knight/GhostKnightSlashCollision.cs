@@ -12,7 +12,8 @@ public class GhostKnightSlashCollision : MonoBehaviour
         
     }
 
-    void OnCollisionEnter2D(Collision2D collider)
+    //void OnCollisionEnter2D(Collision2D collider)
+    void OnTriggerEnter2D(Collider2D collider)
     {
         // Only collide with player
         if (collider.gameObject.tag == "Player")

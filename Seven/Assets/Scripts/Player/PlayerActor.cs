@@ -6,6 +6,7 @@ public class PlayerActor : Actor
 {
     //Flag to notify if the player is talking with another actor
     public bool isTalking { get; set; }
+
     //Reference to the PlayerInput cokponent for input map swapping.
     [HideInInspector]
     public PlayerInput playerInput;
@@ -20,21 +21,32 @@ public class PlayerActor : Actor
     protected override void Start()
     {
         base.Start();
-        //Setting to true for testing
-        this.myHealth.vulnerable = true;
         playerInput = GetComponent<PlayerInput>();
+    }
+
+    public override void DoActorDeath()
+    {
+        MenuManager.StartGameOver();
+        if (MenuManager.BATTLE_UI)
+        {
+            MenuManager.BATTLE_UI.StopAllAudio();
+            MenuManager.BATTLE_UI.Hide();
+        }
+        this.enabled = false;
+        //this.gameObject.SetActive(false);
     }
 
     /*Engages the dialogue sequence. Disables the players health component, and sets its
     movement direction to 0. Essentially locks the player in place and makes them invulnerable.
     Requires ActiveSpeaker to have been set.*/
-    public void StartTalking()
+    public void StartTalking(ActiveSpeaker speaker)
     {
         if (isTalking)
         {
             Debug.LogWarning("Player Actor: Player is already talking.");
             return;
         }
+        ActiveSpeaker.ACTIVE_NPC = speaker;
         MenuManager.DIALOGUE_MENU.StartDialogue();
     }
 
@@ -68,6 +80,7 @@ public class PlayerActor : Actor
     public override void DoActorDamageEffect(float damage)
     {
         // Play TakeDamage Audio
+        base.DoActorDamageEffect(damage);
         mySoundManager.PlaySound("TakeDamage");
     }
 }

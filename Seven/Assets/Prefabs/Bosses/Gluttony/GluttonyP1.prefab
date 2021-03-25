@@ -18,11 +18,13 @@ GameObject:
   - component: {fileID: 5187959127492769965}
   - component: {fileID: 5187959127492769966}
   - component: {fileID: 5187959127492769967}
+  - component: {fileID: 1890911333164838833}
   - component: {fileID: 5187959127492769960}
   - component: {fileID: 5187959127492769961}
   - component: {fileID: 5187959127492769962}
-  - component: {fileID: 5187959127492769963}
   - component: {fileID: 5252541960059701746}
+  - component: {fileID: -4852536698293596431}
+  - component: {fileID: 4106624215320319982}
   m_Layer: 11
   m_Name: GluttonyP1
   m_TagString: Boss
@@ -40,7 +42,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8365824686269200060}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -84,7 +87,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 9e083c8e8496ccb8d89a1e814aee4f7f, type: 3}
+  m_Sprite: {fileID: -3996998178533338150, guid: ea8cfebb044d19847872b52070c0fde6, type: 3}
   m_Color: {r: 1, g: 1, b: 0.99607843, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -131,7 +134,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 2.02
 --- !u!114 &5187959127492769954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingMaxHealth: 5
   damageResistance: 0
+  invincibilityDuration: 1
 --- !u!114 &5187959127492769955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,9 +219,28 @@ MonoBehaviour:
     m_keys: []
     m_values: []
   Crush: {fileID: 5187959127492769962}
-  Bite: {fileID: 5187959127492769963}
+  Bite: {fileID: 1890911333164838833}
   PhaseZeroSpecial: {fileID: 5187959127492769960}
   Projectile: {fileID: 5187959127492769961}
+--- !u!114 &1890911333164838833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187959127492769972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c5b76816c13cd4fbc9a264c1a9a897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 10
+  abilityName: Bite
+  invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 0}
+  duration: 5
+  weaponPositionScale: {x: 0.1, y: 0.1}
+  damagePerHitbox: 01000000
 --- !u!114 &5187959127492769960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,25 +305,6 @@ MonoBehaviour:
   jumpDuration: 1
   trackDuration: 2
   crushDelay: 1
---- !u!114 &5187959127492769963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5187959127492769972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d72b86d80561794abb1150e88043568, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldownPeriod: 10
-  abilityName: Bite
-  invokeBlankWhenBadArguments: 1
-  startingWeaponObject: {fileID: 9164763553348272604, guid: 156b463534977e54199a7c7bdbc713c6, type: 3}
-  duration: 5
-  weaponPositionScale: {x: 2, y: 2}
-  damagePerHitbox: 
 --- !u!114 &5252541960059701746
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,3 +318,97 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds: []
+--- !u!95 &-4852536698293596431
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187959127492769972}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9c158386693e83d43b4e9cb1783415d4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4106624215320319982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187959127492769972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae9fb71561093b429dc04ea6675aa09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: -4852536698293596431}
+--- !u!1001 &8590089863150809193
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5187959127492769959}
+    m_Modifications:
+    - target: {fileID: 229472532872120021, guid: fbbc826f86fe7d5458672607f1ca19b5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 229472532872120021, guid: fbbc826f86fe7d5458672607f1ca19b5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 229472532872120021, guid: fbbc826f86fe7d5458672607f1ca19b5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 229472532872120021, guid: fbbc826f86fe7d5458672607f1ca19b5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 229472532872120021, guid: fbbc826f86fe7d5458672607f1ca19b5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 229472532872120021, guid: fbbc826f86fe7d5458672607f1ca19b5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 229472532872120021, guid: fbbc826f86fe7d5458672607f1ca19b5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 229472532872120021, guid: fbbc826f86fe7d5458672607f1ca19b5, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 229472532872120021, guid: fbbc826f86fe7d5458672607f1ca19b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 229472532872120021, guid: fbbc826f86fe7d5458672607f1ca19b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 229472532872120021, guid: fbbc826f86fe7d5458672607f1ca19b5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5347945705844013366, guid: fbbc826f86fe7d5458672607f1ca19b5, type: 3}
+      propertyPath: m_Name
+      value: Bite
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fbbc826f86fe7d5458672607f1ca19b5, type: 3}
+--- !u!4 &8365824686269200060 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 229472532872120021, guid: fbbc826f86fe7d5458672607f1ca19b5, type: 3}
+  m_PrefabInstance: {fileID: 8590089863150809193}
+  m_PrefabAsset: {fileID: 0}

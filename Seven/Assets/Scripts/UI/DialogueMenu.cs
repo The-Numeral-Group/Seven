@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using Yarn.Unity;
 
 //In the dialogue canvas, make sure the screen space is set to camera, and add w/e camera to it.
@@ -16,6 +17,9 @@ public class DialogueMenu : BaseUI
     //reference to the chat bubble. Currently set to the inspector. Game will crash if null;
     [Tooltip("Reference to the canvas element which hold the chat bubble.")]
     public RectTransform chatBubble;
+    //container for all the yarn dialogue files that need to be loaded into yarnspinner
+    [Tooltip("Drag whatever yarn files the scene requires into this container")]
+    public List<YarnProgram> dialogueFiles;
     //reference to the text passed in from yarnspinner.
     public string untrimmedText {get; set;}
 
@@ -24,6 +28,15 @@ public class DialogueMenu : BaseUI
 
     public delegate void TestDelegate();
     TestDelegate dialogueDelegateCallback;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        foreach(YarnProgram yarnFile in dialogueFiles)
+        {
+            dialogueRunner.Add(yarnFile);
+        }
+    }
 
     //Initialize non inspector set fields.
     void Start()
@@ -64,6 +77,7 @@ public class DialogueMenu : BaseUI
             }
             dialogueDelegateCallback = null;
         }
+        ActiveSpeaker.ACTIVE_NPC = null;
         var player = GameObject.Find("/Player");
         if (!player)
         {
@@ -110,7 +124,9 @@ public class DialogueMenu : BaseUI
 
     /*Function to be utilized outside of class to start dialogue. Requires a gameobject to be passed in.
     The gameobject should reference a scene element which has n AcitveSpeaker component. the passed in method
-    will be called once the dialogue finished*/
+    will be called once the dialogue finished
+    IMPORTANT NOTE: THE ONLY TIME NO ARGUMENTS SHOULD BE PASSED IN IS WHEN THE PLAYER INITIATES
+    DIALOGUE MANUALLY THROUGH PRESSING ATTACK NEAR AN NPC WHEN THE NPC IS IN NPCMODE.*/
     public void StartDialogue(GameObject npc = null, TestDelegate method = null, bool lockValue = true)
     {
         if (MenuManager.CanStartDialogue())
@@ -122,10 +138,18 @@ public class DialogueMenu : BaseUI
                 {
                     Debug.LogWarning("DialogueMenu: gameobject passed to StartDialogue() does not contain" + 
                         " an ActiveSpeaker component");
+                    MenuManager.CURRENT_MENU = null;
                     return;
                 }
                 ActiveSpeaker.ACTIVE_NPC = newSpeaker;
                 dialogueDelegateCallback = method;
+            }
+            else if (!ActiveSpeaker.ACTIVE_NPC)
+            {
+                Debug.LogWarning("DialogMenu: No active speaker has been set. If StartDialogue is " +
+                "being called manually, ensure to pass in whatever gameobject you want as the speaker.");
+                MenuManager.CURRENT_MENU = null;
+                return;
             }
             ActiveSpeaker.ACTIVE_NPC.SetIsTalking(true);
             SetupPlayer(lockValue);
@@ -137,20 +161,23 @@ public class DialogueMenu : BaseUI
     to determine if the player can move during the dialogue sequence.*/
     public void SetupPlayer(bool lockValue)
     {
-        var player = GameObject.Find("/Player");
+        var player = GameObject.FindGameObjectWithTag("Player");
         if (!player)
         {
             Debug.LogWarning("MenuManager: StartDialogue() cannot find the player object.");
             return;
         }
         PlayerActor pActor = player.GetComponent<PlayerActor>();
-        if (lockValue)
+        if (pActor)
         {
-            pActor.playerInput.SwitchCurrentActionMap("UI");
-            pActor.myMovement.MoveActor(Vector2.zero);
+            if (lockValue)
+            {
+                pActor.playerInput.SwitchCurrentActionMap("UI");
+                pActor.myMovement.MoveActor(Vector2.zero);
+            }
+            pActor.isTalking = true;
+            pActor.myHealth.enabled = false;
         }
-        pActor.isTalking = true;
-        pActor.myHealth.enabled = false;
     }
 
     //override baseui hide method.

@@ -53,7 +53,6 @@ public class GluttonyActor : Actor
         }
 
         gluttony = this.gameObject.GetComponent<GluttonyActor>();
-        gluttony.myHealth.vulnerable = true;
         gluttonyAnimHandler = this.myAnimationHandler as GluttonyP1AnimationHandler;
     }
 
@@ -65,6 +64,7 @@ public class GluttonyActor : Actor
 
     public override void DoActorDeath()
     {
+        gluttonyAnimHandler.ResetLocalRotation();
         //base.DoActorDeath();
         System.Tuple<Actor, System.Action<Actor>> p2 = 
             new System.Tuple<Actor, System.Action<Actor>>(gluttony, null);
@@ -77,7 +77,6 @@ public class GluttonyActor : Actor
         {
             //Moved the functions in update to walk to avoid the stuttering that occurs on ground pound.
             case State.WALK:
-                
                 if (currAbility && !currAbility.getIsFinished())
                 {
                     break;
@@ -115,7 +114,6 @@ public class GluttonyActor : Actor
                 var bite = this.myAbilityInitiator.abilities[AbilityRegister.GLUTTONY_BITE];
                 Debug.Log("In Bite");
                 currAbility = bite;
-                gluttonyAnimHandler.Animator.SetTrigger("Bite");
                 bite.Invoke(ref gluttony, player);
                 specialAttackCounter++;
 
@@ -160,7 +158,7 @@ public class GluttonyActor : Actor
         var travelDirection = new Vector2(directionToPlayer.x, directionToPlayer.y) + playerDirection;
 
         this.myMovement.MoveActor(travelDirection.normalized);
-        gluttonyAnimHandler.AnimateWalk(true, travelDirection);
+        gluttonyAnimHandler.AnimateWalk(true, directionToPlayer);
     }
 
     State decideNextState()
@@ -176,7 +174,7 @@ public class GluttonyActor : Actor
         //var biteExists = this.myAbilityInitiator.abilityDict[AbilityRegister.GLUTTONY_BITE]?.getUsable();
         //bool biteReady = abilities.TryGetValue(AbilityRegister.GLUTTONY_BITE) ? abilities[AbilityRegister.GLUTTONY_BITE].getUsable() : false
 
-        if(distanceToPlayer >= crushRange)
+        if((projReady || crushReady) && distanceToPlayer >= crushRange)
         {
             int weight = Random.Range(0, 3);
             /*I (Ram) am aware below is bad coding practice. It is in place as a temporary measure

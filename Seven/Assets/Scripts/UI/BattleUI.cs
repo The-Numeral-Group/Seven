@@ -8,6 +8,10 @@ public class BattleUI : BaseUI
     //reference to the players health bar slide. should be set through inspector.
     [Tooltip("Reference to the players health bar slider ui object.")]
     public Slider playerSlider;
+    //reference to the player position scriptable object.
+    //This is here for TemporaryDeathCheckFunction.
+    //This will be moved once we use different way to check death.
+    public VectorValue playerPos;
     ///////
     class BossBar
     {
@@ -25,16 +29,23 @@ public class BattleUI : BaseUI
     [Tooltip("Reference to the prefab used to create boss health bars.")]
     public GameObject bossBar;
     List<BossBar> bossList;
+    //reference to the boss position scriptable object.
+    //This is here for TemporaryDeathCheckFunction.
+    //This will be moved once we use different way to check death.
+    public VectorValue bossPos;
     ///////
     //reference to the player
     ActorHealth playerHealth;
-    //reference to the player object;
+    //reference to the player actor;
     Actor playerActor;
+    //reference to the player gameobject;
+    GameObject playerObject;
     //reference to all the audio sources;
     private AudioSource[] allAudioSources;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         bossList = new List<BossBar>();
     }
     void Start()
@@ -46,11 +57,12 @@ public class BattleUI : BaseUI
     {
         UpdateReferences();
         UpdateSlider(ref playerHealth, ref playerSlider);
-        foreach(var bBar in bossList)
+        for(int i = 0; i < bossList.Count; i++)
         {
+            BossBar bBar = bossList[i];
             UpdateSlider(ref bBar.bossHealth, ref bBar.bossSlider);
             //IMPORTANT: Remove this in the future
-            TemporaryDeathCheckFunction(bBar);
+            TemporaryDeathCheckFunction(bBar, ref i);
         }
     }
 
@@ -64,6 +76,7 @@ public class BattleUI : BaseUI
         }
         else
         {
+            playerObject = pObject;
             //Object with player tag is expected to have actor component.
             playerActor = pObject.GetComponent<Actor>();
         }
@@ -136,7 +149,7 @@ public class BattleUI : BaseUI
 
     //This function should be removed once we are done with stopping the game one player death
     //for testing purposes.
-    void TemporaryDeathCheckFunction(BossBar bBar)
+    void TemporaryDeathCheckFunction(BossBar bBar,ref int index)
     {
         if (!bBar.bossHealth || !playerHealth)
         {
@@ -145,20 +158,17 @@ public class BattleUI : BaseUI
         if (bBar.bossHealth.currentHealth == 0f)
         {
             StopAllAudio();
-            SceneManager.LoadScene("Hub");
-
-        }
-        if (playerHealth.currentHealth == 0f)
-        {
-            StopAllAudio();
-            MenuManager.StartGameOver();
-            this.gameObject.SetActive(false);
+            bossList.Remove(bBar);
+            Destroy(bBar.bossContainer);
+            index--;
+            playerActor.myDataManager.updateActorPosition(playerObject.transform.position);
         }
     }
 
     // Stop all the audio when game is over.
     // Source: https://answers.unity.com/questions/194110/how-to-stop-all-audio.html
-    void StopAllAudio()
+    //I made the function public
+    public void StopAllAudio()
     {
         allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
         foreach (AudioSource audioS in allAudioSources) {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*
 GhostKnightActor's main function is to run the State Machine that powers
@@ -69,11 +70,17 @@ public class GhostKnightActor : Actor
         special = this.myAbilityInitiator.abilities[AbilityRegister.GHOSTKNIGHT_SPECIAL];
 
         ghostKnight = this.gameObject.GetComponent<GhostKnightActor>();
-        ghostKnight.myHealth.vulnerable = true;
         currentState = State.WALK;
         currAbility = null;
 
         StartCoroutine(introDelayStart());
+    }
+
+    //Function that is called when GhostKnight dies. Starts the next cutscene.
+    public override void DoActorDeath()
+    {
+        GetComponent<ActorDataManager>().updateActorPosition(transform.position);
+        SceneManager.LoadScene("Tutorial_Cutscene1");
     }
 
     // When the game starts, the ghost knight will try to cast any attack with movementDirection
@@ -101,6 +108,12 @@ public class GhostKnightActor : Actor
                 decideNextState();
                 EvaluateState(currentState);
             }
+        }
+        if(myHealth.currentHealth == 0)
+        {
+            System.Tuple<Actor, System.Action<Actor>> ghostKnightIdle =
+                new System.Tuple<Actor, System.Action<Actor>>(ghostKnight, null);
+            gameObject.SendMessage("NextPhase", ghostKnightIdle);
         }
     }
 
@@ -223,6 +236,7 @@ public class GhostKnightActor : Actor
 
     public override void DoActorDamageEffect(float damage)
     {
+        base.DoActorDamageEffect(damage);
         // Play TakeDamage Audio
         mySoundManager.PlaySound("TakeDamage");
     }

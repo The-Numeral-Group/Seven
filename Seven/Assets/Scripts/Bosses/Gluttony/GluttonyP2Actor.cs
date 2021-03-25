@@ -42,13 +42,17 @@ public class GluttonyP2Actor : Actor
         }
 
         gluttony = this.gameObject.GetComponent<Actor>();
-        gluttony.myHealth.vulnerable = true;
         gluttonyAnimHandler = this.myAnimationHandler as GluttonyP1AnimationHandler; 
     }
 
     void FixedUpdate()
     {
         EvaluateState(currentState);
+    }
+
+    public override void DoActorDeath()
+    {
+        this.gameObject.SetActive(false);
     }
 
     //Function operates as the state machine.
@@ -109,7 +113,7 @@ public class GluttonyP2Actor : Actor
         var travelDirection = new Vector2(directionToPlayer.x, directionToPlayer.y) + playerDirection;
 
         this.myMovement.MoveActor(travelDirection.normalized);
-        gluttonyAnimHandler.AnimateWalk(true, travelDirection);
+        gluttonyAnimHandler.AnimateWalk(true, directionToPlayer);
     }
 
     /*The state logic for phase 2 gluttony. Uses weights to choose to either use the projectile

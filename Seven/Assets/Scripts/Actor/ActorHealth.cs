@@ -9,6 +9,7 @@ are floats now.*/
 
 public class ActorHealth : MonoBehaviour
 {
+    //reference to the actor in charge of this component
     protected Actor hostActor;
 
     //Public Fields (Inspector Accessable)
@@ -17,19 +18,33 @@ public class ActorHealth : MonoBehaviour
     [SerializeField]
     [Range(0.0f, 1.0f)]
     public float damageResistance = 0.0f;
+    //How long the actor stays invulnerable for from taking a hit
+    [Range(0, 256)]
+    public int invincibilityDuration = 1;
 
     //Public Properties (Publicly Accessable)
+    //The actors maximum health
     public float maxHealth { get; set; }
+    //The actors current health
     public float currentHealth { get; set; }
-    public bool vulnerable { get; set; }
+    //The following variables will be used to handle invulnerability
+    //Whether or not the actor can be hit.
+    public bool vulnerable { get; protected set; }
+    //The amount of time remaining on the actors invulnerability.
+    float timeInvulnerable;
+    IEnumerator MakeVulnerablePointer;
 
-    private SpriteRenderer spriteRenderer;
+    //Reference to the objects sprite renderer
+    SpriteRenderer spriteRenderer;
+    Color hitColor;
 
     void Awake(){
         hostActor = this.GetComponent<Actor>();
         this.maxHealth = startingMaxHealth;
         this.currentHealth = this.maxHealth;
         this.vulnerable = true;
+        timeInvulnerable = 0f;
+        MakeVulnerablePointer = ExtendInvulnerability(invincibilityDuration, false);
         this.spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
     }
     
@@ -60,7 +75,8 @@ public class ActorHealth : MonoBehaviour
 
         //take the damage
         this.currentHealth -= damage;
-        StartCoroutine(FlashRed());
+        //StartCoroutine(FlashRed());
+        //StartCoroutine(MakeInvulnerableAfterDamage());
 
         //trigger actor damage effects
         this.gameObject.SendMessage("DoActorDamageEffect", damage);
@@ -77,10 +93,79 @@ public class ActorHealth : MonoBehaviour
     }
 
     // A visual indicator if actor has received damage.
-    private IEnumerator FlashRed()
+    IEnumerator FlashRed()
     {
-        spriteRenderer.color = Color.red;
+        hitColor.r = 1;
+        hitColor.g = 0;
+        hitColor.b = 0;
         yield return new WaitForSeconds(0.3f);
-        spriteRenderer.color = Color.white;
+        hitColor.r = 1;
+        hitColor.g = 1;
+        hitColor.b = 1;
+    }
+
+    /*Coroutine makes the sprite blink, makes the actor invulnerable for a period, and makes the
+    actor's sprite flash red on the initial hit.*/
+    public IEnumerator MakeInvulnerableAfterDamage()
+    {
+        float blinkSpeed = 0.05f;
+        SetVulnerable(false, invincibilityDuration);
+        if (!spriteRenderer)
+        {
+            Debug.LogWarning("ActorHealth: " + this.gameObject.name + " Does not have a spriterenderer.");
+            //https://answers.unity.com/questions/561116/stopping-a-coroutine-within-same-function.html
+            yield break;
+        }
+        hitColor = spriteRenderer.color;
+        StartCoroutine(FlashRed());
+        for (float i = 0; i < invincibilityDuration; i += blinkSpeed * 2)
+        {
+            hitColor.a = 0;
+            spriteRenderer.color = hitColor;
+            yield return new WaitForSeconds(blinkSpeed);
+            hitColor.a = 1;
+            spriteRenderer.color = hitColor;
+            yield return new WaitForSeconds(blinkSpeed);
+        }
+    }
+
+    /*Used to keep track of a players accumulated invulnerability time. This will allow us to
+    have multiple calls add to an objects invulnerability time.*/
+    IEnumerator ExtendInvulnerability(float duration, bool value)
+    {
+        timeInvulnerable = duration;
+        for (float i = 0; i < duration; i += 0.01f)
+        {
+            yield return new WaitForSeconds(0.01f);
+            timeInvulnerable -= 0.01f;
+        }
+        this.vulnerable = !value;
+        timeInvulnerable = 0f;
+    }
+
+    /*Used to set the value of invulnerable, as well as for how long. 
+    After the duration the objects vulnerability state will be set 
+    to the opposite w/e boolean state was initially passed in. 
+    E.g. if you pass in false, for duration seconds the object is invulnerable, 
+    then it it wil become vulnerable.
+    Pass in a negative value for duration for an object 
+    to remain in that state with no duration to reset it*/
+    public void SetVulnerable(bool value, float duration, bool accumulateInvincibility = true)
+    {
+        this.vulnerable = value;
+        StopCoroutine(MakeVulnerablePointer);
+        if(duration < 0)
+        {
+            timeInvulnerable = 0f;
+        }
+        else
+        {
+            if (accumulateInvincibility)
+            {
+                duration += timeInvulnerable;
+            }
+            MakeVulnerablePointer = ExtendInvulnerability(duration, value);
+            StartCoroutine(MakeVulnerablePointer);
+        }
     }
 }

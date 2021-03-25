@@ -14,6 +14,8 @@ public class Actor : MonoBehaviour
     public ActorMovement myMovement{ get; protected set; }
     public ActorAnimationHandler myAnimationHandler { get; protected set; }
     public ActorSoundManager mySoundManager { get; protected set; }
+    public ActorDataManager myDataManager { get; protected set; }
+
     //turned this into a property 'cause why not?
     public Transform faceAnchor{ get; protected set; }
 
@@ -21,8 +23,9 @@ public class Actor : MonoBehaviour
     {
         //all of these need to be in Start to make sure they exist
 
-        //Alternatively I (Ram) think we can create the face anchor when the actor gets instatiated into the scene rather than having the face anchor already exist in the prefab.
-        //pros and cons to both sides, so whatever you all prefer between the two I am down for.
+        /*Alternatively I (Ram) think we can create the face anchor when the actor gets instatiated 
+        into the scene rather than having the face anchor already exist in the prefab.
+        pros and cons to both sides, so whatever you all prefer between the two I am down for.*/
         this.faceAnchor = this.gameObject.transform.Find("FaceAnchor");
         ///DEBUG
         if(!this.faceAnchor)
@@ -40,12 +43,14 @@ public class Actor : MonoBehaviour
         this.myMovement = this.gameObject.GetComponent<ActorMovement>();
         this.myAnimationHandler = this.gameObject.GetComponent<ActorAnimationHandler>();
         this.mySoundManager = this.gameObject.GetComponent<ActorSoundManager>();
+        this.myDataManager = this.gameObject.GetComponent<ActorDataManager>();
     }
 
     public virtual void DoActorDamageEffect(float damage)
     {
         //Do anything that should happen on taking damage
         //no effect by default
+        StartCoroutine(myHealth.MakeInvulnerableAfterDamage());
     }
 
     public virtual void DoActorDeath()

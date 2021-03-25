@@ -22,6 +22,8 @@ public class GluttonySpecialP2 : ActorAbilityFunction<Actor, int>
     IEnumerator charge;
     //reference to the animationd handler. must be cast as gluttony animation handler.
     protected GluttonyP1AnimationHandler gluttonyAnimationHandler;
+    //reference to the effector;
+    GameObject gluttonyEffector;
 
     //Initialize member variables
     void Awake()
@@ -40,6 +42,26 @@ public class GluttonySpecialP2 : ActorAbilityFunction<Actor, int>
         else
         {
             Debug.LogWarning("GluttonySpecialP2: does not have access to a camera that can shake");
+        }
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.name == "GluttonyEffector")
+            {
+                gluttonyEffector = child.gameObject;
+            }
+            foreach(Transform grandChild in child.transform)
+            {
+                if (grandChild.gameObject.name == "GluttonyEffector")
+                {
+                    gluttonyEffector = grandChild.gameObject;
+                    Debug.Log("Found Gluttony Effector");
+                    break;
+                }
+            }
+            if (gluttonyEffector)
+            {
+                break;
+            }
         }
     }
 
@@ -64,6 +86,10 @@ public class GluttonySpecialP2 : ActorAbilityFunction<Actor, int>
     ability*/
     protected override int InternInvoke(params Actor[] args)
     {
+        if (gluttonyEffector)
+        {
+            gluttonyEffector.SetActive(false);
+        }
         track = TrackTarget(args[0]);
         charge = Charge();
         stopLock = this.user.myMovement.LockActorMovement(chargeDelay + 30f);
@@ -102,6 +128,10 @@ public class GluttonySpecialP2 : ActorAbilityFunction<Actor, int>
     {
         if (!isFinished)
         {
+            if (gluttonyEffector)
+            {
+                gluttonyEffector.SetActive(true);
+            }
             cam.Shake(2.0f, 0.2f); 
             //StopAllCoroutines(); cannot dfo stop all coroutines cause it will stop the cooldown coroutine.
             StopCoroutine(stopLock);

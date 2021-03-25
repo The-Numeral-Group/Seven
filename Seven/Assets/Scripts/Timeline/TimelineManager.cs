@@ -6,6 +6,29 @@ using UnityEngine.SceneManagement;
 public class TimelineManager : MonoBehaviour
 {
     public PlayableDirector director;
+
+    public bool loop = true;
+
+    public void loopFromStartTimeline()
+    {
+        if(loop)
+        {
+            director.time = director.initialTime;
+        }
+    }
+
+    public void loopfromSpecificTimeline(float time)
+    {
+        if(loop)
+        {
+            director.time = (double)time;
+        }
+    }
+
+    public void setLoop(bool newLoop)
+    {
+        this.loop = newLoop;
+    }
     
     void pauseTimeline()
     {
@@ -17,9 +40,9 @@ public class TimelineManager : MonoBehaviour
         director.Resume();
     }
 
-    public void nextScene()
+    public void loadScene(string name)
     {
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene(name);
     }
 
 }
