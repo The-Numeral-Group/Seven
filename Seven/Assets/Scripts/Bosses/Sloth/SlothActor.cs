@@ -109,9 +109,9 @@ public class SlothActor : Actor
         observer.playerStandStill.AddListener(delegate()
         {
             ///DEBUG
-            Debug.Log("SlothActor: Sloth wants to attack because you wouldn't stand still");
+            //Debug.Log("SlothActor: Sloth wants to attack because you wouldn't stand still");
             ///DEBUG
-            //ActivateAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_PHYSICAL]);
+            ActivateAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_PHYSICAL]);
         });
 
         observer.playerMove = new UnityEvent();

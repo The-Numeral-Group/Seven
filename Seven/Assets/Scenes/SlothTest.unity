@@ -202,6 +202,7 @@ GameObject:
   - component: {fileID: 315102714}
   - component: {fileID: 315102722}
   - component: {fileID: 315102721}
+  - component: {fileID: 315102723}
   m_Layer: 0
   m_Name: Sloth
   m_TagString: Untagged
@@ -301,7 +302,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackLimit: 7
   attackDelay: 6
-  menuManager: {fileID: 0}
 --- !u!114 &315102713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,7 +330,7 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 0}
+  Close: {fileID: 315102723}
   Far: {fileID: 315102722}
   Special: {fileID: 315102720}
 --- !u!114 &315102715
@@ -474,6 +474,22 @@ MonoBehaviour:
   projectilePrefab: {fileID: 8453795746997737593, guid: dded6e64a33c076f0ade15325f5fa3ce, type: 3}
   projectileScale: {x: 1, y: 1}
   temporalOffset: 1
+--- !u!114 &315102723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315102708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4631d422eda431bfabf39454fba38fd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 4
+  abilityName: bubble
+  invokeBlankWhenBadArguments: 1
+  bubblePrefab: {fileID: 8518396903127315538, guid: ce6d4ac37ec061792bb6b8e356e1676e, type: 3}
 --- !u!1 &368882756
 GameObject:
   m_ObjectHideFlags: 0
