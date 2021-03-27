@@ -109,7 +109,7 @@ public class SlothActor : Actor
         observer.playerStandStill.AddListener(delegate()
         {
             ///DEBUG
-            //Debug.Log("SlothActor: Sloth wants to attack because you wouldn't stand still");
+            Debug.Log("SlothActor: Sloth wants to attack because you wouldn't stand still");
             ///DEBUG
             ActivateAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_PHYSICAL]);
         });
@@ -118,9 +118,9 @@ public class SlothActor : Actor
         observer.playerMove.AddListener(delegate()
         {
             ///DEBUG
-            //Debug.Log("SlothActor: Sloth wants to attack because you started moving");
+            Debug.Log("SlothActor: Sloth wants to attack because you started moving");
             ///DEBUG
-            ActivateAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_RANGE]);
+            //ActivateAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_RANGE]);
         });
     }
 
@@ -208,6 +208,10 @@ internal class SlothPlayerObserver : MonoBehaviour
 
         //assign the delegate to the hold action
         holdAction.performed += holdResult;*/
+
+        ///DEBUG
+        StartCoroutine(sillyMelee());
+        ///DEBUG
     }
 
     //should the player die, this component should cease to exist
@@ -231,6 +235,17 @@ internal class SlothPlayerObserver : MonoBehaviour
 
 
     }
+
+    ///DEBUG
+    IEnumerator sillyMelee()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(4f);
+            playerStandStill.Invoke();
+        }
+    }
+    ///DEBUG
 
     /*void OnMoveHold()
     {

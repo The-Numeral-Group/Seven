@@ -12,6 +12,9 @@ public class SlothMeleeMarker : MonoBehaviour
     [Tooltip("How long this marker should stay on the floor.")]
     public float duration = 1.5f;
 
+    //an activity bool to disable damage in certain circumstances
+    private bool active = true;
+
     //METHODS--------------------------------------------------------------------------------------
     void Start()
     {
@@ -24,10 +27,10 @@ public class SlothMeleeMarker : MonoBehaviour
     {
         var health = collided.gameObject.GetComponent<ActorHealth>();
 
-        if(health)
+        if(health && active)
         {
             health.takeDamage(damage);
-            Destroy(this.gameObject);
+            CleanupMarker();
         }
     }
 
@@ -35,6 +38,13 @@ public class SlothMeleeMarker : MonoBehaviour
     IEnumerator AutoDestroy(float time)
     {
         yield return new WaitForSeconds(time);
+        CleanupMarker();
+    }
+
+    //performs needed cleanup for destroying this marker
+    void CleanupMarker()
+    {
+        active = false;
         Destroy(this.gameObject);
     }
 }
