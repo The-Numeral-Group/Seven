@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Document Link: https://docs.google.com/document/d/1hNGzbUSRGBnxqqlc0ztYqDyWeweigJ8uDTbOfq1qaEk/edit?usp=sharing
 //This is a class for the gluttony projectile.
 //It inherits from actor movement.
 //Initiating its movement is meant to be called by other actors.

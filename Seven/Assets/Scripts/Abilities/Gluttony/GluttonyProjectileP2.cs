@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Document Link: https://docs.google.com/document/d/1x2zAkXZfjiNXhsavcsCb4VL7D_g-ZPsHEG31FBVKaD8/edit?usp=sharing
 /*GluttonyProjectileP2 derives from gluttyonProjectilep1
 Changes how the projectiles are spawned*/
 public class GluttonyProjectileP2 : GluttonyProjectileP1

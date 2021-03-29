@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Document Link: https://docs.google.com/document/d/1WwLc862osDnfgzAE6Zb5pBe4kzQcuw8EfCaoBy4uLkA/edit?usp=sharing
 /*Until we expand on gluttony bit further all it needs to do is 
 extend weapon ability and utilize its functions*/
 public class GluttonyBite : WeaponAbility

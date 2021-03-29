@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Document Link: https://docs.google.com/document/d/1Crmi63etPDsU12k80qN0zawpYNowEX4n0pogDkp6tHc/edit?usp=sharing
 /*Abstract class for objects that are interactable
 Make sure the collider attached to this object is set to be a trigger.*/
 [RequireComponent(typeof(Collider2D))]
@@ -55,6 +56,35 @@ public abstract class Interactable : MonoBehaviour
         }
     }
 
+    /*On trigger stay used to choose between multiple interactable objects within range of the player.
+    performs selection based on distance.*/
+    protected virtual void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            if (POTENTIAL_INTERACTABLE && POTENTIAL_INTERACTABLE != this)
+            {
+                float myDistanceToPlayer = Vector2.Distance(other.transform.position, this.transform.position);
+                float closestPotentialDistanceToPlayer = Vector2.Distance(other.transform.position, 
+                                                            POTENTIAL_INTERACTABLE.transform.position);
+                if (myDistanceToPlayer < closestPotentialDistanceToPlayer)
+                {
+                    ShowIndicator(true);
+                    SetPotentialInteractable(true, other.gameObject);
+                }
+                else
+                {
+                    ShowIndicator(false);
+                }
+            }
+            else if (!POTENTIAL_INTERACTABLE)
+            {
+                ShowIndicator(true);
+                SetPotentialInteractable(true, other.gameObject);
+            }
+        }
+    }
+
     //Instantiate the prefab and set its parent to the interactable object.
     protected virtual void SetupIndicator()
     {
@@ -84,15 +114,18 @@ public abstract class Interactable : MonoBehaviour
     on this object. Informs menu manager for where to place the interaction prompt using the player.*/
     protected virtual void SetPotentialInteractable(bool value, GameObject t)
     {
-        Interactable.POTENTIAL_INTERACTABLE = value ? this : null;
         if (value)
         {
+            Interactable.POTENTIAL_INTERACTABLE = this;
             MenuManager.INTERACT_MENU.target = t;
             MenuManager.INTERACT_MENU.uiElementOffset = new Vector2(1, -1);
             MenuManager.INTERACT_MENU.Show();
         }
-        else
+        else if (Interactable.POTENTIAL_INTERACTABLE == this) 
         {
+            //implicitly this is only reached if value is false as well.
+            Interactable.POTENTIAL_INTERACTABLE = null;
+            MenuManager.INTERACT_MENU.target = null;
             MenuManager.INTERACT_MENU.Hide();
         }
     }

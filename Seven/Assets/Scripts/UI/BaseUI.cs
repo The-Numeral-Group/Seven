@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+//Document link: https://docs.google.com/document/d/18lYFFhUkIy72RahBtPS0Hf00NOF2xylJcnMHjfXqQbE/edit?usp=sharing
 //Base abstract class for ui related classes.
 [RequireComponent(typeof(Canvas))]
 public abstract class BaseUI : MonoBehaviour

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Document Link: https://docs.google.com/document/d/1OSd_Tu3ap9WTKyEv2gH52gNybbYtP4i9kkHwoPZQnsA/edit?usp=sharing
 /*Activespeaker is a class you can attach to any actor you want to be able to talk to the player.
 DO NOT ATTACH THIS OBJECT TO THE PLAYER*/
 //Credit for this concept: https://www.youtube.com/watch?v=CJu0ObGDQHY&t=317s

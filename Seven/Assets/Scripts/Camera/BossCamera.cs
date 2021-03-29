@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Document Link: https://docs.google.com/document/d/1VN4WdN25J94vSFCjBBo6KT83T3Wy7_CpXnYDwjTfafo/edit?usp=sharing
 public class BossCamera : BaseCamera
 {
     //Vector used to apply offset if and only if the player is the sole focus of the camera.

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Document Link: https://docs.google.com/document/d/1oQAqGqEiA1VBaeJ1k9FU0FjlLO3lpbSyWUtcjh2YRyE/edit?usp=sharing
 [RequireComponent(typeof(GluttonyP1AnimationHandler))]
 public class GluttonyP2Actor : Actor
 {

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+//Document Link: https://docs.google.com/document/d/1K9f7sRQvDX4krcKahgIzJey87R1z7mGWV4xgnYU7qSQ/edit?usp=sharing
+
 //Expected to be attached to the pause menu ui.
 public class PauseMenu : BaseUI
 {
