@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Document Link: https://docs.google.com/document/d/1Crmi63etPDsU12k80qN0zawpYNowEX4n0pogDkp6tHc/edit?usp=sharing
 /*Abstract class for objects that are interactable
 Make sure the collider attached to this object is set to be a trigger.*/
 [RequireComponent(typeof(Collider2D))]

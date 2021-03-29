@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//Document Link: https://docs.google.com/document/d/1EeeqjcWVLKP24HPtJ1Y9d78PXVIvXe3t_8vtptKodV8/edit?usp=sharing
 //Interactable object which can cause the scene to change.
 public class SceneTransition : Interactable
 {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Document Link: https://docs.google.com/document/d/1_vWxNuTzr8vdv9YMw5FnsGlTzvNfnPyYwvEFdHI_okQ/edit?usp=sharing
 /*GluttonyActor's main function is to run the State Machine that powers
 Gluttony's boss fight*/
 [RequireComponent(typeof(GluttonyP1AnimationHandler))]

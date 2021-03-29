@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Document Link: https://docs.google.com/document/d/1YMglFGV1su_-QKo9Z2wFc8ovkpk8eI2o8mA7JnKXmNY/edit?usp=sharing
 /*Gluttonys crush ability
 currently the camera shake seems to be procuding weird efx.
 Camera shake has been commented out for the time being*/

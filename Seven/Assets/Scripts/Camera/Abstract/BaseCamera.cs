@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//Document Link: https://docs.google.com/document/d/1RP5uecWZjUolkAuBUVMLujq9ZjwQIjKne4fRoaTj0-s/edit?usp=sharing
 //CREDIT FOR THE TEMPLATE CODE GOES TO BRACKEYS
 //https://www.youtube.com/watch?v=aLpixrPvlB
 [RequireComponent(typeof(Camera))]

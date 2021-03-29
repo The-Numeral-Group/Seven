@@ -2,7 +2,8 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-
+//Document Link: https://docs.google.com/document/d/1xRoI-Sgd_mhcsRJRdVyNVtCo6J9Vg1foxXbZLyPI7GE/edit?usp=sharing
+//Handles the battle ui elements of the game
 public class BattleUI : BaseUI
 {
     //reference to the players health bar slide. should be set through inspector.

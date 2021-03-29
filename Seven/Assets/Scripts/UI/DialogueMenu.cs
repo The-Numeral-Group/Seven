@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Yarn.Unity;
 
+//Document Link: https://docs.google.com/document/d/1ISJ17xagrhSbJcoxoc88jhtgvp-RxcH3ay3h2u4Jq-g/edit?usp=sharing
 //In the dialogue canvas, make sure the screen space is set to camera, and add w/e camera to it.
 [RequireComponent(typeof(RectTransform))]
 public class DialogueMenu : BaseUI

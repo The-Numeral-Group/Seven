@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Document Link: https://docs.google.com/document/d/1OSd_Tu3ap9WTKyEv2gH52gNybbYtP4i9kkHwoPZQnsA/edit?usp=sharing
+//Handles showing the prompt that lets the player know they can interact with something.
 public class InteractMenu : BaseUI
 {
     public GameObject target;
