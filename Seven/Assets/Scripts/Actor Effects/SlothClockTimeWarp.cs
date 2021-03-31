@@ -64,7 +64,7 @@ public class SlothClockTimeWarp : MonoBehaviour
     }
 
     /*updates the clock's tracker list. If this results in the list being empty, then
-    reset the lit and apply the time effect*/
+    reset the list and apply the time effect*/
     void UpdateClock(GameObject obj)
     {
         trackedObjects.Remove(obj);

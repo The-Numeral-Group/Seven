@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-//using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -41,6 +41,9 @@ public class SlothActor : Actor
     //an observer to watch and read the player's actions
     private SlothPlayerObserver observer;
 
+    //the AAM used to engage the SlothClock when the fight starts
+    private SlothClockMod AAM;
+
     //invoke this event to make sloth hostile
     //public UnityEvent activationEvent = new UnityEvent();
 
@@ -61,6 +64,9 @@ public class SlothActor : Actor
 
         //add sloth sin here
         player.myEffectHandler.AddEffect(new SlothSin());
+
+        //create AAM object here (to reduce load/lag when starting the fight)
+        AAM = new SlothClockMod();
 
         //start sloth's dialogue. Sloth's activator is passed as the on-end delegate, and movement
         //remains unlocked so the player can choose to leave
@@ -120,8 +126,11 @@ public class SlothActor : Actor
             ///DEBUG
             Debug.Log("SlothActor: Sloth wants to attack because you started moving");
             ///DEBUG
-            //ActivateAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_RANGE]);
+            ActivateAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_RANGE]);
         });
+
+        //engage the Sloth Clock being used by Sloth's Special Ability
+        AAM.ModifyAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_SPECIAL]);
     }
 
     /*Makes Sloth the attack the player with a specific ability. Sloth attacks this way to maintain
@@ -157,6 +166,31 @@ public class SlothActor : Actor
 
         //destroy sloth (this is temp, will be replaced with an animation)
         Destroy(this.gameObject);
+    }
+
+    /*private class for accessing the clock sloth uses to turn its time slowing effect on when
+    the fight begins.*/
+    private class SlothClockMod : ActorAbilityModifier 
+    {
+        //initializes changes dict as required
+        public SlothClockMod () : base ()
+        {
+            InitializeChanges(this.changes);
+        }
+
+        /*adds the needed change to the ability: setting the "enabled" field of the
+        "clock" field of the ability to true.*/
+        protected override void InitializeChanges(Dictionary<string, Action<dynamic>> changes)
+        {
+            Action<dynamic> del = new Action<dynamic> ( (dynamic arg) => {
+                if(ActorAbilityModifier.DoesMemberExist(arg.clock, "enabled"))
+                {
+                    arg.clock.enabled = true;
+                }
+            });
+
+            changes.Add("clock", del);
+        }
     }
 }
 
