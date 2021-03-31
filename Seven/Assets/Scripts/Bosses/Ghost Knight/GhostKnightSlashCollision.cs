@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Doc: https://docs.google.com/document/d/1xz8Qk18jLRqImFmptbPEp0lnhTbAPQ-0BEOft3blKzM/edit
 public class GhostKnightSlashCollision : MonoBehaviour
 {
     public int damage = 1;
