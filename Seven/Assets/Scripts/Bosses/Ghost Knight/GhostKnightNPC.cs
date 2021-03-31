@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Doc: https://docs.google.com/document/d/1vGgvoBgfrjflh4DtdCMCZhVfULUenn3sO3fjYFKiiP4/edit
 public class GhostKnightNPC : MonoBehaviour
 {
     // Start is called before the first frame update

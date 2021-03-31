@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Document Link: https://docs.google.com/document/d/1q4pVYDKhTdHLruo6FNR3WvmBP43XIJQouqcm16MSWAc/edit?usp=sharing
 public class GluttonyAbilityInitiator : ActorAbilityInitiator
 {
     public ActorAbility Crush;

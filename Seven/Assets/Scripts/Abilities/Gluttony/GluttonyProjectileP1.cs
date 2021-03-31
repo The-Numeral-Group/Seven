@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Document Link: https://docs.google.com/document/d/1MAwGN52BuCVGs3T8_-DZKzz-iCr16ISm1hs8UtdvsXg/edit?usp=sharing
 //Phase1 Projectile Attack.
 public class GluttonyProjectileP1: ActorAbilityFunction<Actor, int>
 {

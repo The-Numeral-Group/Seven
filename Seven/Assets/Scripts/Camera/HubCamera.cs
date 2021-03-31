@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Document Link: https://docs.google.com/document/d/114CKhs4LBbA6-xtxwUMiokUPrs0vNGiLOeBU10qb5D4/edit?usp=sharing
 [RequireComponent(typeof(Camera))]
 public class HubCamera : BaseCamera
 {

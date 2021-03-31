@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+//Document Link: https://docs.google.com/document/d/1FJHepZKLViAMvSNGTv_D2U5VYQ5q0EMsbegKWNF93oo/edit?usp=sharing
 /*This class serves as a container for the the various menus present in the game.
 I (Ram) created this as a means to access various menu elements from other classes globally.*/
 public class MenuManager : MonoBehaviour

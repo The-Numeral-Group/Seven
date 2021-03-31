@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Doc: https://docs.google.com/document/d/1IsFxZFPXsj36T4mAHAlGyEoYOOlxWjoatP55CUwg2ms/edit
 public class GhostKnightAnimationHandler : ActorAnimationHandler
 {
     /*public override void Start()

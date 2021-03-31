@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Doc: https://docs.google.com/document/d/1xce8XIn-Tmzo_cYJCvutIhglOUQfMZZNBiaEYop-oxo/edit
 public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
 {
     //How long this entire process should take.

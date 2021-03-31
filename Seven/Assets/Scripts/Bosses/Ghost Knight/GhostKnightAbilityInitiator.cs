@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Doc: https://docs.google.com/document/d/1pn5i67V0rqvt_sF2F92N-yjq4jcTOx8UHNk8indCvps/edit
 public class GhostKnightAbilityInitiator : ActorAbilityInitiator
 {
     public ActorAbility Slash;

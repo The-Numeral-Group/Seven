@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Document Link: https://docs.google.com/document/d/1XmnSTeBN7vroOGCgU8goB1K2vXd0tSv1t63hMdlBWqQ/edit?usp=sharing
 public class GluttonySpecialAbility : ActorAbilityFunction<Actor, int>
 {
     //The sprite to be spawned in to show the attack. We could replace this with vfx.

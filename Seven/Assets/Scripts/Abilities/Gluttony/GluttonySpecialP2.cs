@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Document Link: https://docs.google.com/document/d/1p9-sxDduYbVTF1AgRsklVuuVk9sTn9Fe1CT9NkAXDwY/edit?usp=sharing
 public class GluttonySpecialP2 : ActorAbilityFunction<Actor, int>
 {
     //The value usued to adjust the charging speed. 

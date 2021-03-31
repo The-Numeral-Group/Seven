@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Document Link: https://docs.google.com/document/d/11VlBnrazcBwxiyJNak_8vkbsGFwRt6HZuifmm9eFGFk/edit?usp=sharing
 [RequireComponent(typeof(Collider2D))]
 public class GluttonySin : MonoBehaviour, ActorEffect
 {
