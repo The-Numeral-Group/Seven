@@ -139,13 +139,13 @@ public class SlothSlimeMortar : ActorAbilityFunction<ActorMovement, int>
 
         //and now that they're all set, launch ALL of them! At the same time!
         ///DEBUG
-        /*directPosition.GetComponent<SlothRangeProjectile>()
+        directPosition.GetComponent<SlothRangeProjectile>()
             .Launch(positionMarker.transform.position, LAUNCH_MODE.POINT);
 
         directLead.GetComponent<SlothRangeProjectile>()
-            .Launch(leadMarker.transform.position, LAUNCH_MODE.POINT);*/
-        Destroy(directPosition);
-        Destroy(directLead);
+            .Launch(leadMarker.transform.position, LAUNCH_MODE.POINT);
+        //Destroy(directPosition);
+        //Destroy(directLead);
         ///DEBUG
 
         ///DEBUG

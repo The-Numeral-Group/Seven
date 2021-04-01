@@ -28,6 +28,8 @@ public class SlothRangeProjectile : BasicProjectile
     //the marker that this projectile intends to follow
     public SlothRangeMarker marker{ private get; set; }
 
+    private Vector3 markerPos;
+
     //the distance to the target
     private float totalDist = 0.0f;
 
@@ -48,7 +50,7 @@ public class SlothRangeProjectile : BasicProjectile
             collided.gameObject.GetComponent<ActorHealth>()?.takeDamage(this.damage);
             //send the marker activation message to whatever was hit and self-destruct
             //the options argument will supress errors if the collided object has no such method
-            collided.gameObject.SendMessage("OnActivateMarker", 
+            collided.gameObject.SendMessage("OnActivateMarker", this,
                 SendMessageOptions.DontRequireReceiver);
 
             //destroy the marker, if the collided object isn't the marker
@@ -84,7 +86,7 @@ public class SlothRangeProjectile : BasicProjectile
             first arc*/
             var travelledDist = totalDist - Vector2.Distance(
                 this.gameObject.transform.position, 
-                this.marker.gameObject.transform.position
+                markerPos
             );
 
             /*fun fact: if object x and object y are traveling at the same speed,
@@ -119,6 +121,10 @@ public class SlothRangeProjectile : BasicProjectile
                 this.gameObject.transform.position, 
                 this.marker.gameObject.transform.position
             );
+
+            //also save the marker's coordinates
+            markerPos = this.marker.gameObject.transform.position;
+
             //calc sine here, should just be twice the dist since half an oscillation is needed
             //sinFactor = totalDist * 2;
         }
