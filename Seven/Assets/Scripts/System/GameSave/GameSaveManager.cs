@@ -16,6 +16,11 @@ public class GameSaveManager : MonoBehaviour
 
     public BoolValue newGame;
 
+    private void OnEnable()
+    {
+        LoadSaveObjects();
+    }
+
     // Reset all the SaveObjects.
     public void ResetSaveObjects()
     {
@@ -50,7 +55,7 @@ public class GameSaveManager : MonoBehaviour
         }
     }
 
-    /*
+    
     public void LoadSaveObjects()
     {
         for (int i = 0; i < SaveObjects.Count; i++)
@@ -71,6 +76,6 @@ public class GameSaveManager : MonoBehaviour
                 file.Close();
             }
         }
-    }*/
+    }
 
 }
