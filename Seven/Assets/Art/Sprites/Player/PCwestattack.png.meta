@@ -35,6 +35,18 @@ TextureImporter:
   - first:
       213: -6248651473191807493
     second: PCwestattack_10
+  - first:
+      213: 5365873930864874638
+    second: PCwestattack_4
+  - first:
+      213: 5114520951099354334
+    second: PCwestattack_5
+  - first:
+      213: 5701983576808235155
+    second: PCwestattack_6
+  - first:
+      213: 4835369024965611420
+    second: PCwestattack_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -126,8 +138,8 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 650
-        width: 550
+        y: 325
+        width: 555
         height: 325
       alignment: 9
       pivot: {x: 0.75, y: 0.5}
@@ -146,9 +158,9 @@ TextureImporter:
       name: PCwestattack_1
       rect:
         serializedVersion: 2
-        x: 550
-        y: 650
-        width: 550
+        x: 555
+        y: 325
+        width: 555
         height: 325
       alignment: 9
       pivot: {x: 0.75, y: 0.5}
@@ -167,9 +179,9 @@ TextureImporter:
       name: PCwestattack_2
       rect:
         serializedVersion: 2
-        x: 1100
-        y: 650
-        width: 550
+        x: 1110
+        y: 325
+        width: 555
         height: 325
       alignment: 9
       pivot: {x: 0.75, y: 0.5}
@@ -188,9 +200,9 @@ TextureImporter:
       name: PCwestattack_3
       rect:
         serializedVersion: 2
-        x: 1650
-        y: 650
-        width: 550
+        x: 1665
+        y: 325
+        width: 555
         height: 325
       alignment: 9
       pivot: {x: 0.75, y: 0.5}
@@ -210,8 +222,8 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 325
-        width: 550
+        y: 0
+        width: 555
         height: 325
       alignment: 9
       pivot: {x: 0.75, y: 0.5}
@@ -220,8 +232,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1197b08528a7aea0800000000000000
-      internalID: -5861531510972640995
+      spriteID: e84dab619e9677a40800000000000000
+      internalID: 5365873930864874638
       vertices: []
       indices: 
       edges: []
@@ -230,9 +242,9 @@ TextureImporter:
       name: PCwestattack_5
       rect:
         serializedVersion: 2
-        x: 550
-        y: 325
-        width: 550
+        x: 555
+        y: 0
+        width: 555
         height: 325
       alignment: 9
       pivot: {x: 0.75, y: 0.5}
@@ -241,8 +253,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2580f79d7f81f4990800000000000000
-      internalID: -7399668209961465774
+      spriteID: edce19605bd6af640800000000000000
+      internalID: 5114520951099354334
       vertices: []
       indices: 
       edges: []
@@ -251,9 +263,9 @@ TextureImporter:
       name: PCwestattack_6
       rect:
         serializedVersion: 2
-        x: 1100
-        y: 325
-        width: 550
+        x: 1110
+        y: 0
+        width: 555
         height: 325
       alignment: 9
       pivot: {x: 0.75, y: 0.5}
@@ -262,8 +274,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f3744a70c57b4010800000000000000
-      internalID: 1174161597405623289
+      spriteID: 39024ca4ad3812f40800000000000000
+      internalID: 5701983576808235155
       vertices: []
       indices: 
       edges: []
@@ -272,30 +284,9 @@ TextureImporter:
       name: PCwestattack_7
       rect:
         serializedVersion: 2
-        x: 1650
-        y: 325
-        width: 550
-        height: 325
-      alignment: 9
-      pivot: {x: 0.75, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8aa708f568c8743b0800000000000000
-      internalID: -5528295508818232664
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PCwestattack_8
-      rect:
-        serializedVersion: 2
-        x: 0
+        x: 1665
         y: 0
-        width: 550
+        width: 555
         height: 325
       alignment: 9
       pivot: {x: 0.75, y: 0.5}
@@ -304,50 +295,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca46a990196071640800000000000000
-      internalID: 5050512727120438444
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PCwestattack_9
-      rect:
-        serializedVersion: 2
-        x: 550
-        y: 0
-        width: 550
-        height: 325
-      alignment: 9
-      pivot: {x: 0.75, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 34f2a3c65ab4147d0800000000000000
-      internalID: -2935982308211413181
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PCwestattack_10
-      rect:
-        serializedVersion: 2
-        x: 1100
-        y: 0
-        width: 550
-        height: 325
-      alignment: 9
-      pivot: {x: 0.75, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bf55e2787945849a0800000000000000
-      internalID: -6248651473191807493
+      spriteID: c9f8003628eaa1340800000000000000
+      internalID: 4835369024965611420
       vertices: []
       indices: 
       edges: []
