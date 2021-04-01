@@ -8,27 +8,18 @@ using UnityEngine;
 // GameSaveManager allows to save certain values and conditions between scenes.
 // For example, if you want to make players stand on same position after scene transition, 
 // You can save the player's position and use that to place the player after the scene transition.
+// Doc: https://docs.google.com/document/d/1of19f71D2yKrfy_kZ0q6iqCK5W_lrzfAmRAalqbgDhk/edit
 public class GameSaveManager : MonoBehaviour
 {
     // These are the datas that are going to get saved when game is closed
     public List<ScriptableObject> SaveObjects = new List<ScriptableObject>();
 
-    // These are the datas that are going to get saved while game is playing
-    public List<ScriptableObject> InGameStoreObjects = new List<ScriptableObject>();
-
     public BoolValue newGame;
 
-    // Load the SaveObjects when you start playing the game
     private void OnEnable()
     {
         LoadSaveObjects();
     }
-
-    // Save the SaveObjects when you stop playing the game
-    /*private void OnDisable()
-    {
-        SaveSaveObjects();
-    }*/
 
     // Reset all the SaveObjects.
     public void ResetSaveObjects()
@@ -64,6 +55,7 @@ public class GameSaveManager : MonoBehaviour
         }
     }
 
+    
     public void LoadSaveObjects()
     {
         for (int i = 0; i < SaveObjects.Count; i++)
@@ -86,39 +78,4 @@ public class GameSaveManager : MonoBehaviour
         }
     }
 
-    // Rest all the InGameStoreObjects.
-    public void ResetInGameStoreObjects()
-    {
-        for (int i = 0; i < InGameStoreObjects.Count; i++)
-        {
-            var objectType = InGameStoreObjects[i].GetType().ToString();
-            switch (objectType)
-            {
-                case "BoolValue":
-                    var boolObj = InGameStoreObjects[i] as BoolValue;
-                    boolObj.RuntimeValue = boolObj.initialValue;
-                    break;
-                case "FloatValue":
-                    var floatObj = InGameStoreObjects[i] as FloatValue;
-                    floatObj.RuntimeValue = floatObj.initialValue;
-                    break;
-
-                case "StringValue":
-                    var strObj = InGameStoreObjects[i] as StringValue;
-                    strObj.RuntimeValue = strObj.initialValue;
-                    break;
-
-                case "VectorValue":
-                    var vecObj = InGameStoreObjects[i] as VectorValue;
-                    vecObj.RuntimeValue = vecObj.initialValue;
-                    break;
-
-            }
-        }
-    }
-
-    public void SavenInGameStoreObjects()
-    {
-
-    }
 }
