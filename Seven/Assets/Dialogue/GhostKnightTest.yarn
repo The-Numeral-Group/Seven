@@ -1,16 +1,15 @@
-title: GhostKnight.test
+title: GhostKnight.Opening.Dialogue0
 tags: 
 colorID: 0
 position: 859,388
 ---
-GhostKnight: Hello
+GhostKnight: ENOUGH!
 ===
 title: GhostKnight.Opening.Dialogue1
 tags: 
 colorID: 1
 position: 986,208
 ---
-GhostKnight: ENOUGH!
 GhostKnight: You fight well for someone so young. I'm impressed. 
 GhostKnight: Do not be afraid, young warrior
 GhostKnight: I am not your enemy. 

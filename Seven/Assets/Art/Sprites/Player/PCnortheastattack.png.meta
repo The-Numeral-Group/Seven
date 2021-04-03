@@ -126,9 +126,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 900
-        width: 500
-        height: 450
+        y: 420
+        width: 480
+        height: 420
       alignment: 9
       pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,10 +146,10 @@ TextureImporter:
       name: PCnortheastattack_1
       rect:
         serializedVersion: 2
-        x: 500
-        y: 900
-        width: 500
-        height: 450
+        x: 480
+        y: 420
+        width: 480
+        height: 420
       alignment: 9
       pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,10 +167,10 @@ TextureImporter:
       name: PCnortheastattack_2
       rect:
         serializedVersion: 2
-        x: 1000
-        y: 900
-        width: 500
-        height: 450
+        x: 960
+        y: 420
+        width: 480
+        height: 420
       alignment: 9
       pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,10 +188,10 @@ TextureImporter:
       name: PCnortheastattack_3
       rect:
         serializedVersion: 2
-        x: 1500
-        y: 900
-        width: 500
-        height: 450
+        x: 1440
+        y: 420
+        width: 480
+        height: 420
       alignment: 9
       pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -210,9 +210,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 450
-        width: 500
-        height: 450
+        y: 0
+        width: 480
+        height: 420
       alignment: 9
       pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -230,10 +230,10 @@ TextureImporter:
       name: PCnortheastattack_5
       rect:
         serializedVersion: 2
-        x: 500
-        y: 450
-        width: 500
-        height: 450
+        x: 480
+        y: 0
+        width: 480
+        height: 420
       alignment: 9
       pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -251,10 +251,10 @@ TextureImporter:
       name: PCnortheastattack_6
       rect:
         serializedVersion: 2
-        x: 1000
-        y: 450
-        width: 500
-        height: 450
+        x: 960
+        y: 0
+        width: 480
+        height: 420
       alignment: 9
       pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -272,10 +272,10 @@ TextureImporter:
       name: PCnortheastattack_7
       rect:
         serializedVersion: 2
-        x: 1500
-        y: 452
-        width: 500
-        height: 450
+        x: 1440
+        y: 0
+        width: 480
+        height: 420
       alignment: 9
       pivot: {x: 0.25, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -285,69 +285,6 @@ TextureImporter:
       bones: []
       spriteID: defa8a797a804fff0800000000000000
       internalID: -3368183823552531
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PCnortheastattack_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 500
-        height: 450
-      alignment: 9
-      pivot: {x: 0.25, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e8b631a0d61ec4360800000000000000
-      internalID: 7155341766421605262
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PCnortheastattack_9
-      rect:
-        serializedVersion: 2
-        x: 500
-        y: 0
-        width: 500
-        height: 450
-      alignment: 9
-      pivot: {x: 0.25, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9232ea4d01c59aa80800000000000000
-      internalID: -8455125598053981399
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PCnortheastattack_10
-      rect:
-        serializedVersion: 2
-        x: 1000
-        y: 0
-        width: 500
-        height: 450
-      alignment: 9
-      pivot: {x: 0.25, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2ed5cc388afcbfb60800000000000000
-      internalID: 7781041103885327842
       vertices: []
       indices: 
       edges: []

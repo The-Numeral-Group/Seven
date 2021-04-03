@@ -47,4 +47,9 @@
     public static string GHOSTKNIGHT_SLASH = "";
     public static string GHOSTKNIGHT_PROJECTILE = "";
     public static string GHOSTKNIGHT_SPECIAL = "";
+
+    //SLOTH
+    public static string SLOTH_PHYSICAL = "";
+    public static string SLOTH_RANGE = "";
+    public static string SLOTH_SPECIAL = "";
 }

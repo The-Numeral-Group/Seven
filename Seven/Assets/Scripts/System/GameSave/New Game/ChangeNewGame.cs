@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Doc: https://docs.google.com/document/d/14-8VNngMeODc_fFSpqEoqhznjjCSMLbL5FkXHH16drA/edit
 public class ChangeNewGame : MonoBehaviour
 {
     public BoolValue newGame;

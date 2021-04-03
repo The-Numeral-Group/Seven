@@ -4,6 +4,7 @@ using System;
 using UnityEngine.Audio;
 using UnityEngine;
 
+// Doc: https://docs.google.com/document/d/12IDY_Z5j9Umr49aE8aMV6Ke6XBz1HQj-TMkL8JfRF74/edit
 public class ActorSoundManager : MonoBehaviour
 {
     public SoundAudioClip[] sounds;

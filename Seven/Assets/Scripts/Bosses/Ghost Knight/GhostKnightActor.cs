@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 /*
 GhostKnightActor's main function is to run the State Machine that powers
 Ghost Knight's boss fight
+Doc: https://docs.google.com/document/d/1gMAcVBLBTMIsFyGU-nBVzXPtR3GNvvGYiVKzjK3un20/edit
 */
 public class GhostKnightActor : Actor
 {

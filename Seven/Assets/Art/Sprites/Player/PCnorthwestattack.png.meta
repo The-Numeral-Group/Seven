@@ -126,9 +126,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 900
-        width: 500
-        height: 450
+        y: 420
+        width: 480
+        height: 420
       alignment: 9
       pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,10 +146,10 @@ TextureImporter:
       name: PCnorthwestattack_1
       rect:
         serializedVersion: 2
-        x: 500
-        y: 900
-        width: 500
-        height: 450
+        x: 480
+        y: 420
+        width: 480
+        height: 420
       alignment: 9
       pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,10 +167,10 @@ TextureImporter:
       name: PCnorthwestattack_2
       rect:
         serializedVersion: 2
-        x: 1000
-        y: 900
-        width: 500
-        height: 450
+        x: 960
+        y: 420
+        width: 480
+        height: 420
       alignment: 9
       pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,10 +188,10 @@ TextureImporter:
       name: PCnorthwestattack_3
       rect:
         serializedVersion: 2
-        x: 1500
-        y: 900
-        width: 500
-        height: 450
+        x: 1440
+        y: 420
+        width: 480
+        height: 420
       alignment: 9
       pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -210,9 +210,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 450
-        width: 500
-        height: 450
+        y: 0
+        width: 480
+        height: 420
       alignment: 9
       pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -230,10 +230,10 @@ TextureImporter:
       name: PCnorthwestattack_5
       rect:
         serializedVersion: 2
-        x: 500
-        y: 450
-        width: 500
-        height: 450
+        x: 481
+        y: 0
+        width: 480
+        height: 420
       alignment: 9
       pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -251,10 +251,10 @@ TextureImporter:
       name: PCnorthwestattack_6
       rect:
         serializedVersion: 2
-        x: 1000
-        y: 450
-        width: 500
-        height: 450
+        x: 960
+        y: 0
+        width: 480
+        height: 420
       alignment: 9
       pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -272,10 +272,10 @@ TextureImporter:
       name: PCnorthwestattack_7
       rect:
         serializedVersion: 2
-        x: 1500
-        y: 450
-        width: 500
-        height: 450
+        x: 1440
+        y: 0
+        width: 480
+        height: 420
       alignment: 9
       pivot: {x: 0.75, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -285,69 +285,6 @@ TextureImporter:
       bones: []
       spriteID: 21b60558cc3754620800000000000000
       internalID: 2757737669081459474
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PCnorthwestattack_8
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 500
-        height: 450
-      alignment: 9
-      pivot: {x: 0.75, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 04cc1f527d36f9b10800000000000000
-      internalID: 1990419336026770496
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PCnorthwestattack_9
-      rect:
-        serializedVersion: 2
-        x: 500
-        y: 0
-        width: 500
-        height: 450
-      alignment: 9
-      pivot: {x: 0.75, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d711c6ff8139c0fe0800000000000000
-      internalID: -1221439663350476419
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PCnorthwestattack_10
-      rect:
-        serializedVersion: 2
-        x: 1000
-        y: 0
-        width: 500
-        height: 450
-      alignment: 9
-      pivot: {x: 0.75, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 335ae26b1855b9b30800000000000000
-      internalID: 4295120685223552307
       vertices: []
       indices: 
       edges: []

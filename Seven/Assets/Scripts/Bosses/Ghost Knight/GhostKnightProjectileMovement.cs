@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//This is a class for the ghost knight projectile.
-//It inherits from actor movement.
-//Initiating its movement is meant to be called by other actors.
+// This is a class for the ghost knight projectile.
+// It inherits from actor movement.
+// Initiating its movement is meant to be called by other actors.
+// Doc: https://docs.google.com/document/d/1IjiWRfhoDrXga_CNwXKgooaWsfhEg5MWACxjHEZWKSs/edit
 public class GhostKnightProjectileMovement : ActorMovement
 {
 

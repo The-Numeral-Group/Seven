@@ -35,6 +35,18 @@ TextureImporter:
   - first:
       213: -8652735735110051638
     second: PCeastattack_10
+  - first:
+      213: -5592488908336772124
+    second: PCeastattack_4
+  - first:
+      213: -3320963386729852726
+    second: PCeastattack_5
+  - first:
+      213: -277979709268829635
+    second: PCeastattack_6
+  - first:
+      213: 1676256645934524053
+    second: PCeastattack_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -126,8 +138,8 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 650
-        width: 550
+        y: 325
+        width: 555
         height: 325
       alignment: 9
       pivot: {x: 0.25, y: 0.5}
@@ -146,9 +158,9 @@ TextureImporter:
       name: PCeastattack_1
       rect:
         serializedVersion: 2
-        x: 550
-        y: 650
-        width: 550
+        x: 555
+        y: 325
+        width: 555
         height: 325
       alignment: 9
       pivot: {x: 0.25, y: 0.5}
@@ -167,9 +179,9 @@ TextureImporter:
       name: PCeastattack_2
       rect:
         serializedVersion: 2
-        x: 1100
-        y: 650
-        width: 550
+        x: 1110
+        y: 325
+        width: 555
         height: 325
       alignment: 9
       pivot: {x: 0.25, y: 0.5}
@@ -188,9 +200,9 @@ TextureImporter:
       name: PCeastattack_3
       rect:
         serializedVersion: 2
-        x: 1650
-        y: 650
-        width: 550
+        x: 1665
+        y: 325
+        width: 555
         height: 325
       alignment: 9
       pivot: {x: 0.25, y: 0.5}
@@ -210,8 +222,8 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 325
-        width: 550
+        y: 0
+        width: 555
         height: 325
       alignment: 9
       pivot: {x: 0.25, y: 0.5}
@@ -220,8 +232,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4c4ee147e13000f0800000000000000
-      internalID: -1152866635293504438
+      spriteID: 4eb4648d7fc7362b0800000000000000
+      internalID: -5592488908336772124
       vertices: []
       indices: 
       edges: []
@@ -230,9 +242,9 @@ TextureImporter:
       name: PCeastattack_5
       rect:
         serializedVersion: 2
-        x: 550
-        y: 325
-        width: 550
+        x: 555
+        y: 0
+        width: 555
         height: 325
       alignment: 9
       pivot: {x: 0.25, y: 0.5}
@@ -241,8 +253,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 165a68137f46fda60800000000000000
-      internalID: 7700984900677444961
+      spriteID: ac093ed156199e1d0800000000000000
+      internalID: -3320963386729852726
       vertices: []
       indices: 
       edges: []
@@ -251,9 +263,9 @@ TextureImporter:
       name: PCeastattack_6
       rect:
         serializedVersion: 2
-        x: 1100
-        y: 325
-        width: 550
+        x: 1110
+        y: 0
+        width: 555
         height: 325
       alignment: 9
       pivot: {x: 0.25, y: 0.5}
@@ -262,8 +274,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4a0c21a186420710800000000000000
-      internalID: 1657965135394507342
+      spriteID: d3ad34e5dea642cf0800000000000000
+      internalID: -277979709268829635
       vertices: []
       indices: 
       edges: []
@@ -272,30 +284,9 @@ TextureImporter:
       name: PCeastattack_7
       rect:
         serializedVersion: 2
-        x: 1650
-        y: 325
-        width: 550
-        height: 325
-      alignment: 9
-      pivot: {x: 0.25, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 64584211c3b8a3ac0800000000000000
-      internalID: -3874631439296985786
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PCeastattack_8
-      rect:
-        serializedVersion: 2
-        x: 0
+        x: 1665
         y: 0
-        width: 550
+        width: 555
         height: 325
       alignment: 9
       pivot: {x: 0.25, y: 0.5}
@@ -304,50 +295,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1bff2026dd62b3c0800000000000000
-      internalID: -4345289924028663012
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PCeastattack_9
-      rect:
-        serializedVersion: 2
-        x: 550
-        y: 0
-        width: 550
-        height: 325
-      alignment: 9
-      pivot: {x: 0.25, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 379c85be428b69330800000000000000
-      internalID: 3717361011147721075
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PCeastattack_10
-      rect:
-        serializedVersion: 2
-        x: 1100
-        y: 0
-        width: 550
-        height: 325
-      alignment: 9
-      pivot: {x: 0.25, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ac8df6d61be4be780800000000000000
-      internalID: -8652735735110051638
+      spriteID: 596a05dc982434710800000000000000
+      internalID: 1676256645934524053
       vertices: []
       indices: 
       edges: []

@@ -144,4 +144,10 @@ public class ActorEffectHandler : MonoBehaviour
             SubtractEffect(effect);
         }
     }
+
+    //undoes all effects right before this class ceases to be, just for safety
+    void OnDestroy()
+    {
+        SubtractAllEffects();
+    }
 }

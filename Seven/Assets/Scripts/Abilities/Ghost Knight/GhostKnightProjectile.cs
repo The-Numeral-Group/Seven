@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Doc: https://docs.google.com/document/d/1pHACk_wBPStez-ZhAZ1oEYqzvvStwrXwg9e3OY0W8ZQ/edit
 public class GhostKnightProjectile : ActorAbilityFunction<Actor, int>
 {
     //Where ghost knight will move towards before initiating the attack.
@@ -18,8 +19,6 @@ public class GhostKnightProjectile : ActorAbilityFunction<Actor, int>
     public int numProjectiles = 4;
     //Offset of how far projectiles spawn from the ghost knight
     public float offsetValue = 1f;
-
-    private List<GameObject> projectileManager = new List<GameObject>();
 
     public override void Invoke(ref Actor user)
     {
@@ -72,21 +71,8 @@ public class GhostKnightProjectile : ActorAbilityFunction<Actor, int>
             Vector2 userPos = user.gameObject.transform.position;
             Vector2 projPos = new Vector2(userPos.x + offset[i, 0], userPos.y + offset[i, 1]);
             GameObject ghostKnightProjectile = Instantiate(this.toInstantiateProjectile, projPos, Quaternion.identity);
-            this.projectileManager.Add(ghostKnightProjectile);
         }
-        StartCoroutine(DestroyProjectiles());
         yield return new WaitForSeconds(this.projectileSpawnTime);
         isFinished = true;
-    }
-
-    private IEnumerator DestroyProjectiles()
-    {
-        yield return new WaitForSeconds(this.projectileDuration);
-        for (int i = 0; i < this.projectileManager.Count; i++)
-        {
-            GameObject toDestroy = this.projectileManager[i];
-            Destroy(toDestroy);
-        }
-        this.projectileManager.Clear();
     }
 }
