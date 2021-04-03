@@ -699,7 +699,7 @@ PrefabInstance:
 
         WASD - Move
 
-        Right
+        Left Shift/Right
         Click -  Interact'
       objectReference: {fileID: 0}
     - target: {fileID: 3838137145705206022, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}

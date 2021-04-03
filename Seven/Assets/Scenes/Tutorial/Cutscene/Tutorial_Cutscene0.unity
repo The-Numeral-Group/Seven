@@ -501,6 +501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   director: {fileID: 562492859}
   loop: 1
+  loopTime: []
 --- !u!114 &562492862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -719,7 +720,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7345663322208169106, guid: 6d1da0f5337dfdb42900704104729344, type: 3}
+  m_Sprite: {fileID: -5568839986820836446, guid: 5b53ff4b6c6a8a94da8e93b1e1d06f60, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

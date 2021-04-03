@@ -5,6 +5,8 @@ using UnityEngine;
 // Doc: https://docs.google.com/document/d/1vGgvoBgfrjflh4DtdCMCZhVfULUenn3sO3fjYFKiiP4/edit
 public class GhostKnightNPC : MonoBehaviour
 {
+    private int nextDialogueNum = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +18,8 @@ public class GhostKnightNPC : MonoBehaviour
 
     public void playNextDialogue()
     {
-        this.gameObject.GetComponent<ActiveSpeaker>().yarnStartNode = "GhostKnight.Opening.Dialogue2";
+        this.gameObject.GetComponent<ActiveSpeaker>().yarnStartNode = "GhostKnight.Opening.Dialogue" + nextDialogueNum;
         MenuManager.DIALOGUE_MENU.StartDialogue(this.gameObject);
+        nextDialogueNum++;
     }
 }

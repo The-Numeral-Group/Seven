@@ -11,7 +11,31 @@ public class TimelineManager : MonoBehaviour
 
     public bool loop = true;
 
-    public void loopFromStartTimeline()
+    public float[] loopTime;
+
+    private int loopIt = 0;
+
+    public void goBackLoop()
+    {
+        if (loop)
+        {
+            if (loopIt >= loopTime.Length)
+            {
+                Debug.LogWarning("TimelineManager: loopIt has passed over loopTime.Length!");
+            }
+            else
+            {
+                director.time = loopTime[loopIt];
+            }
+        }
+    }
+
+    public void increaseLoopIt()
+    {
+        this.loopIt++;
+    }
+
+    /*public void loopFromStartTimeline()
     {
         if(loop)
         {
@@ -25,7 +49,7 @@ public class TimelineManager : MonoBehaviour
         {
             director.time = (double)time;
         }
-    }
+    }*/
 
     public void setLoop(bool newLoop)
     {
