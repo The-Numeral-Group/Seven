@@ -26,4 +26,9 @@ public class GhostKnightAnimationHandler : ActorAnimationHandler
         Animator.SetTrigger("hSlash");
         //Debug.Log(anim["hSlash"].time);
     }
+
+    public void animateSpecialSlash()
+    {
+        Animator.SetTrigger("specialSlash");
+    }
 }
