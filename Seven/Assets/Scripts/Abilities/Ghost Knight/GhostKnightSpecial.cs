@@ -15,7 +15,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     //How long the reappearing process should take.
     public float duration_appear = 1f;
 
-    // Delay between each slash performing.
+    // Duration of slash moves after appearing
     public float duration_slash = 2f;
 
     private Actor player;
@@ -86,7 +86,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
         Instantiate(this.glintObject, user.transform.position, Quaternion.identity);
 
         // Perform VSlash while appearing.
-        PerformCombinationVSlash(user);
+        StartCoroutine(PerformSpecialSlash(user));
 
         // Play glint audio
         user.mySoundManager.PlaySound("SpecialEyeGlint");
@@ -108,10 +108,18 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
 
         // Turn back the effector on.
         gkEffector.SetActive(true);
-
-        StartCoroutine(PerformCombinationHSlash(user));
     }
-    
+
+    private IEnumerator PerformSpecialSlash(Actor user)
+    {
+        ghostKnightAnimationHandler.animateSpecialSlash();
+        user.myMovement.DragActor(new Vector2(0.0f, -0.5f));
+        yield return new WaitForSeconds(this.duration_slash);
+        user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
+        isFinished = true;
+    }
+
+    /*
     private void PerformCombinationVSlash(Actor user)
     {
         ghostKnightAnimationHandler.animateVSlash();
@@ -124,5 +132,5 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
         yield return new WaitForSeconds(this.duration_slash);
         user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
         isFinished = true;
-    }
+    }*/
 }
