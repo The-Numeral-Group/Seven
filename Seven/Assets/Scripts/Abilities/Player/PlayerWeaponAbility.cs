@@ -38,7 +38,7 @@ public class PlayerWeaponAbility : ActorAbilityFunction<Actor, int>
         playerAnimationHandler.animateAttack();
 
         // Play Attack Audio
-        user.mySoundManager.PlaySound("PlayerAttack");
+        //user.mySoundManager.PlaySound("PlayerAttack");
 
         this.hitConnected = false;
         return 0;
@@ -49,5 +49,11 @@ public class PlayerWeaponAbility : ActorAbilityFunction<Actor, int>
     public void setPlayerWeaponFinished()
     {
         this.isFinished = true;
+    }
+
+    public void WeaponSoundCallback()
+    {
+        // Play Attack Audio
+        user.mySoundManager.PlaySound("PlayerAttack");
     }
 }
