@@ -14,6 +14,8 @@ public class PlayerWeaponAbility : ActorAbilityFunction<Actor, int>
     // This is used to prevent hitting enemy multiple times with just one attack.
     public bool hitConnected { get; set; }
 
+    public float lockDuration;
+
     public override void Invoke(ref Actor user)
     {
         this.user = user;
@@ -29,6 +31,8 @@ public class PlayerWeaponAbility : ActorAbilityFunction<Actor, int>
 
     protected override int InternInvoke(params Actor[] args)
     {
+        StartCoroutine(user.myMovement.LockActorMovement(lockDuration));
+
         // Play Attack Animation
         PlayerAnimationHandler playerAnimationHandler = user.myAnimationHandler as PlayerAnimationHandler;
         playerAnimationHandler.animateAttack();

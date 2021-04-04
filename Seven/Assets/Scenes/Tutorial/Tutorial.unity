@@ -6812,6 +6812,10 @@ PrefabInstance:
       propertyPath: abilityName
       value: PlayerWeapon
       objectReference: {fileID: 0}
+    - target: {fileID: 1274274346198698562, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: lockDuration
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3560292058236041534, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
       value: 15
