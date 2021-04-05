@@ -17,8 +17,8 @@ public class BossCamera : BaseCamera
         currOffset = offset;
         Vector3 centerPoint = GetCenterPos();
         centerPoint = FocusCamOnChatBubble(centerPoint);
-        centerPoint = BoundCamera(centerPoint);
         Vector2 newPosition = new Vector2(centerPoint.x, centerPoint.y) + currOffset;
+        newPosition = BoundCamera(newPosition);
         this.gameObject.transform.position = Vector3.SmoothDamp(this.gameObject.transform.position, 
             new Vector3(newPosition.x, newPosition.y, this.gameObject.transform.position.z),
             ref velocity, cameraSmoothRate);
@@ -31,13 +31,13 @@ public class BossCamera : BaseCamera
     This function is utilized by MoveCamera*/
     protected override Vector3 GetCenterPos()
     {
-        if (!playerTransform)
+        if (!mainTargetTransform)
         {
             return Vector3.zero;
         }
-        var bounds = new Bounds(playerTransform.position, Vector3.zero);
-        bounds.Encapsulate(playerTransform.position);
-        if (targetPOIs.Count > 0)
+        var bounds = new Bounds(mainTargetTransform.position, Vector3.zero);
+        bounds.Encapsulate(mainTargetTransform.position);
+        if (targetPOIs.Count > 0 && !ignoreTargetPOIs)
         {
             for (int i = 0; i < targetPOIs.Count; i++)
             {
@@ -47,8 +47,8 @@ public class BossCamera : BaseCamera
                     i--;
                     continue;
                 }
-                float targetDist = Vector2.Distance(new Vector2(playerTransform.position.x, 
-                                                                playerTransform.position.y),
+                float targetDist = Vector2.Distance(new Vector2(mainTargetTransform.position.x, 
+                                                                mainTargetTransform.position.y),
                                                     new Vector2(targetPOIs[i].position.x, 
                                                                 targetPOIs[i].position.y));
                 if (targetDist < breakingDistance)

@@ -9,10 +9,17 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public abstract class BaseCamera : MonoBehaviour
 {
+    //The transform of the for the main target the camera will follow
+    [Tooltip("The main camera the target will follow. Will default to the player object.")]
+    public Transform mainTargetTransform;
     //List handles all the elements the camera needs to be aware of during gameplay.
     [SerializeField]
     [Tooltip("All other points of interest (POI) the camera needs to be aware of aside from the player.")]
     protected List<Transform> targetPOIs = new List<Transform>();
+    //Flag used to set if the camera should ignore points of interest
+    [Tooltip("Flag used to notify if the camera should ignore points of interest. Set true for the"
+    + " camera to only follow the main target.")]
+    public bool ignoreTargetPOIs = false;
     //Offset the camera from it's centerPosition
     [Tooltip("How far to offset the camera.")]
     public Vector2 offset = new Vector2(0, 0);
@@ -34,8 +41,6 @@ public abstract class BaseCamera : MonoBehaviour
     //left boundary for the camera
     [Tooltip("Left Boundary of the camera.")]
     public float leftBound = float.MaxValue;
-    //The transform of the player
-    protected Transform playerTransform;
     //Reference variable that is utilized by the SmoothDamp function.
     protected Vector3 velocity;
     //Reference to this objects camera component
@@ -45,15 +50,18 @@ public abstract class BaseCamera : MonoBehaviour
     //Initialize monobehaviour fields.
     protected virtual void Start()
     {
-        var player = GameObject.FindGameObjectWithTag("Player");
-        if (player)
+        if (!mainTargetTransform)
         {
-            playerTransform = player.transform;
-        }
-        else
-        {
-            Debug.Log("Camera: Camera does not have a player object to follow.");
-            playerTransform = null;
+            var player = GameObject.FindGameObjectWithTag("Player");
+            if (player)
+            {
+                mainTargetTransform = player.transform;
+            }
+            else
+            {
+                Debug.Log("Camera: Camera does not have a player object to follow.");
+                mainTargetTransform = null;
+            }
         }
         cam = GetComponent<Camera>();
     }
