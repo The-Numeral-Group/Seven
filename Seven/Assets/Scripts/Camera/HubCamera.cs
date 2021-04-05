@@ -75,28 +75,31 @@ public class HubCamera : BaseCamera
     This function is utilized by MoveCamera.*/
     protected override Vector3 GetCenterPos()
     {
-        if (!playerTransform)
+        if (!mainTargetTransform)
         {
             return Vector3.zero;
         }
-        var bounds = new Bounds(playerTransform.position, Vector3.zero);
-        bounds.Encapsulate(playerTransform.position);
+        var bounds = new Bounds(mainTargetTransform.position, Vector3.zero);
+        bounds.Encapsulate(mainTargetTransform.position);
         closeToPOI = false;
-        float closestVal = breakingDistance;
-        for (int i = 0; i < targetPOIs.Count; i++)
+        if (!ignoreTargetPOIs)
         {
-            float distToPOI = Vector2.Distance(new Vector2(playerTransform.position.x, playerTransform.position.y),
-                                                new Vector2(targetPOIs[i].position.x, targetPOIs[i].position.y));
-            if (distToPOI <= breakingDistance && distToPOI < closestVal)
+            float closestVal = breakingDistance;
+            for (int i = 0; i < targetPOIs.Count; i++)
             {
-                closeToPOI = true;
-                closestVal = distToPOI;
-                closestPOI = targetPOIs[i].position;
+                float distToPOI = Vector2.Distance(new Vector2(mainTargetTransform.position.x, mainTargetTransform.position.y),
+                                                    new Vector2(targetPOIs[i].position.x, targetPOIs[i].position.y));
+                if (distToPOI <= breakingDistance && distToPOI < closestVal)
+                {
+                    closeToPOI = true;
+                    closestVal = distToPOI;
+                    closestPOI = targetPOIs[i].position;
+                }
             }
-        }
-        if (closeToPOI)
-        {
-            bounds.Encapsulate(closestPOI);
+            if (closeToPOI)
+            {
+                bounds.Encapsulate(closestPOI);
+            }
         }
         return bounds.center;
     }

@@ -9,10 +9,17 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public abstract class BaseCamera : MonoBehaviour
 {
+    //The transform of the for the main target the camera will follow
+    [Tooltip("The main camera the target will follow. Will default to the player object.")]
+    public Transform mainTargetTransform;
     //List handles all the elements the camera needs to be aware of during gameplay.
     [SerializeField]
     [Tooltip("All other points of interest (POI) the camera needs to be aware of aside from the player.")]
     protected List<Transform> targetPOIs = new List<Transform>();
+    //Flag used to set if the camera should ignore points of interest
+    [Tooltip("Flag used to notify if the camera should ignore points of interest. Set true for the"
+    + " camera to only follow the main target.")]
+    public bool ignoreTargetPOIs = false;
     //Offset the camera from it's centerPosition
     [Tooltip("How far to offset the camera.")]
     public Vector2 offset = new Vector2(0, 0);
@@ -22,8 +29,18 @@ public abstract class BaseCamera : MonoBehaviour
     //Distance used by derived camera classes to manage the focus between player and points of interest.
     [Tooltip("Distance required between a targetPOI to the player in order affect the cameras focus.")]
     public float breakingDistance = 0f;
-    //The transform of the player
-    protected Transform playerTransform;
+    //upper boundary for the camera
+    [Tooltip("Upper Boundary of the camera.")]
+    public float upperBound = float.MaxValue;
+    //lower boundary for the camera
+    [Tooltip("Lower Boundary of the camera.")]
+    public float lowerBound = float.MaxValue;
+    //right boundary for the camera
+    [Tooltip("Right Boundary of the camera.")]
+    public float rightBound = float.MaxValue;
+    //left boundary for the camera
+    [Tooltip("Left Boundary of the camera.")]
+    public float leftBound = float.MaxValue;
     //Reference variable that is utilized by the SmoothDamp function.
     protected Vector3 velocity;
     //Reference to this objects camera component
@@ -33,15 +50,18 @@ public abstract class BaseCamera : MonoBehaviour
     //Initialize monobehaviour fields.
     protected virtual void Start()
     {
-        var player = GameObject.FindGameObjectWithTag("Player");
-        if (player)
+        if (!mainTargetTransform)
         {
-            playerTransform = player.transform;
-        }
-        else
-        {
-            Debug.Log("Camera: Camera does not have a player object to follow.");
-            playerTransform = null;
+            var player = GameObject.FindGameObjectWithTag("Player");
+            if (player)
+            {
+                mainTargetTransform = player.transform;
+            }
+            else
+            {
+                Debug.Log("Camera: Camera does not have a player object to follow.");
+                mainTargetTransform = null;
+            }
         }
         cam = GetComponent<Camera>();
     }
@@ -109,5 +129,19 @@ public abstract class BaseCamera : MonoBehaviour
             bounds.Encapsulate(dialogBubblePos);
         }
         return bounds.center;
+    }
+
+    //credit: https://www.youtube.com/watch?v=05VX2N9_2_4
+    protected virtual Vector3 BoundCamera(Vector3 currentBoundsPos)
+    {
+        float currentBoundsX = currentBoundsPos.x;
+        float currentBoundsY = currentBoundsPos.y;
+        //credit for calculating the camera screen positional value: 
+        //https://answers.unity.com/questions/923782/please-help-to-understand-orthographic-camera-size.html
+        float screenHeight = Camera.main.orthographicSize * 2;
+        float screenWidth = screenHeight * Screen.width / Screen.height;
+        currentBoundsY = Mathf.Clamp(currentBoundsY, lowerBound + (screenHeight / 2), upperBound - (screenHeight / 2));
+        currentBoundsX = Mathf.Clamp(currentBoundsX, leftBound + (screenWidth / 2), rightBound - (screenWidth / 2));
+        return new Vector3(currentBoundsX, currentBoundsY, currentBoundsPos.z);
     }
 }

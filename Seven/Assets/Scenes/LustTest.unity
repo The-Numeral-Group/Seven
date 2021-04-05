@@ -259,18 +259,14 @@ PrefabInstance:
     - target: {fileID: 2200475627425788176, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
       propertyPath: dialogueFiles.Array.data[0]
       value: 
-      objectReference: {fileID: 2480198943629176163, guid: 7066bc8e65c6fec489aedf48c3e85953, type: 3}
+      objectReference: {fileID: 2480198943629176163, guid: 29d8493966275d14ba47d186fc49865d, type: 3}
     - target: {fileID: 2200475627425788176, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
       propertyPath: dialogueFiles.Array.data[1]
       value: 
-      objectReference: {fileID: 2480198943629176163, guid: 29d8493966275d14ba47d186fc49865d, type: 3}
+      objectReference: {fileID: 2480198943629176163, guid: 7066bc8e65c6fec489aedf48c3e85953, type: 3}
     - target: {fileID: 2200475627425788187, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
       propertyPath: m_Name
       value: DialogueMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 2200475627425788187, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2200475627425788190, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
       propertyPath: m_Camera

@@ -443,4 +443,10 @@ public class DialogueUIModified : Yarn.Unity.DialogueUIBehaviour
             waitingForOptionSelection = false;
             currentOptionSelectionHandler?.Invoke(optionID);
         }
+
+        //Callback function for setting the speed of the dialogue
+        public void SetTextSpeed(float speed)
+        {
+            textSpeed = speed;
+        }
 }
