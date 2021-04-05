@@ -17,6 +17,7 @@ public class BossCamera : BaseCamera
         currOffset = offset;
         Vector3 centerPoint = GetCenterPos();
         centerPoint = FocusCamOnChatBubble(centerPoint);
+        centerPoint = BoundCamera(centerPoint);
         Vector2 newPosition = new Vector2(centerPoint.x, centerPoint.y) + currOffset;
         this.gameObject.transform.position = Vector3.SmoothDamp(this.gameObject.transform.position, 
             new Vector3(newPosition.x, newPosition.y, this.gameObject.transform.position.z),

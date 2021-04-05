@@ -22,6 +22,18 @@ public abstract class BaseCamera : MonoBehaviour
     //Distance used by derived camera classes to manage the focus between player and points of interest.
     [Tooltip("Distance required between a targetPOI to the player in order affect the cameras focus.")]
     public float breakingDistance = 0f;
+    //upper boundary for the camera
+    [Tooltip("Upper Boundary of the camera.")]
+    public float upperBound = float.MaxValue;
+    //lower boundary for the camera
+    [Tooltip("Lower Boundary of the camera.")]
+    public float lowerBound = float.MaxValue;
+    //right boundary for the camera
+    [Tooltip("Right Boundary of the camera.")]
+    public float rightBound = float.MaxValue;
+    //left boundary for the camera
+    [Tooltip("Left Boundary of the camera.")]
+    public float leftBound = float.MaxValue;
     //The transform of the player
     protected Transform playerTransform;
     //Reference variable that is utilized by the SmoothDamp function.
@@ -109,5 +121,19 @@ public abstract class BaseCamera : MonoBehaviour
             bounds.Encapsulate(dialogBubblePos);
         }
         return bounds.center;
+    }
+
+    //credit: https://www.youtube.com/watch?v=05VX2N9_2_4
+    protected virtual Vector3 BoundCamera(Vector3 currentBoundsPos)
+    {
+        float currentBoundsX = currentBoundsPos.x;
+        float currentBoundsY = currentBoundsPos.y;
+        //credit for calculating the camera screen positional value: 
+        //https://answers.unity.com/questions/923782/please-help-to-understand-orthographic-camera-size.html
+        float screenHeight = Camera.main.orthographicSize * 2;
+        float screenWidth = screenHeight * Screen.width / Screen.height;
+        currentBoundsY = Mathf.Clamp(currentBoundsY, lowerBound + (screenHeight / 2), upperBound - (screenHeight / 2));
+        currentBoundsX = Mathf.Clamp(currentBoundsX, leftBound + (screenWidth / 2), rightBound - (screenWidth / 2));
+        return new Vector3(currentBoundsX, currentBoundsY, currentBoundsPos.z);
     }
 }
