@@ -1741,9 +1741,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Press Space Bar
-
-    to Dodge!'
+  m_Text: 'Dodge Dash: Space Bar'
 --- !u!222 &1231643411
 CanvasRenderer:
   m_ObjectHideFlags: 0

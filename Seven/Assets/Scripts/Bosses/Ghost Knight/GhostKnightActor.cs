@@ -25,9 +25,13 @@ public class GhostKnightActor : Actor
 
     [Tooltip("Delay before Ghost Knight starts attacking")]
     public float introDelay = 1f;
+
+    public Canvas attackTutorialCanvas;
+
     private bool attackEnabled = false;
 
     private int specialAttackCounter = 1;
+    private int attackTutorialCounter = 2;
 
     private Actor ghostKnight;
     private Actor player;
@@ -240,5 +244,11 @@ public class GhostKnightActor : Actor
         base.DoActorDamageEffect(damage);
         // Play TakeDamage Audio
         mySoundManager.PlaySound("TakeDamage");
+        // Take away counter for AttackTutorialText
+        this.attackTutorialCounter--;
+        if(this.attackTutorialCounter == 0)
+        {
+            this.attackTutorialCanvas.enabled = false;
+        }
     }
 }
