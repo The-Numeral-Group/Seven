@@ -584,7 +584,6 @@ MonoBehaviour:
   indicatorOffset: {x: 0, y: 1}
   speakerName: GhostKnight
   yarnStartNode: GhostKnight.test
-  yarnDialogue: {fileID: 0}
   npcMode: 1
 --- !u!114 &424505102
 MonoBehaviour:
@@ -1072,6 +1071,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4115977272152067190, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: hasSword
+      value: 
+      objectReference: {fileID: 11400000, guid: debb3b5eb44c0b649a096f3940081a15, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
 --- !u!1 &1925820565 stripped
@@ -1353,10 +1356,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1946191, guid: 708a306f945165c49b6382e7c9913445, type: 3}
-      propertyPath: GameObjects.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1946191, guid: 708a306f945165c49b6382e7c9913445, type: 3}
       propertyPath: GameObjects.Array.data[0]
       value: 
       objectReference: {fileID: 1925820565}
@@ -1364,10 +1363,6 @@ PrefabInstance:
       propertyPath: GameObjects.Array.data[1]
       value: 
       objectReference: {fileID: 424505098}
-    - target: {fileID: 947924126, guid: 708a306f945165c49b6382e7c9913445, type: 3}
-      propertyPath: GameObjects.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 947924126, guid: 708a306f945165c49b6382e7c9913445, type: 3}
       propertyPath: GameObjects.Array.data[0]
       value: 
@@ -1381,8 +1376,8 @@ PrefabInstance:
       value: GameSaveManager
       objectReference: {fileID: 0}
     - target: {fileID: 2998643818376067550, guid: 708a306f945165c49b6382e7c9913445, type: 3}
-      propertyPath: objects.Array.size
-      value: 0
+      propertyPath: SaveObjects.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2998643818376067551, guid: 708a306f945165c49b6382e7c9913445, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1427,10 +1422,6 @@ PrefabInstance:
     - target: {fileID: 2998643818376067551, guid: 708a306f945165c49b6382e7c9913445, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6483183295849236948, guid: 708a306f945165c49b6382e7c9913445, type: 3}
-      propertyPath: GameObjects.Array.size
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6483183295849236948, guid: 708a306f945165c49b6382e7c9913445, type: 3}
       propertyPath: GameObjects.Array.data[0]

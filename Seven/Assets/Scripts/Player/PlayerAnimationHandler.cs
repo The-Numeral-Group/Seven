@@ -47,13 +47,16 @@ public class PlayerAnimationHandler : ActorAnimationHandler
     }
     public void animateDodge()
     {
-        StartCoroutine(tempAnimateDodge());
+        doAnimateDodge();
     }
 
-    private IEnumerator tempAnimateDodge()
+    private void doAnimateDodge()
     {
         Animator.SetBool("player_dodging", true);
-        yield return new WaitForSeconds(1);
+    }
+
+    public void animateDodgeComplete()
+    {
         Animator.SetBool("player_dodging", false);
     }
 

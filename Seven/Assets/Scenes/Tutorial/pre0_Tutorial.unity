@@ -1272,6 +1272,14 @@ PrefabInstance:
       propertyPath: targetPOIs.Array.data[1]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: lowerBound
+      value: -1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: leftBound
+      value: -1000
+      objectReference: {fileID: 0}
     - target: {fileID: 7897472732076878603, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_Name
       value: BossCamera
@@ -2244,6 +2252,7 @@ MonoBehaviour:
   cooldownPeriod: 0
   abilityName: PlayerWeapon
   invokeBlankWhenBadArguments: 1
+  lockDuration: 0
 --- !u!1001 &3088828621847868648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2371,7 +2380,7 @@ Animator:
   m_GameObject: {fileID: 1857178603}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 65cb18468c1cf03498f40e27a842aa25, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5176e3a5321cca14185e58a0d01a457e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
