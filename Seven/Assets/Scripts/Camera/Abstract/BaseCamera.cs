@@ -41,6 +41,8 @@ public abstract class BaseCamera : MonoBehaviour
     //left boundary for the camera
     [Tooltip("Left Boundary of the camera.")]
     public float leftBound = float.MinValue;
+    [Tooltip("Unused value at the moment.")]
+    public float defaultZoomLevel = 20f;
     //Reference variable that is utilized by the SmoothDamp function.
     protected Vector3 velocity;
     //Reference to this objects camera component
