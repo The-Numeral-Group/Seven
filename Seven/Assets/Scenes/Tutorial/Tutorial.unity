@@ -6117,6 +6117,10 @@ PrefabInstance:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[31].x
       value: 3.4970477
       objectReference: {fileID: 0}
+    - target: {fileID: 532624752980111709, guid: c17a2cf93f0ed3d43b10be64ac5d99e6, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c17a2cf93f0ed3d43b10be64ac5d99e6, type: 3}
 --- !u!1001 &220097795559556439
@@ -7324,6 +7328,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 7345663322208169106, guid: 6d1da0f5337dfdb42900704104729344, type: 3}
+    - target: {fileID: 4115977272152067171, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4115977272152067176, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: startingMaxHealth
       value: 7
