@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackLimit: 7
-  attackDelay: 6
+  attackDelay: 3
 --- !u!114 &315102713
 MonoBehaviour:
   m_ObjectHideFlags: 0
