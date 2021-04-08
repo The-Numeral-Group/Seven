@@ -163,7 +163,11 @@ public class GhostKnightActor : Actor
         var myPos = this.gameObject.transform.position;
         var playerPos = player.gameObject.transform.position;
 
+        playerPos.y += 4;
+
         var directionToPlayer = (playerPos - myPos).normalized;
+
+        Debug.Log(directionToPlayer);
 
         this.myMovement.MoveActor(directionToPlayer);
 
@@ -215,7 +219,7 @@ public class GhostKnightActor : Actor
     
     // Handles the physical contact with the player effect.
     // Knockback Effect is handled with Point Effector 2D Component.
-    void OnTriggerEnter2D(Collider2D collider)
+    /*void OnTriggerEnter2D(Collider2D collider)
     {
         // Only collide with player
         if (collider.gameObject.tag == "Player")
@@ -237,7 +241,7 @@ public class GhostKnightActor : Actor
                 playerHealth.takeDamage(damage);
             }
         }
-    }
+    }*/
 
     public override void DoActorDamageEffect(float damage)
     {

@@ -21,7 +21,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     private Actor player;
 
     // Ghost Knight Effector object
-    public GameObject gkEffector;
+    //public GameObject gkEffector;
 
     public GameObject glintObject;
 
@@ -64,7 +64,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
         user.myHealth.SetVulnerable(false, -1);
 
         // Turn off effector so player doesn't get knockback when Ghost Knight is invisible.
-        gkEffector.SetActive(false);
+        //gkEffector.SetActive(false);
 
         float opacity = 1f;
         while (opacity > 0f)
@@ -107,7 +107,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
         user.myHealth.SetVulnerable(true, -1);
 
         // Turn back the effector on.
-        gkEffector.SetActive(true);
+        //gkEffector.SetActive(true);
     }
 
     private IEnumerator PerformSpecialSlash(Actor user)
