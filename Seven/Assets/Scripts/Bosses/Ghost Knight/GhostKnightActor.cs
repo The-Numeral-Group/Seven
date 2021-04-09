@@ -167,8 +167,6 @@ public class GhostKnightActor : Actor
 
         var directionToPlayer = (playerPos - myPos).normalized;
 
-        Debug.Log(directionToPlayer);
-
         this.myMovement.MoveActor(directionToPlayer);
 
     }

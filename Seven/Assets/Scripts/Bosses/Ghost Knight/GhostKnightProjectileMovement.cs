@@ -11,32 +11,55 @@ public class GhostKnightProjectileMovement : ActorMovement
 
     private Actor player;
 
-    public float projectileDuration = 5f;
+    public float projectileDuration = 7f;
     public int damage = 1;
-    public float before_fadeAway = 4.5f;
-    public float fadeAway_duration = 0.5f;
+    public float appear_duration = 1.0f;
 
-    private float projectileSpeed = 0.1f;
+    private float before_fadeAway;
+    private float fadeAway_duration = 0.5f;
+
+    public float projectileSpeed = 0.1f;
+
+    private bool canMove = false;
 
     ActorSoundManager soundManager;
+
+    SpriteRenderer projSr;
 
 
     protected override void Start()
     {
         base.Start();
 
+        before_fadeAway = this.projectileDuration - fadeAway_duration;
+
         var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
         player = playerObject.GetComponent<Actor>();
 
         this.soundManager = this.gameObject.GetComponentInChildren<ActorSoundManager>();
 
+        this.projSr = this.gameObject.GetComponent<SpriteRenderer>();
+
+        this.movementDirection = Vector2.zero;
+
+        StartCoroutine(ProjAppear());
+
         StartCoroutine(DestroySelf());
     }
     protected override void FixedUpdate()
     {
-        FollowPlayer();
-        InternalMoveActor();
+        if (canMove)
+        {
+            FollowPlayer();
+            InternalMoveActor();
+        }
     }
+
+    public void setProjMove(bool isMoving)
+    {
+        this.canMove = isMoving;
+    }
+
     private void FollowPlayer()
     {
         var myPos = this.gameObject.transform.position;
@@ -53,6 +76,17 @@ public class GhostKnightProjectileMovement : ActorMovement
         //actually moving
         movementController.Move(moveComposite);
 
+    }
+
+    private IEnumerator ProjAppear()
+    {
+        float opacity = 0f;
+        while (opacity < 1f)
+        {
+            opacity += 0.1f;
+            this.projSr.color = new Color(1f, 1f, 1f, opacity);
+            yield return new WaitForSeconds(this.appear_duration / 10);
+        }
     }
 
     IEnumerator DestroySelf()

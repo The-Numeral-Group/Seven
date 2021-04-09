@@ -116,6 +116,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
         user.myMovement.DragActor(new Vector2(0.0f, -0.5f));
         yield return new WaitForSeconds(this.duration_slash);
         user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
+        yield return new WaitForSeconds(this.duration_slash);
         isFinished = true;
     }
 
