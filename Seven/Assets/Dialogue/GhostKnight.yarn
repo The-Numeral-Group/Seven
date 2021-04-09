@@ -1,11 +1,11 @@
-title: GhostKnight.Opening.Dialogue0
+title: GhostKnight.PostFight.Dialogue0
 tags: 
 colorID: 0
 position: 859,388
 ---
 GhostKnight: ENOUGH!
 ===
-title: GhostKnight.Opening.Dialogue1
+title: GhostKnight.PostFight.Dialogue1
 tags: 
 colorID: 1
 position: 986,208
@@ -50,11 +50,25 @@ GhostKnight: Resist Temptation
 
 //Ghost Knight disappears and reappears left of the pool of water
 ===
-title: GhostKnight.Opening.Dialogue2
+title: GhostKnight.PostFight.Dialogue2
 tags: 
 colorID: 1
 position: 986,208
 ---
 GhostKnight: If you are in need of assistance, come to me.
 GhostKnight: Even though I cannot fight them, I can offer knowledge of their demise.
+===
+title: GhostKnight.Ability.Dialogue0
+tags: 
+colorID: 1
+position: 986,208
+---
+GhostKnight: This is tutorial for ability.
+===
+title: GhostKnight.Closing.Dialogue0
+tags: 
+colorID: 1
+position: 986,208
+---
+GhostKnight: You have defeated all the bosses.
 ===

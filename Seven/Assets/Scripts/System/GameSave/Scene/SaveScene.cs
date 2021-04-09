@@ -8,6 +8,15 @@ public class SaveScene : MonoBehaviour
 {
     public List<GameObject> GameObjects = new List<GameObject>();
     public BoolValue newGame;
+
+    /*public void Start()
+    {
+        if(GameObjects.Count != 0)
+        {
+            SaveCurrentScene();
+        }
+    }*/
+
     public void SaveCurrentScene()
     {
         newGame.initialValue = false;

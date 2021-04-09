@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 49f50df8a7ceb1840bc132ad13e3d6cd
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: en-US
+  stringIDs:
+  - TestNpc 1-TestNpc.Start-0
+  - TestNpc 1-TestNpc.Start-1
+  - TestNpc 1-TestNpc.Start-2
+  compilationStatus: 1
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: 
+  baseLanguage: {fileID: 7128917941130120860, guid: 20b830528a7b342418f2c3c6cf81b4e1, type: 3}
+  localizations: []
