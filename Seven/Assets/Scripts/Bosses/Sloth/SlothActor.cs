@@ -63,24 +63,45 @@ public class SlothActor : Actor
         this.myHealth.SetVulnerable(false, -10f);
 
         //add sloth sin here
-        player.myEffectHandler.AddEffect(new SlothSin());
-
+        if(player.myEffectHandler == null)
+        {
+            Debug.LogWarning("SlothActor: Sloth was unable to locate the player's effect" + 
+                " handler during start");
+            player.gameObject.GetComponent<ActorEffectHandler>().AddEffect(new SlothSin());
+        }
+        else
+        {
+            player.myEffectHandler.AddEffect(new SlothSin());
+        }
+        
         //create AAM object here (to reduce load/lag when starting the fight)
         AAM = new SlothClockMod();
 
         //start sloth's dialogue. Sloth's activator is passed as the on-end delegate, and movement
         //remains unlocked so the player can choose to leave
-        MenuManager.DIALOGUE_MENU.StartDialogue(
-            this.gameObject, 
-            new DialogueMenu.TestDelegate( () => ActivateSloth() ), 
-            false
-        );
+        //we offload this to the next frame to make sure the player's actor components
+        //are loaded enough for the dialogue to work
+        StartCoroutine(DialogueOffsetStart());
+
+        
 
         ///DEBUG
         /*sloth starts by talking with the player, but that hasn't been built yet (2/27/21), so
         it's just gonna start throwing hands immediately*/
         //ActivateSloth();
         ///DEBUG
+    }
+
+    //Starts dialogue on the next frame. Can't be anonymous because a yield is used
+    IEnumerator DialogueOffsetStart()
+    {
+        yield return null;
+
+        MenuManager.DIALOGUE_MENU.StartDialogue(
+            this.gameObject, 
+            new DialogueMenu.TestDelegate( () => ActivateSloth() ), 
+            false
+        );
     }
 
     // FixedUpdate is called once per simulation tick
