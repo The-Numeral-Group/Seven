@@ -18,7 +18,7 @@ public class GhostKnightNPC : MonoBehaviour
 
     public void playNextDialogue()
     {
-        this.gameObject.GetComponent<ActiveSpeaker>().yarnStartNode = "GhostKnight.Opening.Dialogue" + nextDialogueNum;
+        this.gameObject.GetComponent<ActiveSpeaker>().yarnStartNode = "GhostKnight.PostFight.Dialogue" + nextDialogueNum;
         MenuManager.DIALOGUE_MENU.StartDialogue(this.gameObject);
         nextDialogueNum++;
     }
