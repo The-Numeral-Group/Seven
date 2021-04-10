@@ -57,6 +57,9 @@ public class Ego2Movement : ActorMovement
         );
         ///DEBUG
 
+        //Step 2.5: spend some time out of reality
+        yield return new WaitForSeconds(intangibleTime);
+
         //Step 3: actually teleport
         this.gameObject.transform.position = destination;
 

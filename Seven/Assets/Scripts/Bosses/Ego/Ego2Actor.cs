@@ -25,8 +25,11 @@ public class Ego2Actor : Actor
     [Tooltip("How many times Ego should teleport before the final attack teleport.")]
     public int teleCount = 3;
 
-    [Tooltip("How long Ego should wait after an attack completes before attacking again.")]
+    [Tooltip("How long Ego should wait after a teleport completes before teleporting again.")]
     public float teleWait = 0.5f;
+
+    [Tooltip("How long Ego should wait after an attack completes before attacking again.")]
+    public float attackWait = 0.5f;
 
     [Tooltip("The minimum distance Ego should be from the player after the last teleport.")]
     public float teleMinDist = 1f;
@@ -74,7 +77,6 @@ public class Ego2Actor : Actor
 
         //get teleMesh's mesh
         tMesh = teleMesh.GetComponent<MeshFilter>().mesh;
-        Debug.Log($"Ego2Actor: Bounds of mesh are in {tMesh.bounds.min} - {tMesh.bounds.max}");
 
         //get ActorMovement as Ego2Movement
         if(this.myMovement is Ego2Movement)
@@ -104,12 +106,8 @@ public class Ego2Actor : Actor
             //Step 3: Wait for the attack to resolve
             yield return new WaitUntil( () =>  (currAbility && !currAbility.getUsable()) );
 
-            ///DEBUG
-            Debug.Log("Ego2Actor: Ability finished.");
-            ///DEBUG
-
             //Step 4: Wait a little while
-            yield return new WaitForSeconds(teleWait);
+            yield return new WaitForSeconds(attackWait);
         }
     }
 
@@ -129,8 +127,10 @@ public class Ego2Actor : Actor
                 Random.Range(-1f, 1f) * meshBound.size.y,
                 0f
             );
-            Debug.Log($"Ego2Actor: Teleporting to {randomDestinationVec}");
             yield return uniqueMovement?.EgoTeleport(randomDestinationVec);
+
+            //wait a little bit before doing the next teleport
+            yield return new WaitForSeconds(teleWait);
         }
 
         //set destination to whatever the player is but a little bit above and to the right

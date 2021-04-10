@@ -245,7 +245,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleMesh: {fileID: 1774437467}
   teleCount: 3
-  teleWait: 0.5
+  teleWait: 0.1
+  attackWait: 0.5
   teleMinDist: 1
   teleMaxDist: 5
   specialAttackGate: 7
