@@ -128,4 +128,33 @@ public abstract class ActorAbilityFunction<InvokeParam, InvokeReturn> : ActorAbi
             }
         );
     }
+
+    protected static Vector3 ConvertTargetToVec3(object arg)
+    {
+        Vector3 finalVec = Vector3.zero;
+
+        if(arg is Vector3)
+        {
+            finalVec = (Vector3)arg;
+        }
+        else if(arg is GameObject)
+        {
+            finalVec = (arg as GameObject).transform.position;
+        }
+        else if (arg is Transform)
+        {
+            finalVec = (arg as Transform).position;
+        }
+        else if(arg is Actor)
+        {
+            finalVec = (arg as Actor).gameObject.transform.position;
+        }
+        else
+        {
+            Debug.LogWarning("ActorAbility: provided argument cannot be" + 
+                " converted/interpreted to Vector3. Using Vector3.zero instead.");
+        }
+        
+        return finalVec;
+    }
 }
