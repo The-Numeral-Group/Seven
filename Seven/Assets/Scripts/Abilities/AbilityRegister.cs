@@ -48,8 +48,13 @@
     public static string GHOSTKNIGHT_PROJECTILE = "";
     public static string GHOSTKNIGHT_SPECIAL = "";
 
-    //SLOTH
+    //SLOTH----------------------------------------------------------------------------------------
     public static string SLOTH_PHYSICAL = "";
     public static string SLOTH_RANGE = "";
     public static string SLOTH_SPECIAL = "";
+
+    //EGO PHASE 2----------------------------------------------------------------------------------
+    public static string EGO_BEAM = "";
+    public static string EGO_WALL = "";
+    public static string EGO_SUMMON = "";
 }
