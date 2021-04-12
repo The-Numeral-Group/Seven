@@ -45,4 +45,14 @@ public class PauseMenu : BaseUI
         exitButton.Select();
         PauseGame();
     }
+
+    //meant to be called by player upon closing pause menu through resume.
+    public void OnResume()
+    {
+        var player = GameObject.FindGameObjectWithTag("Player");
+        PlayerActor pActor = player.GetComponent<PlayerActor>();
+        pActor.playerInput.SwitchCurrentActionMap("Player");
+        MenuManager.CURRENT_MENU = null;
+        Hide();
+    }
 }

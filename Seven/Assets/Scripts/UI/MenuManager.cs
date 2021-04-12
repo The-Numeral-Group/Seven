@@ -46,6 +46,7 @@ public class MenuManager : MonoBehaviour
     void Awake()
     {
         CURRENT_MENU = null;
+        Cursor.lockState = CursorLockMode.Locked;
         SetReferences<DialogueMenu>(ref dialogueMenu, ref DIALOGUE_MENU, "DialogueMenu");
         SetReferences<PauseMenu>(ref pauseMenu, ref PAUSE_MENU, "PauseMenu");
         SetReferences<BattleUI>(ref battleUI, ref BATTLE_UI, "BattleUI");
