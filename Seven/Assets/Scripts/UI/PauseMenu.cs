@@ -52,7 +52,6 @@ public class PauseMenu : BaseUI
         var player = GameObject.FindGameObjectWithTag("Player");
         PlayerActor pActor = player.GetComponent<PlayerActor>();
         pActor.playerInput.SwitchCurrentActionMap("Player");
-        MenuManager.CURRENT_MENU = null;
         Hide();
     }
 }
