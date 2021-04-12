@@ -176,7 +176,8 @@ GameObject:
   - component: {fileID: 505191978}
   - component: {fileID: 505191977}
   - component: {fileID: 505191988}
-  m_Layer: 0
+  - component: {fileID: 505191989}
+  m_Layer: 2
   m_Name: Ego 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,8 +229,8 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Beam: {fileID: 505191977}
-  Wall: {fileID: 505191977}
+  Beam: {fileID: 505191989}
+  Wall: {fileID: 505191989}
   Special: {fileID: 505191977}
 --- !u!114 &505191980
 MonoBehaviour:
@@ -396,7 +397,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505191976}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -415,6 +416,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.5, y: 4.5}
   m_EdgeRadius: 0
+--- !u!114 &505191989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505191976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ddf83cd9ce26ba79ff41d58f42743e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: laserBEAMSLIGHTUPTHESKY
+  invokeBlankWhenBadArguments: 1
+  laserObj: {fileID: 4417132022118089685, guid: b0818de86c2e4c0fcaeb8e849b1b5dec, type: 3}
+  laserMaxDist: 100
+  laserWidth: 1
+  damage: 2
+  preLaserDuration: 0.5
+  laserDuration: 0.3
 --- !u!224 &668382802 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6919360707961699820, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
@@ -730,7 +752,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774437467}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
