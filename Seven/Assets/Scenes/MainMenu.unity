@@ -282,6 +282,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 947924126, guid: 708a306f945165c49b6382e7c9913445, type: 3}
+      propertyPath: GameObjects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2998643818376067545, guid: 708a306f945165c49b6382e7c9913445, type: 3}
       propertyPath: m_Name
       value: GameSaveManager
