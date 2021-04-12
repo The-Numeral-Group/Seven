@@ -85,4 +85,9 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     {
         playerInteract.Invoke(ref userActor);
     }
+
+    public void OnAbilityOne()
+    {
+        selectedAbilityAlpha.Invoke(ref userActor);
+    }
 }

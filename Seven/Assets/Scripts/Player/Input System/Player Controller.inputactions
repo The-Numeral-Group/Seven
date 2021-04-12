@@ -44,6 +44,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "AbilityOne",
+                    "type": "Button",
+                    "id": "f8d57b4a-1594-4389-97b8-c7582edf6f92",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -103,61 +111,6 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "AltWASD",
-                    "id": "76547086-a8ef-4916-8ea5-7a5f698d21ab",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse",
-                    "action": "Movement",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "c7945362-a0d5-41b5-a234-a13975e447b1",
-                    "path": "<Keyboard>/o",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse;Mouse and Keyboard",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "372bd0c5-9c2a-493b-b467-9cf234185897",
-                    "path": "<Keyboard>/t",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse;Mouse and Keyboard",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "72617d8b-f27d-4c4d-9b97-d82d7f8b607a",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse;Mouse and Keyboard",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "38bb1711-2972-4d5b-bfaf-b086a05db939",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse;Mouse and Keyboard",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "ArrowKeys",
                     "id": "09a5d3ba-b685-4c0f-bfec-222f00f4613c",
                     "path": "2DVector",
@@ -205,61 +158,6 @@
                     "name": "right",
                     "id": "8a06f3a7-24e0-40ed-bab1-6fc9c3418484",
                     "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse;Mouse and Keyboard",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "AltArrows",
-                    "id": "9ce9541e-b48f-41d8-9988-7b6006535a4f",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Movement",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "7e53c31d-9063-4688-b130-4b83d669ed65",
-                    "path": "<Keyboard>/o",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse;Mouse and Keyboard",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "b1f45e01-8579-4bea-b910-fdebf45c2992",
-                    "path": "<Keyboard>/t",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse;Mouse and Keyboard",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "ed73d306-137d-4b6a-b2c6-ccfadafc16a6",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse;Mouse and Keyboard",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "2f59d33a-51ac-4eea-97ca-c400c2fbe177",
-                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse;Mouse and Keyboard",
@@ -519,6 +417,17 @@
                     "action": "Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "28caad51-ad36-436b-9562-7343f8323d3d",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse and Keyboard",
+                    "action": "AbilityOne",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -527,26 +436,10 @@
             "id": "62ead308-e48f-4498-865d-058077b298aa",
             "actions": [
                 {
-                    "name": "Point",
-                    "type": "PassThrough",
-                    "id": "ce5a2b86-b2bd-4b26-84d1-e59b927753f4",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Navigate",
                     "type": "Value",
                     "id": "4eaa052a-a96a-4481-a9cb-c288ad051528",
                     "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Left Click",
-                    "type": "PassThrough",
-                    "id": "31f69cc3-abbe-4e22-b71f-8f7a7a5dc784",
-                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
@@ -573,39 +466,9 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
-                },
-                {
-                    "name": "Right Click",
-                    "type": "PassThrough",
-                    "id": "c0010cfc-b259-4efb-a2dd-b68b2ae52142",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "38db4b4d-3417-413c-816b-1e21450b347d",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mouse and Keyboard",
-                    "action": "Point",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f1cd5b1b-cd3f-4496-b55c-1a96aac451e8",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Mouse and Keyboard",
-                    "action": "Left Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "WASD",
                     "id": "cf02c678-e949-49eb-a774-795b6feef5cc",
@@ -1037,6 +900,17 @@
                 },
                 {
                     "name": "",
+                    "id": "95b2df55-f25a-45c2-9829-7f9991924ce4",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse and Keyboard",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "755f5948-5597-4e01-aa8b-c28cccf0e878",
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
@@ -1070,12 +944,12 @@
                 },
                 {
                     "name": "",
-                    "id": "95b2df55-f25a-45c2-9829-7f9991924ce4",
-                    "path": "<Mouse>/rightButton",
+                    "id": "98818e39-b5c6-49e1-8775-63b1c87ce535",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
-                    "action": "Right Click",
+                    "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
