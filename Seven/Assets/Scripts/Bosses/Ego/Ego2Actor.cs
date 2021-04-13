@@ -44,8 +44,9 @@ public class Ego2Actor : Actor
         " wall attack.")]
     public int powerAttackGate = 3;
 
-    //How many times Ego has attacked (which determines which attack it uses)
-    private int attackCount = 0;
+    //How many times Ego has attacked (which determines which attack it uses). Needs to start at
+    //one to work with the modulo-based attack determination
+    private int attackCount = 1;
 
     //whatever ability Ego is currently using, if any
     private ActorAbility currAbility;
@@ -104,7 +105,7 @@ public class Ego2Actor : Actor
             ExecuteAttack();
 
             //Step 3: Wait for the attack to resolve
-            yield return new WaitUntil( () =>  (currAbility && !currAbility.getUsable()) );
+            yield return new WaitUntil( () =>  (currAbility && !currAbility.getIsFinished()) );
 
             //Step 4: Wait a little while
             yield return new WaitForSeconds(attackWait);

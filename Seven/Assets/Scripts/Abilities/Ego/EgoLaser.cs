@@ -12,8 +12,7 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
     public float laserMaxDist = 100f;
 
     [Tooltip("How wide the laser should be.")]
-    [Range(0.0f, 1.0f)]
-    public float laserWidth = 1.0f;
+    public float laserWidth = 3.0f;
 
     [Tooltip("How much damage the laser should do.")]
     public float damage = 2f;
@@ -24,6 +23,10 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
     [Tooltip("How long the laser should be shown at full power (this is not how long the" + 
         " hitbox lasts).")]
     public float laserDuration = 0.3f;
+
+    /*[Tooltip("How long the ability should linger (holding up its user). If this number is " + 
+        " too low, the user might move or some other thing before the laser is destroyed.")]
+    public float laserEndDuration = 0.15f;*/
     
     //METHODS--------------------------------------------------------------------------------------
     /*Activates the ability with no arguments. In this case, it will default the bubble position
@@ -89,7 +92,14 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
         yield return new WaitForSeconds(laserDuration);
 
         //Step 8: destroy the laser and begin cooldown
+        laser.gameObject.SetActive(false);
         Destroy(laser.gameObject);
+
+        /*Step 8.5: yield before setting to isFinished, 
+        so the destruction of the laser has time to appear*
+        //actually disable it then destroy it
+        //because the destruction will always wait for the next physics tick
+        yield return new WaitForSeconds(laserEndDuration);*/
         isFinished = true;
         
         //Step 9: cooldown
@@ -136,7 +146,7 @@ internal class EgoLaserProjectile : MonoBehaviour
         //shoot what is effectively a data laser
         RaycastHit2D hit = Physics2D.Raycast(launchPoint, launchDirection, laserMaxDistance);
 
-        //if it hit something...
+        /*//if it hit something...
         if(hit.collider != null)
         {
             //then the laser ends at that point
@@ -147,7 +157,10 @@ internal class EgoLaserProjectile : MonoBehaviour
         {
             //the laser ends some distance away in that direction
             laserEnd = launchDirection * laserMaxDistance;
-        }
+        }*/
+
+        //draw the laser the whole way regardless
+        laserEnd = launchDirection * laserMaxDistance;
 
         //set the points for the laser
         //what C# doesn't have implicit arrays? Really?
@@ -155,10 +168,10 @@ internal class EgoLaserProjectile : MonoBehaviour
         line.SetPositions(laserPoints);
 
         //if the laser is active
-        if(active && hit.collider)
+        if(active)
         {
             //try to hurt the target
-            hit.collider.gameObject.GetComponent<ActorHealth>()?.takeDamage(laserDamage);
+            hit.collider?.gameObject.GetComponent<ActorHealth>()?.takeDamage(laserDamage);
 
             ///DEBUG
             //switch the laser's color to red just to see it for right now

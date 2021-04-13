@@ -428,15 +428,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ddf83cd9ce26ba79ff41d58f42743e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 0
+  cooldownPeriod: 1
   abilityName: laserBEAMSLIGHTUPTHESKY
   invokeBlankWhenBadArguments: 1
   laserObj: {fileID: 4417132022118089685, guid: b0818de86c2e4c0fcaeb8e849b1b5dec, type: 3}
   laserMaxDist: 100
-  laserWidth: 1
+  laserWidth: 2
   damage: 2
   preLaserDuration: 0.5
   laserDuration: 0.3
+  laserEndDuration: 1
 --- !u!224 &668382802 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6919360707961699820, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
