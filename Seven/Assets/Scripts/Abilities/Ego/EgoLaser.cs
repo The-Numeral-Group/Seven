@@ -29,7 +29,7 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
     public float laserEndDuration = 0.15f;*/
     
     //METHODS--------------------------------------------------------------------------------------
-    /*Activates the ability with no arguments. In this case, it will default the bubble position
+    /*Activates the ability with no arguments. In this case, it will default the target position
     to whereever the player is standing*/
     public override void Invoke(ref Actor user)
     {
