@@ -134,11 +134,12 @@ public class Ego2Actor : Actor
             yield return new WaitForSeconds(teleWait);
         }
 
-        //set destination to whatever the player is but a little bit above and to the right
-        //we can make it be a full 360 later
+        //set destination to whatever the player is but a little bit away
+        //Random.Range does magnitude, and System.Random does side
+        //we need to go 0 to 2 because the range is not maximum inclusive for ints
         var playerDestinationVec = player.transform.position + new Vector3(
-            Random.Range(teleMinDist, teleMaxDist),
-            Random.Range(teleMinDist, teleMaxDist),
+            Random.Range(teleMinDist, teleMaxDist) * (Random.Range(0, 2) * 2 - 1),
+            Random.Range(teleMinDist, teleMaxDist) * (Random.Range(0, 2) * 2 - 1),
             0f
         );
         yield return uniqueMovement?.EgoTeleport(playerDestinationVec);

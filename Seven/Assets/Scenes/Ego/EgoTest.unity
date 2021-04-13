@@ -248,8 +248,8 @@ MonoBehaviour:
   teleCount: 3
   teleWait: 0.1
   attackWait: 0.5
-  teleMinDist: 1
-  teleMaxDist: 5
+  teleMinDist: 3
+  teleMaxDist: 10
   specialAttackGate: 7
   powerAttackGate: 3
 --- !u!114 &505191981
@@ -397,7 +397,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505191976}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -437,7 +437,6 @@ MonoBehaviour:
   damage: 2
   preLaserDuration: 0.5
   laserDuration: 0.3
-  laserEndDuration: 1
 --- !u!224 &668382802 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6919360707961699820, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
