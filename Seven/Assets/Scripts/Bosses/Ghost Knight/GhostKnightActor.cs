@@ -85,7 +85,7 @@ public class GhostKnightActor : Actor
     public override void DoActorDeath()
     {
         GetComponent<ActorDataManager>().updateActorPosition(transform.position);
-        SceneManager.LoadScene("Tutorial_Cutscene1");
+        SceneManager.LoadScene("Tutorial_PostFight");
     }
 
     // When the game starts, the ghost knight will try to cast any attack with movementDirection
@@ -164,6 +164,18 @@ public class GhostKnightActor : Actor
         var playerPos = player.gameObject.transform.position;
 
         playerPos.y += 4;
+
+        // This prevents GK from swerving when player is not moving and GK is on top of the player
+        if (player.myMovement.movementDirection == Vector2.zero)
+        { 
+            if((myPos.x < (playerPos.x + 0.2)) && (myPos.x > (playerPos.x - 0.2)) 
+                && (myPos.y < (playerPos.y + 0.2)) && (myPos.y > (playerPos.y - 0.2)))
+            {
+                Debug.Log("STOP MOVING");
+                this.myMovement.MoveActor(Vector2.zero);
+                return;
+            }
+        }
 
         var directionToPlayer = (playerPos - myPos).normalized;
 

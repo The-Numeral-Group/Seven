@@ -282,6 +282,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1946191, guid: 708a306f945165c49b6382e7c9913445, type: 3}
+      propertyPath: GameObjects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 947924126, guid: 708a306f945165c49b6382e7c9913445, type: 3}
       propertyPath: GameObjects.Array.size
       value: 0
@@ -643,6 +647,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1236848506}
+    - target: {fileID: 2046270003689129325, guid: 7d585d1a118c2b24cb1f9e1c4722e250, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: pre0_Tutorial (Corridor)
+      objectReference: {fileID: 0}
     - target: {fileID: 2046270003689129330, guid: 7d585d1a118c2b24cb1f9e1c4722e250, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
