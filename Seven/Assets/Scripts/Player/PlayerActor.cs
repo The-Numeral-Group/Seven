@@ -21,6 +21,7 @@ public class PlayerActor : Actor
     protected override void Start()
     {
         base.Start();
+        this.myAbilityInitiator = GetComponent<PlayerAbilityInitiator>();
         playerInput = GetComponent<PlayerInput>();
     }
 
@@ -74,6 +75,24 @@ public class PlayerActor : Actor
             should reset the players input map. This was added solely for the case where there is issue
             with regards to menumanagers current menu reference.*/
             playerInput.SwitchCurrentActionMap("Player");
+        }
+    }
+    
+    void OnSetAbilityOne()
+    {
+        if (MenuManager.CURRENT_MENU && MenuManager.CURRENT_MENU.GetType().ToString() == "PauseMenu")
+        {
+            PauseMenu pMenu = MenuManager.CURRENT_MENU as PauseMenu;
+            pMenu.SetAbility(true);
+        }
+    }
+
+    void OnSetAbilityTwo()
+    {
+        if (MenuManager.CURRENT_MENU && MenuManager.CURRENT_MENU.GetType().ToString() == "PauseMenu")
+        {
+            PauseMenu pMenu = MenuManager.CURRENT_MENU as PauseMenu;
+            pMenu.SetAbility(false);
         }
     }
 
