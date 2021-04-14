@@ -28,4 +28,13 @@ public class SpinSlash : ActorAbilityFunction<Actor, int>
     {
         isFinished = true;
     }
+
+    IEnumerator CheckAnimationComplete()
+    {
+        while(!user.myAnimationHandler.Animator.GetCurrentAnimatorStateInfo(0).IsName("SpinAttack"))
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        FinishSpinSlash();
+    }
 }
