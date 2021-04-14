@@ -6,14 +6,14 @@ public class TutorialEventListener : MonoBehaviour
 {
     public GameObject gate;
 
-    void OnCollisionEnter2D(Collision2D collider)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         // Only collide with player
-        if (collider.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             // close gate
             gate.SetActive(true);
-            
+
             // one time use
             this.gameObject.SetActive(false);
         }

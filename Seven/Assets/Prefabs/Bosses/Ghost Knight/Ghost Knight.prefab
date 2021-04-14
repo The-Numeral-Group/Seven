@@ -217,7 +217,6 @@ GameObject:
   - component: {fileID: 220097794664941640}
   - component: {fileID: 220097794664941641}
   - component: {fileID: 1647299139}
-  - component: {fileID: 8775839903410289812}
   m_Layer: 26
   m_Name: Ghost Knight Fight
   m_TagString: Boss
@@ -429,6 +428,7 @@ MonoBehaviour:
   startingMaxHealth: 10
   damageResistance: 0
   invincibilityDuration: 1
+  startInvulnerable: 0
 --- !u!114 &220097794664941682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,7 +545,6 @@ MonoBehaviour:
   duration_vanish: 3
   duration_appear: 1
   duration_slash: 2
-  gkEffector: {fileID: 220097795208801079}
   glintObject: {fileID: 304075295471522891, guid: afab189a157e3364e9dc9b4a8bf6c145, type: 3}
 --- !u!114 &220097794664941641
 MonoBehaviour:
@@ -618,22 +617,6 @@ MonoBehaviour:
     hasCooldown: 0
     playOnAwake: 0
     source: {fileID: 0}
---- !u!114 &8775839903410289812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 220097794664941643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 841b868338aec3640a1d82bda5ffc0ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-    position: {fileID: 11400000, guid: 860e525606a5caa48a0cc719ce5f73a5, type: 2}
-    currentScene: {fileID: 0}
-  gameSaveManager: {fileID: 2998643818376067545, guid: 708a306f945165c49b6382e7c9913445, type: 3}
 --- !u!1 &220097795208801079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,11 +1154,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d9c26e9469ec1c4cbc95af75729a6ed, type: 3}
---- !u!1 &8415373318680778200 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8630190691114585912, guid: 5d9c26e9469ec1c4cbc95af75729a6ed, type: 3}
-  m_PrefabInstance: {fileID: 220097794206079712}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8415373319009634433 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8630190690789134945, guid: 5d9c26e9469ec1c4cbc95af75729a6ed, type: 3}
@@ -1184,6 +1162,11 @@ Transform:
 --- !u!1 &8415373318957554022 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8630190690837709702, guid: 5d9c26e9469ec1c4cbc95af75729a6ed, type: 3}
+  m_PrefabInstance: {fileID: 220097794206079712}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8415373318680778200 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8630190691114585912, guid: 5d9c26e9469ec1c4cbc95af75729a6ed, type: 3}
   m_PrefabInstance: {fileID: 220097794206079712}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7237528254758383409
