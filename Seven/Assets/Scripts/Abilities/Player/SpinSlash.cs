@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SpinSlash : ActorAbilityFunction<Actor, int>
 {
-    public override void Invoke(ref Actor user, params object[] args)
+    public override void Invoke(ref Actor user)
     {
         if(usable && isFinished)
         {
             this.user = user;
             isFinished = false;
-            InternInvoke(easyArgConvert(args));
+            InternInvoke(user);
             StartCoroutine(coolDown(cooldownPeriod));
         }
     }
@@ -21,6 +21,7 @@ public class SpinSlash : ActorAbilityFunction<Actor, int>
         //reference for animator methods
         user.myAnimationHandler.Animator.SetTrigger("player_spin");
         user.mySoundManager.PlaySound("PlayerAttack");
+        StartCoroutine(CheckAnimationComplete());
         return 0;
     }
 
