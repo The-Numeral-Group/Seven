@@ -22,6 +22,8 @@ public class ActorHealth : MonoBehaviour
     [Range(0, 256)]
     public int invincibilityDuration = 1;
 
+    public bool startInvulnerable = false;
+
     //Public Properties (Publicly Accessable)
     //The actors maximum health
     public float maxHealth { get; set; }
@@ -29,6 +31,7 @@ public class ActorHealth : MonoBehaviour
     public float currentHealth { get; set; }
     //The following variables will be used to handle invulnerability
     //Whether or not the actor can be hit.
+    [SerializeField]
     public bool vulnerable { get; protected set; }
     //The amount of time remaining on the actors invulnerability.
     float timeInvulnerable;
@@ -42,7 +45,7 @@ public class ActorHealth : MonoBehaviour
         hostActor = this.GetComponent<Actor>();
         this.maxHealth = startingMaxHealth;
         this.currentHealth = this.maxHealth;
-        this.vulnerable = true;
+        this.vulnerable = !startInvulnerable;
         timeInvulnerable = 0f;
         MakeVulnerablePointer = ExtendInvulnerability(invincibilityDuration, false);
         this.spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
