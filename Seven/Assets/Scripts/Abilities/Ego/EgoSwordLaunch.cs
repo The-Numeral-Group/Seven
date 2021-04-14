@@ -65,8 +65,8 @@ public class EgoSwordLaunch : ActorAbilityFunction<GameObject, int>
         var faceAway = Quaternion.Euler(0f, 0f, 90f);
 
         //create the literal sword objects
-        var swordA = Instantiate(swordObj, rightSide, faceAway);
-        var swordB = Instantiate(swordObj, leftSide, Quaternion.Inverse(faceAway));
+        var swordA = Instantiate(swordObj, rightSide, Quaternion.Inverse(faceAway));
+        var swordB = Instantiate(swordObj, leftSide, faceAway);
 
         //actually launch the swords
         swordA.GetComponent<EgoSwordActor>().Launch(args[0]);

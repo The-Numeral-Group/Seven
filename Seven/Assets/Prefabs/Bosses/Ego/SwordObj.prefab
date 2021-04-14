@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 7211345050561169660}
   - component: {fileID: 7608486999077841734}
   - component: {fileID: 4656597964131209322}
+  - component: {fileID: 3703375004998599622}
   m_Layer: 0
   m_Name: SwordObj
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   m_GameObject: {fileID: 3639409746168724447}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7, y: -9.96594, z: -0.24993195}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -104,8 +105,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingMaxHealth: 100
-  damageResistance: 0
-  invincibilityDuration: 1
+  damageResistance: 1
+  invincibilityDuration: 256
+  startInvulnerable: 1
 --- !u!114 &7080026638867924800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,10 +132,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -163,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453e150335b52ac4884472bf0e1bd9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 2
 --- !u!114 &8743031877527049002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +209,7 @@ MonoBehaviour:
   flightDuration: 3
   landDuration: 3
   attackCount: 4
-  turnMax: 0.05
+  turnMax: 0.01
   collisionDamage: 1
   swordAbility: {fileID: 4656597964131209322}
 --- !u!114 &4656597964131209322
@@ -231,3 +233,29 @@ MonoBehaviour:
   damage: 2
   preLaserDuration: 0.5
   laserDuration: 0.3
+--- !u!61 &3703375004998599622
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639409746168724447}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.5, y: 2}
+    newSize: {x: 0.5, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 2}
+  m_EdgeRadius: 0

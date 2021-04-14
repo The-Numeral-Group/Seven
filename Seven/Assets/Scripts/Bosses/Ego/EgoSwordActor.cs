@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public class EgoSwordActor : Actor
 {
     //FIELDS---------------------------------------------------------------------------------------
@@ -50,14 +51,15 @@ public class EgoSwordActor : Actor
     }
 
     // Invoked when something else collides with this object
-    void OnCollision2DEnter(Collision2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
         //if the collided thing is the target...
         if(col.gameObject == target)
         {
             //try to hurt it
-            target.SendMessage("takeDamage", collisionDamage, 
-                SendMessageOptions.DontRequireReceiver);
+            //can't do send message because ActorHealth has 1 argument, even though it's optional
+            target.GetComponent<ActorHealth>()?.takeDamage(collisionDamage);
+            //SendMessage("takeDamage", collisionDamage, SendMessageOptions.DontRequireReceiver);
 
             //if the sword was flying, it should self destruct at this point
             if(state == SwordState.FLYING)
@@ -99,6 +101,10 @@ public class EgoSwordActor : Actor
 
         //Step 3: Land. Disable the movement vector
         moveDelegate = null;
+        //this line prevents the sword from being pushed by other things
+        this.gameObject.GetComponent<Rigidbody2D>().constraints 
+            = RigidbodyConstraints2D.FreezeAll;
+        state = SwordState.LANDED;
 
         //Step 4: Shoot the lasers
         for(int i = 0; i < attackCount; ++i)
@@ -126,12 +132,12 @@ public class EgoSwordActor : Actor
         direction and the direction it needs to be going*/
         var flightDirection = (target.transform.position - this.transform.position).normalized;
 
-        this.gameObject.transform.forward = 
-            Vector3.Lerp(this.gameObject.transform.forward, flightDirection, turnMax); 
+        this.gameObject.transform.up = 
+            Vector3.Lerp(this.gameObject.transform.up, flightDirection, turnMax); 
 
         //Then, move in the direction this gameObject is currently moving
         //var flightDirection = (target.transform.position - this.transform.position).normalized;
-        this.myMovement.MoveActor(this.gameObject.transform.forward);
+        this.myMovement.MoveActor(this.gameObject.transform.up);
     }
 
     //cleans up the sword, which includes destroying it

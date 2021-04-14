@@ -326,6 +326,7 @@ MonoBehaviour:
   startingMaxHealth: 100
   damageResistance: 0
   invincibilityDuration: 1
+  startInvulnerable: 0
 --- !u!212 &505191986
 SpriteRenderer:
   m_ObjectHideFlags: 0
