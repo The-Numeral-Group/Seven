@@ -101,6 +101,7 @@ public class PauseMenu : BaseUI
         Hide();
     }
 
+    //Callback function used by the pause menu to swap between the ability menu and pause menu.
     public void SwampMenu(bool swapRight)
     {
         if (swapRight)
@@ -128,6 +129,7 @@ public class PauseMenu : BaseUI
         subMenus[currentSelectedSubMenuIndex].defaultButton.Select();
     }
 
+    //Utilized by SwapMenu function to actually move the menus.
     void MoveSubMenu(float value)
     {
         subMenuContainer.localPosition += new Vector3(value, 0, 0);
@@ -135,8 +137,8 @@ public class PauseMenu : BaseUI
 
     //Resource for checking if a ui button is selected
     //https://answers.unity.com/questions/921720/how-can-i-check-if-a-ui-button-is-selected.html
-    /*Function below sets abilities within the menu system. Pass in true for abiltiy 1, false for
-    ability2.*/
+    /*Function below sets abilities for the player within the menu system. Pass in true for abiltiy 1, false for
+    ability2. Right now the call is made from the playeractor script.*/
     public void SetAbility(bool setAbilityOne)
     {
         GameObject currentSelectedButton = EventSystem.current.currentSelectedGameObject;
@@ -181,6 +183,12 @@ public class PauseMenu : BaseUI
     }
 
     //https://forum.unity.com/threads/passing-a-any-component-as-a-parameter.497218/
+    /*this function  assigns an ability to an ability button. When assigning an abiltiy it must 
+    be derived from type ActorAbility. The ability button selected will overwrite its previous
+    ability with the new one. This is essentially adding the component to the button through code
+    instead of through the inspector. The primary use I see for it is when a player kills a boss,
+    the events that follow can add the ability to w/e index abiltiy button. This will allow the player
+    to assign it as their selected ability in the future.*/
     public void SetAbilityToAbilityMenu<TAbility>(int index) where TAbility : UnityEngine.Component, new()
     {
         if (index >= abilityButtons.Count)
