@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 //Document Link: https://docs.google.com/document/d/1K9f7sRQvDX4krcKahgIzJey87R1z7mGWV4xgnYU7qSQ/edit?usp=sharing
 
@@ -8,8 +10,51 @@ public class PauseMenu : BaseUI
 {
     //Flag for if the game is paused
     public static bool GAME_IS_PAUSED;
-    //exitButton should be set through inspector;
-    public Button exitButton;
+    [SerializeField]
+    [Tooltip("Reference to the Sub Menu Container")]
+    RectTransform subMenuContainer = null;
+    //I did stupid design for the sub menus. List order matters for this class.
+    [SerializeField]
+    [Tooltip("List containing the various submenus.")]
+    List<SubMenu> subMenus = null;
+    [SerializeField]
+    List<GameObject> abilityButtons = null;
+    //Index of the current selected sub menu in the list
+    int currentSelectedSubMenuIndex = 0;
+    [SerializeField]
+    [Tooltip("Reference to the left button which swaps to the next sub menu.")]
+    Button leftSubMenuSelect = null;
+    [SerializeField]
+    [Tooltip("Reference to the right button which swaps to the next sub menu.")]
+
+    Button rightSubMenuSelect = null;
+    [SerializeField]
+    [Tooltip("Reference to the image representing abilityOne.")]
+    Image abilityOneImage = null;
+    [SerializeField]
+    [Tooltip("Reference to the image representing abilityTwo")]
+    Image abilityTwoImage = null;
+    //Reference to the player
+    Actor playerActor;
+
+    void Start()
+    {
+        LocatePlayer();
+    }
+
+    //Function used to set the reference for the player actor.
+    public void LocatePlayer()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player)
+        {
+            playerActor = player.GetComponent<Actor>();
+        }
+        else
+        {
+            Debug.Log("PauseMenu: Could not find player object.");
+        }
+    }
 
     //Public Function which will pause the game
     public void PauseGame()
@@ -39,10 +84,11 @@ public class PauseMenu : BaseUI
         base.Hide();
     }
 
+    //Sets the menu object as active.
     public override void Show()
     {
         base.Show();
-        exitButton.Select();
+        subMenus[currentSelectedSubMenuIndex].defaultButton.Select();
         PauseGame();
     }
 
@@ -53,5 +99,106 @@ public class PauseMenu : BaseUI
         PlayerActor pActor = player.GetComponent<PlayerActor>();
         pActor.playerInput.SwitchCurrentActionMap("Player");
         Hide();
+    }
+
+    public void SwampMenu(bool swapRight)
+    {
+        if (swapRight)
+        {
+            if (currentSelectedSubMenuIndex < subMenus.Count - 1)
+            {
+                currentSelectedSubMenuIndex++;
+                MoveSubMenu(-1100);
+                //temporary brute force code
+                rightSubMenuSelect.gameObject.SetActive(false);
+                leftSubMenuSelect.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            if (currentSelectedSubMenuIndex > 0)
+            {
+                currentSelectedSubMenuIndex--;
+                MoveSubMenu(1100);
+                //temporary brute force code
+                leftSubMenuSelect.gameObject.SetActive(false);
+                rightSubMenuSelect.gameObject.SetActive(true);
+            }
+        }
+        subMenus[currentSelectedSubMenuIndex].defaultButton.Select();
+    }
+
+    void MoveSubMenu(float value)
+    {
+        subMenuContainer.localPosition += new Vector3(value, 0, 0);
+    }
+
+    //Resource for checking if a ui button is selected
+    //https://answers.unity.com/questions/921720/how-can-i-check-if-a-ui-button-is-selected.html
+    /*Function below sets abilities within the menu system. Pass in true for abiltiy 1, false for
+    ability2.*/
+    public void SetAbility(bool setAbilityOne)
+    {
+        GameObject currentSelectedButton = EventSystem.current.currentSelectedGameObject;
+        PlayerAbilityInitiator playerAbilityInitiator = playerActor.myAbilityInitiator as PlayerAbilityInitiator;
+        if (!abilityButtons.Contains(currentSelectedButton))
+        {
+            return;
+        }
+
+        if (setAbilityOne)
+        {
+            SetupPlayerAbilityReference(ref playerAbilityInitiator.selectedAbilityAlpha, abilityOneImage);
+        }
+        else
+        {
+            SetupPlayerAbilityReference(ref playerAbilityInitiator.selectedAbilityBeta, abilityTwoImage);
+        }
+
+        //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/local-functions
+        void SetupPlayerAbilityReference(ref ActorAbility selectedPlayerAbility, Image ptrToAbilityUIElement)
+        {
+            Component abilityType = currentSelectedButton.GetComponent<ActorAbility>();
+            if (abilityType != null)
+            {
+                ActorAbility abilityToAdd = playerActor.GetComponent(abilityType.GetType()) as ActorAbility;
+                if (abilityToAdd == null)
+                {
+                    playerActor.gameObject.AddComponent(abilityType.GetType());
+                    abilityToAdd = playerActor.GetComponent(abilityType.GetType()) as ActorAbility;
+                }
+                selectedPlayerAbility = abilityToAdd;
+                Debug.Log(abilityType.GetType().ToString());
+            }
+            else
+            {
+                selectedPlayerAbility = null;
+            }
+            //This needs to be changed from color to sprite
+            ptrToAbilityUIElement.color = currentSelectedButton.GetComponent<Image>().color;
+        }
+
+    }
+
+    //https://forum.unity.com/threads/passing-a-any-component-as-a-parameter.497218/
+    public void SetAbilityToAbilityMenu<TAbility>(int index) where TAbility : UnityEngine.Component, new()
+    {
+        if (index >= abilityButtons.Count)
+        {
+            Debug.LogWarning("PauseMenu: SetAbilityToAbilityMenu: Index out of bounds. Must be less" +
+            " than: " + abilityButtons.Count);
+            return;
+        }
+        //https://stackoverflow.com/questions/33750893/how-can-i-tell-if-one-object-is-derived-from-a-particular-class
+        if (!typeof(TAbility).IsSubclassOf(typeof(ActorAbility)))
+        {
+            Debug.LogWarning("PauseMenu: SetAbilityToAbilityMenu: abilityToAdd is not a derived" +
+            " class of ACtorAbility.");
+            return;
+        }
+        Destroy(abilityButtons[index].GetComponent<ActorAbility>());
+        abilityButtons[index].AddComponent<TAbility>();
+        //Code to set inspector values
+        //code to set sprite of button
     }
 }
