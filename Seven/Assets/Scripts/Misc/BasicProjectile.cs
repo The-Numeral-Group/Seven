@@ -66,7 +66,7 @@ public class BasicProjectile : MonoBehaviour
     }
 
     /*Starts the projectile!*/
-    public void Launch(Vector2 target, LAUNCH_MODE mode = LAUNCH_MODE.POINT)
+    public virtual void Launch(Vector2 target, LAUNCH_MODE mode = LAUNCH_MODE.POINT)
     {
         /*An explicit cast is added here, even though Vector3 implicitly converts
         to Vector2, to remove the ambiguity between subtracting the this.gameObject's position as

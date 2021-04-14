@@ -27,13 +27,18 @@ public class EgoFirewallProjectile : BasicProjectile
         Cleanup();
     }
 
-    /*Starts the projectile!*/
-    /*Making the rotation go isn't working right now, so I'm just gonna leave it for a second...*/
-    /*public new void Launch(Vector2 target, LAUNCH_MODE mode = LAUNCH_MODE.POINT)
+    /*//rotate towards target. This is the only difference between this and the regular launch
+        //Vector3.RotateTowards(this.gameObject.transform.up, launchDirection, Mathf.PI * 2, 0f);
+        
+            //Vector3.Lerp(this.gameObject.transform.up, launchDirection, 1); 
+
+        */
+    /*Starts the projectile! Also rotates the firewall and starts its lifetime*/
+    public override void Launch(Vector2 target, LAUNCH_MODE mode = LAUNCH_MODE.POINT)
     {
         /*An explicit cast is added here, even though Vector3 implicitly converts
         to Vector2, to remove the ambiguity between subtracting the this.gameObject's position as
-        a Vector3 or a Vector2*
+        a Vector3 or a Vector2*/
         if(mode == LAUNCH_MODE.POINT)
         {
             launchDirection = (target - (Vector2)this.gameObject.transform.position).normalized;
@@ -43,12 +48,15 @@ public class EgoFirewallProjectile : BasicProjectile
             launchDirection = target.normalized;
         }
 
-        //rotate towards target. This is the only difference between this and the regular launch
-        Vector3.RotateTowards(this.gameObject.transform.up, launchDirection, Mathf.PI * 2, 0f);
+        //hard rotate the firewall
+        this.gameObject.transform.up = launchDirection;
 
         //S H M O O V E
         moveFunction = new System.Action<Vector2>(InternalMovement);
-    }*/
+
+        //Begin lifetime
+        StartCoroutine(Lifetime());
+    }
 
     //what happens when this projectile hits something
     protected override void OnTriggerEnter2D(Collider2D collided)
@@ -57,17 +65,6 @@ public class EgoFirewallProjectile : BasicProjectile
         if(!collided.gameObject.GetComponent<EgoFirewallProjectile>())
         {
             base.OnTriggerEnter2D(collided);
-        }
-    }
-
-    /*What should happen every time the projectile moves (including the movement)
-    Only move if this projectile hasn't crossed the max distance.*/
-    protected override void InternalMovement(Vector2 movementDirection)
-    {
-        //We need absolute value, since magnitude might be negative depending on direction
-        if(!TravelledTooFar())
-        {
-            mover.MoveActor(movementDirection);
         }
     }
 
@@ -80,6 +77,10 @@ public class EgoFirewallProjectile : BasicProjectile
         ///DEBUG
         Debug.Log("EgoFirewallProjectile: stopping");
         ///DEBUG
+        this.moveFunction = null;
+        //this line prevents the wall from being pushed by other things
+        this.gameObject.GetComponent<Rigidbody2D>().constraints 
+            = RigidbodyConstraints2D.FreezeAll;
 
         //Step 2: Wait some more time
         yield return new WaitForSeconds(stoppedLifetime);
@@ -96,8 +97,17 @@ public class EgoFirewallProjectile : BasicProjectile
     //Returns whether this projectile has travelled farther than it should have
     bool TravelledTooFar()
     {
-        return Mathf.Abs(Vector3.Distance(this.gameObject.transform.position, starting_point)) > 
+        ///DEBUG
+        var math = Mathf.Abs(Vector3.Distance(this.gameObject.transform.position, starting_point));
+        bool result = math > 
             firewallMaxDist;
+        //Debug.Log($"EgoFirewallProjectile: distance from start: {math}");
+        if(result)
+        {
+            Debug.Log("EgoFirewallProjectile: I should stop now");
+        }
+        ///DEBUG
+        return result;
     }
     
 
