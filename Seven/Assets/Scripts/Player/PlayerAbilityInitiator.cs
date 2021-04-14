@@ -88,6 +88,17 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
 
     public void OnAbilityOne()
     {
-        selectedAbilityAlpha.Invoke(ref userActor);
+        if(selectedAbilityAlpha)
+        {
+            selectedAbilityAlpha.Invoke(ref userActor);
+        }
+    }
+
+    public void OnAbilityTwo()
+    {
+        if (selectedAbilityBeta)
+        {
+            selectedAbilityBeta.Invoke(ref userActor);
+        }
     }
 }
