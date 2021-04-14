@@ -231,9 +231,9 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Beam: {fileID: 505191989}
+  Beam: {fileID: 505191977}
   Wall: {fileID: 505191991}
-  Special: {fileID: 505191990}
+  Special: {fileID: 505191977}
 --- !u!114 &505191980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,13 +473,13 @@ MonoBehaviour:
   cooldownPeriod: 3
   abilityName: 
   invokeBlankWhenBadArguments: 1
-  projectile: {fileID: 3387492356126136030, guid: 932ac9d98c794d119adfe59d4bb66c83, type: 3}
-  projectileScale: {x: 1, y: 1}
-  projectileDirection: {x: -1, y: 0}
   teleMinDist: 1.5
   teleMaxDist: 7
   attackDelay: 0.5
   attackCount: 4
+  projectile: {fileID: 3387492356126136030, guid: 932ac9d98c794d119adfe59d4bb66c83, type: 3}
+  projectileScale: {x: 1, y: 1}
+  projectileDirection: {x: -1, y: 0}
 --- !u!224 &668382802 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6919360707961699820, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}

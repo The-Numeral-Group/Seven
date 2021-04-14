@@ -82,7 +82,11 @@ public class ActorHealth : MonoBehaviour
         //StartCoroutine(MakeInvulnerableAfterDamage());
 
         //trigger actor damage effects
-        this.gameObject.SendMessage("DoActorDamageEffect", damage);
+        this.gameObject.SendMessage(
+            "DoActorDamageEffect", 
+            damage, 
+            SendMessageOptions.DontRequireReceiver
+        );
 
         //if the attack killed the thing
         if(this.currentHealth <= 0){

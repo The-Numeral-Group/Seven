@@ -37,6 +37,7 @@ public class ProjectileAbility : ActorAbilityFunction<Vector2, int>
     InternInvoke.*/
     public override void Invoke(ref Actor user)
     {
+        this.user = user;
         if(usable)
         {
             isFinished = false;
@@ -50,6 +51,7 @@ public class ProjectileAbility : ActorAbilityFunction<Vector2, int>
 
     public override void Invoke(ref Actor user, params object[] args)
     {
+        this.user = user;
         if(usable)
         {
             isFinished = false;
@@ -105,6 +107,10 @@ public class ProjectileAbility : ActorAbilityFunction<Vector2, int>
         if(arg is Vector2)
         {
             finalVec = (Vector2)arg;
+        }
+        else if(arg is Vector3)
+        {
+            finalVec = (Vector3)arg;
         }
         else if(arg is Transform)
         {

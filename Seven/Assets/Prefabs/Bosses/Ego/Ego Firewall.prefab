@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8136097589004624742}
   - component: {fileID: 510043084560947074}
   - component: {fileID: 1367809237527407915}
+  - component: {fileID: 7606105333801627047}
   m_Layer: 0
   m_Name: Ego Firewall
   m_TagString: Untagged
@@ -97,7 +98,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -125,10 +126,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -158,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453e150335b52ac4884472bf0e1bd9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 5
 --- !u!114 &1367809237527407915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +172,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2305c33b50bead23a52b11a5c6c186a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  destroyOnHit: 1
-  firewallMaxDist: 150
-  stoppedLifetime: 12
+  damage: 1
+  destroyOnHit: 0
+  firewallMaxDist: 20
+  stoppedLifetime: 5
+--- !u!114 &7606105333801627047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3387492356126136030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0d1d5e7c31d60a4bac75dc1bef3276a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingMaxHealth: 0
+  damageResistance: 0
+  invincibilityDuration: 1
+  startInvulnerable: 0

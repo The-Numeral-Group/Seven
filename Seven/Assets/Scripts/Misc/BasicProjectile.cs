@@ -22,7 +22,7 @@ public class BasicProjectile : MonoBehaviour
     protected Action<Vector2> moveFunction = null;
 
     //The direction the rubble will be going;
-    private Vector2 launchDirection = Vector2.zero;
+    protected Vector2 launchDirection = Vector2.zero;
 
     //The rubble's actor movement, which does its actual movement
     protected ActorMovement mover;
@@ -79,7 +79,7 @@ public class BasicProjectile : MonoBehaviour
         {
             launchDirection = target.normalized;
         }
-        
+
         //S H M O O V E
         moveFunction = new Action<Vector2>(InternalMovement);
     }
