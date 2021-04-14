@@ -52,6 +52,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "AbilityTwo",
+                    "type": "Button",
+                    "id": "c5ab0f98-0614-47a0-9f06-803f4ed1c9b4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -428,6 +436,17 @@
                     "action": "AbilityOne",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8850bf84-722f-4169-8a13-a3ab98929629",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AbilityTwo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -463,6 +482,22 @@
                     "name": "Menu",
                     "type": "Button",
                     "id": "bc1e19f3-2088-46a9-9a25-ab1aac2ab929",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SetAbilityOne",
+                    "type": "Button",
+                    "id": "fa4a13c1-838b-4257-a54c-c3f612cebc58",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SetAbilityTwo",
+                    "type": "Button",
+                    "id": "cc6da065-8cb7-421d-81b8-ab51a4d40aca",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -525,61 +560,6 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "AltWASD",
-                    "id": "cc49c4ef-2992-4573-afae-b7e3a937dbc3",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse",
-                    "action": "Navigate",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "878d56ff-41b7-47cf-9221-a13a796cd457",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse;Mouse and Keyboard",
-                    "action": "Navigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "a4d380e2-e38e-403a-abf2-57b6ff6b03c2",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse;Mouse and Keyboard",
-                    "action": "Navigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "32367342-e630-43b0-b75d-68c660bf5ea7",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse;Mouse and Keyboard",
-                    "action": "Navigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "e20534ff-aeb5-4d74-b3f1-1b10301a1e33",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse;Mouse and Keyboard",
-                    "action": "Navigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "ArrowKeys",
                     "id": "d3ebf1db-dc6d-44bf-9fa4-a10e84a3f005",
                     "path": "2DVector",
@@ -627,61 +607,6 @@
                     "name": "right",
                     "id": "c3b184f7-9d06-4437-bd59-ced9c5e97d64",
                     "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse;Mouse and Keyboard",
-                    "action": "Navigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "AltArrows",
-                    "id": "8306e536-937e-45e5-82a2-cc9e46369e8d",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Navigate",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "6ad93beb-5ef8-42a7-b8c4-74945851e598",
-                    "path": "<Keyboard>/o",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse;Mouse and Keyboard",
-                    "action": "Navigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "e0f158b3-3a64-499f-b375-cc6b74e08113",
-                    "path": "<Keyboard>/t",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse;Mouse and Keyboard",
-                    "action": "Navigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "26a1a8c9-0130-4f3e-959a-03d2bade36b8",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse;Mouse and Keyboard",
-                    "action": "Navigate",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "a6c154ef-eb0a-4ae9-bb8f-14183349b18a",
-                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse;Mouse and Keyboard",
@@ -950,6 +875,28 @@
                     "processors": "",
                     "groups": "Mouse and Keyboard",
                     "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2dd6632c-9321-4fb8-844a-c61baab794bd",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SetAbilityOne",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d7f60628-28d0-4282-92cd-a8633f680e3e",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SetAbilityTwo",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
