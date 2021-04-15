@@ -36,6 +36,8 @@ public class Ego2Movement : ActorMovement
     Teleports will not check if the target destination has enough space*/
     public IEnumerator EgoTeleport(Vector3 destination)
     {
+        //just use the static?
+        //yield return Ego2Movement.EgoTeleport(destination, this.gameObject);
         //Step 1: Disable Colliders and Healths
         //because ActorMovement isn't guarunteed to have a host, we check directly for health
         var collider = this.gameObject.GetComponent<Collider2D>();
@@ -107,8 +109,11 @@ public class Ego2Movement : ActorMovement
 
     /*The exact same method, except it will run teleportation logic for any
     object. Again, Teleports will not check if the target destination has enough space*/
-    public static IEnumerator EgoTeleport(Vector3 destination, Actor user)
+    public static IEnumerator EgoTeleport(Vector3 dest, GameObject user)
     {
+        //Step 0: Get a destination that doesn't have something in it
+        //Vector3 destination = Ego2Movement.GetSafeLocation(dest);
+        Vector3 destination = dest;
         //Step 1: Disable Colliders and Healths
         //because ActorMovement isn't guarunteed to have a host, we check directly for health
         var collider = user.gameObject.GetComponent<Collider2D>();
@@ -177,4 +182,9 @@ public class Ego2Movement : ActorMovement
         if(collider){collider.enabled = true;}
         if(health){collider.enabled = true;}
     }
+
+    /*static GetSafeLocation(Vector3 potentialDest)
+    {
+
+    }*/
 }

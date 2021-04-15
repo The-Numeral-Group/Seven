@@ -72,6 +72,8 @@ public class EgoSwordLaunch : ActorAbilityFunction<GameObject, int>
         swordA.GetComponent<EgoSwordActor>().Launch(args[0]);
         swordB.GetComponent<EgoSwordActor>().Launch(args[0]);
 
+        isFinished = true;
+
         return 0;
     }
 }

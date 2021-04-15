@@ -110,7 +110,7 @@ public class EgoFireLaunch : ActorAbilityFunction<GameObject, int>
                 Random.Range(teleMinDist, teleMaxDist) * (Random.Range(0, 2) * 2 - 1),
                 0f
             );
-            yield return Ego2Movement.EgoTeleport(dest, user);
+            yield return Ego2Movement.EgoTeleport(dest, user.gameObject);
 
             //Step 2.3: Launch the projectile
             single.Invoke(ref this.user, target.transform.position, LAUNCH_MODE.POINT);
