@@ -99,7 +99,7 @@ public class EgoTaunt : ActorAbilityFunction<float, int>, ActorEffect
 
             /*the only downside is that we don't know who hit the user, so we'll just
             need to shoot the counterattack out blindly, for now.*/
-            COUNTER.Invoke();
+            COUNTER?.Invoke(ref user);
         }
     }
 }
