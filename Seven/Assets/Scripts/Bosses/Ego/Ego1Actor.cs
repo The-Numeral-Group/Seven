@@ -10,45 +10,31 @@ public class Ego1Actor : Actor
 {
     //FIELDS---------------------------------------------------------------------------------------
     [Header("Attacks")]
-    [Tooltip("Controls how many times should Pride use normal attacks before using it's special.")]
+    [Tooltip("Controls how many times should Ego use normal attacks before using it's special.")]
     public int specialAttackGate = 7;
 
     [Tooltip("How far away the player should be before Ego charges at them.")]
     public float chargeRange = 60f;
 
-    [Tooltip("How far away the player should be before Pride launches" + 
+    [Tooltip("How far away the player should be before Ego launches" + 
         " a short-range attack at them.")]
     public float punchRange = 25f;
 
-    [Header("Other")]
-    [Tooltip("What Pride is currently doing. Change this to make Pride do something.")]
-    public State currentState;
-
-    //All of Pride's possible states.
-    public enum State
-    {
-        WALK,
-        PHYSICAL_PUNCH,
-        PHYSICAL_SHOCKWAVE,
-        PHASE0_SPECIAL,
-        NULL,
-    }
-
     /*reference to this script. Abilities need a reference to their user to be used, but 'this'
     is read-only, and thus can't used. We need to manually reobtain a writable reference.*/
-    private Actor pride;
+    private Actor ego;
 
     //reference to player for movement tracking and convinience
     private Actor player;
 
-    //whatever ability Pride is currently using, if any
+    //whatever ability Ego is currently using, if any
     private ActorAbility currAbility;
 
-    //internal counter to track when Pride should use its special
+    //internal counter to track when Ego should use its special
     private int specialAttackCounter = 0;
 
     //METHODS--------------------------------------------------------------------------------------
-    /*Aquires references to needed actor components, then sets Pride's speed based on
+    /*Aquires references to needed actor components, then sets Ego's speed based on
     overrideDefaultSpeed and speedModifer*/
     new void Start()
     {
@@ -68,104 +54,75 @@ public class Ego1Actor : Actor
             player = playerObject.GetComponent<Actor>();
         }
 
-        //save pride's own actor
-        pride = this.gameObject.GetComponent<PrideActor>();
+        //save ego's own actor
+        ego = this.gameObject.GetComponent<Ego1Actor>();
+
+        StartCoroutine(BossBehaviour());
     }
 
-    // FixedUpdate is called once every 60th of a second, regardless of framerate
-    void FixedUpdate()
-    {
-        ///DEBUG
-        //currentState = State.WALK;
-        Debug.Log("Pride State: " + currentState);
-        ///END DEBUG
-        EvaluateState(currentState);
-    }
-
-    /*Pride's state machine. Every time this is called, Pride choses a behvaior based on the
-    world around it, ususally its distance to the player. Check each case for full 
-    explanation.
+    /*Ego's computational driver. Initially I (Thomas) intended to recycle PrideActor, but I like
+    the coroutine-based behaviours so much that I'm doing it again.
     
-    And yes, I (Thomas) ripped this from Gluttony because Gluttony and Pride act the same way.
-    I (Thomas) feel there's a better way to do ability activity tracking than this, but I don't
-    know what it is, so I'll use Ram's method (currAbility checking) for now.*/
-    void EvaluateState(State state)
+    Ego's behaviour is to check its distance to the player and then, based on those distances,
+    attack or walk towards the player.*/
+    IEnumerator BossBehaviour()
     {
-        switch (state)
+        while(true)
         {
-            //Moves Pride towards the player and decides what it should be doing right now
-            case State.WALK:
-                //Check if Pride is busy doing an ability, and thus shouldn't act
-                if (currAbility && !currAbility.getUsable())
-                {
-                    this.myMovement.MoveActor(new Vector2(0, 0));
-                    break;
-                }
+            //Step 1: Check how far from the player Ego is
+            var dist = Mathf.Abs(Vector2.Distance(
+                player.transform.position, 
+                this.gameObject.transform.position
+            ));
 
-                //Check for special attack. Once it's high enough, Pride uses its special.
-                if (specialAttackCounter >= specialAttackGate)
-                {
-                    specialAttackCounter = 0;
-                    currentState = State.PHASE0_SPECIAL;
-                }
-                //If it's not special time, Pride will take a step, then decide what to do next.
-                else
-                {
-                    stepTowardsPlayer();
-                    currentState = decideNextState();
-                }
+            //Step 2: Decide which attack to do
+            //Step 2.1: null out currAbility
+            currAbility = null;
 
-                break;
+            //Step 2.2: If this is attack # attackGate, save the special
+            if(specialAttackCounter >= specialAttackGate)
+            {
+                currAbility = 
+                    this.myAbilityInitiator.abilities[AbilityRegister.PRIDE_SPECIAL];
+                specialAttackCounter = 0;
+                Debug.Log("Ego1Actor: Special");
+            }
+            //Step 2.3: If the player is far away, save the far
+            else if(dist >= chargeRange)
+            {
+                currAbility = 
+                    this.myAbilityInitiator.abilities[AbilityRegister.PRIDE_FAR_ATTACK];
+                Debug.Log("Ego1Actor: Far");
+            }
+            //Step 2.4: If the player is close, save the close
+            else if(dist <= punchRange)
+            {
+                currAbility = 
+                    this.myAbilityInitiator.abilities[AbilityRegister.PRIDE_CLOSE_ATTACK];
+                Debug.Log("Ego1Actor: Close");
+            }
 
-            //Activates Pride's long-range Shockwave Smash or Shattered Visage
-            case State.PHYSICAL_SHOCKWAVE:
-                var wave = this.myAbilityInitiator.abilities[AbilityRegister.PRIDE_FAR_ATTACK];
-
-                if(wave.getUsable())
-                {
-                    currAbility = wave;
-                    wave.Invoke(ref pride, player);
-                    specialAttackCounter++;
-                }
-
-                currentState = State.WALK;
-                break;
-
-            //Activates Pride's short-range Big-Ass Punch or Scorned Punch
-            case State.PHYSICAL_PUNCH:
-                var punch = this.myAbilityInitiator.abilities[AbilityRegister.PRIDE_CLOSE_ATTACK];
-
-                if(punch.getUsable())
-                {
-                    currAbility = punch;
-                    punch.Invoke(ref pride, player);
-                    specialAttackCounter++;
-                }
-
-                currentState = State.WALK;
-                break;
-
-            //Activates Pride's Special, Vanity Tour or Desperate Assault
-            case State.PHASE0_SPECIAL:
-                var special = this.myAbilityInitiator.abilities[AbilityRegister.PRIDE_SPECIAL];
-
-                if(special.getUsable())
-                {
-                    currAbility = special;
-                    special.Invoke(ref pride, player);
-                }
-
-                currentState = State.WALK;
-
-                break;
-
-            case State.NULL:
-                break;
-
-            default:
-                Debug.LogWarning("Ego1Actor: Ego has fallen out of its state machine!");
-                break;
+            //Step 3: Attack
+            //If there is an attack..
+            if(currAbility && currAbility.getUsable())
+            {
+                //stop moving
+                this.myMovement.MoveActor(Vector2.zero);
+                
+                //invoke it, count it, and wait for it
+                ++specialAttackCounter;
+                currAbility.Invoke(ref ego, player);
+                yield return new WaitUntil( () => currAbility.getIsFinished());
+            }
+            //If there isn't an attack...
+            else
+            {
+                //just step towards the player
+                stepTowardsPlayer();
+                yield return null;
+            }
         }
+
     }
 
     /*Calculates where the player is, then makes one movement instance towards them.
@@ -181,82 +138,10 @@ public class Ego1Actor : Actor
         var directionToPlayer = (playerPos - myPos).normalized;
 
         ///DEBUG
-        //Debug.Log("Pride moving in this direction: " + directionToPlayer);
+        //Debug.Log("Ego moving in this direction: " + directionToPlayer);
         ///DEBUG
 
         this.myMovement.MoveActor(directionToPlayer);
-    }
-
-    /*Returns a state to enter based on ability activation conditions, all of which are judged by
-    player distance.
-    
-    Yes, this was copied from Gluttony.*/
-    State decideNextState()
-    {
-        var distanceToPlayer 
-            = Vector2.Distance(player.transform.position, this.gameObject.transform.position);
-        var punchReady 
-            = this.myAbilityInitiator.abilities[AbilityRegister.PRIDE_CLOSE_ATTACK].getUsable();
-        var projReady
-            = this.myAbilityInitiator.abilities[AbilityRegister.PRIDE_FAR_ATTACK].getUsable();
-        ///DEBUG
-        //Debug.Log("Dist to player: " + distanceToPlayer);
-        ///DEBUG
-        State nextState;  
-
-        if(distanceToPlayer >= chargeRange && projReady)
-        {
-            nextState = State.PHYSICAL_SHOCKWAVE;
-        }
-        else if(distanceToPlayer <= punchRange && punchReady)
-        {
-            nextState = State.PHYSICAL_PUNCH;
-        }
-        else
-        {
-            nextState = State.WALK;
-        }
-
-        return nextState;
-        
-    }
-
-    /*Initializes the next phase of the fight. I (Thomas) don't think Ego2 needs any
-    info passed into it from Ego1, but I'm going to leave this here, just in case...*/
-    void InitializePhase(Actor actor)
-    {
-        /*//getting actor components
-        PrideActor startingPhase = this;
-        PrideActor newPhase;
-        if(actor is PrideActor)
-        {
-            newPhase = actor as PrideActor;
-        }
-        else
-        {
-            Debug.LogError("PrideActor: attempted to change phase to something that isn't Pride");
-            return;
-        }
-
-        //assign weakpoints to new phase
-        newPhase.weakSpots = startingPhase.weakSpots;
-
-        //high count is arbitrary, it just needs to be high to prevent unintended phase change
-        newPhase.weakSpotGate = newPhase.weakSpots.Count * 10;
-
-        //assign new phase to weakpoints
-        foreach (ActorWeakPoint weakSpot in newPhase.weakSpots)
-        {
-            weakSpot.ownerHealth = newPhase.myHealth;
-        }
-
-        //match the old phase's health
-        newPhase.myHealth.currentHealth = startingPhase.myHealth.currentHealth;
-
-        //match the old phase's size
-        newPhase.gameObject.transform.localScale = startingPhase.gameObject.transform.localScale;
-
-        //and I think that's everything...*/
     }
 
     //Ego1 will switch to Ego2 upon death.
@@ -269,7 +154,7 @@ public class Ego1Actor : Actor
             "NextPhase", 
             new System.Tuple<Actor, System.Action<Actor>>(
                 this, 
-                new System.Action<Actor>(InitializePhase)
+                null
             )
         );
     }

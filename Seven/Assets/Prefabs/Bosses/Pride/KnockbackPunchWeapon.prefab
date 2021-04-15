@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856b27c8759802c41963358cde2bbe69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 1
 --- !u!1 &5771370353643076459
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,7 +143,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackDirection: {x: 0, y: 0}
   knockbackIntensity: 10
-  knockbackDuration: 1
   forceOppositeKnockbackDirection: 1
 --- !u!61 &6318928990884420043
 BoxCollider2D:

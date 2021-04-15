@@ -24,6 +24,11 @@ public class EgoTaunt : ActorAbilityFunction<float, int>, ActorEffect
     //is no recovery time if the taunt lands correctly.
     private float tauntRecovery;
 
+    //middleman variable for saving the user's old color
+    ///DEBUG
+    private Color oldColor;
+    ///DEBUG
+
     //METHODS--------------------------------------------------------------------------------------
     // Awake is called when this object is activated for the first time
     void Awake()
@@ -52,6 +57,16 @@ public class EgoTaunt : ActorAbilityFunction<float, int>, ActorEffect
         {
             //freeze this actor's movement completely
             actor.myMovement.LockActorMovement(tauntDuration);
+
+            ///DEBUG
+            //change the user's color
+            var rd = actor.gameObject.GetComponent<SpriteRenderer>();
+            if(rd)
+            {
+                oldColor = rd.color;
+                rd.color = Color.magenta;
+            }
+            ///DEBUG
 
             //jack their damage resistance into the roof
             //we use this instead of setVulnerable because the user should still get hit
@@ -84,6 +99,15 @@ public class EgoTaunt : ActorAbilityFunction<float, int>, ActorEffect
     {
         //return user's health to normal
         user.myHealth.damageResistance = oldResist;
+
+        ///DEBUG
+        //change the user's color
+        var rd = user.gameObject.GetComponent<SpriteRenderer>();
+        if(rd)
+        {
+            rd.color = oldColor;
+        }
+        ///DEBUG
 
         yield return new WaitForSeconds(duration);
 
