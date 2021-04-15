@@ -12,6 +12,12 @@ public class MainMenu : BaseUI
     public GameObject playerObject;
 
     public BoolValue newGame;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        Cursor.lockState = CursorLockMode.Locked;
+    }
     
     void Start()
     {
