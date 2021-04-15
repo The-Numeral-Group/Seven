@@ -22,14 +22,21 @@ public class EgoTaunt : ActorAbilityFunction<float, int>, ActorEffect
 
     //middleman variable for timing how long the recovery should be (as there
     //is no recovery time if the taunt lands correctly.
-    private float tauntRecovery = tauntDuration;
+    private float tauntRecovery;
 
     //METHODS--------------------------------------------------------------------------------------
+    // Awake is called when this object is activated for the first time
+    void Awake()
+    {
+        //This initialization is done here only because it needs to be
+        tauntRecovery = tauntDuration;
+    }
+    
     /*unlike most other ActorAbilities, EgoTaunt doesn't need custom 
     Invokes because it has no target*/
     
     //apply the Taunt effect and start the timer for its removal
-    protected override int InternInvoke(params float args)
+    protected override int InternInvoke(params float[] args)
     {
         //apply the taunt effect
         user.myEffectHandler.AddTimedEffect(this, tauntDuration);
@@ -62,7 +69,7 @@ public class EgoTaunt : ActorAbilityFunction<float, int>, ActorEffect
         return false;
     }
 
-    void RemoveEffect(ref Actor actor)
+    public void RemoveEffect(ref Actor actor)
     {
         //end the taunt
         taunting = false;
@@ -76,19 +83,19 @@ public class EgoTaunt : ActorAbilityFunction<float, int>, ActorEffect
     IEnumerator TauntVulnerability(float duration)
     {
         //return user's health to normal
-        user.myHealth.damageResistance = oldResistl;
+        user.myHealth.damageResistance = oldResist;
 
         yield return new WaitForSeconds(duration);
 
         //unlock the actor's movement, in case it isn't already
-        actor.myMovement.LockActorMovement(0f);
+        user.myMovement.LockActorMovement(0f);
     }
 
     /*what happens when this actor gets damaged
     here's the fun part. The ActorEffect makes it easy to toggle
     this method on and off. If the user gets hit while taunting, they will
     IMMEDIATELY counterattack*/
-    void DoActorDamageEffect()
+    void DoActorDamageEffect(float damage)
     {
         if(taunting)
         {
