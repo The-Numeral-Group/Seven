@@ -615,7 +615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 800d1702e6697f525a0fb462362cd8e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 0
+  cooldownPeriod: 5
   abilityName: 
   invokeBlankWhenBadArguments: 1
   tauntDuration: 0.5
@@ -633,13 +633,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aca9db07dad50dbc86c41dbad8b7b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 0
+  cooldownPeriod: 3
   abilityName: 
   invokeBlankWhenBadArguments: 1
   chargeSpeed: 25
   chargeDamage: 0
   followUp: {fileID: 656284017}
   maxChargeDistance: 200
+  stopShotDistance: 1
   maxChargeTime: 10
 --- !u!114 &656284019
 MonoBehaviour:
@@ -705,7 +706,7 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 656284019}
+  Close: {fileID: 656284018}
   Far: {fileID: 656284020}
   Special: {fileID: 656284020}
 --- !u!114 &656284023
