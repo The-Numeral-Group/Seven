@@ -9,6 +9,10 @@ what went in that slot of Pride originally.*/
 public class Ego1Actor : Actor
 {
     //FIELDS---------------------------------------------------------------------------------------
+    [Tooltip("The amount of EgoSin objects the player must accumulate (how many times they need" + 
+        " to appeal to the crowd) for Ego to enter Phase 2 upon death.")]
+    public int sinGate = 3;
+
     [Header("Attacks")]
     [Tooltip("Controls how many times should Ego use normal attacks before using it's special.")]
     public int specialAttackGate = 7;
@@ -147,15 +151,25 @@ public class Ego1Actor : Actor
     //Ego1 will switch to Ego2 upon death.
     public override void DoActorDeath()
     {
-        ///DEBUG
-        Debug.Log("Ego1Actor: Phase change!");
-        ///DEBUG
-        this.gameObject.SendMessage(
-            "NextPhase", 
-            new System.Tuple<Actor, System.Action<Actor>>(
-                this, 
-                null
-            )
-        );
+        //if the player has sinned enough...
+        if(EgoSin.applicationCount >= sinGate)
+        {
+            ///DEBUG
+            Debug.Log("Ego1Actor: Phase change!");
+            ///DEBUG
+            this.gameObject.SendMessage(
+                "NextPhase", 
+                new System.Tuple<Actor, System.Action<Actor>>(
+                    this, 
+                    null
+                )
+            );
+        }
+        //if they haven't...
+        else
+        {
+            ///just destroy this Ego
+            Destroy(this.gameObject);
+        }
     }
 }
