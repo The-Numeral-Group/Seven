@@ -23,6 +23,9 @@ public class EgoSin : ActorEffect
     //METHODS--------------------------------------------------------------------------------------
     public EgoSin(float speedBoost, float duration)
     {
+        ///DEBUG
+        Debug.Log("EgoSin: effect applied");
+        ///DEBUG
         this.speedBoost = speedBoost;
         this.duration = duration;
     }

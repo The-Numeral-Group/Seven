@@ -15,8 +15,9 @@ public class EgoCrowdZone : Interactable
     private Actor player;
     //METHODS--------------------------------------------------------------------------------------
     // Awake triggers when this object first becomes active
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         player = GameObject.FindWithTag("Player").GetComponent<Actor>();
     }
     //what happens when this object is interacted with
