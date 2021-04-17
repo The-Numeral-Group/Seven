@@ -122,7 +122,6 @@ public class GhostKnightActor : Actor
         }
     }
 
-    // Evaluating State
     void EvaluateState(State state)
     {
         switch (state)
@@ -172,6 +171,7 @@ public class GhostKnightActor : Actor
             if((myPos.x < (playerPos.x + 0.2)) && (myPos.x > (playerPos.x - 0.2)) 
                 && (myPos.y < (playerPos.y + 0.2)) && (myPos.y > (playerPos.y - 0.2)))
             {
+                Debug.Log("STOP MOVING");
                 this.myMovement.MoveActor(Vector2.zero);
                 return;
             }
@@ -225,6 +225,33 @@ public class GhostKnightActor : Actor
         }
 
     }
+    
+    
+    // Handles the physical contact with the player effect.
+    // Knockback Effect is handled with Point Effector 2D Component.
+    /*void OnTriggerEnter2D(Collider2D collider)
+    {
+        // Only collide with player
+        if (collider.gameObject.tag == "Player")
+        {
+
+            var playerHealth = collider.gameObject.GetComponent<ActorHealth>();
+
+            //or a weakpoint if there's no regular health
+            if (playerHealth == null) { collider.gameObject.GetComponent<ActorWeakPoint>(); }
+
+            //if the enemy can take damage (if it has an ActorHealth component),
+            //hurt them. Do nothing if they can't take damage.
+            if (playerHealth != null)
+            {
+                if (!playerHealth.vulnerable)
+                {
+                    return;
+                }
+                playerHealth.takeDamage(damage);
+            }
+        }
+    }*/
 
     public override void DoActorDamageEffect(float damage)
     {

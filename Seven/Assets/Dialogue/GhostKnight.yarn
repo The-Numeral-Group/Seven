@@ -58,18 +58,6 @@ position: 986,208
 GhostKnight: If you are in need of assistance, come to me.
 GhostKnight: Even though I cannot fight them, I can offer knowledge of their demise.
 ===
-title: GhostKnight.Hub.Dialogue0
-tags: 
-colorID: 1
-position: 986,208
----
-GhostKnight: What do you want to do?
--> Save
-    <<saveProgress GameSaveManager>>
-    GhostKnight: Saved!
--> Stop Talking
-    GhostKnight: Bye!
-===
 title: GhostKnight.Ability.Dialogue0
 tags: 
 colorID: 1
