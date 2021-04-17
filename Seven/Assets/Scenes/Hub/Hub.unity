@@ -582,7 +582,7 @@ MonoBehaviour:
   interactIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
   indicatorOffset: {x: 0, y: 1}
   speakerName: GhostKnight
-  yarnStartNode: GhostKnight.test
+  yarnStartNode: GhostKnight.Hub.Dialogue0
   npcMode: 1
 --- !u!114 &424505102
 MonoBehaviour:

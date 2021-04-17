@@ -7,31 +7,22 @@ public class GameSaveList : MonoBehaviour
     public List<ScriptableObject> SaveObjects = new List<ScriptableObject>();
 
     // Element 0 - newGame
-    //private BoolValue newGame;
 
     // Element 1 - playerCurrentScene
-    //private StringValue playerCurrentScene;
 
     // Element 2 - playerPosition
-    //private VectorValue playerPosition;
 
     // Element 3 - ghostKnightPosition
-    //private VectorValue ghostKnightPosition;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        /*this.newGame = (BoolValue)SaveObjects[0];
-        this.playerCurrentScene = (StringValue)SaveObjects[1];
-        this.playerPosition = (VectorValue)SaveObjects[2];
-        this.ghostKnightPosition = (VectorValue)SaveObjects[3];*/
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
+    // Element 10 - ApathyDefeated
 
-    }
+    // Element 11 - DesireDefeated
+
+    // Element 12 - EgoDefeated
+
+    // Element 13 - IndulgenceDefeated
+
+
 
     public void setNewGame(bool value)
     {
@@ -101,5 +92,44 @@ public class GameSaveList : MonoBehaviour
             return "";
         }
         return ((StringValue)SaveObjects[id]).RuntimeValue;
+    }
+
+    public void checkBossProgress()
+    {
+        if (((BoolValue)SaveObjects[10]).RuntimeValue)
+        {
+            Debug.Log("Apathy has been defeated!");
+        }
+        else
+        {
+            Debug.Log("Apathy has not been defeated!");
+        }
+
+        if (((BoolValue)SaveObjects[11]).RuntimeValue)
+        {
+            Debug.Log("Desire has been defeated!");
+        }
+        else
+        {
+            Debug.Log("Desire has not been defeated!");
+        }
+
+        if (((BoolValue)SaveObjects[12]).RuntimeValue)
+        {
+            Debug.Log("Ego has been defeated!");
+        }
+        else
+        {
+            Debug.Log("Ego has not been defeated!");
+        }
+
+        if (((BoolValue)SaveObjects[13]).RuntimeValue)
+        {
+            Debug.Log("Indulgence has been defeated!");
+        }
+        else
+        {
+            Debug.Log("Indulgence has not been defeated!");
+        }
     }
 }

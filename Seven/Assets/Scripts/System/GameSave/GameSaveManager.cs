@@ -5,6 +5,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEditor;
+using Yarn;
+using Yarn.Unity;
 
 // Source: https://www.youtube.com/watch?v=7ujN52_dTjk&list=PL4vbr3u7UKWp0iM1WIfRjCDTI03u43Zfu&index=69&ab_channel=MisterTaftCreates
 // GameSaveManager allows to save certain values and conditions between scenes.
@@ -16,17 +18,11 @@ public class GameSaveManager : MonoBehaviour
     public GameObject gameSaveListObject;
     private GameSaveList gameSaveList;
 
-    public bool saveCurrentScene;
-
     public PlaceObject[] placeObjects;
 
     private void Start()
     {
         this.gameSaveList = gameSaveListObject.GetComponent<GameSaveList>();
-        if (saveCurrentScene)
-        {
-            this.setNewScene(SceneManager.GetActiveScene().name, 1);
-        }
         if (placeObjects.Length > 0)
         {
             foreach (PlaceObject pO in placeObjects)
@@ -42,12 +38,10 @@ public class GameSaveManager : MonoBehaviour
         LoadSaveList();
     }
 
-    // Reset all the SaveList.
+    // Reset all the SaveObjects.
     public void ResetSaveList()
     {
-        // Set newGame to false
         this.gameSaveList.setNewGame(true);
-
         if (File.Exists(Application.persistentDataPath + ("/SaveFile.dat")))
         {
             File.Delete(Application.persistentDataPath + ("/SaveFile.dat"));
@@ -66,22 +60,6 @@ public class GameSaveManager : MonoBehaviour
         // Serialize the json using binary formatter
         binary.Serialize(file, json);
         file.Close();
-
-        /*for (int i = 0; i < SaveObjects.Count; i++)
-        {
-            // Create a file called i.dat for each object. (0.dat, 1.dat, 2.dat, and so on)
-            FileStream file = File.Create(Application.persistentDataPath +
-                string.Format("/{0}.dat", i));
-
-            BinaryFormatter binary = new BinaryFormatter();
-
-            // Convert objects[i] tp json
-            var json = JsonUtility.ToJson(SaveObjects[i]);
-
-            // Serialize the json using binary formatter
-            binary.Serialize(file, json);
-            file.Close();
-        }*/
     }
 
     
@@ -100,27 +78,8 @@ public class GameSaveManager : MonoBehaviour
             JsonUtility.FromJsonOverwrite((string)binary.Deserialize(file), gameSaveList);
             file.Close();
         }
-
-        /*for (int i = 0; i < SaveObjects.Count; i++)
-        {
-            // Check if the File exists
-            if (File.Exists(Application.persistentDataPath +
-                string.Format("/{0}.dat", i)))
-            {
-                // Open the file
-                FileStream file = File.Open(Application.persistentDataPath +
-                    string.Format("/{0}.dat", i), FileMode.Open);
-
-                BinaryFormatter binary = new BinaryFormatter();
-
-                // Take the file -> deserialize it using the binary formatter 
-                // -> Convert it to string -> Override that to objects[i]
-                JsonUtility.FromJsonOverwrite((string)binary.Deserialize(file), SaveObjects[i]);
-                file.Close();
-            }
-        }*/
     }
-    
+
     public void setNewGame(bool value)
     {
         this.gameSaveList.setNewGame(value);
@@ -139,16 +98,12 @@ public class GameSaveManager : MonoBehaviour
         this.SaveSaveList();
     }
 
-    public void loadCurrentScene(int id)
+
+    [YarnCommand("saveProgress")]
+    public void saveProgress()
     {
-        if(!this.gameSaveList.getNewGame())
-        {
-            string currentScene = this.gameSaveList.getCurrentScene(id);
-            if (currentScene != "")
-            {
-                SceneManager.LoadScene(currentScene);
-            }
-        }
+        this.setNewScene("Hub", 1);
+        this.gameSaveList.checkBossProgress();
     }
 
 }
