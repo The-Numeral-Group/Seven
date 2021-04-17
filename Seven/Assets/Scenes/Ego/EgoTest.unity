@@ -504,6 +504,7 @@ GameObject:
   - component: {fileID: 656284016}
   - component: {fileID: 656284015}
   - component: {fileID: 656284029}
+  - component: {fileID: 656284030}
   m_Layer: 0
   m_Name: Ego 1
   m_TagString: Untagged
@@ -820,6 +821,26 @@ MonoBehaviour:
     hasCooldown: 0
     playOnAwake: 0
     source: {fileID: 0}
+--- !u!114 &656284030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656284013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6338bdabf54e9e69fa0f9a7c78ed1082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 5
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 6037738158253827827, guid: 5556a8bd922df730999b356a82f03310, type: 3}
+  duration: 0.1
+  weaponPositionScale: {x: 5, y: 5}
+  damagePerHitbox: 05000000
+  windupDelay: 1.5
 --- !u!224 &668382802 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6919360707961699820, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
