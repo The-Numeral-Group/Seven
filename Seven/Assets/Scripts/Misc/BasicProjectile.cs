@@ -22,7 +22,7 @@ public class BasicProjectile : MonoBehaviour
     protected Action<Vector2> moveFunction = null;
 
     //The direction the rubble will be going;
-    private Vector2 launchDirection = Vector2.zero;
+    protected Vector2 launchDirection = Vector2.zero;
 
     //The rubble's actor movement, which does its actual movement
     protected ActorMovement mover;
@@ -66,7 +66,7 @@ public class BasicProjectile : MonoBehaviour
     }
 
     /*Starts the projectile!*/
-    public void Launch(Vector2 target, LAUNCH_MODE mode = LAUNCH_MODE.POINT)
+    public virtual void Launch(Vector2 target, LAUNCH_MODE mode = LAUNCH_MODE.POINT)
     {
         /*An explicit cast is added here, even though Vector3 implicitly converts
         to Vector2, to remove the ambiguity between subtracting the this.gameObject's position as
@@ -79,7 +79,7 @@ public class BasicProjectile : MonoBehaviour
         {
             launchDirection = target.normalized;
         }
-        
+
         //S H M O O V E
         moveFunction = new Action<Vector2>(InternalMovement);
     }
