@@ -504,7 +504,6 @@ GameObject:
   - component: {fileID: 656284016}
   - component: {fileID: 656284015}
   - component: {fileID: 656284029}
-  - component: {fileID: 656284030}
   m_Layer: 0
   m_Name: Ego 1
   m_TagString: Untagged
@@ -526,6 +525,8 @@ Transform:
   - {fileID: 1663171879}
   - {fileID: 1006802074}
   - {fileID: 1801753360}
+  - {fileID: 1722037464}
+  - {fileID: 928636629}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -710,7 +711,7 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 656284030}
+  Close: {fileID: 1801753357}
   Far: {fileID: 656284020}
   Special: {fileID: 656284020}
 --- !u!114 &656284023
@@ -821,29 +822,6 @@ MonoBehaviour:
     hasCooldown: 0
     playOnAwake: 0
     source: {fileID: 0}
---- !u!114 &656284030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656284013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6338bdabf54e9e69fa0f9a7c78ed1082, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldownPeriod: 5
-  abilityName: 
-  invokeBlankWhenBadArguments: 1
-  startingWeaponObject: {fileID: 6037738158253827827, guid: 5556a8bd922df730999b356a82f03310, type: 3}
-  duration: 0.1
-  weaponPositionScale: {x: 5, y: 5}
-  damagePerHitbox: 05000000
-  windupDelay: 1.5
-  shouldShake: 1
-  windShake: 0.1
-  attackShake: 1
 --- !u!224 &668382802 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6919360707961699820, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
@@ -878,6 +856,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 505191987}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &928636628
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 928636629}
+  m_Layer: 0
+  m_Name: One-Two -> KB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &928636629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928636628}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 656284014}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1006802073
 PrefabInstance:
@@ -1402,6 +1410,84 @@ Transform:
   m_Father: {fileID: 656284014}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1722037463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1722037464}
+  - component: {fileID: 1722037466}
+  - component: {fileID: 1722037465}
+  m_Layer: 0
+  m_Name: One-Two -> FP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1722037464
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722037463}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 656284014}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1722037465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722037463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6338bdabf54e9e69fa0f9a7c78ed1082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 6037738158253827827, guid: 5556a8bd922df730999b356a82f03310, type: 3}
+  duration: 0
+  weaponPositionScale: {x: 0.1, y: 0.1}
+  damagePerHitbox: 
+  windupDelay: 1.5
+  shouldShake: 0
+  windShake: 0.1
+  attackShake: 1
+--- !u!114 &1722037466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722037463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f2a665774058124806f041d892eed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: One-Two -> FP
+  invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 7573367737500984201, guid: bfab2a95a7b826b4ab10b4994c287025, type: 3}
+  duration: 0
+  weaponPositionScale: {x: 0.1, y: 0.1}
+  damagePerHitbox: 
+  cooldownCancel: 0
+  comboList:
+  - {fileID: 1801753359}
+  - {fileID: 0}
 --- !u!1001 &1758321517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1574,6 +1660,10 @@ MonoBehaviour:
   cooldownPeriod: 2
   abilityName: One-Two Punch
   invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 7573367737500984201, guid: bfab2a95a7b826b4ab10b4994c287025, type: 3}
+  duration: 0
+  weaponPositionScale: {x: 0.1, y: 0.1}
+  damagePerHitbox: 
   cooldownCancel: 1
   comboList:
   - {fileID: 1801753359}

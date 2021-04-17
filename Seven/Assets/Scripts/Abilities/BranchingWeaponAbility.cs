@@ -45,4 +45,14 @@ public class BranchingWeaponAbility : WeaponAbility
         //wait for it to end
         yield return new WaitUntil( () => nextWep.getIsFinished());
     }
+
+    /*none of these methods are actually doing anything, they are simply overriden here
+    to accurately hide functionality for the wrapper*/
+    protected override void Awake(){}
+    protected override void SpawnWeapon(params Actor[] args){}
+    public new IEnumerator SheatheWeapon()
+    {
+        yield return null;
+    }
+
 }

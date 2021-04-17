@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponAbilityCombo : ActorAbilityFunction<int, int>
+public class WeaponAbilityCombo : WeaponAbility
 {
     [Tooltip("Set to true to abort the combo if an ability is on cooldown when it needs to" + 
         " be used in the combo.")]
@@ -12,7 +12,7 @@ public class WeaponAbilityCombo : ActorAbilityFunction<int, int>
     public List<WeaponAbility> comboList;
     
     //Begins the combo by starting a coroutine
-    protected override int InternInvoke(params int[] args)
+    protected override int InternInvoke(params Actor[] args)
     {
         usable = false;
         StartCoroutine(ComboInvokation());
@@ -52,4 +52,16 @@ public class WeaponAbilityCombo : ActorAbilityFunction<int, int>
         //We're done now. Time to cooldown!
         StartCoroutine(coolDown(cooldownPeriod));
     }
+
+    /*none of these methods are actually doing anything, they are simply overriden here
+    to accurately hide functionality for the wrapper*/
+    protected override void Awake(){}
+    protected override void Start(){}
+    protected override void SpawnWeapon(params Actor[] args){}
+    public new IEnumerator SheatheWeapon()
+    {
+        yield return null;
+    }
+
+    
 }
