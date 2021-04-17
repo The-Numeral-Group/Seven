@@ -499,8 +499,6 @@ GameObject:
   - component: {fileID: 656284021}
   - component: {fileID: 656284020}
   - component: {fileID: 656284019}
-  - component: {fileID: 656284018}
-  - component: {fileID: 656284017}
   - component: {fileID: 656284016}
   - component: {fileID: 656284015}
   - component: {fileID: 656284029}
@@ -527,6 +525,8 @@ Transform:
   - {fileID: 1801753360}
   - {fileID: 1722037464}
   - {fileID: 928636629}
+  - {fileID: 1973677590}
+  - {fileID: 1886399510}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -607,45 +607,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &656284017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656284013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 800d1702e6697f525a0fb462362cd8e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldownPeriod: 5
-  abilityName: 
-  invokeBlankWhenBadArguments: 1
-  tauntDuration: 0.5
-  tauntVulnerableTime: 0.5
-  COUNTER: {fileID: 656284019}
---- !u!114 &656284018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656284013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3aca9db07dad50dbc86c41dbad8b7b32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldownPeriod: 3
-  abilityName: 
-  invokeBlankWhenBadArguments: 1
-  chargeSpeed: 25
-  chargeDamage: 0
-  followUp: {fileID: 656284017}
-  maxChargeDistance: 200
-  stopShotDistance: 1
-  maxChargeTime: 10
 --- !u!114 &656284019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -711,7 +672,7 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 1801753357}
+  Close: {fileID: 656284020}
   Far: {fileID: 656284020}
   Special: {fileID: 656284020}
 --- !u!114 &656284023
@@ -866,6 +827,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 928636629}
+  - component: {fileID: 928636631}
+  - component: {fileID: 928636630}
   m_Layer: 0
   m_Name: One-Two -> KB
   m_TagString: Untagged
@@ -887,6 +850,48 @@ Transform:
   m_Father: {fileID: 656284014}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &928636630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928636628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c006b1f6d0a9cd261b30cd24244da098, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 1.5
+  abilityName: Knockback
+  invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 3869898009536138324, guid: 208d7a05a6da0f00786a9386d3137408, type: 3}
+  duration: 1
+  weaponPositionScale: {x: 3.2, y: 3.2}
+  damagePerHitbox: 01000000
+--- !u!114 &928636631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928636628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f2a665774058124806f041d892eed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 1880723438947929304, guid: 40282033606a2bf4c8bb8ba9b8c25a02, type: 3}
+  duration: 0
+  weaponPositionScale: {x: 0.1, y: 0.1}
+  damagePerHitbox: 
+  cooldownCancel: 0
+  comboList:
+  - {fileID: 1801753357}
+  - {fileID: 928636630}
 --- !u!1001 &1006802073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1427,7 +1432,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1722037464
 Transform:
   m_ObjectHideFlags: 0
@@ -1454,15 +1459,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6338bdabf54e9e69fa0f9a7c78ed1082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 0
-  abilityName: 
+  cooldownPeriod: 3
+  abilityName: FALCON PUNCH
   invokeBlankWhenBadArguments: 1
   startingWeaponObject: {fileID: 6037738158253827827, guid: 5556a8bd922df730999b356a82f03310, type: 3}
-  duration: 0
-  weaponPositionScale: {x: 0.1, y: 0.1}
-  damagePerHitbox: 
+  duration: 0.1
+  weaponPositionScale: {x: 5, y: 5}
+  damagePerHitbox: 05000000
   windupDelay: 1.5
-  shouldShake: 0
+  shouldShake: 1
   windShake: 0.1
   attackShake: 1
 --- !u!114 &1722037466
@@ -1487,7 +1492,7 @@ MonoBehaviour:
   cooldownCancel: 0
   comboList:
   - {fileID: 1801753359}
-  - {fileID: 0}
+  - {fileID: 1722037465}
 --- !u!1001 &1758321517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1825,11 +1830,157 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+--- !u!1 &1886399509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1886399510}
+  - component: {fileID: 1886399512}
+  - component: {fileID: 1886399511}
+  m_Layer: 0
+  m_Name: Taunt Charge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1886399510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886399509}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 656284014}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1886399511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886399509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800d1702e6697f525a0fb462362cd8e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 5
+  abilityName: Taunt -> [1-2] -> FP
+  invokeBlankWhenBadArguments: 1
+  tauntDuration: 0.5
+  tauntVulnerableTime: 0.5
+  COUNTER: {fileID: 1722037466}
+--- !u!114 &1886399512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886399509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aca9db07dad50dbc86c41dbad8b7b32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 3
+  abilityName: Charge -> Taunt -> [1-2] -> FP
+  invokeBlankWhenBadArguments: 1
+  chargeSpeed: 25
+  chargeDamage: 0
+  followUp: {fileID: 1886399511}
+  maxChargeDistance: 200
+  stopShotDistance: 1
+  maxChargeTime: 10
 --- !u!224 &1891471070 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3838137146001244881, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
   m_PrefabInstance: {fileID: 1835838322}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1973677589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1973677590}
+  - component: {fileID: 1973677592}
+  - component: {fileID: 1973677591}
+  m_Layer: 0
+  m_Name: Far Charge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1973677590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973677589}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 656284014}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1973677591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973677589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd01c314682b0e169c7e4df91081ffe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 7573367737500984201, guid: bfab2a95a7b826b4ab10b4994c287025, type: 3}
+  duration: 0
+  weaponPositionScale: {x: 0.1, y: 0.1}
+  damagePerHitbox: 
+  potentialWeps:
+  - {fileID: 928636631}
+  - {fileID: 1722037466}
+--- !u!114 &1973677592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973677589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aca9db07dad50dbc86c41dbad8b7b32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 3
+  abilityName: Charge -> [1-2] -> [KB || FP]
+  invokeBlankWhenBadArguments: 1
+  chargeSpeed: 25
+  chargeDamage: 0
+  followUp: {fileID: 1973677591}
+  maxChargeDistance: 200
+  stopShotDistance: 1
+  maxChargeTime: 10
 --- !u!1 &2008948841
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class BranchingWeaponAbility : WeaponAbility
 {
     //FIELDS---------------------------------------------------------------------------------------
     [Tooltip("The weapons that can potentailly be used when this weapon is invoked.")]
-    public List<BranchingWeaponAbility> potentialWeps;
+    public List<WeaponAbility> potentialWeps;
 
     //the random number generator that determines which weapon gets used
     private CsharpRandom rand;
