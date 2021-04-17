@@ -46,6 +46,9 @@ public class WeaponAbilityCombo : ActorAbilityFunction<int, int>
             yield return new WaitUntil( () => comboPiece.getIsFinished());
         }
 
+        Debug.Log("WeaponAbilityCombo: combo done!");
+        this.isFinished = true;
+
         //We're done now. Time to cooldown!
         StartCoroutine(coolDown(cooldownPeriod));
     }
