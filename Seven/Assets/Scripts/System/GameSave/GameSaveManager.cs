@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+<<<<<<< Updated upstream
+=======
+using UnityEngine.SceneManagement;
+using UnityEditor;
+using Yarn;
+using Yarn.Unity;
+>>>>>>> Stashed changes
 
 // Source: https://www.youtube.com/watch?v=7ujN52_dTjk&list=PL4vbr3u7UKWp0iM1WIfRjCDTI03u43Zfu&index=69&ab_channel=MisterTaftCreates
 // GameSaveManager allows to save certain values and conditions between scenes.
@@ -14,7 +21,24 @@ public class GameSaveManager : MonoBehaviour
     // These are the datas that are going to get saved when game is closed
     public List<ScriptableObject> SaveObjects = new List<ScriptableObject>();
 
+<<<<<<< Updated upstream
     public BoolValue newGame;
+=======
+    public PlaceObject[] placeObjects;
+
+    private void Start()
+    {
+        this.gameSaveList = gameSaveListObject.GetComponent<GameSaveList>();
+        if (placeObjects.Length > 0)
+        {
+            foreach (PlaceObject pO in placeObjects)
+            {
+                Vector2 newPos = this.gameSaveList.getPosition(pO.id);
+                pO.gameObject.position = newPos;
+            }
+        }
+    }
+>>>>>>> Stashed changes
 
     private void OnEnable()
     {
@@ -76,6 +100,13 @@ public class GameSaveManager : MonoBehaviour
                 file.Close();
             }
         }
+    }
+
+    [YarnCommand("saveProgress")]
+    public void saveProgress()
+    {
+        this.setNewScene("Hub", 1);
+        this.gameSaveList.checkBossProgress();
     }
 
 }

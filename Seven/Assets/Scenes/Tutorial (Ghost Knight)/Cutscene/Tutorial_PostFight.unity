@@ -2966,6 +2966,33 @@ PrefabInstance:
       propertyPath: objects.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: ce6e0e07fa4070143bce3729d5080d23, type: 2}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 2998643818376067550, guid: 708a306f945165c49b6382e7c9913445, type: 3}
+      propertyPath: placeObjects
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2998643818376067550, guid: 708a306f945165c49b6382e7c9913445, type: 3}
+      propertyPath: placeObjects.Array.data[0].gameObject
+      value: 
+      objectReference: {fileID: 682692960}
+    - target: {fileID: 2998643818376067550, guid: 708a306f945165c49b6382e7c9913445, type: 3}
+      propertyPath: placeObjects.Array.data[1].gameObject
+      value: 
+      objectReference: {fileID: 688263416}
+    - target: {fileID: 2998643818376067550, guid: 708a306f945165c49b6382e7c9913445, type: 3}
+      propertyPath: placeObjects.Array.data[0].id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2998643818376067550, guid: 708a306f945165c49b6382e7c9913445, type: 3}
+      propertyPath: placeObjects.Array.data[1].id
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2998643818376067550, guid: 708a306f945165c49b6382e7c9913445, type: 3}
+      propertyPath: saveCurrentScene
+      value: 0
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 2998643818376067551, guid: 708a306f945165c49b6382e7c9913445, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.398078
