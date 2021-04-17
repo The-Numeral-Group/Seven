@@ -56,19 +56,9 @@ public class WindupWeaponAbility : WeaponAbility
         sheathe = SheatheWeapon();
         weaponObject.SetActive(true);
         SpawnWeapon(args);
-        StartCoroutine(sheathe);
-    }
 
-    /*SheatheWeapon controls how long the weapon object remains active on screen.
-    Use SheathWeapon if there will be no cooldown on the weapon swing.
-    This coroutine is being used because we still want some time to elapse 
-    before the weapon is set to inactive.*/
-    public IEnumerator SheatheWeapon()
-    {
-        //the only change here is to shake the camera during the attack
+        //start the screen shake here, since we can't override SheathWeapon()
         if(shouldShake){ cameraFunc.Shake(duration, attackShake); }
-        yield return new WaitForSeconds(duration);
-        weaponObject.SetActive(false);
-        this.isFinished = true;
+        StartCoroutine(sheathe);
     }
 }
