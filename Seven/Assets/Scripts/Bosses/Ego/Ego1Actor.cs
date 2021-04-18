@@ -151,8 +151,8 @@ public class Ego1Actor : Actor
     //Ego1 will switch to Ego2 upon death.
     public override void DoActorDeath()
     {
-        //if the player has sinned enough...
-        if(EgoSin.applicationCount >= sinGate)
+        //if the player hasn'y sinned enough...
+        if(EgoSin.applicationCount < sinGate)
         {
             ///DEBUG
             Debug.Log("Ego1Actor: Phase change!");

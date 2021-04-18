@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c9945a0c4cc627539650677ba156574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 7.5
   intangibleTime: 0.1
   debugTeleShiftTime: 0.1
 --- !u!114 &505191979
@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d1d5e7c31d60a4bac75dc1bef3276a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMaxHealth: 100
+  startingMaxHealth: 10
   damageResistance: 0
   invincibilityDuration: 1
   startInvulnerable: 0
@@ -438,7 +438,7 @@ MonoBehaviour:
   laserObj: {fileID: 4417132022118089685, guid: b0818de86c2e4c0fcaeb8e849b1b5dec, type: 3}
   laserMaxDist: 100
   laserWidth: 2
-  damage: 2
+  damage: 3
   preLaserDuration: 0.5
   laserDuration: 0.3
 --- !u!114 &505191990
@@ -684,7 +684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453e150335b52ac4884472bf0e1bd9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 6
 --- !u!114 &656284025
 MonoBehaviour:
   m_ObjectHideFlags: 0
