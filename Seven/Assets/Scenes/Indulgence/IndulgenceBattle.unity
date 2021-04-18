@@ -150,10 +150,12 @@ GameObject:
   - component: {fileID: 929553801}
   - component: {fileID: 929553795}
   - component: {fileID: 929553794}
-  - component: {fileID: 929553793}
   - component: {fileID: 929553792}
   - component: {fileID: 929553800}
   - component: {fileID: 929553791}
+  - component: {fileID: 929553803}
+  - component: {fileID: 929553793}
+  - component: {fileID: 929553804}
   m_Layer: 11
   m_Name: IndulgenceP1
   m_TagString: Boss
@@ -187,9 +189,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallSlamTriggerCounter: 5
-  jumpTriggerDistance: 1000
+  jumpTriggerDistance: 10
   target: {fileID: 218352113}
   currState: 0
+  wallCollider: {fileID: 929553802}
 --- !u!114 &929553793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,12 +202,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 929553790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20390ce726e2308fdbde0e94ece8e77c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ddb4cafb6e92414dbcec1a4badf3a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilities:
-    m_keys: []
-    m_values: []
+  cooldownPeriod: 10
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  useTrackingCrush: 0
+  jumpSpeed: 10
+  jumpDuration: 1
+  trackDuration: 1
+  crushDuration: 0.25
+  crushDelay: 0.25
+  finishDelay: 0.5
+  shadowSpritePrefab: {fileID: 8440016356401584484, guid: 3869e65f648b78c4c9d12d9265a640db, type: 3}
 --- !u!114 &929553794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,7 +298,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 929553790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 9.37, z: 0}
+  m_LocalPosition: {x: -0.1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -389,6 +400,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &929553803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929553790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2300b5fa180999b4aa38b5cd4e62439f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilities:
+    m_keys: []
+    m_values: []
+  crush: {fileID: 929553793}
+  wallCrawl: {fileID: 929553804}
+--- !u!114 &929553804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929553790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2d156bd39a2bf748bfe992502103452, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
 --- !u!1001 &1008622402
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -855,6 +898,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1562341910261810668, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: orthographic size
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4321893605475107958, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -903,6 +950,22 @@ PrefabInstance:
       propertyPath: mainTargetTransform
       value: 
       objectReference: {fileID: 2008721686}
+    - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: upperBound
+      value: 14.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: lowerBound
+      value: -14.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: rightBound
+      value: 22.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: leftBound
+      value: -22.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7897472732076878603, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_Name
       value: BossCamera

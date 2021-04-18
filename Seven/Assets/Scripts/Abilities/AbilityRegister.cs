@@ -57,4 +57,8 @@
     public static string EGO_BEAM = "";
     public static string EGO_WALL = "";
     public static string EGO_SUMMON = "";
+
+    //INDULGENCE ----------------------------------------------------------------------------------
+    public static string INDULGENCE_CRUSH = "";
+    public static string INDULGENCE_WALLCRAWL = "";
 }
