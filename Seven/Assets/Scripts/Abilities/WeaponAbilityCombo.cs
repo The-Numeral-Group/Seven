@@ -40,6 +40,7 @@ public class WeaponAbilityCombo : WeaponAbility
             }
 
             //invoke the comboPiece with no argument (as weapon abilities do)
+            Debug.Log($"WeaponAbilityCombo: Invoking {comboPiece.name}");
             comboPiece.Invoke(ref user);
 
             //wait for it to finish

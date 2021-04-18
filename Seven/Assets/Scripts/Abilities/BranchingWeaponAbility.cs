@@ -37,7 +37,11 @@ public class BranchingWeaponAbility : WeaponAbility
     IEnumerator PickAbility()
     {
         //pick a weapon to use by randomly choosing an index value
-        var nextWep = potentialWeps[rand.Next(potentialWeps.Count)];
+        ///DEBUG
+        int opt = rand.Next(potentialWeps.Count);
+        ///DEBUG
+        var nextWep = potentialWeps[opt];
+        Debug.Log($"BranchingWeaponAbility: Choosing Item {opt}: {nextWep.name}");
 
         //invoke that weapon
         nextWep.Invoke(ref user);

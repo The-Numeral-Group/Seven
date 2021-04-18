@@ -672,7 +672,7 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 656284020}
+  Close: {fileID: 1886399512}
   Far: {fileID: 656284020}
   Special: {fileID: 656284020}
 --- !u!114 &656284023
@@ -758,7 +758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d1d5e7c31d60a4bac75dc1bef3276a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMaxHealth: 1
+  startingMaxHealth: 15
   damageResistance: 0
   invincibilityDuration: 1
   startInvulnerable: 0
@@ -881,8 +881,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f2a665774058124806f041d892eed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 0
-  abilityName: 
+  cooldownPeriod: 2
+  abilityName: One-Two -> KB
   invokeBlankWhenBadArguments: 1
   startingWeaponObject: {fileID: 1880723438947929304, guid: 40282033606a2bf4c8bb8ba9b8c25a02, type: 3}
   duration: 0
@@ -1482,7 +1482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f2a665774058124806f041d892eed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 0
+  cooldownPeriod: 2
   abilityName: One-Two -> FP
   invokeBlankWhenBadArguments: 1
   startingWeaponObject: {fileID: 7573367737500984201, guid: bfab2a95a7b826b4ab10b4994c287025, type: 3}
@@ -1877,7 +1877,7 @@ MonoBehaviour:
   cooldownPeriod: 5
   abilityName: Taunt -> [1-2] -> FP
   invokeBlankWhenBadArguments: 1
-  tauntDuration: 0.5
+  tauntDuration: 10
   tauntVulnerableTime: 0.5
   COUNTER: {fileID: 1722037466}
 --- !u!114 &1886399512

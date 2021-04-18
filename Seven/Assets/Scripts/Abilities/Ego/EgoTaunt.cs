@@ -119,7 +119,7 @@ public class EgoTaunt : ActorAbilityFunction<float, int>, ActorEffect
     here's the fun part. The ActorEffect makes it easy to toggle
     this method on and off. If the user gets hit while taunting, they will
     IMMEDIATELY counterattack*/
-    void DoActorDamageEffect(float damage)
+    public void DoActorDamageEffect(float damage)
     {
         if(taunting)
         {
@@ -130,6 +130,7 @@ public class EgoTaunt : ActorAbilityFunction<float, int>, ActorEffect
 
             /*the only downside is that we don't know who hit the user, so we'll just
             need to shoot the counterattack out blindly, for now.*/
+            Debug.Log("EgoTaunt: COUNTER");
             COUNTER?.Invoke(ref user);
         }
     }
