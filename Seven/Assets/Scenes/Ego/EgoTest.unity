@@ -497,7 +497,6 @@ GameObject:
   - component: {fileID: 656284023}
   - component: {fileID: 656284022}
   - component: {fileID: 656284021}
-  - component: {fileID: 656284020}
   - component: {fileID: 656284019}
   - component: {fileID: 656284016}
   - component: {fileID: 656284015}
@@ -626,21 +625,6 @@ MonoBehaviour:
   duration: 1
   weaponPositionScale: {x: 3.2, y: 3.2}
   damagePerHitbox: 01000000
---- !u!114 &656284020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656284013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b539320a4c6a218da9cca27be78ddd2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldownPeriod: 5
-  abilityName: 
-  invokeBlankWhenBadArguments: 1
 --- !u!114 &656284021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,10 +637,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e178995baa3625d5b1a3015b587362f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sinGate: 1
+  sinGate: 3
   specialAttackGate: 7
-  chargeRange: 30
-  punchRange: 10
+  chargeRange: 15
+  punchRange: 5
 --- !u!114 &656284022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -672,9 +656,9 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 1886399512}
-  Far: {fileID: 656284020}
-  Special: {fileID: 656284020}
+  Close: {fileID: 656284019}
+  Far: {fileID: 1973677592}
+  Special: {fileID: 1886399512}
 --- !u!114 &656284023
 MonoBehaviour:
   m_ObjectHideFlags: 0
