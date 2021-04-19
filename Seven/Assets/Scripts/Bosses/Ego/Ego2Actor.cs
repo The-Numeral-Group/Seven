@@ -171,4 +171,11 @@ public class Ego2Actor : Actor
         attack.Invoke(ref ego, player);
         ++attackCount;
     }
+
+    //When this actor dies...
+    public override void DoActorDeath()
+    {
+        //fukkin die
+        Destroy(this.gameObject);
+    }
 }

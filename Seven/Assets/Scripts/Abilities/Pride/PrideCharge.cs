@@ -22,6 +22,9 @@ public class PrideCharge : ActorAbilityFunction<Actor, IEnumerator>
     [Tooltip("The maximum distance this charge should travel before it stops.")]
     public float maxChargeDistance = 200.0f;
 
+    [Tooltip("The distance from the target this charge should stop at.")]
+    public float stopShotDistance = 1f;
+
     [Tooltip("The maximum amount of time the charge should travel for.")]
     public float maxChargeTime = 10.0f;
 
@@ -50,6 +53,7 @@ public class PrideCharge : ActorAbilityFunction<Actor, IEnumerator>
     /*InternInvokes the ability as normal, but also grab's the user's actorMovement, if any.*/
     public override void Invoke(ref Actor user)
     {
+        this.user = user;
         if(usable)
         {
             var target = GameObject.FindWithTag("Player").GetComponent<Actor>();
@@ -69,6 +73,7 @@ public class PrideCharge : ActorAbilityFunction<Actor, IEnumerator>
 
     public override void Invoke(ref Actor user, params object[] args)
     {
+        this.user = user;
         if(usable)
         {
             isFinished = false;
@@ -107,6 +112,9 @@ public class PrideCharge : ActorAbilityFunction<Actor, IEnumerator>
         originalSpeed = userMover.speed;
         userMover.speed = chargeSpeed;
 
+        //create a distance variable
+        float dist = 0f;
+
         //get colliders for convinience
         var userCollider = userMover.gameObject.GetComponent<Collider2D>();
         var targetCollider = arg.gameObject.GetComponent<Collider2D>();
@@ -131,8 +139,14 @@ public class PrideCharge : ActorAbilityFunction<Actor, IEnumerator>
             //take one step forward
             userMover.MoveActor(mD);
 
-            //if the user and target alaunch the shockwave
-            if(userCollider.IsTouching(targetCollider))
+            //get the new distance from target to user
+            dist = Vector3.Distance(
+                userMover.gameObject.transform.position,
+                arg.gameObject.transform.position
+            );
+
+            //if the user and target are touching or the user is too close...
+            if(userCollider.IsTouching(targetCollider) || Mathf.Abs(dist) <= stopShotDistance)
             {
                 //arbitrarily max out the charge timer to auto-end the charge
                 chargeTimer = maxChargeTime * 2;
@@ -148,14 +162,16 @@ public class PrideCharge : ActorAbilityFunction<Actor, IEnumerator>
         userMover.speed = originalSpeed;
 
         //if the target and user are still touching...
-        if(userCollider.IsTouching(targetCollider))
+        if(userCollider.IsTouching(targetCollider) || Mathf.Abs(dist) <= stopShotDistance)
         {
             Debug.Log("Charge connected");
             //hurt them.
-            arg.myHealth.takeDamage(chargeDamage);
-
-            var userActor = userMover.gameObject.GetComponent<Actor>();
-            followUp?.Invoke(ref userActor, arg);
+            if(userCollider.IsTouching(targetCollider))
+            {
+                arg.myHealth.takeDamage(chargeDamage);
+            }
+            //var userActor = userMover.gameObject.GetComponent<Actor>();
+            followUp?.Invoke(ref user, arg);
         }
     }
 }
