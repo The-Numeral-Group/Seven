@@ -22,8 +22,6 @@ public class GameSaveList : MonoBehaviour
 
     // Element 13 - IndulgenceDefeated
 
-
-
     public void setNewGame(bool value)
     {
         ((BoolValue)SaveObjects[0]).RuntimeValue = value;
@@ -92,6 +90,36 @@ public class GameSaveList : MonoBehaviour
             return "";
         }
         return ((StringValue)SaveObjects[id]).RuntimeValue;
+    }
+
+    public bool getBossProgress(int id)
+    {
+        if (id >= SaveObjects.Count)
+        {
+            Debug.LogWarning("The following id: " + id + " in getBossProgress is out of bounds!");
+            return false;
+        }
+        if (!(SaveObjects[id] is BoolValue))
+        {
+            Debug.LogWarning("Element of SaveObjects[" + id + "] is not BoolValue!");
+            return false;
+        }
+        return ((BoolValue)SaveObjects[id]).RuntimeValue;
+    }
+
+    public void setBossProgress(bool newValue, int id)
+    {
+        if (id >= SaveObjects.Count)
+        {
+            Debug.LogWarning("The following id: " + id + " in setBossProgress is out of bounds!");
+            return;
+        }
+        if (!(SaveObjects[id] is BoolValue))
+        {
+            Debug.LogWarning("Element of SaveObjects[" + id + "] is not BoolValue!");
+            return;
+        }
+        ((BoolValue)SaveObjects[id]).RuntimeValue = newValue;
     }
 
     public void checkBossProgress()

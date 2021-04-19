@@ -18,24 +18,22 @@ public class GameSaveManager : MonoBehaviour
     public GameObject gameSaveListObject;
     private GameSaveList gameSaveList;
 
+
     public PlaceObject[] placeObjects;
 
     private void Awake()
     {
         this.gameSaveList = gameSaveListObject.GetComponent<GameSaveList>();
+
+        LoadSaveList();
+
         if (placeObjects.Length > 0)
         {
             foreach (PlaceObject pO in placeObjects)
             {
-                Vector2 newPos = this.gameSaveList.getPosition(pO.id);
-                pO.gameObject.position = newPos;
+                pO.gameObject.position = this.gameSaveList.getPosition(pO.id);
             }
         }
-    }
-
-    private void OnEnable()
-    {
-        LoadSaveList();
     }
 
     // Reset all the SaveObjects.
@@ -54,13 +52,9 @@ public class GameSaveManager : MonoBehaviour
 
         BinaryFormatter binary = new BinaryFormatter();
 
-        // Convert gameSaveListObject to json
-        var json = JsonUtility.ToJson(this.gameSaveList.SaveObjects);
+        GameSaveData gameSaveData = new GameSaveData(this.gameSaveList);
 
-        // Serialize the json using binary formatter
-        binary.Serialize(file, json);
-
-       // binary.Serialize(file, this.gameSaveList.SaveObjects);
+        binary.Serialize(file, gameSaveData);
         file.Close();
     }
 
@@ -75,11 +69,22 @@ public class GameSaveManager : MonoBehaviour
 
             BinaryFormatter binary = new BinaryFormatter();
 
-            // Take the file -> deserialize it using the binary formatter 
-            // -> Convert it to string -> Override that to gameSaveList
-            JsonUtility.FromJsonOverwrite((string)binary.Deserialize(file), this.gameSaveList.SaveObjects);
+            GameSaveData gameSaveData = binary.Deserialize(file) as GameSaveData;
 
-            //this.gameSaveList.SaveObjects = binary.Deserialize(file) as List<ScriptableObject>;
+            gameSaveList.setNewGame(gameSaveData.newGame);
+            gameSaveList.setNewScene(gameSaveData.playerCurrentScene, 1);
+
+            Vector2 newPlayerPos = new Vector2(gameSaveData.playerPosition[0], gameSaveData.playerPosition[1]);
+            gameSaveList.setNewPosition(newPlayerPos, 2);
+
+            Vector2 newGKPos = new Vector2(gameSaveData.ghostKnightPosition[0], gameSaveData.ghostKnightPosition[1]);
+            gameSaveList.setNewPosition(newGKPos, 3);
+
+            gameSaveList.setBossProgress(gameSaveData.ApathyDefeated, 10);
+            gameSaveList.setBossProgress(gameSaveData.DesireDefeated, 11);
+            gameSaveList.setBossProgress(gameSaveData.EgoDefeated, 12);
+            gameSaveList.setBossProgress(gameSaveData.IndulgenceDefeated, 13);
+
             file.Close();
         }
     }

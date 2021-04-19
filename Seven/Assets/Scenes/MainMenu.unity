@@ -301,33 +301,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1946191, guid: 708a306f945165c49b6382e7c9913445, type: 3}
-      propertyPath: GameObjects.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 947924126, guid: 708a306f945165c49b6382e7c9913445, type: 3}
-      propertyPath: GameObjects.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2998643818376067545, guid: 708a306f945165c49b6382e7c9913445, type: 3}
       propertyPath: m_Name
       value: GameSaveManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 2998643818376067550, guid: 708a306f945165c49b6382e7c9913445, type: 3}
-      propertyPath: objects.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2998643818376067550, guid: 708a306f945165c49b6382e7c9913445, type: 3}
-      propertyPath: gameSaveList
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2998643818376067550, guid: 708a306f945165c49b6382e7c9913445, type: 3}
-      propertyPath: gameSaveListObject
-      value: 
-      objectReference: {fileID: 6242532790421007752, guid: cdceeefd3b71d384a8a8177a21721d2e, type: 3}
-    - target: {fileID: 2998643818376067550, guid: 708a306f945165c49b6382e7c9913445, type: 3}
-      propertyPath: placeObjects
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2998643818376067551, guid: 708a306f945165c49b6382e7c9913445, type: 3}
       propertyPath: m_LocalPosition.x
@@ -372,34 +348,6 @@ PrefabInstance:
     - target: {fileID: 2998643818376067551, guid: 708a306f945165c49b6382e7c9913445, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3721630537269293297, guid: 708a306f945165c49b6382e7c9913445, type: 3}
-      propertyPath: dataLibrary.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3721630537269293297, guid: 708a306f945165c49b6382e7c9913445, type: 3}
-      propertyPath: dataLibrary.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 99196f5b96b14c048985c90ceaf6bdff, type: 2}
-    - target: {fileID: 3721630537269293297, guid: 708a306f945165c49b6382e7c9913445, type: 3}
-      propertyPath: dataLibrary.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: ce6e0e07fa4070143bce3729d5080d23, type: 2}
-    - target: {fileID: 3721630537269293297, guid: 708a306f945165c49b6382e7c9913445, type: 3}
-      propertyPath: dataLibrary.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 860e525606a5caa48a0cc719ce5f73a5, type: 2}
-    - target: {fileID: 6018189502691885154, guid: 708a306f945165c49b6382e7c9913445, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6483183295849236948, guid: 708a306f945165c49b6382e7c9913445, type: 3}
-      propertyPath: GameObjects.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6483183295849236948, guid: 708a306f945165c49b6382e7c9913445, type: 3}
-      propertyPath: GameObjects.Array.data[0]
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 708a306f945165c49b6382e7c9913445, type: 3}
