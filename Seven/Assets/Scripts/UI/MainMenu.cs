@@ -16,6 +16,10 @@ public class MainMenu : BaseUI
     
     void Start()
     {
+        // Putting timeScale back to 1. (For returning back to the main menu)
+        // This was needed for ButtonTextChange's changeTextDuration function
+        Time.timeScale = 1;
+
         if (startingButton)
         {
             startingButton.Select();

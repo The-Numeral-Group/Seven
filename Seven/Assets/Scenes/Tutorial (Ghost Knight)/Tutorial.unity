@@ -1083,6 +1083,10 @@ PrefabInstance:
 
         Left Click - Attack'
       objectReference: {fileID: 0}
+    - target: {fileID: 2264186514363271550, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2513683852897578021, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

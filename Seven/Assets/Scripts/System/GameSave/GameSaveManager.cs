@@ -54,11 +54,13 @@ public class GameSaveManager : MonoBehaviour
 
         BinaryFormatter binary = new BinaryFormatter();
 
-        // Convert gameSaveList to json
+        // Convert gameSaveListObject to json
         var json = JsonUtility.ToJson(this.gameSaveList.SaveObjects);
 
         // Serialize the json using binary formatter
         binary.Serialize(file, json);
+
+       // binary.Serialize(file, this.gameSaveList.SaveObjects);
         file.Close();
     }
 
@@ -76,6 +78,8 @@ public class GameSaveManager : MonoBehaviour
             // Take the file -> deserialize it using the binary formatter 
             // -> Convert it to string -> Override that to gameSaveList
             JsonUtility.FromJsonOverwrite((string)binary.Deserialize(file), this.gameSaveList.SaveObjects);
+
+            //this.gameSaveList.SaveObjects = binary.Deserialize(file) as List<ScriptableObject>;
             file.Close();
         }
     }
@@ -84,6 +88,11 @@ public class GameSaveManager : MonoBehaviour
     {
         this.gameSaveList.setNewGame(value);
         this.SaveSaveList();
+    }
+
+    public bool getNewGame()
+    {
+        return(this.gameSaveList.getNewGame());
     }
 
     public void setNewPosition(Vector2 newPos, int id)
