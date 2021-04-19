@@ -28,6 +28,8 @@ public class GhostKnightActor : Actor
 
     public Canvas attackTutorialCanvas;
 
+    public GameObject gameSaveManager;
+
     private bool attackEnabled = false;
 
     private int specialAttackCounter = 1;
@@ -84,7 +86,9 @@ public class GhostKnightActor : Actor
     //Function that is called when GhostKnight dies. Starts the next cutscene.
     public override void DoActorDeath()
     {
-        GetComponent<ActorDataManager>().updateActorPosition(transform.position);
+        var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
+        this.gameSaveManager.GetComponent<GameSaveManager>().setNewPosition(playerObject.transform.position, 2);
+        this.gameSaveManager.GetComponent<GameSaveManager>().setNewPosition(transform.position, 3);
         SceneManager.LoadScene("Tutorial_PostFight");
     }
 

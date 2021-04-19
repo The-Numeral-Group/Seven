@@ -17,10 +17,10 @@ public class ProjectileAbility : ActorAbilityFunction<Vector2, int>
     public Vector2 projectileDirection = Vector2.left;
 
     //A middleman variable to hold the projectile instance between methods
-    private GameObject projObj;
+    protected GameObject projObj;
 
     //A middleman variable to hold the desired LAUNCH_MODE between methods
-    private LAUNCH_MODE launchMode = LAUNCH_MODE.DIRECTION;
+    protected LAUNCH_MODE launchMode = LAUNCH_MODE.DIRECTION;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +37,7 @@ public class ProjectileAbility : ActorAbilityFunction<Vector2, int>
     InternInvoke.*/
     public override void Invoke(ref Actor user)
     {
+        this.user = user;
         if(usable)
         {
             isFinished = false;
@@ -50,12 +51,16 @@ public class ProjectileAbility : ActorAbilityFunction<Vector2, int>
 
     public override void Invoke(ref Actor user, params object[] args)
     {
+        this.user = user;
         if(usable)
         {
             isFinished = false;
             projObj = InstantiateProjectile(projectile, user.faceAnchor, projectileScale);
-            launchMode = ConvertMode(args[1]);
-
+            if(args.Length > 1)
+            {
+                launchMode = ConvertMode(args[1]);
+            }
+            
             InternInvoke(ConvertTarget(args[0]));
             
             StartCoroutine(coolDown(cooldownPeriod));
@@ -77,7 +82,7 @@ public class ProjectileAbility : ActorAbilityFunction<Vector2, int>
     /*Creates the projectile object relative to the faceAnchor to make adjusting its spawn position
     with the inspector easier. Projectiles will still end and be launched parentless however,
     as their movement methods assume that projectiles have no parents.*/
-    GameObject InstantiateProjectile(GameObject projPrefab, Transform faceAnchor, Vector2 offset)
+    protected GameObject InstantiateProjectile(GameObject projPrefab, Transform faceAnchor, Vector2 offset)
     {
         //Instantiate the projectile as a child of faceAnchor
         GameObject obj = Instantiate(projPrefab, faceAnchor);
@@ -95,13 +100,17 @@ public class ProjectileAbility : ActorAbilityFunction<Vector2, int>
         return obj;
     }
 
-    Vector2 ConvertTarget(object arg)
+    protected Vector2 ConvertTarget(object arg)
     {
         Vector2 finalVec = projectileDirection;
 
         if(arg is Vector2)
         {
             finalVec = (Vector2)arg;
+        }
+        else if(arg is Vector3)
+        {
+            finalVec = (Vector3)arg;
         }
         else if(arg is Transform)
         {
@@ -124,7 +133,7 @@ public class ProjectileAbility : ActorAbilityFunction<Vector2, int>
         return finalVec;
     }
 
-    LAUNCH_MODE ConvertMode(object mode)
+    protected LAUNCH_MODE ConvertMode(object mode)
     {
         LAUNCH_MODE finalMode = LAUNCH_MODE.DIRECTION;
 

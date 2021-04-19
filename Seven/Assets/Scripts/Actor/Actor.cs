@@ -14,7 +14,7 @@ public class Actor : MonoBehaviour
     public ActorMovement myMovement{ get; protected set; }
     public ActorAnimationHandler myAnimationHandler { get; protected set; }
     public ActorSoundManager mySoundManager { get; protected set; }
-    public ActorDataManager myDataManager { get; protected set; }
+    //public ActorDataManager myDataManager { get; protected set; }
 
     //turned this into a property 'cause why not?
     public Transform faceAnchor{ get; protected set; }
@@ -43,7 +43,7 @@ public class Actor : MonoBehaviour
         this.myMovement = this.gameObject.GetComponent<ActorMovement>();
         this.myAnimationHandler = this.gameObject.GetComponent<ActorAnimationHandler>();
         this.mySoundManager = this.gameObject.GetComponent<ActorSoundManager>();
-        this.myDataManager = this.gameObject.GetComponent<ActorDataManager>();
+        //this.myDataManager = this.gameObject.GetComponent<ActorDataManager>();
     }
 
     public virtual void DoActorDamageEffect(float damage)

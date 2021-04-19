@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &1946191 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1946191, guid: 708a306f945165c49b6382e7c9913445, type: 3}
-  m_PrefabInstance: {fileID: 3772213494890816844}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1df7bef60d7269438e0752fe75ed9d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &67937267
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,21 +587,9 @@ MonoBehaviour:
             m_StringArgument: Hub
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1946191}
-          m_TargetAssemblyTypeName: SavePosition, Assembly-CSharp
-          m_MethodName: saveObjectsPosition
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3772213494890816845}
+        - m_Target: {fileID: 1079179765}
           m_TargetAssemblyTypeName: PlacePosition, Assembly-CSharp
           m_MethodName: set_newXPos
           m_Mode: 4
@@ -624,7 +601,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3772213494890816845}
+        - m_Target: {fileID: 1079179765}
           m_TargetAssemblyTypeName: PlacePosition, Assembly-CSharp
           m_MethodName: set_newYPos
           m_Mode: 4
@@ -636,7 +613,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3772213494890816845}
+        - m_Target: {fileID: 1079179765}
           m_TargetAssemblyTypeName: PlacePosition, Assembly-CSharp
           m_MethodName: setObjectNewPosition
           m_Mode: 5
@@ -692,7 +669,7 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3772213494890816845}
+        - m_Target: {fileID: 1079179765}
           m_TargetAssemblyTypeName: PlacePosition, Assembly-CSharp
           m_MethodName: set_newXPos
           m_Mode: 4
@@ -704,7 +681,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3772213494890816845}
+        - m_Target: {fileID: 1079179765}
           m_TargetAssemblyTypeName: PlacePosition, Assembly-CSharp
           m_MethodName: set_newYPos
           m_Mode: 4
@@ -716,7 +693,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3772213494890816845}
+        - m_Target: {fileID: 1079179765}
           m_TargetAssemblyTypeName: PlacePosition, Assembly-CSharp
           m_MethodName: setObjectNewPosition
           m_Mode: 5
@@ -730,7 +707,7 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3772213494890816845}
+        - m_Target: {fileID: 1079179765}
           m_TargetAssemblyTypeName: PlacePosition, Assembly-CSharp
           m_MethodName: set_newXPos
           m_Mode: 4
@@ -742,7 +719,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3772213494890816845}
+        - m_Target: {fileID: 1079179765}
           m_TargetAssemblyTypeName: PlacePosition, Assembly-CSharp
           m_MethodName: set_newYPos
           m_Mode: 4
@@ -754,7 +731,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3772213494890816845}
+        - m_Target: {fileID: 1079179765}
           m_TargetAssemblyTypeName: PlacePosition, Assembly-CSharp
           m_MethodName: setObjectNewPosition
           m_Mode: 5
@@ -873,7 +850,6 @@ GameObject:
   - component: {fileID: 682692960}
   - component: {fileID: 682692959}
   - component: {fileID: 682692956}
-  - component: {fileID: 682692957}
   m_Layer: 10
   m_Name: Player (Cutscene)
   m_TagString: Player
@@ -900,22 +876,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &682692957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 682692955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 841b868338aec3640a1d82bda5ffc0ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-    position: {fileID: 11400000, guid: 99196f5b96b14c048985c90ceaf6bdff, type: 2}
-    currentScene: {fileID: 0}
-  gameSaveManager: {fileID: 2998643818376067545, guid: 708a306f945165c49b6382e7c9913445, type: 3}
 --- !u!212 &682692959
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -994,7 +954,6 @@ GameObject:
   - component: {fileID: 688263415}
   - component: {fileID: 688263419}
   - component: {fileID: 688263414}
-  - component: {fileID: 688263417}
   - component: {fileID: 688263420}
   - component: {fileID: 688263418}
   m_Layer: 26
@@ -1088,22 +1047,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &688263417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 688263413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 841b868338aec3640a1d82bda5ffc0ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-    position: {fileID: 11400000, guid: 860e525606a5caa48a0cc719ce5f73a5, type: 2}
-    currentScene: {fileID: 0}
-  gameSaveManager: {fileID: 2998643818376067545, guid: 708a306f945165c49b6382e7c9913445, type: 3}
 --- !u!114 &688263418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1900,6 +1843,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997230106}
   m_CullTransparentMesh: 0
+--- !u!1 &1079179764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1079179766}
+  - component: {fileID: 1079179765}
+  m_Layer: 0
+  m_Name: PlacePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1079179765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079179764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba7c62a269934c34ebf146451982e697, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameObjects:
+  - {fileID: 682692955}
+  - {fileID: 688263413}
+--- !u!4 &1079179766
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079179764}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1098766828
 GameObject:
   m_ObjectHideFlags: 0
@@ -2089,6 +2078,10 @@ PrefabInstance:
     - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: leftBound
       value: -1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: ignoreTargetPOIs
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7897472732076878603, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_Name
@@ -2959,6 +2952,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2998643818376067550, guid: 708a306f945165c49b6382e7c9913445, type: 3}
+      propertyPath: placeObjects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2998643818376067550, guid: 708a306f945165c49b6382e7c9913445, type: 3}
       propertyPath: objects.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: ce6e0e07fa4070143bce3729d5080d23, type: 2}
@@ -2966,6 +2963,26 @@ PrefabInstance:
       propertyPath: objects.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: ce6e0e07fa4070143bce3729d5080d23, type: 2}
+    - target: {fileID: 2998643818376067550, guid: 708a306f945165c49b6382e7c9913445, type: 3}
+      propertyPath: placeObjects
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2998643818376067550, guid: 708a306f945165c49b6382e7c9913445, type: 3}
+      propertyPath: placeObjects.Array.data[0].gameObject
+      value: 
+      objectReference: {fileID: 682692960}
+    - target: {fileID: 2998643818376067550, guid: 708a306f945165c49b6382e7c9913445, type: 3}
+      propertyPath: placeObjects.Array.data[1].gameObject
+      value: 
+      objectReference: {fileID: 688263416}
+    - target: {fileID: 2998643818376067550, guid: 708a306f945165c49b6382e7c9913445, type: 3}
+      propertyPath: placeObjects.Array.data[0].id
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2998643818376067550, guid: 708a306f945165c49b6382e7c9913445, type: 3}
+      propertyPath: placeObjects.Array.data[1].id
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2998643818376067551, guid: 708a306f945165c49b6382e7c9913445, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.398078
@@ -3016,17 +3033,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 708a306f945165c49b6382e7c9913445, type: 3}
---- !u!114 &3772213494890816845 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 947924126, guid: 708a306f945165c49b6382e7c9913445, type: 3}
-  m_PrefabInstance: {fileID: 3772213494890816844}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba7c62a269934c34ebf146451982e697, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8411390098400197494
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEditor;
+using Yarn;
+using Yarn.Unity;
 
 // Source: https://www.youtube.com/watch?v=7ujN52_dTjk&list=PL4vbr3u7UKWp0iM1WIfRjCDTI03u43Zfu&index=69&ab_channel=MisterTaftCreates
 // GameSaveManager allows to save certain values and conditions between scenes.
@@ -11,71 +15,132 @@ using UnityEngine;
 // Doc: https://docs.google.com/document/d/1of19f71D2yKrfy_kZ0q6iqCK5W_lrzfAmRAalqbgDhk/edit
 public class GameSaveManager : MonoBehaviour
 {
-    // These are the datas that are going to get saved when game is closed
-    public List<ScriptableObject> SaveObjects = new List<ScriptableObject>();
+    public GameObject gameSaveListObject;
+    private GameSaveList gameSaveList;
 
-    public BoolValue newGame;
 
-    private void OnEnable()
+    public PlaceObject[] placeObjects;
+
+    private void Awake()
     {
-        LoadSaveObjects();
-    }
+        this.gameSaveList = gameSaveListObject.GetComponent<GameSaveList>();
 
-    // Reset all the SaveObjects.
-    public void ResetSaveObjects()
-    {
-        newGame.initialValue = true;
-        for (int i = 0; i < SaveObjects.Count; i++)
+        LoadSaveList();
+
+        if (placeObjects.Length > 0)
         {
-            if (File.Exists(Application.persistentDataPath +
-                string.Format("/{0}.dat", i)))
+            foreach (PlaceObject pO in placeObjects)
             {
-                File.Delete(Application.persistentDataPath +
-                    string.Format("/{0}.dat", i));
+                pO.gameObject.position = this.gameSaveList.getPosition(pO.id);
             }
         }
     }
 
-    public void SaveSaveObjects()
+    // Reset all the SaveObjects.
+    public void ResetSaveList()
     {
-        for (int i = 0; i < SaveObjects.Count; i++)
+        this.gameSaveList.setNewGame(true);
+        if (File.Exists(Application.persistentDataPath + ("/SaveFile.dat")))
         {
-            // Create a file called i.dat for each object. (0.dat, 1.dat, 2.dat, and so on)
-            FileStream file = File.Create(Application.persistentDataPath +
-                string.Format("/{0}.dat", i));
+            File.Delete(Application.persistentDataPath + ("/SaveFile.dat"));
+        }
+    }
+
+    public void SaveSaveList()
+    {
+        FileStream file = File.Create(Application.persistentDataPath + ("/SaveFile.dat"));
+
+        BinaryFormatter binary = new BinaryFormatter();
+
+        GameSaveData gameSaveData = new GameSaveData(this.gameSaveList);
+
+        binary.Serialize(file, gameSaveData);
+        file.Close();
+    }
+
+    
+    public void LoadSaveList()
+    {
+        // Check if the File exists
+        if (File.Exists(Application.persistentDataPath + ("/SaveFile.dat")))
+        {
+            // Open the file
+            FileStream file = File.Open(Application.persistentDataPath + ("/SaveFile.dat"), FileMode.Open);
 
             BinaryFormatter binary = new BinaryFormatter();
 
-            // Convert objects[i] tp json
-            var json = JsonUtility.ToJson(SaveObjects[i]);
+            GameSaveData gameSaveData = binary.Deserialize(file) as GameSaveData;
 
-            // Serialize the json using binary formatter
-            binary.Serialize(file, json);
+            gameSaveList.setNewGame(gameSaveData.newGame);
+            gameSaveList.setNewScene(gameSaveData.playerCurrentScene, 1);
+
+            Vector2 newPlayerPos = new Vector2(gameSaveData.playerPosition[0], gameSaveData.playerPosition[1]);
+            gameSaveList.setNewPosition(newPlayerPos, 2);
+
+            Vector2 newGKPos = new Vector2(gameSaveData.ghostKnightPosition[0], gameSaveData.ghostKnightPosition[1]);
+            gameSaveList.setNewPosition(newGKPos, 3);
+
+            gameSaveList.setBossProgress(gameSaveData.ApathyDefeated, 10);
+            gameSaveList.setBossProgress(gameSaveData.DesireDefeated, 11);
+            gameSaveList.setBossProgress(gameSaveData.EgoDefeated, 12);
+            gameSaveList.setBossProgress(gameSaveData.IndulgenceDefeated, 13);
+
             file.Close();
         }
     }
 
-    
-    public void LoadSaveObjects()
+    public void setNewGame(bool value)
     {
-        for (int i = 0; i < SaveObjects.Count; i++)
+        this.gameSaveList.setNewGame(value);
+        this.SaveSaveList();
+    }
+
+    public bool getNewGame()
+    {
+        return(this.gameSaveList.getNewGame());
+    }
+
+    public void setNewPosition(Vector2 newPos, int id)
+    {
+        this.gameSaveList.setNewPosition(newPos, id);
+        this.SaveSaveList();
+    }
+
+    public void setNewScene(string newScene, int id)
+    {
+        this.gameSaveList.setNewScene(newScene, id);
+        this.SaveSaveList();
+    }
+
+    public void loadCurrentScene(int id)
+    {
+        SceneManager.LoadScene(this.gameSaveList.getCurrentScene(id));
+    }
+
+    public void continueGame()
+    {
+        if (!this.gameSaveList.getNewGame())
         {
-            // Check if the File exists
-            if (File.Exists(Application.persistentDataPath +
-                string.Format("/{0}.dat", i)))
-            {
-                // Open the file
-                FileStream file = File.Open(Application.persistentDataPath +
-                    string.Format("/{0}.dat", i), FileMode.Open);
-
-                BinaryFormatter binary = new BinaryFormatter();
-
-                // Take the file -> deserialize it using the binary formatter 
-                // -> Convert it to string -> Override that to objects[i]
-                JsonUtility.FromJsonOverwrite((string)binary.Deserialize(file), SaveObjects[i]);
-                file.Close();
-            }
+            this.loadCurrentScene(1);
         }
     }
 
+
+    [YarnCommand("saveProgress")]
+    public void saveProgress()
+    {
+        this.gameSaveList.setNewScene("Hub", 1);
+        this.gameSaveList.setNewGame(false);
+        this.gameSaveList.checkBossProgress();
+        this.SaveSaveList();
+    }
+
+}
+
+[System.Serializable]
+public class PlaceObject
+{
+    public Transform gameObject;
+
+    public int id;
 }

@@ -105,7 +105,7 @@ public class Ego2Actor : Actor
             ExecuteAttack();
 
             //Step 3: Wait for the attack to resolve
-            yield return new WaitUntil( () =>  (currAbility && !currAbility.getIsFinished()) );
+            yield return new WaitUntil( () =>  (currAbility && currAbility.getIsFinished()) );
 
             //Step 4: Wait a little while
             yield return new WaitForSeconds(attackWait);
@@ -170,5 +170,12 @@ public class Ego2Actor : Actor
         currAbility = attack;
         attack.Invoke(ref ego, player);
         ++attackCount;
+    }
+
+    //When this actor dies...
+    public override void DoActorDeath()
+    {
+        //fukkin die
+        Destroy(this.gameObject);
     }
 }

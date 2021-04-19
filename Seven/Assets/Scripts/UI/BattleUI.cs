@@ -162,7 +162,6 @@ public class BattleUI : BaseUI
             bossList.Remove(bBar);
             Destroy(bBar.bossContainer);
             index--;
-            playerActor.myDataManager.updateActorPosition(playerObject.transform.position);
         }
     }
 
