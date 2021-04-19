@@ -5,7 +5,8 @@ public class IndulgenceP1Actor : Actor
 {
     public int wallSlamTriggerCounter;
     int physicalAttackCounter;
-    public int jumpTriggerDistance;
+    public float jumpTriggerDistance;
+    public float physicalTriggerDistance;
     public Actor target;
     Actor self;
     ActorAbility currAbility;
@@ -17,6 +18,7 @@ public class IndulgenceP1Actor : Actor
     public enum State
     {
         MOVEMENT,
+        PHYSICAL,
         WALLCRAWL,
         WAITING,
     }
@@ -70,7 +72,7 @@ public class IndulgenceP1Actor : Actor
         {
             currState = State.WAITING;
         }
-        else if (physicalAttackCounter >= wallSlamTriggerCounter)
+        else if (physicalAttackCounter >= wallSlamTriggerCounter && this.myAbilityInitiator.abilities[AbilityRegister.INDULGENCE_WALLCRAWL].getUsable())
         {
             physicalAttackCounter = 0;
             currState = State.WALLCRAWL;
@@ -78,6 +80,11 @@ public class IndulgenceP1Actor : Actor
         else if (currDistanceToTarget > jumpTriggerDistance)
         {
             //do jumpo
+        }
+        else if (currDistanceToTarget < physicalTriggerDistance && this.myAbilityInitiator.abilities[AbilityRegister.INDULGENCE_PHYSICAL].getUsable())
+        {
+            physicalAttackCounter += 1;
+            currState = State.PHYSICAL;
         }
         else
         {
@@ -87,6 +94,7 @@ public class IndulgenceP1Actor : Actor
         if (currState != State.MOVEMENT)
         {
             this.myMovement.MoveActor(Vector2.zero);
+            this.myAnimationHandler.animateWalk();
         }
 
         ExecuteState(currState);
@@ -99,12 +107,14 @@ public class IndulgenceP1Actor : Actor
             case State.MOVEMENT:
                 MovementPattern();
                 break;
+            case State.PHYSICAL:
+                currAbility = this.myAbilityInitiator.abilities[AbilityRegister.INDULGENCE_PHYSICAL];
+                Vector2 direction = target.transform.position - this.transform.position;
+                currAbility.Invoke(ref self, direction);
+                break;
             case State.WALLCRAWL:
-                if (this.myAbilityInitiator.abilities[AbilityRegister.INDULGENCE_WALLCRAWL].getUsable())
-                {
-                    currAbility = this.myAbilityInitiator.abilities[AbilityRegister.INDULGENCE_WALLCRAWL];
-                    currAbility.Invoke(ref self, target);
-                }
+                currAbility = this.myAbilityInitiator.abilities[AbilityRegister.INDULGENCE_WALLCRAWL];
+                currAbility.Invoke(ref self, target);
                 break;
             case State.WAITING:
                 break;

@@ -61,4 +61,5 @@
     //INDULGENCE ----------------------------------------------------------------------------------
     public static string INDULGENCE_CRUSH = "";
     public static string INDULGENCE_WALLCRAWL = "";
+    public static string INDULGENCE_PHYSICAL = "";
 }
