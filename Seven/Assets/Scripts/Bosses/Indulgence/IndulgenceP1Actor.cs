@@ -108,6 +108,8 @@ public class IndulgenceP1Actor : Actor
                 MovementPattern();
                 break;
             case State.PHYSICAL:
+                //animation should call PerformPhysicalAttack();
+                this.myAnimationHandler.Animator.SetTrigger("physical_attack");
                 currAbility = this.myAbilityInitiator.abilities[AbilityRegister.INDULGENCE_PHYSICAL];
                 Vector2 direction = target.transform.position - this.transform.position;
                 currAbility.Invoke(ref self, direction);
@@ -189,5 +191,10 @@ public class IndulgenceP1Actor : Actor
         redirectingPath = true;
         yield return new WaitForSeconds(seconds);
         redirectingPath = false;
+    }
+
+    public void PerformPhysicalAttack()
+    {
+        
     }
 }

@@ -1,40 +1,46 @@
 fileFormatVersion: 2
-guid: a878947f7167faf44ae786c6172220e0
+guid: 078f0a489672dd2438aed290de8a1415
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8732317360952493
-    second: indulgence_leg_0
+      213: -411178679564293340
+    second: indulgence_toss_0
   - first:
-      213: -5483601914008544354
-    second: indulgence_leg_1
+      213: -4231104894393595967
+    second: indulgence_toss_1
   - first:
-      213: 7336188296080806280
-    second: indulgence_leg_2
+      213: 3550328270325959652
+    second: indulgence_toss_2
   - first:
-      213: -8954914597688897221
-    second: indulgence_leg_3
+      213: -4697064985028177319
+    second: indulgence_toss_3
   - first:
-      213: 1698626093673119817
-    second: indulgence_leg_4
+      213: -7875830548382150497
+    second: indulgence_toss_4
   - first:
-      213: 8969006190244331556
-    second: indulgence_leg_5
+      213: -5517541590045735291
+    second: indulgence_toss_5
   - first:
-      213: -7920828787524814464
-    second: indulgence_leg_6
+      213: -8886387848661752277
+    second: indulgence_toss_6
   - first:
-      213: 4419085989876939607
-    second: indulgence_leg_7
+      213: 3973072732260308678
+    second: indulgence_toss_7
   - first:
-      213: 5596900414685763064
-    second: indulgence_leg_8
+      213: -6344378513213096529
+    second: indulgence_toss_8
   - first:
-      213: 4130409470647525125
-    second: indulgence_leg_9
+      213: 7311675422973573838
+    second: indulgence_toss_9
   - first:
-      213: -274617839105387350
-    second: indulgence_leg_10
+      213: -7892465177552672419
+    second: indulgence_toss_10
+  - first:
+      213: 495314383260864297
+    second: indulgence_toss_11
+  - first:
+      213: 3410077600159999997
+    second: indulgence_toss_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -134,7 +140,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: indulgence_leg_0
+      name: indulgence_toss_0
       rect:
         serializedVersion: 2
         x: 0
@@ -148,14 +154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da49d521ff50f1000800000000000000
-      internalID: 8732317360952493
+      spriteID: 42b2b516b233b4af0800000000000000
+      internalID: -411178679564293340
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: indulgence_leg_1
+      name: indulgence_toss_1
       rect:
         serializedVersion: 2
         x: 1080
@@ -169,14 +175,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9b5ed1dc1556e3b0800000000000000
-      internalID: -5483601914008544354
+      spriteID: 1c7c04214881845c0800000000000000
+      internalID: -4231104894393595967
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: indulgence_leg_2
+      name: indulgence_toss_2
       rect:
         serializedVersion: 2
         x: 2160
@@ -190,14 +196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8815641f2606fc560800000000000000
-      internalID: 7336188296080806280
+      spriteID: 4eb4ecc50cc454130800000000000000
+      internalID: 3550328270325959652
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: indulgence_leg_3
+      name: indulgence_toss_3
       rect:
         serializedVersion: 2
         x: 3240
@@ -211,14 +217,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b311bca5e90c9b380800000000000000
-      internalID: -8954914597688897221
+      spriteID: 9525870484ca0deb0800000000000000
+      internalID: -4697064985028177319
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: indulgence_leg_4
+      name: indulgence_toss_4
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 2160
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f90138c18dd63b290800000000000000
+      internalID: -7875830548382150497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: indulgence_toss_5
       rect:
         serializedVersion: 2
         x: 0
@@ -232,14 +259,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9408897be6bb29710800000000000000
-      internalID: 1698626093673119817
+      spriteID: 58641e33821cd63b0800000000000000
+      internalID: -5517541590045735291
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: indulgence_leg_5
+      name: indulgence_toss_6
       rect:
         serializedVersion: 2
         x: 1080
@@ -253,14 +280,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4200bc53c9f487c70800000000000000
-      internalID: 8969006190244331556
+      spriteID: b262b2075553da480800000000000000
+      internalID: -8886387848661752277
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: indulgence_leg_6
+      name: indulgence_toss_7
       rect:
         serializedVersion: 2
         x: 2160
@@ -274,14 +301,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08935e02f20931290800000000000000
-      internalID: -7920828787524814464
+      spriteID: 6c69a298990332730800000000000000
+      internalID: 3973072732260308678
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: indulgence_leg_7
+      name: indulgence_toss_8
       rect:
         serializedVersion: 2
         x: 3240
@@ -295,14 +322,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75b35826b4fb35d30800000000000000
-      internalID: 4419085989876939607
+      spriteID: fadff4f2b5d34f7a0800000000000000
+      internalID: -6344378513213096529
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: indulgence_leg_8
+      name: indulgence_toss_9
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 1080
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eca3b4bee0a487560800000000000000
+      internalID: 7311675422973573838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: indulgence_toss_10
       rect:
         serializedVersion: 2
         x: 0
@@ -316,14 +364,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f5d494064f2cad40800000000000000
-      internalID: 5596900414685763064
+      spriteID: d5925d1bcb4587290800000000000000
+      internalID: -7892465177552672419
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: indulgence_leg_9
+      name: indulgence_toss_11
       rect:
         serializedVersion: 2
         x: 1080
@@ -337,14 +385,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50fdada9789225930800000000000000
-      internalID: 4130409470647525125
+      spriteID: 92fc76aaec5bfd600800000000000000
+      internalID: 495314383260864297
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: indulgence_leg_10
+      name: indulgence_toss_12
       rect:
         serializedVersion: 2
         x: 2160
@@ -358,8 +406,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa45323c78c503cf0800000000000000
-      internalID: -274617839105387350
+      spriteID: df7ad0e8287035f20800000000000000
+      internalID: 3410077600159999997
       vertices: []
       indices: 
       edges: []
