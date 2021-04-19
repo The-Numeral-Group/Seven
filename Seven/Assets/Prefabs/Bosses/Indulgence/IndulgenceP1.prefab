@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 6735736805293186641}
   - component: {fileID: 6735736805293186652}
   - component: {fileID: 929553791}
+  - component: {fileID: 7232055228637172454}
   m_Layer: 11
   m_Name: IndulgenceP1
   m_TagString: Boss
@@ -263,6 +264,7 @@ MonoBehaviour:
   crush: {fileID: 6735736805293186641}
   wallCrawl: {fileID: 6735736805293186652}
   legAttack: {fileID: 929553791}
+  projAttack: {fileID: 7232055228637172454}
 --- !u!114 &6735736805293186641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,3 +319,24 @@ MonoBehaviour:
   abilityName: 
   invokeBlankWhenBadArguments: 1
   indulgenceLegPrefab: {fileID: 5783529023888686645, guid: f5319041f836a7444acf089e8f289f92, type: 3}
+--- !u!114 &7232055228637172454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6735736805293186734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9478b5bcab5ecd48800cfd696db7dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 35
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  projSpeed: 6
+  numProjectiles: 5
+  projectileSpread: 1.0471976
+  projPrefab: {fileID: 4678962615504643899, guid: 87cf123623309f84a93b96283995d65f, type: 3}
+  lockActor: 1
+  projectileSpawnTime: 2
