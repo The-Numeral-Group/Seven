@@ -21,7 +21,6 @@ public class BarrierAppear : MonoBehaviour
         float opacity = 0f;
         while (opacity < endOpacity)
         {
-            Debug.Log(opacity);
             opacity += 0.1f;
             sr.color = new Color(255f, 255f, 255f, opacity);
             yield return new WaitForSeconds(this.duration / 10);

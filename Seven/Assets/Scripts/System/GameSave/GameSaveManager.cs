@@ -20,7 +20,7 @@ public class GameSaveManager : MonoBehaviour
 
     public PlaceObject[] placeObjects;
 
-    private void Start()
+    private void Awake()
     {
         this.gameSaveList = gameSaveListObject.GetComponent<GameSaveList>();
         if (placeObjects.Length > 0)
@@ -55,7 +55,7 @@ public class GameSaveManager : MonoBehaviour
         BinaryFormatter binary = new BinaryFormatter();
 
         // Convert gameSaveList to json
-        var json = JsonUtility.ToJson(gameSaveList);
+        var json = JsonUtility.ToJson(this.gameSaveList.SaveObjects);
 
         // Serialize the json using binary formatter
         binary.Serialize(file, json);
@@ -75,7 +75,7 @@ public class GameSaveManager : MonoBehaviour
 
             // Take the file -> deserialize it using the binary formatter 
             // -> Convert it to string -> Override that to gameSaveList
-            JsonUtility.FromJsonOverwrite((string)binary.Deserialize(file), gameSaveList);
+            JsonUtility.FromJsonOverwrite((string)binary.Deserialize(file), this.gameSaveList.SaveObjects);
             file.Close();
         }
     }
@@ -98,12 +98,27 @@ public class GameSaveManager : MonoBehaviour
         this.SaveSaveList();
     }
 
+    public void loadCurrentScene(int id)
+    {
+        SceneManager.LoadScene(this.gameSaveList.getCurrentScene(id));
+    }
+
+    public void continueGame()
+    {
+        if (!this.gameSaveList.getNewGame())
+        {
+            this.loadCurrentScene(1);
+        }
+    }
+
 
     [YarnCommand("saveProgress")]
     public void saveProgress()
     {
-        this.setNewScene("Hub", 1);
+        this.gameSaveList.setNewScene("Hub", 1);
+        this.gameSaveList.setNewGame(false);
         this.gameSaveList.checkBossProgress();
+        this.SaveSaveList();
     }
 
 }
