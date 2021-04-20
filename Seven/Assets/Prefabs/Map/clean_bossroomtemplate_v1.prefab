@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6626352411382621025}
   - component: {fileID: 6626352411382621027}
   - component: {fileID: 6626352411382621026}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: North West
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,7 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6626352411486128387}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BoxColliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,9 +122,9 @@ GameObject:
   - component: {fileID: 6626352411872033752}
   - component: {fileID: 6626352411872033754}
   - component: {fileID: 6626352411872033753}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: North East small
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -199,9 +199,9 @@ GameObject:
   - component: {fileID: 6626352412066251006}
   - component: {fileID: 6626352412066251000}
   - component: {fileID: 6626352412066251007}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: East
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -276,9 +276,9 @@ GameObject:
   - component: {fileID: 6626352412410291276}
   - component: {fileID: 6626352412410291278}
   - component: {fileID: 6626352412410291277}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: South Wall
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 6626352412544228878}
   m_Layer: 0
   m_Name: clean_bossroomtemplate_v1
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -436,9 +436,9 @@ GameObject:
   - component: {fileID: 6626352412569769589}
   - component: {fileID: 6626352412569769591}
   - component: {fileID: 6626352412569769590}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: North Wall
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -513,9 +513,9 @@ GameObject:
   - component: {fileID: 6626352412633295529}
   - component: {fileID: 6626352412633295531}
   - component: {fileID: 6626352412633295530}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: West
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -588,9 +588,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6626352412926958740}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: North Walls
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -625,9 +625,9 @@ GameObject:
   - component: {fileID: 6626352413130422074}
   - component: {fileID: 6626352413130422068}
   - component: {fileID: 6626352413130422075}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: North East
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -702,9 +702,9 @@ GameObject:
   - component: {fileID: 6626352413359866699}
   - component: {fileID: 6626352413359866693}
   - component: {fileID: 6626352413359866692}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: North West small
-  m_TagString: Untagged
+  m_TagString: Environment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
