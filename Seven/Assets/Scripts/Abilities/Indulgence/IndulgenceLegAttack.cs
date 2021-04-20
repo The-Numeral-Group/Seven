@@ -8,6 +8,7 @@ public class IndulgenceLegAttack : ActorAbilityFunction<Vector2, int>
     GameObject indulgenceLeg;
     Animator indulgenceLegAnimator;
     Vector2 defaultFacingDirection = Vector2.right;
+    bool animationTriggered;
 
     void Start()
     {
@@ -53,26 +54,54 @@ public class IndulgenceLegAttack : ActorAbilityFunction<Vector2, int>
         }
         else if (direction.y < 0 && direction.x >= 0)
         {
-            dtheta += 3*Mathf.PI/2;
+            dtheta -= Mathf.PI/2;
         }
         dtheta = dtheta * (180/Mathf.PI);
         indulgenceLeg.transform.localPosition = new Vector3(direction.x, direction.y, 0);
         indulgenceLeg.transform.localRotation = Quaternion.Euler(0, 0, dtheta);
-        indulgenceLeg.SetActive(true);
-        StartCoroutine(CheckIfAnimationFinished("LegExtend"));
+        StartCoroutine(CheckIfAnimationTriggered());
         return 0;
     }
 
+    IEnumerator CheckIfAnimationTriggered()
+    {
+        yield return new WaitForSeconds(1f);
+        if (animationTriggered)
+        {
+            yield return null;
+        }
+        else
+        {
+            StartCoroutine(CheckIfAnimationFinished("LegExtend"));
+        }
+    }
+
+    public void StartLegAttack()
+    {
+        if (!isFinished && !animationTriggered)
+        {
+            animationTriggered = true;
+            StartCoroutine(CheckIfAnimationFinished("LegExtend"));
+        }
+    }
     IEnumerator CheckIfAnimationFinished(string animationName)
     {
-         while(indulgenceLegAnimator.GetCurrentAnimatorStateInfo(0).IsName(animationName))
+        //yield return new WaitForSeconds(0.5f);
+        indulgenceLeg.SetActive(true);
+        while(indulgenceLegAnimator.GetCurrentAnimatorStateInfo(0).IsName(animationName))
         {
             yield return new WaitForFixedUpdate();
         }
+        FinishAttack();
+    }
+
+    void FinishAttack()
+    {
         indulgenceLeg.transform.localPosition = Vector3.right;
         indulgenceLeg.transform.localRotation = Quaternion.identity;
         indulgenceLeg.SetActive(false);
         StartCoroutine(user.myMovement.LockActorMovement(0.0001f));
+        animationTriggered = false;
         isFinished = true;
     }
 }

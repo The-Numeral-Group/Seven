@@ -2,9 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class IndulgenceAnimationHandler : ActorAnimationHandler
 {
-    bool facingRight = true;
+    SpriteRenderer sp;
+
+    //reference sometimes not setup in start before game starts running.
+    void Awake()
+    {
+        hostActor = GetComponent<Actor>();
+    }
+
+    public override void Start()
+    {
+        base.Start();
+        sp = GetComponent<SpriteRenderer>();
+    }
     public override void animateWalk()
     {
         if (hostActor.myMovement.isMoving())
@@ -21,17 +34,13 @@ public class IndulgenceAnimationHandler : ActorAnimationHandler
 
     public void Flip(Vector3 direction)
     {
-        Vector3 flip = transform.localScale;
-        if (direction.x < 0 && facingRight)
+        if (direction.x < 0) //left
         {
-            flip.x *= -1;
-            facingRight = false;
+            sp.flipX = true;
         }
-        else if (direction.x > 0 && !facingRight)
+        else if (direction.x > 0) //right
         {
-            flip.x *= -1;
-            facingRight = true;
+            sp.flipX = false;
         }
-        transform.localScale = flip;
     }
 }

@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d1d5e7c31d60a4bac75dc1bef3276a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMaxHealth: 100
+  startingMaxHealth: 10
   damageResistance: 0
   invincibilityDuration: 1
   startInvulnerable: 0
@@ -98,7 +98,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.48746276, y: 0.6002977}
     oldSize: {x: 10.8, y: 10.8}
     newSize: {x: 10.8, y: 10.8}
     adaptiveTilingThreshold: 0.5
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallSlamTriggerCounter: 5
   jumpTriggerDistance: 10
-  physicalTriggerDistance: 7.5
+  physicalTriggerDistance: 5
   target: {fileID: 0}
   currState: 0
   wallCollider: {fileID: 6735736805293186650}
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ddb4cafb6e92414dbcec1a4badf3a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 10
+  cooldownPeriod: 5
   abilityName: 
   invokeBlankWhenBadArguments: 1
   useTrackingCrush: 0
@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceeb80fb7798db4b9eaf5caa5e6625c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 2
+  cooldownPeriod: 1
   abilityName: 
   invokeBlankWhenBadArguments: 1
   indulgenceLegPrefab: {fileID: 5783529023888686645, guid: f5319041f836a7444acf089e8f289f92, type: 3}

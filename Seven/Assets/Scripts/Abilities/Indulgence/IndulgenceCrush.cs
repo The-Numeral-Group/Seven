@@ -29,6 +29,8 @@ public class IndulgenceCrush : ActorAbilityFunction<Actor, int>
     IEnumerator TrackRoutine;
     IEnumerator CrushRoutine;
     IEnumerator MovementLock;
+    bool hasLanded;
+    Actor abilityTarget;
 
     void Awake()
     {
@@ -88,6 +90,8 @@ public class IndulgenceCrush : ActorAbilityFunction<Actor, int>
 
     protected override int InternInvoke(params Actor[] args)
     {
+        hasLanded = false;
+        abilityTarget = args[0];
         shadowSprite.transform.parent = user.transform;
         SetupColliders(false);
         MovementLock = this.user.myMovement.LockActorMovement(this.totalDuration);
@@ -161,6 +165,7 @@ public class IndulgenceCrush : ActorAbilityFunction<Actor, int>
         float speed = distance / crushDuration;
         this.user.myMovement.DragActor(direction * speed);
         yield return new WaitForSeconds(crushDuration);
+        hasLanded = true;
         this.user.myAnimationHandler.Animator.SetTrigger("landing");
         this.user.myMovement.DragActor(Vector2.zero);
         shadowSprite.transform.parent = this.user.transform;
@@ -180,5 +185,27 @@ public class IndulgenceCrush : ActorAbilityFunction<Actor, int>
         StopCoroutine(MovementLock);
         StartCoroutine(this.user.myMovement.LockActorMovement(0.001f));
         this.isFinished = true;
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (!this.isFinished && collider.gameObject != abilityTarget.gameObject && hasLanded)
+        {
+            return;
+        }
+        var enemyHealth = collider.gameObject.GetComponent<ActorHealth>();
+
+        //or a weakpoint if there's no regular health
+        if(enemyHealth == null){collider.gameObject.GetComponent<ActorWeakPoint>();}
+
+        //if the enemy can take damage (if it has an ActorHealth component),
+        //hurt them. Do nothing if they can't take damage.
+        if(enemyHealth != null){
+            if (!enemyHealth.vulnerable)
+            {
+                return;
+            }
+            enemyHealth.takeDamage(1);
+        }
     }
 }

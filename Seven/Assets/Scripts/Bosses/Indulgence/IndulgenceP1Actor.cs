@@ -15,6 +15,7 @@ public class IndulgenceP1Actor : Actor
     bool redirectingPath = false;
     int layerMask;
     IEnumerator MovementCoroutinePtr;
+    IndulgenceAnimationHandler indulgenceAnimationHandler;
     public enum State
     {
         MOVEMENT,
@@ -34,9 +35,15 @@ public class IndulgenceP1Actor : Actor
     protected override void Start()
     {
         base.Start();
+        indulgenceAnimationHandler = this.myAnimationHandler as IndulgenceAnimationHandler;
         self = this as Actor;
         layerMask =  ~(1 << this.gameObject.layer);
         SetupTarget();
+    }
+
+    public override void DoActorDeath()
+    {
+        MenuManager.PAUSE_MENU.LoadScene("Hub");
     }
 
     public void SetupTarget()
@@ -145,7 +152,7 @@ public class IndulgenceP1Actor : Actor
             IndulgenceCrush crush = currAbility as IndulgenceCrush;
             crush.useTrackingCrush = false;
             crush.overrideCooldown = false;
-            crush.SetTotalAbilityDuration(1f, 1f, 0.25f, 0.25f, 0.5f);
+            crush.SetTotalAbilityDuration(1f, 1f, 0.25f, 0.125f, 0.5f);
             currAbility.Invoke(ref self, target);
         }
         else if (redirectingPath)
@@ -156,6 +163,7 @@ public class IndulgenceP1Actor : Actor
         {
             //https://gamedev.stackexchange.com/questions/114121/most-efficient-way-to-convert-vector3-to-vector2
             Vector2 directionToDestination = (destination - ourPosition).normalized;
+            indulgenceAnimationHandler.Flip(directionToDestination);
             //https://answers.unity.com/questions/329389/raycast-ignores-my-layer-mask.html
             RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToDestination, distanceToDestination, layerMask);
             if (hit.collider != null && hit.collider.tag == target.gameObject.tag)

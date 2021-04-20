@@ -54,7 +54,7 @@ public class IndulgenceWallCrawl : ActorAbilityFunction<Actor, int>
         user.myMovement.MoveActor(Vector2.zero);
         indulgenceCrush.overrideCooldown = true;
         indulgenceCrush.useTrackingCrush = true;
-        indulgenceCrush.SetTotalAbilityDuration(0.25f, 3.0f, 0.5f, 1.0f, 1f);
+        indulgenceCrush.SetTotalAbilityDuration(0.25f, 1.5f, 0.5f, 0.5f, 1f);
         indulgenceCrush.Invoke(ref this.user, target);
         while (!indulgenceCrush.getIsFinished())
         {
