@@ -23,6 +23,9 @@ public class SlothActor : Actor
         " Sloth attacks them for not standing still.")]
     public float attackDelay = 6.0f;
 
+    [Tooltip("Props that should vanish from the arena when the fight starts.")]
+    public GameObject prop;
+
     //[Tooltip("The Menu Manager that runs Sloth's dialogue")]
     //public MenuManager menuManager;
 
@@ -117,6 +120,9 @@ public class SlothActor : Actor
     {
         //we are officially throwing hands
         activated = true;
+
+        //Remove the props from the room
+        prop.SetActive(false);
 
         //remove sloth sin here
         player.myEffectHandler.SubtractEffectByType<SlothSin>();
