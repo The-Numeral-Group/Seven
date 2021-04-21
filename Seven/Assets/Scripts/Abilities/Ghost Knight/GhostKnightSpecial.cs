@@ -20,9 +20,6 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
 
     private Actor player;
 
-    // Ghost Knight Effector object
-    //public GameObject gkEffector;
-
     public GameObject glintObject;
 
     GhostKnightAnimationHandler ghostKnightAnimationHandler;
@@ -59,12 +56,8 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
         SpriteRenderer gkSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
         user.mySoundManager.PlaySound("SpecialVanish");
 
-
         // Set both actors to be invincible.
         user.myHealth.SetVulnerable(false, -1);
-
-        // Turn off effector so player doesn't get knockback when Ghost Knight is invisible.
-        //gkEffector.SetActive(false);
 
         float opacity = 1f;
         while (opacity > 0f)
@@ -106,8 +99,6 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
         // Set both actors to be no longer invincible.
         user.myHealth.SetVulnerable(true, -1);
 
-        // Turn back the effector on.
-        //gkEffector.SetActive(true);
     }
 
     private IEnumerator PerformSpecialSlash(Actor user)
@@ -120,18 +111,4 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
         isFinished = true;
     }
 
-    /*
-    private void PerformCombinationVSlash(Actor user)
-    {
-        ghostKnightAnimationHandler.animateVSlash();
-        user.myMovement.DragActor(new Vector2(0.0f, -0.5f));
-    }
-
-    private IEnumerator PerformCombinationHSlash(Actor user)
-    {
-        ghostKnightAnimationHandler.animateHSlash();
-        yield return new WaitForSeconds(this.duration_slash);
-        user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
-        isFinished = true;
-    }*/
 }
