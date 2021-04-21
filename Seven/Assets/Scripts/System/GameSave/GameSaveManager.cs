@@ -8,7 +8,6 @@ using UnityEditor;
 using Yarn;
 using Yarn.Unity;
 
-// Source: https://www.youtube.com/watch?v=7ujN52_dTjk&list=PL4vbr3u7UKWp0iM1WIfRjCDTI03u43Zfu&index=69&ab_channel=MisterTaftCreates
 // GameSaveManager allows to save certain values and conditions between scenes.
 // For example, if you want to make players stand on same position after scene transition, 
 // You can save the player's position and use that to place the player after the scene transition.
@@ -31,7 +30,7 @@ public class GameSaveManager : MonoBehaviour
         {
             foreach (PlaceObject pO in placeObjects)
             {
-                pO.gameObject.position = this.gameSaveList.getPosition(pO.id);
+                pO.gameObject.position = this.gameSaveList.getVectorValue(pO.id);
             }
         }
     }
@@ -39,7 +38,7 @@ public class GameSaveManager : MonoBehaviour
     // Reset all the SaveObjects.
     public void ResetSaveList()
     {
-        this.gameSaveList.setNewGame(true);
+        this.gameSaveList.setBoolValue(true, 0);
         if (File.Exists(Application.persistentDataPath + ("/SaveFile.dat")))
         {
             File.Delete(Application.persistentDataPath + ("/SaveFile.dat"));
@@ -71,55 +70,82 @@ public class GameSaveManager : MonoBehaviour
 
             GameSaveData gameSaveData = binary.Deserialize(file) as GameSaveData;
 
-            gameSaveList.setNewGame(gameSaveData.newGame);
-            gameSaveList.setNewScene(gameSaveData.playerCurrentScene, 1);
+            gameSaveList.setBoolValue(gameSaveData.newGame, 0);
+            gameSaveList.setStringValue(gameSaveData.playerCurrentScene, 1);
 
             Vector2 newPlayerPos = new Vector2(gameSaveData.playerPosition[0], gameSaveData.playerPosition[1]);
-            gameSaveList.setNewPosition(newPlayerPos, 2);
+            gameSaveList.setVectorValue(newPlayerPos, 2);
 
             Vector2 newGKPos = new Vector2(gameSaveData.ghostKnightPosition[0], gameSaveData.ghostKnightPosition[1]);
-            gameSaveList.setNewPosition(newGKPos, 3);
+            gameSaveList.setVectorValue(newGKPos, 3);
 
-            gameSaveList.setBossProgress(gameSaveData.ApathyDefeated, 10);
-            gameSaveList.setBossProgress(gameSaveData.DesireDefeated, 11);
-            gameSaveList.setBossProgress(gameSaveData.EgoDefeated, 12);
-            gameSaveList.setBossProgress(gameSaveData.IndulgenceDefeated, 13);
+            gameSaveList.setBoolValue(gameSaveData.ApathyDefeated, 10);
+            gameSaveList.setBoolValue(gameSaveData.DesireDefeated, 11);
+            gameSaveList.setBoolValue(gameSaveData.EgoDefeated, 12);
+            gameSaveList.setBoolValue(gameSaveData.IndulgenceDefeated, 13);
 
             file.Close();
         }
     }
 
-    public void setNewGame(bool value)
+    /* ----- BOOL VALUE ----- */
+    public void setBoolValue(bool newValue, int id)
     {
-        this.gameSaveList.setNewGame(value);
+        this.gameSaveList.setBoolValue(newValue, id);
         this.SaveSaveList();
     }
 
-    public bool getNewGame()
+    public bool getBoolValue(int id)
     {
-        return(this.gameSaveList.getNewGame());
+        return (this.gameSaveList.getBoolValue(id));
     }
 
-    public void setNewPosition(Vector2 newPos, int id)
+    /* ----- VECTOR VALUE ----- */
+    public void setVectorValue(Vector2 newValue, int id)
     {
-        this.gameSaveList.setNewPosition(newPos, id);
+        this.gameSaveList.setVectorValue(newValue, id);
         this.SaveSaveList();
     }
 
-    public void setNewScene(string newScene, int id)
+    public Vector2 getVectorValue(int id)
     {
-        this.gameSaveList.setNewScene(newScene, id);
+        return(this.gameSaveList.getVectorValue(id));
+    }
+
+    /* ----- STRING VALUE ----- */
+    public void setStringValue(string newValue, int id)
+    {
+        this.gameSaveList.setStringValue(newValue, id);
         this.SaveSaveList();
     }
+
+    public string getStringValue(int id)
+    {
+        return (this.gameSaveList.getStringValue(id));
+    }
+
+    /* ----- FLOAT VALUE ----- */
+    public void setFloatValue(float newValue, int id)
+    {
+        this.gameSaveList.setFloatValue(newValue, id);
+        this.SaveSaveList();
+    }
+
+    public float getFloatValue(int id)
+    {
+        return (this.gameSaveList.getFloatValue(id));
+    }
+
+    /* ----- OTHER FUNCTIONS ----- */
 
     public void loadCurrentScene(int id)
     {
-        SceneManager.LoadScene(this.gameSaveList.getCurrentScene(id));
+        SceneManager.LoadScene(this.gameSaveList.getStringValue(id));
     }
 
     public void continueGame()
     {
-        if (!this.gameSaveList.getNewGame())
+        if (!this.gameSaveList.getBoolValue(0))
         {
             this.loadCurrentScene(1);
         }
@@ -129,8 +155,8 @@ public class GameSaveManager : MonoBehaviour
     [YarnCommand("saveProgress")]
     public void saveProgress()
     {
-        this.gameSaveList.setNewScene("Hub", 1);
-        this.gameSaveList.setNewGame(false);
+        this.gameSaveList.setStringValue("Hub", 1);
+        this.gameSaveList.setBoolValue(false, 0);
         this.gameSaveList.checkBossProgress();
         this.SaveSaveList();
     }

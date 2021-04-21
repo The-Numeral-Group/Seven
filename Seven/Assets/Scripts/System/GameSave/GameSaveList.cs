@@ -22,81 +22,28 @@ public class GameSaveList : MonoBehaviour
 
     // Element 13 - IndulgenceDefeated
 
-    public void setNewGame(bool value)
-    {
-        ((BoolValue)SaveObjects[0]).RuntimeValue = value;
-    }
 
-    public bool getNewGame()
-    {
-        return ((BoolValue)SaveObjects[0]).RuntimeValue;
-    }
-
-    public void setNewPosition(Vector2 newPos, int id)
+    /* ----- BOOL VALUE ----- */
+    public void setBoolValue(bool newValue, int id)
     {
         if (id >= SaveObjects.Count)
         {
-            Debug.LogWarning("The following id: " + id + " in setNewPosition is out of bounds!");
+            Debug.LogWarning("The following id: " + id + " in setBoolValue is out of bounds!");
             return;
         }
-        if (!(SaveObjects[id] is VectorValue))
+        if (!(SaveObjects[id] is BoolValue))
         {
-            Debug.LogWarning("Element of SaveObjects[" + id + "] is not VectorValue!");
+            Debug.LogWarning("Element of SaveObjects[" + id + "] is not BoolValue!");
             return;
         }
-        ((VectorValue)SaveObjects[id]).RuntimeValue = newPos;
+        ((BoolValue)SaveObjects[id]).RuntimeValue = newValue;
     }
 
-    public Vector2 getPosition(int id)
+    public bool getBoolValue(int id)
     {
         if (id >= SaveObjects.Count)
         {
-            Debug.LogWarning("The following id: " + id + " in setNewPosition is out of bounds!");
-            return Vector2.zero;
-        }
-        if (!(SaveObjects[id] is VectorValue))
-        {
-            Debug.LogWarning("Element of SaveObjects[" + id + "] is not VectorValue!");
-            return Vector2.zero;
-        }
-        return ((VectorValue)SaveObjects[id]).RuntimeValue;
-    }
-
-    public void setNewScene(string newScene, int id)
-    {
-        if (id >= SaveObjects.Count)
-        {
-            Debug.LogWarning("The following id: " + id + " in setNewScene is out of bounds!");
-            return;
-        }
-        if (!(SaveObjects[id] is StringValue))
-        {
-            Debug.LogWarning("Element of SaveObjects[" + id + "] is not StringValue!");
-            return;
-        }
-        ((StringValue)SaveObjects[id]).RuntimeValue = newScene;
-    }
-
-    public string getCurrentScene(int id)
-    {
-        if (id >= SaveObjects.Count)
-        {
-            Debug.LogWarning("The following id: " + id + " in getCurrentScene is out of bounds!");
-            return "";
-        }
-        if (!(SaveObjects[id] is StringValue))
-        {
-            Debug.LogWarning("Element of SaveObjects[" + id + "] is not StringValue!");
-            return "";
-        }
-        return ((StringValue)SaveObjects[id]).RuntimeValue;
-    }
-
-    public bool getBossProgress(int id)
-    {
-        if (id >= SaveObjects.Count)
-        {
-            Debug.LogWarning("The following id: " + id + " in getBossProgress is out of bounds!");
+            Debug.LogWarning("The following id: " + id + " in getBoolValue is out of bounds!");
             return false;
         }
         if (!(SaveObjects[id] is BoolValue))
@@ -107,20 +54,100 @@ public class GameSaveList : MonoBehaviour
         return ((BoolValue)SaveObjects[id]).RuntimeValue;
     }
 
-    public void setBossProgress(bool newValue, int id)
+    /* ----- VECTOR VALUE ----- */
+    public void setVectorValue(Vector2 newValue, int id)
     {
         if (id >= SaveObjects.Count)
         {
-            Debug.LogWarning("The following id: " + id + " in setBossProgress is out of bounds!");
+            Debug.LogWarning("The following id: " + id + " in setVectorValue is out of bounds!");
             return;
         }
-        if (!(SaveObjects[id] is BoolValue))
+        if (!(SaveObjects[id] is VectorValue))
         {
-            Debug.LogWarning("Element of SaveObjects[" + id + "] is not BoolValue!");
+            Debug.LogWarning("Element of SaveObjects[" + id + "] is not VectorValue!");
             return;
         }
-        ((BoolValue)SaveObjects[id]).RuntimeValue = newValue;
+        ((VectorValue)SaveObjects[id]).RuntimeValue = newValue;
     }
+
+    public Vector2 getVectorValue(int id)
+    {
+        if (id >= SaveObjects.Count)
+        {
+            Debug.LogWarning("The following id: " + id + " in getVectorValue is out of bounds!");
+            return Vector2.zero;
+        }
+        if (!(SaveObjects[id] is VectorValue))
+        {
+            Debug.LogWarning("Element of SaveObjects[" + id + "] is not VectorValue!");
+            return Vector2.zero;
+        }
+        return ((VectorValue)SaveObjects[id]).RuntimeValue;
+    }
+
+    /* ----- STRING VALUE ----- */
+    public void setStringValue(string newValue, int id)
+    {
+        if (id >= SaveObjects.Count)
+        {
+            Debug.LogWarning("The following id: " + id + " in setStringValue is out of bounds!");
+            return;
+        }
+        if (!(SaveObjects[id] is StringValue))
+        {
+            Debug.LogWarning("Element of SaveObjects[" + id + "] is not StringValue!");
+            return;
+        }
+        ((StringValue)SaveObjects[id]).RuntimeValue = newValue;
+    }
+
+    public string getStringValue(int id)
+    {
+        if (id >= SaveObjects.Count)
+        {
+            Debug.LogWarning("The following id: " + id + " in getStringValue is out of bounds!");
+            return "";
+        }
+        if (!(SaveObjects[id] is StringValue))
+        {
+            Debug.LogWarning("Element of SaveObjects[" + id + "] is not StringValue!");
+            return "";
+        }
+        return ((StringValue)SaveObjects[id]).RuntimeValue;
+    }
+
+    /* ----- FLOAT VALUE ----- */
+    public void setFloatValue(float newValue, int id)
+    {
+        if (id >= SaveObjects.Count)
+        {
+            Debug.LogWarning("The following id: " + id + " in setFloatValue is out of bounds!");
+            return;
+        }
+        if (!(SaveObjects[id] is FloatValue))
+        {
+            Debug.LogWarning("Element of SaveObjects[" + id + "] is not FloatValue!");
+            return;
+        }
+        ((FloatValue)SaveObjects[id]).RuntimeValue = newValue;
+    }
+
+    public float getFloatValue(int id)
+    {
+        if (id >= SaveObjects.Count)
+        {
+            Debug.LogWarning("The following id: " + id + " in getFloatValue is out of bounds!");
+            return 0.0f;
+        }
+        if (!(SaveObjects[id] is FloatValue))
+        {
+            Debug.LogWarning("Element of SaveObjects[" + id + "] is not FloatValue!");
+            return 0.0f;
+        }
+        return ((FloatValue)SaveObjects[id]).RuntimeValue;
+    }
+
+    /* ----- OTHER FUNCTIONS ----- */
 
     public void checkBossProgress()
     {
