@@ -23,9 +23,6 @@ public class SlothActor : Actor
         " Sloth attacks them for not standing still.")]
     public float attackDelay = 6.0f;
 
-    [Tooltip("Props that should vanish from the arena when the fight starts.")]
-    public GameObject prop;
-
     //[Tooltip("The Menu Manager that runs Sloth's dialogue")]
     //public MenuManager menuManager;
 
@@ -79,50 +76,26 @@ public class SlothActor : Actor
         
         //create AAM object here (to reduce load/lag when starting the fight)
         AAM = new SlothClockMod();
-
-        //start sloth's dialogue. Sloth's activator is passed as the on-end delegate, and movement
-        //remains unlocked so the player can choose to leave
-        //we offload this to the next frame to make sure the player's actor components
-        //are loaded enough for the dialogue to work
-        StartCoroutine(DialogueOffsetStart());
-
-        
-
-        ///DEBUG
-        /*sloth starts by talking with the player, but that hasn't been built yet (2/27/21), so
-        it's just gonna start throwing hands immediately*/
-        //ActivateSloth();
-        ///DEBUG
-    }
-
-    //Starts dialogue on the next frame. Can't be anonymous because a yield is used
-    IEnumerator DialogueOffsetStart()
-    {
-        yield return null;
-
-        MenuManager.DIALOGUE_MENU.StartDialogue(
-            this.gameObject, 
-            new DialogueMenu.TestDelegate( () => ActivateSloth() ), 
-            false
-        );
     }
 
     // FixedUpdate is called once per simulation tick
     void FixedUpdate()
     {
         //apparently this will make sloth face the player
-        this.gameObject.transform.right = 
-            player.gameObject.transform.position - this.gameObject.transform.position;
+        //but only when the fight is going
+        if(activated)
+        {
+            this.gameObject.transform.right = 
+                player.gameObject.transform.position - this.gameObject.transform.position;
+        }
+        
     }
 
     //ITS TIME
-    void ActivateSloth()
+    public void ActivateSloth()
     {
         //we are officially throwing hands
         activated = true;
-
-        //Remove the props from the room
-        prop.SetActive(false);
 
         //remove sloth sin here
         player.myEffectHandler.SubtractEffectByType<SlothSin>();
@@ -213,6 +186,7 @@ public class SlothActor : Actor
                 if(ActorAbilityModifier.DoesMemberExist(arg.clock, "enabled"))
                 {
                     arg.clock.enabled = true;
+                    arg.clock.gameObject.SetActive(true);
                 }
             });
 
