@@ -52,12 +52,7 @@ public class PlayerAnimationHandler : ActorAnimationHandler
 
     private void doAnimateDodge()
     {
-        Animator.SetBool("player_dodging", true);
-    }
-
-    public void animateDodgeComplete()
-    {
-        Animator.SetBool("player_dodging", false);
+        Animator.SetTrigger("player_dodging");
     }
 
 }

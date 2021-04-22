@@ -23,7 +23,9 @@ public class Dodge : ActorAbilityFunction<Actor, int>
     passes an actors movement component to InternalInvoke*/
     public override void Invoke(ref Actor user)
     {
-        if(this.usable && isFinished)
+        // Debug.Log("USABLE: " + this.usable);
+        // Debug.Log("FINISHED: " + this.isFinished);
+        if (this.usable && isFinished)
         {
             this.isFinished = false;
             InternInvoke(user);
@@ -36,14 +38,17 @@ public class Dodge : ActorAbilityFunction<Actor, int>
     {
         args[0].myHealth.SetVulnerable(false, invincibleDuration);
         StartCoroutine(args[0].myMovement.LockActorMovement(dodgeDuration));
-        StartCoroutine(ResetDodge(args[0]));
         performDodge(args[0]);
         return 0;
     }
 
     private void performDodge(Actor user)
     {
+        // Play audio
         user.mySoundManager.PlaySound("PlayerDodge");
+
+        PlayerAnimationHandler playerAnimationHandler = user.myAnimationHandler as PlayerAnimationHandler;
+        playerAnimationHandler.animateDodge();
 
         Vector2 velocity = user.myMovement.movementDirection;
 
@@ -56,9 +61,8 @@ public class Dodge : ActorAbilityFunction<Actor, int>
         user.myMovement.DragActor(dodgeVelocity);
     }
 
-    IEnumerator ResetDodge(Actor user)
+    public void setPlayerDodgeFinished()
     {
-        yield return new WaitForSeconds(dodgeDuration);
-        isFinished = true;
+        this.isFinished = true;
     }
 }
