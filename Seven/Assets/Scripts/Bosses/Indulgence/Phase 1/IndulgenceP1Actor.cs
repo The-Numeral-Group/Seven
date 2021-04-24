@@ -15,7 +15,6 @@ public class IndulgenceP1Actor : Actor
     bool redirectingPath = false;
     int layerMask;
     IEnumerator MovementCoroutinePtr;
-    IndulgenceAnimationHandler indulgenceAnimationHandler;
     public enum State
     {
         MOVEMENT,
@@ -35,7 +34,6 @@ public class IndulgenceP1Actor : Actor
     protected override void Start()
     {
         base.Start();
-        indulgenceAnimationHandler = this.myAnimationHandler as IndulgenceAnimationHandler;
         self = this as Actor;
         layerMask =  ~(1 << this.gameObject.layer);
         SetupTarget();
@@ -43,7 +41,9 @@ public class IndulgenceP1Actor : Actor
 
     public override void DoActorDeath()
     {
-        MenuManager.PAUSE_MENU.LoadScene("Hub");
+        System.Tuple<Actor, System.Action<Actor>> p2 = 
+            new System.Tuple<Actor, System.Action<Actor>>(self, null);
+        gameObject.SendMessage("NextPhase", p2);
     }
 
     public void SetupTarget()
@@ -55,6 +55,7 @@ public class IndulgenceP1Actor : Actor
             {
                 target = playerObject.GetComponent<Actor>();
                 Collider2D tCollider = target.GetComponent<Collider2D>();
+                //This does not seem to be working.
                 Physics2D.IgnoreCollision(wallCollider, tCollider);
             }
             else
@@ -163,7 +164,7 @@ public class IndulgenceP1Actor : Actor
         {
             //https://gamedev.stackexchange.com/questions/114121/most-efficient-way-to-convert-vector3-to-vector2
             Vector2 directionToDestination = (destination - ourPosition).normalized;
-            indulgenceAnimationHandler.Flip(directionToDestination);
+            this.myAnimationHandler.Flip(directionToDestination);
             //https://answers.unity.com/questions/329389/raycast-ignores-my-layer-mask.html
             RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToDestination, distanceToDestination, layerMask);
             if (hit.collider != null && hit.collider.tag == target.gameObject.tag)

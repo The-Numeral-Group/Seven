@@ -63,4 +63,6 @@
     public static string INDULGENCE_WALLCRAWL = "";
     public static string INDULGENCE_PHYSICAL = "";
     public static string INDULGENCE_PROJECTILE = "";
+    public static string INDULGENCE_CHARGE = "";
+    public static string INDULGENCE_SPECIAL = "";
 }

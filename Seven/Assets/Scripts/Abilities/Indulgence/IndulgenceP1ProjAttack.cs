@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class IndulgenceP1ProjAttack : ActorAbilityFunction<Vector2, int>
 {
+    public bool clearProjectilesOnUse = true;
     public float projSpeed = 6f;
     [Range(0f, 5f)]
     public int numProjectiles = 5;
@@ -43,7 +44,10 @@ public class IndulgenceP1ProjAttack : ActorAbilityFunction<Vector2, int>
 
     protected override int InternInvoke(params Vector2[] args)
     {
-        CleanProjectiles();
+        if (clearProjectilesOnUse)
+        {
+            CleanProjectiles();
+        }
         Vector2 initialTravelDirection = args[0].normalized;
         StopCoroutine(projRoutine);
         projRoutine = CreateProjectiles(initialTravelDirection);
@@ -74,12 +78,14 @@ public class IndulgenceP1ProjAttack : ActorAbilityFunction<Vector2, int>
     IEnumerator CreateProjectiles(Vector2 initialTravelDirection)
     {
         Vector2[] projDirections = new Vector2[numProjectiles];
+        GameObject[] projectilesArray = new GameObject[numProjectiles];
         float delta = projectileSpread / (float)numProjectiles;
         float delayBetweenSpawns = projectileSpawnTime / (float)numProjectiles;
         int evenCount = 1;
         int oddCount = 1;
         GameObject indulgenceProjectile = Instantiate(projPrefab, this.user.transform.position, Quaternion.identity);
         IndulgenceP1ProjAttack.PROJECTILE_MANAGER.Add(indulgenceProjectile);
+        projectilesArray[0] = indulgenceProjectile;
         projDirections[0] = initialTravelDirection;
         indulgenceProjectile.transform.position = 
             this.user.transform.position + (2 * new Vector3(initialTravelDirection.x, initialTravelDirection.y, 0f));
@@ -103,6 +109,7 @@ public class IndulgenceP1ProjAttack : ActorAbilityFunction<Vector2, int>
             projDirections[i] = newDirection;
             indulgenceProjectile = Instantiate(projPrefab, this.user.transform.position, Quaternion.identity);
             IndulgenceP1ProjAttack.PROJECTILE_MANAGER.Add(indulgenceProjectile);
+            projectilesArray[i] = indulgenceProjectile;
             indulgenceProjectile.transform.position = 
                 this.user.transform.position + (2 * new Vector3(newDirection.x, newDirection.y, 0f));
             yield return new WaitForSeconds(delayBetweenSpawns);
@@ -110,9 +117,9 @@ public class IndulgenceP1ProjAttack : ActorAbilityFunction<Vector2, int>
 
         for (int i = 0; i < numProjectiles; i++)
         {
-            if (IndulgenceP1ProjAttack.PROJECTILE_MANAGER[i] != null)
+            if (projectilesArray[i] != null)
             {
-                IndulgenceP1ProjAttack.PROJECTILE_MANAGER[i].GetComponent<ActorMovement>().DragActor(projDirections[i] * projSpeed);
+                projectilesArray[i].GetComponent<ActorMovement>().DragActor(projDirections[i] * projSpeed);
             }
         }
         isFinished = true;
