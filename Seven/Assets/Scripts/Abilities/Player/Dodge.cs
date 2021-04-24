@@ -47,8 +47,8 @@ public class Dodge : ActorAbilityFunction<Actor, int>
         // Play audio
         user.mySoundManager.PlaySound("PlayerDodge");
 
-        PlayerAnimationHandler playerAnimationHandler = user.myAnimationHandler as PlayerAnimationHandler;
-        playerAnimationHandler.animateDodge();
+        //PlayerAnimationHandler playerAnimationHandler = user.myAnimationHandler as PlayerAnimationHandler;
+        //playerAnimationHandler.animateDodge();
 
         Vector2 velocity = user.myMovement.movementDirection;
 
@@ -59,6 +59,17 @@ public class Dodge : ActorAbilityFunction<Actor, int>
                 (Mathf.Log(1f / (Time.deltaTime * drag + 1)) / -Time.deltaTime)));
 
         user.myMovement.DragActor(dodgeVelocity);
+
+
+        StartCoroutine(animateDodge(user));
+    }
+
+    private IEnumerator animateDodge(Actor user)
+    {
+        yield return new WaitForSeconds(0.15f);
+
+        PlayerAnimationHandler playerAnimationHandler = user.myAnimationHandler as PlayerAnimationHandler;
+        playerAnimationHandler.animateDodge();
     }
 
     public void setPlayerDodgeFinished()

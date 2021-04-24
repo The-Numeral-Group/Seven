@@ -52,6 +52,7 @@ public class PlayerAnimationHandler : ActorAnimationHandler
 
     private void doAnimateDodge()
     {
+        Animator.SetBool("player_walking", false);
         Animator.SetTrigger("player_dodging");
     }
 

@@ -20,18 +20,14 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 5480630813062947471, guid: d654edecc69fe694c8e6642f0f96a22a, type: 3}
-    - time: 0.14285715
-      value: {fileID: -1871780507104190190, guid: d654edecc69fe694c8e6642f0f96a22a, type: 3}
-    - time: 0.2857143
-      value: {fileID: 4740153518744171029, guid: d654edecc69fe694c8e6642f0f96a22a, type: 3}
-    - time: 0.42857143
-      value: {fileID: -484030245520764032, guid: d654edecc69fe694c8e6642f0f96a22a, type: 3}
+      value: {fileID: -7113886710448828859, guid: c91c5d11cfd908c4eb2ccf38760f29fe, type: 3}
+    - time: 0.06666667
+      value: {fileID: 7143738737168274579, guid: c91c5d11cfd908c4eb2ccf38760f29fe, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 7
+  m_SampleRate: 15
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -46,16 +42,14 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 5480630813062947471, guid: d654edecc69fe694c8e6642f0f96a22a, type: 3}
-    - {fileID: -1871780507104190190, guid: d654edecc69fe694c8e6642f0f96a22a, type: 3}
-    - {fileID: 4740153518744171029, guid: d654edecc69fe694c8e6642f0f96a22a, type: 3}
-    - {fileID: -484030245520764032, guid: d654edecc69fe694c8e6642f0f96a22a, type: 3}
+    - {fileID: -7113886710448828859, guid: c91c5d11cfd908c4eb2ccf38760f29fe, type: 3}
+    - {fileID: 7143738737168274579, guid: c91c5d11cfd908c4eb2ccf38760f29fe, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5714286
+    m_StopTime: 0.13333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -75,7 +69,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.42857143
+  - time: 0.06666667
     functionName: setPlayerDodgeFinished
     data: 
     objectReferenceParameter: {fileID: 0}
