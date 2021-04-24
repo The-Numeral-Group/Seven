@@ -69,7 +69,8 @@ public class IndulgenceP1ProjMovement : ActorMovement
         }
         else
         {
-            rb.bodyType = RigidbodyType2D.Static;
+            //rb.bodyType = RigidbodyType2D.Static;
+            damage = 1;
         }
         this.gameObject.layer = LayerMask.NameToLayer("Boss Projectile");
     }
@@ -99,7 +100,10 @@ public class IndulgenceP1ProjMovement : ActorMovement
                 return;
             }
             enemyHealth.takeDamage(damage);
-            Destroy(this.gameObject);
+            if (!makeStatic)
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 
