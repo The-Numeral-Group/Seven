@@ -44,7 +44,7 @@ public class ButtonTextChange : MonoBehaviour
 
     public void checkSaveFileExists()
     {
-        if (GameSaveManager.GetComponent<GameSaveManager>().getNewGame())
+        if (GameSaveManager.GetComponent<GameSaveManager>().getBoolValue(0))
         {
             this.textChangeTemp("No Save File!");
         }

@@ -7,21 +7,18 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
 {
     //How long this entire process should take.
     // duration = duration_vanish_start + duration_vanish + duration_appear + 2 * duration_slash
-    public float duration = 9f;
+    public float duration;
     //How long the vanising start process should take.
-    public float duration_vanish_start = 1f;
+    public float duration_vanish_start;
     //How long the ghost knight should be invisible for.
-    public float duration_vanish = 3f;
+    public float duration_vanish;
     //How long the reappearing process should take.
-    public float duration_appear = 1f;
+    public float duration_appear;
 
     // Duration of slash moves after appearing
-    public float duration_slash = 2f;
+    public float duration_slash;
 
     private Actor player;
-
-    // Ghost Knight Effector object
-    //public GameObject gkEffector;
 
     public GameObject glintObject;
 
@@ -59,12 +56,8 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
         SpriteRenderer gkSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
         user.mySoundManager.PlaySound("SpecialVanish");
 
-
         // Set both actors to be invincible.
         user.myHealth.SetVulnerable(false, -1);
-
-        // Turn off effector so player doesn't get knockback when Ghost Knight is invisible.
-        //gkEffector.SetActive(false);
 
         float opacity = 1f;
         while (opacity > 0f)
@@ -73,7 +66,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
             gkSpriteRenderer.color = new Color(1f, 1f, 1f, opacity);
             yield return new WaitForSeconds(this.duration_vanish_start / 10);
         }
-        yield return new WaitForSeconds(this.duration_vanish/2);
+        yield return new WaitForSeconds(this.duration_vanish * (3/4));
         Teleport(user);
     }
     private void Teleport(Actor user)
@@ -83,7 +76,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     }
     private IEnumerator Reappear(Actor user)
     {
-        Instantiate(this.glintObject, user.transform.position, Quaternion.identity);
+        var glint = Instantiate(this.glintObject, user.transform.position, Quaternion.identity);
 
         // Perform VSlash while appearing.
         StartCoroutine(PerformSpecialSlash(user));
@@ -92,6 +85,8 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
         user.mySoundManager.PlaySound("SpecialEyeGlint");
 
         yield return new WaitForSeconds(this.duration_vanish / 4);
+
+        Destroy(glint);
 
         SpriteRenderer gkSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
 
@@ -106,8 +101,6 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
         // Set both actors to be no longer invincible.
         user.myHealth.SetVulnerable(true, -1);
 
-        // Turn back the effector on.
-        //gkEffector.SetActive(true);
     }
 
     private IEnumerator PerformSpecialSlash(Actor user)
@@ -120,18 +113,4 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
         isFinished = true;
     }
 
-    /*
-    private void PerformCombinationVSlash(Actor user)
-    {
-        ghostKnightAnimationHandler.animateVSlash();
-        user.myMovement.DragActor(new Vector2(0.0f, -0.5f));
-    }
-
-    private IEnumerator PerformCombinationHSlash(Actor user)
-    {
-        ghostKnightAnimationHandler.animateHSlash();
-        yield return new WaitForSeconds(this.duration_slash);
-        user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
-        isFinished = true;
-    }*/
 }
