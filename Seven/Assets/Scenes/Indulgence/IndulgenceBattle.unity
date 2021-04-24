@@ -747,6 +747,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1399343413412748671, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 218352113}
+    - target: {fileID: 3372392985872605608, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
+      propertyPath: invincibilityDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3372392985872605608, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
+      propertyPath: startingMaxHealth
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3372392985872605614, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
       propertyPath: target
       value: 
@@ -798,10 +810,6 @@ PrefabInstance:
     - target: {fileID: 3372392985914523465, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
       propertyPath: m_Name
       value: Indulgence
-      objectReference: {fileID: 0}
-    - target: {fileID: 3372392985914523465, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
