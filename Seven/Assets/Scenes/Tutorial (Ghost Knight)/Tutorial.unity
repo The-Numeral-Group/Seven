@@ -6305,7 +6305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 220097794664941685, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: specialAttackGate
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 220097794664941685, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: GameSaveManager
@@ -6315,6 +6315,10 @@ PrefabInstance:
       propertyPath: gameSaveManager
       value: 
       objectReference: {fileID: 2998643817623060731}
+    - target: {fileID: 220097794664941685, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
+      propertyPath: slashRange
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 220097794664941687, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: centerPos.y
       value: 5
@@ -6846,6 +6850,14 @@ PrefabInstance:
     - target: {fileID: 220097795208801076, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
       value: -0.71983576
+      objectReference: {fileID: 0}
+    - target: {fileID: 220097795208801076, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 220097795208801077, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 220097795208801079, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: m_IsActive

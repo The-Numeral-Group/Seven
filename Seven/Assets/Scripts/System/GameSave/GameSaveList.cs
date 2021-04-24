@@ -22,7 +22,6 @@ public class GameSaveList : MonoBehaviour
 
     // Element 13 - IndulgenceDefeated
 
-
     /* ----- BOOL VALUE ----- */
     public void setBoolValue(bool newValue, int id)
     {

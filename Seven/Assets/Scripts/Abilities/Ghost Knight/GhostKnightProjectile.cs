@@ -6,15 +6,13 @@ using UnityEngine;
 public class GhostKnightProjectile : ActorAbilityFunction<Actor, int>
 {
     //Where ghost knight will move towards before initiating the attack.
-    public Vector2 centerPos = new Vector2(0.0f, 5.0f);
+    public Vector2 centerPos;
     //The projectile that ghost knight will spawn. Must have an ActorMovement component.
     public GameObject toInstantiateProjectile;
-    //How long the projectiles will last for. Must be greated thatn 0.
-    public float projectileDuration = 5f;
     //Time ghost knight will take to move to center.
-    public float travelDuration = 1f;
+    public float travelDuration;
     //Time it will take to spawn the projectiles.
-    public float projectileSpawnTime = 3f;
+    public float projectileSpawnTime;
     //Number of projectiles to spawn.
     public int numProjectiles = 4;
     //Offset of how far projectiles spawn from the ghost knight

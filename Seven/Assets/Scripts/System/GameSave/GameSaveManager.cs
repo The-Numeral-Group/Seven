@@ -33,6 +33,7 @@ public class GameSaveManager : MonoBehaviour
                 pO.gameObject.position = this.gameSaveList.getVectorValue(pO.id);
             }
         }
+
     }
 
     // Reset all the SaveObjects.
