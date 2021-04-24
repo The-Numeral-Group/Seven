@@ -247,7 +247,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -5568839986820836446, guid: 5b53ff4b6c6a8a94da8e93b1e1d06f60, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d1d5e7c31d60a4bac75dc1bef3276a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMaxHealth: 5
+  startingMaxHealth: 7
   damageResistance: 0
   invincibilityDuration: 1
   startInvulnerable: 0
@@ -390,7 +390,7 @@ MonoBehaviour:
   cooldownPeriod: 0
   abilityName: PlayerWeapon
   invokeBlankWhenBadArguments: 1
-  lockDuration: 0
+  lockDuration: 0.5
 --- !u!114 &7512802453659592074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,9 +406,9 @@ MonoBehaviour:
   cooldownPeriod: 0.5
   abilityName: Dodge
   invokeBlankWhenBadArguments: 1
-  dodgeDistance: 15
-  dodgeDuration: 0
-  invincibleDuration: 1
+  dodgeDistance: 40
+  dodgeDuration: 0.1
+  invincibleDuration: 0.15
 --- !u!114 &889948524402226234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 0}
+  sp: {fileID: 0}
   movementDirection: {x: 0, y: 0}
   myMovement: {fileID: 0}
 --- !u!114 &809726809053908821
