@@ -20,7 +20,7 @@ public class ActorHealth : MonoBehaviour
     public float damageResistance = 0.0f;
     //How long the actor stays invulnerable for from taking a hit
     [Range(0, 256)]
-    public int invincibilityDuration = 1;
+    public float invincibilityDuration = 1;
 
     public bool startInvulnerable = false;
 
