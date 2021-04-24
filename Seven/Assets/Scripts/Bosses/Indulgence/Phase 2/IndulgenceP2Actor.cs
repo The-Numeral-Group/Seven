@@ -11,7 +11,6 @@ public class IndulgenceP2Actor : Actor
     public Actor target;
     Vector2[] movementDirections;
     Actor self;
-    bool canProjectile = true;
     public enum State
     {
         MOVEMENT,
