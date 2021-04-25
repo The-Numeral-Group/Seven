@@ -633,7 +633,7 @@ MonoBehaviour:
   pairCount: 3
   projectile: {fileID: 8453795746997737593, guid: 8533f31204304b74da62512b80989022, type: 3}
   marker: {fileID: 203477084623807014, guid: d16cc8cac92a68940927c1dba12c0b35, type: 3}
-  leadMarkerDistance: 5
+  leadMarkerDistance: 2
   initialWaitTime: 3
   shotFlightTime: 2
 --- !u!114 &315102725

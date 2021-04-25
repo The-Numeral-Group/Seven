@@ -142,6 +142,9 @@ internal class ApathySludgeSingle : ProjectileAbility
     shots and markers.*/
     IEnumerator ProjectileBehaviour()
     {
+        //Step 0: check to see if there is a FaceAnchor for the target
+        var targetFace = target.Find("FaceAnchor");
+
         //Step 1: Make a marker object where the player is standing
         //Instantiate Projectile makes this kinda easy
         var markObjA = this.InstantiateProjectile(marker, target, Vector2.zero);
@@ -153,8 +156,10 @@ internal class ApathySludgeSingle : ProjectileAbility
         //Step 3: Give them both marker components
         //and Step 4: Tell them to follow the player in their current relative positions
         markObjA.AddComponent<ApathySludgeMarker>().Follow(target, 0f, initialWaitTime);
+
+        //markObjB will follow based off of faceAnchor if one exists
         markObjB.AddComponent<ApathySludgeMarker>()
-            .Follow(target, leadMarkerDistance, initialWaitTime + shotFlightTime);
+            .Follow(target, leadMarkerDistance, initialWaitTime + shotFlightTime, targetFace);
         
         //Step 5: wait some seconds
         yield return new WaitForSeconds(initialWaitTime);
@@ -218,15 +223,16 @@ internal class ApathySludgeSingle : ProjectileAbility
 internal class ApathySludgeMarker : MonoBehaviour
 {
     //This is a simple wrapper for the coroutine
-    public void Follow(Transform target, float offset, float duration)
+    public void Follow(Transform target, float offset, float duration, Transform faceAnchor = null)
     {
-        StartCoroutine(InternFollow(target, offset, duration));
+        StartCoroutine(InternFollow(target, offset, duration, faceAnchor));
     }
 
     /*The following period. Will immediately snap this marker to the target's position,
     modified by the offset, as long as duration holds. Because there are NO phyiscal
     interations with these markers, it's okay to snap their positions directly.*/
-    IEnumerator InternFollow(Transform target, float offset, float duration)
+    IEnumerator InternFollow(Transform target, float offset, 
+        float duration, Transform faceAnchor)
     {
         float timer = 0f;
 
@@ -234,7 +240,19 @@ internal class ApathySludgeMarker : MonoBehaviour
         //chance to update its position
         do
         {
-            this.gameObject.transform.position = target.position + (target.up * offset);
+            Vector3 directionToTarget;
+            //if the target has a faceAnchor, judge the direction they're facing from that
+            if(faceAnchor)
+            {
+                Vector3 pos = target.position;
+                directionToTarget = (faceAnchor.position - pos).normalized;
+                directionToTarget *= offset;
+            }
+            else
+            {
+                directionToTarget = target.up * offset;
+            }
+            this.gameObject.transform.position = target.position + directionToTarget;
 
             yield return null;
 
