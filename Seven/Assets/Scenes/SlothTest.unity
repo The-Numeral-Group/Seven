@@ -325,6 +325,8 @@ GameObject:
   - component: {fileID: 315102721}
   - component: {fileID: 315102723}
   - component: {fileID: 315102720}
+  - component: {fileID: 315102724}
+  - component: {fileID: 315102725}
   m_Layer: 0
   m_Name: Sloth
   m_TagString: Untagged
@@ -453,9 +455,9 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 315102723}
-  Far: {fileID: 315102722}
-  Special: {fileID: 315102720}
+  Close: {fileID: 315102725}
+  Far: {fileID: 315102724}
+  Special: {fileID: 315102725}
 --- !u!114 &315102715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,7 +587,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315102708}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eed3ab816a70d8305a098bf9eb9b6317, type: 3}
   m_Name: 
@@ -613,6 +615,42 @@ MonoBehaviour:
   abilityName: bubble
   invokeBlankWhenBadArguments: 1
   bubblePrefab: {fileID: 8518396903127315538, guid: ce6d4ac37ec061792bb6b8e356e1676e, type: 3}
+--- !u!114 &315102724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315102708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2487987747b68f55fad0bc938031442a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 7
+  abilityName: mortarrrrr
+  invokeBlankWhenBadArguments: 1
+  pairCount: 3
+  projectile: {fileID: 8453795746997737593, guid: 8533f31204304b74da62512b80989022, type: 3}
+  marker: {fileID: 203477084623807014, guid: d16cc8cac92a68940927c1dba12c0b35, type: 3}
+  leadMarkerDistance: 5
+  initialWaitTime: 3
+  shotFlightTime: 2
+--- !u!114 &315102725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315102708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b539320a4c6a218da9cca27be78ddd2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
 --- !u!1 &378986888
 GameObject:
   m_ObjectHideFlags: 0

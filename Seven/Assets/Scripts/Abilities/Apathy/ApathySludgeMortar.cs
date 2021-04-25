@@ -88,11 +88,13 @@ public class ApathySludgeMortar : ActorAbilityFunction<GameObject, int>
     IEnumerator SludgeInvokation(GameObject target)
     {
         //uhhh do it X many times idk
-        for(int i = pairCount; i > 0; --i)
+        for(int i = pairCount; i > 0 ; --i)
         {
+            yield return new WaitUntil( () => single.getUsable() );
+            Debug.Log($"ApathySludegeMortar: attack cycle {i}");
             single.target = target.transform;
             single.Invoke(ref user, target);
-            yield return new WaitUntil( () => single.getIsFinished());
+            yield return new WaitUntil( () => single.getIsFinished() );
         }
 
         isFinished = true;
@@ -187,12 +189,12 @@ internal class ApathySludgeSingle : ProjectileAbility
         //d = rt: speed is distance to marker divided by shotFlightTime
         //Mathf.Abs because we want absolute speed (the projectile will handle direction)
         newSpeed = 
-            Mathf.Abs(Vector3.Distance(markObjA.transform.position, projObj.transform.position)) 
+            Mathf.Abs(Vector3.Distance(markObjB.transform.position, projObj.transform.position)) 
                 / shotFlightTime;
         projObj.GetComponent<ActorMovement>().speed = newSpeed;
 
         //Step 10.5: And we're gonna launch it too
-        projObj.GetComponent<BasicProjectile>().Launch(markObjA.transform.position, LAUNCH_MODE.POINT);
+        projObj.GetComponent<BasicProjectile>().Launch(markObjB.transform.position, LAUNCH_MODE.POINT);
 
         //Step 11: Wait again...
         yield return new WaitForSeconds(shotFlightTime);

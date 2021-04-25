@@ -78,6 +78,9 @@ public class ApathyNPC : Interactable
 
         //Remove the scene transition
         sceneTransition.SetActive(false);
+
+        //Disable this gameObject's collision
+        this.gameObject.GetComponent<Collider2D>().enabled = false;
         
         //tape an observer to Apathy
         var observer = apathyObj.AddComponent<ApathyDeathObserver>();
