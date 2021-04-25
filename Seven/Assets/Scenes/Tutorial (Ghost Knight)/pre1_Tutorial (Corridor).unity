@@ -1290,8 +1290,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1029591772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -37.5, z: 1}
-  m_LocalScale: {x: 125, y: 300, z: 1}
+  m_LocalPosition: {x: 0, y: -30, z: 1}
+  m_LocalScale: {x: 125, y: 150, z: 1}
   m_Children:
   - {fileID: 606325720}
   m_Father: {fileID: 67937269}
@@ -1888,6 +1888,8 @@ MonoBehaviour:
   gate: {fileID: 841056028}
   objectSwitch: 1
   sceneTransition: 0
+  sceneToLoad: 
+  mayorDialogue: 0
 --- !u!61 &1824617437
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2461,7 +2463,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1857178603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -55, z: 0}
+  m_LocalPosition: {x: 0, y: -35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1865320868}
