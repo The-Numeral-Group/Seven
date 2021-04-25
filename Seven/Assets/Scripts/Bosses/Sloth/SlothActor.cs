@@ -94,9 +94,6 @@ public class SlothActor : Actor
         //but only when the fight is going
         if(activated)
         {
-            this.gameObject.transform.right = 
-                player.gameObject.transform.position - this.gameObject.transform.position;
-
             var playerDist = Mathf.Abs(
                 Vector3.Distance(
                     player.gameObject.transform.position, 
@@ -105,10 +102,14 @@ public class SlothActor : Actor
             );
 
             //if the player's too close, swat them away
-            if(currAbility.getIsFinished() && playerDist >= swatDistance)
+            if(currAbility.getIsFinished() && playerDist <= swatDistance)
             {
                 ActivateAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_PHYSICAL]);
+                return;
             }
+
+            this.gameObject.transform.right = 
+                player.gameObject.transform.position - this.gameObject.transform.position;
         }
         
     }

@@ -457,7 +457,7 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 315102725}
+  Close: {fileID: 315102726}
   Far: {fileID: 315102725}
   Special: {fileID: 315102725}
 --- !u!114 &315102715
@@ -670,12 +670,12 @@ MonoBehaviour:
   invokeBlankWhenBadArguments: 1
   startingWeaponObject: {fileID: 6300578682081077902, guid: e156b440380d353a3ab7058480b8f1b3, type: 3}
   duration: 0.5
-  weaponPositionScale: {x: 3.2, y: 3.2}
+  weaponPositionScale: {x: 2, y: 2}
   damagePerHitbox: 01000000
-  windupDelay: 4
-  shouldShake: 0
+  windupDelay: 1
+  shouldShake: 1
   windShake: 0.1
-  attackShake: 1
+  attackShake: 0.5
 --- !u!1 &378986888
 GameObject:
   m_ObjectHideFlags: 0
