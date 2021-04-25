@@ -1886,6 +1886,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gate: {fileID: 841056028}
+  objectSwitch: 1
+  sceneTransition: 0
 --- !u!61 &1824617437
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1958,6 +1960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 0}
+  sp: {fileID: 0}
   movementDirection: {x: 0, y: 0}
   myMovement: {fileID: 0}
 --- !u!114 &1857178605

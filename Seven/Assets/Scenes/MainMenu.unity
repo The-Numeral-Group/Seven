@@ -608,6 +608,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1236848507}
+    - target: {fileID: 2046270003689129325, guid: 7d585d1a118c2b24cb1f9e1c4722e250, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: pre0_Tutorial (Door)
+      objectReference: {fileID: 0}
     - target: {fileID: 2046270003689129330, guid: 7d585d1a118c2b24cb1f9e1c4722e250, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
