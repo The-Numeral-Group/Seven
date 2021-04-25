@@ -90,6 +90,7 @@ public class DragBackHitbox : WeaponHitbox
 
     IEnumerator DragBack(ActorMovement mover)
     {
+        Debug.Log($"DragBackHitbox: dragging back {mover.gameObject.name}");
         float clock = 0f;
 
         Vector2 dragAway;
