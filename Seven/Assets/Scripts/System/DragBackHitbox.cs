@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class DragBackHitbox : WeaponHitbox
 {
+    [Tooltip("Should this hitbox ALWAYS drag the target in the oppisite direction of the" + 
+        " user.")]   
     public bool alwaysDragAwayFromUser = false;
 
+    [Tooltip("The direction targets will be dragged in when hit")]
     public Vector2 dragBackDirection = Vector2.left;
 
+    [Tooltip("How intense the drag-force will be.")]
     public float dragBackIntensity = 2f;
 
+    [Tooltip("How many seconds the drag should last.")]
     public float dragBackDuration = 2f;
 
     //OnTrigger function
@@ -88,8 +93,10 @@ public class DragBackHitbox : WeaponHitbox
         }
     }
 
+    /*Timing for the drag of the user*/
     IEnumerator DragBack(ActorMovement mover)
     {
+        //timer variable
         float clock = 0f;
 
         Vector2 dragAway;
@@ -106,6 +113,7 @@ public class DragBackHitbox : WeaponHitbox
             dragAway = dragBackDirection;
         }
 
+        //while there is still time remaining, drag one step and then yield
         while(clock < dragBackDuration)
         {
             mover.DragActor(dragBackDirection * dragBackIntensity);
