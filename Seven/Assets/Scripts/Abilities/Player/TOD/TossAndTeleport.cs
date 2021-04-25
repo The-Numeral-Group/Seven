@@ -6,7 +6,7 @@ public class TossAndTeleport : ProjectileAbility
 {
     //FIELDS---------------------------------------------------------------------------------------
     [Tooltip("How far the sword should travel before stopping.")]
-    public bool travelDistance = 5f;
+    public float travelDistance = 5f;
 
     [Tooltip("How much damage the sword should deal on impact.")]
     public float damage = 2f;
@@ -74,9 +74,8 @@ public class TossAndTeleport : ProjectileAbility
         //The component is added on and then launched in the direction of the faceAnchor
         projObj.AddComponent<PlayerSwordProjectile>().Launch(
             directionToFace, 
-            LAUNCH_MODE.DIRECTION, 
-            travelDistance,
-            damage
+            LAUNCH_MODE.DIRECTION,
+            this
         );
 
         //put user in the swordless state
@@ -89,7 +88,9 @@ public class TossAndTeleport : ProjectileAbility
     {
         if(currentSword)
         {
-            yield return StartCoroutine(Ego2Movement.EgoTeleport(currentSword.position, user.gameObject));
+            yield return StartCoroutine(
+                Ego2Movement.EgoTeleport(currentSword.transform.position, user.gameObject)
+            );
         }
         else
         {
@@ -113,7 +114,7 @@ public class TossAndTeleport : ProjectileAbility
     {
         swordOut = false;
 
-        Destory(currentSword);
+        Destroy(currentSword);
 
         //put user in unswordless state
     }
@@ -144,8 +145,8 @@ internal class PlayerSwordProjectile : BasicProjectile
 
     /*Starts the projectile! Hides the OG launch in exchange for a user defined travel distance*
     and damage value*/
-    public new void Launch(Vector2 target, LAUNCH_MODE mode = LAUNCH_MODE.POINT, 
-        TossAndTeleport wrapper)
+    public void Launch(Vector2 target, LAUNCH_MODE mode = LAUNCH_MODE.POINT, 
+        TossAndTeleport wrapper=null)
     {
         this.travelDistance = wrapper.travelDistance;
         this.damage = wrapper.damage;  
@@ -177,12 +178,12 @@ internal class PlayerSwordProjectile : BasicProjectile
     }
 
     //What happens when the projectile actually hits something
-    protected virtual void OnTriggerEnter2D(Collider2D collided)
+    protected override void OnTriggerEnter2D(Collider2D collided)
     {
         //if it's the player, make them pick up the sword
         if(collided.gameObject.CompareTag("Player"))
         {
-            wrapper.ReEquipSword();
+            wrapper?.ReEquipSword();
         }
         //if not, just do the regular hit
         else
