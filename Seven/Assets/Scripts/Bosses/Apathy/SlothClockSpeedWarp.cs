@@ -42,6 +42,9 @@ public class SlothClockSpeedWarp : MonoBehaviour
     //a second list which tracks which gameObjects have or have not been hit
     private HandDict trackedObjects;
 
+    //the amount to add/subtract from the speed of the clock hands when effects are applied
+    private float handRateChange = 0f;
+
     //METHODS--------------------------------------------------------------------------------------
     // Start is called before the first frame update
     void Start()
@@ -68,10 +71,10 @@ public class SlothClockSpeedWarp : MonoBehaviour
         handlerMove = (movTemp as ActorMovement);
 
         //make the slow object
-        slow = new SimpleSlow(handlerMove.speed * (slowFactor - 1f));
+        slow = new SimpleSlow(handlerMove.speed * slowFactor);
 
         //make the fast object
-        fast = new SimpleSlow(-handlerMove.speed * (fastFactor - 1f));
+        fast = new SimpleSlow(-handlerMove.speed * (fastFactor + 1f));
     }
 
     /*adds an observer component to the gameobject, allowing this script to read
@@ -109,8 +112,11 @@ public class SlothClockSpeedWarp : MonoBehaviour
         //if neither has been applied
         else
         {
-            //apply the fast for a limited time
-            handler.AddTimedEffect(fast, fastDuration);
+            //apply the fast for a limited time, if it's not already there
+            if(!handler.EffectInstancePresent(fast))
+            {
+                handler.AddTimedEffect(fast, fastDuration);
+            }
         }
     }
 
@@ -149,48 +155,19 @@ public class SlothClockSpeedWarp : MonoBehaviour
         {
             trackedObjects.Add(hand, undoStrikes);
         }
-    }
+    }   
 
     public void ForceSlow()
     {
         //subtract the fast, if it exists
         handler.SubtractEffect(fast);
 
-        //apply the slow
-        handler.AddEffect(slow);
-    }
 
-
-    public void ForceRemoveSpeedApplication()
-    {
-        Debug.Log("SlothClockSpeedWarp: removing slow");
-        handler.SubtractEffect(slow);
-        slow = null;
-
-        //reset the dict so the effect can be removed
-        foreach(GameObject hand in colliderObjects)
+        //apply the slow, assuming it isn't already there
+        if(!handler.EffectInstancePresent(slow))
         {
-            var mover = hand.GetComponent<TickRotation>();
-            //divide here because big number = slow clock
-            mover.tickPeriod *= slowFactor;
-            mover.tickGap *= slowFactor;
-            mover.tickDuration *= slowFactor;
+            handler.AddEffect(slow);
         }
-    }
-
-    //adds an arbitrary time change to the handler with a set duration
-    public void ForceTimedSpeedApplication()
-    {
-        //check for a movement component first, to make sure there is speed to effect
-        var handlerMove = handler.gameObject.GetComponent<ActorMovement>();
-        if(handlerMove)
-        {   
-            var speedChange = handlerMove.speed * (1f + fastFactor);
-            Debug.Log($"SlothClockSpeedWarp: applying speed of {speedChange}");
-            fast = new SimpleSlow(-speedChange);
-            handler.AddTimedEffect(fast, fastDuration);
-        }
-        
     }
 }
 

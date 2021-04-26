@@ -1593,8 +1593,8 @@ MonoBehaviour:
   - {fileID: 2016892834}
   handler: {fileID: 181865546}
   undoStrikes: 2
-  slowFactor: 0.1
-  fastFactor: 10
+  slowFactor: 0.25
+  fastFactor: 1
   fastDuration: 5
 --- !u!1001 &1008023867
 PrefabInstance:
