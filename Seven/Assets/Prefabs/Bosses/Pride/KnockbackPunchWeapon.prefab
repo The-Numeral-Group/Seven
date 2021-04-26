@@ -55,8 +55,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1143014746308790616}
   - component: {fileID: 466953055089575443}
-  - component: {fileID: 3944707082409798583}
   - component: {fileID: 6318928990884420043}
+  - component: {fileID: 4247085139640697324}
   m_Layer: 0
   m_Name: Hitbox
   m_TagString: Untagged
@@ -129,21 +129,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3944707082409798583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5771370353643076459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47e6b9d9ba521aaa2a531199f65301e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  knockbackDirection: {x: 0, y: 0}
-  knockbackIntensity: 10
-  forceOppositeKnockbackDirection: 1
 --- !u!61 &6318928990884420043
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -170,3 +155,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &4247085139640697324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5771370353643076459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e0a49d9f848f7f1a8cecfc6acfa2a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alwaysDragAwayFromUser: 1
+  dragBackDirection: {x: 1, y: 0}
+  dragBackIntensity: 1
+  dragBackDuration: 0.05

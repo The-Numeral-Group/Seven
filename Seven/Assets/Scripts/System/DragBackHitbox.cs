@@ -116,8 +116,9 @@ public class DragBackHitbox : WeaponHitbox
         //while there is still time remaining, drag one step and then yield
         while(clock < dragBackDuration)
         {
-            mover.DragActor(dragBackDirection * dragBackIntensity);
+            mover.DragActor(dragAway * dragBackIntensity);
             yield return null;
+            clock += Time.deltaTime;
         }
     }
 }
