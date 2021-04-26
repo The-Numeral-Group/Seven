@@ -33,6 +33,9 @@ public class SlothClockSpeedWarp : MonoBehaviour
     //The current simpleSlow instance being used
     private SimpleSlow slow;
 
+    //The current simpleSlow being used to speed the player up
+    private SimpleSlow fast;
+
     //a second list which tracks which gameObjects have or have not been hit
     private HandDict trackedObjects;
     //METHODS--------------------------------------------------------------------------------------
@@ -91,6 +94,12 @@ public class SlothClockSpeedWarp : MonoBehaviour
         //if it isn't skip the rest
         else
         {
+            //if there isn't an active slow...
+            if(slow == null && fast == null)
+            {
+                //Speed the player up!
+                ForceTimedSpeedApplication();
+            }
             return;
         }
 
@@ -119,7 +128,14 @@ public class SlothClockSpeedWarp : MonoBehaviour
         if(handlerMove)
         {   
             slow = new SimpleSlow(handlerMove.speed * slowFactor);
+            Debug.Log($"SlothClockSpeedWarp: applying slow of {handlerMove.speed * slowFactor}");
             handler.AddEffect(slow);
+        }
+
+        //if a speedup has been applied, remove it
+        if(fast != null)
+        {
+            handler.SubtractEffect(fast);
         }
         
         //reset the dict so the effect can be removed
@@ -130,13 +146,15 @@ public class SlothClockSpeedWarp : MonoBehaviour
             mover.tickPeriod /= slowFactor;
             mover.tickGap /= slowFactor;
             mover.tickDuration /= slowFactor;
-            trackedObjects.Add(hand, undoStrikes);
+            //trackedObjects.Add(hand, undoStrikes);
         }
     }
 
     public void ForceRemoveSpeedApplication()
     {
+        Debug.Log("SlothClockSpeedWarp: removing slow");
         handler.SubtractEffect(slow);
+        slow = null;
 
         //reset the dict so the effect can be removed
         foreach(GameObject hand in colliderObjects)
@@ -157,7 +175,9 @@ public class SlothClockSpeedWarp : MonoBehaviour
         if(handlerMove)
         {   
             var speedChange = handlerMove.speed * (1f + fastFactor);
-            handler.AddTimedEffect(new SimpleSlow(-speedChange), fastDuration);
+            Debug.Log($"SlothClockSpeedWarp: applying speed of {speedChange}");
+            fast = new SimpleSlow(-speedChange);
+            handler.AddTimedEffect(fast, fastDuration);
         }
         
     }

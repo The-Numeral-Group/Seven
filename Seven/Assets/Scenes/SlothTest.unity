@@ -321,13 +321,10 @@ GameObject:
   - component: {fileID: 315102712}
   - component: {fileID: 315102719}
   - component: {fileID: 315102714}
-  - component: {fileID: 315102722}
   - component: {fileID: 315102721}
-  - component: {fileID: 315102723}
-  - component: {fileID: 315102720}
   - component: {fileID: 315102724}
-  - component: {fileID: 315102725}
   - component: {fileID: 315102726}
+  - component: {fileID: 315102720}
   m_Layer: 0
   m_Name: Sloth
   m_TagString: Untagged
@@ -458,8 +455,8 @@ MonoBehaviour:
     m_keys: []
     m_values: []
   Close: {fileID: 315102726}
-  Far: {fileID: 315102725}
-  Special: {fileID: 315102725}
+  Far: {fileID: 315102724}
+  Special: {fileID: 315102720}
 --- !u!114 &315102715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,14 +554,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 315102708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3877e69ec03da6c0f91e18ee12298910, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f0bedd736a4b40c6b125fda574bb153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 12
-  abilityName: time warp but just speed
+  cooldownPeriod: 3
+  abilityName: uuuuhhh
   invokeBlankWhenBadArguments: 1
-  speedEffect: 0.25
-  clock: {fileID: 996509884}
+  timeEffect: 0.25
+  timeDuration: 6
+  clock: {fileID: 996509883}
 --- !u!114 &315102721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,41 +580,6 @@ MonoBehaviour:
   speakerName: SLOTH TEST
   yarnStartNode: SlothStart
   npcMode: 0
---- !u!114 &315102722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 315102708}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eed3ab816a70d8305a098bf9eb9b6317, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldownPeriod: 5
-  abilityName: lots of projectiles
-  invokeBlankWhenBadArguments: 1
-  groundMarkerPrefab: {fileID: 203477084623807014, guid: 3a6aff603f55c258fa6388f937a788db, type: 3}
-  projectilePrefab: {fileID: 8453795746997737593, guid: dded6e64a33c076f0ade15325f5fa3ce, type: 3}
-  projectileScale: {x: 1, y: 1}
-  temporalOffset: 1
---- !u!114 &315102723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 315102708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4631d422eda431bfabf39454fba38fd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldownPeriod: 4
-  abilityName: bubble
-  invokeBlankWhenBadArguments: 1
-  bubblePrefab: {fileID: 8518396903127315538, guid: ce6d4ac37ec061792bb6b8e356e1676e, type: 3}
 --- !u!114 &315102724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -638,21 +601,6 @@ MonoBehaviour:
   leadMarkerDistance: 2
   initialWaitTime: 3
   shotFlightTime: 2
---- !u!114 &315102725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 315102708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b539320a4c6a218da9cca27be78ddd2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldownPeriod: 0
-  abilityName: 
-  invokeBlankWhenBadArguments: 1
 --- !u!114 &315102726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1600,14 +1548,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996509880}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49288dcf2ae30bc7ab871547a91d60f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   colliderObjects:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2016892834}
   handler: {fileID: 315102711}
   timeFactor: 0.25
   timeDuration: 10
@@ -1627,8 +1574,8 @@ MonoBehaviour:
   - {fileID: 2016892834}
   handler: {fileID: 181865546}
   undoStrikes: 2
-  slowFactor: 0.5
-  fastFactor: 1
+  slowFactor: 0.1
+  fastFactor: 10
   fastDuration: 5
 --- !u!1001 &1008023867
 PrefabInstance:
@@ -2690,7 +2637,7 @@ Transform:
   m_GameObject: {fileID: 2016892834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.5000003, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 996509882}
   m_RootOrder: 0
@@ -2753,7 +2700,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2016892834}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b434d0603443165eb59f766d877be1b, type: 3}
   m_Name: 
@@ -2767,7 +2714,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2016892834}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 080c90005e9527e81ac45c041b05ed67, type: 3}
   m_Name: 
@@ -2790,7 +2737,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 3.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2801,7 +2748,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 13.5}
+  m_Size: {x: 0.2, y: 6}
   m_EdgeRadius: 0
 --- !u!1 &2025041733
 GameObject:

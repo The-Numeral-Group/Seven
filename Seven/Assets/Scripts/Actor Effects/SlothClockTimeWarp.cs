@@ -88,13 +88,17 @@ public class SlothClockTimeWarp : MonoBehaviour
     //adds an arbitrary time change to the handler
     public void ForceTimeApplication(float timeEffect)
     {
+        handler.SubtractAllEffectsByType<SlothClockTimeWarp.TimeWarpEffect>();
         handler.AddEffect(new SlothClockTimeWarp.TimeWarpEffect(timeEffect));
     }
 
     //adds an arbitrary time change to the handler with a set duration
     public void ForceTimedTimeApplication(float timeEffect, float duration)
     {
-        handler.AddTimedEffect(new SlothClockTimeWarp.TimeWarpEffect(timeEffect), duration);
+        var temp = Time.timeScale - timeEffect > 0f ? timeEffect : 0.1f;
+        Debug.Log("SlothClickTimeWarp: SLOW WARP");
+        handler.SubtractAllEffectsByType<SlothClockTimeWarp.TimeWarpEffect>();
+        handler.AddTimedEffect(new SlothClockTimeWarp.TimeWarpEffect(temp), duration);
     }
 
     //Reset Time.timeScale to 1... just in case...
