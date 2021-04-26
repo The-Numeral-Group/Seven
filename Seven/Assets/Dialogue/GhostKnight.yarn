@@ -50,17 +50,148 @@ GhostKnight: What do you want to do?
 -> Stop Talking
     GhostKnight: Bye!
 ===
-title: GhostKnight.Ability.Dialogue0
+title: GhostKnight.Hub.Advice
 tags: 
-colorID: 1
-position: 986,208
+colorID: 0
+position: 738,-323
 ---
-GhostKnight: This is tutorial for ability.
+GhostKnight: Hail Young Champion, what would you like to know about?
+[[Apathy|GhostKnight.Hub.Advice.Apathy]]
+[[Indulgence|GhostKnight.Hub.Advice.Indulgence]]
+[[Ego|GhostKnight.Hub.Advice.Ego]]
+[[The Marytr|GhostKnight.Hub.Advice.TheWoman]]
+[[Me|GhostKnight.Hub.Advice.Me]]
 ===
-title: GhostKnight.Closing.Dialogue0
+title: GhostKnight.Hub.Advice.Indulgence
 tags: 
-colorID: 1
-position: 986,208
+colorID: 0
+position: 1262,-196
 ---
-GhostKnight: You have defeated all the bosses.
+//GHK gives his personal Thoughts on the character
+GhostKnight: Indulgence, a strange one. A being who crawled out of the depths of the void.
+GhostKnight: The ever consuming whose hunger is never satiated. 
+GhostKnight: Although, as of late, their consumption has shifted from food to an unending stream of knowledge. 
+GhostKnight: Magic tablets surround Indulgence and when they touch the tablets, images seem to move across them. 
+GhostKnight: Such powerful magic of the likes I've never encountered. 
+//GHK gives advice on the yield to corruption
+GhostKnight: Be weary of Indulgence and these magic \"screens\". 
+GhostKnight: They will try and entice you into taking more than you need."
 ===
+title: GhostKnight.Hub.Advice.Apathy
+tags: 
+colorID: 0
+position: 1048,60
+---
+GhostKnight: To be disconnected from one's own emotions. A feeling of indifference. To not care. 
+GhostKnight: That is Apathy.
+GhostKnight: My heart goes out for the boy behind the clock. 
+GhostKnight: For when he was in pain, the world left him behind.
+GhostKnight: And so he left the world. 
+//GHK gives advice on the yield to corruption
+GhostKnight: Those who are in pain sometimes simply need someone to listen to their woes.
+GhostKnight: Someone to let them know they are cared about where others deny them.
+GhostKnight: My advice is only this: 
+GhostKnight: Be patient young one and lend a ear to those who need to feel heard."
+===
+title: GhostKnight.Hub.Advice.Ego
+tags: 
+colorID: 0
+position: 718,74
+---
+GhostKnight: Oh...him.. ~sigh~
+GhostKnight: He was a champion who came long before me. 
+GhostKnight: The strongest fool who wanted nothing more than to hear his own name be chanted by the masses.
+GhostKnight: It was only natural he succumbed to The Power of Ego.
+GhostKnight: As enticing as it may be, no matter how many times you land a hit on your opponent... 
+GhostKnight: Do not ever believe yourself better than another. 
+GhostKnight: As loud as those crowds may roar, their admiration is fleeting.
+GhostKnight: Stay humble young one and do not appeal to those who wouldn't care whether you win or lose."
+===
+title: GhostKnight.Hub.Advice.TheWoman
+tags: 
+colorID: 0
+position: 414,65
+---
+GhostKnight: The Martyr, an unfortunate soul who sacrificed herself to appease these vile gods. 
+GhostKnight: They thought it a sick joke to keep her alive to rot in this hell for centuries.
+GhostKnight: I would give my life to see her freedom. 
+GhostKnight: ...and unfortunately I have. 
+GhostKnight: This is...my greatest regret. 
+GhostKnight: I must humbly ask you to carry on what I, and what many others before me, have started
+GhostKnight: To end this eternal cycle of death."
+===
+title: GhostKnight.Hub.Advice.Me
+tags: 
+colorID: 0
+position: 182,-181
+---
+GhostKnight: Me? Hmm...not many have asked about me. 
+GhostKnight: It has been centuries since I've thought of myself. I actually don't remember who I was.
+GhostKnight: I am a Champion, sent in here to defeat the Gods of Corruption. 
+GhostKnight: Unfortunately, I succumbed to death before I could finish my task.
+GhostKnight: Although, I am unsure of why I am still here."
+===
+title: GhostKnight.Hub.AbilitiesTutorial
+tags: 
+colorID: 0
+position: 732,347
+---
+//Wrote out the ability tutorial dialogue but I believe having it be a small fight with the GhostKnight would be better and more hands-on. 
+GhostKnight: Young Champion, come hither. I must speak with you. 
+
+GhostKnight: Congratulations on defeating your first enemy. Twas no simple feat. 
+GhostKnight: You seem stronger than when you came in. 
+GhostKnight: You have learned some new abilities.
+GhostKnight: If you would like, I could teach you how to utilize your new skills. 
+//if yes
+GhostKnight: Look at the top of your Health Bar. You may have noticed a new symbol has appeared. 
+GhostKnight: This is an ability. You receive abilities after you defeat a one of the 3. 
+GhostKnight: If you press ____ you can cycle through your abilities.
+GhostKnight: Once you land on the one you wish to use, press ____ to activate the ability. 
+GhostKnight: After the ability is activated and you have done what you wish, 
+GhostKnight: The ability will become gray and unusable.  
+GhostKnight: Once the ability regains color, it may be used again.
+
+//if no
+GhostKnight: I see. Very well. To learn is by doing. 
+GhostKnight: If you need any other assistance, I shall be here.
+===
+title: GhostKnight.Closing.AOC
+tags: 
+colorID: 0
+position: 417,648
+---
+GhostKnight: Congratulations on defeating the 3 Gods of Corruption.
+GhostKnight: However, did you truly defeat them?
+GhostKnight: Their essence...it is within you.
+GhostKnight: The Aspects of Corruption.
+GhostKnight: ...
+GhostKnight: Perhaps this was inevitable.
+GhostKnight: When they sent in a child this time, I had my doubts. 
+GhostKnight: However, I had still believed that things would be different this time.
+GhostKnight: It seems my faith was misplaced. 
+GhostKnight: Farewell, perhaps in another life, things would have been different.
+===
+title: GhostKnight.Closing.TOD
+tags: 
+colorID: 0
+position: 742,648
+---
+TOD Ending Placeholder
+===
+title: GhostKnight.Closing.HnH
+tags: 
+colorID: 0
+position: 1041,644
+---
+GhostKnight: Congratulations on defeating the 3 Gods of Corruption.
+GhostKnight: However, did you truly defeat all of them?
+GhostKnight: Their essence...it is within you. However, you have fought some off their corruption. 
+GhostKnight: ...
+GhostKnight: When they sent in a child this time, I had my doubts. 
+GhostKnight: However, I had still believed that things would be different this time.
+GhostKnight: In some respects, it was. 
+GhostKnight: To err is human. You are not at fault for what has transpired. 
+GhostKnight: Farewell, perhaps in another life, things would have been different.
+===
+
