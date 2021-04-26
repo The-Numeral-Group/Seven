@@ -56,7 +56,7 @@ Animator:
   m_GameObject: {fileID: 4115977272152067185}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 65cb18468c1cf03498f40e27a842aa25, type: 2}
+  m_Controller: {fileID: 9100000, guid: affec1772e99c0d4c95e1e0be7482da3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 0}
+  startWithSword: 1
 --- !u!114 &4115977272152067179
 MonoBehaviour:
   m_ObjectHideFlags: 0

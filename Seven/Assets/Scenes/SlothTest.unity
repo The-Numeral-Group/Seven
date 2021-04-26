@@ -280,10 +280,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1711407483, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: affec1772e99c0d4c95e1e0be7482da3, type: 2}
     - target: {fileID: 1274274346198698562, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: startingWeaponObject
       value: 
       objectReference: {fileID: 4064867689300998930, guid: 8f015bc7caeed1d459e95a510e0c962f, type: 3}
+    - target: {fileID: 4115977272152067178, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: startWithSword
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4115977272152067185, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1501,7 +1509,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &996509881
 SpriteRenderer:
   m_ObjectHideFlags: 0
