@@ -47,6 +47,8 @@ GhostKnight: What do you want to do?
 -> Save
     <<saveProgress GameSaveManager>>
     GhostKnight: Saved!
+-> Advice
+    [[GhostKnight.Hub.Advice]]
 -> Stop Talking
     GhostKnight: Bye!
 ===
@@ -75,7 +77,7 @@ GhostKnight: Magic tablets surround Indulgence and when they touch the tablets, 
 GhostKnight: Such powerful magic of the likes I've never encountered. 
 //GHK gives advice on the yield to corruption
 GhostKnight: Be weary of Indulgence and these magic \"screens\". 
-GhostKnight: They will try and entice you into taking more than you need."
+GhostKnight: They will try and entice you into taking more than you need.
 ===
 title: GhostKnight.Hub.Advice.Apathy
 tags: 
@@ -91,7 +93,7 @@ GhostKnight: And so he left the world.
 GhostKnight: Those who are in pain sometimes simply need someone to listen to their woes.
 GhostKnight: Someone to let them know they are cared about where others deny them.
 GhostKnight: My advice is only this: 
-GhostKnight: Be patient young one and lend a ear to those who need to feel heard."
+GhostKnight: Be patient young one and lend a ear to those who need to feel heard.
 ===
 title: GhostKnight.Hub.Advice.Ego
 tags: 
@@ -105,7 +107,7 @@ GhostKnight: It was only natural he succumbed to The Power of Ego.
 GhostKnight: As enticing as it may be, no matter how many times you land a hit on your opponent... 
 GhostKnight: Do not ever believe yourself better than another. 
 GhostKnight: As loud as those crowds may roar, their admiration is fleeting.
-GhostKnight: Stay humble young one and do not appeal to those who wouldn't care whether you win or lose."
+GhostKnight: Stay humble young one and do not appeal to those who wouldn't care whether you win or lose.
 ===
 title: GhostKnight.Hub.Advice.TheWoman
 tags: 
@@ -118,7 +120,7 @@ GhostKnight: I would give my life to see her freedom.
 GhostKnight: ...and unfortunately I have. 
 GhostKnight: This is...my greatest regret. 
 GhostKnight: I must humbly ask you to carry on what I, and what many others before me, have started
-GhostKnight: To end this eternal cycle of death."
+GhostKnight: To end this eternal cycle of death.
 ===
 title: GhostKnight.Hub.Advice.Me
 tags: 
@@ -129,7 +131,7 @@ GhostKnight: Me? Hmm...not many have asked about me.
 GhostKnight: It has been centuries since I've thought of myself. I actually don't remember who I was.
 GhostKnight: I am a Champion, sent in here to defeat the Gods of Corruption. 
 GhostKnight: Unfortunately, I succumbed to death before I could finish my task.
-GhostKnight: Although, I am unsure of why I am still here."
+GhostKnight: Although, I am unsure of why I am still here.
 ===
 title: GhostKnight.Hub.AbilitiesTutorial
 tags: 
