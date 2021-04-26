@@ -26,33 +26,39 @@ public class SmartTickRotation : MonoBehaviour
 
     private const float fullCircle = 360f;
 
+    private const float updateRate = 60f;
+
     private Vector3 rotationEulers;
 
     // Start is called before the first frame update
     void Start()
     {
+        float realTickDistance = -fullCircle / tickCount;
+
         /*a tick lasts for its travel distance (360 / tickCount) divided by tickSpeed seconds*/
-        tickDuration = (fullCircle / tickCount) / tickSpeed;
+        tickDuration = (-realTickDistance) / tickSpeed;
         Debug.Log($"SmartTickRotation: ({fullCircle} / {tickCount}) / {tickSpeed} = {tickDuration}");
 
-        float realTickRate = -(tickSpeed / 60f);
+        float realTickRate = -(tickSpeed / updateRate);
+        
         if(counterClockwise)
         {
             realTickRate *= -1f;
+            realTickDistance *= -1f;
         }
 
         //create a rotation vector based off of the selected axis
         switch(axis){
             case RotationAxis.X:
-                rotationEulers = new Vector3(realTickRate, 0f, 0f);
+                rotationEulers = new Vector3(realTickDistance, 0f, 0f);
                 break;
 
             case RotationAxis.Y:
-                rotationEulers = new Vector3(0f, realTickRate, 0f);
+                rotationEulers = new Vector3(0f, realTickDistance, 0f);
                 break;
 
             case RotationAxis.Z:
-                rotationEulers = new Vector3(0f, 0f, realTickRate);
+                rotationEulers = new Vector3(0f, 0f, realTickDistance);
                 break;
 
             default:
@@ -79,10 +85,17 @@ public class SmartTickRotation : MonoBehaviour
     {
         float effectTime = 0f;
 
+        Vector3 originalRot = this.gameObject.transform.eulerAngles;
+        Vector3 newRot = this.gameObject.transform.eulerAngles + rotationEulers;
+
         while(effectTime < tickDuration)
         {
             //apply a divided rotation
-            this.gameObject.transform.Rotate(rotationEulers, Space.Self);
+            //this.gameObject.transform.Rotate(rotationEulers, Space.Self);
+
+            //lerp between the original rotation and the ideal rotation
+            this.gameObject.transform.eulerAngles = 
+                Vector3.Lerp(originalRot, newRot, effectTime/tickDuration);
 
             //increment effectTime
             effectTime += Time.deltaTime;
@@ -92,5 +105,8 @@ public class SmartTickRotation : MonoBehaviour
             //wait a bit
             yield return null;
         }
+
+        //snap the remainder of the rotation into place
+        this.gameObject.transform.eulerAngles = newRot;
     }
 }
