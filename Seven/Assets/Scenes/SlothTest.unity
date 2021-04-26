@@ -439,6 +439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 0}
+  sp: {fileID: 0}
 --- !u!114 &315102714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1474,7 +1475,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &996509881
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2619,8 +2620,8 @@ GameObject:
   - component: {fileID: 2016892835}
   - component: {fileID: 2016892836}
   - component: {fileID: 2016892837}
-  - component: {fileID: 2016892838}
   - component: {fileID: 2016892839}
+  - component: {fileID: 2016892838}
   m_Layer: 0
   m_Name: Sloth Clock Hour Hand
   m_TagString: Untagged
@@ -2683,7 +2684,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: fe996299ad7a27a1f8e7faf1603531ea, type: 3}
-  m_Color: {r: 0, g: 0.2258296, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2700,7 +2701,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2016892834}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b434d0603443165eb59f766d877be1b, type: 3}
   m_Name: 
@@ -2714,16 +2715,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2016892834}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 080c90005e9527e81ac45c041b05ed67, type: 3}
+  m_Script: {fileID: 11500000, guid: fb3f23cf83b8d3aa69224372e3ad2f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   axis: 2
-  tickPeriod: 37.2
-  tickGap: 3
-  tickDuration: 0.1
   counterClockwise: 0
+  tickCount: 12
+  tickSpeed: 90
+  tickGap: 1
 --- !u!61 &2016892839
 BoxCollider2D:
   m_ObjectHideFlags: 0
