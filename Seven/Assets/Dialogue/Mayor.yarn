@@ -1,7 +1,44 @@
 title: Mayor.Opening.Dialogue0
 tags: 
 colorID: 0
-position: 859,388
+position: 785,-278
 ---
-Mayor: Hello!
+Mayor: Good afternoon, denizens of our wonderful city!
+Mayor: Thank you all for gathering here to celebrate our centennial tradition:
+Mayor: The Festival of the Martyr!
+Mayor: It was centuries years ago when our ancestors founded a small village around our Sacred Hub. 
+Mayor: To pay homage to the woman who sacrificed herself to save us from the Gods of Corruption!
+Mayor: Since then, that settlement has evolved into the amazing city that we reside within today.
+Mayor: Which we will keep pure and perfect for eternity!
+Mayor: Now, for the moment you've all been waiting for:
+Mayor: The announcement of the next Champion!
+Mayor: The proud hero who will descend into the hub to keep this city pure and save our Martyr is among us!
+Mayor: He was chosen out of hundreds of other names to represent us all.  
+Mayor: Come on up here, young man!
+Mayor: Don't be shy, just use the movement controls! 
+
+//Move using the [movement] keys
+===
+title: Mayor.Opening.Dialogue1
+tags: 
+colorID: 0
+position: 783,-68
+---
+Mayor: This brave lad has been chosen to be our centennial champion!! Give them a big hand!
+//crowd cheers
+Mayor: Now, as the mayor of our city, I dub thee: Champion of the People! 
+Mayor: Go forth and make us proud!
+===
+title: Mayor.Opening.Dialogue2
+tags: 
+colorID: 0
+position: 784,152
+---
+//mayor walks him to the hub opening aside to the boy
+Mayor: And kid, don't forget our deal we talked about.
+Mayor: Don't bother returning, not that you could anyways. 
+Mayor: Oh and don't worry about your family...
+Mayor: ...I'll make sure they're taken care of.
+//Mayor Pushes Boy into the Hub
+//crowd cheers
 ===

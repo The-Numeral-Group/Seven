@@ -10,39 +10,19 @@ tags:
 colorID: 1
 position: 986,208
 ---
-GhostKnight: You fight well for someone so young. I'm impressed. 
+GhostKnight: You fight well for someone so young. I'm impressed.
 GhostKnight: Do not be afraid, young warrior
-GhostKnight: I am not your enemy. 
-GhostKnight: I am the Champion, chosen hero to defeat the Gods of Sin.  
-GhostKnight: ...but perhaps, not anymore. It's been centuries since I have been called that.  
+GhostKnight: I am the Champion, the chosen hero of the people.
+GhostKnight: ...but perhaps, not anymore.
+GhostKnight: It's been centuries since I have been called that.
 GhostKnight: I see now that title belongs to you.
-GhostKnight: Forgive me for my ambush, I wished to make sure you could handle the task ahead of you.
-GhostKnight: As the Champion, you must kill the 6 Gods of Vices. 
 
-GhostKnight: However, it is more than just that. Take a look behind me. 
-//camera pans up to show the Woman chained up behind the fountain
-
-GhostKnight: The Martyr, an unfortunate soul who sacrificed herself to appease these vile Sins. 
-GhostKnight: When she was to die for them, the Sins thought it a sick joke to keep her alive to rot in this hell for centuries.
-GhostKnight: Only until all 6 Vices are defeated can she be free. 
-
-TheWoman: H....el.....p.....me........ple......a....se
-
-GhostKnight: I would give my life to see her freedom...
-GhostKnight: ...and unfortunately I have. 
-GhostKnight: This is...
-<<wait 2>>
-GhostKnight: ...my greatest regret.
-GhostKnight: I must humbly ask you to carry on what I, and what many others before me, have started
-GhostKnight: To end this eternal cycle of death.
-
-GhostKnight: Now, listen to me carefully for I cannot stress this enough.
-GhostKnight: They are the Gods of Vices.
+GhostKnight: Now, listen to me carefully.
+GhostKnight: As the Champion, you must defeat the Gods of Corruption.
 GhostKnight: They feed off of Humanity's fears, impulses, and selfish tendencies. 
-GhostKnight: They will try to do the same to you and trick you into committing their sin. 
+GhostKnight: They will try to do the same to you and trick you into becoming corrupted. 
 GhostKnight: Remember why you are fighting them. 
-GhostKnight: Remember who specifically you are fighting when you are fighting them.
-GhostKnight: What it means to fight Gluttony, Pride, Bloodlust, and the rest.
+GhostKnight: Remember who you are fighting when you are fighting them.
 GhostKnight: Resist them. 
 GhostKnight: For the minute you give into your desires, you shall be defeated. 
 GhostKnight: Young Champion, stay strong, stay vigilant, and above all 
