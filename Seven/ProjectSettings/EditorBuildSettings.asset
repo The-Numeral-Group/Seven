@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial (Ghost Knight)/Cutscene/Tutorial_Ceremony.unity
     guid: f6ceef7aa25ea6f4eaa94934b219af66
   - enabled: 1
+    path: Assets/Scenes/Tutorial (Ghost Knight)/Cutscene/Tutorial_Hub.unity
+    guid: 8b0f89f4177aa6340adf7d7cd9d2bab5
+  - enabled: 1
     path: Assets/Scenes/Tutorial (Ghost Knight)/Cutscene/Tutorial_Opening.unity
     guid: 9f5df1f6cc353e643a151407a715e653
   - enabled: 1
