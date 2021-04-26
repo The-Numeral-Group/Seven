@@ -7351,7 +7351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 220097794664941681, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: startingMaxHealth
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 220097794664941685, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: specialAttackGate
