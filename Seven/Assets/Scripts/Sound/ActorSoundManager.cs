@@ -14,19 +14,7 @@ public class ActorSoundManager : MonoBehaviour
     private static Dictionary<string, float> soundTimerDictionary = new Dictionary<string, float>();
 
     void Awake()
-    {
-        // This is for preventing sound getting cutoff after scene transition.
-        // Also, this prevents having more thatn one soundManager inside DontDestroyOnLoad.
-        /*if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }*/
-
+    { 
         foreach (SoundAudioClip s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();

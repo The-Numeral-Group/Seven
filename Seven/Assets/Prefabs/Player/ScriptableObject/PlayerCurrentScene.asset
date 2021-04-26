@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff63a8c1ddf878418a96d5460d3a9d7, type: 3}
   m_Name: PlayerCurrentScene
   m_EditorClassIdentifier: 
-  initialValue: pre0_Tutorial (Corridor)
-  RuntimeValue: pre0_Tutorial (Corridor)
+  initialValue: pre0_Tutorial (Door)
+  RuntimeValue: pre0_Tutorial (Door)

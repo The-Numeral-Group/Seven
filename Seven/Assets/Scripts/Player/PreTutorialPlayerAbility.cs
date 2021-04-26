@@ -70,10 +70,6 @@ public class PreTutorialPlayerAbility : ActorAbilityInitiator
 
     public void DoDodge()
     {
-        /* Casting ActorAnimationHandler to PlayerAnimationHandler to avoid 
-         * having all the child's functions requierd to be visible in the parent class*/
-        PlayerAnimationHandler playerAnimationHandler = userActor.myAnimationHandler as PlayerAnimationHandler;
-        playerAnimationHandler.animateDodge();
         playerDodge.Invoke(ref userActor);
     }
 

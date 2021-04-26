@@ -7,11 +7,13 @@ public class ActorAnimationHandler : MonoBehaviour
     protected Actor hostActor;
 
     public Animator Animator;
+    public SpriteRenderer sp;
 
     public virtual void Start()
     {
         hostActor = this.GetComponent<Actor>();
         Animator = this.gameObject.GetComponent<Animator>();
+        sp = this.gameObject.GetComponent<SpriteRenderer>();
     }
     
     /*For now, all the actors will have walkAnimation, so only this function is included
@@ -22,5 +24,18 @@ public class ActorAnimationHandler : MonoBehaviour
     public virtual void animateWalk()
     {
 
+    }
+
+    //Helper function for flipping a funtions sprite along the y axis.
+    public virtual void Flip(Vector2 direction)
+    {
+        if (direction.x < 0) //left
+        {
+            sp.flipX = true;
+        }
+        else if (direction.x > 0) //right
+        {
+            sp.flipX = false;
+        }
     }  
 }

@@ -87,8 +87,8 @@ public class GhostKnightActor : Actor
     public override void DoActorDeath()
     {
         var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
-        this.gameSaveManager.GetComponent<GameSaveManager>().setNewPosition(playerObject.transform.position, 2);
-        this.gameSaveManager.GetComponent<GameSaveManager>().setNewPosition(transform.position, 3);
+        this.gameSaveManager.GetComponent<GameSaveManager>().setVectorValue(playerObject.transform.position, 2);
+        this.gameSaveManager.GetComponent<GameSaveManager>().setVectorValue(transform.position, 3);
         SceneManager.LoadScene("Tutorial_PostFight");
     }
 

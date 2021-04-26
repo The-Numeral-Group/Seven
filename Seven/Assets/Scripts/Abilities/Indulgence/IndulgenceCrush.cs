@@ -25,6 +25,7 @@ public class IndulgenceCrush : ActorAbilityFunction<Actor, int>
     public float totalDuration { get; protected set; }
     public GameObject shadowSpritePrefab;
     GameObject shadowSprite;
+    ActorMovement shadowSpriteMovement;
     IEnumerator JumpRoutine;
     IEnumerator TrackRoutine;
     IEnumerator CrushRoutine;
@@ -49,6 +50,7 @@ public class IndulgenceCrush : ActorAbilityFunction<Actor, int>
             shadowSprite = Instantiate(shadowSpritePrefab, this.gameObject.transform);
             //StartCoroutine(shadowSprite.GetComponent<ActorMovement>().LockActorMovement(-1f));
             shadowSprite.SetActive(false);
+            shadowSpriteMovement = shadowSprite.GetComponent<ActorMovement>();
         }
     }
 
@@ -131,13 +133,13 @@ public class IndulgenceCrush : ActorAbilityFunction<Actor, int>
     
     IEnumerator PredictingCrush(Actor target)
     {
+        StartCoroutine(shadowSpriteMovement.LockActorMovement(this.totalDuration - this.jumpDuration));
         Vector2 destination = target.transform.position + (5 * target.faceAnchor.localPosition);
         Vector2 shadowPosition = new Vector2(shadowSprite.transform.position.x, shadowSprite.transform.position.y);
         Vector2 direction = destination - shadowPosition;
         direction = direction.normalized;
         float trackSpeed = Vector2.Distance(destination, shadowPosition) / trackDuration;
-        shadowSprite.GetComponent<ActorMovement>().speed = trackSpeed;
-        shadowSprite.GetComponent<ActorMovement>().MoveActor(direction);
+        shadowSpriteMovement.DragActor(direction * trackSpeed);
         yield return null;
     }
 
@@ -155,19 +157,19 @@ public class IndulgenceCrush : ActorAbilityFunction<Actor, int>
         yield return new WaitForSeconds(trackDuration);
         StopCoroutine(TrackRoutine);
         //shadowSprite.GetComponent<ActorMovement>().DragActor(Vector2.zero);
-        shadowSprite.GetComponent<ActorMovement>().speed = 0f;
-        shadowSprite.GetComponent<ActorMovement>().MoveActor(Vector2.zero);
+        shadowSpriteMovement.DragActor(Vector2.zero);
         this.user.transform.position = new Vector3(shadowSprite.transform.position.x, this.user.transform.position.y,
             this.user.transform.position.z);
-        yield return new WaitForSeconds(crushDelay);
         Vector2 direction = (shadowSprite.transform.position - this.user.transform.position).normalized;
         float distance = Vector2.Distance(this.user.transform.position, shadowSprite.transform.position);
         float speed = distance / crushDuration;
+        yield return new WaitForSeconds(crushDelay);
         this.user.myMovement.DragActor(direction * speed);
         yield return new WaitForSeconds(crushDuration);
         hasLanded = true;
         this.user.myAnimationHandler.Animator.SetTrigger("landing");
         this.user.myMovement.DragActor(Vector2.zero);
+        StartCoroutine(shadowSpriteMovement.LockActorMovement(-1f));
         shadowSprite.transform.parent = this.user.transform;
         shadowSprite.transform.localPosition = Vector3.zero;
         shadowSprite.SetActive(false);
@@ -183,13 +185,13 @@ public class IndulgenceCrush : ActorAbilityFunction<Actor, int>
         StopCoroutine(TrackRoutine);
         StopCoroutine(CrushRoutine);
         StopCoroutine(MovementLock);
-        StartCoroutine(this.user.myMovement.LockActorMovement(0.001f));
+        StartCoroutine(this.user.myMovement.LockActorMovement(-1f));
         this.isFinished = true;
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (!this.isFinished && collider.gameObject != abilityTarget.gameObject && hasLanded)
+        if (this.isFinished && collider.gameObject != abilityTarget.gameObject && !hasLanded)
         {
             return;
         }

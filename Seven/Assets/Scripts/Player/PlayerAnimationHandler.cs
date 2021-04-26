@@ -29,10 +29,6 @@ public class PlayerAnimationHandler : ActorAnimationHandler
 
     }
 
-    /*Since we have no animation right now, I (Mingun) have just added 1 second delay that
-     will turn off the animation. When we get to use animation later, I will make sure 
-     the animation will be turned off by itself, not with having a delay that turns off the 
-     animation.*/
     public void animateAttack()
     {
         doAnimateAttack();
@@ -52,12 +48,8 @@ public class PlayerAnimationHandler : ActorAnimationHandler
 
     private void doAnimateDodge()
     {
-        Animator.SetBool("player_dodging", true);
-    }
-
-    public void animateDodgeComplete()
-    {
-        Animator.SetBool("player_dodging", false);
+        Animator.SetBool("player_walking", false);
+        Animator.SetTrigger("player_dodging");
     }
 
 }
