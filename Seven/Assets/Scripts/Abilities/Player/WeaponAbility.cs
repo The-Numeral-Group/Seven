@@ -134,4 +134,11 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
         this.isFinished = true;
     }
 
+    //Returns the user's transforms, for weapons that change effect depending on
+    //the position of the target reletive to the user
+    public Transform getUserTransform()
+    {
+        return user.gameObject.transform;
+    }
+
 }

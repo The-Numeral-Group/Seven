@@ -14,10 +14,9 @@ GameObject:
   - component: {fileID: 289941525481395949}
   - component: {fileID: 5415266258514441940}
   - component: {fileID: 3637200282735461822}
-  - component: {fileID: 1270229267156978175}
   - component: {fileID: 7729995768388343351}
   m_Layer: 0
-  m_Name: Sloth Range Projectile
+  m_Name: Apathy Range Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,22 +149,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
---- !u!114 &1270229267156978175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8453795746997737593}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1860a6814fcdebe088483f085ca71db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 2
-  destroyOnHit: 1
-  movementNature: 0
-  arcDelay: 2
 --- !u!114 &7729995768388343351
 MonoBehaviour:
   m_ObjectHideFlags: 0

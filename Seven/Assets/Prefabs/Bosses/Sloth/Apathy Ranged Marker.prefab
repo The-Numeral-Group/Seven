@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 203477084623807018}
   - component: {fileID: 203477084623807013}
   - component: {fileID: 203477084623807012}
-  - component: {fileID: 203477084623807015}
   m_Layer: 0
-  m_Name: Sloth Ranged Marker
+  m_Name: Apathy Ranged Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,20 +99,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
---- !u!114 &203477084623807015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203477084623807014}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab2f1e7ce66279285ad00690770a7a80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: 0
-  strikeDamage: 2
-  strikeDuration: 0.16666667
-  grabAttackDuration: 2
-  grabDuration: 15

@@ -23,6 +23,9 @@ public class SlothActor : Actor
         " Sloth attacks them for not standing still.")]
     public float attackDelay = 6.0f;
 
+    [Tooltip("How close the player needs to be for Sloth/Apathy to swat them away.")]
+    public float swatDistance = 5f;
+
     //[Tooltip("The Menu Manager that runs Sloth's dialogue")]
     //public MenuManager menuManager;
 
@@ -37,6 +40,9 @@ public class SlothActor : Actor
 
     //a secondary reference to this script, because 'this' is readonly and can't be passed as a ref
     private Actor sloth;
+
+    //the ability sloth used last
+    private ActorAbility currAbility;
 
     //an observer to watch and read the player's actions
     private SlothPlayerObserver observer;
@@ -77,43 +83,39 @@ public class SlothActor : Actor
         //create AAM object here (to reduce load/lag when starting the fight)
         AAM = new SlothClockMod();
 
-        //start sloth's dialogue. Sloth's activator is passed as the on-end delegate, and movement
-        //remains unlocked so the player can choose to leave
-        //we offload this to the next frame to make sure the player's actor components
-        //are loaded enough for the dialogue to work
-        StartCoroutine(DialogueOffsetStart());
-
-        
-
-        ///DEBUG
-        /*sloth starts by talking with the player, but that hasn't been built yet (2/27/21), so
-        it's just gonna start throwing hands immediately*/
-        //ActivateSloth();
-        ///DEBUG
-    }
-
-    //Starts dialogue on the next frame. Can't be anonymous because a yield is used
-    IEnumerator DialogueOffsetStart()
-    {
-        yield return null;
-
-        MenuManager.DIALOGUE_MENU.StartDialogue(
-            this.gameObject, 
-            new DialogueMenu.TestDelegate( () => ActivateSloth() ), 
-            false
-        );
+        //initialize sloth/apathy's current ability to its close attack
+        currAbility = this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_PHYSICAL];
     }
 
     // FixedUpdate is called once per simulation tick
     void FixedUpdate()
     {
         //apparently this will make sloth face the player
-        this.gameObject.transform.right = 
-            player.gameObject.transform.position - this.gameObject.transform.position;
+        //but only when the fight is going
+        if(activated)
+        {
+            var playerDist = Mathf.Abs(
+                Vector3.Distance(
+                    player.gameObject.transform.position, 
+                    this.gameObject.transform.position
+                )
+            );
+
+            //if the player's too close, swat them away
+            if(currAbility.getIsFinished() && playerDist <= swatDistance)
+            {
+                ActivateAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_PHYSICAL]);
+                return;
+            }
+
+            this.gameObject.transform.right = 
+                player.gameObject.transform.position - this.gameObject.transform.position;
+        }
+        
     }
 
     //ITS TIME
-    void ActivateSloth()
+    public void ActivateSloth()
     {
         //we are officially throwing hands
         activated = true;
@@ -138,14 +140,14 @@ public class SlothActor : Actor
             ///DEBUG
             Debug.Log("SlothActor: Sloth wants to attack because you wouldn't stand still");
             ///DEBUG
-            ActivateAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_PHYSICAL]);
+            //ActivateAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_PHYSICAL]);
         });
 
         observer.playerMove = new UnityEvent();
         observer.playerMove.AddListener(delegate()
         {
             ///DEBUG
-            Debug.Log("SlothActor: Sloth wants to attack because you started moving");
+            //Debug.Log("SlothActor: Sloth wants to attack because you started moving");
             ///DEBUG
             ActivateAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_RANGE]);
         });
@@ -168,12 +170,14 @@ public class SlothActor : Actor
             //if it's less than the limit, just us the ability
             if(attackCount < attackLimit)
             {
+                currAbility = ability;
                 ability?.Invoke(ref sloth, player);
             }
             //if it isn't less than the limit, then it's time to TIMEWARP
             else
             {
                 attackCount = 0;
+                currAbility = this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_SPECIAL];
                 this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_SPECIAL].Invoke(ref sloth);
             }
         }
@@ -207,6 +211,7 @@ public class SlothActor : Actor
                 if(ActorAbilityModifier.DoesMemberExist(arg.clock, "enabled"))
                 {
                     arg.clock.enabled = true;
+                    arg.clock.gameObject.SetActive(true);
                 }
             });
 
