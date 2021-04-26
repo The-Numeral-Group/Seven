@@ -170,7 +170,7 @@ MonoBehaviour:
   speed: 0
   projectileDuration: 30
   damage: 1
-  stopDelayRange: {x: 1, y: 5}
+  stopDelayRange: {x: 1, y: 2.5}
   makeStatic: 0
   projCollider: {fileID: 4678962615504643894}
   rb: {fileID: 4678962615504643895}

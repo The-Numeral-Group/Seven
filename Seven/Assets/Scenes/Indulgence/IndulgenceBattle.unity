@@ -653,6 +653,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: targetPOIs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: mainTargetTransform
       value: 
       objectReference: {fileID: 2008721686}
@@ -672,6 +676,10 @@ PrefabInstance:
       propertyPath: leftBound
       value: -22.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: targetPOIs.Array.data[0]
+      value: 
+      objectReference: {fileID: 3372392986621213743}
     - target: {fileID: 7897472732076878603, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_Name
       value: BossCamera
@@ -751,14 +759,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 218352113}
-    - target: {fileID: 3372392985872605608, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
-      propertyPath: invincibilityDuration
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3372392985872605608, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
-      propertyPath: startingMaxHealth
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 3372392985872605614, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
       propertyPath: target
       value: 
@@ -813,6 +813,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
+--- !u!4 &3372392986621213743 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3372392985914523463, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
+  m_PrefabInstance: {fileID: 3372392986621213742}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6190751176444738967
 PrefabInstance:
   m_ObjectHideFlags: 0
