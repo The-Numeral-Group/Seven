@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,7 +28,10 @@ public class SlothClockSpeedWarp : MonoBehaviour
     public float fastDuration = 5f;
 
     //The discreet value by which speed was last changed
-    private float timeAdjustment;
+    //private float timeAdjustment;
+
+    //The handler's ActorMovement, if it exists
+    private ActorMovement handlerMove;
 
     //The current simpleSlow instance being used
     private SimpleSlow slow;
@@ -38,6 +41,7 @@ public class SlothClockSpeedWarp : MonoBehaviour
 
     //a second list which tracks which gameObjects have or have not been hit
     private HandDict trackedObjects;
+
     //METHODS--------------------------------------------------------------------------------------
     // Start is called before the first frame update
     void Start()
@@ -54,6 +58,20 @@ public class SlothClockSpeedWarp : MonoBehaviour
         /*NOTE TO SELF: CHANGE TRACKEDOBJECTS TO BE A GAMEOBJECT-INT DICT SO HANDS CAN
         BE PLUGGED IN AND THE NUMBER OF TIMES THEY'VE BEEN STRUCK CAN BE PULLED OUT. OPERATES
         MUCH AS NORMAL.*/
+
+        Component movTemp;
+        if(!handler.gameObject.TryGetComponent(typeof(ActorMovement), out movTemp))
+        {
+            Debug.LogError("SlothClockSpeedWarp: No actor movement on handler! Speed changes" +
+                " may not be applied correctly!");
+        }
+        handlerMove = (movTemp as ActorMovement);
+
+        //make the slow object
+        slow = new SimpleSlow(handlerMove.speed * (slowFactor - 1f));
+
+        //make the fast object
+        fast = new SimpleSlow(-handlerMove.speed * (fastFactor - 1f));
     }
 
     /*adds an observer component to the gameobject, allowing this script to read
@@ -77,6 +95,27 @@ public class SlothClockSpeedWarp : MonoBehaviour
     reset the list and apply the time effect*/
     void UpdateClock(GameObject obj)
     {
+        //if the fast has been applied...
+        if(handler.EffectInstancePresent(fast))
+        {
+            //do nothing
+            return;
+        }
+        //if the slow has been applied...
+        else if(handler.EffectInstancePresent(slow))
+        {
+            ClockHandLogic(obj);
+        }
+        //if neither has been applied
+        else
+        {
+            //apply the fast for a limited time
+            handler.AddTimedEffect(fast, fastDuration);
+        }
+    }
+
+    void ClockHandLogic(GameObject obj)
+    {
         //reduce the number of hits on that object
         if(trackedObjects.ContainsKey(obj))
         {
@@ -91,64 +130,36 @@ public class SlothClockSpeedWarp : MonoBehaviour
 
             trackedObjects[obj] -= 1;
         }
-        //if it isn't skip the rest
-        else
-        {
-            //if there isn't an active slow...
-            if(slow == null && fast == null)
-            {
-                //Speed the player up!
-                ForceTimedSpeedApplication();
-            }
-            return;
-        }
-
-        
 
         //if the list is empty...
         if(trackedObjects.Count == 0)
         {
-            //reset the list and reset the speedwarp
-            foreach(GameObject hand in colliderObjects)
-            {
-                trackedObjects.Add(hand, undoStrikes);
-            }
             ///DEBUG
             Debug.Log("SPEED CLEAN");
             ///DEBUG
-            ForceRemoveSpeedApplication();
+            handler.SubtractEffect(slow);
+            ResetTrackObjects();        
         }
     }
 
-    //adds an arbitrary speed change to the handler
-    public void ForceSpeedApplication()
+    void ResetTrackObjects()
     {
-        //check for a movement component first, to make sure there is speed to effect
-        var handlerMove = handler.gameObject.GetComponent<ActorMovement>();
-        if(handlerMove)
-        {   
-            slow = new SimpleSlow(handlerMove.speed * slowFactor);
-            Debug.Log($"SlothClockSpeedWarp: applying slow of {handlerMove.speed * slowFactor}");
-            handler.AddEffect(slow);
-        }
-
-        //if a speedup has been applied, remove it
-        if(fast != null)
-        {
-            handler.SubtractEffect(fast);
-        }
-        
-        //reset the dict so the effect can be removed
+        //reset the list and reset the speedwarp
         foreach(GameObject hand in colliderObjects)
         {
-            var mover = hand.GetComponent<TickRotation>();
-            //divide here because big number = slow clock
-            mover.tickPeriod /= slowFactor;
-            mover.tickGap /= slowFactor;
-            mover.tickDuration /= slowFactor;
-            //trackedObjects.Add(hand, undoStrikes);
+            trackedObjects.Add(hand, undoStrikes);
         }
     }
+
+    public void ForceSlow()
+    {
+        //subtract the fast, if it exists
+        handler.SubtractEffect(fast);
+
+        //apply the slow
+        handler.AddEffect(slow);
+    }
+
 
     public void ForceRemoveSpeedApplication()
     {

@@ -325,6 +325,7 @@ GameObject:
   - component: {fileID: 315102724}
   - component: {fileID: 315102726}
   - component: {fileID: 315102720}
+  - component: {fileID: 315102722}
   m_Layer: 0
   m_Name: Sloth
   m_TagString: Untagged
@@ -457,7 +458,7 @@ MonoBehaviour:
     m_values: []
   Close: {fileID: 315102726}
   Far: {fileID: 315102724}
-  Special: {fileID: 315102720}
+  Special: {fileID: 315102722}
 --- !u!114 &315102715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -581,6 +582,23 @@ MonoBehaviour:
   speakerName: SLOTH TEST
   yarnStartNode: SlothStart
   npcMode: 0
+--- !u!114 &315102722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315102708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3877e69ec03da6c0f91e18ee12298910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 12
+  abilityName: UUUUUUUHHHHHH
+  invokeBlankWhenBadArguments: 1
+  speedEffect: 0.25
+  clock: {fileID: 996509884}
 --- !u!114 &315102724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1549,7 +1567,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996509880}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49288dcf2ae30bc7ab871547a91d60f8, type: 3}
   m_Name: 
@@ -1566,7 +1584,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 996509880}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24826aa2db26882f9a0c02e459ed2d77, type: 3}
   m_Name: 

@@ -69,6 +69,12 @@ public class ActorEffectHandler : MonoBehaviour
         
     }
 
+    //Returns whether or not a specific instance of an effect is present in appliedEffects
+    public bool EffectInstancePresent(ActorEffect targetEffect)
+    {
+        return appliedEffects.Find(effect => effect == targetEffect) != null;
+    }
+
     //Returns whether or not an effect of the specified type is present in appliedEffects
     public bool EffectPresent<TypeToLocate>()
     {

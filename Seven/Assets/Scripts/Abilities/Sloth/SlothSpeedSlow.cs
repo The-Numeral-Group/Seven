@@ -26,7 +26,7 @@ public class SlothSpeedSlow : ActorAbilityFunction<int, int>
             ///DEBUG
             Debug.Log("SlothSpeedSlow: slow occurring...");
             ///DEBUG
-            clock.ForceSpeedApplication();
+            clock.ForceSlow();
             return 1;
         }
         else
