@@ -8,7 +8,7 @@ using UnityEngine;
 //    2. Play Attack animation when player is attacking
 //    3. Play Attack audio when player is attacking
 
-public class PlayerWeaponAbility : WeaponAbility
+public class PlayerWeaponAbility : WeaponAbility, PlayerSwordAbility
 {
     // Check if Player Weapon's Hitbox has already hit the enemy.
     // This is used to prevent hitting enemy multiple times with just one attack.
@@ -21,9 +21,11 @@ public class PlayerWeaponAbility : WeaponAbility
         this.user = user;
         // Since player's weapon ability has no cooldown period (like other abilities),
         // this will just check is player has been finished attacking and ready to attack again.
-        if (this.isFinished)
+        if (this.usable && this.isFinished)
         {
+            this.user = user;
             this.isFinished = false;
+            StartCoroutine(coolDown(cooldownPeriod));
             InternInvoke(new Actor[0]);
         }
 

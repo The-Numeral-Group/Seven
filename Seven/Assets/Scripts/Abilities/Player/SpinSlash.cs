@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpinSlash : ActorAbilityFunction<Actor, int>
+public class SpinSlash : ActorAbilityFunction<Actor, int>, PlayerSwordAbility
 {
     public override void Invoke(ref Actor user)
     {

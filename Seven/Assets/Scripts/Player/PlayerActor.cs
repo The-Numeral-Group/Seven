@@ -67,6 +67,27 @@ public class PlayerActor : Actor
     {
         this.myAnimationHandler.Animator.SetBool("player_equiped", hasSword);
         this.hasSword = hasSword;
+
+        //check each ability the player has
+        foreach(ActorAbility ability in this.myAbilityInitiator.abilities.Values)
+        {
+            //if it needs the sword
+            if(ability is PlayerSwordAbility)
+            {
+                //and the player has lost the sword
+                if(hasSword == false)
+                {
+                    //lock it forever
+                    StartCoroutine(ability.coolDown(Mathf.Infinity));
+                }
+                //and the player has gained the sword
+                else
+                {
+                    //immediately make it usable
+                    StartCoroutine(ability.coolDown(0f));
+                }
+            }
+        }
     }
 
     void OnMenu()
