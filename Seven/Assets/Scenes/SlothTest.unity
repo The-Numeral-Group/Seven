@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 315102720}
   - component: {fileID: 315102722}
   m_Layer: 0
-  m_Name: Sloth
+  m_Name: Apathy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
