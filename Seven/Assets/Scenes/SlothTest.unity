@@ -288,10 +288,6 @@ PrefabInstance:
       propertyPath: startingWeaponObject
       value: 
       objectReference: {fileID: 4064867689300998930, guid: 8f015bc7caeed1d459e95a510e0c962f, type: 3}
-    - target: {fileID: 4115977272152067178, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
-      propertyPath: startWithSword
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4115977272152067185, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_Name
       value: Player
