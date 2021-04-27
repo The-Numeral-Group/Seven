@@ -74,7 +74,7 @@ public class TossAndTeleport : ProjectileAbility
             yield return null;
         }
 
-        swordOut = true;
+        //swordOut = true;
         isFinished = true;
     }
 
@@ -97,6 +97,8 @@ public class TossAndTeleport : ProjectileAbility
         );
 
         currentSword = projObj;
+
+        swordOut = true;
     }
 
     //If there's a sword, EgoTeleport the user to it and reequip it
@@ -107,13 +109,27 @@ public class TossAndTeleport : ProjectileAbility
 
         if(currentSword)
         {
+            //if the sword is still moving, offset the destination so that the player will end up
+            //where the sword will be
+            //that is to say, avoid reposting where the missile isn't
+            var swordMove = currentSword.GetComponent<ActorMovement>();
+            Vector3 teleDest = 
+                swordMove.movementDirection == Vector2.zero ?
+                currentSword.transform.position :
+                currentSword.transform.position + 
+                    ((Vector3)swordMove.movementDirection * swordMove.speed * 0.3f);
+                //0.3f is how long a teleport takes trust me
+            
             yield return StartCoroutine(
-                Ego2Movement.EgoTeleport(currentSword.transform.position, internalUser.gameObject)
+                Ego2Movement.EgoTeleport(teleDest, internalUser.gameObject)
             );
         }
         else
         {
             Debug.LogError("TossAndTeleport: no sword to teleport to!");
+
+            //assume the sword has returned
+            swordOut = false;
         }
 
         yield return null;

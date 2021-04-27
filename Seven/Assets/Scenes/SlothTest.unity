@@ -392,11 +392,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e806e096a78d989bca481ce6129479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 2
+  cooldownPeriod: 0
   abilityName: SWOORD
   invokeBlankWhenBadArguments: 1
   projectile: {fileID: 6113993754747126676, guid: 28998e45e01599a03b619154edb0fae4, type: 3}
-  projectileScale: {x: 1, y: 1}
+  projectileScale: {x: 3, y: 3}
   projectileDirection: {x: -1, y: 0}
   travelDistance: 5
   damage: 2
@@ -1087,7 +1087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7675090967697320959, guid: 8f3b8efc1bf7ff847a6844c5f8afa289, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7675090967697320959, guid: 8f3b8efc1bf7ff847a6844c5f8afa289, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
