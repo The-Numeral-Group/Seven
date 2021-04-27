@@ -23,6 +23,9 @@ public class TossAndTeleport : ProjectileAbility
     //amount of remaining uses
     private int usesRemaining;
 
+    //internal user reference typed to player
+    private PlayerActor internalUser;
+
     //METHODS--------------------------------------------------------------------------------------
     // Awake is called before everything starts
     void Awake()
@@ -35,6 +38,17 @@ public class TossAndTeleport : ProjectileAbility
     TossAndTeleport is always tossed in the direction of the faceAnchor.*/
     protected override int InternInvoke(params Vector2[] args)
     {
+        //cast the user as a PlayerActor to gain access to the needed sword state methods
+        if(user is PlayerActor)
+        {
+            internalUser = (user as PlayerActor);
+        }
+        else
+        {
+            Debug.LogError("TossAndTeleport: This ability can only be used by the player!");
+            return 1;
+        }
+
         //auto return if the user it out of invokations for this ability
         if(usesRemaining <= 0)
         {
@@ -69,7 +83,8 @@ public class TossAndTeleport : ProjectileAbility
     {
         //the sword is always thrown in direction of the user's face anchor
         Vector3 directionToFace = 
-            (user.faceAnchor.position - user.gameObject.transform.position).normalized;
+            (internalUser.faceAnchor.position 
+                - internalUser.gameObject.transform.position).normalized;
 
         //The component is added on and then launched in the direction of the faceAnchor
         projObj.AddComponent<PlayerSwordProjectile>().Launch(
@@ -79,6 +94,7 @@ public class TossAndTeleport : ProjectileAbility
         );
 
         //put user in the swordless state
+        internalUser.SetSwordState(false);
 
         currentSword = projObj;
     }
@@ -89,7 +105,7 @@ public class TossAndTeleport : ProjectileAbility
         if(currentSword)
         {
             yield return StartCoroutine(
-                Ego2Movement.EgoTeleport(currentSword.transform.position, user.gameObject)
+                Ego2Movement.EgoTeleport(currentSword.transform.position, internalUser.gameObject)
             );
         }
         else
@@ -117,6 +133,7 @@ public class TossAndTeleport : ProjectileAbility
         Destroy(currentSword);
 
         //put user in unswordless state
+        internalUser.SetSwordState(true);
     }
 }
 
