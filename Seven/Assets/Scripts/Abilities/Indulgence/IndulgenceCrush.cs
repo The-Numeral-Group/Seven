@@ -191,7 +191,7 @@ public class IndulgenceCrush : ActorAbilityFunction<Actor, int>
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (this.isFinished && collider.gameObject != abilityTarget.gameObject && !hasLanded)
+        if (this.isFinished || collider.gameObject != abilityTarget.gameObject || !hasLanded)
         {
             return;
         }

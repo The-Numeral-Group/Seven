@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d1d5e7c31d60a4bac75dc1bef3276a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMaxHealth: 10
+  startingMaxHealth: 25
   damageResistance: 0
   invincibilityDuration: 1
   startInvulnerable: 0
@@ -246,6 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 6735736805293186648}
+  sp: {fileID: 0}
 --- !u!114 &6735736805293186651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dceeb80fb7798db4b9eaf5caa5e6625c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 1
+  cooldownPeriod: 2
   abilityName: 
   invokeBlankWhenBadArguments: 1
   indulgenceLegPrefab: {fileID: 5783529023888686645, guid: f5319041f836a7444acf089e8f289f92, type: 3}
@@ -331,9 +332,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9478b5bcab5ecd48800cfd696db7dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 35
+  cooldownPeriod: 10
   abilityName: 
   invokeBlankWhenBadArguments: 1
+  clearProjectilesOnUse: 1
   projSpeed: 6
   numProjectiles: 5
   projectileSpread: 1.0471976
