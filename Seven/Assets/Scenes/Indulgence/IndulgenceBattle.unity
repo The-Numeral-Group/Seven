@@ -123,17 +123,65 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &69890490 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7319581402701805278, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
+  m_PrefabInstance: {fileID: 1008622402}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &69890491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69890490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b67269037ea3c94bbbb92723d81b49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  projSpeed: 6
+  projectileSpread: 0.7853982
+  numProjectiles: 3
+  projectileToInstantiate: {fileID: 330341731892381400, guid: 7f6f9561d15dbdd40a59b1e69f8c61f4, type: 3}
 --- !u!114 &218352113 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4115977272152067178, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
   m_PrefabInstance: {fileID: 2008721685}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 318036552}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c11bfdc1d59e37845937218ee896ec26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &318036552 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4115977272152067185, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+  m_PrefabInstance: {fileID: 2008721685}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &318036553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318036552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b67269037ea3c94bbbb92723d81b49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  projSpeed: 6
+  projectileSpread: 0.7853982
+  numProjectiles: 3
+  projectileToInstantiate: {fileID: 330341731892381400, guid: 7f6f9561d15dbdd40a59b1e69f8c61f4, type: 3}
 --- !u!1001 &1008622402
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -141,6 +189,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 821659178171173494, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
+      propertyPath: m_Text
+      value: Corrupted Data
+      objectReference: {fileID: 0}
     - target: {fileID: 953616669026508032, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
@@ -228,6 +280,10 @@ PrefabInstance:
     - target: {fileID: 5584603568582872739, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6886000802490238240, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
+      propertyPath: m_Text
+      value: Recover Health
       objectReference: {fileID: 0}
     - target: {fileID: 6919360707961699820, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -686,6 +742,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+--- !u!1 &1995645495 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1693722995598617134, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
+  m_PrefabInstance: {fileID: 1008622402}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1995645500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995645495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e504f906d65704ab4bdf60f53bf242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  healAmount: 3
 --- !u!1001 &2008721685
 PrefabInstance:
   m_ObjectHideFlags: 0
