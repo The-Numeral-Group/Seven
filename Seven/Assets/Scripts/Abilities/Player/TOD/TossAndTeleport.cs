@@ -14,6 +14,10 @@ public class TossAndTeleport : ProjectileAbility
     [Tooltip("How many times the user should be able to activate this ability in one scene.")]
     public int maxUses = 5;
 
+    [Tooltip("Whether the user should always get the sword, even if the teleport that takes" + 
+        " them there falls short.")]
+    public bool alwaysGetSword = false;
+
     //middleman variable for remembering the last sword that was thrown
     private GameObject currentSword;
 
@@ -123,6 +127,12 @@ public class TossAndTeleport : ProjectileAbility
             yield return StartCoroutine(
                 Ego2Movement.EgoTeleport(teleDest, internalUser.gameObject)
             );
+
+            //if required, regain the sword once the teleport is over
+            if(alwaysGetSword)
+            {
+                ReEquipSword();
+            }
         }
         else
         {
