@@ -1,0 +1,2 @@
+Ego's Power is not implemented. Rather, the player will recieve a copy of
+EgoLaser directly.

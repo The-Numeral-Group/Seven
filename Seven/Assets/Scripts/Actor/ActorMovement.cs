@@ -15,6 +15,8 @@ public class ActorMovement : MonoBehaviour
     public float speed;
 
     public bool movementLocked{ get; protected set; }
+
+    public bool faceLocked{ get; protected set; }
     public Vector2 movementDirection{ get; protected set; }
     public Vector2 dragDirection{ get; protected set; }
 
@@ -29,6 +31,7 @@ public class ActorMovement : MonoBehaviour
         hostActor = this.GetComponent<Actor>();
         this.movementDirection = this.dragDirection = Vector2.zero;
         this.movementLocked = false;
+        this.faceLocked = false;
     }
 
     protected virtual void Start()
@@ -75,13 +78,18 @@ public class ActorMovement : MonoBehaviour
             //actually moving
             movementController.Move(moveComposite);
 
-            //update the direction the actor is facing
-            this.gameObject.SendMessage("DoActorUpdateFacing", 
-                this.movementDirection, SendMessageOptions.DontRequireReceiver);
+            
 
             /*Only needed if character can still move. If movement is locked, we assume
             that the drag needs to stop after this movement instance*/
             this.dragDirection = Vector2.zero;
+        }
+
+        if(!this.faceLocked)
+        {
+            //update the direction the actor is facing
+            this.gameObject.SendMessage("DoActorUpdateFacing", 
+                this.movementDirection, SendMessageOptions.DontRequireReceiver);
         }
         
     }
@@ -117,6 +125,28 @@ public class ActorMovement : MonoBehaviour
     to invoke. Specify a time and movement will stay locked for that long. Passing
     an argument of 0.0f (or less) will unlock movement immediately*/
     public IEnumerator LockActorMovement(float actorMoveDisable)
+    {
+        if (actorMoveDisable > 0.0f)
+        {
+            this.movementLocked = true;
+            this.faceLocked = true;
+            yield return new WaitForSeconds(actorMoveDisable);
+            //(Ram) note to self: this is where the line to stop the extra frame of drag application goes.
+            //this.dragDirection = Vector2.zero;
+            this.movementLocked = false;
+            this.faceLocked = false;
+        }
+        else
+        {
+            this.movementLocked = false;
+            yield return null;
+        }
+        
+    }
+
+    /*Same as the above, but the actor is allowed to freely rotate themselves (or whatever else)
+    with DoActorUpdateFacing*/
+    public IEnumerator LockActorMovementOnly(float actorMoveDisable)
     {
         if (actorMoveDisable > 0.0f)
         {
