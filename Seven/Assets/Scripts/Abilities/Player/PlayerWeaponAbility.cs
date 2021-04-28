@@ -31,6 +31,7 @@ public class PlayerWeaponAbility : ActorAbilityFunction<Actor, int>
 
     protected override int InternInvoke(params Actor[] args)
     {
+        this.hitConnected = false;
         StartCoroutine(user.myMovement.LockActorMovement(lockDuration));
 
         // Play Attack Animation
@@ -40,7 +41,6 @@ public class PlayerWeaponAbility : ActorAbilityFunction<Actor, int>
         // Play Attack Audio
         user.mySoundManager.PlaySound("PlayerAttack");
 
-        this.hitConnected = false;
         return 0;
     }
 

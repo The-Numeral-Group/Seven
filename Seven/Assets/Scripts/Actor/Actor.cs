@@ -50,7 +50,8 @@ public class Actor : MonoBehaviour
     {
         //Do anything that should happen on taking damage
         //no effect by default
-        StartCoroutine(myHealth.MakeInvulnerableAfterDamage());
+        //StartCoroutine(myHealth.MakeInvulnerableAfterDamage());
+        this.myHealth.DefaultDamageEffect();
     }
 
     public virtual void DoActorDeath()
