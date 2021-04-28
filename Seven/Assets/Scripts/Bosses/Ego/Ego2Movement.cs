@@ -34,10 +34,15 @@ public class Ego2Movement : ActorMovement
     are restored.
     
     Teleports will not check if the target destination has enough space*/
-    public IEnumerator EgoTeleport(Vector3 destination)
+    public IEnumerator EgoTeleport(Vector3 dest)
     {
-        //just use the static?
-        //yield return Ego2Movement.EgoTeleport(destination, this.gameObject);
+        //Step 0: Get a destination that doesn't have something in it
+        Vector3 destination = Ego2Movement.GetSafeLocation(
+            dest, 
+            this.gameObject.transform.position, 
+            this.gameObject.GetComponent<Collider2D>()
+        );
+
         //Step 1: Disable Colliders and Healths
         //because ActorMovement isn't guarunteed to have a host, we check directly for health
         var collider = this.gameObject.GetComponent<Collider2D>();
@@ -112,8 +117,12 @@ public class Ego2Movement : ActorMovement
     public static IEnumerator EgoTeleport(Vector3 dest, GameObject user)
     {
         //Step 0: Get a destination that doesn't have something in it
-        //Vector3 destination = Ego2Movement.GetSafeLocation(dest);
-        Vector3 destination = dest;
+        Vector3 destination = Ego2Movement.GetSafeLocation(
+            dest, 
+            user.transform.position, 
+            user.GetComponent<Collider2D>()
+        );
+
         //Step 1: Disable Colliders and Healths
         //because ActorMovement isn't guarunteed to have a host, we check directly for health
         var collider = user.gameObject.GetComponent<Collider2D>();
@@ -183,8 +192,41 @@ public class Ego2Movement : ActorMovement
         if(health){collider.enabled = true;}
     }
 
-    /*static GetSafeLocation(Vector3 potentialDest)
+    static Vector3 GetSafeLocation(Vector3 potentialDest, Vector3 startPoint, Collider2D collider)
     {
+        //if there is no collider, then all locations are safe!
+        if(!collider)
+        {
+            return potentialDest;
+        }
 
-    }*/
+        //save the destination for modification
+        Vector3 realDest = potentialDest;
+        //save the direction from start to dest
+        Vector3 teleDirection = (potentialDest - startPoint).normalized;
+        //save the largest "radius" of the teleporting bounds. We can ignore z size (depth)
+        var colBounds = collider.bounds.extents;
+        float colSize = colBounds.x > colBounds.y ? colBounds.x : colBounds.y;
+
+        /*Cast a sphere into the play space centered on realDest with a radius of colSize. If
+        there is anything in the sphere at all, move potentialDest backwards towards the start
+        point by a distance of colSize. If this would put the destination behind the start, just
+        teleport in place*/
+        while(Physics2D.OverlapCircle(potentialDest, colSize))
+        {
+            /*If we've gotten here, that means there isn't enough space at the destination.
+            So, move back a bit*/
+            realDest -= (teleDirection * colSize);
+
+            /*if the direction from the start to the new dest ISN'T the direction from the start
+            to the original dest, just return the start point*/
+            if(teleDirection != (realDest - startPoint).normalized)
+            {
+                return startPoint;
+            }
+        }
+
+        //if we're here, that means realDest is valid.
+        return realDest;
+    }
 }
