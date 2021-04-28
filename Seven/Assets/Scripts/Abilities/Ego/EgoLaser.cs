@@ -148,7 +148,9 @@ internal class EgoLaserProjectile : MonoBehaviour
         Vector3 laserEnd;
 
         //shoot what is effectively a data laser
-        RaycastHit2D hit = Physics2D.Raycast(launchPoint, launchDirection, laserMaxDistance);
+        //RaycastHit2D hit = Physics2D.Raycast(launchPoint, launchDirection, laserMaxDistance);
+
+         
 
         /*//if it hit something...
         if(hit.collider != null)
@@ -174,8 +176,22 @@ internal class EgoLaserProjectile : MonoBehaviour
         //if the laser is active
         if(active)
         {
+            //shoot what is effectively a really thicc data laser
+            RaycastHit2D[] hits = Physics2D.BoxCastAll(
+                launchPoint,                                    //start of box
+                new Vector2 (line.startWidth, line.endWidth),   //size of box
+                Vector3.Angle(Vector3.zero, launchDirection),   //rotation of box
+                launchDirection,                                //direction of box "movement"
+                laserMaxDistance                                //travel distance of box
+            );
+
+            //try to hurt anything caught in the laser's path
+            foreach(RaycastHit2D hit in hits)
+            {
+                hit.collider?.gameObject.GetComponent<ActorHealth>()?.takeDamage(laserDamage);
+            }
             //try to hurt the target
-            hit.collider?.gameObject.GetComponent<ActorHealth>()?.takeDamage(laserDamage);
+            //hit.collider?.gameObject.GetComponent<ActorHealth>()?.takeDamage(laserDamage);
 
             ///DEBUG
             //switch the laser's color to red just to see it for right now
