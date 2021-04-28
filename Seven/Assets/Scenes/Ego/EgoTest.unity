@@ -267,6 +267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 0}
+  sp: {fileID: 0}
 --- !u!114 &505191982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,7 +479,7 @@ MonoBehaviour:
   attackDelay: 0.5
   attackCount: 4
   projectile: {fileID: 3387492356126136030, guid: 932ac9d98c794d119adfe59d4bb66c83, type: 3}
-  projectileScale: {x: 1, y: 1}
+  projectileScale: {x: 4, y: 4}
   projectileDirection: {x: -1, y: 0}
 --- !u!1 &656284013
 GameObject:
@@ -672,6 +673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 0}
+  sp: {fileID: 0}
 --- !u!114 &656284024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1609,8 +1611,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774437467}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.15, y: 1.9625, z: 2.5625}
+  m_LocalPosition: {x: -0.15, y: -0.09, z: 0}
+  m_LocalScale: {x: 9.307271, y: 1.9624999, z: 4.0168886}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
