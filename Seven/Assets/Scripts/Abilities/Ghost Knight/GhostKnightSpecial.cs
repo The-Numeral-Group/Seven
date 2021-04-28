@@ -42,7 +42,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
         if (this.duration <= 0f)
         {
             Debug.Log("GhostKnightPhaseChange: duration must be greater than 0");
-            this.duration = 2f;
+            this.duration = 9f;
         }
 
         ghostKnightAnimationHandler = args[0].myAnimationHandler as GhostKnightAnimationHandler;
