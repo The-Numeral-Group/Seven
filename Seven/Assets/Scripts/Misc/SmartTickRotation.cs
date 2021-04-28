@@ -100,7 +100,7 @@ public class SmartTickRotation : MonoBehaviour
             //increment effectTime
             effectTime += Time.deltaTime;
 
-            Debug.Log($"SmartTickRotation: {tickDuration - effectTime} remaining");
+            //Debug.Log($"SmartTickRotation: {tickDuration - effectTime} remaining");
 
             //wait a bit
             yield return null;

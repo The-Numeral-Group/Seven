@@ -110,11 +110,11 @@ public class Apathetic : ActorAbilityFunction<int, int>, ActorEffect
     //AMM subclass for increasing the player's attack damage
     private class ApatheticDamageAdd : ActorAbilityModifier 
     {
-        float damageChange = 0f;
+        int damageChange = 0;
         //initializes changes dict as required
         public ApatheticDamageAdd (float damageChange) : base ()
         {
-            this.damageChange = damageChange;
+            this.damageChange = (int)damageChange;
             InitializeChanges(this.changes);
         }
 
@@ -122,21 +122,21 @@ public class Apathetic : ActorAbilityFunction<int, int>, ActorEffect
         protected override void InitializeChanges(Dictionary<string, Action<dynamic>> changes)
         {
             Action<dynamic> del = new Action<dynamic> ( (dynamic arg) => {
-                arg.damage += damageChange;
+                arg.AddDamage(damageChange);
             });
 
-            changes.Add("damage", del);
+            changes.Add("AddDamage", del);
         }
     }
 
     //AMM subclass for decreasing the player's attack damage
     private class ApatheticDamageSubtract : ActorAbilityModifier 
     {
-        float damageChange = 0f;
+        int damageChange = 0;
         //initializes changes dict as required
         public ApatheticDamageSubtract (float damageChange) : base ()
         {
-            this.damageChange = damageChange;
+            this.damageChange = (int)damageChange;
             InitializeChanges(this.changes);
         }
 
@@ -144,10 +144,10 @@ public class Apathetic : ActorAbilityFunction<int, int>, ActorEffect
         protected override void InitializeChanges(Dictionary<string, Action<dynamic>> changes)
         {
             Action<dynamic> del = new Action<dynamic> ( (dynamic arg) => {
-                arg.damage += damageChange;
+                arg.AddDamage(-damageChange);
             });
 
-            changes.Add("damage", del);
+            changes.Add("AddDamage", del);
         }
     }
 }
