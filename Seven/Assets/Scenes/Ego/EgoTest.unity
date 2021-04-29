@@ -474,12 +474,12 @@ MonoBehaviour:
   cooldownPeriod: 3
   abilityName: 
   invokeBlankWhenBadArguments: 1
-  teleMinDist: 1.5
-  teleMaxDist: 7
+  teleMinDist: 7
+  teleMaxDist: 10
   attackDelay: 0.5
   attackCount: 4
-  projectile: {fileID: 3387492356126136030, guid: 932ac9d98c794d119adfe59d4bb66c83, type: 3}
-  projectileScale: {x: 4, y: 4}
+  projectile: {fileID: 4710924987715151114, guid: 147a502a437043ef78652d409a7f13e3, type: 3}
+  projectileScale: {x: 5, y: 5}
   projectileDirection: {x: -1, y: 0}
 --- !u!1 &656284013
 GameObject:

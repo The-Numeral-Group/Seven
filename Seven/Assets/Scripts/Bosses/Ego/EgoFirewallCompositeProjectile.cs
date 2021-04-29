@@ -12,6 +12,9 @@ public class EgoFirewallCompositeProjectile : BasicProjectile
     [Tooltip("How long this firewall should persist after it stops.")]
     public float stoppedLifetime = 5f;
 
+    [Tooltip("How far apart individual fires should be.")]
+    public float fireSpread = 10f;
+
     //the coordinates of this object when it was launched, for judging when to stop.
     private Vector3 starting_point;
 
@@ -31,10 +34,11 @@ public class EgoFirewallCompositeProjectile : BasicProjectile
 
     //Invoked before the first update frame
     //needed to access this object's collider, which might not be ready in awake
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         var colBounds = this.gameObject.GetComponent<Collider2D>().bounds.extents;
-        distBetweenFires = colBounds.x > colBounds.y ? colBounds.x : colBounds.y;
+        distBetweenFires = (colBounds.x > colBounds.y ? colBounds.x : colBounds.y) + fireSpread;
     }
 
     //what to do when this actor's health reaches 0
@@ -142,6 +146,7 @@ public class EgoFirewallCompositeProjectile : BasicProjectile
                 this.gameObject.transform.position, 
                 Quaternion.identity
             ).GetComponent<EgoFirewallCompositeProjectile>().StopFlight();
+            lastFireSpot = this.gameObject.transform.position;
         }
 
         ///DEBUG

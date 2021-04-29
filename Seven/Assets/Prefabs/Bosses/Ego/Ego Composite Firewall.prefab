@@ -221,3 +221,4 @@ MonoBehaviour:
   destroyOnHit: 1
   firewallMaxDist: 30
   stoppedLifetime: 5
+  fireSpread: 0.05
