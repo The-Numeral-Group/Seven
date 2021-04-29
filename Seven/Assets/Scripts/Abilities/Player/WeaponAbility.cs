@@ -48,30 +48,8 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
         weaponObject.transform.parent = this.gameObject.transform;
         weaponObject.SetActive(false);
 
-        //Setup the damage for each hitbox in the weapon.
-        for (int i = 0; i < weaponObject.transform.childCount; i++)
-        {
-            //assume the weapon prefab is setup as: object->object with hitbox component.
-            WeaponHitbox hb = weaponObject.transform.GetChild(i).GetComponent<WeaponHitbox>();
-            if (!hb)
-            {
-                Debug.LogWarning("WeaponAbility: Current weapon abiltiy is instantiating a weapon without" + 
-                        "a WeaponHitbox Component");
-                Debug.LogWarning("WeaponAbility: Weaponprefab should be: " +  
-                        "spriteObject->childObject(child should contain hibox)");
-            }
-            else
-            {
-                if (i < damagePerHitbox.Count)
-                {
-                    hb.damage = damagePerHitbox[i];
-                }
-                else
-                {
-                    hb.damage = 0;
-                }
-            }
-        }
+        //set damage of hitboxes
+        SetDamage();
     }
 
     /*Similar to ActorAbilityFunction's invoke method
@@ -132,6 +110,57 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
         yield return new WaitForSeconds(duration);
         weaponObject.SetActive(false);
         this.isFinished = true;
+    }
+
+    //sets the damage of the weapon's hitboxes
+    private void SetDamage()
+    {
+        //Setup the damage for each hitbox in the weapon.
+        for (int i = 0; i < weaponObject.transform.childCount; i++)
+        {
+            //assume the weapon prefab is setup as: object->object with hitbox component.
+            WeaponHitbox hb = weaponObject.transform.GetChild(i).GetComponent<WeaponHitbox>();
+            if (!hb)
+            {
+                Debug.LogWarning("WeaponAbility: Current weapon abiltiy is instantiating a weapon without" + 
+                        "a WeaponHitbox Component");
+                Debug.LogWarning("WeaponAbility: Weaponprefab should be: " +  
+                        "spriteObject->childObject(child should contain hibox)");
+            }
+            else
+            {
+                if (i < damagePerHitbox.Count)
+                {
+                    hb.damage = damagePerHitbox[i];
+                }
+                else
+                {
+                    hb.damage = 0;
+                }
+            }
+        }
+    }
+
+    //adds damage of the weapon's hitboxes. Pass a negative number to subtract
+    public void AddDamage(int damageMod)
+    {
+        //Setup the damage for each hitbox in the weapon.
+        for (int i = 0; i < weaponObject.transform.childCount; i++)
+        {
+            //assume the weapon prefab is setup as: object->object with hitbox component.
+            WeaponHitbox hb = weaponObject.transform.GetChild(i).GetComponent<WeaponHitbox>();
+            if (!hb)
+            {
+                Debug.LogWarning("WeaponAbility: Current weapon abiltiy is instantiating a weapon without" + 
+                        "a WeaponHitbox Component");
+                Debug.LogWarning("WeaponAbility: Weaponprefab should be: " +  
+                        "spriteObject->childObject(child should contain hibox)");
+            }
+            else
+            {
+                hb.damage += damageMod;
+            }
+        }
     }
 
     //Returns the user's transforms, for weapons that change effect depending on

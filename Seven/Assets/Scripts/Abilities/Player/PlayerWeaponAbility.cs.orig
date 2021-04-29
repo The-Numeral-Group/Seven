@@ -43,10 +43,13 @@ public class PlayerWeaponAbility : WeaponAbility, PlayerSwordAbility
         // Play Attack Audio
         user.mySoundManager.PlaySound("PlayerAttack");
 
+<<<<<<< HEAD
+=======
         //this.hitConnected = false;
         //invoke the ability as normal
         base.InternInvoke(args);
 
+>>>>>>> 9ad8cd6e3b19d36535df4f80cc69b72157581f67
         return 0;
     }
 

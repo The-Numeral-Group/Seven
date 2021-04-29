@@ -93,6 +93,15 @@ public class Ego2Actor : Actor
         StartCoroutine(BossBehaviour());
     }
 
+    // fixed update is called every phyiscs sim tick
+    void FixedUpdate()
+    {
+        //move Ego's face anchor towards the player
+        DoActorUpdateFacing(
+            (player.gameObject.transform.position - this.gameObject.transform.position).normalized
+        );
+    }
+
     // Controls the timing of Ego's attacks and teleportations
     IEnumerator BossBehaviour()
     {
@@ -175,6 +184,15 @@ public class Ego2Actor : Actor
     //When this actor dies...
     public override void DoActorDeath()
     {
+        StartCoroutine(Die());
+    }
+
+    //yields death to next frame so UI can catch up
+    //this can be deletaed when a real death effect is added
+    IEnumerator Die()
+    {
+        yield return null;
+
         //fukkin die
         Destroy(this.gameObject);
     }

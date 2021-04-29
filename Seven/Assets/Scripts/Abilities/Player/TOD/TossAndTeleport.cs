@@ -14,6 +14,10 @@ public class TossAndTeleport : ProjectileAbility
     [Tooltip("How many times the user should be able to activate this ability in one scene.")]
     public int maxUses = 5;
 
+    [Tooltip("Whether the user should always get the sword, even if the teleport that takes" + 
+        " them there falls short.")]
+    public bool alwaysGetSword = false;
+
     //middleman variable for remembering the last sword that was thrown
     private GameObject currentSword;
 
@@ -22,6 +26,9 @@ public class TossAndTeleport : ProjectileAbility
 
     //amount of remaining uses
     private int usesRemaining;
+
+    //internal user reference typed to player
+    private PlayerActor internalUser;
 
     //METHODS--------------------------------------------------------------------------------------
     // Awake is called before everything starts
@@ -35,6 +42,17 @@ public class TossAndTeleport : ProjectileAbility
     TossAndTeleport is always tossed in the direction of the faceAnchor.*/
     protected override int InternInvoke(params Vector2[] args)
     {
+        //cast the user as a PlayerActor to gain access to the needed sword state methods
+        if(user is PlayerActor)
+        {
+            internalUser = (user as PlayerActor);
+        }
+        else
+        {
+            Debug.LogError("TossAndTeleport: This ability can only be used by the player!");
+            return 1;
+        }
+
         //auto return if the user it out of invokations for this ability
         if(usesRemaining <= 0)
         {
@@ -60,7 +78,7 @@ public class TossAndTeleport : ProjectileAbility
             yield return null;
         }
 
-        swordOut = true;
+        //swordOut = true;
         isFinished = true;
     }
 
@@ -69,42 +87,60 @@ public class TossAndTeleport : ProjectileAbility
     {
         //the sword is always thrown in direction of the user's face anchor
         Vector3 directionToFace = 
-            (user.faceAnchor.position - user.gameObject.transform.position).normalized;
+            (internalUser.faceAnchor.position 
+                - internalUser.gameObject.transform.position).normalized;
+
+        //put user in the swordless state
+        internalUser.SetSwordState(false);
 
         //The component is added on and then launched in the direction of the faceAnchor
-        projObj.AddComponent<PlayerSwordProjectile>().Launch(
+        projObj.GetComponent<PlayerSwordProjectile>().Launch(
             directionToFace, 
             LAUNCH_MODE.DIRECTION,
             this
         );
 
-        //put user in the swordless state
-
         currentSword = projObj;
+
+        swordOut = true;
     }
 
     //If there's a sword, EgoTeleport the user to it and reequip it
     IEnumerator TeleportToSword()
     {
+        //Destory projObj to prevent redundant sword creation
+        Destroy(projObj);
+
         if(currentSword)
         {
+            //if the sword is still moving, offset the destination so that the player will end up
+            //where the sword will be
+            //that is to say, avoid reposting where the missile isn't
+            var swordMove = currentSword.GetComponent<ActorMovement>();
+            Vector3 teleDest = 
+                swordMove.movementDirection == Vector2.zero ?
+                currentSword.transform.position :
+                currentSword.transform.position + 
+                    ((Vector3)swordMove.movementDirection * swordMove.speed * 0.3f);
+                //0.3f is how long a teleport takes trust me
+            
             yield return StartCoroutine(
-                Ego2Movement.EgoTeleport(currentSword.transform.position, user.gameObject)
+                Ego2Movement.EgoTeleport(teleDest, internalUser.gameObject)
             );
+
+            //if required, regain the sword once the teleport is over
+            if(alwaysGetSword)
+            {
+                ReEquipSword();
+            }
         }
         else
         {
             Debug.LogError("TossAndTeleport: no sword to teleport to!");
+
+            //assume the sword has returned
+            swordOut = false;
         }
-
-        //Tell the sword that it's been picked back up
-        //Actually don't do that
-        //ReEquip();
-        
-        //Destory projObj to prevent redundant sword creation
-        Destroy(projObj);
-
-        
 
         yield return null;
     }
@@ -117,79 +153,6 @@ public class TossAndTeleport : ProjectileAbility
         Destroy(currentSword);
 
         //put user in unswordless state
-    }
-}
-
-internal class PlayerSwordProjectile : BasicProjectile
-{
-    //FIELDS---------------------------------------------------------------------------------------
-    //how far the sword should travel before stopping
-    private float travelDistance = 5f;
-
-    //the sword's starting point for judging distance calculations
-    private Vector3 startingPoint;
-
-    //the wrapper, in case the sword needs to tell the wrapper that it has been picked up
-    private TossAndTeleport wrapper;
-
-    //METHODS--------------------------------------------------------------------------------------
-    //Does the normal launch with a default distance of 5 and damage of 2
-    public override void Launch(Vector2 target, LAUNCH_MODE mode = LAUNCH_MODE.POINT)
-    {
-        travelDistance = 5f;
-        damage = 2f;
-        startingPoint = this.gameObject.transform.position; 
-
-        base.Launch(target, mode);
-    }
-
-    /*Starts the projectile! Hides the OG launch in exchange for a user defined travel distance*
-    and damage value*/
-    public void Launch(Vector2 target, LAUNCH_MODE mode = LAUNCH_MODE.POINT, 
-        TossAndTeleport wrapper=null)
-    {
-        this.travelDistance = wrapper.travelDistance;
-        this.damage = wrapper.damage;  
-        this.wrapper = wrapper;
-        startingPoint = this.gameObject.transform.position;
-
-        base.Launch(target, mode);
-    }
-
-    /*What should happen every time the projectile moves (including the movement)*/
-    protected override void InternalMovement(Vector2 movementDirection)
-    {
-        //first, move the sword
-        mover.MoveActor(movementDirection);
-
-        //Then calculate how far it has gone
-        var distFromHome = Mathf.Abs(
-            Vector3.Distance(
-                startingPoint, 
-                this.gameObject.transform.position
-            )
-        );
-
-        //if it has gone too far, it should stop moving
-        if(distFromHome >= travelDistance)
-        {
-            this.moveFunction = null;
-        }
-    }
-
-    //What happens when the projectile actually hits something
-    protected override void OnTriggerEnter2D(Collider2D collided)
-    {
-        //if it's the player, make them pick up the sword
-        if(collided.gameObject.CompareTag("Player"))
-        {
-            wrapper?.ReEquipSword();
-        }
-        //if not, just do the regular hit
-        else
-        {
-            base.OnTriggerEnter2D(collided);
-        }
-
+        internalUser.SetSwordState(true);
     }
 }

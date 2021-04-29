@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEditor.Animations;
 
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerActor : Actor
@@ -11,10 +12,16 @@ public class PlayerActor : Actor
     [HideInInspector]
     public PlayerInput playerInput;
 
+    [Tooltip("Whether or not the player should start the scene with their sword.")]
+    public bool startWithSword = true;
+
+    public bool hasSword { get; protected set; }
+
     //Initialize non monobehaviour fields
     void Awake()
     {
         isTalking = false;
+        hasSword = true;
     }
 
     //Initialize monobehaviour fields
@@ -23,6 +30,8 @@ public class PlayerActor : Actor
         base.Start();
         this.myAbilityInitiator = GetComponent<PlayerAbilityInitiator>();
         playerInput = GetComponent<PlayerInput>();
+
+        SetSwordState(startWithSword);
     }
 
     public override void DoActorDeath()
@@ -49,6 +58,36 @@ public class PlayerActor : Actor
         }
         ActiveSpeaker.ACTIVE_NPC = speaker;
         MenuManager.DIALOGUE_MENU.StartDialogue();
+    }
+
+    /*Equips (true) or unequips (false) the player's sword by telling its animation handler
+    to swap between sworded and swordless animations. Also sets a flag that tells other 
+    scripts about the sword's status*/
+    public void SetSwordState(bool hasSword)
+    {
+        this.myAnimationHandler.Animator.SetBool("player_equiped", hasSword);
+        this.hasSword = hasSword;
+
+        //check each ability the player has
+        foreach(ActorAbility ability in this.myAbilityInitiator.abilities.Values)
+        {
+            //if it needs the sword
+            if(ability is PlayerSwordAbility)
+            {
+                //and the player has lost the sword
+                if(hasSword == false)
+                {
+                    //lock it forever
+                    StartCoroutine(ability.coolDown(Mathf.Infinity));
+                }
+                //and the player has gained the sword
+                else
+                {
+                    //immediately make it usable
+                    StartCoroutine(ability.coolDown(0f));
+                }
+            }
+        }
     }
 
     void OnMenu()

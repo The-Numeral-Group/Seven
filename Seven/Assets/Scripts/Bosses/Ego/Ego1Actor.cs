@@ -169,7 +169,17 @@ public class Ego1Actor : Actor
         else
         {
             ///just destroy this Ego
-            Destroy(this.gameObject);
+            StartCoroutine(Die());
         }
+    }
+
+    //yields death to next frame so UI can catch up
+    //this can be deletaed when a real death effect is added
+    IEnumerator Die()
+    {
+        yield return null;
+
+        //fukkin die
+        Destroy(this.gameObject);
     }
 }

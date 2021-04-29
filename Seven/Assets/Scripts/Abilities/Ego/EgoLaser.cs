@@ -30,7 +30,7 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
     
     //METHODS--------------------------------------------------------------------------------------
     /*Activates the ability with no arguments. In this case, it will default the target position
-    to whereever the player is standing*/
+    to the direction the user is facing*/
     public override void Invoke(ref Actor user)
     {
         this.user = user;
@@ -38,7 +38,7 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
         if(usable)
         {
             isFinished = false;
-            InternInvoke(GameObject.FindWithTag("Player").transform.position);
+            InternInvoke(user.faceAnchor.position);
             //StartCoroutine(coolDown(cooldownPeriod));
         }
         
@@ -75,6 +75,8 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
         //Step 2: create a laser object and attach the EgoLaserProjectile component
         var laser = Instantiate(laserObj, this.gameObject.transform)
             .AddComponent<EgoLaserProjectile>();
+        //but let it stay a child of the user's faceAnchor
+        laser.gameObject.transform.parent = user.faceAnchor;
         
         //Step 3: initialize the laser
         laser.Initialize(laserMaxDist, laserWidth, damage);
@@ -83,7 +85,9 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
         laser.ShootLaser(user.faceAnchor.position, targetDirection);
 
         //Step 5: wait a little bit
-        yield return new WaitForSeconds(preLaserDuration);
+        //yield return new WaitForSeconds(preLaserDuration);
+        //Lock the user's movement during this time...
+        yield return user.myMovement.LockActorMovementOnly(preLaserDuration);
 
         //Step 6: fire the actual laser
         laser.ShootLaser(user.faceAnchor.position, targetDirection, true);
@@ -144,7 +148,9 @@ internal class EgoLaserProjectile : MonoBehaviour
         Vector3 laserEnd;
 
         //shoot what is effectively a data laser
-        RaycastHit2D hit = Physics2D.Raycast(launchPoint, launchDirection, laserMaxDistance);
+        //RaycastHit2D hit = Physics2D.Raycast(launchPoint, launchDirection, laserMaxDistance);
+
+         
 
         /*//if it hit something...
         if(hit.collider != null)
@@ -170,8 +176,22 @@ internal class EgoLaserProjectile : MonoBehaviour
         //if the laser is active
         if(active)
         {
+            //shoot what is effectively a really thicc data laser
+            RaycastHit2D[] hits = Physics2D.BoxCastAll(
+                launchPoint,                                    //start of box
+                new Vector2 (line.startWidth, line.endWidth),   //size of box
+                Vector3.Angle(Vector3.zero, launchDirection),   //rotation of box
+                launchDirection,                                //direction of box "movement"
+                laserMaxDistance                                //travel distance of box
+            );
+
+            //try to hurt anything caught in the laser's path
+            foreach(RaycastHit2D hit in hits)
+            {
+                hit.collider?.gameObject.GetComponent<ActorHealth>()?.takeDamage(laserDamage);
+            }
             //try to hurt the target
-            hit.collider?.gameObject.GetComponent<ActorHealth>()?.takeDamage(laserDamage);
+            //hit.collider?.gameObject.GetComponent<ActorHealth>()?.takeDamage(laserDamage);
 
             ///DEBUG
             //switch the laser's color to red just to see it for right now

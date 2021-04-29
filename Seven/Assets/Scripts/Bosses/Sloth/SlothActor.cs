@@ -189,6 +189,14 @@ public class SlothActor : Actor
         //clean the observer off of the player
         Destroy(observer);
 
+        //offset destruction by 1 frame to let UI catch up
+        StartCoroutine(Die());
+    }
+
+    IEnumerator Die()
+    {
+        yield return null;
+
         //destroy sloth (this is temp, will be replaced with an animation)
         Destroy(this.gameObject);
     }

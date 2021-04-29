@@ -19,7 +19,7 @@ public class WeaponHitbox : MonoBehaviour
         was called during the start function*/
 
         wp = this.gameObject.GetComponentInParent(typeof(WeaponAbility)) as WeaponAbility;
-        this.damage = 1;
+        //this.damage = 1;
 
         if (!wp)
         {
