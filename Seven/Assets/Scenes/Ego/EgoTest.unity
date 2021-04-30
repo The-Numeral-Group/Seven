@@ -373,8 +373,8 @@ GameObject:
   - component: {fileID: 505191977}
   - component: {fileID: 505191988}
   - component: {fileID: 505191989}
-  - component: {fileID: 505191990}
   - component: {fileID: 505191991}
+  - component: {fileID: 505191990}
   m_Layer: 2
   m_Name: Ego 2
   m_TagString: Boss
@@ -427,9 +427,9 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Beam: {fileID: 505191989}
-  Wall: {fileID: 505191991}
-  Special: {fileID: 505191990}
+  Beam: {fileID: 505191990}
+  Wall: {fileID: 505191977}
+  Special: {fileID: 505191977}
 --- !u!114 &505191980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,14 +647,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 505191976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59e43129993d1924ebee84418e67d4ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e30e671bc73d439682ef2f55de86ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 3
+  cooldownPeriod: 0
   abilityName: 
   invokeBlankWhenBadArguments: 1
-  swordObj: {fileID: 3639409746168724447, guid: 189956f777a028daf926ea56d9cf92de, type: 3}
-  launchOffset: {x: 5, y: 5}
+  swordObj: {fileID: 4544998132171906013, guid: 9e9abd2543186775eb4ff63d498592d0, type: 3}
+  targetOffset: 5
+  radialOffset: 5
+  launchTimeOffset: 2
 --- !u!114 &505191991
 MonoBehaviour:
   m_ObjectHideFlags: 0

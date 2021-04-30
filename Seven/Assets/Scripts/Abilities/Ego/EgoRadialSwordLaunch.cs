@@ -84,15 +84,27 @@ public class EgoRadialSwordLaunch : ActorAbilityCoroutine<GameObject>
 
             //Step 1.2: calculate sword direction
             //needs to be negative due to the relative orientation of the prefab itself
-            var swordDir = (target.transform.position - swordPos).normalized;
+            var swordDir = Quaternion.Euler(
+                Vector3.RotateTowards(
+                    Vector2.up, swordPos - target.transform.position, Mathf.PI, -180f
+                )
+            );
 
             //Step 1.25: create the sword
             var sword = Instantiate
             (
                 swordObj,
                 swordPos,
-                Quaternion.Euler(swordDir.x, swordDir.y, -swordDir.z)
+                Quaternion.identity
             );
+
+            sword.transform.up = target.transform.position - sword.transform.position;
+            //sword.transform.up = Vector3.Lerp(sword.transform.up, new Vector3(0f, 0f, sword.transform.up.z), 1f);
+            /* = Quaternion.Euler(
+                Vector3.RotateTowards(
+                    sword.transform.up, target.transform.position - swordPos, Mathf.PI, -180f
+                )
+            );*/
 
             //Step 1.3: Create the sword and enqueue it
             swordQueue.Enqueue(sword);
@@ -123,7 +135,7 @@ public class EgoRadialSwordLaunch : ActorAbilityCoroutine<GameObject>
         yield break;
 
         //Step 2: Launch the swords
-        while(swordQueue.Count != 0)
+        /*while(swordQueue.Count != 0)
         {
             //Step 2.2: wait a little bit
             yield return new WaitForSeconds(launchTimeOffset);
@@ -148,7 +160,7 @@ public class EgoRadialSwordLaunch : ActorAbilityCoroutine<GameObject>
             }
 
             //It is an error if swordObj does not have an EgoSwordActor
-        }
+        }*/
 
         //By the time we get here, the method is done!
     }
