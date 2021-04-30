@@ -90,11 +90,11 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
         }
     }
 
-    public void OnAbilityTwo()
+    /*public void OnAbilityTwo()
     {
         if (selectedAbilityBeta)
         {
             selectedAbilityBeta.Invoke(ref userActor);
         }
-    }
+    }*/
 }

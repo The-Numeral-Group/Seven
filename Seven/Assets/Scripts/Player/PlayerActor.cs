@@ -117,7 +117,7 @@ public class PlayerActor : Actor
         }
     }
     
-    void OnSetAbilityOne()
+    /*void OnSetAbilityOne()
     {
         if (MenuManager.CURRENT_MENU && MenuManager.CURRENT_MENU.GetType().ToString() == "PauseMenu")
         {
@@ -133,7 +133,7 @@ public class PlayerActor : Actor
             PauseMenu pMenu = MenuManager.CURRENT_MENU as PauseMenu;
             pMenu.SetAbility(false);
         }
-    }
+    }*/
 
     public override void DoActorDamageEffect(float damage)
     {
