@@ -17,6 +17,9 @@ public class BeliefOfInvincibility : ActorAbilityCoroutine<int>
     //The user's original RB2D constraints, if any
     private RigidbodyConstraints2D constraints = RigidbodyConstraints2D.None;
 
+    //Whether or not the user has tried to attack recently
+    private bool recentAttack = false;
+
     //METHODS--------------------------------------------------------------------------------------
     // initialize remaining uses before fight starts
     void Awake()
@@ -69,5 +72,34 @@ public class BeliefOfInvincibility : ActorAbilityCoroutine<int>
 
         //And now we're done!
 
+    }
+
+    /*these four methods will intercept the user's attacks and end the ability should an attack be
+    detected. Really only works for the player, there isn't a super easy way to read for when 
+    abilities are used, let alone read ones that are specifically attacks.*/
+    public void OnAttack()
+    {
+        StartCoroutine(AttackBuffer());
+    }
+
+    public void OnAbilityOne()
+    {
+        StartCoroutine(AttackBuffer());
+    }
+
+    public void OnAbilityTwo()
+    {
+        StartCoroutine(AttackBuffer());
+    }
+
+    IEnumerator AttackBuffer()
+    {
+        recentAttack = true;
+
+        Debug.Log("BeliefOfInvincibility: attack read");
+
+        yield return new WaitForSeconds(0.5f);
+
+        recentAttack = false;
     }
 }
