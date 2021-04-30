@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 0}
+  sp: {fileID: 0}
 --- !u!114 &7608486999077841734
 MonoBehaviour:
   m_ObjectHideFlags: 0

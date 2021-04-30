@@ -83,19 +83,44 @@ public class EgoRadialSwordLaunch : ActorAbilityCoroutine<GameObject>
             );
 
             //Step 1.2: calculate sword direction
+            //needs to be negative due to the relative orientation of the prefab itself
             var swordDir = (target.transform.position - swordPos).normalized;
 
-            //Step 1.3: Create the sword and enqueue it
-            swordQueue.Enqueue(Instantiate
+            //Step 1.25: create the sword
+            var sword = Instantiate
             (
                 swordObj,
                 swordPos,
-                Quaternion.Euler(swordDir.x, swordDir.y, swordDir.z),
-                target.transform
-            ));
+                Quaternion.Euler(swordDir.x, swordDir.y, -swordDir.z)
+            );
+
+            //Step 1.3: Create the sword and enqueue it
+            swordQueue.Enqueue(sword);
+
+            //Step 1.4: Tell it to delayLaunch
+            EgoSwordActor swordActor;
+            if(sword.TryGetComponent(out swordActor))
+            {
+                swordActor.DelayFollowLaunch(
+                    target, 
+                    new Vector3(rOffset, targetOffset, 0f), 
+                    launchTimeOffset * ((rOffset / radialOffset) + 1f)
+                );
+            }
+            else
+            {
+                Debug.LogError("EgoRadialSwordLaunch: swords are missing their EgoSwordActor" + 
+                    " components. Swords cannot be launched");
+                Destroy(sword);
+            }
+
 
             //That makes one sword. This loop will run 3 times
         }
+
+        //just wait out launch times then return
+        yield return new WaitForSeconds(launchTimeOffset * 3);
+        yield break;
 
         //Step 2: Launch the swords
         while(swordQueue.Count != 0)
