@@ -21,6 +21,8 @@ public class AbilityMenu : BaseUI
     void Start()
     {
         SetupPlayerReference();
+        abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position;
+        //Temporary setup
         abilityButtons[0].SetSelectedAbility(true);
         abilityButtons[1].SetSelectedAbility(true);
     }
@@ -42,7 +44,7 @@ public class AbilityMenu : BaseUI
         if (pointerToCurrentSelectedButton < abilityButtons.Count - 1)
         {
             pointerToCurrentSelectedButton += 1;
-            abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.localPosition;
+            abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position;
             UpdatePlayerSelectedAbility();
         }
     }
@@ -52,7 +54,7 @@ public class AbilityMenu : BaseUI
         if (pointerToCurrentSelectedButton > 0)
         {
             pointerToCurrentSelectedButton -= 1;
-            abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.localPosition;
+            abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position;
             UpdatePlayerSelectedAbility();
         }
     }
