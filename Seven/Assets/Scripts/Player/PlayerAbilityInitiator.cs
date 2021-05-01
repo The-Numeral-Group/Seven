@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerAbilityInitiator : ActorAbilityInitiator
 {
     /*these are the two abilities that the player sees on their UI.*/
-    public ActorAbility selectedAbilityAlpha;
-    public ActorAbility selectedAbilityBeta;
+    /*public ActorAbility selectedAbilityAlpha;
+    public ActorAbility selectedAbilityBeta;*/
+    public ActorAbility selectedAbility;
 
     /*This is the player's implicit dodge. Switch this out
     to change how the player dodges*/
@@ -24,11 +25,11 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     {
         //Manual initialization, 'cause I (Thomas) have come to realize it can't be done automatically
 
-        this.abilities.Add("Player" + nameof(selectedAbilityAlpha), selectedAbilityAlpha);
+        /*this.abilities.Add("Player" + nameof(selectedAbilityAlpha), selectedAbilityAlpha);
         AbilityRegister.PLAYER_SELECTED_A = "Player" + nameof(selectedAbilityAlpha);
 
         this.abilities.Add("Player" + nameof(selectedAbilityBeta), selectedAbilityBeta);
-        AbilityRegister.PLAYER_SELECTED_B = "Player" + nameof(selectedAbilityBeta);
+        AbilityRegister.PLAYER_SELECTED_B = "Player" + nameof(selectedAbilityBeta);*/
 
         this.abilities.Add("" + nameof(playerAttack), playerAttack);
         AbilityRegister.PLAYER_ATTACK = "" + nameof(playerAttack);
@@ -82,7 +83,15 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
         playerInteract.Invoke(ref userActor);
     }
 
-    public void OnAbilityOne()
+    void OnAbility()
+    {
+        if (selectedAbility != null)
+        {
+            selectedAbility.Invoke(ref userActor);
+        }
+    }
+
+    /*public void OnAbilityOne()
     {
         if(selectedAbilityAlpha)
         {
@@ -90,7 +99,7 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
         }
     }
 
-    /*public void OnAbilityTwo()
+    public void OnAbilityTwo()
     {
         if (selectedAbilityBeta)
         {

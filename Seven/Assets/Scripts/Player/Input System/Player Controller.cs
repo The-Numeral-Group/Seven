@@ -59,7 +59,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""AbilityOne"",
+                    ""name"": ""NavigateLeftAbility"",
                     ""type"": ""Button"",
                     ""id"": ""f8d57b4a-1594-4389-97b8-c7582edf6f92"",
                     ""expectedControlType"": ""Button"",
@@ -67,9 +67,17 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""AbilityTwo"",
+                    ""name"": ""NavigateRightAbility"",
                     ""type"": ""Button"",
                     ""id"": ""c5ab0f98-0614-47a0-9f06-803f4ed1c9b4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Ability"",
+                    ""type"": ""Button"",
+                    ""id"": ""e386c73a-47f6-4df2-9d9f-a39010252716"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -446,7 +454,7 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse and Keyboard"",
-                    ""action"": ""AbilityOne"",
+                    ""action"": ""NavigateLeftAbility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -457,7 +465,18 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""AbilityTwo"",
+                    ""action"": ""NavigateRightAbility"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9cd685d5-32d3-4532-86b1-c31bf0ae3b44"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ability"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -495,22 +514,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""name"": ""Menu"",
                     ""type"": ""Button"",
                     ""id"": ""bc1e19f3-2088-46a9-9a25-ab1aac2ab929"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""SetAbilityOne"",
-                    ""type"": ""Button"",
-                    ""id"": ""fa4a13c1-838b-4257-a54c-c3f612cebc58"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""SetAbilityTwo"",
-                    ""type"": ""Button"",
-                    ""id"": ""cc6da065-8cb7-421d-81b8-ab51a4d40aca"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -890,28 +893,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
                     ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2dd6632c-9321-4fb8-844a-c61baab794bd"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SetAbilityOne"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d7f60628-28d0-4282-92cd-a8633f680e3e"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SetAbilityTwo"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -968,16 +949,15 @@ public class @PlayerController : IInputActionCollection, IDisposable
         m_Player_Dodge = m_Player.FindAction("Dodge", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
-        m_Player_AbilityOne = m_Player.FindAction("AbilityOne", throwIfNotFound: true);
-        m_Player_AbilityTwo = m_Player.FindAction("AbilityTwo", throwIfNotFound: true);
+        m_Player_NavigateLeftAbility = m_Player.FindAction("NavigateLeftAbility", throwIfNotFound: true);
+        m_Player_NavigateRightAbility = m_Player.FindAction("NavigateRightAbility", throwIfNotFound: true);
+        m_Player_Ability = m_Player.FindAction("Ability", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
         m_UI_Select = m_UI.FindAction("Select", throwIfNotFound: true);
         m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
         m_UI_Menu = m_UI.FindAction("Menu", throwIfNotFound: true);
-        m_UI_SetAbilityOne = m_UI.FindAction("SetAbilityOne", throwIfNotFound: true);
-        m_UI_SetAbilityTwo = m_UI.FindAction("SetAbilityTwo", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1032,8 +1012,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Dodge;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Menu;
-    private readonly InputAction m_Player_AbilityOne;
-    private readonly InputAction m_Player_AbilityTwo;
+    private readonly InputAction m_Player_NavigateLeftAbility;
+    private readonly InputAction m_Player_NavigateRightAbility;
+    private readonly InputAction m_Player_Ability;
     public struct PlayerActions
     {
         private @PlayerController m_Wrapper;
@@ -1043,8 +1024,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
         public InputAction @Dodge => m_Wrapper.m_Player_Dodge;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Menu => m_Wrapper.m_Player_Menu;
-        public InputAction @AbilityOne => m_Wrapper.m_Player_AbilityOne;
-        public InputAction @AbilityTwo => m_Wrapper.m_Player_AbilityTwo;
+        public InputAction @NavigateLeftAbility => m_Wrapper.m_Player_NavigateLeftAbility;
+        public InputAction @NavigateRightAbility => m_Wrapper.m_Player_NavigateRightAbility;
+        public InputAction @Ability => m_Wrapper.m_Player_Ability;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1069,12 +1051,15 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Menu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 @Menu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 @Menu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
-                @AbilityOne.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbilityOne;
-                @AbilityOne.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbilityOne;
-                @AbilityOne.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbilityOne;
-                @AbilityTwo.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbilityTwo;
-                @AbilityTwo.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbilityTwo;
-                @AbilityTwo.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbilityTwo;
+                @NavigateLeftAbility.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNavigateLeftAbility;
+                @NavigateLeftAbility.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNavigateLeftAbility;
+                @NavigateLeftAbility.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNavigateLeftAbility;
+                @NavigateRightAbility.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNavigateRightAbility;
+                @NavigateRightAbility.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNavigateRightAbility;
+                @NavigateRightAbility.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnNavigateRightAbility;
+                @Ability.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility;
+                @Ability.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility;
+                @Ability.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAbility;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1094,12 +1079,15 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Menu.started += instance.OnMenu;
                 @Menu.performed += instance.OnMenu;
                 @Menu.canceled += instance.OnMenu;
-                @AbilityOne.started += instance.OnAbilityOne;
-                @AbilityOne.performed += instance.OnAbilityOne;
-                @AbilityOne.canceled += instance.OnAbilityOne;
-                @AbilityTwo.started += instance.OnAbilityTwo;
-                @AbilityTwo.performed += instance.OnAbilityTwo;
-                @AbilityTwo.canceled += instance.OnAbilityTwo;
+                @NavigateLeftAbility.started += instance.OnNavigateLeftAbility;
+                @NavigateLeftAbility.performed += instance.OnNavigateLeftAbility;
+                @NavigateLeftAbility.canceled += instance.OnNavigateLeftAbility;
+                @NavigateRightAbility.started += instance.OnNavigateRightAbility;
+                @NavigateRightAbility.performed += instance.OnNavigateRightAbility;
+                @NavigateRightAbility.canceled += instance.OnNavigateRightAbility;
+                @Ability.started += instance.OnAbility;
+                @Ability.performed += instance.OnAbility;
+                @Ability.canceled += instance.OnAbility;
             }
         }
     }
@@ -1112,8 +1100,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_Select;
     private readonly InputAction m_UI_Cancel;
     private readonly InputAction m_UI_Menu;
-    private readonly InputAction m_UI_SetAbilityOne;
-    private readonly InputAction m_UI_SetAbilityTwo;
     public struct UIActions
     {
         private @PlayerController m_Wrapper;
@@ -1122,8 +1108,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
         public InputAction @Select => m_Wrapper.m_UI_Select;
         public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
         public InputAction @Menu => m_Wrapper.m_UI_Menu;
-        public InputAction @SetAbilityOne => m_Wrapper.m_UI_SetAbilityOne;
-        public InputAction @SetAbilityTwo => m_Wrapper.m_UI_SetAbilityTwo;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1145,12 +1129,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Menu.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
                 @Menu.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
                 @Menu.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMenu;
-                @SetAbilityOne.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSetAbilityOne;
-                @SetAbilityOne.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSetAbilityOne;
-                @SetAbilityOne.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSetAbilityOne;
-                @SetAbilityTwo.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSetAbilityTwo;
-                @SetAbilityTwo.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSetAbilityTwo;
-                @SetAbilityTwo.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSetAbilityTwo;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1167,12 +1145,6 @@ public class @PlayerController : IInputActionCollection, IDisposable
                 @Menu.started += instance.OnMenu;
                 @Menu.performed += instance.OnMenu;
                 @Menu.canceled += instance.OnMenu;
-                @SetAbilityOne.started += instance.OnSetAbilityOne;
-                @SetAbilityOne.performed += instance.OnSetAbilityOne;
-                @SetAbilityOne.canceled += instance.OnSetAbilityOne;
-                @SetAbilityTwo.started += instance.OnSetAbilityTwo;
-                @SetAbilityTwo.performed += instance.OnSetAbilityTwo;
-                @SetAbilityTwo.canceled += instance.OnSetAbilityTwo;
             }
         }
     }
@@ -1202,8 +1174,9 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnDodge(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
-        void OnAbilityOne(InputAction.CallbackContext context);
-        void OnAbilityTwo(InputAction.CallbackContext context);
+        void OnNavigateLeftAbility(InputAction.CallbackContext context);
+        void OnNavigateRightAbility(InputAction.CallbackContext context);
+        void OnAbility(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -1211,7 +1184,5 @@ public class @PlayerController : IInputActionCollection, IDisposable
         void OnSelect(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
-        void OnSetAbilityOne(InputAction.CallbackContext context);
-        void OnSetAbilityTwo(InputAction.CallbackContext context);
     }
 }
