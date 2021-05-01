@@ -24,7 +24,7 @@ public class AbilityMenu : BaseUI
         abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position;
         //Temporary setup
         abilityButtons[0].SetSelectedAbility(true);
-        abilityButtons[1].SetSelectedAbility(true);
+        abilityButtons[1].SetSelectedAbility(false);
     }
 
     void SetupPlayerReference()
