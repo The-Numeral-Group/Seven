@@ -24,6 +24,7 @@ public class GameSaveManager : MonoBehaviour
     {
         this.gameSaveList = gameSaveListObject.GetComponent<GameSaveList>();
 
+        // CHANGE THIS
         LoadSaveList();
 
         if (placeObjects.Length > 0)
@@ -80,10 +81,17 @@ public class GameSaveManager : MonoBehaviour
             Vector2 newGKPos = new Vector2(gameSaveData.ghostKnightPosition[0], gameSaveData.ghostKnightPosition[1]);
             gameSaveList.setVectorValue(newGKPos, 3);
 
-            gameSaveList.setBoolValue(gameSaveData.ApathyDefeated, 10);
-            gameSaveList.setBoolValue(gameSaveData.DesireDefeated, 11);
-            gameSaveList.setBoolValue(gameSaveData.EgoDefeated, 12);
-            gameSaveList.setBoolValue(gameSaveData.IndulgenceDefeated, 13);
+            gameSaveList.setBoolValue(gameSaveData.ApathyOpening, 10);
+            gameSaveList.setBoolValue(gameSaveData.ApathySinCorrupted, 11);
+            gameSaveList.setBoolValue(gameSaveData.ApathyDefeated, 12);
+
+            gameSaveList.setBoolValue(gameSaveData.EgoOpening, 13);
+            gameSaveList.setBoolValue(gameSaveData.EgoSinCorrupted, 14);
+            gameSaveList.setBoolValue(gameSaveData.EgoDefeated, 15);
+
+            gameSaveList.setBoolValue(gameSaveData.IndulgenceOpening, 16);
+            gameSaveList.setBoolValue(gameSaveData.IndulgenceSinCorrupted, 17);
+            gameSaveList.setBoolValue(gameSaveData.IndulgenceDefeated, 18);
 
             file.Close();
         }

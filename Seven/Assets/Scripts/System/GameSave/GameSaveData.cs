@@ -13,11 +13,21 @@ public class GameSaveData
 
     public float[] ghostKnightPosition;
 
+    public bool ApathyOpening;
+
+    public bool ApathySinCorrupted;
+
     public bool ApathyDefeated;
 
-    public bool DesireDefeated;
+    public bool EgoOpening;
+
+    public bool EgoSinCorrupted;
 
     public bool EgoDefeated;
+
+    public bool IndulgenceOpening;
+
+    public bool IndulgenceSinCorrupted;
 
     public bool IndulgenceDefeated;
 
@@ -34,10 +44,17 @@ public class GameSaveData
         this.ghostKnightPosition[0] = gameSaveList.getVectorValue(3).x;
         this.ghostKnightPosition[1] = gameSaveList.getVectorValue(3).y;
 
-        this.ApathyDefeated = gameSaveList.getBoolValue(10);
-        this.DesireDefeated = gameSaveList.getBoolValue(11);
-        this.EgoDefeated = gameSaveList.getBoolValue(12);
-        this.IndulgenceDefeated = gameSaveList.getBoolValue(13);
+        this.ApathyOpening = gameSaveList.getBoolValue(10);
+        this.ApathySinCorrupted = gameSaveList.getBoolValue(11);
+        this.ApathyDefeated = gameSaveList.getBoolValue(12);
+
+        this.EgoOpening = gameSaveList.getBoolValue(13);
+        this.EgoSinCorrupted = gameSaveList.getBoolValue(14);
+        this.EgoDefeated = gameSaveList.getBoolValue(15);
+
+        this.IndulgenceOpening = gameSaveList.getBoolValue(16);
+        this.IndulgenceSinCorrupted = gameSaveList.getBoolValue(17);
+        this.IndulgenceDefeated = gameSaveList.getBoolValue(18);
     }
 
 }
