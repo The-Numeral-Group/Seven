@@ -817,7 +817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c006b1f6d0a9cd261b30cd24244da098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 1.5
+  cooldownPeriod: 3
   abilityName: 
   invokeBlankWhenBadArguments: 1
   startingWeaponObject: {fileID: 3869898009536138324, guid: 208d7a05a6da0f00786a9386d3137408, type: 3}
@@ -839,7 +839,7 @@ MonoBehaviour:
   sinGate: 3
   specialAttackGate: 7
   chargeRange: 15
-  punchRange: 5
+  punchRange: 3
 --- !u!114 &656284022
 MonoBehaviour:
   m_ObjectHideFlags: 0
