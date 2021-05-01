@@ -990,6 +990,8 @@ GameObject:
   - component: {fileID: 1428591400674368331}
   - component: {fileID: 921132941887837043}
   - component: {fileID: 2369147760866669199}
+  - component: {fileID: 6403884557471617500}
+  - component: {fileID: 5365560968412316171}
   m_Layer: 5
   m_Name: Ego Ability Button
   m_TagString: Untagged
@@ -1110,10 +1112,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f92e531d5d29089418facb4290271f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TOD: {fileID: 1975727374177705368}
-  AOS: {fileID: 1975727374177705368}
-  TODImage: {fileID: 8898110488112739890, guid: 1e3acbcdcabbd9247aed127b30348646, type: 3}
-  AOSImage: {fileID: -5005677837575588817, guid: 1e3acbcdcabbd9247aed127b30348646, type: 3}
+  TOD: {fileID: 6403884557471617500}
+  AOS: {fileID: 5365560968412316171}
+  TODImage: {fileID: 21300000, guid: b6bc7572787fef941a44d9fd6794d5d9, type: 3}
+  AOSImage: {fileID: 21300000, guid: b6bc7572787fef941a44d9fd6794d5d9, type: 3}
+--- !u!114 &6403884557471617500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8323186643304453828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b0a3f7841e7346459eb7d9f876182ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  laserObj: {fileID: 0}
+  laserMaxDist: 100
+  laserWidth: 3
+  damage: 2
+  preLaserDuration: 0.5
+  laserDuration: 0.3
+  chargeTime: 2
+  maxUses: 2
+--- !u!114 &5365560968412316171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8323186643304453828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b6e13718b6ed6fbab555bb3fb84ed77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  usesPerFight: 2
+  minLockTime: 1
 --- !u!1 &8721465656817085094
 GameObject:
   m_ObjectHideFlags: 0
