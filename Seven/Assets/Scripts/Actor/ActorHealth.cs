@@ -20,7 +20,7 @@ public class ActorHealth : MonoBehaviour
     public float damageResistance = 0.0f;
     //How long the actor stays invulnerable for from taking a hit
     [Range(0, 256)]
-    public float invincibilityDuration = 1;
+    public int invincibilityDuration = 1;
 
     public bool startInvulnerable = false;
 
@@ -112,10 +112,10 @@ public class ActorHealth : MonoBehaviour
     IEnumerator ExtendInvulnerability(float duration, bool value)
     {
         timeInvulnerable = duration;
-        for (float i = 0; i < duration; i += 0.01f)
+        for (float i = 0; i < duration; i += 0.1f)
         {
-            yield return new WaitForSeconds(0.01f);
-            timeInvulnerable -= 0.01f;
+            yield return new WaitForSecondsRealtime(0.1f);
+            timeInvulnerable -= 0.1f;
         }
         this.vulnerable = !value;
         timeInvulnerable = 0f;
@@ -157,7 +157,7 @@ public class ActorHealth : MonoBehaviour
         modifiedColor = defaultColor;
         if (invincibilityDuration > 0)
         {
-            SetVulnerable(false, invincibilityDuration);
+            SetVulnerable(false, invincibilityDuration, false);
             BlinkPtr = BlinkEffect();
             StartCoroutine(BlinkPtr);
         }
@@ -182,14 +182,14 @@ public class ActorHealth : MonoBehaviour
     IEnumerator BlinkEffect()
     {
         float blinkSpeed = invincibilityDuration > 0.2f * 2f ? 0.2f : invincibilityDuration / 2f;
-        for (float i = 0; i < invincibilityDuration; i += blinkSpeed * 2)
+        for (float i = 0; i < invincibilityDuration; i += blinkSpeed * 2f)
         {
+            yield return new WaitForSeconds(blinkSpeed);
             modifiedColor.a = 0;
             spriteRenderer.color = modifiedColor;
             yield return new WaitForSeconds(blinkSpeed);
             modifiedColor.a = defaultColor.a;
             spriteRenderer.color = modifiedColor;
-            yield return new WaitForSeconds(blinkSpeed);
         }
     }
 }
