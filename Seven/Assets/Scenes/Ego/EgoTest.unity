@@ -427,9 +427,9 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Beam: {fileID: 505191990}
-  Wall: {fileID: 505191977}
-  Special: {fileID: 505191977}
+  Beam: {fileID: 505191989}
+  Wall: {fileID: 505191991}
+  Special: {fileID: 505191990}
 --- !u!114 &505191980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,7 +634,7 @@ MonoBehaviour:
   invokeBlankWhenBadArguments: 1
   laserObj: {fileID: 4417132022118089685, guid: b0818de86c2e4c0fcaeb8e849b1b5dec, type: 3}
   laserMaxDist: 100
-  laserWidth: 2
+  laserWidth: 4
   damage: 3
   preLaserDuration: 0.5
   laserDuration: 0.3
@@ -837,6 +837,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sinGate: 3
+  swaggerSpeed: 4
+  sprintSpeed: 6
+  swaggerDuration: 3
   specialAttackGate: 7
   chargeRange: 15
   punchRange: 3
@@ -942,7 +945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d1d5e7c31d60a4bac75dc1bef3276a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMaxHealth: 25
+  startingMaxHealth: 1
   damageResistance: 0
   invincibilityDuration: 1
   startInvulnerable: 0

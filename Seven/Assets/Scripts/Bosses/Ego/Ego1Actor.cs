@@ -13,6 +13,15 @@ public class Ego1Actor : Actor
         " to appeal to the crowd) for Ego to enter Phase 2 upon death.")]
     public int sinGate = 3;
 
+    [Tooltip("How fast Ego travels when Swaggering.")]
+    public float swaggerSpeed = 4f;
+
+    [Tooltip("Hpw fast Ego travels when Sprinting.")]
+    public float sprintSpeed = 6f;
+
+    [Tooltip("How long Ego will swagger for before just sprinting towards the player.")]
+    public float swaggerDuration = 3f;
+
     [Header("Attacks")]
     [Tooltip("Controls how many times should Ego use normal attacks before using it's special.")]
     public int specialAttackGate = 7;
@@ -36,6 +45,9 @@ public class Ego1Actor : Actor
 
     //internal counter to track when Ego should use its special
     private int specialAttackCounter = 0;
+
+    //the timer that runs whether or not Ego should Swagger or Sprint
+    private IEnumerator sprintTimer;
 
     //METHODS--------------------------------------------------------------------------------------
     /*Aquires references to needed actor components, then sets Ego's speed based on
@@ -61,6 +73,10 @@ public class Ego1Actor : Actor
         //save ego's own actor
         ego = this.gameObject.GetComponent<Ego1Actor>();
 
+        //save ego's sprint-related timer
+        sprintTimer = ResetSprint();
+
+        StartCoroutine(sprintTimer);
         StartCoroutine(BossBehaviour());
     }
 
@@ -110,6 +126,10 @@ public class Ego1Actor : Actor
             //If there is an attack..
             if(currAbility && currAbility.getUsable())
             {
+                //Reset Ego's sprinting/swaggering
+                StopCoroutine(sprintTimer);
+                StartCoroutine(sprintTimer);
+
                 //stop moving
                 this.myMovement.MoveActor(Vector2.zero);
                 
@@ -146,6 +166,13 @@ public class Ego1Actor : Actor
         ///DEBUG
 
         this.myMovement.MoveActor(directionToPlayer);
+    }
+
+    IEnumerator ResetSprint()
+    {
+        this.myMovement.speed = swaggerSpeed;
+        yield return new WaitForSeconds(swaggerDuration);
+        this.myMovement.speed = sprintSpeed;
     }
 
     //Ego1 will switch to Ego2 upon death.
