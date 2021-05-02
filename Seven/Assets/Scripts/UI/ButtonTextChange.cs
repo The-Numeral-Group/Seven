@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -44,7 +45,7 @@ public class ButtonTextChange : MonoBehaviour
 
     public void checkSaveFileExists()
     {
-        if (GameSaveManager.GetComponent<GameSaveManager>().getBoolValue(0))
+        if (!File.Exists(Application.persistentDataPath + ("/SaveFile.dat")))
         {
             this.textChangeTemp("No Save File!");
         }

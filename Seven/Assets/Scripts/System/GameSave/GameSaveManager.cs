@@ -24,8 +24,8 @@ public class GameSaveManager : MonoBehaviour
     {
         this.gameSaveList = gameSaveListObject.GetComponent<GameSaveList>();
 
-        // CHANGE THIS
-        LoadSaveList();
+        // No longer call this function everytime. Only Loads when click "Continue" button in the main menu.
+        //LoadSaveList();
 
         if (placeObjects.Length > 0)
         {
@@ -154,6 +154,7 @@ public class GameSaveManager : MonoBehaviour
 
     public void continueGame()
     {
+        LoadSaveList();
         if (!this.gameSaveList.getBoolValue(0))
         {
             this.loadCurrentScene(1);
