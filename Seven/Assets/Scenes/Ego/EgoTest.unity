@@ -787,6 +787,7 @@ Transform:
   - {fileID: 928636629}
   - {fileID: 1973677590}
   - {fileID: 1886399510}
+  - {fileID: 1113196126}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1084,7 +1085,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &928636629
 Transform:
   m_ObjectHideFlags: 0
@@ -1203,6 +1204,121 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 629310093682338108, guid: fb7fac46d5a210f45a451e02c6e12e1e, type: 3}
   m_PrefabInstance: {fileID: 1006802073}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1113196125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1113196126}
+  - component: {fileID: 1113196130}
+  - component: {fileID: 1113196129}
+  - component: {fileID: 1113196128}
+  - component: {fileID: 1113196127}
+  m_Layer: 0
+  m_Name: One-Two-Three Punch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1113196126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113196125}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 656284014}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1113196127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113196125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dd238a1ebebf7947894c73e11d2176f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 1
+  abilityName: Three-Punch
+  invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 1844393178547753448, guid: 6813d0bc0b85df114885d10a1a08d801, type: 3}
+  duration: 0.25
+  weaponPositionScale: {x: 3.2, y: 3.2}
+  damagePerHitbox: 01000000
+--- !u!114 &1113196128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113196125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dd238a1ebebf7947894c73e11d2176f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 1
+  abilityName: Two-Punch
+  invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 1844393178547753448, guid: 6813d0bc0b85df114885d10a1a08d801, type: 3}
+  duration: 0.25
+  weaponPositionScale: {x: 3.2, y: 3.2}
+  damagePerHitbox: 01000000
+--- !u!114 &1113196129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113196125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dd238a1ebebf7947894c73e11d2176f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 1
+  abilityName: One-Punch
+  invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 1844393178547753448, guid: 6813d0bc0b85df114885d10a1a08d801, type: 3}
+  duration: 0.25
+  weaponPositionScale: {x: 3.2, y: 3.2}
+  damagePerHitbox: 01000000
+--- !u!114 &1113196130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113196125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f2a665774058124806f041d892eed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 2
+  abilityName: One-Two Punch
+  invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 7573367737500984201, guid: bfab2a95a7b826b4ab10b4994c287025, type: 3}
+  duration: 0
+  weaponPositionScale: {x: 0.1, y: 0.1}
+  damagePerHitbox: 
+  cooldownCancel: 1
+  comboList:
+  - {fileID: 1113196129}
+  - {fileID: 1113196128}
+  - {fileID: 1113196127}
 --- !u!4 &1153083609 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4332445788766981374, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
@@ -1685,7 +1801,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1722037464
 Transform:
   m_ObjectHideFlags: 0
@@ -1902,7 +2018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1801753357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2100,7 +2216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1886399510
 Transform:
   m_ObjectHideFlags: 0
@@ -2176,7 +2292,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1973677590
 Transform:
   m_ObjectHideFlags: 0

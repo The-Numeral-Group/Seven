@@ -5,7 +5,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(ActorMovement))]
-public class PrideWaveProjectile : BasicHitbox
+public class PrideWaveProjectile : BasicProjectile
 {
     //FIELDS---------------------------------------------------------------------------------------
     [Header("Wave Size")]
@@ -25,24 +25,24 @@ public class PrideWaveProjectile : BasicHitbox
     [Tooltip("The maximum amount of time the wave should travel for.")]
     public float maxWaveTime = 10.0f;
 
-    [Tooltip("Whether or not the wave should stop existing if it hits something.")]
-    public bool destroyOnHit = true;
+    /*[Tooltip("Whether or not the wave should stop existing if it hits something.")]
+    public bool destroyOnHit = true;*/
 
     //The function that will be called when the wave starts moving.
-    private Action<Vector2> moveFunction = null;
+    //private Action<Vector2> moveFunction = null;
 
     //The direction the wave will be going;
-    private Vector2 launchDirection = Vector2.zero;
+    //private Vector2 launchDirection = Vector2.zero;
 
     //The wave's starting point (for determining how far it's gone)
     private Vector2 origin;
 
     //The wave's actor movement, which does its actual movement
-    private ActorMovement mover;
+    //private ActorMovement mover;
 
     //METHODS--------------------------------------------------------------------------------------
     // Start is called the first frame this object is active
-    void Start()
+    protected override void Start()
     {
         /*Preset the wave object's width so it scales correctly. We need to redefined the whole
         vector because it's a property and parts of properties can't be modified directly.*/
@@ -53,27 +53,27 @@ public class PrideWaveProjectile : BasicHitbox
         );
 
         //Get the ActorMovement for moving later
-        mover = this.gameObject.GetComponent<ActorMovement>();
+        this.mover = this.gameObject.GetComponent<ActorMovement>();
     }
 
     // fixedUpdate is called once per in-game tick (currently set to 60 ticks a second)
-    void FixedUpdate()
+    /*void FixedUpdate()
     {
         //if there is a move function, invoke it with launch direction
         moveFunction?.Invoke(launchDirection);
-    }
+    }*/
 
     /*What should happen every time the wave moves (including the movement)*/
-    void InternalMovement(Vector2 movementDirection)
+    protected override void InternalMovement(Vector2 movementDirection)
     {
         //first, move the wave
         mover.MoveActor(movementDirection);
 
         //If the wave has hit something and we want that to destroy the wave, destroy the wave
-        if(destroyOnHit && this.hitAlreadyLanded)
+        /*if(destroyOnHit && this.hitAlreadyLanded)
         {
             Destroy(this.gameObject);
-        }
+        }*/
 
         //calculate how far the wave has gone
         var traveledDistance = 
@@ -118,20 +118,12 @@ public class PrideWaveProjectile : BasicHitbox
     }
 
     /*Starts the wave!*/
-    public void Launch(Vector2 targetPoint)
+    public override void Launch(Vector2 targetPoint, LAUNCH_MODE mode = LAUNCH_MODE.POINT)
     {
         //set origin (for later)
         origin = this.gameObject.transform.position;
 
-        //set travel direction
-        launchDirection = (targetPoint - origin).normalized;
-
-        //rotate towards the thing
-        this.gameObject.transform.rotation = 
-            Rotations2D.LookRotation2D(targetPoint, Vector2.up);
-
-        //S H M O O V E
-        moveFunction = new Action<Vector2>(InternalMovement);
+        base.Launch(targetPoint, mode);
 
         //start the self-destruct timer
         StartCoroutine(durationTimer(maxWaveTime));
