@@ -1024,6 +1024,7 @@ GameObject:
   - component: {fileID: 905880864}
   - component: {fileID: 905880863}
   - component: {fileID: 905880862}
+  - component: {fileID: 905880859}
   - component: {fileID: 905880861}
   - component: {fileID: 905880860}
   - component: {fileID: 905880858}
@@ -1034,7 +1035,6 @@ GameObject:
   - component: {fileID: 905880852}
   - component: {fileID: 905880851}
   - component: {fileID: 905880850}
-  - component: {fileID: 905880859}
   - component: {fileID: 905880855}
   m_Layer: 10
   m_Name: Player
@@ -1115,7 +1115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c8e59eb5840af44a950c4bf0de49e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Animator: {fileID: 0}
+  Animator: {fileID: 905880866}
   sp: {fileID: 0}
   movementDirection: {x: 0, y: 0}
   myMovement: {fileID: 0}
@@ -1221,9 +1221,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 905880849}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 936183e0f4f8f3a7196066185f2d780b, type: 3}
+  m_Script: {fileID: 11500000, guid: c11bfdc1d59e37845937218ee896ec26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
+  startWithSword: 1
 --- !u!114 &905880860
 MonoBehaviour:
   m_ObjectHideFlags: 0
