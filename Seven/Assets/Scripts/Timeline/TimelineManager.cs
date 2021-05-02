@@ -55,6 +55,11 @@ public class TimelineManager : MonoBehaviour
     {
         this.loop = newLoop;
     }
+
+    public void startTimeline()
+    {
+        director.Play();
+    }
     
     public void resumeTimeline()
     {
