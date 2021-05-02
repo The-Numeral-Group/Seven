@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8950206617321178638}
   - component: {fileID: 6616679387382878131}
   - component: {fileID: 3881996932607668545}
+  - component: {fileID: 4451272333890533474}
   - component: {fileID: 6683890673968249082}
   m_Layer: 5
   m_Name: Apathy Ability Button
@@ -134,10 +135,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f92e531d5d29089418facb4290271f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TOD: {fileID: 0}
-  AOS: {fileID: 6683890673968249082}
-  TODImage: {fileID: 0}
-  AOSImage: {fileID: 0}
+  TOD: {fileID: 4451272333890533474}
+  AOS: {fileID: 4451272333890533474}
+  TODImage: {fileID: -792238578845887885, guid: 0a2fae1ac0cd8fb43bd90df254478733, type: 3}
+  AOSImage: {fileID: -6635953198458362581, guid: 8f9679c1d39735f4f9a3ff1f66e166dc, type: 3}
+--- !u!114 &4451272333890533474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248334969899716958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b67269037ea3c94bbbb92723d81b49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  projSpeed: 6
+  projectileSpread: 0.7853982
+  numProjectiles: 3
+  projectileToInstantiate: {fileID: 0}
 --- !u!114 &6683890673968249082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,8 +447,10 @@ MonoBehaviour:
   abilityButtons:
   - {fileID: 6752093027720863313}
   - {fileID: 2369147760866669199}
+  - {fileID: 3881996932607668545}
   player: {fileID: 0}
   abilityHighLightIndicator: {fileID: 4153090015159757115}
+  gameSaveManager: {fileID: 0}
 --- !u!1 &3838137146176063221
 GameObject:
   m_ObjectHideFlags: 0
