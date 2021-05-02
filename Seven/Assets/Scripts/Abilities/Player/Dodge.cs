@@ -70,10 +70,16 @@ public class Dodge : ActorAbilityFunction<Actor, int>
 
         PlayerAnimationHandler playerAnimationHandler = user.myAnimationHandler as PlayerAnimationHandler;
         playerAnimationHandler.animateDodge();
+
+        while(playerAnimationHandler.Animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge (No Sword)") || playerAnimationHandler.Animator.GetCurrentAnimatorStateInfo(0).IsName("Dodge (Sword)"))
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        this.isFinished = true;
     }
 
     public void setPlayerDodgeFinished()
     {
-        this.isFinished = true;
+        //this.isFinished = true;
     }
 }

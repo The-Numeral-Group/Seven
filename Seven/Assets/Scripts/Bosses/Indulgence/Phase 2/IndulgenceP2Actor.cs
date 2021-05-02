@@ -42,7 +42,7 @@ public class IndulgenceP2Actor : Actor
 
     public override void DoActorDeath()
     {
-        MenuManager.PAUSE_MENU.LoadScene("Hub");
+        MenuManager.PAUSE_MENU.LoadScene("IndulgencePostFight");
     }
 
     public void SetupTarget()

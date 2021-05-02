@@ -46,7 +46,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "AbilityOne",
+                    "name": "NavigateLeftAbility",
                     "type": "Button",
                     "id": "f8d57b4a-1594-4389-97b8-c7582edf6f92",
                     "expectedControlType": "Button",
@@ -54,9 +54,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "AbilityTwo",
+                    "name": "NavigateRightAbility",
                     "type": "Button",
                     "id": "c5ab0f98-0614-47a0-9f06-803f4ed1c9b4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Ability",
+                    "type": "Button",
+                    "id": "e386c73a-47f6-4df2-9d9f-a39010252716",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -433,7 +441,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse and Keyboard",
-                    "action": "AbilityOne",
+                    "action": "NavigateLeftAbility",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -444,7 +452,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "AbilityTwo",
+                    "action": "NavigateRightAbility",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9cd685d5-32d3-4532-86b1-c31bf0ae3b44",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ability",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -482,22 +501,6 @@
                     "name": "Menu",
                     "type": "Button",
                     "id": "bc1e19f3-2088-46a9-9a25-ab1aac2ab929",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "SetAbilityOne",
-                    "type": "Button",
-                    "id": "fa4a13c1-838b-4257-a54c-c3f612cebc58",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "SetAbilityTwo",
-                    "type": "Button",
-                    "id": "cc6da065-8cb7-421d-81b8-ab51a4d40aca",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -875,28 +878,6 @@
                     "processors": "",
                     "groups": "Mouse and Keyboard",
                     "action": "Select",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2dd6632c-9321-4fb8-844a-c61baab794bd",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SetAbilityOne",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d7f60628-28d0-4282-92cd-a8633f680e3e",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SetAbilityTwo",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

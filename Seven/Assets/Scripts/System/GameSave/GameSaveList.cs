@@ -14,6 +14,12 @@ public class GameSaveList : MonoBehaviour
 
     // Element 3 - ghostKnightPosition
 
+    // Element 7 - Indulgence Ability Pickup
+
+    // Element 8 - Ego Ability Pickup
+
+    // Element 9 - Apathy Ability Pickup
+
     // Element 10 - ApathyOpening
 
     // Element 11 - ApathySinCorrupted
