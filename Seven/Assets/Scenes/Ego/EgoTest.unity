@@ -366,7 +366,6 @@ GameObject:
   - component: {fileID: 505191984}
   - component: {fileID: 505191983}
   - component: {fileID: 505191982}
-  - component: {fileID: 505191981}
   - component: {fileID: 505191980}
   - component: {fileID: 505191979}
   - component: {fileID: 505191978}
@@ -375,6 +374,8 @@ GameObject:
   - component: {fileID: 505191991}
   - component: {fileID: 505191990}
   - component: {fileID: 505191988}
+  - component: {fileID: 505191992}
+  - component: {fileID: 505191981}
   m_Layer: 2
   m_Name: Ego 2
   m_TagString: Boss
@@ -459,7 +460,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 505191976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27600644c33641846a3618949c49a0fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 287f9bffe6975f608a5bcda1ff2776e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 0}
@@ -721,6 +722,25 @@ MonoBehaviour:
   projectile: {fileID: 4710924987715151114, guid: 147a502a437043ef78652d409a7f13e3, type: 3}
   projectileScale: {x: 5, y: 5}
   projectileDirection: {x: -1, y: 0}
+--- !u!95 &505191992
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505191976}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: de1b45b98540a0a17a3a9ba59518fc40, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &656284013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1487,6 +1507,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1562341910261810668, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: near clip plane
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4321893605475107958, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
