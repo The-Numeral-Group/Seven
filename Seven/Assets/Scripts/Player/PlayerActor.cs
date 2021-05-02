@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEditor.Animations;
+//using UnityEditor.Animations;
 
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerActor : Actor
@@ -28,7 +28,7 @@ public class PlayerActor : Actor
     protected override void Start()
     {
         base.Start();
-        this.myAbilityInitiator = GetComponent<PlayerAbilityInitiator>();
+        //this.myAbilityInitiator = GetComponent<PlayerAbilityInitiator>();
         playerInput = GetComponent<PlayerInput>();
 
         SetSwordState(startWithSword);
