@@ -12,6 +12,6 @@ public class AbilityPickup : Interactable
     {
         gameSaveManager.setBoolValue(true, gameSaveAbilityPickupIndex);
         MenuManager.ABILITY_MENU.UnlockAbilities();
-        this.enabled = false;
+        this.gameObject.SetActive(false);
     }
 }
