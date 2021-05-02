@@ -677,7 +677,7 @@ MonoBehaviour:
   invokeBlankWhenBadArguments: 1
   laserObj: {fileID: 4417132022118089685, guid: b0818de86c2e4c0fcaeb8e849b1b5dec, type: 3}
   laserMaxDist: 100
-  laserWidth: 4
+  laserWidth: 5
   damage: 3
   preLaserDuration: 0.5
   laserDuration: 0.3
