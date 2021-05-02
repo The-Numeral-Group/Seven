@@ -129,6 +129,10 @@ public class EgoSwordActor : Actor
             = RigidbodyConstraints2D.FreezeAll;
         state = SwordState.LANDED;
 
+        //Step 3.5: Switch to the landed animation. And, no, I am not going to write
+        //a custom AAH just for this one thing
+        this.myAnimationHandler.Animator.SetBool("egosword_landed", true);
+
         //Step 4: Shoot the lasers
         for(int i = 0; i < attackCount; ++i)
         {
