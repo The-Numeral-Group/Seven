@@ -307,7 +307,7 @@ MonoBehaviour:
   abilityName: PlayerWeapon
   invokeBlankWhenBadArguments: 1
   startingWeaponObject: {fileID: 4064867689300998930, guid: 8f015bc7caeed1d459e95a510e0c962f, type: 3}
-  duration: 0.1
+  duration: 0.5
   weaponPositionScale: {x: 1, y: 1}
   damagePerHitbox: 
   lockDuration: 0.5
@@ -356,7 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c8e59eb5840af44a950c4bf0de49e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Animator: {fileID: 0}
+  Animator: {fileID: 1711407483}
   sp: {fileID: 0}
   movementDirection: {x: 0, y: 0}
   myMovement: {fileID: 0}
