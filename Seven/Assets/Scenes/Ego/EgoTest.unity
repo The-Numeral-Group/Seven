@@ -758,10 +758,11 @@ GameObject:
   - component: {fileID: 656284023}
   - component: {fileID: 656284022}
   - component: {fileID: 656284021}
-  - component: {fileID: 656284019}
   - component: {fileID: 656284016}
   - component: {fileID: 656284015}
   - component: {fileID: 656284029}
+  - component: {fileID: 656284018}
+  - component: {fileID: 656284017}
   m_Layer: 0
   m_Name: Ego 1
   m_TagString: Untagged
@@ -868,7 +869,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &656284019
+--- !u!114 &656284017
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -877,16 +878,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 656284013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c006b1f6d0a9cd261b30cd24244da098, type: 3}
+  m_Script: {fileID: 11500000, guid: 0678434b9bf342b8d9dd1fafe3f68735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 2
+  abilityName: Sonic Shockwave
+  invokeBlankWhenBadArguments: 1
+  waveProjectile: {fileID: 5210746168989830567, guid: e6602bd27c8a41152837f8df50672888, type: 3}
+  projectileScale: {x: 3.2, y: 3.2}
+--- !u!114 &656284018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656284013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6338bdabf54e9e69fa0f9a7c78ed1082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownPeriod: 3
-  abilityName: 
+  abilityName: FALCON PUNCH
   invokeBlankWhenBadArguments: 1
-  startingWeaponObject: {fileID: 3869898009536138324, guid: 208d7a05a6da0f00786a9386d3137408, type: 3}
-  duration: 1
-  weaponPositionScale: {x: 3.2, y: 3.2}
-  damagePerHitbox: 01000000
+  startingWeaponObject: {fileID: 6037738158253827827, guid: 5556a8bd922df730999b356a82f03310, type: 3}
+  duration: 0.1
+  weaponPositionScale: {x: 5, y: 5}
+  damagePerHitbox: 05000000
+  windupDelay: 1.5
+  shouldShake: 1
+  windShake: 0.1
+  attackShake: 1
 --- !u!114 &656284021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,7 +926,7 @@ MonoBehaviour:
   sprintSpeed: 6
   swaggerDuration: 3
   specialAttackGate: 7
-  chargeRange: 15
+  chargeRange: 3
   punchRange: 3
 --- !u!114 &656284022
 MonoBehaviour:
@@ -921,9 +943,9 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 656284019}
-  Far: {fileID: 1973677592}
-  Special: {fileID: 1886399512}
+  Close: {fileID: 1113196130}
+  Far: {fileID: 656284018}
+  Special: {fileID: 505191977}
 --- !u!114 &656284023
 MonoBehaviour:
   m_ObjectHideFlags: 0
