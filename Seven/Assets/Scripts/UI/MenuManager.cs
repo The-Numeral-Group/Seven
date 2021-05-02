@@ -24,6 +24,12 @@ public class MenuManager : MonoBehaviour
     BattleUI battleUI = null;
     //Static reference ot the Battle UI
     public static BattleUI BATTLE_UI;
+    //Reference to the ability menu. 
+    [Tooltip("Reference to the ability menu object in scene.")]
+    [SerializeField]
+    AbilityMenu abilityMenu = null;
+    //Static reference ot the ability menu
+    public static AbilityMenu ABILITY_MENU;
     //Reference to the interaction menu
     [SerializeField]
     [Tooltip("Refereence to InteractMenu ui object. Must be set via inspector.")]
@@ -50,6 +56,7 @@ public class MenuManager : MonoBehaviour
         SetReferences<DialogueMenu>(ref dialogueMenu, ref DIALOGUE_MENU, "DialogueMenu");
         SetReferences<PauseMenu>(ref pauseMenu, ref PAUSE_MENU, "PauseMenu");
         SetReferences<BattleUI>(ref battleUI, ref BATTLE_UI, "BattleUI");
+        SetReferences<AbilityMenu>(ref abilityMenu, ref ABILITY_MENU, "BattleUI");
         GAME_OVER = gameOver;
         INTERACT_MENU = interactMenu;
         GAME_OVER.Hide();

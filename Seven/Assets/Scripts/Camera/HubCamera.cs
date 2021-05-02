@@ -47,6 +47,7 @@ public class HubCamera : BaseCamera
         {
             cameraPosition = cameraPosition + new Vector3(offset.x, offset.y, cameraPosition.z);
         }
+        cameraPosition = BoundCamera(cameraPosition);
         this.gameObject.transform.position = Vector3.SmoothDamp(this.gameObject.transform.position, 
             new Vector3(cameraPosition.x, cameraPosition.y, this.gameObject.transform.position.z), 
             ref velocity, cameraSmoothRate);

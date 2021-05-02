@@ -25,6 +25,10 @@ GameObject:
   - component: {fileID: 889948524402226234}
   - component: {fileID: 4115977272152067190}
   - component: {fileID: 809726809053908821}
+  - component: {fileID: 318036553}
+  - component: {fileID: 318036569}
+  - component: {fileID: 970684125}
+  - component: {fileID: 970684126}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -270,8 +274,7 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  selectedAbilityAlpha: {fileID: 0}
-  selectedAbilityBeta: {fileID: 0}
+  selectedAbility: {fileID: 0}
   playerDodge: {fileID: 7512802453659592074}
   playerAttack: {fileID: 1274274346198698562}
   playerInteract: {fileID: 889948524402226234}
@@ -402,3 +405,78 @@ MonoBehaviour:
     hasCooldown: 0
     playOnAwake: 0
     source: {fileID: 0}
+--- !u!114 &318036553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115977272152067185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b67269037ea3c94bbbb92723d81b49d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  projSpeed: 6
+  projectileSpread: 0.7853982
+  numProjectiles: 3
+  projectileToInstantiate: {fileID: 330341731892381400, guid: 7f6f9561d15dbdd40a59b1e69f8c61f4, type: 3}
+--- !u!114 &318036569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115977272152067185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e504f906d65704ab4bdf60f53bf242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  healAmount: 3
+--- !u!114 &970684125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115977272152067185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b0a3f7841e7346459eb7d9f876182ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  laserObj: {fileID: 4417132022118089685, guid: b0818de86c2e4c0fcaeb8e849b1b5dec, type: 3}
+  laserMaxDist: 100
+  laserWidth: 3
+  damage: 2
+  preLaserDuration: 0.5
+  laserDuration: 0.3
+  chargeTime: 2
+  maxUses: 2
+--- !u!114 &970684126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115977272152067185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b6e13718b6ed6fbab555bb3fb84ed77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  usesPerFight: 2
+  minLockTime: 1

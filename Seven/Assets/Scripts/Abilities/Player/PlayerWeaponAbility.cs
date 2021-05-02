@@ -33,6 +33,7 @@ public class PlayerWeaponAbility : WeaponAbility, PlayerSwordAbility
 
     protected override int InternInvoke(params Actor[] args)
     {
+        this.hitConnected = false;
         StartCoroutine(user.myMovement.LockActorMovement(lockDuration));
 
         // Play Attack Animation
