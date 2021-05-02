@@ -21,11 +21,11 @@ public class AbilityMenu : BaseUI
         pointerToCurrentSelectedButton = 0;
         //First int is if the ability has been picked up, the second is if the sin was comitted
         //Indulgence flags in save manager 
-        gameSaveAbilityIndices.Add((15, 14));
+        gameSaveAbilityIndices.Add((7, 17));
         //Ego flags in save Manager
-        gameSaveAbilityIndices.Add((15, 14));
+        gameSaveAbilityIndices.Add((8, 14));
         //Apathy flags in save manager
-        gameSaveAbilityIndices.Add((15, 14));
+        gameSaveAbilityIndices.Add((9, 11));
     }
 
     //Fetches player reference
@@ -38,8 +38,8 @@ public class AbilityMenu : BaseUI
             UnlockAbilities();
         }
         //Temporary setup
-        abilityButtons[0].SetSelectedAbility(true);
-        abilityButtons[1].SetSelectedAbility(false);
+        //abilityButtons[0].SetSelectedAbility(true);
+        //abilityButtons[1].SetSelectedAbility(false);
     }
 
     //Unlocks abilities in ability buttons.
@@ -95,6 +95,10 @@ public class AbilityMenu : BaseUI
         {
             Debug.Log("Applying ability selection");
             player.selectedAbility = player.GetComponent(abilityType.GetType()) as ActorAbility;
+        }
+        else
+        {
+            player.selectedAbility = null;
         }
     }
 }
