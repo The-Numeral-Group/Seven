@@ -62,6 +62,9 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
     protected override int InternInvoke(params Vector3[] args)
     {
         usable = false;
+        //Animate the attack
+        user.myAnimationHandler.TrySetTrigger("ego_shoot");
+        
         StartCoroutine(LaserInvokation(args[0]));
         return 1;
     }

@@ -150,4 +150,10 @@ internal class EgoFireSingle : ProjectileAbility
         projectileScale = wrap.projectileScale;
         projectileDirection = wrap.projectileDirection;
     }
+
+    protected override int InternInvoke(params Vector2[] args)
+    {
+        user.myAnimationHandler.TrySetTrigger("ego_shoot");
+        return base.InternInvoke(args);
+    }
 }
