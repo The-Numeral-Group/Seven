@@ -411,7 +411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7.5
-  intangibleTime: 0.1
+  intangibleTime: 0.2
   debugTeleShiftTime: 0.1
 --- !u!114 &505191979
 MonoBehaviour:
@@ -445,7 +445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleMesh: {fileID: 1774437467}
   teleCount: 3
-  teleWait: 0.2
+  teleWait: 0.25
   attackWait: 0.5
   teleMinDist: 3
   teleMaxDist: 10
