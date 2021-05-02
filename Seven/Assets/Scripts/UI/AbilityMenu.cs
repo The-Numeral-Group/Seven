@@ -38,8 +38,8 @@ public class AbilityMenu : BaseUI
             UnlockAbilities();
         }
         //Temporary setup
-        //abilityButtons[0].SetSelectedAbility(true);
-        //abilityButtons[1].SetSelectedAbility(false);
+        abilityButtons[0].SetSelectedAbility(true);
+        abilityButtons[1].SetSelectedAbility(false);
     }
 
     //Unlocks abilities in ability buttons.
