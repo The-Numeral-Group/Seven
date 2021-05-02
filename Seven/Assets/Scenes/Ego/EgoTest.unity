@@ -371,10 +371,10 @@ GameObject:
   - component: {fileID: 505191979}
   - component: {fileID: 505191978}
   - component: {fileID: 505191977}
-  - component: {fileID: 505191988}
   - component: {fileID: 505191989}
   - component: {fileID: 505191991}
   - component: {fileID: 505191990}
+  - component: {fileID: 505191988}
   m_Layer: 2
   m_Name: Ego 2
   m_TagString: Boss
@@ -565,7 +565,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b6bc7572787fef941a44d9fd6794d5d9, type: 3}
+  m_Sprite: {fileID: -6850998090307205589, guid: 50596c348ca5c0277a6d9b1a58bfd645, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -591,8 +591,8 @@ Transform:
   m_Father: {fileID: 1006802074}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &505191988
-BoxCollider2D:
+--- !u!60 &505191988
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -608,15 +608,57 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.5, y: 4.5}
+    oldSize: {x: 10.802637, y: 10.799999}
     newSize: {x: 4.5, y: 4.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.5, y: 4.5}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.026373625, y: -3.0197802}
+      - {x: 0.15824175, y: -3.0989008}
+      - {x: 0.39560437, y: -2.3868132}
+      - {x: 0.36923075, y: -2.1494503}
+      - {x: 0.23736262, y: -2.0439558}
+      - {x: 0.3164835, y: -1.7010988}
+      - {x: 0.3164835, y: -1.0945054}
+      - {x: 0.47472525, y: -0.3032967}
+      - {x: 0.44835162, y: 0.09230769}
+      - {x: 0.632967, y: 0.22417581}
+      - {x: 0.6593406, y: 0.3296703}
+      - {x: 0.71208787, y: 0.48791206}
+      - {x: 0.79120874, y: 0.69890106}
+      - {x: 0.81758237, y: 1.1999999}
+      - {x: 0.81758237, y: 1.6219779}
+      - {x: 0.5010989, y: 1.8857142}
+      - {x: 0.34285712, y: 1.8329669}
+      - {x: 0.3164835, y: 2.334066}
+      - {x: 0.29010987, y: 2.4923077}
+      - {x: 0.18461537, y: 2.7824173}
+      - {x: -0.026373625, y: 2.967033}
+      - {x: -0.36923075, y: 2.967033}
+      - {x: -0.71208787, y: 2.756044}
+      - {x: -0.92307687, y: 2.3604393}
+      - {x: -0.8703296, y: 1.8593405}
+      - {x: -1.0021977, y: 1.9120878}
+      - {x: -1.3450549, y: 1.7274724}
+      - {x: -1.3714285, y: 1.6219779}
+      - {x: -1.3714285, y: 0.59340656}
+      - {x: -1.2923076, y: 0.17142856}
+      - {x: -1.265934, y: -0.5406593}
+      - {x: -1.2395604, y: -0.80439556}
+      - {x: -1.054945, y: -1.3846153}
+      - {x: -1.0021977, y: -1.4637362}
+      - {x: -1.0285714, y: -1.9384614}
+      - {x: -0.9758241, y: -2.2549448}
+      - {x: -1.0021977, y: -2.940659}
+      - {x: -0.68571424, y: -3.6263733}
+      - {x: -0.5274725, y: -3.6263733}
+      - {x: -0.47472525, y: -3.6}
+      - {x: -0.44835162, y: -3.0725274}
+      - {x: -0.3164835, y: -2.0703297}
+      - {x: -0.210989, y: -2.3868132}
 --- !u!114 &505191989
 MonoBehaviour:
   m_ObjectHideFlags: 0
