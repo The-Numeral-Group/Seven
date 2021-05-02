@@ -141,10 +141,10 @@ public class ActorHealth : MonoBehaviour
     IEnumerator ExtendInvulnerability(float duration, bool value)
     {
         timeInvulnerable = duration;
-        for (float i = 0; i < duration; i += 0.01f)
+        while(timeInvulnerable > 0)//for (float i = 0; i < duration; i += 0.01f)
         {
-            yield return new WaitForSeconds(0.01f);
-            timeInvulnerable -= 0.01f;
+            yield return null;//new WaitForSeconds(0.01f);
+            timeInvulnerable -= Time.deltaTime; //0.01f;
         }
         this.vulnerable = !value;
         timeInvulnerable = 0f;
