@@ -152,52 +152,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4115977272152067178, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
   m_PrefabInstance: {fileID: 2008721685}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 318036552}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c11bfdc1d59e37845937218ee896ec26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &318036552 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4115977272152067185, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
-  m_PrefabInstance: {fileID: 2008721685}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &318036553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 318036552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b67269037ea3c94bbbb92723d81b49d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldownPeriod: 0
-  abilityName: 
-  invokeBlankWhenBadArguments: 1
-  projSpeed: 6
-  projectileSpread: 0.7853982
-  numProjectiles: 3
-  projectileToInstantiate: {fileID: 330341731892381400, guid: 7f6f9561d15dbdd40a59b1e69f8c61f4, type: 3}
---- !u!114 &318036569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 318036552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42e504f906d65704ab4bdf60f53bf242, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldownPeriod: 0
-  abilityName: 
-  invokeBlankWhenBadArguments: 1
-  healAmount: 3
 --- !u!114 &786734093 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4112994920670129075, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
