@@ -25,6 +25,20 @@ public class PrideWaveProjectile : BasicProjectile
     [Tooltip("The maximum amount of time the wave should travel for.")]
     public float maxWaveTime = 10.0f;
 
+    [Header("Wave Knockback")]
+    [Tooltip("Should this projectil ALWAYS drag the target in the oppisite direction of the" + 
+        " prokectile.")]   
+    public bool alwaysDragAwayFromCenter = false;
+
+    [Tooltip("The direction targets will be dragged in when hit")]
+    public Vector2 dragBackDirection = Vector2.left;
+
+    [Tooltip("How intense the drag-force will be.")]
+    public float dragBackIntensity = 2f;
+
+    [Tooltip("How many seconds the drag should last.")]
+    public float dragBackDuration = 2f;
+
     /*[Tooltip("Whether or not the wave should stop existing if it hits something.")]
     public bool destroyOnHit = true;*/
 
@@ -110,7 +124,23 @@ public class PrideWaveProjectile : BasicProjectile
         ///DEBUG
         Debug.Log("PrideWaveProjectile: hit " + collided.gameObject.name);
         ///DEBUG
-        base.OnTriggerEnter2D(collided);
+
+        //we just want the normal hitbox method
+        var health = collided.gameObject.GetComponent<ActorHealth>();
+
+        if(health)
+        {
+            health.takeDamage(damage);
+        }
+
+        //if the target can be dragged...
+        ActorMovement enemyMove = null;
+        if(collided.gameObject.TryGetComponent(out enemyMove))
+        {
+            //drag them back as well
+            StartCoroutine(DragBack(enemyMove));
+        }
+
         if(destroyOnHit)
         {
             Destroy(this.gameObject);
@@ -127,5 +157,33 @@ public class PrideWaveProjectile : BasicProjectile
 
         //start the self-destruct timer
         StartCoroutine(durationTimer(maxWaveTime));
+    }
+
+    IEnumerator DragBack(ActorMovement mover)
+    {
+        //timer variable
+        float clock = 0f;
+
+        Vector2 dragAway;
+        /*If desired, override the dragBackDirection with the direction from
+        the user to the targe for an "Away" type of knock*/
+        if(alwaysDragAwayFromCenter)
+        {
+            dragAway = (
+                mover.gameObject.transform.position - this.gameObject.transform.position
+            ).normalized;
+        }
+        else
+        {
+            dragAway = dragBackDirection;
+        }
+
+        //while there is still time remaining, drag one step and then yield
+        while(clock < dragBackDuration)
+        {
+            mover.DragActor(dragAway * dragBackIntensity);
+            yield return null;
+            clock += Time.deltaTime;
+        }
     }
 }

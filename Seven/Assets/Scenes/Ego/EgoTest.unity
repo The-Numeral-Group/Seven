@@ -763,6 +763,7 @@ GameObject:
   - component: {fileID: 656284029}
   - component: {fileID: 656284018}
   - component: {fileID: 656284017}
+  - component: {fileID: 656284019}
   m_Layer: 0
   m_Name: Ego 1
   m_TagString: Untagged
@@ -903,12 +904,27 @@ MonoBehaviour:
   invokeBlankWhenBadArguments: 1
   startingWeaponObject: {fileID: 6037738158253827827, guid: 5556a8bd922df730999b356a82f03310, type: 3}
   duration: 0.1
-  weaponPositionScale: {x: 5, y: 5}
+  weaponPositionScale: {x: 4, y: 4}
   damagePerHitbox: 05000000
   windupDelay: 1.5
   shouldShake: 1
   windShake: 0.1
   attackShake: 1
+--- !u!114 &656284019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656284013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b539320a4c6a218da9cca27be78ddd2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
 --- !u!114 &656284021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -926,7 +942,7 @@ MonoBehaviour:
   sprintSpeed: 6
   swaggerDuration: 3
   specialAttackGate: 7
-  chargeRange: 3
+  chargeRange: 12
   punchRange: 3
 --- !u!114 &656284022
 MonoBehaviour:
@@ -943,9 +959,9 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 1113196130}
+  Close: {fileID: 928636631}
   Far: {fileID: 656284018}
-  Special: {fileID: 505191977}
+  Special: {fileID: 656284017}
 --- !u!114 &656284023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1107,7 +1123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &928636629
 Transform:
   m_ObjectHideFlags: 0
@@ -1160,6 +1176,7 @@ MonoBehaviour:
   duration: 0
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 
+  comboGapDuration: 1
   cooldownCancel: 0
   comboList:
   - {fileID: 1801753357}
@@ -1245,7 +1262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1113196126
 Transform:
   m_ObjectHideFlags: 0
@@ -1336,6 +1353,7 @@ MonoBehaviour:
   duration: 0
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 
+  comboGapDuration: 1
   cooldownCancel: 1
   comboList:
   - {fileID: 1113196129}
@@ -1880,6 +1898,7 @@ MonoBehaviour:
   duration: 0
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 
+  comboGapDuration: 1
   cooldownCancel: 0
   comboList:
   - {fileID: 1801753359}
@@ -2040,7 +2059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1801753357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2060,6 +2079,7 @@ MonoBehaviour:
   duration: 0
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 
+  comboGapDuration: 1
   cooldownCancel: 1
   comboList:
   - {fileID: 1801753359}

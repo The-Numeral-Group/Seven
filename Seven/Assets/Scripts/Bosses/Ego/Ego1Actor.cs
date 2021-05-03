@@ -107,19 +107,20 @@ public class Ego1Actor : Actor
                 specialAttackCounter = 0;
                 Debug.Log("Ego1Actor: Special");
             }
-            //Step 2.3: If the player is far away, save the far
-            else if(dist >= chargeRange)
-            {
-                currAbility = 
-                    this.myAbilityInitiator.abilities[AbilityRegister.PRIDE_FAR_ATTACK];
-                Debug.Log("Ego1Actor: Far");
-            }
+            
             //Step 2.4: If the player is close, save the close
             else if(dist <= punchRange)
             {
                 currAbility = 
                     this.myAbilityInitiator.abilities[AbilityRegister.PRIDE_CLOSE_ATTACK];
                 Debug.Log("Ego1Actor: Close");
+            }
+            //Step 2.3: If the player is far away, save the far
+            else if(dist <= chargeRange)
+            {
+                currAbility = 
+                    this.myAbilityInitiator.abilities[AbilityRegister.PRIDE_FAR_ATTACK];
+                Debug.Log("Ego1Actor: Far");
             }
 
             //Step 3: Attack
