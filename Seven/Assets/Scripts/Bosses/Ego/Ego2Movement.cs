@@ -80,6 +80,8 @@ public class Ego2Movement : ActorMovement
                 0f
         );
         ///DEBUG
+        //Step 2: Animate the teleport
+        //this.gameObject.GetComponent<ActorAnimationHandler>()?.TrySetTrigger("ego_teleport");
 
         //Step 2.5: spend some time out of reality
         yield return new WaitForSeconds(intangibleTime);

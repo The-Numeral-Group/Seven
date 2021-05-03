@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class WeaponAbilityCombo : WeaponAbility
 {
+    [Tooltip("How much time there should be between each strike of the combo.")]
+    public float comboGapDuration = 1f;
+
     [Tooltip("Set to true to abort the combo if an ability is on cooldown when it needs to" + 
         " be used in the combo.")]
     public bool cooldownCancel = false;
@@ -24,11 +27,20 @@ public class WeaponAbilityCombo : WeaponAbility
     when it comes up.*/
     IEnumerator ComboInvokation()
     {
+        //simple flag for tracking if the first combo piece has been used
+        bool firstPieceUsed = false;
+
         /*In some earlier code I avoided using foreach because I thought it wasn't order
         sensitive. In reality, the order depends on how the enumeration for the particular
         class is implemented. For List<T>, it's in order.*/
         foreach(WeaponAbility comboPiece in comboList)
         {
+            //if this isn't the first attacl
+            if(firstPieceUsed)
+            {
+                //wait a little bit in between attacks, if desired
+                yield return new WaitForSeconds(comboGapDuration);
+            }
             //pause for a moment so the user can think between attacks
             yield return null;
 
@@ -45,7 +57,13 @@ public class WeaponAbilityCombo : WeaponAbility
 
             //wait for it to finish
             yield return new WaitUntil( () => comboPiece.getIsFinished());
+
+            //mark the first attack as done
+            firstPieceUsed = true;            
         }
+
+        //give the user a bit more time to think
+        yield return null;
 
         Debug.Log("WeaponAbilityCombo: combo done!");
         this.isFinished = true;
