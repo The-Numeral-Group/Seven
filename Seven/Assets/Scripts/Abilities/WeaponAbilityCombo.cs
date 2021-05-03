@@ -62,6 +62,9 @@ public class WeaponAbilityCombo : WeaponAbility
             firstPieceUsed = true;            
         }
 
+        //give the user a bit more time to think
+        yield return null;
+
         Debug.Log("WeaponAbilityCombo: combo done!");
         this.isFinished = true;
 

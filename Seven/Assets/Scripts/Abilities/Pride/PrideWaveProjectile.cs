@@ -155,6 +155,9 @@ public class PrideWaveProjectile : BasicProjectile
 
         base.Launch(targetPoint, mode);
 
+        //hard rotate the projectile
+        this.gameObject.transform.up = launchDirection;
+
         //start the self-destruct timer
         StartCoroutine(durationTimer(maxWaveTime));
     }

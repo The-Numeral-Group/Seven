@@ -886,7 +886,7 @@ MonoBehaviour:
   abilityName: Sonic Shockwave
   invokeBlankWhenBadArguments: 1
   waveProjectile: {fileID: 5210746168989830567, guid: e6602bd27c8a41152837f8df50672888, type: 3}
-  projectileScale: {x: 3.2, y: 3.2}
+  projectileScale: {x: 4, y: 4}
 --- !u!114 &656284018
 MonoBehaviour:
   m_ObjectHideFlags: 0
