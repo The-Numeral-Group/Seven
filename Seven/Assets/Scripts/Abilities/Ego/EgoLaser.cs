@@ -91,7 +91,7 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
         //Step 5: wait a little bit
         yield return new WaitForSeconds(preLaserDuration);
         //Lock the user's movement during this time...
-        yield return user.myMovement.LockActorMovementOnly(preLaserDuration);
+        yield return user.myMovement.LockActorMovement(preLaserDuration);
 
         //Step 6: fire the actual laser
         laser.CastDamage(user.faceAnchor.position, targetDirection);
