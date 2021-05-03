@@ -425,6 +425,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwordSpotlight
       objectReference: {fileID: 0}
+    - target: {fileID: 1886911020569408305, guid: 2b02970d2fc96124e9f5d34af616c15d, type: 3}
+      propertyPath: m_Intensity
+      value: 0.65
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b02970d2fc96124e9f5d34af616c15d, type: 3}
 --- !u!1 &412355561
