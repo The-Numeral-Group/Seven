@@ -7391,7 +7391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 220097794664941641, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: cooldownPeriod
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 220097794664941643, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: m_IsActive
@@ -7400,6 +7400,10 @@ PrefabInstance:
     - target: {fileID: 220097794664941681, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: startingMaxHealth
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 220097794664941684, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
+      propertyPath: speed
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 220097794664941685, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: specialAttackGate
@@ -7415,7 +7419,7 @@ PrefabInstance:
       objectReference: {fileID: 2998643817623060731}
     - target: {fileID: 220097794664941685, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: slashRange
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 220097794664941687, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: centerPos.y
