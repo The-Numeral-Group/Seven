@@ -330,6 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 0}
+  startWithSword: 1
 --- !u!114 &4115977272152067179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,8 +358,7 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  selectedAbilityAlpha: {fileID: 0}
-  selectedAbilityBeta: {fileID: 0}
+  selectedAbility: {fileID: 0}
   playerDodge: {fileID: 7512802453659592074}
   playerAttack: {fileID: 1274274346198698562}
   playerInteract: {fileID: 889948524402226234}
@@ -390,6 +390,10 @@ MonoBehaviour:
   cooldownPeriod: 0
   abilityName: PlayerWeapon
   invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 0}
+  duration: 0
+  weaponPositionScale: {x: 0.1, y: 0.1}
+  damagePerHitbox: 
   lockDuration: 0.5
 --- !u!114 &7512802453659592074
 MonoBehaviour:
@@ -755,6 +759,10 @@ PrefabInstance:
     - target: {fileID: 1880723438510407937, guid: 40282033606a2bf4c8bb8ba9b8c25a02, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
       value: 0.07096255
+      objectReference: {fileID: 0}
+    - target: {fileID: 1880723438846253594, guid: 40282033606a2bf4c8bb8ba9b8c25a02, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1880723438846253598, guid: 40282033606a2bf4c8bb8ba9b8c25a02, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[10].y
@@ -1160,6 +1168,10 @@ PrefabInstance:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[7].y
       value: -1.3885822
       objectReference: {fileID: 0}
+    - target: {fileID: 1880723439335010542, guid: 40282033606a2bf4c8bb8ba9b8c25a02, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1880723439620076382, guid: 40282033606a2bf4c8bb8ba9b8c25a02, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
       value: 15
@@ -1286,13 +1298,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40282033606a2bf4c8bb8ba9b8c25a02, type: 3}
---- !u!4 &710151200572833705 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1880723438947929307, guid: 40282033606a2bf4c8bb8ba9b8c25a02, type: 3}
-  m_PrefabInstance: {fileID: 1424081695607092082}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &710151200859042826 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1880723439662057336, guid: 40282033606a2bf4c8bb8ba9b8c25a02, type: 3}
+  m_PrefabInstance: {fileID: 1424081695607092082}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &710151200572833705 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1880723438947929307, guid: 40282033606a2bf4c8bb8ba9b8c25a02, type: 3}
   m_PrefabInstance: {fileID: 1424081695607092082}
   m_PrefabAsset: {fileID: 0}
