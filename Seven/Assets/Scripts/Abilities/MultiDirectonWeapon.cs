@@ -28,10 +28,17 @@ public class MultiDirectonWeapon : MonoBehaviour
     {
         DeactivateAll();
 
+        /*WeaponAbility wp = this.gameObject.GetComponentInParent<WeaponAbility>(true);
+        if(!wp)
+        {
+            Debug.LogError("MultiDirectionWeapon: Can't find an ability to get orientation from!");
+        }*/
+
         GameObject childBox;
         if(assumeDirectionFromParent)
         {
-            childBox = DecodeChild(this.gameObject.transform.parent.localPosition.normalized);
+            //var userFace = wp.getUserTransform().Get
+            childBox = DecodeChild(this.gameObject.transform.localPosition.normalized);
         }
         else
         {
@@ -72,19 +79,19 @@ public class MultiDirectonWeapon : MonoBehaviour
         {
             outbox = eastBox;
         }
-        else if(vec == new Vector2(1f, 1f))
+        else if(vec.x > 0f && vec.y > 0f) //northeast
         {
             outbox = northEastBox;
         }
-        else if(vec == new Vector2(1f, -1f))
+        else if(vec.x > 0f && vec.y < 0f) //southeast
         {
             outbox = southEastBox;
         }
-        else if(vec == new Vector2(-1f, 1f))
+        else if(vec.x < 0f && vec.y > 0f) //northWest
         {
             outbox = northWestBox;
         }
-        else if(vec == new Vector2(-1f, -1f))
+        else if(vec.x < 0f && vec.y < 0f) //southwest
         {
             outbox = southWestBox;
         }
