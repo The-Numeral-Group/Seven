@@ -80,7 +80,7 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
             .AddComponent<EgoLaserProjectile>();
         //but set it's direction towards the player manually
         //needs to be offset by 45 degrees because the laser asset is rotated that way
-        laser.gameObject.transform.up = targetDirection + new Vector3(-45f, 0f, 0f);
+        laser.gameObject.transform.up = targetDirection; //+ new Vector3(-45f, 0f, 0f);
         
         //Step 3: initialize the laser
         laser.Initialize(laserMaxDist, laserWidth, damage);

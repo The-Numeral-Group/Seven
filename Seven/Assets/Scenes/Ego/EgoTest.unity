@@ -676,10 +676,10 @@ MonoBehaviour:
   abilityName: laserBEAMSLIGHTUPTHESKY
   invokeBlankWhenBadArguments: 1
   laserObj: {fileID: 4417132022118089685, guid: b0818de86c2e4c0fcaeb8e849b1b5dec, type: 3}
-  laserMaxDist: 100
-  laserWidth: 5
+  laserMaxDist: 50
+  laserWidth: 4
   damage: 3
-  preLaserDuration: 0.5
+  preLaserDuration: 0.25
   laserDuration: 0.3
 --- !u!114 &505191990
 MonoBehaviour:
@@ -1046,7 +1046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d1d5e7c31d60a4bac75dc1bef3276a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMaxHealth: 25
+  startingMaxHealth: 1
   damageResistance: 0
   invincibilityDuration: 1
   startInvulnerable: 0
