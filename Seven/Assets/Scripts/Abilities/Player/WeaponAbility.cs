@@ -87,8 +87,8 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
         this.hitConnected = false;
         StopCoroutine(sheathe);
         sheathe = SheatheWeapon();
-        weaponObject.SetActive(true);
         SpawnWeapon(args);
+        weaponObject.SetActive(true);
         StartCoroutine(sheathe);
         return 0;
     }
