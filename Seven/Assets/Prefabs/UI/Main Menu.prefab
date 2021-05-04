@@ -614,7 +614,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1801008149
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1245,7 +1245,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: pre0_Tutorial (Corridor)
+          m_StringArgument: pre0_Tutorial (Door)
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &2046270003705110995
@@ -2183,8 +2183,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -150, y: 150}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: -177.5, y: 150}
+  m_SizeDelta: {x: 355.09314, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2046270004730279698
 CanvasRenderer:
@@ -2227,16 +2227,21 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'WASD  - Move/Navigate UI
+  m_Text: 'Commands:
 
-    Enter/left click - Attack/Confirm
+    WASD - Move/Navigate UI
+
+    Left Shift/Right Click -Interact
 
     Space
     - Dodge
 
-    Leftshift/right click - Interact
+    Enter/Left Click - Attack/Confirm
 
-    Esc - Pause'
+    Q/E - Select abilities
+
+    F
+    - Activate Ability'
 --- !u!1 &2046270004789097815
 GameObject:
   m_ObjectHideFlags: 0
