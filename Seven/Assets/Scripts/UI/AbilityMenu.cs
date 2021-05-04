@@ -33,7 +33,7 @@ public class AbilityMenu : BaseUI
     {
         SetupPlayerReference();
         //hard coded values cause lazy to vix visual bug
-        abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position + new Vector3(12.5f, 12.5f, 0);
+        abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position;
         if (gameSaveManager)
         {
             UnlockAbilities();
