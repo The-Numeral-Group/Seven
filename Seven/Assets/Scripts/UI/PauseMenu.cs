@@ -81,6 +81,11 @@ public class PauseMenu : BaseUI
     {
         GAME_IS_PAUSED = false;
         Time.timeScale = 1f;
+        currentSelectedSubMenuIndex = 0;
+        foreach(SubMenu menu in subMenus)
+        {
+            menu.gameObject.SetActive(false);
+        }
         base.Hide();
     }
 
