@@ -77,7 +77,10 @@ public class WeaponHitbox : MonoBehaviour
     ///DEBUG
     void OnDisable()
     {
-        wp.hitConnected = false;
+        if(wp != null)
+        {
+            wp.hitConnected = false;
+        }
     }
     ///DEBUG
 
