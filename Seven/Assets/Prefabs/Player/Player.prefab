@@ -308,7 +308,7 @@ MonoBehaviour:
   startingWeaponObject: {fileID: 4064867689300998930, guid: 8f015bc7caeed1d459e95a510e0c962f, type: 3}
   duration: 0.5
   weaponPositionScale: {x: 1, y: 1}
-  damagePerHitbox: 
+  damagePerHitbox: 05000000
   lockDuration: 0.5
 --- !u!114 &7512802453659592074
 MonoBehaviour:
