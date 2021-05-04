@@ -11,7 +11,7 @@ public class PlayerWeaponHitbox : MonoBehaviour
     //OnTrigger function
     void OnTriggerEnter2D(Collider2D collider)
     {
-        this.damage = 1;
+        //this.damage = 1;
         wp = this.gameObject.GetComponentInParent(typeof(PlayerWeaponAbility)) as PlayerWeaponAbility;
 
         if (!wp)

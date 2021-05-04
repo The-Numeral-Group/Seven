@@ -16,6 +16,26 @@ public class PlayerWeaponAbility : WeaponAbility, PlayerSwordAbility
 
     public float lockDuration;
 
+    public override void SetDamage(int damageArg)
+    {
+        //Setup the damage for each hitbox in the weapon.
+        for (int i = 0; i < weaponObject.transform.childCount; i++)
+        {
+            //assume the weapon prefab is setup as: object->object with hitbox component.
+            PlayerWeaponHitbox hb = weaponObject.transform.GetChild(i).GetComponent<PlayerWeaponHitbox>();
+            if (!hb)
+            {
+                Debug.LogWarning("PlayerWeaponAbility: Current weapon abiltiy is instantiating a weapon without" + 
+                        "a PlayerWeaponHitbox Component");
+                Debug.LogWarning("PlayerWeaponAbility: PlayerWeaponprefab should be: " +  
+                        "spriteObject->childObject(child should contain hibox)");
+            }
+            else
+            {
+                hb.damage = damageArg;
+            }
+        }
+    }
     public override void Invoke(ref Actor user)
     {
         this.user = user;
