@@ -45,7 +45,7 @@ public class Dodge : ActorAbilityFunction<Actor, int>
     private void performDodge(Actor user)
     {
         // Play audio
-        user.mySoundManager.PlaySound("PlayerDodge");
+        user.mySoundManager.PlaySound("PlayerDodge", 0.8f, 1.2f);
 
         //PlayerAnimationHandler playerAnimationHandler = user.myAnimationHandler as PlayerAnimationHandler;
         //playerAnimationHandler.animateDodge();
