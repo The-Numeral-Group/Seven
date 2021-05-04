@@ -5,6 +5,13 @@ position: 859,388
 ---
 Woman: AoS Ending.
 ===
+title: Woman.AoS.Dialogue1
+tags: 
+colorID: 0
+position: 859,388
+---
+Woman: Bye!
+===
 title: Woman.HnH.Dialogue0
 tags: 
 colorID: 0
@@ -12,10 +19,18 @@ position: 859,388
 ---
 Woman: HnH Ending.
 ===
+title: Woman.HnH.Dialogue1
+tags: 
+colorID: 0
+position: 859,388
+---
+Woman: Thank you.
+===
 title: Woman.ToD.Dialogue0
 tags: 
 colorID: 0
 position: 859,388
 ---
 Woman: ToD Ending.
+Woman: HAHAHA.
 ===

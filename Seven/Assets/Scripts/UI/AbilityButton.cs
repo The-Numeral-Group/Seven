@@ -18,7 +18,6 @@ public class AbilityButton : MonoBehaviour
 
     public void SetSelectedAbility(bool sinCommitted)
     {
-        Debug.Log(sinCommitted);
         if (sinCommitted)
         {
             selectedAbility = AOS;

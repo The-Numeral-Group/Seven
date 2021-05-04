@@ -366,15 +366,16 @@ GameObject:
   - component: {fileID: 505191984}
   - component: {fileID: 505191983}
   - component: {fileID: 505191982}
-  - component: {fileID: 505191981}
   - component: {fileID: 505191980}
   - component: {fileID: 505191979}
   - component: {fileID: 505191978}
   - component: {fileID: 505191977}
-  - component: {fileID: 505191988}
   - component: {fileID: 505191989}
   - component: {fileID: 505191991}
   - component: {fileID: 505191990}
+  - component: {fileID: 505191988}
+  - component: {fileID: 505191992}
+  - component: {fileID: 505191981}
   m_Layer: 2
   m_Name: Ego 2
   m_TagString: Boss
@@ -410,7 +411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7.5
-  intangibleTime: 0.1
+  intangibleTime: 0.2
   debugTeleShiftTime: 0.1
 --- !u!114 &505191979
 MonoBehaviour:
@@ -427,9 +428,9 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Beam: {fileID: 505191990}
-  Wall: {fileID: 505191977}
-  Special: {fileID: 505191977}
+  Beam: {fileID: 505191989}
+  Wall: {fileID: 505191991}
+  Special: {fileID: 505191990}
 --- !u!114 &505191980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,7 +445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleMesh: {fileID: 1774437467}
   teleCount: 3
-  teleWait: 0.1
+  teleWait: 0.25
   attackWait: 0.5
   teleMinDist: 3
   teleMaxDist: 10
@@ -459,7 +460,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 505191976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27600644c33641846a3618949c49a0fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 287f9bffe6975f608a5bcda1ff2776e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 0}
@@ -564,8 +565,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b6bc7572787fef941a44d9fd6794d5d9, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: -6850998090307205589, guid: 50596c348ca5c0277a6d9b1a58bfd645, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -591,8 +592,8 @@ Transform:
   m_Father: {fileID: 1006802074}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &505191988
-BoxCollider2D:
+--- !u!60 &505191988
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -608,15 +609,57 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.5, y: 4.5}
+    oldSize: {x: 10.802637, y: 10.799999}
     newSize: {x: 4.5, y: 4.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.5, y: 4.5}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.026373625, y: -3.0197802}
+      - {x: 0.15824175, y: -3.0989008}
+      - {x: 0.39560437, y: -2.3868132}
+      - {x: 0.36923075, y: -2.1494503}
+      - {x: 0.23736262, y: -2.0439558}
+      - {x: 0.3164835, y: -1.7010988}
+      - {x: 0.3164835, y: -1.0945054}
+      - {x: 0.47472525, y: -0.3032967}
+      - {x: 0.44835162, y: 0.09230769}
+      - {x: 0.632967, y: 0.22417581}
+      - {x: 0.6593406, y: 0.3296703}
+      - {x: 0.71208787, y: 0.48791206}
+      - {x: 0.79120874, y: 0.69890106}
+      - {x: 0.81758237, y: 1.1999999}
+      - {x: 0.81758237, y: 1.6219779}
+      - {x: 0.5010989, y: 1.8857142}
+      - {x: 0.34285712, y: 1.8329669}
+      - {x: 0.3164835, y: 2.334066}
+      - {x: 0.29010987, y: 2.4923077}
+      - {x: 0.18461537, y: 2.7824173}
+      - {x: -0.026373625, y: 2.967033}
+      - {x: -0.36923075, y: 2.967033}
+      - {x: -0.71208787, y: 2.756044}
+      - {x: -0.92307687, y: 2.3604393}
+      - {x: -0.8703296, y: 1.8593405}
+      - {x: -1.0021977, y: 1.9120878}
+      - {x: -1.3450549, y: 1.7274724}
+      - {x: -1.3714285, y: 1.6219779}
+      - {x: -1.3714285, y: 0.59340656}
+      - {x: -1.2923076, y: 0.17142856}
+      - {x: -1.265934, y: -0.5406593}
+      - {x: -1.2395604, y: -0.80439556}
+      - {x: -1.054945, y: -1.3846153}
+      - {x: -1.0021977, y: -1.4637362}
+      - {x: -1.0285714, y: -1.9384614}
+      - {x: -0.9758241, y: -2.2549448}
+      - {x: -1.0021977, y: -2.940659}
+      - {x: -0.68571424, y: -3.6263733}
+      - {x: -0.5274725, y: -3.6263733}
+      - {x: -0.47472525, y: -3.6}
+      - {x: -0.44835162, y: -3.0725274}
+      - {x: -0.3164835, y: -2.0703297}
+      - {x: -0.210989, y: -2.3868132}
 --- !u!114 &505191989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -633,10 +676,10 @@ MonoBehaviour:
   abilityName: laserBEAMSLIGHTUPTHESKY
   invokeBlankWhenBadArguments: 1
   laserObj: {fileID: 4417132022118089685, guid: b0818de86c2e4c0fcaeb8e849b1b5dec, type: 3}
-  laserMaxDist: 100
-  laserWidth: 2
+  laserMaxDist: 50
+  laserWidth: 3
   damage: 3
-  preLaserDuration: 0.5
+  preLaserDuration: 0.25
   laserDuration: 0.3
 --- !u!114 &505191990
 MonoBehaviour:
@@ -679,6 +722,25 @@ MonoBehaviour:
   projectile: {fileID: 4710924987715151114, guid: 147a502a437043ef78652d409a7f13e3, type: 3}
   projectileScale: {x: 5, y: 5}
   projectileDirection: {x: -1, y: 0}
+--- !u!95 &505191992
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505191976}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: de1b45b98540a0a17a3a9ba59518fc40, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &656284013
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,10 +758,12 @@ GameObject:
   - component: {fileID: 656284023}
   - component: {fileID: 656284022}
   - component: {fileID: 656284021}
-  - component: {fileID: 656284019}
   - component: {fileID: 656284016}
   - component: {fileID: 656284015}
   - component: {fileID: 656284029}
+  - component: {fileID: 656284018}
+  - component: {fileID: 656284017}
+  - component: {fileID: 656284019}
   m_Layer: 0
   m_Name: Ego 1
   m_TagString: Untagged
@@ -725,6 +789,7 @@ Transform:
   - {fileID: 928636629}
   - {fileID: 1973677590}
   - {fileID: 1886399510}
+  - {fileID: 1113196126}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -805,6 +870,46 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &656284017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656284013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0678434b9bf342b8d9dd1fafe3f68735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 2
+  abilityName: Sonic Shockwave
+  invokeBlankWhenBadArguments: 1
+  waveProjectile: {fileID: 5210746168989830567, guid: e6602bd27c8a41152837f8df50672888, type: 3}
+  projectileScale: {x: 4, y: 4}
+--- !u!114 &656284018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656284013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6338bdabf54e9e69fa0f9a7c78ed1082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 3
+  abilityName: FALCON PUNCH
+  invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 6037738158253827827, guid: 5556a8bd922df730999b356a82f03310, type: 3}
+  duration: 0.1
+  weaponPositionScale: {x: 4, y: 4}
+  damagePerHitbox: 05000000
+  windupDelay: 1.5
+  shouldShake: 1
+  windShake: 0.1
+  attackShake: 1
 --- !u!114 &656284019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,16 +919,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 656284013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c006b1f6d0a9cd261b30cd24244da098, type: 3}
+  m_Script: {fileID: 11500000, guid: b539320a4c6a218da9cca27be78ddd2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 1.5
+  cooldownPeriod: 0
   abilityName: 
   invokeBlankWhenBadArguments: 1
-  startingWeaponObject: {fileID: 3869898009536138324, guid: 208d7a05a6da0f00786a9386d3137408, type: 3}
-  duration: 1
-  weaponPositionScale: {x: 3.2, y: 3.2}
-  damagePerHitbox: 01000000
 --- !u!114 &656284021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -837,9 +938,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sinGate: 3
+  swaggerSpeed: 4
+  sprintSpeed: 6
+  swaggerDuration: 3
   specialAttackGate: 7
-  chargeRange: 15
-  punchRange: 5
+  chargeRange: 12
+  punchRange: 3
 --- !u!114 &656284022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -855,9 +959,9 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 656284019}
-  Far: {fileID: 1973677592}
-  Special: {fileID: 1886399512}
+  Close: {fileID: 928636631}
+  Far: {fileID: 656284018}
+  Special: {fileID: 656284017}
 --- !u!114 &656284023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1072,6 +1176,7 @@ MonoBehaviour:
   duration: 0
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 
+  comboGapDuration: 1
   cooldownCancel: 0
   comboList:
   - {fileID: 1801753357}
@@ -1138,6 +1243,122 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 629310093682338108, guid: fb7fac46d5a210f45a451e02c6e12e1e, type: 3}
   m_PrefabInstance: {fileID: 1006802073}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1113196125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1113196126}
+  - component: {fileID: 1113196130}
+  - component: {fileID: 1113196129}
+  - component: {fileID: 1113196128}
+  - component: {fileID: 1113196127}
+  m_Layer: 0
+  m_Name: One-Two-Three Punch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1113196126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113196125}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 656284014}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1113196127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113196125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dd238a1ebebf7947894c73e11d2176f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 1
+  abilityName: Three-Punch
+  invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 1844393178547753448, guid: 6813d0bc0b85df114885d10a1a08d801, type: 3}
+  duration: 0.25
+  weaponPositionScale: {x: 3.2, y: 3.2}
+  damagePerHitbox: 01000000
+--- !u!114 &1113196128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113196125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dd238a1ebebf7947894c73e11d2176f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 1
+  abilityName: Two-Punch
+  invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 1844393178547753448, guid: 6813d0bc0b85df114885d10a1a08d801, type: 3}
+  duration: 0.25
+  weaponPositionScale: {x: 3.2, y: 3.2}
+  damagePerHitbox: 01000000
+--- !u!114 &1113196129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113196125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dd238a1ebebf7947894c73e11d2176f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 1
+  abilityName: One-Punch
+  invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 1844393178547753448, guid: 6813d0bc0b85df114885d10a1a08d801, type: 3}
+  duration: 0.25
+  weaponPositionScale: {x: 3.2, y: 3.2}
+  damagePerHitbox: 01000000
+--- !u!114 &1113196130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113196125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f2a665774058124806f041d892eed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 2
+  abilityName: One-Two Punch
+  invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 7573367737500984201, guid: bfab2a95a7b826b4ab10b4994c287025, type: 3}
+  duration: 0
+  weaponPositionScale: {x: 0.1, y: 0.1}
+  damagePerHitbox: 
+  comboGapDuration: 1
+  cooldownCancel: 1
+  comboList:
+  - {fileID: 1113196129}
+  - {fileID: 1113196128}
+  - {fileID: 1113196127}
 --- !u!4 &1153083609 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4332445788766981374, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
@@ -1442,6 +1663,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1562341910261810668, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: near clip plane
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4321893605475107958, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1616,7 +1841,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1722037464
 Transform:
   m_ObjectHideFlags: 0
@@ -1673,6 +1898,7 @@ MonoBehaviour:
   duration: 0
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 
+  comboGapDuration: 1
   cooldownCancel: 0
   comboList:
   - {fileID: 1801753359}
@@ -1714,7 +1940,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4332445788766981374, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -4332445788766981374, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1853,6 +2079,7 @@ MonoBehaviour:
   duration: 0
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 
+  comboGapDuration: 1
   cooldownCancel: 1
   comboList:
   - {fileID: 1801753359}
@@ -1916,6 +2143,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 273244282}
     m_Modifications:
+    - target: {fileID: 2833822603394633950, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833822603394633950, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833822603394633950, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2833822603394633950, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3838137146001244881, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2012,6 +2255,38 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5635973750068010078, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635973750068010078, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635973750068010078, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5635973750068010078, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730130222834968942, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730130222834968942, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730130222834968942, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5730130222834968942, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
 --- !u!1 &1886399509
@@ -2031,7 +2306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1886399510
 Transform:
   m_ObjectHideFlags: 0
@@ -2107,7 +2382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1973677590
 Transform:
   m_ObjectHideFlags: 0
@@ -2367,5 +2642,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

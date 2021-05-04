@@ -32,7 +32,8 @@ public class AbilityMenu : BaseUI
     void Start()
     {
         SetupPlayerReference();
-        abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position;
+        //hard coded values cause lazy to vix visual bug
+        abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position + new Vector3(12.5f, 12.5f, 0);
         if (gameSaveManager)
         {
             UnlockAbilities();
@@ -40,6 +41,7 @@ public class AbilityMenu : BaseUI
         //Temporary setup
         abilityButtons[0].SetSelectedAbility(true);
         abilityButtons[1].SetSelectedAbility(false);
+        UpdatePlayerSelectedAbility();
     }
 
     //Unlocks abilities in ability buttons.

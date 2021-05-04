@@ -27,8 +27,7 @@ GameObject:
   - component: {fileID: 809726809053908821}
   - component: {fileID: 318036553}
   - component: {fileID: 318036569}
-  - component: {fileID: 970684125}
-  - component: {fileID: 970684126}
+  - component: {fileID: 1509850875}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -307,7 +306,7 @@ MonoBehaviour:
   abilityName: PlayerWeapon
   invokeBlankWhenBadArguments: 1
   startingWeaponObject: {fileID: 4064867689300998930, guid: 8f015bc7caeed1d459e95a510e0c962f, type: 3}
-  duration: 0.1
+  duration: 0.5
   weaponPositionScale: {x: 1, y: 1}
   damagePerHitbox: 
   lockDuration: 0.5
@@ -356,7 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c8e59eb5840af44a950c4bf0de49e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Animator: {fileID: 0}
+  Animator: {fileID: 1711407483}
   sp: {fileID: 0}
   movementDirection: {x: 0, y: 0}
   myMovement: {fileID: 0}
@@ -417,7 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b67269037ea3c94bbbb92723d81b49d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 0
+  cooldownPeriod: 2
   abilityName: 
   invokeBlankWhenBadArguments: 1
   projSpeed: 6
@@ -436,11 +435,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42e504f906d65704ab4bdf60f53bf242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 0
+  cooldownPeriod: 90
   abilityName: 
   invokeBlankWhenBadArguments: 1
   healAmount: 3
---- !u!114 &970684125
+--- !u!114 &1509850875
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -463,20 +462,3 @@ MonoBehaviour:
   laserDuration: 0.3
   chargeTime: 2
   maxUses: 2
---- !u!114 &970684126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4115977272152067185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b6e13718b6ed6fbab555bb3fb84ed77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldownPeriod: 0
-  abilityName: 
-  invokeBlankWhenBadArguments: 1
-  usesPerFight: 2
-  minLockTime: 1

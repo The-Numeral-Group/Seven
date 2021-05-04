@@ -24,8 +24,8 @@ public class GameSaveManager : MonoBehaviour
     {
         this.gameSaveList = gameSaveListObject.GetComponent<GameSaveList>();
 
-        // CHANGE THIS
-        LoadSaveList();
+        // No longer call this function everytime. Only Loads when click "Continue" button in the main menu.
+        //LoadSaveList();
 
         if (placeObjects.Length > 0)
         {
@@ -101,7 +101,6 @@ public class GameSaveManager : MonoBehaviour
     public void setBoolValue(bool newValue, int id)
     {
         this.gameSaveList.setBoolValue(newValue, id);
-        this.SaveSaveList();
     }
 
     public bool getBoolValue(int id)
@@ -113,7 +112,6 @@ public class GameSaveManager : MonoBehaviour
     public void setVectorValue(Vector2 newValue, int id)
     {
         this.gameSaveList.setVectorValue(newValue, id);
-        this.SaveSaveList();
     }
 
     public Vector2 getVectorValue(int id)
@@ -125,7 +123,6 @@ public class GameSaveManager : MonoBehaviour
     public void setStringValue(string newValue, int id)
     {
         this.gameSaveList.setStringValue(newValue, id);
-        this.SaveSaveList();
     }
 
     public string getStringValue(int id)
@@ -137,7 +134,6 @@ public class GameSaveManager : MonoBehaviour
     public void setFloatValue(float newValue, int id)
     {
         this.gameSaveList.setFloatValue(newValue, id);
-        this.SaveSaveList();
     }
 
     public float getFloatValue(int id)
@@ -154,6 +150,7 @@ public class GameSaveManager : MonoBehaviour
 
     public void continueGame()
     {
+        LoadSaveList();
         if (!this.gameSaveList.getBoolValue(0))
         {
             this.loadCurrentScene(1);

@@ -82,7 +82,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!114 &7810964919702103310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453e150335b52ac4884472bf0e1bd9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 7
 --- !u!114 &327392200524578098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,14 +120,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca58f6a479e1cbbe48267a2caa21aada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  hitAlreadyLanded: 0
+  damage: 1
+  destroyOnHit: 1
   minWaveWidth: 1
   maxWaveWidth: 100
   waveGrowth: 1
   maxWaveDistance: 200
   maxWaveTime: 10
-  destroyOnHit: 1
+  alwaysDragAwayFromCenter: 1
+  dragBackDirection: {x: -1, y: 0}
+  dragBackIntensity: 2
+  dragBackDuration: 2
 --- !u!212 &6630764269949911752
 SpriteRenderer:
   m_ObjectHideFlags: 0

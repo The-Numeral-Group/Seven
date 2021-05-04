@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 //Document Link: https://docs.google.com/document/d/1FJHepZKLViAMvSNGTv_D2U5VYQ5q0EMsbegKWNF93oo/edit?usp=sharing
 /*This class serves as a container for the the various menus present in the game.
@@ -51,6 +52,13 @@ public class MenuManager : MonoBehaviour
     //Set static members to the inspector references
     void Awake()
     {
+        Debug.Log("MenuManager Awake");
+        SetupStaticReferences();
+    }
+
+    public void SetupStaticReferences()
+    {
+        MenuManager.GAME_IS_OVER = false;
         CURRENT_MENU = null;
         Cursor.lockState = CursorLockMode.Locked;
         SetReferences<DialogueMenu>(ref dialogueMenu, ref DIALOGUE_MENU, "DialogueMenu");
@@ -97,16 +105,17 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
-            if (CURRENT_MENU)
+            if (CURRENT_MENU == PAUSE_MENU)
             {
                 CURRENT_MENU.Hide();
+                return false;
             }
-            else
+            /*else
             {
                 Debug.LogWarning("MenuManager: Attempted to close a menu that" + 
                     "is being referenced by CURRENT_MENU.");
-            }
-            return false;
+            }*/
+            return true;
         }
     }
 
@@ -145,6 +154,14 @@ public class MenuManager : MonoBehaviour
         CURRENT_MENU = GAME_OVER;
         Time.timeScale = 0f;
         GAME_OVER.Show();
+    }
+
+    public static void ResetStaticReferences()
+    {
+        ABILITY_MENU = null;
+        PAUSE_MENU = null;
+        DIALOGUE_MENU = null;
+        BATTLE_UI = null;
     }
 
 }

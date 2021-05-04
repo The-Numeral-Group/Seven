@@ -52,13 +52,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3372392985914523463}
     m_Modifications:
-    - target: {fileID: 4442329231913377670, guid: 37b89f1d1955b6545b66339529b712d2, type: 3}
-      propertyPath: target
-      value: 
+    - target: {fileID: 2783546447038969407, guid: 37b89f1d1955b6545b66339529b712d2, type: 3}
+      propertyPath: suckDuration
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442329231913377666, guid: 37b89f1d1955b6545b66339529b712d2, type: 3}
+      propertyPath: speed
+      value: 4.9
       objectReference: {fileID: 0}
     - target: {fileID: 4442329231913377676, guid: 37b89f1d1955b6545b66339529b712d2, type: 3}
       propertyPath: m_Name
       value: IndulgenceP2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442329231913377720, guid: 37b89f1d1955b6545b66339529b712d2, type: 3}
+      propertyPath: cooldownPeriod
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 4442329231913377721, guid: 37b89f1d1955b6545b66339529b712d2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -128,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6735736805293186646, guid: 576248deba686134f8b9515839d42c58, type: 3}
       propertyPath: invincibilityDuration
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6735736805293186647, guid: 576248deba686134f8b9515839d42c58, type: 3}
       propertyPath: m_LocalPosition.x

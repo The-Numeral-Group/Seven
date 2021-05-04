@@ -62,6 +62,9 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
     protected override int InternInvoke(params Vector3[] args)
     {
         usable = false;
+        //Animate the attack
+        user.myAnimationHandler.TrySetTrigger("ego_shoot");
+        
         StartCoroutine(LaserInvokation(args[0]));
         return 1;
     }
@@ -73,10 +76,11 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
         Vector3 targetDirection = (targetPoint - user.gameObject.transform.position).normalized;
 
         //Step 2: create a laser object and attach the EgoLaserProjectile component
-        var laser = Instantiate(laserObj, this.gameObject.transform)
+        var laser = Instantiate(laserObj, user.faceAnchor.position, Quaternion.identity)
             .AddComponent<EgoLaserProjectile>();
-        //but let it stay a child of the user's faceAnchor
-        laser.gameObject.transform.parent = user.faceAnchor;
+        //but set it's direction towards the player manually
+        //needs to be offset by 45 degrees because the laser asset is rotated that way
+        laser.gameObject.transform.up = targetDirection; //+ new Vector3(-45f, 0f, 0f);
         
         //Step 3: initialize the laser
         laser.Initialize(laserMaxDist, laserWidth, damage);
@@ -85,14 +89,14 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
         laser.ShootLaser(user.faceAnchor.position, targetDirection);
 
         //Step 5: wait a little bit
-        //yield return new WaitForSeconds(preLaserDuration);
+        yield return new WaitForSeconds(preLaserDuration);
         //Lock the user's movement during this time...
-        yield return user.myMovement.LockActorMovementOnly(preLaserDuration);
+        yield return user.myMovement.LockActorMovement(preLaserDuration);
 
         //Step 6: fire the actual laser
-        laser.ShootLaser(user.faceAnchor.position, targetDirection, true);
+        laser.CastDamage(user.faceAnchor.position, targetDirection);
 
-        //Step 7: wait a little bit
+        //Step 7: wait a little bit longer
         yield return new WaitForSeconds(laserDuration);
 
         //Step 8: destroy the laser and begin cooldown
@@ -120,14 +124,17 @@ internal class EgoLaserProjectile : MonoBehaviour
     //how much damage the laser will deal
     private float laserDamage = 2f;
 
+    //how wide the laser is
+    private float width = 4f;
+
     //the lineRenderer that handles the graphics of the laser
-    private LineRenderer line;
+    //private LineRenderer line;
 
     //METHODS--------------------------------------------------------------------------------------
-    void Awake()
+    /*void Awake()
     {
         line = this.gameObject.GetComponent<LineRenderer>();
-    }
+    }*/
 
     //set certain values for the laser, since MonoBehaviour constructors are inconsistent
     public void Initialize(float maxDist=50f, float width=1f, float damage=2f)
@@ -135,53 +142,26 @@ internal class EgoLaserProjectile : MonoBehaviour
         laserMaxDistance = maxDist;
         laserDamage = damage;
 
-        line.startWidth = width;
-        line.endWidth = width;
+        this.width = width;
     }
 
-    /*Actually draw the laser. If the shot is active, 
-    the laser will also attempt to damage whatever got hit*/
-    public void ShootLaser(Vector3 launchPoint, Vector3 launchDirection, bool active=false)
+    //Handles the literal boxCast of the 
+    public void CastDamage(Vector3 launchPoint, Vector3 damageDirection)
     {
-        //prep vector end points
-        Vector3 laserStart = launchPoint;
-        Vector3 laserEnd;
-
-        //shoot what is effectively a data laser
-        //RaycastHit2D hit = Physics2D.Raycast(launchPoint, launchDirection, laserMaxDistance);
-
-         
-
-        /*//if it hit something...
-        if(hit.collider != null)
-        {
-            //then the laser ends at that point
-            laserEnd = hit.point;
-        }
-        //if not...
-        else
-        {
-            //the laser ends some distance away in that direction
-            laserEnd = launchDirection * laserMaxDistance;
-        }*/
-
-        //draw the laser the whole way regardless
-        laserEnd = launchDirection * laserMaxDistance;
-
         //set the points for the laser
         //what C# doesn't have implicit arrays? Really?
-        Vector3[] laserPoints = new Vector3[] {laserStart, laserEnd};
-        line.SetPositions(laserPoints);
+        //Vector3[] laserPoints = new Vector3[] {laserStart, laserEnd};
+        //line.SetPositions(laserPoints);
 
         //if the laser is active
-        if(active)
+        /*if(active)
         {
             //shoot what is effectively a really thicc data laser
             RaycastHit2D[] hits = Physics2D.BoxCastAll(
                 launchPoint,                                    //start of box
-                new Vector2 (line.startWidth, line.endWidth),   //size of box
-                Vector3.Angle(Vector3.zero, launchDirection),   //rotation of box
-                launchDirection,                                //direction of box "movement"
+                new Vector2 (width, width),   //size of box
+                Vector3.Angle(Vector3.zero, damageDirection),   //rotation of box
+                damageDirection,                                //direction of box "movement"
                 laserMaxDistance                                //travel distance of box
             );
 
@@ -195,9 +175,48 @@ internal class EgoLaserProjectile : MonoBehaviour
 
             ///DEBUG
             //switch the laser's color to red just to see it for right now
-            line.startColor = Color.red;
-            line.endColor = Color.red;
+            //line.startColor = Color.red;
+            //line.endColor = Color.red;
             ///DEBUG
+        }*/
+
+        //shoot what is effectively a really thicc data laser
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(
+            launchPoint,                                    //start of box
+            new Vector2 (width, width),   //size of box
+            Vector3.Angle(Vector3.zero, damageDirection),   //rotation of box
+            damageDirection,                                //direction of box "movement"
+            laserMaxDistance                                //travel distance of box
+        );
+
+        //try to hurt anything caught in the laser's path
+        foreach(RaycastHit2D hit in hits)
+        {
+            hit.collider?.gameObject.GetComponent<ActorHealth>()?.takeDamage(laserDamage);
         }
+            //try to hurt the target
+            //hit.collider?.gameObject.GetComponent<ActorHealth>()?.takeDamage(laserDamage);
+
+            ///DEBUG
+            //switch the laser's color to red just to see it for right now
+            //line.startColor = Color.red;
+            //line.endColor = Color.red;
+            ///DEBUG
+    }
+
+    /*Actually draw the laser. If the shot is active, 
+    the laser will also attempt to damage whatever got hit*/
+    public void ShootLaser(Vector3 launchPoint, Vector3 launchDirection, bool active=false)
+    {
+        //prep vector end points
+        Vector3 laserStart = launchPoint;
+        Vector3 laserEnd;
+
+        //draw the laser the whole way regardless
+        laserEnd = launchDirection * laserMaxDistance;
+
+        //CastDamage(launchDirection);
+        
+        //doesnt do anything, since visuals are handled by an animator now
     }
 }
