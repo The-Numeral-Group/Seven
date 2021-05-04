@@ -976,6 +976,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
+      propertyPath: targetPOIs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
       propertyPath: defaultZoom
       value: 13
       objectReference: {fileID: 0}
@@ -991,6 +995,38 @@ PrefabInstance:
       propertyPath: offset.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
+      propertyPath: upperBound
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
+      propertyPath: lowerBound
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
+      propertyPath: rightBound
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
+      propertyPath: leftBound
+      value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
+      propertyPath: targetPOIs.Array.data[0]
+      value: 
+      objectReference: {fileID: 424505100}
+    - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
+      propertyPath: targetPOIs.Array.data[1]
+      value: 
+      objectReference: {fileID: 105999088}
+    - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
+      propertyPath: targetPOIs.Array.data[2]
+      value: 
+      objectReference: {fileID: 757197283}
+    - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
+      propertyPath: targetPOIs.Array.data[3]
+      value: 
+      objectReference: {fileID: 902590680}
     - target: {fileID: 8339427917257392395, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
       propertyPath: orthographic size
       value: 13
@@ -3132,6 +3168,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 2200475627425788190, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1037424385}
     - target: {fileID: 2200475627425788191, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
