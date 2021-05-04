@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 //Document Link: https://docs.google.com/document/d/1K9f7sRQvDX4krcKahgIzJey87R1z7mGWV4xgnYU7qSQ/edit?usp=sharing
 
@@ -107,8 +108,8 @@ public class PauseMenu : BaseUI
     public void OnResume()
     {
         var player = GameObject.FindGameObjectWithTag("Player");
-        PlayerActor pActor = player.GetComponent<PlayerActor>();
-        pActor.playerInput.SwitchCurrentActionMap("Player");
+        PlayerInput pInput = player.GetComponent<PlayerInput>();
+        pInput.SwitchCurrentActionMap("Player");
         Hide();
     }
 
