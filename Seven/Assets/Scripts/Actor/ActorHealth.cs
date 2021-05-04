@@ -65,9 +65,9 @@ public class ActorHealth : MonoBehaviour
             
     }*/
 
-    public virtual void takeDamage(float damageTaken, bool bypassDamageResistance=false){
+    public virtual void takeDamage(float damageTaken, bool bypassDamageResistance=false, bool bypassInvulnerability = false){
         Debug.Log(this.gameObject.name + " should take damage");
-        if (!this.vulnerable)
+        if (!this.vulnerable && !bypassInvulnerability)
         {
             return;
         }
