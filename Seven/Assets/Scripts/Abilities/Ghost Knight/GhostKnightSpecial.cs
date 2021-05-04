@@ -71,7 +71,11 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     }
     private void Teleport(Actor user)
     {
-        user.transform.position = player.transform.position;
+        Vector2 playerPos = player.transform.position;
+
+        playerPos.y += 5;
+
+        user.transform.position = playerPos;
         StartCoroutine(Reappear(user));
     }
     private IEnumerator Reappear(Actor user)
