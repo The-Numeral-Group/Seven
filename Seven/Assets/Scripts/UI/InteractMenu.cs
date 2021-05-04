@@ -17,6 +17,11 @@ public class InteractMenu : BaseUI
     {
         base.Awake();
     }
+
+    void FixedUpdate()
+    {
+        TrackTarget();
+    }
     void TrackTarget()
     {
         if (target)
