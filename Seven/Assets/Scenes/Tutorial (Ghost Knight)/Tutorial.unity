@@ -7543,7 +7543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 220097794664941685, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: specialAttackGate
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 220097794664941685, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: GameSaveManager
@@ -7577,6 +7577,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+    - target: {fileID: 220097794664941693, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 220097794664941694, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
       value: 27
