@@ -677,7 +677,19 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4200697666227046600}
+        m_TargetAssemblyTypeName: SettingsSubMenu, Assembly-CSharp
+        m_MethodName: SetSFXVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1147111121953108127
 GameObject:
   m_ObjectHideFlags: 0
@@ -1443,13 +1455,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 6919360707961699824}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: ShowSubMenu
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgument: {fileID: 4200697666227046600}
+          m_ObjectArgumentAssemblyTypeName: SubMenu, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2174,7 +2186,19 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4200697666227046600}
+        m_TargetAssemblyTypeName: SettingsSubMenu, Assembly-CSharp
+        m_MethodName: SetMusicVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3625769096855210016
 GameObject:
   m_ObjectHideFlags: 0
@@ -4242,6 +4266,7 @@ MonoBehaviour:
   - {fileID: 7921012561843711735}
   - {fileID: 1383414307}
   - {fileID: 8406462090496746266}
+  - {fileID: 4200697666227046600}
 --- !u!1 &6999434704767825346
 GameObject:
   m_ObjectHideFlags: 0
@@ -4330,7 +4355,7 @@ GameObject:
   - component: {fileID: 686726281549697921}
   - component: {fileID: 6342026644156320773}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Back button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4544,6 +4569,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5444027394788081141}
+  - component: {fileID: 4200697666227046600}
   m_Layer: 5
   m_Name: Settings Menu
   m_TagString: Untagged
@@ -4572,6 +4598,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4200697666227046600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7221024097851637056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bac8292fb570d94680bb64b3dc4f921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuName: 
+  defaultButton: {fileID: 6342026644156320773}
+  masterVolume: {fileID: 6898329742932871036}
+  musicVolume: {fileID: 7984897612357225561}
+  ambienceVolume: {fileID: 717591071857491138}
+  sfxVolume: {fileID: 1863495057485893783}
 --- !u!1 &7423860631152694174
 GameObject:
   m_ObjectHideFlags: 0
@@ -4814,7 +4858,19 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4200697666227046600}
+        m_TargetAssemblyTypeName: SettingsSubMenu, Assembly-CSharp
+        m_MethodName: SetMasterVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7573151610069959471
 GameObject:
   m_ObjectHideFlags: 0
@@ -5533,7 +5589,19 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4200697666227046600}
+        m_TargetAssemblyTypeName: SettingsSubMenu, Assembly-CSharp
+        m_MethodName: SetAmbientVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8915828857526303339
 GameObject:
   m_ObjectHideFlags: 0
