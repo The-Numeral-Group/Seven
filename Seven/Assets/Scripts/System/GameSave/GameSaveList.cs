@@ -181,4 +181,5 @@ public class GameSaveList : MonoBehaviour
         Debug.Log("IndulgenceSinCorrupted: " + ((BoolValue)SaveObjects[17]).RuntimeValue);
         Debug.Log("IndulgenceDefeated: " + ((BoolValue)SaveObjects[18]).RuntimeValue);
     }
+
 }

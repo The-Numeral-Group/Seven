@@ -24,8 +24,7 @@ public class GameSaveManager : MonoBehaviour
     {
         this.gameSaveList = gameSaveListObject.GetComponent<GameSaveList>();
 
-        // No longer call this function everytime. Only Loads when click "Continue" button in the main menu.
-        //LoadSaveList();
+        checkAbility();
 
         if (placeObjects.Length > 0)
         {
@@ -142,6 +141,25 @@ public class GameSaveManager : MonoBehaviour
     }
 
     /* ----- OTHER FUNCTIONS ----- */
+
+    private void checkAbility()
+    {
+        // Check for Indulgence Ability
+        if (this.gameSaveList.getBoolValue(7))
+        {
+            Debug.Log("Player has Indulgence Ability, Update it. (NOT IMPLEMENTED)");
+        }
+        // Check for Ego Ability
+        if (this.gameSaveList.getBoolValue(8))
+        {
+            Debug.Log("Player has Ego Ability, Update it. (NOT IMPLEMENTED)");
+        }
+        // Check for Apathy Ability
+        if (this.gameSaveList.getBoolValue(9))
+        {
+            Debug.Log("Player has Apathy Ability, Update it. (NOT IMPLEMENTED)");
+        }
+    }
 
     public void loadCurrentScene(int id)
     {
