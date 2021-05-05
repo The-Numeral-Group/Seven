@@ -5,15 +5,15 @@ using UnityEngine;
 public class Ego2Movement : ActorMovement
 {
     //FIELDS---------------------------------------------------------------------------------------
-    [Header("Teleport Settings")]
+    //[Header("Teleport Settings")]
     
-    [Tooltip("How long Ego should stay out of reality between the start and end of" + 
+    /*[Tooltip("How long Ego should stay out of reality between the start and end of" + 
         " a teleport.")]
     public float intangibleTime = 0.1f;
 
     [Tooltip("How long it should take for Ego to shift in and out of reality during a" + 
         " teleport (this will be replaced by an animation later).")]
-    public float debugTeleShiftTime = 0.1f;
+    public float debugTeleShiftTime = 0.1f;*/
 
     [Header("Static Teleport Settings")]
     [Tooltip("How long something should stay out of reality between the start and end of" + 
@@ -31,6 +31,9 @@ public class Ego2Movement : ActorMovement
     [SerializeField]
     private static float s_invalidDestCorrect = 0.25f;
 
+    [Tooltip("Whether or not the animation for this teleport is at a good spot to" + 
+        " actually change location. Please do not manually edit this.")]
+    public bool teleportAnimClear = false;
 
     //METHODS--------------------------------------------------------------------------------------
     /*The only thing being added to movement is Ego's teleport. Makes user invisible, disables
@@ -41,6 +44,7 @@ public class Ego2Movement : ActorMovement
     Teleports will not check if the target destination has enough space*/
     public IEnumerator EgoTeleport(Vector3 dest)
     {
+        this.teleportAnimClear = false;
         //Step 0: Get a destination that doesn't have something in it
         Vector3 destination = Ego2Movement.GetSafeLocation(
             dest, 
@@ -55,7 +59,7 @@ public class Ego2Movement : ActorMovement
         if(collider){collider.enabled = false;}
         if(health){collider.enabled = false;}
 
-        ///DEBUG
+        /*///DEBUG
         //Step 2: Fade out the teleporter's alpha channel
         var renderer = this.gameObject.GetComponent<SpriteRenderer>();
         var fadeTime = 0.0f;
@@ -79,17 +83,21 @@ public class Ego2Movement : ActorMovement
                 renderer.color.b,
                 0f
         );
-        ///DEBUG
+        ///DEBUG*/
         //Step 2: Animate the teleport
-        //this.gameObject.GetComponent<ActorAnimationHandler>()?.TrySetTrigger("ego_teleport");
+        
+        this.gameObject.GetComponent<ActorAnimationHandler>()?.TrySetTrigger("ego_teleport");
 
         //Step 2.5: spend some time out of reality
-        yield return new WaitForSeconds(intangibleTime);
+        //this will be flipped back by the animation itself. It will set teleportAnimClear
+        //to true from inside the animation
+        yield return new WaitUntil( () => this.teleportAnimClear );
+        this.teleportAnimClear = false;
 
         //Step 3: actually teleport
         this.gameObject.transform.position = destination;
 
-        ///DEBUG
+        /*///DEBUG
         //Step 4: Fade in the teleporter's alpha channel
         fadeTime = 0.0f;
 
@@ -112,7 +120,10 @@ public class Ego2Movement : ActorMovement
                 renderer.color.b,
                 1f
         );
-        ///DEBUG
+        ///DEBUG*/
+
+        //Step 4.5(?): Wait for the teleport to land
+        yield return new WaitUntil( () => this.teleportAnimClear );
 
         //Step 5: re-enable collisions and health
         if(collider){collider.enabled = true;}
@@ -123,6 +134,14 @@ public class Ego2Movement : ActorMovement
     object. Again, Teleports will not check if the target destination has enough space*/
     public static IEnumerator EgoTeleport(Vector3 dest, GameObject user)
     {
+        //Step -1: if the user is Ego, the animation version should be used
+        Ego2Movement userMovement;
+        if(user.TryGetComponent(out userMovement))
+        {
+            yield return userMovement.EgoTeleport(dest);
+            yield break;
+        }
+
         //Step 0: Get a destination that doesn't have something in it
         Vector3 destination = Ego2Movement.GetSafeLocation(
             dest, 
