@@ -26,6 +26,9 @@ public class SlothActor : Actor
     [Tooltip("How close the player needs to be for Sloth/Apathy to swat them away.")]
     public float swatDistance = 5f;
 
+    [Tooltip("The ability Object Apathy should drop when it dies.")]
+    public GameObject abilityDropObject;
+
     //[Tooltip("The Menu Manager that runs Sloth's dialogue")]
     //public MenuManager menuManager;
 
@@ -195,6 +198,14 @@ public class SlothActor : Actor
 
     IEnumerator Die()
     {
+        //create an ability object and set it's flag to 9 to reference Apathy's ability
+        Instantiate(
+            abilityDropObject, 
+            this.gameObject.transform.position, 
+            Quaternion.identity
+        ).GetComponent<AbilityPickup>().gameSaveAbilityPickupIndex = 9;
+
+        //chill for a bit
         yield return null;
 
         //destroy sloth (this is temp, will be replaced with an animation)

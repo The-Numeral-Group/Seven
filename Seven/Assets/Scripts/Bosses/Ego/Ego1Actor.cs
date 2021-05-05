@@ -33,6 +33,9 @@ public class Ego1Actor : Actor
         " a short-range attack at them.")]
     public float punchRange = 25f;
 
+    [Tooltip("The ability Object Ego should drop when it dies after the player has sinned.")]
+    public GameObject abilityDropObject;
+
     /*reference to this script. Abilities need a reference to their user to be used, but 'this'
     is read-only, and thus can't used. We need to manually reobtain a writable reference.*/
     private Actor ego;
@@ -212,6 +215,13 @@ public class Ego1Actor : Actor
     //this can be deletaed when a real death effect is added
     IEnumerator Die()
     {
+        //create an ability object and set it's flag to 8 to reference Ego's ability
+        Instantiate(
+            abilityDropObject, 
+            this.gameObject.transform.position, 
+            Quaternion.identity
+        ).GetComponent<AbilityPickup>().gameSaveAbilityPickupIndex = 8;
+
         yield return null;
 
         //fukkin die

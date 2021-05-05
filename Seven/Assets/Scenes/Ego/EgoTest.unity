@@ -451,6 +451,7 @@ MonoBehaviour:
   teleMaxDist: 10
   specialAttackGate: 7
   powerAttackGate: 3
+  abilityDropObject: {fileID: 2937701324620886995, guid: cf7eef9d3c37b954fa77d9245a9364ce, type: 3}
 --- !u!114 &505191981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -944,6 +945,7 @@ MonoBehaviour:
   specialAttackGate: 7
   chargeRange: 12
   punchRange: 3
+  abilityDropObject: {fileID: 2937701324620886995, guid: cf7eef9d3c37b954fa77d9245a9364ce, type: 3}
 --- !u!114 &656284022
 MonoBehaviour:
   m_ObjectHideFlags: 0
