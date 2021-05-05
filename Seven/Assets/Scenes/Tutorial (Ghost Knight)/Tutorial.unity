@@ -7543,7 +7543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 220097794664941685, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: specialAttackGate
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 220097794664941685, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: GameSaveManager
