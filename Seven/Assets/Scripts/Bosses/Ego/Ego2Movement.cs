@@ -5,15 +5,15 @@ using UnityEngine;
 public class Ego2Movement : ActorMovement
 {
     //FIELDS---------------------------------------------------------------------------------------
-    //[Header("Teleport Settings")]
+    [Header("Teleport Settings")]
     
-    /*[Tooltip("How long Ego should stay out of reality between the start and end of" + 
+    [Tooltip("How long Ego should stay out of reality between the start and end of" + 
         " a teleport.")]
     public float intangibleTime = 0.1f;
 
     [Tooltip("How long it should take for Ego to shift in and out of reality during a" + 
         " teleport (this will be replaced by an animation later).")]
-    public float debugTeleShiftTime = 0.1f;*/
+    public float debugTeleShiftTime = 0.1f;
 
     [Header("Static Teleport Settings")]
     [Tooltip("How long something should stay out of reality between the start and end of" + 
@@ -40,7 +40,6 @@ public class Ego2Movement : ActorMovement
     thier collider (if any), disables their health (if any), and then sets their 
     position to be the argument, wherever that is. After arriving, the colliders and damage
     are restored.
-    
     Teleports will not check if the target destination has enough space*/
     public IEnumerator EgoTeleport(Vector3 dest)
     {
@@ -59,7 +58,7 @@ public class Ego2Movement : ActorMovement
         if(collider){collider.enabled = false;}
         if(health){collider.enabled = false;}
 
-        /*///DEBUG
+        ///DEBUG
         //Step 2: Fade out the teleporter's alpha channel
         var renderer = this.gameObject.GetComponent<SpriteRenderer>();
         var fadeTime = 0.0f;
@@ -83,21 +82,27 @@ public class Ego2Movement : ActorMovement
                 renderer.color.b,
                 0f
         );
-        ///DEBUG*/
+        ///DEBUG
         //Step 2: Animate the teleport
+        //wacky idea... wrap the call in a delegate so the animation call becomes
+        //a seperate method return?
         
-        this.gameObject.GetComponent<ActorAnimationHandler>()?.TrySetTrigger("ego_teleport");
+        /*this.gameObject.GetComponent<ActorAnimationHandler>()?.TrySetTrigger("ego_teleport");
+        yield return null;
+        //test();
 
         //Step 2.5: spend some time out of reality
         //this will be flipped back by the animation itself. It will set teleportAnimClear
         //to true from inside the animation
         yield return new WaitUntil( () => this.teleportAnimClear );
         this.teleportAnimClear = false;
+        yield return new WaitUntil( () => this.teleportAnimClear );
+        this.teleportAnimClear = false;*/
 
         //Step 3: actually teleport
         this.gameObject.transform.position = destination;
 
-        /*///DEBUG
+        ///DEBUG
         //Step 4: Fade in the teleporter's alpha channel
         fadeTime = 0.0f;
 
@@ -123,7 +128,7 @@ public class Ego2Movement : ActorMovement
         ///DEBUG*/
 
         //Step 4.5(?): Wait for the teleport to land
-        yield return new WaitUntil( () => this.teleportAnimClear );
+        //yield return new WaitUntil( () => this.teleportAnimClear );
 
         //Step 5: re-enable collisions and health
         if(collider){collider.enabled = true;}
