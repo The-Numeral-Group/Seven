@@ -308,7 +308,7 @@ PlayableDirector:
   m_GameObject: {fileID: 562492858}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 0be192cb3e8bdd1418df8184c07b4158, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 8a497092277fc4348a48ccdc8695e8b2, type: 2}
   m_InitialState: 1
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -388,38 +388,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: e87511fc2fd49ee4ca90fa9bb22da1fd, type: 2}
-    - {fileID: 11400000, guid: ac62fa7f9cde5a74fbeffd22f5f2eca3, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 562492859}
-          m_TargetAssemblyTypeName: UnityEngine.Playables.PlayableDirector, UnityEngine
-          m_MethodName: Pause
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 562492861}
-          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
-          m_MethodName: loadScene
-          m_Mode: 5
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: Tutorial
-            m_BoolArgument: 0
-          m_CallState: 2
+    m_Signals: []
+    m_Events: []
 --- !u!1 &682692955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,6 +1023,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8067875665855393472, guid: 68cf7eabcdb9b9b4f858309c9fbded90, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8067875665855393475, guid: 68cf7eabcdb9b9b4f858309c9fbded90, type: 3}
       propertyPath: m_Name
       value: Indulgence (Cutscene)
@@ -1104,6 +1078,10 @@ PrefabInstance:
     - target: {fileID: 8067875665855393487, guid: 68cf7eabcdb9b9b4f858309c9fbded90, type: 3}
       propertyPath: yarnStartNode
       value: Indulgence.Opening.Dialogue0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8067875665855393487, guid: 68cf7eabcdb9b9b4f858309c9fbded90, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68cf7eabcdb9b9b4f858309c9fbded90, type: 3}
