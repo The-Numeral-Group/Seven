@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 105999088}
   - component: {fileID: 105999089}
   - component: {fileID: 105999091}
-  - component: {fileID: 105999090}
+  - component: {fileID: 105999092}
   m_Layer: 25
   m_Name: IndulgenceDoor
   m_TagString: InteractiveObject
@@ -294,7 +294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105999087}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -33.08, y: 4.91, z: 0}
+  m_LocalPosition: {x: -33.08, y: 4.32, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 2062943793}
@@ -326,21 +326,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &105999090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 105999087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ba4c85a88d7f4848a5adf03e1cdccd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
-  indicatorOffset: {x: 0, y: 0.5}
-  sceneToLoad: IndulgenceBattle
 --- !u!212 &105999091
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -392,6 +377,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &105999092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105999087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbf3c9c09f4c0b4abce16efe611cdae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
+  indicatorOffset: {x: 0, y: 0.5}
+  bossID: 16
+  sceneToLoad: IndulgenceBattle
+  gameSaveManager: {fileID: 740934186}
 --- !u!1 &106058460
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,14 +1116,14 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -20.38877, y: 5.2905655}
-      - {x: -17.320452, y: -0.94256896}
+      - {x: -17.490816, y: -0.58635277}
       - {x: -12.913129, y: 1.7194963}
       - {x: -6.820955, y: 3.2344863}
       - {x: -2.710976, y: 3.5374687}
       - {x: 4.956377, y: 3.4482934}
       - {x: 9.819198, y: 2.6266778}
       - {x: 14.627401, y: 0.8185773}
-      - {x: 17.571554, y: -1.5575472}
+      - {x: 17.645432, y: -1.3174462}
       - {x: 19.64919, y: 4.8354387}
 --- !u!50 &258992206
 Rigidbody2D:
@@ -1217,7 +1219,7 @@ GameObject:
   - component: {fileID: 325527191}
   - component: {fileID: 325527192}
   m_Layer: 5
-  m_Name: SlothDoorLabel
+  m_Name: ApathyDoorLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2109,7 +2111,7 @@ GameObject:
   - component: {fileID: 757197281}
   - component: {fileID: 757197280}
   m_Layer: 25
-  m_Name: SlothDoor
+  m_Name: ApathyDoor
   m_TagString: InteractiveObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2124,12 +2126,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 757197279}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ba4c85a88d7f4848a5adf03e1cdccd6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3dbf3c9c09f4c0b4abce16efe611cdae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
   indicatorOffset: {x: 0, y: 0.5}
+  bossID: 10
   sceneToLoad: SlothTest
+  gameSaveManager: {fileID: 740934186}
 --- !u!212 &757197281
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2215,7 +2219,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757197279}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 31.47, y: 4.16, z: 0}
+  m_LocalPosition: {x: 31.47, y: 3.83, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 2062943793}
@@ -2450,12 +2454,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 902590679}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ba4c85a88d7f4848a5adf03e1cdccd6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3dbf3c9c09f4c0b4abce16efe611cdae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
   indicatorOffset: {x: 0, y: 0.5}
+  bossID: 13
   sceneToLoad: EgoTest
+  gameSaveManager: {fileID: 740934186}
 --- !u!212 &902590682
 SpriteRenderer:
   m_ObjectHideFlags: 0
