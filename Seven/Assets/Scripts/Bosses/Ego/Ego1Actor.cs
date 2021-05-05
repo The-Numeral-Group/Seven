@@ -179,9 +179,13 @@ public class Ego1Actor : Actor
     //Ego1 will switch to Ego2 upon death.
     public override void DoActorDeath()
     {
+        var gameSave = GameObject.Find("GameSaveManager");
         //if the player hasn'y sinned enough...
         if(EgoSin.applicationCount < sinGate)
         {
+            //save the lack of sin
+            gameSave?.GetComponent<GameSaveManager>().setBoolValue(false, 14);
+
             ///DEBUG
             Debug.Log("Ego1Actor: Phase change!");
             ///DEBUG
@@ -196,6 +200,9 @@ public class Ego1Actor : Actor
         //if they haven't...
         else
         {
+            //save the sin
+            gameSave?.GetComponent<GameSaveManager>().setBoolValue(true, 14);
+
             ///just destroy this Ego
             StartCoroutine(Die());
         }
