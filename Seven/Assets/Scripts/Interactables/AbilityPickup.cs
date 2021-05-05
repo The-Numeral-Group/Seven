@@ -8,6 +8,14 @@ public class AbilityPickup : Interactable
     public GameSaveManager gameSaveManager;
     [Tooltip("Index of scriptable bool in game save lsit to be notified of ability pickup.")]
     public int gameSaveAbilityPickupIndex = 0;
+
+    void Start()
+    {
+        if (gameSaveManager.getBoolValue(gameSaveAbilityPickupIndex))
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
     public override void OnInteract()
     {
         gameSaveManager.setBoolValue(true, gameSaveAbilityPickupIndex);
