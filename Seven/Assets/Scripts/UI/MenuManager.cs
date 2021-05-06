@@ -31,6 +31,12 @@ public class MenuManager : MonoBehaviour
     AbilityMenu abilityMenu = null;
     //Static reference ot the ability menu
     public static AbilityMenu ABILITY_MENU;
+    //Reference to the ability menu. 
+    [Tooltip("Reference to the Sin indicator menu object in scene.")]
+    [SerializeField]
+    SinIndicatorUI sinMenu = null;
+    //Static reference ot the sin menu
+    public static SinIndicatorUI SIN_MENU;
     //Reference to the interaction menu
     [SerializeField]
     [Tooltip("Refereence to InteractMenu ui object. Must be set via inspector.")]
@@ -65,6 +71,7 @@ public class MenuManager : MonoBehaviour
         SetReferences<PauseMenu>(ref pauseMenu, ref PAUSE_MENU, "PauseMenu");
         SetReferences<BattleUI>(ref battleUI, ref BATTLE_UI, "BattleUI");
         SetReferences<AbilityMenu>(ref abilityMenu, ref ABILITY_MENU, "BattleUI");
+        SetReferences<SinIndicatorUI>(ref sinMenu, ref SIN_MENU, "BattleUI");
         GAME_OVER = gameOver;
         INTERACT_MENU = interactMenu;
         GAME_OVER.Hide();
