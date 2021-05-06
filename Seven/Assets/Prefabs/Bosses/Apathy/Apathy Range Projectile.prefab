@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5415266258514441940}
   - component: {fileID: 3637200282735461822}
   - component: {fileID: 7729995768388343351}
+  - component: {fileID: 1085523195742717773}
   m_Layer: 0
   m_Name: Apathy Range Projectile
   m_TagString: Untagged
@@ -76,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0.7564964, a: 1}
+  m_Sprite: {fileID: 5706413125765677977, guid: fbd842a9d46f46e74af778e2637ff05a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -100,9 +101,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.1, y: 0.1}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 1
 --- !u!50 &289941525481395949
 Rigidbody2D:
   serializedVersion: 4
@@ -163,3 +164,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   destroyOnHit: 1
+--- !u!95 &1085523195742717773
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8453795746997737593}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a870f578bd8cb0ff28d350782aba6191, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
