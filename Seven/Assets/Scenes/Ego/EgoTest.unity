@@ -446,7 +446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleMesh: {fileID: 1774437467}
   teleCount: 3
-  teleWait: 0.25
+  teleWait: 1
   attackWait: 0.5
   teleMinDist: 3
   teleMaxDist: 10
@@ -717,13 +717,15 @@ MonoBehaviour:
   cooldownPeriod: 3
   abilityName: 
   invokeBlankWhenBadArguments: 1
-  teleMinDist: 7
-  teleMaxDist: 10
+  teleMinDist: 10
+  teleMaxDist: 13
   attackDelay: 0.5
+  launchDelay: 2
   attackCount: 4
   projectile: {fileID: 4710924987715151114, guid: 147a502a437043ef78652d409a7f13e3, type: 3}
   projectileScale: {x: 5, y: 5}
   projectileDirection: {x: -1, y: 0}
+  animClear: 0
 --- !u!95 &505191992
 Animator:
   serializedVersion: 3

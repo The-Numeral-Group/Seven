@@ -15,6 +15,9 @@ public class EgoFireLaunch : ActorAbilityFunction<GameObject, int>
     [Tooltip("The delay between teleport-firewall combos.")]
     public float attackDelay = 0.5f;
 
+    [Tooltip("The delay between a teleport and its follow-up fire launch.")]
+    public float launchDelay = 0.5f;
+
     [Tooltip("The number of firewalls launched by this ability (minimum 1).")]
     public int attackCount = 4;
 
@@ -123,6 +126,8 @@ public class EgoFireLaunch : ActorAbilityFunction<GameObject, int>
 
             yield return new WaitUntil( () => animClear );
             Debug.Log($"EgoFireLaunch: animClear is {animClear}");
+
+            yield return new WaitForSeconds(launchDelay);
 
             //Step 2.3: Launch the projectile
             single.Invoke(ref this.user, target.transform.position, LAUNCH_MODE.POINT);
