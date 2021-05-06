@@ -10,8 +10,13 @@ public class InteractMenu : BaseUI
     [SerializeField]
     RectTransform canvasTransform = null;
     [SerializeField]
-    RectTransform uiElementTransform = null;
-    public Vector2 uiElementOffset {get; set;}
+    RectTransform uiElementTextTransform = null;
+
+    public Vector2 uiElementTextOffset { get; set;}
+
+    [SerializeField]
+    RectTransform uiElementImageTransform = null;
+    public Vector2 uiElementImageOffset { get; set;}
 
     protected override void Awake()
     {
@@ -26,13 +31,23 @@ public class InteractMenu : BaseUI
     {
         if (target)
         {
-            Vector3 offset = uiElementOffset;
+            // Add Instruction Text (Image)
+            Vector3 textOffset = uiElementTextOffset;
             Vector2 viewPortPosition = 
-                Camera.main.WorldToViewportPoint(target.transform.position);// + offset);
+                Camera.main.WorldToViewportPoint(target.transform.position + textOffset);
             Vector2 proportionalPosition = new Vector2(
                 viewPortPosition.x * canvasTransform.sizeDelta.x,
                 viewPortPosition.y * canvasTransform.sizeDelta.y);
-            uiElementTransform.localPosition = proportionalPosition;
+            uiElementTextTransform.localPosition = proportionalPosition;
+
+            // Add L.Shift Image
+            Vector3 imageOffset = uiElementImageOffset;
+            viewPortPosition =
+                Camera.main.WorldToViewportPoint(target.transform.position + imageOffset);
+            proportionalPosition = new Vector2(
+                viewPortPosition.x * canvasTransform.sizeDelta.x,
+                viewPortPosition.y * canvasTransform.sizeDelta.y);
+            uiElementImageTransform.localPosition = proportionalPosition;
         }
     }
 
