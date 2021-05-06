@@ -24,8 +24,6 @@ public class GameSaveManager : MonoBehaviour
     {
         this.gameSaveList = gameSaveListObject.GetComponent<GameSaveList>();
 
-        checkAbility();
-
         if (placeObjects.Length > 0)
         {
             foreach (PlaceObject pO in placeObjects)
@@ -141,25 +139,6 @@ public class GameSaveManager : MonoBehaviour
     }
 
     /* ----- OTHER FUNCTIONS ----- */
-
-    private void checkAbility()
-    {
-        // Check for Indulgence Ability
-        if (this.gameSaveList.getBoolValue(7))
-        {
-            Debug.Log("Player has Indulgence Ability, Update it. (NOT IMPLEMENTED)");
-        }
-        // Check for Ego Ability
-        if (this.gameSaveList.getBoolValue(8))
-        {
-            Debug.Log("Player has Ego Ability, Update it. (NOT IMPLEMENTED)");
-        }
-        // Check for Apathy Ability
-        if (this.gameSaveList.getBoolValue(9))
-        {
-            Debug.Log("Player has Apathy Ability, Update it. (NOT IMPLEMENTED)");
-        }
-    }
 
     public void loadCurrentScene(int id)
     {

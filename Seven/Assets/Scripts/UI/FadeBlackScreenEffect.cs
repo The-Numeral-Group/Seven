@@ -26,7 +26,7 @@ public class FadeBlackScreenEffect : MonoBehaviour
         while (opacity < 1f)
         {
             opacity += 0.1f;
-            image.color = new Color(0f, 0f, 0f, opacity);
+            image.color = new Color(image.color.r, image.color.g, image.color.b, opacity);
             yield return new WaitForSeconds(this.fadeIn_duration / 10);
         }
     }
@@ -42,7 +42,7 @@ public class FadeBlackScreenEffect : MonoBehaviour
         while (opacity > 0f)
         {
             opacity -= 0.1f;
-            image.color = new Color(0f, 0f, 0f, opacity);
+            image.color = new Color(image.color.r, image.color.g, image.color.b, opacity);
             yield return new WaitForSeconds(this.fadeOut_duration / 10);
         }
     }
