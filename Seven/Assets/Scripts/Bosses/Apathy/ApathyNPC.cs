@@ -22,6 +22,9 @@ public class ApathyNPC : Interactable
     //Static to be remembered across instances (i.e. between room entries)
     public static bool fightAbandoned = false;
 
+    //the game save manager
+    private GameSaveManager manager;
+
     //METHODS--------------------------------------------------------------------------------------
     // Start is called before the first frame update
     void Start()
@@ -38,6 +41,13 @@ public class ApathyNPC : Interactable
             apathyObj.SetActive(false);
             prop.SetActive(false);
         }
+
+        //save the gamestate manager
+        manager = GameObject.Find("GameSaveManager")?.GetComponent<GameSaveManager>();
+        //save sin committal. We assume the player is going to leave, and change the value if
+        //the player actually starts the fight.
+        manager.setBoolValue(true, 11);
+
     }
 
     // Update is called once per frame
@@ -73,6 +83,8 @@ public class ApathyNPC : Interactable
     //Turns on the Apathy fight. This instance handles prepping the arena
     public void ActivateSloth()
     {
+        //save the sin uncommitment
+        manager.setBoolValue(false, 11);
         //Remove the props from the room
         prop.SetActive(false);
 

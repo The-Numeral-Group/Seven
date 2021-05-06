@@ -32,7 +32,7 @@ public class GhostKnightSlash : ActorAbilityFunction<Actor, int>
             Debug.Log("GhostKnightPhaseChange: duration must be greater than 0");
             this.duration = 2f;
         }
-        StartCoroutine(args[0].myMovement.LockActorMovement(duration));
+        StartCoroutine(args[0].myMovement.LockActorMovement(this.duration));
 
         ghostKnightAnimationHandler = args[0].myAnimationHandler as GhostKnightAnimationHandler;
 

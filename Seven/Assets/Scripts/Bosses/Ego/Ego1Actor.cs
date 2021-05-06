@@ -13,6 +13,15 @@ public class Ego1Actor : Actor
         " to appeal to the crowd) for Ego to enter Phase 2 upon death.")]
     public int sinGate = 3;
 
+    [Tooltip("How fast Ego travels when Swaggering.")]
+    public float swaggerSpeed = 4f;
+
+    [Tooltip("Hpw fast Ego travels when Sprinting.")]
+    public float sprintSpeed = 6f;
+
+    [Tooltip("How long Ego will swagger for before just sprinting towards the player.")]
+    public float swaggerDuration = 3f;
+
     [Header("Attacks")]
     [Tooltip("Controls how many times should Ego use normal attacks before using it's special.")]
     public int specialAttackGate = 7;
@@ -23,6 +32,9 @@ public class Ego1Actor : Actor
     [Tooltip("How far away the player should be before Ego launches" + 
         " a short-range attack at them.")]
     public float punchRange = 25f;
+
+    [Tooltip("The ability Object Ego should drop when it dies after the player has sinned.")]
+    public GameObject abilityDropObject;
 
     /*reference to this script. Abilities need a reference to their user to be used, but 'this'
     is read-only, and thus can't used. We need to manually reobtain a writable reference.*/
@@ -36,6 +48,9 @@ public class Ego1Actor : Actor
 
     //internal counter to track when Ego should use its special
     private int specialAttackCounter = 0;
+
+    //the timer that runs whether or not Ego should Swagger or Sprint
+    private IEnumerator sprintTimer;
 
     //METHODS--------------------------------------------------------------------------------------
     /*Aquires references to needed actor components, then sets Ego's speed based on
@@ -61,6 +76,10 @@ public class Ego1Actor : Actor
         //save ego's own actor
         ego = this.gameObject.GetComponent<Ego1Actor>();
 
+        //save ego's sprint-related timer
+        sprintTimer = ResetSprint();
+
+        StartCoroutine(sprintTimer);
         StartCoroutine(BossBehaviour());
     }
 
@@ -91,13 +110,7 @@ public class Ego1Actor : Actor
                 specialAttackCounter = 0;
                 Debug.Log("Ego1Actor: Special");
             }
-            //Step 2.3: If the player is far away, save the far
-            else if(dist >= chargeRange)
-            {
-                currAbility = 
-                    this.myAbilityInitiator.abilities[AbilityRegister.PRIDE_FAR_ATTACK];
-                Debug.Log("Ego1Actor: Far");
-            }
+            
             //Step 2.4: If the player is close, save the close
             else if(dist <= punchRange)
             {
@@ -105,11 +118,22 @@ public class Ego1Actor : Actor
                     this.myAbilityInitiator.abilities[AbilityRegister.PRIDE_CLOSE_ATTACK];
                 Debug.Log("Ego1Actor: Close");
             }
+            //Step 2.3: If the player is far away, save the far
+            else if(dist <= chargeRange)
+            {
+                currAbility = 
+                    this.myAbilityInitiator.abilities[AbilityRegister.PRIDE_FAR_ATTACK];
+                Debug.Log("Ego1Actor: Far");
+            }
 
             //Step 3: Attack
             //If there is an attack..
             if(currAbility && currAbility.getUsable())
             {
+                //Reset Ego's sprinting/swaggering
+                StopCoroutine(sprintTimer);
+                StartCoroutine(sprintTimer);
+
                 //stop moving
                 this.myMovement.MoveActor(Vector2.zero);
                 
@@ -148,12 +172,23 @@ public class Ego1Actor : Actor
         this.myMovement.MoveActor(directionToPlayer);
     }
 
+    IEnumerator ResetSprint()
+    {
+        this.myMovement.speed = swaggerSpeed;
+        yield return new WaitForSeconds(swaggerDuration);
+        this.myMovement.speed = sprintSpeed;
+    }
+
     //Ego1 will switch to Ego2 upon death.
     public override void DoActorDeath()
     {
+        var gameSave = GameObject.Find("GameSaveManager");
         //if the player hasn'y sinned enough...
         if(EgoSin.applicationCount < sinGate)
         {
+            //save the lack of sin
+            gameSave?.GetComponent<GameSaveManager>().setBoolValue(false, 14);
+
             ///DEBUG
             Debug.Log("Ego1Actor: Phase change!");
             ///DEBUG
@@ -161,13 +196,17 @@ public class Ego1Actor : Actor
                 "NextPhase", 
                 new System.Tuple<Actor, System.Action<Actor>>(
                     this, 
-                    null
+                    (actor) => 
+                        {actor.gameObject.transform.position = this.gameObject.transform.position;}
                 )
             );
         }
         //if they haven't...
         else
         {
+            //save the sin
+            gameSave?.GetComponent<GameSaveManager>().setBoolValue(true, 14);
+
             ///just destroy this Ego
             StartCoroutine(Die());
         }
@@ -177,6 +216,13 @@ public class Ego1Actor : Actor
     //this can be deletaed when a real death effect is added
     IEnumerator Die()
     {
+        //create an ability object and set it's flag to 8 to reference Ego's ability
+        Instantiate(
+            abilityDropObject, 
+            this.gameObject.transform.position, 
+            Quaternion.identity
+        ).GetComponent<AbilityPickup>().gameSaveAbilityPickupIndex = 8;
+
         yield return null;
 
         //fukkin die

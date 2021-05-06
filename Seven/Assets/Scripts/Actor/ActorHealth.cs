@@ -20,7 +20,7 @@ public class ActorHealth : MonoBehaviour
     public float damageResistance = 0.0f;
     //How long the actor stays invulnerable for from taking a hit
     [Range(0, 256)]
-    public float invincibilityDuration = 1;
+    public int invincibilityDuration = 1;
 
     public bool startInvulnerable = false;
 
@@ -35,11 +35,15 @@ public class ActorHealth : MonoBehaviour
     public bool vulnerable { get; protected set; }
     //The amount of time remaining on the actors invulnerability.
     float timeInvulnerable;
+    //Ppointers to coroutines for stopping and starting.
     IEnumerator MakeVulnerablePointer;
+    IEnumerator FlashRedPtr;
+    IEnumerator BlinkPtr;
 
     //Reference to the objects sprite renderer
     SpriteRenderer spriteRenderer;
-    Color hitColor;
+    Color modifiedColor;
+    Color defaultColor;
 
     void Awake(){
         hostActor = this.GetComponent<Actor>();
@@ -48,7 +52,10 @@ public class ActorHealth : MonoBehaviour
         this.vulnerable = !startInvulnerable;
         timeInvulnerable = 0f;
         MakeVulnerablePointer = ExtendInvulnerability(invincibilityDuration, false);
+        FlashRedPtr = FlashRed();
+        BlinkPtr = BlinkEffect();
         this.spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+        defaultColor = spriteRenderer.color;
     }
     
     /*// Start is called before the first frame update
@@ -58,8 +65,9 @@ public class ActorHealth : MonoBehaviour
             
     }*/
 
-    public virtual void takeDamage(float damageTaken, bool bypassDamageResistance=false){
-        if (!this.vulnerable)
+    public virtual void takeDamage(float damageTaken, bool bypassDamageResistance=false, bool bypassInvulnerability = false){
+        Debug.Log(this.gameObject.name + " should take damage");
+        if (!this.vulnerable && !bypassInvulnerability)
         {
             return;
         }
@@ -99,52 +107,15 @@ public class ActorHealth : MonoBehaviour
         }
     }
 
-    // A visual indicator if actor has received damage.
-    IEnumerator FlashRed()
-    {
-        hitColor.r = 1;
-        hitColor.g = 0;
-        hitColor.b = 0;
-        yield return new WaitForSeconds(0.3f);
-        hitColor.r = 1;
-        hitColor.g = 1;
-        hitColor.b = 1;
-    }
-
-    /*Coroutine makes the sprite blink, makes the actor invulnerable for a period, and makes the
-    actor's sprite flash red on the initial hit.*/
-    public IEnumerator MakeInvulnerableAfterDamage()
-    {
-        float blinkSpeed = 0.05f;
-        SetVulnerable(false, invincibilityDuration);
-        if (!spriteRenderer)
-        {
-            Debug.LogWarning("ActorHealth: " + this.gameObject.name + " Does not have a spriterenderer.");
-            //https://answers.unity.com/questions/561116/stopping-a-coroutine-within-same-function.html
-            yield break;
-        }
-        hitColor = spriteRenderer.color;
-        StartCoroutine(FlashRed());
-        for (float i = 0; i < invincibilityDuration; i += blinkSpeed * 2)
-        {
-            hitColor.a = 0;
-            spriteRenderer.color = hitColor;
-            yield return new WaitForSeconds(blinkSpeed);
-            hitColor.a = 1;
-            spriteRenderer.color = hitColor;
-            yield return new WaitForSeconds(blinkSpeed);
-        }
-    }
-
     /*Used to keep track of a players accumulated invulnerability time. This will allow us to
     have multiple calls add to an objects invulnerability time.*/
     IEnumerator ExtendInvulnerability(float duration, bool value)
     {
         timeInvulnerable = duration;
-        for (float i = 0; i < duration; i += 0.01f)
+        while(timeInvulnerable > 0)//for (float i = 0; i < duration; i += 0.01f)
         {
-            yield return new WaitForSeconds(0.01f);
-            timeInvulnerable -= 0.01f;
+            yield return null;//new WaitForSeconds(0.01f);
+            timeInvulnerable -= Time.deltaTime; //0.01f;
         }
         this.vulnerable = !value;
         timeInvulnerable = 0f;
@@ -173,6 +144,52 @@ public class ActorHealth : MonoBehaviour
             }
             MakeVulnerablePointer = ExtendInvulnerability(duration, value);
             StartCoroutine(MakeVulnerablePointer);
+        }
+    }
+
+    //unrelated: invincibility fix is tied to rigidbody settings
+    //https://answers.unity.com/questions/1208412/ontriggerstay2dcollider2d-coll-does-not-detect-a-c.html
+    public void DefaultDamageEffect()
+    {
+        StopCoroutine(FlashRedPtr);
+        StopCoroutine(BlinkPtr);
+        spriteRenderer.color = defaultColor;
+        modifiedColor = defaultColor;
+        if (invincibilityDuration > 0)
+        {
+            SetVulnerable(false, invincibilityDuration, false);
+            BlinkPtr = BlinkEffect();
+            StartCoroutine(BlinkPtr);
+        }
+        FlashRedPtr = FlashRed();
+        StartCoroutine(FlashRedPtr);
+    }
+
+    // A visual indicator if actor has received damage.
+    IEnumerator FlashRed()
+    {
+        modifiedColor.r = 1;
+        modifiedColor.g = 0;
+        modifiedColor.b = 0;
+        spriteRenderer.color = modifiedColor;
+        yield return new WaitForSeconds(0.3f);
+        modifiedColor.r = defaultColor.r;
+        modifiedColor.g = defaultColor.g;
+        modifiedColor.b = defaultColor.b;
+        spriteRenderer.color = modifiedColor;
+    }
+
+    IEnumerator BlinkEffect()
+    {
+        float blinkSpeed = invincibilityDuration > 0.2f * 2f ? 0.2f : invincibilityDuration / 2f;
+        for (float i = 0; i < invincibilityDuration; i += blinkSpeed * 2f)
+        {
+            yield return new WaitForSeconds(blinkSpeed);
+            modifiedColor.a = 0;
+            spriteRenderer.color = modifiedColor;
+            yield return new WaitForSeconds(blinkSpeed);
+            modifiedColor.a = defaultColor.a;
+            spriteRenderer.color = modifiedColor;
         }
     }
 }

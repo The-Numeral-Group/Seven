@@ -229,8 +229,8 @@ public class GhostKnightActor : Actor
         }
 
     }
-    
-    
+
+
     // Handles the physical contact with the player effect.
     // Knockback Effect is handled with Point Effector 2D Component.
     /*void OnTriggerEnter2D(Collider2D collider)

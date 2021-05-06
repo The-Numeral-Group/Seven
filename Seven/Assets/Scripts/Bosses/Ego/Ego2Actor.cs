@@ -44,6 +44,9 @@ public class Ego2Actor : Actor
         " wall attack.")]
     public int powerAttackGate = 3;
 
+    [Tooltip("The ability Object Ego should drop when it dies if the player doesn't sin.")]
+    public GameObject abilityDropObject;
+
     //How many times Ego has attacked (which determines which attack it uses). Needs to start at
     //one to work with the modulo-based attack determination
     private int attackCount = 1;
@@ -53,6 +56,9 @@ public class Ego2Actor : Actor
 
     //private a re-do reference to Ego's movement, but casted to its unique type
     private Ego2Movement uniqueMovement;
+
+    //private re-do reference to Ego's animationHandler, but casted to its unique type
+    private Ego2AnimationHandler uniqueAnim;
 
     //writable reference to this for ability invocations
     private Actor ego;
@@ -89,6 +95,16 @@ public class Ego2Actor : Actor
             Debug.LogError("Ego2Actor: No Ego2Movement found, teleportations will not function");
         }
 
+        //get ActorAnimationHandler as Ego2AnimationHandler
+        if(this.myAnimationHandler is Ego2AnimationHandler)
+        {
+            uniqueAnim = (this.myAnimationHandler as Ego2AnimationHandler);
+        }
+        else
+        {
+            Debug.LogError("Ego2Actor: No Ego2AnimationHandler found, anims will not function");
+        }
+
         //start the behaviour coroutine
         StartCoroutine(BossBehaviour());
     }
@@ -100,6 +116,9 @@ public class Ego2Actor : Actor
         DoActorUpdateFacing(
             (player.gameObject.transform.position - this.gameObject.transform.position).normalized
         );
+
+        //update Ego's animations
+        uniqueAnim.animateIdle();
     }
 
     // Controls the timing of Ego's attacks and teleportations
@@ -191,6 +210,13 @@ public class Ego2Actor : Actor
     //this can be deletaed when a real death effect is added
     IEnumerator Die()
     {
+        //create an ability object and set it's flag to 8 to reference Ego's ability
+        Instantiate(
+            abilityDropObject, 
+            this.gameObject.transform.position, 
+            Quaternion.identity
+        ).GetComponent<AbilityPickup>().gameSaveAbilityPickupIndex = 8;
+        
         yield return null;
 
         //fukkin die

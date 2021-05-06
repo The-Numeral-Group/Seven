@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 //Document Link: https://docs.google.com/document/d/1K9f7sRQvDX4krcKahgIzJey87R1z7mGWV4xgnYU7qSQ/edit?usp=sharing
 
@@ -10,17 +11,17 @@ public class PauseMenu : BaseUI
 {
     //Flag for if the game is paused
     public static bool GAME_IS_PAUSED;
-    [SerializeField]
+    /*[SerializeField]
     [Tooltip("Reference to the Sub Menu Container")]
-    RectTransform subMenuContainer = null;
+    RectTransform subMenuContainer = null;*/
     //I did stupid design for the sub menus. List order matters for this class.
     [SerializeField]
     [Tooltip("List containing the various submenus.")]
     List<SubMenu> subMenus = null;
-    [SerializeField]
-    List<GameObject> abilityButtons = null;
     //Index of the current selected sub menu in the list
     int currentSelectedSubMenuIndex = 0;
+    /*[SerializeField]
+    List<GameObject> abilityButtons = null;
     [SerializeField]
     [Tooltip("Reference to the left button which swaps to the next sub menu.")]
     Button leftSubMenuSelect = null;
@@ -33,7 +34,7 @@ public class PauseMenu : BaseUI
     Image abilityOneImage = null;
     [SerializeField]
     [Tooltip("Reference to the image representing abilityTwo")]
-    Image abilityTwoImage = null;
+    Image abilityTwoImage = null;*/
     //Reference to the player
     Actor playerActor;
 
@@ -81,6 +82,11 @@ public class PauseMenu : BaseUI
     {
         GAME_IS_PAUSED = false;
         Time.timeScale = 1f;
+        currentSelectedSubMenuIndex = 0;
+        foreach(SubMenu menu in subMenus)
+        {
+            menu.gameObject.SetActive(false);
+        }
         base.Hide();
     }
 
@@ -88,21 +94,27 @@ public class PauseMenu : BaseUI
     public override void Show()
     {
         base.Show();
-        subMenus[currentSelectedSubMenuIndex].defaultButton.Select();
+        ShowSubMenu(subMenus[currentSelectedSubMenuIndex]);
         PauseGame();
+    }
+
+    public void ShowSubMenu(SubMenu menu)
+    {
+        menu.gameObject.SetActive(true);
+        menu.defaultButton.Select();
     }
 
     //meant to be called by player upon closing pause menu through resume.
     public void OnResume()
     {
         var player = GameObject.FindGameObjectWithTag("Player");
-        PlayerActor pActor = player.GetComponent<PlayerActor>();
-        pActor.playerInput.SwitchCurrentActionMap("Player");
+        PlayerInput pInput = player.GetComponent<PlayerInput>();
+        pInput.SwitchCurrentActionMap("Player");
         Hide();
     }
 
     //Callback function used by the pause menu to swap between the ability menu and pause menu.
-    public void SwampMenu(bool swapRight)
+    /*public void SwampMenu(bool swapRight)
     {
         if (swapRight)
         {
@@ -139,7 +151,7 @@ public class PauseMenu : BaseUI
     //https://answers.unity.com/questions/921720/how-can-i-check-if-a-ui-button-is-selected.html
     /*Function below sets abilities for the player within the menu system. Pass in true for abiltiy 1, false for
     ability2. Right now the call is made from the playeractor script.*/
-    public void SetAbility(bool setAbilityOne)
+    /*public void SetAbility(bool setAbilityOne)
     {
         GameObject currentSelectedButton = EventSystem.current.currentSelectedGameObject;
         PlayerAbilityInitiator playerAbilityInitiator = playerActor.myAbilityInitiator as PlayerAbilityInitiator;
@@ -180,7 +192,7 @@ public class PauseMenu : BaseUI
             ptrToAbilityUIElement.color = currentSelectedButton.GetComponent<Image>().color;
         }
 
-    }
+    }*/
 
     //https://forum.unity.com/threads/passing-a-any-component-as-a-parameter.497218/
     /*this function  assigns an ability to an ability button. When assigning an abiltiy it must 
@@ -189,7 +201,7 @@ public class PauseMenu : BaseUI
     instead of through the inspector. The primary use I see for it is when a player kills a boss,
     the events that follow can add the ability to w/e index abiltiy button. This will allow the player
     to assign it as their selected ability in the future.*/
-    public void SetAbilityToAbilityMenu<TAbility>(int index) where TAbility : UnityEngine.Component, new()
+    /*public void SetAbilityToAbilityMenu<TAbility>(int index) where TAbility : UnityEngine.Component, new()
     {
         if (index >= abilityButtons.Count)
         {
@@ -208,5 +220,5 @@ public class PauseMenu : BaseUI
         abilityButtons[index].AddComponent<TAbility>();
         //Code to set inspector values
         //code to set sprite of button
-    }
+    }*/
 }

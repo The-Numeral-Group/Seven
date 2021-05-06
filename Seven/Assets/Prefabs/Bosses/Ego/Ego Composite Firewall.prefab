@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3394036367371183271}
   - component: {fileID: 6696847159662400138}
   - component: {fileID: 6770949247602947826}
+  - component: {fileID: 9179596879288909320}
   m_Layer: 0
   m_Name: Ego Composite Firewall
   m_TagString: Untagged
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7297709419845792864, guid: bc2025bfecb642848a390a4f6e07bd60, type: 3}
+  m_Sprite: {fileID: -8913512993362377966, guid: 7c253ee311c089f2f94f006b74400087, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,7 +106,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.7, y: 2.7}
+    oldSize: {x: 10.802637, y: 10.799999}
     newSize: {x: 2.7, y: 2.7}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -222,3 +223,22 @@ MonoBehaviour:
   firewallMaxDist: 30
   stoppedLifetime: 5
   fireSpread: 0.05
+--- !u!95 &9179596879288909320
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4710924987715151114}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cd336c22b6b51c12ba65f92bd1ab131a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -71,7 +71,11 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     }
     private void Teleport(Actor user)
     {
-        user.transform.position = player.transform.position;
+        Vector2 playerPos = player.transform.position;
+
+        playerPos.y += 5;
+
+        user.transform.position = playerPos;
         StartCoroutine(Reappear(user));
     }
     private IEnumerator Reappear(Actor user)
@@ -106,10 +110,9 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     private IEnumerator PerformSpecialSlash(Actor user)
     {
         ghostKnightAnimationHandler.animateSpecialSlash();
-        user.myMovement.DragActor(new Vector2(0.0f, -0.5f));
+        user.myMovement.DragActor(new Vector2(0.0f, -1f));
         yield return new WaitForSeconds(this.duration_slash);
         user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
-        yield return new WaitForSeconds(this.duration_slash);
         isFinished = true;
     }
 

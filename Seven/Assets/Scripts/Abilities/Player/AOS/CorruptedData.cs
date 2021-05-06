@@ -24,7 +24,7 @@ public class CorruptedData : ActorAbilityFunction<Actor, int>
     {
         this.user = user;
         //by default, Invoke just does InternInvoke with no arguments
-        if(usable && this.isFinished)
+        if(usable && this.isFinished && user.myHealth.currentHealth > 1)
         {
             isFinished = false;
             InternInvoke(new Actor[0]);
@@ -41,6 +41,7 @@ public class CorruptedData : ActorAbilityFunction<Actor, int>
     {
         Vector2 originalDirection = user.faceAnchor.localPosition;
         int directionMultiplier = 1;
+        user.myHealth.takeDamage(1f, false, true);
         for (int i = 0; i < numProjectiles; i++)
         {
             if (i % 2 == 1)

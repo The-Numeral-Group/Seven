@@ -61,7 +61,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 40
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -97,12 +97,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f64318f08b4c3a745b1ef440ecf59ac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainTargetTransform: {fileID: 0}
   targetPOIs: []
-  offset: {x: 0, y: 10}
+  ignoreTargetPOIs: 0
+  offset: {x: 0, y: 2}
   cameraSmoothRate: 0.5
-  breakingDistance: 20
-  defaultZoom: 40
-  minZoom: 17
+  breakingDistance: 5
+  upperBound: 3.4028235e+38
+  lowerBound: -3.4028235e+38
+  rightBound: 3.4028235e+38
+  leftBound: -3.4028235e+38
+  dummyvalue: 20
+  defaultZoom: 15
+  minZoom: 7
   zoomSpeed: 5
 --- !u!114 &184813372446191150
 MonoBehaviour:

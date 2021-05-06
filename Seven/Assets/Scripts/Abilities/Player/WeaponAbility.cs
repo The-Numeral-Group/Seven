@@ -49,7 +49,14 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
         weaponObject.SetActive(false);
 
         //set damage of hitboxes
-        SetDamage();
+        if (damagePerHitbox.Count > 0)
+        { 
+            SetDamage(damagePerHitbox[0]);
+        }
+        else
+        {
+            SetDamage(0);
+        }
     }
 
     /*Similar to ActorAbilityFunction's invoke method
@@ -87,8 +94,8 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
         this.hitConnected = false;
         StopCoroutine(sheathe);
         sheathe = SheatheWeapon();
-        weaponObject.SetActive(true);
         SpawnWeapon(args);
+        weaponObject.SetActive(true);
         StartCoroutine(sheathe);
         return 0;
     }
@@ -113,7 +120,7 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
     }
 
     //sets the damage of the weapon's hitboxes
-    private void SetDamage()
+    public virtual void SetDamage(int damageArg)
     {
         //Setup the damage for each hitbox in the weapon.
         for (int i = 0; i < weaponObject.transform.childCount; i++)

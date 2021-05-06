@@ -74,6 +74,16 @@ public class WeaponHitbox : MonoBehaviour
         }
     }
 
+    ///DEBUG
+    void OnDisable()
+    {
+        if(wp != null)
+        {
+            wp.hitConnected = false;
+        }
+    }
+    ///DEBUG
+
     public void PrintDamage()
     {
         Debug.Log(damage);

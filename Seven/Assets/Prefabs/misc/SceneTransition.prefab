@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7675090967697320959}
   - component: {fileID: 6308772208304525556}
+  - component: {fileID: 2726239243352455796}
   m_Layer: 0
   m_Name: SceneTransition
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4273383964679671639}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0484626, y: 2.7989142, z: -84.06232}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,4 +44,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba4c85a88d7f4848a5adf03e1cdccd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactIndicatorPrefab: {fileID: 0}
+  indicatorOffset: {x: 0, y: 5}
   sceneToLoad: 
+--- !u!58 &2726239243352455796
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4273383964679671639}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.79

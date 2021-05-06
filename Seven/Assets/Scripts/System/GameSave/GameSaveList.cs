@@ -14,13 +14,29 @@ public class GameSaveList : MonoBehaviour
 
     // Element 3 - ghostKnightPosition
 
-    // Element 10 - ApathyDefeated
+    // Element 7 - Indulgence Ability Pickup
 
-    // Element 11 - DesireDefeated
+    // Element 8 - Ego Ability Pickup
 
-    // Element 12 - EgoDefeated
+    // Element 9 - Apathy Ability Pickup
 
-    // Element 13 - IndulgenceDefeated
+    // Element 10 - ApathyOpening
+
+    // Element 11 - ApathySinCorrupted
+
+    // Element 12 - ApathyDefeated
+
+    // Element 13 - EgoOpening
+
+    // Element 14 - EgoSinCorrupted
+
+    // Element 15 - EgoDefeated
+
+    // Element 16 - IndulgenceOpening
+
+    // Element 17 - IndulgenceSinCorrupted
+
+    // Element 18 - IndulgenceDefeated
 
     /* ----- BOOL VALUE ----- */
     public void setBoolValue(bool newValue, int id)
@@ -150,40 +166,20 @@ public class GameSaveList : MonoBehaviour
 
     public void checkBossProgress()
     {
-        if (((BoolValue)SaveObjects[10]).RuntimeValue)
-        {
-            Debug.Log("Apathy has been defeated!");
-        }
-        else
-        {
-            Debug.Log("Apathy has not been defeated!");
-        }
+        // Apathy Progress
+        Debug.Log("ApathyOpening: " + ((BoolValue)SaveObjects[10]).RuntimeValue);
+        Debug.Log("ApathySinCorrupted: " + ((BoolValue)SaveObjects[11]).RuntimeValue);
+        Debug.Log("ApathyDefeated: " + ((BoolValue)SaveObjects[12]).RuntimeValue);
 
-        if (((BoolValue)SaveObjects[11]).RuntimeValue)
-        {
-            Debug.Log("Desire has been defeated!");
-        }
-        else
-        {
-            Debug.Log("Desire has not been defeated!");
-        }
+        // Ego Progress
+        Debug.Log("EgoOpening: " + ((BoolValue)SaveObjects[13]).RuntimeValue);
+        Debug.Log("EgoSinCorrupted: " + ((BoolValue)SaveObjects[14]).RuntimeValue);
+        Debug.Log("EgoDefeated: " + ((BoolValue)SaveObjects[15]).RuntimeValue);
 
-        if (((BoolValue)SaveObjects[12]).RuntimeValue)
-        {
-            Debug.Log("Ego has been defeated!");
-        }
-        else
-        {
-            Debug.Log("Ego has not been defeated!");
-        }
-
-        if (((BoolValue)SaveObjects[13]).RuntimeValue)
-        {
-            Debug.Log("Indulgence has been defeated!");
-        }
-        else
-        {
-            Debug.Log("Indulgence has not been defeated!");
-        }
+        // Indulgence Progress
+        Debug.Log("IndulgenceOpening: " + ((BoolValue)SaveObjects[16]).RuntimeValue);
+        Debug.Log("IndulgenceSinCorrupted: " + ((BoolValue)SaveObjects[17]).RuntimeValue);
+        Debug.Log("IndulgenceDefeated: " + ((BoolValue)SaveObjects[18]).RuntimeValue);
     }
+
 }

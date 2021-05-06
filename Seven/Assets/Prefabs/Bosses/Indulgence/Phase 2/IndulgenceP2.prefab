@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453e150335b52ac4884472bf0e1bd9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  speed: 6
 --- !u!114 &4442329231913377670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingMaxHealth: 30
   damageResistance: 0
-  invincibilityDuration: 1
+  invincibilityDuration: 0
   startInvulnerable: 0
 --- !u!114 &4442329231913377664
 MonoBehaviour:
@@ -317,7 +317,7 @@ MonoBehaviour:
   cooldownPeriod: 0
   abilityName: 
   invokeBlankWhenBadArguments: 1
-  suckSpeed: 0.25
+  suckSpeed: 0.12
   suckDuration: 5
   timeToReachCenter: 1
   projectileSpawnTime: 1

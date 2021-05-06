@@ -88,6 +88,29 @@ public class EgoSwordActor : Actor
         StartCoroutine(SwordBehaviour());
     }
 
+    public void DelayFollowLaunch(
+        GameObject target, Vector3 offset, float duration, ActorAbility newAbility=null)
+    {
+        StartCoroutine(DelayFollow(target, offset, duration, newAbility));
+    }
+
+    IEnumerator DelayFollow(
+        GameObject target, Vector3 offset, float duration, ActorAbility newAbility=null)
+    {
+        float clock = 0f;
+
+        while(clock <= duration)
+        {
+            this.gameObject.transform.position = target.transform.position + offset;
+
+            yield return null;
+
+            clock += Time.deltaTime;
+        }
+
+        Launch(target, newAbility);
+    }
+
     /*The sword's behaviour. Swords are defined to fly towards the target for a certain amount of 
     time. If they hit their target, they self-destruct. If they don't hit their target in that
     time, they will stop moving and shoot Ego Lasers at them for a certain amount of time.*/
@@ -105,6 +128,10 @@ public class EgoSwordActor : Actor
         this.gameObject.GetComponent<Rigidbody2D>().constraints 
             = RigidbodyConstraints2D.FreezeAll;
         state = SwordState.LANDED;
+
+        //Step 3.5: Switch to the landed animation. And, no, I am not going to write
+        //a custom AAH just for this one thing
+        this.myAnimationHandler.Animator.SetBool("egosword_landed", true);
 
         //Step 4: Shoot the lasers
         for(int i = 0; i < attackCount; ++i)

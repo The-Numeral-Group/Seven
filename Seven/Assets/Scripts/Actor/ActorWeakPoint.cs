@@ -38,8 +38,8 @@ public class ActorWeakPoint : ActorHealth
     ActorHealths.*/
 
     //new in a method declaration means "use me rather than my superclass's version"
-    public override void takeDamage(float damageTaken, bool bypassDamageResistance=false){
-        if (!this.vulnerable)
+    public override void takeDamage(float damageTaken, bool bypassDamageResistance=false, bool bypassInvulnerability = false){
+        if (!this.vulnerable && !bypassInvulnerability)
         {
             Debug.Log("ActorWeakPoint: returning  'cause not vulnerable");
             return;

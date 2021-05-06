@@ -37,5 +37,39 @@ public class ActorAnimationHandler : MonoBehaviour
         {
             sp.flipX = false;
         }
+    }
+
+    //Checks if this animator has a trigger named triggerName. If so, trigger it
+    //and return true. If not, print a suppressable warning to console and return
+    //false
+    public bool TrySetTrigger(string triggerName, bool suppressWarnings=false)
+    {
+        //Does the trigger exist?
+        bool triggerExists = 
+            //Please search the AnimatorControllerParameter array...
+            System.Array.Find<AnimatorControllerParameter>(
+                Animator.parameters,    //called Animator.parameters...
+                //for a value that is Trigger type and has this name
+                param => param.type == AnimatorControllerParameterType.Trigger 
+                    && param.name == triggerName
+            //Find returns the default of the generic type if no match is found
+            ) != default(AnimatorControllerParameter);
+
+        //If it does
+        if(triggerExists)
+        {
+            //Trigger it and go
+            Animator.SetTrigger(triggerName);
+            return true;
+        }
+        //If it doesn't...
+        else if(!suppressWarnings)
+        {
+            //Throw a warning, if so desired
+            Debug.LogWarning($"ActorAnimationHandler: Animator"
+                + $" {Animator.GetType().Name} has no trigger named {triggerName}");
+        }
+
+        return false;
     }  
 }

@@ -31,16 +31,19 @@ public class Ego2Movement : ActorMovement
     [SerializeField]
     private static float s_invalidDestCorrect = 0.25f;
 
+    [Tooltip("Whether or not the animation for this teleport is at a good spot to" + 
+        " actually change location. Please do not manually edit this.")]
+    public bool teleportAnimClear = false;
 
     //METHODS--------------------------------------------------------------------------------------
     /*The only thing being added to movement is Ego's teleport. Makes user invisible, disables
     thier collider (if any), disables their health (if any), and then sets their 
     position to be the argument, wherever that is. After arriving, the colliders and damage
     are restored.
-    
     Teleports will not check if the target destination has enough space*/
     public IEnumerator EgoTeleport(Vector3 dest)
     {
+        this.teleportAnimClear = false;
         //Step 0: Get a destination that doesn't have something in it
         Vector3 destination = Ego2Movement.GetSafeLocation(
             dest, 
@@ -58,10 +61,10 @@ public class Ego2Movement : ActorMovement
         ///DEBUG
         //Step 2: Fade out the teleporter's alpha channel
         var renderer = this.gameObject.GetComponent<SpriteRenderer>();
-        var fadeTime = 0.0f;
+        //var fadeTime = 0.0f;
 
         //standard coroutine fade
-        while(fadeTime < debugTeleShiftTime)
+        /*while(fadeTime < debugTeleShiftTime)
         {
             renderer.color = new Color(
                 renderer.color.r,
@@ -78,10 +81,40 @@ public class Ego2Movement : ActorMovement
                 renderer.color.g,
                 renderer.color.b,
                 0f
-        );
+        );*/
         ///DEBUG
+        //Step 2: Animate the teleport
+        //wacky idea... wrap the call in a delegate so the animation call becomes
+        //a seperate method return?
+        
+        /*this.gameObject.GetComponent<ActorAnimationHandler>()?.TrySetTrigger("ego_teleport");
+        yield return null;
+        //test();
 
         //Step 2.5: spend some time out of reality
+        //this will be flipped back by the animation itself. It will set teleportAnimClear
+        //to true from inside the animation
+        yield return new WaitUntil( () => this.teleportAnimClear );
+        this.teleportAnimClear = false;
+        yield return new WaitUntil( () => this.teleportAnimClear );
+        this.teleportAnimClear = false;*/
+
+        //Teleportation visuals
+        this.gameObject.GetComponent<ActorAnimationHandler>()?.TrySetTrigger("ego_teleport");
+        yield return null;
+
+        yield return new WaitUntil( () => this.teleportAnimClear );
+        //yield return null;
+        this.teleportAnimClear = false;
+
+        /*renderer.color = new Color(
+                renderer.color.r,
+                renderer.color.g,
+                renderer.color.b,
+                0f
+        );*/
+
+        //Wait a little bit...
         yield return new WaitForSeconds(intangibleTime);
 
         //Step 3: actually teleport
@@ -89,7 +122,7 @@ public class Ego2Movement : ActorMovement
 
         ///DEBUG
         //Step 4: Fade in the teleporter's alpha channel
-        fadeTime = 0.0f;
+        /*fadeTime = 0.0f;
 
         //standard coroutine fade
         while(fadeTime < debugTeleShiftTime)
@@ -110,7 +143,24 @@ public class Ego2Movement : ActorMovement
                 renderer.color.b,
                 1f
         );
-        ///DEBUG
+        ///DEBUG*/
+
+        //force to visible
+        renderer.color = new Color(
+                renderer.color.r,
+                renderer.color.g,
+                renderer.color.b,
+                1f
+        );
+
+        this.gameObject.GetComponent<ActorAnimationHandler>()?.TrySetTrigger("ego_teleport");
+        yield return null;
+
+        yield return new WaitUntil( () => this.teleportAnimClear );
+        this.teleportAnimClear = false;
+
+        //Step 4.5(?): Wait for the teleport to land
+        //yield return new WaitUntil( () => this.teleportAnimClear );
 
         //Step 5: re-enable collisions and health
         if(collider){collider.enabled = true;}
@@ -121,6 +171,14 @@ public class Ego2Movement : ActorMovement
     object. Again, Teleports will not check if the target destination has enough space*/
     public static IEnumerator EgoTeleport(Vector3 dest, GameObject user)
     {
+        //Step -1: if the user is Ego, the animation version should be used
+        Ego2Movement userMovement;
+        if(user.TryGetComponent(out userMovement))
+        {
+            yield return userMovement.EgoTeleport(dest);
+            yield break;
+        }
+
         //Step 0: Get a destination that doesn't have something in it
         Vector3 destination = Ego2Movement.GetSafeLocation(
             dest, 

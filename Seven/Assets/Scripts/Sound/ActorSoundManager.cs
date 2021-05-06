@@ -59,7 +59,7 @@ public class ActorSoundManager : MonoBehaviour
         }
     }
 
-    public void PlaySound (string name)
+    public void PlaySound (string name, float pitchMin = 1, float pitchMax = 1)
     {
         SoundAudioClip s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
@@ -70,8 +70,8 @@ public class ActorSoundManager : MonoBehaviour
 
         if (!CanPlaySound(s)) return;
 
+        s.source.pitch = UnityEngine.Random.Range(pitchMin, pitchMax);
         //Debug.Log(s.name);
-
         s.source.Play();
     }
 

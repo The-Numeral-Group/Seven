@@ -53,7 +53,7 @@ public class GhostKnightProjectile : ActorAbilityFunction<Actor, int>
         float speed = distance / (this.travelDuration);
         user.myMovement.DragActor(direction * speed);
         yield return new WaitForSeconds(this.travelDuration);
-        user.myMovement.DragActor(Vector2.zero);
+        user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
         StartCoroutine(SpawnProjectiles(user));
     }
 

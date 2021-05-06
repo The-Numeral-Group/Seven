@@ -42,7 +42,10 @@ public class IndulgenceP2Actor : Actor
 
     public override void DoActorDeath()
     {
-        MenuManager.PAUSE_MENU.LoadScene("Hub");
+        // Load Death cutscene 
+
+        // Update Flag for game save
+        MenuManager.PAUSE_MENU.LoadScene("IndulgencePostFight");
     }
 
     public void SetupTarget()
