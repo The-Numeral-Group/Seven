@@ -142,6 +142,9 @@ internal class ApathySludgeSingle : ProjectileAbility
     shots and markers.*/
     IEnumerator ProjectileBehaviour()
     {
+        //Step -1: Start the animation
+        this.user.myAnimationHandler.TrySetTrigger("ego_throw");
+
         //Step 0: check to see if there is a FaceAnchor for the target
         var targetFace = target.Find("FaceAnchor");
 
@@ -172,12 +175,18 @@ internal class ApathySludgeSingle : ProjectileAbility
                 / shotFlightTime;
         projObj.GetComponent<ActorMovement>().speed = newSpeed;
 
+        //Step: 6.25 animate the next part of the throw
+        this.user.myAnimationHandler.TrySetTrigger("ego_throw");
+
         //Step 6.5: Actually launch the projectile at the directly under marker now
         projObj.SetActive(true);
         projObj.GetComponent<BasicProjectile>().Launch(markObjA.transform.position, LAUNCH_MODE.POINT);
 
         //Step 7: Wait a little bit again...
         yield return new WaitForSeconds(shotFlightTime);
+
+        //Step: 7.5 animate the next part of the throw
+        this.user.myAnimationHandler.TrySetTrigger("ego_throw");
 
         //Step 8: Destroy the marker and the projectile, if they still exist
         Destroy(markObjA);
@@ -197,6 +206,9 @@ internal class ApathySludgeSingle : ProjectileAbility
             Mathf.Abs(Vector3.Distance(markObjB.transform.position, projObj.transform.position)) 
                 / shotFlightTime;
         projObj.GetComponent<ActorMovement>().speed = newSpeed;
+
+        //Step: 10.25 animate the next part of the throw
+        this.user.myAnimationHandler.TrySetTrigger("ego_throw");
 
         //Step 10.5: And we're gonna launch it too
         projObj.GetComponent<BasicProjectile>().Launch(markObjB.transform.position, LAUNCH_MODE.POINT);

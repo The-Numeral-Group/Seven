@@ -53,6 +53,9 @@ public class SlothActor : Actor
     //the AAM used to engage the SlothClock when the fight starts
     private SlothClockMod AAM;
 
+    //internal reference to correctly typed animation handler
+    private ApathyAnimationHandler anims;
+
     //invoke this event to make sloth hostile
     //public UnityEvent activationEvent = new UnityEvent();
 
@@ -86,6 +89,11 @@ public class SlothActor : Actor
         //create AAM object here (to reduce load/lag when starting the fight)
         AAM = new SlothClockMod();
 
+        //face apathy upwards (for ~drama~)
+        this.DoActorUpdateFacing(Vector2.up);
+
+        anims = (this.myAnimationHandler as ApathyAnimationHandler);
+
         //initialize sloth/apathy's current ability to its close attack
         currAbility = this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_PHYSICAL];
     }
@@ -97,6 +105,8 @@ public class SlothActor : Actor
         //but only when the fight is going
         if(activated)
         {
+            anims.animateIdle();
+            
             var playerDist = Mathf.Abs(
                 Vector3.Distance(
                     player.gameObject.transform.position, 
@@ -111,8 +121,12 @@ public class SlothActor : Actor
                 return;
             }
 
-            this.gameObject.transform.right = 
-                player.gameObject.transform.position - this.gameObject.transform.position;
+            this.DoActorUpdateFacing(
+                player.gameObject.transform.position - this.gameObject.transform.position
+            );
+
+            //this.gameObject.transform.right = 
+            //    player.gameObject.transform.position - this.gameObject.transform.position;
         }
         
     }

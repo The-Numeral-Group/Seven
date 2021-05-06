@@ -288,6 +288,10 @@ PrefabInstance:
       propertyPath: startingWeaponObject
       value: 
       objectReference: {fileID: 4064867689300998930, guid: 8f015bc7caeed1d459e95a510e0c962f, type: 3}
+    - target: {fileID: 4115977272152067176, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: startInvulnerable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4115977272152067180, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: selectedAbilityAlpha
       value: 
@@ -333,7 +337,6 @@ GameObject:
   - component: {fileID: 315102717}
   - component: {fileID: 315102716}
   - component: {fileID: 315102715}
-  - component: {fileID: 315102713}
   - component: {fileID: 315102712}
   - component: {fileID: 315102714}
   - component: {fileID: 315102721}
@@ -343,6 +346,7 @@ GameObject:
   - component: {fileID: 315102722}
   - component: {fileID: 315102723}
   - component: {fileID: 315102719}
+  - component: {fileID: 315102713}
   m_Layer: 0
   m_Name: Apathy
   m_TagString: Untagged
@@ -415,7 +419,7 @@ Transform:
   - {fileID: 588429600}
   - {fileID: 1127607762}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &315102711
 MonoBehaviour:
@@ -454,7 +458,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 315102708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27600644c33641846a3618949c49a0fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 4493176af34f961cbab8d2da41bb9c8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 0}
