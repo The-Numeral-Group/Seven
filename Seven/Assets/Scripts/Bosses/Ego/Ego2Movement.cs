@@ -61,10 +61,10 @@ public class Ego2Movement : ActorMovement
         ///DEBUG
         //Step 2: Fade out the teleporter's alpha channel
         var renderer = this.gameObject.GetComponent<SpriteRenderer>();
-        var fadeTime = 0.0f;
+        //var fadeTime = 0.0f;
 
         //standard coroutine fade
-        while(fadeTime < debugTeleShiftTime)
+        /*while(fadeTime < debugTeleShiftTime)
         {
             renderer.color = new Color(
                 renderer.color.r,
@@ -81,7 +81,7 @@ public class Ego2Movement : ActorMovement
                 renderer.color.g,
                 renderer.color.b,
                 0f
-        );
+        );*/
         ///DEBUG
         //Step 2: Animate the teleport
         //wacky idea... wrap the call in a delegate so the animation call becomes
@@ -99,12 +99,30 @@ public class Ego2Movement : ActorMovement
         yield return new WaitUntil( () => this.teleportAnimClear );
         this.teleportAnimClear = false;*/
 
+        //Teleportation visuals
+        this.gameObject.GetComponent<ActorAnimationHandler>()?.TrySetTrigger("ego_teleport");
+        yield return null;
+
+        yield return new WaitUntil( () => this.teleportAnimClear );
+        //yield return null;
+        this.teleportAnimClear = false;
+
+        /*renderer.color = new Color(
+                renderer.color.r,
+                renderer.color.g,
+                renderer.color.b,
+                0f
+        );*/
+
+        //Wait a little bit...
+        yield return new WaitForSeconds(intangibleTime);
+
         //Step 3: actually teleport
         this.gameObject.transform.position = destination;
 
         ///DEBUG
         //Step 4: Fade in the teleporter's alpha channel
-        fadeTime = 0.0f;
+        /*fadeTime = 0.0f;
 
         //standard coroutine fade
         while(fadeTime < debugTeleShiftTime)
@@ -126,6 +144,20 @@ public class Ego2Movement : ActorMovement
                 1f
         );
         ///DEBUG*/
+
+        //force to visible
+        renderer.color = new Color(
+                renderer.color.r,
+                renderer.color.g,
+                renderer.color.b,
+                1f
+        );
+
+        this.gameObject.GetComponent<ActorAnimationHandler>()?.TrySetTrigger("ego_teleport");
+        yield return null;
+
+        yield return new WaitUntil( () => this.teleportAnimClear );
+        this.teleportAnimClear = false;
 
         //Step 4.5(?): Wait for the teleport to land
         //yield return new WaitUntil( () => this.teleportAnimClear );

@@ -30,6 +30,10 @@ public class EgoFireLaunch : ActorAbilityFunction<GameObject, int>
         " specify a Transform, Vector2 direction, Actor, or gameObject target")]
     public Vector2 projectileDirection = Vector2.left;
 
+    [Tooltip("Whether or not the animation for this attack is at a good spot to" + 
+        " actually create the projectile. Please do not manually edit this.")]
+    public bool animClear = false;
+
     //The single firewall launcher
     EgoFireSingle single;
 
@@ -112,6 +116,14 @@ public class EgoFireLaunch : ActorAbilityFunction<GameObject, int>
             );
             yield return Ego2Movement.EgoTeleport(dest, user.gameObject);
 
+            //Step 2.25: Animate the attack
+            animClear = false;
+            user.myAnimationHandler.TrySetTrigger("ego_shoot");
+            Debug.Log($"EgoFireLaunch: animClear is {animClear}");
+
+            yield return new WaitUntil( () => animClear );
+            Debug.Log($"EgoFireLaunch: animClear is {animClear}");
+
             //Step 2.3: Launch the projectile
             single.Invoke(ref this.user, target.transform.position, LAUNCH_MODE.POINT);
             
@@ -153,7 +165,6 @@ internal class EgoFireSingle : ProjectileAbility
 
     protected override int InternInvoke(params Vector2[] args)
     {
-        user.myAnimationHandler.TrySetTrigger("ego_shoot");
         return base.InternInvoke(args);
     }
 }
