@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class IndulgenceP1Actor : Actor
 {
@@ -15,6 +16,7 @@ public class IndulgenceP1Actor : Actor
     bool redirectingPath = false;
     int layerMask;
     IEnumerator MovementCoroutinePtr;
+    public GameObject gameSaveManager;
     public enum State
     {
         MOVEMENT,
@@ -41,9 +43,13 @@ public class IndulgenceP1Actor : Actor
 
     public override void DoActorDeath()
     {
-        System.Tuple<Actor, System.Action<Actor>> p2 = 
+        var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
+        this.gameSaveManager.GetComponent<GameSaveManager>().setVectorValue(playerObject.transform.position, 2);
+        this.gameSaveManager.GetComponent<GameSaveManager>().setVectorValue(transform.position, 6);
+        SceneManager.LoadScene("Indulgence_Transition");
+        /*System.Tuple<Actor, System.Action<Actor>> p2 = 
             new System.Tuple<Actor, System.Action<Actor>>(self, null);
-        gameObject.SendMessage("NextPhase", p2);
+        gameObject.SendMessage("NextPhase", p2);*/
     }
 
     public void SetupTarget()

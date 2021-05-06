@@ -15,6 +15,20 @@ public class TimelineManager : MonoBehaviour
 
     private int loopIt = 0;
 
+    private BaseCamera cam;
+
+    private void Start()
+    {
+        var camObjects = FindObjectsOfType<BaseCamera>();
+        if (camObjects.Length > 0)
+        {
+            cam = camObjects[0];
+        }
+        else
+        {
+            Debug.LogWarning("Gluttony Crush: does not have access to a camera that can shake");
+        }
+    }
     public void goBackLoop()
     {
         if (loop)
@@ -71,4 +85,8 @@ public class TimelineManager : MonoBehaviour
         SceneManager.LoadScene(name);
     }
 
+    public void cameraShake()
+    {
+        cam.Shake(2.0f, 0.2f);
+    }
 }

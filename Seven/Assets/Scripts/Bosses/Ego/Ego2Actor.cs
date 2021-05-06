@@ -44,6 +44,9 @@ public class Ego2Actor : Actor
         " wall attack.")]
     public int powerAttackGate = 3;
 
+    [Tooltip("The ability Object Ego should drop when it dies if the player doesn't sin.")]
+    public GameObject abilityDropObject;
+
     //How many times Ego has attacked (which determines which attack it uses). Needs to start at
     //one to work with the modulo-based attack determination
     private int attackCount = 1;
@@ -207,6 +210,13 @@ public class Ego2Actor : Actor
     //this can be deletaed when a real death effect is added
     IEnumerator Die()
     {
+        //create an ability object and set it's flag to 8 to reference Ego's ability
+        Instantiate(
+            abilityDropObject, 
+            this.gameObject.transform.position, 
+            Quaternion.identity
+        ).GetComponent<AbilityPickup>().gameSaveAbilityPickupIndex = 8;
+        
         yield return null;
 
         //fukkin die
