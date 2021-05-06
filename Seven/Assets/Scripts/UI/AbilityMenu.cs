@@ -38,6 +38,15 @@ public class AbilityMenu : BaseUI
         {
             UnlockAbilities();
         }
+        else
+        {
+            var gsm = GameObject.FindObjectOfType<GameSaveManager>();
+            if (gsm)
+            {
+                gameSaveManager = gsm.GetComponent<GameSaveManager>();
+                UnlockAbilities();
+            }
+        }
         //Temporary setup
         abilityButtons[0].SetSelectedAbility(true);
         abilityButtons[1].SetSelectedAbility(false);
@@ -52,6 +61,8 @@ public class AbilityMenu : BaseUI
         {
             if (gameSaveManager.getBoolValue(indexTuple.Item1))
             {
+                abilityHighLightIndicator.gameObject.SetActive(true);
+                abilityButtons[i].gameObject.SetActive(true);
                 abilityButtons[i].SetSelectedAbility(gameSaveManager.getBoolValue(indexTuple.Item2));
             }
             i++;
@@ -72,21 +83,34 @@ public class AbilityMenu : BaseUI
 
     public void SelectRightAbility()
     {
-        if (pointerToCurrentSelectedButton < abilityButtons.Count - 1)
+        int dummyIndex = pointerToCurrentSelectedButton;
+        while (dummyIndex < abilityButtons.Count - 1)
         {
-            pointerToCurrentSelectedButton += 1;
-            abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position;
-            UpdatePlayerSelectedAbility();
+            dummyIndex += 1;
+            if (abilityButtons[dummyIndex].gameObject.activeSelf)
+            {
+                pointerToCurrentSelectedButton = dummyIndex;
+                abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position;
+                UpdatePlayerSelectedAbility();
+                break;
+            }
         }
     }
 
     public void SelectLeftAbility()
     {
-        if (pointerToCurrentSelectedButton > 0)
+        int dummyIndex = pointerToCurrentSelectedButton;
+        while (dummyIndex > 0)
         {
-            pointerToCurrentSelectedButton -= 1;
-            abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position;
-            UpdatePlayerSelectedAbility();
+
+            dummyIndex -= 1;
+            if (abilityButtons[dummyIndex].gameObject.activeSelf)
+            {
+                pointerToCurrentSelectedButton = dummyIndex;
+                abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position;
+                UpdatePlayerSelectedAbility();
+                break;
+            }
         }
     }
 
