@@ -71,5 +71,44 @@ public class ActorAnimationHandler : MonoBehaviour
         }
 
         return false;
+    }
+
+    /*Calls TrySetTrigger, but returns a delegate that evaluates to true while the animator
+    is in the state of the requested animation (even if it isn't necessarily playing)*/
+    public System.Func<bool> TryFlaggedSetTrigger(string trigger)
+    {
+        //get the current state
+        var oldStateHash = Animator.GetCurrentAnimatorStateInfo(0).fullPathHash;
+
+        //do the animation
+        bool animationExist = TrySetTrigger(trigger);
+
+        //get the new state that starting the animation put us in
+        var newStateHash = Animator.GetCurrentAnimatorStateInfo(0).fullPathHash;
+
+        //if there was no such animation OR if the anim state didn't change, always
+        //return false
+        if(!animationExist || oldStateHash == newStateHash)
+        {
+            return () => false;
+        }
+
+        /*if the animation did change the state, return a delegate point to is in state
+        for that animation*/
+        return () => IsInState(newStateHash);
+    }
+
+    //returns whether or not this animator is in a specific animation state.
+    //states must be input with the LayerName.BaseName format.
+    public bool IsInState(string stateName)
+    {
+        return Animator.GetCurrentAnimatorStateInfo(0).IsName(stateName);
+    } 
+
+    //returns whether or not this animator is in a specific animation state.
+    //states must be input with state's hashname.
+    public bool IsInState(int stateHash)
+    {
+        return Animator.GetCurrentAnimatorStateInfo(0).fullPathHash == stateHash;
     }  
 }

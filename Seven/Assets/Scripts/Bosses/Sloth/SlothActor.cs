@@ -26,6 +26,9 @@ public class SlothActor : Actor
     [Tooltip("How close the player needs to be for Sloth/Apathy to swat them away.")]
     public float swatDistance = 5f;
 
+    [Tooltip("How far from Apathy its attacks should start from.")]
+    public float anchorDistance = 3f;
+
     [Tooltip("The ability Object Apathy should drop when it dies.")]
     public GameObject abilityDropObject;
 
@@ -117,13 +120,14 @@ public class SlothActor : Actor
             //if the player's too close, swat them away
             if(currAbility.getIsFinished() && playerDist <= swatDistance)
             {
-                anims.TrySetTrigger("ego_swat");
+                anims.TrySetTrigger("apathy_swat");
                 ActivateAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_PHYSICAL]);
                 return;
             }
 
             this.DoActorUpdateFacing(
-                player.gameObject.transform.position - this.gameObject.transform.position
+                (player.gameObject.transform.position - this.gameObject.transform.position)
+                    .normalized * anchorDistance
             );
 
             //this.gameObject.transform.right = 
