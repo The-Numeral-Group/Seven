@@ -185,18 +185,28 @@ internal class SlothSpeedClockObserver : MonoBehaviour
     //FIELDS---------------------------------------------------------------------------------------
     void Start()
     {
-        //if the collider doesn't have an ActorHealth, add one that has 100% damage resistance
+        /*//if the collider doesn't have an ActorHealth, add one that has 100% damage resistance
         if(this.gameObject.GetComponent<ActorHealth>() == null)
         {
             var newHealth = this.gameObject.AddComponent<ActorHealth>();
             newHealth.damageResistance = 1f;
+        }*/
+    }
+
+    public void OnTriggerEnter2D(Collider2D collided)
+    {
+        WeaponHitbox potentialWep;
+        if(collided.gameObject.TryGetComponent(out potentialWep) 
+            && potentialWep.gameObject.GetComponentInParent(typeof(PlayerSwordAbility)))
+        {
+            responseEvent.Invoke(this.gameObject);
         }
     }
 
-    void DoActorDamageEffect()
+    /*void DoActorDamageEffect()
     {
         responseEvent.Invoke(this.gameObject);
-    }
+    }*/
 }
 
 /*so: plan for second component: it makes a unityEvent that's invoked in on trigger enter.

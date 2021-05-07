@@ -413,6 +413,7 @@ MonoBehaviour:
   speed: 7.5
   intangibleTime: 0.2
   debugTeleShiftTime: 0.1
+  teleportAnimClear: 0
 --- !u!114 &505191979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,7 +446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleMesh: {fileID: 1774437467}
   teleCount: 3
-  teleWait: 0.25
+  teleWait: 1
   attackWait: 0.5
   teleMinDist: 3
   teleMaxDist: 10
@@ -716,13 +717,15 @@ MonoBehaviour:
   cooldownPeriod: 3
   abilityName: 
   invokeBlankWhenBadArguments: 1
-  teleMinDist: 7
-  teleMaxDist: 10
+  teleMinDist: 10
+  teleMaxDist: 13
   attackDelay: 0.5
+  launchDelay: 0.5
   attackCount: 4
   projectile: {fileID: 4710924987715151114, guid: 147a502a437043ef78652d409a7f13e3, type: 3}
   projectileScale: {x: 5, y: 5}
   projectileDirection: {x: -1, y: 0}
+  animClear: 0
 --- !u!95 &505191992
 Animator:
   serializedVersion: 3
@@ -2011,6 +2014,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4332445788766981374, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4115977272152067176, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: startInvulnerable
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4115977272152067185, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}

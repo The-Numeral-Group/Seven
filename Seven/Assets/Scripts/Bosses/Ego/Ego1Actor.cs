@@ -196,7 +196,8 @@ public class Ego1Actor : Actor
                 "NextPhase", 
                 new System.Tuple<Actor, System.Action<Actor>>(
                     this, 
-                    null
+                    (actor) => 
+                        {actor.gameObject.transform.position = this.gameObject.transform.position;}
                 )
             );
         }

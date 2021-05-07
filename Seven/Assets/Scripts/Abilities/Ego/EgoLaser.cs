@@ -62,7 +62,7 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
     protected override int InternInvoke(params Vector3[] args)
     {
         usable = false;
-        //Animate the attack
+        //Animate the attack now for when the laser exists
         user.myAnimationHandler.TrySetTrigger("ego_shoot");
         
         StartCoroutine(LaserInvokation(args[0]));
@@ -81,6 +81,8 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
         //but set it's direction towards the player manually
         //needs to be offset by 45 degrees because the laser asset is rotated that way
         laser.gameObject.transform.up = targetDirection; //+ new Vector3(-45f, 0f, 0f);
+        
+        
         
         //Step 3: initialize the laser
         laser.Initialize(laserMaxDist, laserWidth, damage);

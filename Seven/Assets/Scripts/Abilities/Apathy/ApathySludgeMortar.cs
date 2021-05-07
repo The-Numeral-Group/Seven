@@ -71,7 +71,7 @@ public class ApathySludgeMortar : ActorAbilityFunction<GameObject, int>
             }
             else
             {
-                Debug.LogError("EgoFireLaunch: firewall launched with improper target," + 
+                Debug.LogError("apathyFireLaunch: firewall launched with improper target," + 
                     " must be GameObject or Monobehaviour");
             }
         }
@@ -142,6 +142,10 @@ internal class ApathySludgeSingle : ProjectileAbility
     shots and markers.*/
     IEnumerator ProjectileBehaviour()
     {
+        //Step -1: Start the animation
+        //Going from Idle to prethrow to throwstance
+        var animDelegate = this.user.myAnimationHandler.TryFlaggedSetTrigger("apathy_throw");
+
         //Step 0: check to see if there is a FaceAnchor for the target
         var targetFace = target.Find("FaceAnchor");
 
@@ -163,6 +167,9 @@ internal class ApathySludgeSingle : ProjectileAbility
         
         //Step 5: wait some seconds
         yield return new WaitForSeconds(initialWaitTime);
+        //Step 5.5: and for the animation to finish
+        //this should wait until the animator exits the prethrow state
+        yield return new WaitWhile(animDelegate);
 
         //Step 6: Calcualte how fast the projectile needs to go to arrive in shotFlightTime seconds
         //d = rt: speed is distance to marker divided by shotFlightTime
@@ -172,12 +179,29 @@ internal class ApathySludgeSingle : ProjectileAbility
                 / shotFlightTime;
         projObj.GetComponent<ActorMovement>().speed = newSpeed;
 
+        //Step: 6.25 animate the next part of the throw
+        //Going from throwstance to throw to idle
+        animDelegate = this.user.myAnimationHandler.TryFlaggedSetTrigger("apathy_throw");
+
         //Step 6.5: Actually launch the projectile at the directly under marker now
         projObj.SetActive(true);
         projObj.GetComponent<BasicProjectile>().Launch(markObjA.transform.position, LAUNCH_MODE.POINT);
 
+        //Step 6.75: wait for the previous anim to finish
+        //this should wait until the animator exits the throw state
+        yield return new WaitWhile(animDelegate);
+
+        //Step 6.875: animate the next part of the throw
+        //Going from Idle to prethrow to throwstance
+        animDelegate = this.user.myAnimationHandler.TryFlaggedSetTrigger("apathy_throw");
+
         //Step 7: Wait a little bit again...
         yield return new WaitForSeconds(shotFlightTime);
+
+        //Step 7.5: And for the animation to finish
+        //this should wait until the animator exits the prethrow state
+        yield return new WaitWhile(animDelegate);
+        
 
         //Step 8: Destroy the marker and the projectile, if they still exist
         Destroy(markObjA);
@@ -197,6 +221,10 @@ internal class ApathySludgeSingle : ProjectileAbility
             Mathf.Abs(Vector3.Distance(markObjB.transform.position, projObj.transform.position)) 
                 / shotFlightTime;
         projObj.GetComponent<ActorMovement>().speed = newSpeed;
+
+        //Step: 10.25 animate the next part of the throw
+        //we don't need to wait for this animation to end
+        this.user.myAnimationHandler.TrySetTrigger("apathy_throw");
 
         //Step 10.5: And we're gonna launch it too
         projObj.GetComponent<BasicProjectile>().Launch(markObjB.transform.position, LAUNCH_MODE.POINT);

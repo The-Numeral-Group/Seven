@@ -15,6 +15,9 @@ public class EgoFireLaunch : ActorAbilityFunction<GameObject, int>
     [Tooltip("The delay between teleport-firewall combos.")]
     public float attackDelay = 0.5f;
 
+    [Tooltip("The delay between a teleport and its follow-up fire launch.")]
+    public float launchDelay = 0.5f;
+
     [Tooltip("The number of firewalls launched by this ability (minimum 1).")]
     public int attackCount = 4;
 
@@ -29,6 +32,10 @@ public class EgoFireLaunch : ActorAbilityFunction<GameObject, int>
     [Tooltip("Which direction the ability should be launched in if the user doesn't" + 
         " specify a Transform, Vector2 direction, Actor, or gameObject target")]
     public Vector2 projectileDirection = Vector2.left;
+
+    [Tooltip("Whether or not the animation for this attack is at a good spot to" + 
+        " actually create the projectile. Please do not manually edit this.")]
+    public bool animClear = false;
 
     //The single firewall launcher
     EgoFireSingle single;
@@ -112,6 +119,16 @@ public class EgoFireLaunch : ActorAbilityFunction<GameObject, int>
             );
             yield return Ego2Movement.EgoTeleport(dest, user.gameObject);
 
+            //Step 2.25: Animate the attack
+            animClear = false;
+            user.myAnimationHandler.TrySetTrigger("ego_shoot");
+            Debug.Log($"EgoFireLaunch: animClear is {animClear}");
+
+            yield return new WaitUntil( () => animClear );
+            Debug.Log($"EgoFireLaunch: animClear is {animClear}");
+
+            yield return new WaitForSeconds(launchDelay);
+
             //Step 2.3: Launch the projectile
             single.Invoke(ref this.user, target.transform.position, LAUNCH_MODE.POINT);
             
@@ -153,7 +170,6 @@ internal class EgoFireSingle : ProjectileAbility
 
     protected override int InternInvoke(params Vector2[] args)
     {
-        user.myAnimationHandler.TrySetTrigger("ego_shoot");
         return base.InternInvoke(args);
     }
 }

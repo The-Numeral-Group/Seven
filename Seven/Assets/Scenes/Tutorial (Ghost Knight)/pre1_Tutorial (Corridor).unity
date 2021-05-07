@@ -391,6 +391,11 @@ Transform:
   m_Father: {fileID: 881435572}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &386928474 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1021901336570858442, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
+  m_PrefabInstance: {fileID: 2010676817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &399828220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2315,6 +2320,30 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1021901336570858442, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1021901336570858442, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1969166796546394313, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
+      propertyPath: uiElementTextTransform
+      value: 
+      objectReference: {fileID: 386928474}
+    - target: {fileID: 1969166796546394313, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
+      propertyPath: uiElementImageTransform
+      value: 
+      objectReference: {fileID: 2088606178}
+    - target: {fileID: 3107069110725450522, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107069110725450522, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 8081415500026683232, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
       propertyPath: battleUI
       value: 
@@ -2377,6 +2406,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
+--- !u!224 &2088606178 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3107069110725450522, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
+  m_PrefabInstance: {fileID: 2010676817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!60 &609764162377842340
 PolygonCollider2D:
   m_ObjectHideFlags: 0
