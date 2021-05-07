@@ -4466,10 +4466,10 @@ MonoBehaviour:
       - m_Target: {fileID: 6919360707961699824}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: ShowSubMenu
-        m_Mode: 3
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 7921012561843711735}
+          m_ObjectArgumentAssemblyTypeName: SubMenu, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
