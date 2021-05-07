@@ -117,6 +117,7 @@ public class SlothActor : Actor
             //if the player's too close, swat them away
             if(currAbility.getIsFinished() && playerDist <= swatDistance)
             {
+                anims.TrySetTrigger("ego_swat");
                 ActivateAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_PHYSICAL]);
                 return;
             }
