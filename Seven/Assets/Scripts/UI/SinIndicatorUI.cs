@@ -18,7 +18,7 @@ public class SinIndicatorUI : BaseUI
         if (sinFlagIndices.Count != sinIndicators.Count)
         if (gameSaveManager)
         {
-            DisplaySin();
+            DisplaySinFromSaveFlag();
         }
         else
         {
@@ -26,12 +26,12 @@ public class SinIndicatorUI : BaseUI
             if (gsm)
             {
                 gameSaveManager = gsm.GetComponent<GameSaveManager>();
-                DisplaySin();
+                DisplaySinFromSaveFlag();
             }
         }
     }
 
-    public void DisplaySin()
+    void DisplaySinFromSaveFlag()
     {
         for (int i = 0; i < sinFlagIndices.Count; i++)
         {
@@ -41,4 +41,16 @@ public class SinIndicatorUI : BaseUI
             }
         }
     }
+
+    public void DisplaySin()
+    {
+        foreach(Button indicator in sinIndicators)
+        {
+            if (!indicator.gameObject.activeSelf)
+            {
+                indicator.gameObject.SetActive(true);
+            }
+        }
+    }
+
 }

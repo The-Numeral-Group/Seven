@@ -48,8 +48,8 @@ public class AbilityMenu : BaseUI
             }
         }
         //Temporary setup
-        abilityButtons[0].SetSelectedAbility(true);
-        abilityButtons[1].SetSelectedAbility(false);
+        /*abilityButtons[0].SetSelectedAbility(true);
+        abilityButtons[1].SetSelectedAbility(false);*/
         UpdatePlayerSelectedAbility();
     }
 
