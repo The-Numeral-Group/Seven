@@ -48,9 +48,15 @@ public class AbilityMenu : BaseUI
             }
         }
         //Temporary setup
-        /*abilityButtons[0].SetSelectedAbility(true);
-        abilityButtons[1].SetSelectedAbility(false);*/
+        abilityHighLightIndicator.gameObject.SetActive(true);
+        abilityButtons[0].gameObject.SetActive(true);
+        abilityButtons[1].gameObject.SetActive(true);
+        abilityButtons[2].gameObject.SetActive(true);
+        abilityButtons[0].SetSelectedAbility(true);
+        abilityButtons[1].SetSelectedAbility(false);
+        abilityButtons[2].SetSelectedAbility(false);
         UpdatePlayerSelectedAbility();
+        //End of temporary
     }
 
     //Unlocks abilities in ability buttons.

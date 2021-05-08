@@ -18,7 +18,7 @@ public class AbilityButton : MonoBehaviour
 
     public void SetSelectedAbility(bool sinCommitted)
     {
-        if (sinCommitted)
+        if (sinCommitted == true)
         {
             selectedAbility = AOS;
             abilityButton.GetComponent<Image>().sprite = AOSImage;

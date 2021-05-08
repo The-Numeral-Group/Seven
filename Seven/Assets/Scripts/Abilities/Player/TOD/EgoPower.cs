@@ -10,18 +10,33 @@ public class EgoPower : EgoLaser
         " is shown.")]
     public float chargeTime = 2f;
 
-    [Tooltip("How many times this ability can be used by its user per scene.")]
+    /*[Tooltip("How many times this ability can be used by its user per scene.")]
     public int maxUses = 2;
 
     //internal counter of uses
-    private int useCount;
+    private int useCount;*/
+
+    //utilizing cooldown based invoke because laser will not eb based on max uses
+    public override void Invoke(ref Actor user)
+    {
+        this.user = user;
+        //by default, Invoke just does InternInvoke with no arguments
+        if(usable)
+        {
+            isFinished = false;
+            InternInvoke(user.faceAnchor.position);
+            StartCoroutine(coolDown(cooldownPeriod));
+        }
+        
+    }
+
     
     //METHODS--------------------------------------------------------------------------------------
     //wrapper for a coroutine that handles the duration of the actual laser
     protected override int InternInvoke(params Vector3[] args)
     {
         //only execute the ability if there are enough uses remaining
-        if(useCount < maxUses)
+        /*if(useCount < maxUses)
         {
             usable = false;
             StartCoroutine(ChargeInvokation(args[0]));
@@ -29,7 +44,9 @@ public class EgoPower : EgoLaser
             return 0;
         }
 
-        return 1;
+        return 1;*/
+        StartCoroutine(ChargeInvokation(args[0]));
+        return 0;
     }
 
     IEnumerator ChargeInvokation(params Vector3[] args)
