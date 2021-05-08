@@ -477,8 +477,8 @@ MonoBehaviour:
     m_keys: []
     m_values: []
   Close: {fileID: 315102726}
-  Far: {fileID: 315102725}
-  Special: {fileID: 315102725}
+  Far: {fileID: 315102724}
+  Special: {fileID: 315102722}
 --- !u!114 &315102715
 MonoBehaviour:
   m_ObjectHideFlags: 0
