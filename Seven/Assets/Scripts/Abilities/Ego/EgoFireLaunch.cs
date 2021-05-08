@@ -33,10 +33,10 @@ public class EgoFireLaunch : ActorAbilityFunction<GameObject, int>
         " specify a Transform, Vector2 direction, Actor, or gameObject target")]
     public Vector2 projectileDirection = Vector2.left;
 
-    [Tooltip("Whether or not the animation for this attack is at a good spot to" + 
-        " actually create the projectile. Please do not manually edit this.")]
-    public bool animClear = false;
-
+    /*[Tooltip("Whether or not the animation for this attack is at a good spot to" + 
+        " actually create the projectile. Please do not manually edit this.")]*/
+    //helper bool to track animation progress, if any
+    private bool fireAnimClear = false;
     //The single firewall launcher
     EgoFireSingle single;
 
@@ -102,6 +102,16 @@ public class EgoFireLaunch : ActorAbilityFunction<GameObject, int>
     //handles the actual launching of the firewalls
     IEnumerator FireInvokation(GameObject target)
     {
+        fireAnimClear = !user.myAnimationHandler.TrySetTrigger("ego_shoot");
+            //Debug.Log($"EgoFireLaunch: animClear is {animClear}");
+
+            
+            //Debug.Log($"EgoFireLaunch: animClear is {animClear}");
+
+            //yield return new WaitForSeconds(launchDelay);
+        yield return new WaitUntil( () => fireAnimClear == true );
+        fireAnimClear = false;
+
         //Step 1: Launch the first fire wall
         single.Invoke(ref this.user, target.transform.position, LAUNCH_MODE.POINT);
 
@@ -120,14 +130,17 @@ public class EgoFireLaunch : ActorAbilityFunction<GameObject, int>
             yield return Ego2Movement.EgoTeleport(dest, user.gameObject);
 
             //Step 2.25: Animate the attack
-            animClear = false;
-            user.myAnimationHandler.TrySetTrigger("ego_shoot");
-            Debug.Log($"EgoFireLaunch: animClear is {animClear}");
+            //animClear = false;
+            //var animNotDone = user.myAnimationHandler.TryFlaggedSetTrigger("ego_shoot");
+            fireAnimClear = !user.myAnimationHandler.TrySetTrigger("ego_shoot");
+            //Debug.Log($"EgoFireLaunch: animClear is {animClear}");
 
-            yield return new WaitUntil( () => animClear );
-            Debug.Log($"EgoFireLaunch: animClear is {animClear}");
+            
+            //Debug.Log($"EgoFireLaunch: animClear is {animClear}");
 
-            yield return new WaitForSeconds(launchDelay);
+            //yield return new WaitForSeconds(launchDelay);
+            yield return new WaitUntil( () => fireAnimClear == true );
+            fireAnimClear = false;
 
             //Step 2.3: Launch the projectile
             single.Invoke(ref this.user, target.transform.position, LAUNCH_MODE.POINT);
@@ -145,6 +158,11 @@ public class EgoFireLaunch : ActorAbilityFunction<GameObject, int>
         ///DEBUG
         Debug.Log("EgoFireLaunch: ability done");
         ///DEBUG
+    }
+
+    public void SignalFireAnim()
+    {
+        fireAnimClear = true;
     }
 }
 
