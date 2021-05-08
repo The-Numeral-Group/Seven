@@ -24,6 +24,7 @@ public abstract class ActorAbility : MonoBehaviour
     public abstract IEnumerator coolDown(float cooldownDuration);
     public abstract void Invoke(ref Actor user);
     public abstract void Invoke(ref Actor user, params object[] args);
+    public abstract float getCooldown();
 }
 
 public abstract class ActorAbilityFunction<InvokeParam, InvokeReturn> : ActorAbility
@@ -54,6 +55,9 @@ public abstract class ActorAbilityFunction<InvokeParam, InvokeReturn> : ActorAbi
     reset it.*/
     protected bool isFinished = true;
     public override bool getIsFinished(){return isFinished;}
+
+    //Function to return cooldown value
+    public override float getCooldown(){return cooldownPeriod;}
 
     //the user of the ability, for when such information is important
     protected Actor user;

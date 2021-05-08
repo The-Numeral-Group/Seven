@@ -60,15 +60,4 @@ public class EgoPower : EgoLaser
         is complete*/
         base.InternInvoke(user.faceAnchor.position);
     }
-
-    public override IEnumerator coolDown(float cooldownDuration)
-    {
-        usable = false;
-        if (MenuManager.ABILITY_MENU)
-        {
-            MenuManager.ABILITY_MENU.PutButtonOnCooldown(cooldownDuration, this);
-        }
-        yield return new WaitForSeconds(cooldownDuration);
-        usable = true;
-    }
 }
