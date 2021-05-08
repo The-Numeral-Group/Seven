@@ -58,111 +58,26 @@ public class Ego2Movement : ActorMovement
         if(collider){collider.enabled = false;}
         if(health){collider.enabled = false;}
 
-        ///DEBUG
-        //Step 2: Fade out the teleporter's alpha channel
-        var renderer = this.gameObject.GetComponent<SpriteRenderer>();
-        //var fadeTime = 0.0f;
+        //Step 2: Teleportation visuals
+        var animNotDone = this.gameObject.GetComponent<ActorAnimationHandler>()
+            ?.TryFlaggedSetTrigger("ego_teleport");
 
-        //standard coroutine fade
-        /*while(fadeTime < debugTeleShiftTime)
-        {
-            renderer.color = new Color(
-                renderer.color.r,
-                renderer.color.g,
-                renderer.color.b,
-                Mathf.Lerp(1f, 0f, fadeTime / debugTeleShiftTime)
-            );
-            fadeTime += Time.deltaTime;
-            yield return null;
-        }
-        //force to invisible
-        renderer.color = new Color(
-                renderer.color.r,
-                renderer.color.g,
-                renderer.color.b,
-                0f
-        );*/
-        ///DEBUG
-        //Step 2: Animate the teleport
-        //wacky idea... wrap the call in a delegate so the animation call becomes
-        //a seperate method return?
-        
-        /*this.gameObject.GetComponent<ActorAnimationHandler>()?.TrySetTrigger("ego_teleport");
-        yield return null;
-        //test();
-
-        //Step 2.5: spend some time out of reality
-        //this will be flipped back by the animation itself. It will set teleportAnimClear
-        //to true from inside the animation
-        yield return new WaitUntil( () => this.teleportAnimClear );
-        this.teleportAnimClear = false;
-        yield return new WaitUntil( () => this.teleportAnimClear );
-        this.teleportAnimClear = false;*/
-
-        //Teleportation visuals
-        this.gameObject.GetComponent<ActorAnimationHandler>()?.TrySetTrigger("ego_teleport");
-        yield return null;
-
-        yield return new WaitUntil( () => this.teleportAnimClear );
-        //yield return null;
-        this.teleportAnimClear = false;
-
-        /*renderer.color = new Color(
-                renderer.color.r,
-                renderer.color.g,
-                renderer.color.b,
-                0f
-        );*/
-
-        //Wait a little bit...
+        //Step 3: Wait a little bit...
         yield return new WaitForSeconds(intangibleTime);
+        //and for the animation to finish
+        yield return new WaitWhile(animNotDone);
 
-        //Step 3: actually teleport
+        //Step 4: actually teleport
         this.gameObject.transform.position = destination;
 
-        ///DEBUG
-        //Step 4: Fade in the teleporter's alpha channel
-        /*fadeTime = 0.0f;
+        //Step 5: More Teleportation visuals
+        animNotDone = this.gameObject.GetComponent<ActorAnimationHandler>()
+            ?.TryFlaggedSetTrigger("ego_teleport");
 
-        //standard coroutine fade
-        while(fadeTime < debugTeleShiftTime)
-        {
-            renderer.color = new Color(
-                renderer.color.r,
-                renderer.color.g,
-                renderer.color.b,
-                Mathf.Lerp(0f, 1f, fadeTime / debugTeleShiftTime)
-            );
-            fadeTime += Time.deltaTime;
-            yield return null;
-        }
-        //force to visible
-        renderer.color = new Color(
-                renderer.color.r,
-                renderer.color.g,
-                renderer.color.b,
-                1f
-        );
-        ///DEBUG*/
-
-        //force to visible
-        renderer.color = new Color(
-                renderer.color.r,
-                renderer.color.g,
-                renderer.color.b,
-                1f
-        );
-
-        this.gameObject.GetComponent<ActorAnimationHandler>()?.TrySetTrigger("ego_teleport");
-        yield return null;
-
-        yield return new WaitUntil( () => this.teleportAnimClear );
-        this.teleportAnimClear = false;
-
-        //Step 4.5(?): Wait for the teleport to land
-        //yield return new WaitUntil( () => this.teleportAnimClear );
-
-        //Step 5: re-enable collisions and health
+        //Step 6: wait for the animation to end
+        yield return new WaitWhile(animNotDone);
+        
+        //Step 7: re-enable collisions and health
         if(collider){collider.enabled = true;}
         if(health){collider.enabled = true;}
     }
