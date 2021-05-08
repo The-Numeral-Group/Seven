@@ -5,6 +5,13 @@ position: 859,388
 ---
 Indulgence: Indulgence Opening.
 ===
+title: Indulgence.Retry.Dialogue0
+tags: 
+colorID: 0
+position: 859,388
+---
+Indulgence: Indulgence Retry. Welcome back!
+===
 title: Indulgence.Win.Dialogue0
 tags: 
 colorID: 0

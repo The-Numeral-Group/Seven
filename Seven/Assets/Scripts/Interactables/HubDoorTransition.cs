@@ -8,9 +8,9 @@ public class HubDoorTransition : Interactable
     [Tooltip("The ID of the bossOpening ScriptableObject.")]
     public int bossID;
 
-    //Name of the scene that should be loaded when interacting with this object.
-    [Tooltip("The name of the scene to be loaded.")]
-    public string sceneToLoad = "";
+    public string openingScene;
+
+    public string retryScene;
 
     public GameObject gameSaveManager;
 
@@ -29,22 +29,26 @@ public class HubDoorTransition : Interactable
             Debug.LogWarning("SceneTranstion: No bossID provided for object " + this.gameObject.name);
             return;
         }
-        if (sceneToLoad == "")
+        if (openingScene == "")
         {
-            Debug.LogWarning("SceneTranstion: No scene name provided for object " + this.gameObject.name);
+            Debug.LogWarning("SceneTranstion: No opening scene name provided for object " + this.gameObject.name);
+            return;
+        }
+        if (retryScene == "")
+        {
+            Debug.LogWarning("SceneTranstion: No retry scene name provided for object " + this.gameObject.name);
             return;
         }
 
         // This will be used once opening cutscene has been implemented.
-        /*if (this.gameSaveManagerScript.getBoolValue(bossID))
+        if (this.gameSaveManagerScript.getBoolValue(bossID))
         {
-            // Load Opening Cutscene
+            SceneManager.LoadScene(openingScene);
         }
         else
         {
-            
-        }*/
+            SceneManager.LoadScene(retryScene);
+        }
 
-        SceneManager.LoadScene(sceneToLoad);
     }
 }

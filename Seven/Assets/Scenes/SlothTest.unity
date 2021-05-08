@@ -343,6 +343,7 @@ GameObject:
   - component: {fileID: 315102723}
   - component: {fileID: 315102719}
   - component: {fileID: 315102713}
+  - component: {fileID: 315102725}
   m_Layer: 0
   m_Name: Apathy
   m_TagString: Untagged
@@ -698,6 +699,21 @@ MonoBehaviour:
   leadMarkerDistance: 2
   initialWaitTime: 3
   shotFlightTime: 2
+--- !u!114 &315102725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315102708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b539320a4c6a218da9cca27be78ddd2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
 --- !u!114 &315102726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,7 +733,8 @@ MonoBehaviour:
   duration: 0.5
   weaponPositionScale: {x: 1, y: 1}
   damagePerHitbox: 01000000
-  windupDelay: 1
+  windupDelay: 0.85
+  animTrigger: apathy_swat
   shouldShake: 1
   windShake: 0.1
   attackShake: 0.5
