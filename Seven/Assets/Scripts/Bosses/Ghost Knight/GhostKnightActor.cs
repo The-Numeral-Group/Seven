@@ -135,6 +135,8 @@ public class GhostKnightActor : Actor
                 break;
 
             case State.PHYSICAL_SLASH:
+                this.myMovement.MoveActor(Vector2.zero);
+                this.myMovement.DragActor(Vector2.zero);
 
                 slash.Invoke(ref ghostKnight);
                 specialAttackCounter++;
@@ -142,6 +144,8 @@ public class GhostKnightActor : Actor
                 break;
 
             case State.LAUNCH_PROJECTILE:
+                this.myMovement.MoveActor(Vector2.zero);
+                this.myMovement.DragActor(Vector2.zero);
 
                 proj.Invoke(ref ghostKnight);
                 specialAttackCounter++;
@@ -149,6 +153,8 @@ public class GhostKnightActor : Actor
                 break;
 
             case State.SPECIAL:
+                this.myMovement.MoveActor(Vector2.zero);
+                this.myMovement.DragActor(Vector2.zero);
 
                 special.Invoke(ref ghostKnight);
 
@@ -175,7 +181,6 @@ public class GhostKnightActor : Actor
             if((myPos.x < (playerPos.x + 0.2)) && (myPos.x > (playerPos.x - 0.2)) 
                 && (myPos.y < (playerPos.y + 0.2)) && (myPos.y > (playerPos.y - 0.2)))
             {
-                Debug.Log("STOP MOVING");
                 this.myMovement.MoveActor(Vector2.zero);
                 return;
             }

@@ -35,9 +35,9 @@ public class GhostKnightProjectile : ActorAbilityFunction<Actor, int>
             this.travelDuration = 10f;
             this.projectileSpawnTime = 2f;
         }
-
-        StartCoroutine(args[0].myMovement.LockActorMovement(this.travelDuration + this.projectileSpawnTime));
+        StartCoroutine(args[0].myMovement.LockActorMovementOnly(this.travelDuration + this.projectileSpawnTime));
         StartCoroutine(MoveToPoint(args[0]));
+
         return 0;
     }
 
@@ -48,12 +48,14 @@ public class GhostKnightProjectile : ActorAbilityFunction<Actor, int>
     private IEnumerator MoveToPoint(Actor user)
     {
         Vector2 direction = this.centerPos - new Vector2(user.gameObject.transform.position.x, user.gameObject.transform.position.y);
-        direction.Normalize();
+        /*direction.Normalize();
+        /*
         float distance = Vector2.Distance(this.centerPos, user.gameObject.transform.position);
-        float speed = distance / (this.travelDuration);
-        user.myMovement.DragActor(direction * speed);
+        float speed = distance / (this.travelDuration);*/
+        //Debug.Log(direction);
+        user.myMovement.DragActor(direction);
         yield return new WaitForSeconds(this.travelDuration);
-        user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
+        user.myMovement.DragActor(Vector2.zero);
         StartCoroutine(SpawnProjectiles(user));
     }
 

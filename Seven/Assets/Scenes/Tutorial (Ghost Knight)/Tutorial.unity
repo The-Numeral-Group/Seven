@@ -891,6 +891,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HubLighting
       objectReference: {fileID: 0}
+    - target: {fileID: 1027082126515424790, guid: f530a043178fee34798cd4cc9d5060c3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1027082126515424791, guid: f530a043178fee34798cd4cc9d5060c3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.1687467
@@ -6269,7 +6273,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1262325441
 Transform:
   m_ObjectHideFlags: 0
@@ -7486,6 +7490,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6957588773384644465, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -399.4004
+      objectReference: {fileID: 0}
+    - target: {fileID: 6957588773384644465, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -199.3999
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
 --- !u!114 &1857178618 stripped
@@ -7527,7 +7539,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 220097794664941640, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: cooldownPeriod
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 220097794664941641, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: cooldownPeriod
@@ -7547,7 +7559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 220097794664941685, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: specialAttackGate
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 220097794664941685, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: GameSaveManager
