@@ -28,6 +28,9 @@ GameObject:
   - component: {fileID: 318036553}
   - component: {fileID: 318036569}
   - component: {fileID: 1509850875}
+  - component: {fileID: 4482064640987584911}
+  - component: {fileID: 6008817304611815886}
+  - component: {fileID: 6471229119639064663}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -451,7 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b0a3f7841e7346459eb7d9f876182ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 0
+  cooldownPeriod: 60
   abilityName: 
   invokeBlankWhenBadArguments: 1
   laserObj: {fileID: 4417132022118089685, guid: b0818de86c2e4c0fcaeb8e849b1b5dec, type: 3}
@@ -461,4 +464,61 @@ MonoBehaviour:
   preLaserDuration: 0.5
   laserDuration: 0.3
   chargeTime: 2
-  maxUses: 2
+--- !u!114 &4482064640987584911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115977272152067185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b6e13718b6ed6fbab555bb3fb84ed77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  usesPerFight: 2
+  minLockTime: 1
+--- !u!114 &6008817304611815886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115977272152067185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e806e096a78d989bca481ce6129479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  projectile: {fileID: 6113993754747126676, guid: 28998e45e01599a03b619154edb0fae4, type: 3}
+  projectileScale: {x: 1, y: 1}
+  projectileDirection: {x: -1, y: 0}
+  travelDistance: 5
+  damage: 2
+  alwaysGetSword: 1
+--- !u!114 &6471229119639064663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115977272152067185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5383fa5287f8cb1478903c1263ebdd37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  damageChange: 2
+  speedChange: 0.25
+  effectDelay: 1
+  effectDuration: 20
+  usesPerFight: 3

@@ -20,6 +20,17 @@ public class CorruptedData : ActorAbilityFunction<Actor, int>
             this.enabled = false;
         }
     }
+
+    public override IEnumerator coolDown(float cooldownDuration)
+    {
+        usable = false;
+        if (MenuManager.ABILITY_MENU)
+        {
+            MenuManager.ABILITY_MENU.PutButtonOnCooldown(cooldownDuration, this);
+        }
+        yield return new WaitForSeconds(cooldownDuration);
+        usable = true;
+    }
     public override void Invoke(ref Actor user)
     {
         this.user = user;

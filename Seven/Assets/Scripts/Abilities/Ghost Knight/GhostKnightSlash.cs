@@ -6,9 +6,7 @@ using UnityEngine;
 public class GhostKnightSlash : ActorAbilityFunction<Actor, int>
 {
     //How long this entire process should take.
-    public float duration = 2f;
-    //Time when ghost knight moves forward
-    public float moveForward = 1f;
+    public float duration;
 
     GhostKnightAnimationHandler ghostKnightAnimationHandler;
 
@@ -40,10 +38,12 @@ public class GhostKnightSlash : ActorAbilityFunction<Actor, int>
         if (whichAtt == 1)
         {
             PerformVSlash(args[0]);
+            StartCoroutine(SlashFinished(args[0]));
         }
         else
         {
             PerformHSlash(args[0]);
+            StartCoroutine(SlashFinished(args[0]));
         }
         return 0;
     }
@@ -60,21 +60,21 @@ public class GhostKnightSlash : ActorAbilityFunction<Actor, int>
     private void PerformVSlash(Actor user)
     {
         ghostKnightAnimationHandler.animateVSlash();
-        user.myMovement.DragActor(new Vector2(0.0f, -0.5f));
+        //user.myMovement.DragActor(new Vector2(0.0f, -0.5f));
 
-        StartCoroutine(SlashFinished(user));
+        //StartCoroutine(SlashFinished(user));
     }
     private void PerformHSlash(Actor user)
     {
         ghostKnightAnimationHandler.animateHSlash();
-        user.myMovement.DragActor(new Vector2(0.0f, -0.5f));
+        //user.myMovement.DragActor(new Vector2(0.0f, -0.5f));
 
-        StartCoroutine(SlashFinished(user));
+        //StartCoroutine(SlashFinished(user));
     }
     private IEnumerator SlashFinished(Actor user)
     {
         yield return new WaitForSeconds(this.duration);
-        user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
+        //user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
         isFinished = true;
     }
 }

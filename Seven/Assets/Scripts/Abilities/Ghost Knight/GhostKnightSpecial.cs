@@ -110,9 +110,9 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
     private IEnumerator PerformSpecialSlash(Actor user)
     {
         ghostKnightAnimationHandler.animateSpecialSlash();
-        user.myMovement.DragActor(new Vector2(0.0f, -1f));
+        //user.myMovement.DragActor(new Vector2(0.0f, -1f));
         yield return new WaitForSeconds(this.duration_slash);
-        user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
+        //user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
         isFinished = true;
     }
 

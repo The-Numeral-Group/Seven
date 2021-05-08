@@ -11,8 +11,8 @@ public class TossAndTeleport : ProjectileAbility
     [Tooltip("How much damage the sword should deal on impact.")]
     public float damage = 2f;
 
-    [Tooltip("How many times the user should be able to activate this ability in one scene.")]
-    public int maxUses = 5;
+    /*[Tooltip("How many times the user should be able to activate this ability in one scene.")]
+    public int maxUses = 5;*/
 
     [Tooltip("Whether the user should always get the sword, even if the teleport that takes" + 
         " them there falls short.")]
@@ -25,7 +25,7 @@ public class TossAndTeleport : ProjectileAbility
     private bool swordOut = false;
 
     //amount of remaining uses
-    private int usesRemaining;
+    //private int usesRemaining;
 
     //internal user reference typed to player
     private PlayerActor internalUser;
@@ -34,7 +34,7 @@ public class TossAndTeleport : ProjectileAbility
     // Awake is called before everything starts
     void Awake()
     {
-        usesRemaining = maxUses;
+        //usesRemaining = maxUses;
     }
 
     /*Launch the projectile. The anticipated argument is the gameObject being shot at. The 
@@ -54,10 +54,10 @@ public class TossAndTeleport : ProjectileAbility
         }
 
         //auto return if the user it out of invokations for this ability
-        if(usesRemaining <= 0)
+        /*if(usesRemaining <= 0)
         {
             return 1;
-        }
+        }*/
 
         usable = false;
         StartCoroutine(SwordBehaviour());
@@ -154,5 +154,16 @@ public class TossAndTeleport : ProjectileAbility
 
         //put user in unswordless state
         internalUser.SetSwordState(true);
+    }
+
+    public override IEnumerator coolDown(float cooldownDuration)
+    {
+        usable = false;
+        if (MenuManager.ABILITY_MENU)
+        {
+            MenuManager.ABILITY_MENU.PutButtonOnCooldown(cooldownDuration, this);
+        }
+        yield return new WaitForSeconds(cooldownDuration);
+        usable = true;
     }
 }

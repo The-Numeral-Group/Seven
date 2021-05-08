@@ -135,18 +135,6 @@ public class PlayerActor : Actor
         }
     }*/
 
-    void OnNavigateLeftAbility()
-    {
-        Debug.Log("selecting abilies");
-        MenuManager.ABILITY_MENU.SelectLeftAbility();
-    }
-
-    void OnNavigateRightAbility()
-    {
-        Debug.Log("selecting abilies");
-        MenuManager.ABILITY_MENU.SelectRightAbility();
-    }
-
     public override void DoActorDamageEffect(float damage)
     {
         // Play TakeDamage Audio

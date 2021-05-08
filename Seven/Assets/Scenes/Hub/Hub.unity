@@ -392,7 +392,8 @@ MonoBehaviour:
   interactIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
   indicatorOffset: {x: 0, y: 0.5}
   bossID: 16
-  sceneToLoad: IndulgenceBattle
+  openingScene: Indulgence_Opening
+  retryScene: Indulgence_Retry
   gameSaveManager: {fileID: 740934186}
 --- !u!1 &106058460
 GameObject:
@@ -2132,7 +2133,8 @@ MonoBehaviour:
   interactIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
   indicatorOffset: {x: 0, y: 0.5}
   bossID: 10
-  sceneToLoad: SlothTest
+  openingScene: SlothTest
+  retryScene: SlothTest
   gameSaveManager: {fileID: 740934186}
 --- !u!212 &757197281
 SpriteRenderer:
@@ -2460,7 +2462,8 @@ MonoBehaviour:
   interactIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
   indicatorOffset: {x: 0, y: 0.5}
   bossID: 13
-  sceneToLoad: EgoTest
+  openingScene: EgoTest
+  retryScene: EgoTest
   gameSaveManager: {fileID: 740934186}
 --- !u!212 &902590682
 SpriteRenderer:

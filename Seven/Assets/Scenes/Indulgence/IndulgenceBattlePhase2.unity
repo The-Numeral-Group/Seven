@@ -764,7 +764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2998643818376067550, guid: 708a306f945165c49b6382e7c9913445, type: 3}
       propertyPath: placeObjects.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2998643818376067550, guid: 708a306f945165c49b6382e7c9913445, type: 3}
       propertyPath: objects.Array.data[0]
@@ -844,6 +844,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 708a306f945165c49b6382e7c9913445, type: 3}
+--- !u!1 &1500686067 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2998643818376067545, guid: 708a306f945165c49b6382e7c9913445, type: 3}
+  m_PrefabInstance: {fileID: 1500686066}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1558462072
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1159,6 +1164,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1399343413412748670, guid: ddcf17b9387e378458337ea1e7b61bcb, type: 3}
+      propertyPath: startingMaxHealth
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399343413412748671, guid: ddcf17b9387e378458337ea1e7b61bcb, type: 3}
+      propertyPath: gameSaveManager
+      value: 
+      objectReference: {fileID: 1500686067}
     - target: {fileID: 3372392985914523463, guid: ddcf17b9387e378458337ea1e7b61bcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
