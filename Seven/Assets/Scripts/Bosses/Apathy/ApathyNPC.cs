@@ -8,6 +8,9 @@ public class ApathyNPC : Interactable
     [Tooltip("A reference to Apathy, so it can be activated/deactived properly")]
     public GameObject apathyObj;
 
+    [Tooltip("The ability Object Apathy should drop when it dies.")]
+    public GameObject abilityDropObject;
+
     [Tooltip("Props that should vanish from the arena when the fight starts.")]
     public GameObject prop;
 
@@ -29,21 +32,35 @@ public class ApathyNPC : Interactable
     // Start is called before the first frame update
     void Start()
     {
+        //save the gamestate manager
+        manager = GameObject.Find("GameSaveManager")?.GetComponent<GameSaveManager>();
+
         if(fightAbandoned && !fightCompleted)
         {
             //remove both props and Sloth, and place the AOS if it is not already there
-            apathyObj.SetActive(false);
+            //also turn of this object's collider to prevent talking to sloth
+            this.GetComponent<Collider2D>().enabled = false;
+            //apathyObj.SetActive(false);
+            Destroy(apathyObj);
             prop.SetActive(false);
+            var abilityPickup = Instantiate(abilityDropObject, Vector3.zero, Quaternion.identity)
+                .GetComponent<AbilityPickup>();
+            abilityPickup.gameSaveManager = manager;
+            abilityPickup.gameSaveAbilityPickupIndex = 9;
+
+            return;
         }
         else if(!fightAbandoned && fightCompleted)
         {
             //do the same, but don't drop the AOS
-            apathyObj.SetActive(false);
+            //apathyObj.SetActive(false);
+            Destroy(apathyObj);
             prop.SetActive(false);
+
+            return;
         }
 
-        //save the gamestate manager
-        manager = GameObject.Find("GameSaveManager")?.GetComponent<GameSaveManager>();
+        
         //save sin committal. We assume the player is going to leave, and change the value if
         //the player actually starts the fight.
         manager.setBoolValue(true, 11);
@@ -111,6 +128,10 @@ public class ApathyNPC : Interactable
     public void DisengageFight()
     {
         //drop the TOD
+        var abilityPickup = Instantiate(abilityDropObject, Vector3.zero, Quaternion.identity)
+                .GetComponent<AbilityPickup>();
+        abilityPickup.gameSaveManager = manager;
+        abilityPickup.gameSaveAbilityPickupIndex = 9;
 
         //bring back the scene transition
         sceneTransition.SetActive(true);
