@@ -11,6 +11,7 @@ public class IndulgenceP2Actor : Actor
     public Actor target;
     Vector2[] movementDirections;
     Actor self;
+    public GameObject gameSaveManager;
     public enum State
     {
         MOVEMENT,
@@ -42,6 +43,11 @@ public class IndulgenceP2Actor : Actor
 
     public override void DoActorDeath()
     {
+        // Save Positions
+        var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
+        this.gameSaveManager.GetComponent<GameSaveManager>().setVectorValue(playerObject.transform.position, 2);
+        this.gameSaveManager.GetComponent<GameSaveManager>().setVectorValue(transform.position, 6);
+
         // Update Flag for game save
 
         // Load Death cutscene 

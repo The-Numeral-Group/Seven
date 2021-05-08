@@ -1681,7 +1681,7 @@ PrefabInstance:
     - target: {fileID: 8067875665855393473, guid: 68cf7eabcdb9b9b4f858309c9fbded90, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1879917178250276208, guid: 0a2fae1ac0cd8fb43bd90df254478733, type: 3}
+      objectReference: {fileID: -102534352254758231, guid: 255f401c72ae7b948a56418c88c45275, type: 3}
     - target: {fileID: 8067875665855393475, guid: 68cf7eabcdb9b9b4f858309c9fbded90, type: 3}
       propertyPath: m_Name
       value: Indulgence (Cutscene)
