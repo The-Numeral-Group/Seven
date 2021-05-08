@@ -86,15 +86,10 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     void OnAbility()
     {
         //Since the the cooldown for an ability is tied to actorabilityfunction
-        /*if (selectedAbility != null && selectedAbility.getUsable() && selectedAbility.getIsFinished())
+        if (selectedAbility != null && selectedAbility.getUsable() && selectedAbility.getIsFinished())
         {
             selectedAbility.Invoke(ref userActor);
-            MenuManager.ABILITY_MENU.PutButtonOnCooldown(cooldownvalue);
-        }*/
-
-        if (selectedAbility)
-        {
-            selectedAbility.Invoke(ref userActor);
+            MenuManager.ABILITY_MENU.PutButtonOnCooldown(selectedAbility.getCooldown(), selectedAbility);
         }
     }
 
