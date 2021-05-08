@@ -185,7 +185,8 @@ internal class ApathySludgeSingle : ProjectileAbility
 
         //Step 6.5: Actually launch the projectile at the directly under marker now
         projObj.SetActive(true);
-        projObj.GetComponent<BasicProjectile>().Launch(markObjA.transform.position, LAUNCH_MODE.POINT);
+        projObj.GetComponent<FilterProjectile>()
+            .Launch(markObjA.transform.position, LAUNCH_MODE.POINT, target.gameObject);
 
         //Step 6.75: wait for the previous anim to finish
         //this should wait until the animator exits the throw state
@@ -227,7 +228,8 @@ internal class ApathySludgeSingle : ProjectileAbility
         this.user.myAnimationHandler.TrySetTrigger("apathy_throw");
 
         //Step 10.5: And we're gonna launch it too
-        projObj.GetComponent<BasicProjectile>().Launch(markObjB.transform.position, LAUNCH_MODE.POINT);
+        projObj.GetComponent<FilterProjectile>()
+            .Launch(markObjB.transform.position, LAUNCH_MODE.POINT, target.gameObject);
 
         //Step 11: Wait again...
         yield return new WaitForSeconds(shotFlightTime);

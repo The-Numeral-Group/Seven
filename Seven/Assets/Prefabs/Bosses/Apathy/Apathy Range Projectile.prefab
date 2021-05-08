@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 289941525481395949}
   - component: {fileID: 5415266258514441940}
   - component: {fileID: 3637200282735461822}
-  - component: {fileID: 7729995768388343351}
   - component: {fileID: 1085523195742717773}
+  - component: {fileID: 4987863318675896968}
   m_Layer: 0
   m_Name: Apathy Range Projectile
   m_TagString: Untagged
@@ -150,20 +150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
---- !u!114 &7729995768388343351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8453795746997737593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66bb0b107d1d164eb9f39e9f5caadc38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 2
-  destroyOnHit: 1
 --- !u!95 &1085523195742717773
 Animator:
   serializedVersion: 3
@@ -183,3 +169,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4987863318675896968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8453795746997737593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b8f75499b0a0db44b24c69fcfb1eeef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2
+  destroyOnHit: 1
