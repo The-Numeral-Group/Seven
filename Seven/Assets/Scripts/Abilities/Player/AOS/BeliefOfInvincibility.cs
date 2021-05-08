@@ -26,17 +26,6 @@ public class BeliefOfInvincibility : ActorAbilityCoroutine<int>
     {
         usesRemaining = usesPerFight;
     }
-
-    public override IEnumerator coolDown(float cooldownDuration)
-    {
-        usable = false;
-        if (MenuManager.ABILITY_MENU)
-        {
-            MenuManager.ABILITY_MENU.PutButtonOnCooldown(cooldownDuration, this);
-        }
-        yield return new WaitForSeconds(cooldownDuration);
-        usable = true;
-    }
     protected override IEnumerator InternCoroutine(params int[] args)
     {
         //immediately exit if there are no uses remaining

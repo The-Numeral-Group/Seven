@@ -58,17 +58,6 @@ public class Apathetic : ActorAbilityFunction<int, int>, ActorEffect
         return 1;
     }
 
-    public override IEnumerator coolDown(float cooldownDuration)
-    {
-        usable = false;
-        if (MenuManager.ABILITY_MENU)
-        {
-            MenuManager.ABILITY_MENU.PutButtonOnCooldown(cooldownDuration, this);
-        }
-        yield return new WaitForSeconds(cooldownDuration);
-        usable = true;
-    }
-
     //Controls the beginning of the effect where the user can't move, the applies the effect
     IEnumerator PauseThenActivate()
     {
