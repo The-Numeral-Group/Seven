@@ -120,12 +120,21 @@ public class AbilityMenu : BaseUI
         }
     }
 
+    public void PutButtonOnCooldown(float time, Component abilityType)
+    {
+        Debug.Log(pointerToCurrentSelectedButton);
+        if (abilityButtons[pointerToCurrentSelectedButton].gameObject.activeSelf &&
+        abilityButtons[pointerToCurrentSelectedButton].GetComponent(abilityType.GetType()) != null)
+        {
+            abilityButtons[pointerToCurrentSelectedButton].StartCooldown(time);
+        }
+    }
+
     void UpdatePlayerSelectedAbility()
     {
         Component abilityType = abilityButtons[pointerToCurrentSelectedButton].selectedAbility;
         if (abilityType != null)
         {
-            Debug.Log("Applying ability selection");
             player.selectedAbility = player.GetComponent(abilityType.GetType()) as ActorAbility;
         }
         else

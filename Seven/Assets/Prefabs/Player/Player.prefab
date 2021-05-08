@@ -501,8 +501,7 @@ MonoBehaviour:
   projectileDirection: {x: -1, y: 0}
   travelDistance: 5
   damage: 2
-  maxUses: 5
-  alwaysGetSword: 0
+  alwaysGetSword: 1
 --- !u!114 &6471229119639064663
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -155,4 +155,15 @@ public class TossAndTeleport : ProjectileAbility
         //put user in unswordless state
         internalUser.SetSwordState(true);
     }
+
+    public override IEnumerator coolDown(float cooldownDuration)
+    {
+        usable = false;
+        if (MenuManager.ABILITY_MENU)
+        {
+            MenuManager.ABILITY_MENU.PutButtonOnCooldown(cooldownDuration, this);
+        }
+        yield return new WaitForSeconds(cooldownDuration);
+        usable = true;
+    }
 }
