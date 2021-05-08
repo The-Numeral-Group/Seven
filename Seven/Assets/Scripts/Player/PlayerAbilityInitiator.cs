@@ -85,25 +85,32 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
 
     void OnAbility()
     {
-        if (selectedAbility != null)
+        //Since the the cooldown for an ability is tied to actorabilityfunction
+        /*if (selectedAbility != null && selectedAbility.getUsable() && selectedAbility.getIsFinished())
+        {
+            selectedAbility.Invoke(ref userActor);
+            MenuManager.ABILITY_MENU.PutButtonOnCooldown(cooldownvalue);
+        }*/
+
+        if (selectedAbility)
         {
             selectedAbility.Invoke(ref userActor);
         }
     }
 
-    /*public void OnAbilityOne()
+    void OnNavigateLeftAbility()
     {
-        if(selectedAbilityAlpha)
+        if (selectedAbility == null || selectedAbility.getIsFinished())
         {
-            selectedAbilityAlpha.Invoke(ref userActor);
+            MenuManager.ABILITY_MENU.SelectLeftAbility();
         }
     }
 
-    public void OnAbilityTwo()
+    void OnNavigateRightAbility()
     {
-        if (selectedAbilityBeta)
+        if (selectedAbility != null || selectedAbility.getIsFinished())
         {
-            selectedAbilityBeta.Invoke(ref userActor);
+            MenuManager.ABILITY_MENU.SelectRightAbility();
         }
-    }*/
+    }
 }
