@@ -14,20 +14,25 @@ public class EgoSin : ActorEffect
     //The actual amount the user's speed will be increased by
     private float trueSpeedBoost;
 
+    //Whether or not this instance should count applications for sin tracking
+    private bool countSin;
+
     //The amount of times this sin has been applied during runtime
+    //only incremented if the constructor recieves true
     public static int applicationCount { get; protected set; }
 
     //The amount of times this effect can stack. Readonly to prevent stack maxes from being
     //messed with at runtime.
     public static readonly int effectMaxStack = 1;
     //METHODS--------------------------------------------------------------------------------------
-    public EgoSin(float speedBoost, float duration)
+    public EgoSin(float speedBoost, float duration, bool countSin=true)
     {
         ///DEBUG
         Debug.Log("EgoSin: effect applied");
         ///DEBUG
         this.speedBoost = speedBoost;
         this.duration = duration;
+        this.countSin = countSin;
     }
     
     //The actual application of this effect
@@ -44,7 +49,7 @@ public class EgoSin : ActorEffect
             actor.myHealth.SetVulnerable(false, duration, true);
 
             //count up the amount of times this effect has been applied
-            ++EgoSin.applicationCount;
+            if(countSin) {++EgoSin.applicationCount;}
             
             return true;
         }

@@ -25,5 +25,22 @@ public class EgoCrowdZone : Interactable
     {
         var sin = new EgoSin(boostFactor, duration);
         player.myEffectHandler.AddTimedEffect(sin, duration);
+        Cleanup();
+    }
+
+    //overload for OnInteract that takes an Actor, so anyone can interact with this object
+    //Interactions done with way will not count as player interactions, and thus will not
+    //increment the sin counter for this fight
+    public void OnInteract(Actor interactor)
+    {
+        var sin = new EgoSin(boostFactor, duration, false);
+        interactor.myEffectHandler.AddTimedEffect(sin, duration);
+        Cleanup();
+    }
+
+    //remove this instance of the crowd from the world
+    void Cleanup()
+    {
+        Destroy(this.gameObject);
     }
 }
