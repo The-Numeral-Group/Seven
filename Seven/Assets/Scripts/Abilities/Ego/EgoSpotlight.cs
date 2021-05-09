@@ -54,16 +54,27 @@ public class EgoSpotlight : ActorAbilityCoroutine<int>
         );
 
         //while the spotlight lays unclaimed, keep the ability going
-        yield return new WaitWhile( () => spotlight );
+        //yield return new WaitWhile( () => spotlight );
+        while(spotlight)
+        {
+            //set the user to move towards the spotlight
+            user.myMovement.MoveActor(
+                (spotlight.transform.position - user.gameObject.transform.position).normalized
+            );
+
+            yield return null;
+        }
     }
 
     /*an additional collision detector that ignores everything that isn't the spotlight (or 
     everything if the ability isn't active). When it hits the mesh, it will decrement
     lTimer by Time.deltaTime. if lTimer hits 0, the message OnInteract (user) will be passed to
     interact with, and thus claim, the spotlight*/
-    void OnCollisionEnter2D(Collision2D collided)
+    /*void OnCollisionEnter2D(Collision2D collided)
     {
         if (this.isFinished || collided.gameObject != spotlight) {return;}
+
+        Debug.Log("EgoSpotlight: user in light!");
 
         //increment timer
         lTimer += Time.deltaTime;
@@ -78,6 +89,34 @@ public class EgoSpotlight : ActorAbilityCoroutine<int>
             collided.gameObject.SendMessage
             (
                 "OnInteract",
+                user
+            );
+        }
+    }*/
+
+    /*an additional collision detector that ignores everything that isn't the spotlight (or 
+    everything if the ability isn't active). When it hits the mesh, it will decrement
+    lTimer by Time.deltaTime. if lTimer hits 0, the message OnInteract (user) will be passed to
+    interact with, and thus claim, the spotlight*/
+    void OnTriggerStay2D(Collider2D collided)
+    {
+        if (this.isFinished || collided.gameObject != spotlight) {return;}
+
+        Debug.Log("EgoSpotlight: user in light!");
+
+        //increment timer
+        lTimer += Time.deltaTime;
+
+        //check time
+        if(lTimer >= lightTime)
+        {
+            lTimer = 0f;
+
+            //We use send message for consistency, that's how OnInteract is designed to be used
+            //If the message has no reciever, an error will be throw.
+            collided.gameObject.SendMessage
+            (
+                "OnAnyInteract",
                 user
             );
         }

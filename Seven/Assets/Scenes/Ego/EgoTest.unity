@@ -839,7 +839,7 @@ MonoBehaviour:
   swaggerDuration: 3
   specialAttackGate: 7
   chargeRange: 12
-  punchRange: 15
+  punchRange: 3
   abilityDropObject: {fileID: 2937701324620886995, guid: cf7eef9d3c37b954fa77d9245a9364ce, type: 3}
 --- !u!114 &656284022
 MonoBehaviour:
@@ -856,9 +856,9 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 656284020}
-  Far: {fileID: 656284019}
-  Special: {fileID: 656284019}
+  Close: {fileID: 928636631}
+  Far: {fileID: 656284020}
+  Special: {fileID: 656284030}
 --- !u!114 &656284023
 MonoBehaviour:
   m_ObjectHideFlags: 0

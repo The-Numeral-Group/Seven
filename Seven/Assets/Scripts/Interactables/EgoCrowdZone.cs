@@ -31,7 +31,7 @@ public class EgoCrowdZone : Interactable
     //overload for OnInteract that takes an Actor, so anyone can interact with this object
     //Interactions done with way will not count as player interactions, and thus will not
     //increment the sin counter for this fight
-    public void OnInteract(Actor interactor)
+    public void OnAnyInteract(Actor interactor)
     {
         var sin = new EgoSin(boostFactor, duration, false);
         interactor.myEffectHandler.AddTimedEffect(sin, duration);
