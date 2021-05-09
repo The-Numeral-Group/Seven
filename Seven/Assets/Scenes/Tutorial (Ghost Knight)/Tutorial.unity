@@ -7498,6 +7498,54 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -199.3999
       objectReference: {fileID: 0}
+    - target: {fileID: 7084851779643473911, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7084851779643473911, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7084851779643473911, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7084851779643473911, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8206099915240218085, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8206099915240218085, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8206099915240218085, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8206099915240218085, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8404052511750549421, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8404052511750549421, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8404052511750549421, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8404052511750549421, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
 --- !u!114 &1857178618 stripped
@@ -7541,13 +7589,29 @@ PrefabInstance:
       propertyPath: cooldownPeriod
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 220097794664941640, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
+      propertyPath: duration_vanishing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 220097794664941640, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
+      propertyPath: duration
+      value: 7.25
+      objectReference: {fileID: 0}
     - target: {fileID: 220097794664941641, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: cooldownPeriod
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 220097794664941641, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
+      propertyPath: duration
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 220097794664941643, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 220097794664941643, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
+      propertyPath: m_Name
+      value: Ghost Knight
       objectReference: {fileID: 0}
     - target: {fileID: 220097794664941681, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: startingMaxHealth
@@ -7584,6 +7648,14 @@ PrefabInstance:
     - target: {fileID: 220097794664941687, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: cooldownPeriod
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 220097794664941687, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
+      propertyPath: travelDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 220097794664941687, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
+      propertyPath: duration
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 220097794664941692, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: m_SortingOrder
@@ -8705,6 +8777,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 4115977272152067176, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: startingMaxHealth
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4115977272152067180, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: playerDodge
       value: 

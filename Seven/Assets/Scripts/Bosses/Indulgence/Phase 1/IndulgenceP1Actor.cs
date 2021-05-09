@@ -46,7 +46,13 @@ public class IndulgenceP1Actor : Actor
         var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
         this.gameSaveManager.GetComponent<GameSaveManager>().setVectorValue(playerObject.transform.position, 2);
         this.gameSaveManager.GetComponent<GameSaveManager>().setVectorValue(transform.position, 6);
+
+        // Check for Corruption
+        // SceneManager.LoadScene("Indulgence_BossW");
+
+        // else
         SceneManager.LoadScene("Indulgence_Transition");
+
         /*System.Tuple<Actor, System.Action<Actor>> p2 = 
             new System.Tuple<Actor, System.Action<Actor>>(self, null);
         gameObject.SendMessage("NextPhase", p2);*/
