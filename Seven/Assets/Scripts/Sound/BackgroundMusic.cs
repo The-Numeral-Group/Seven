@@ -22,7 +22,7 @@ public class BackgroundMusic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this.loop && !this.audioSource.isPlaying)
+        if (this.loop && !this.audioSource.isPlaying && !MenuManager.GAME_IS_OVER)
         {
             this.audioSource.time = this.loopStartTime;
             this.audioSource.Play();
