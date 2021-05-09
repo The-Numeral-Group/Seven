@@ -13,6 +13,12 @@ public class GameSaveData
 
     public float[] ghostKnightPosition;
 
+    public float[] apathyPosition;
+
+    public float[] egoPosition;
+
+    public float[] indulgencePosition;
+
     public bool IndulgenceAbilityPickup;
 
     public bool EgoAbilityPickup;
@@ -49,6 +55,18 @@ public class GameSaveData
         this.ghostKnightPosition = new float[2];
         this.ghostKnightPosition[0] = gameSaveList.getVectorValue(3).x;
         this.ghostKnightPosition[1] = gameSaveList.getVectorValue(3).y;
+
+        this.apathyPosition = new float[2];
+        this.apathyPosition[0] = gameSaveList.getVectorValue(4).x;
+        this.apathyPosition[1] = gameSaveList.getVectorValue(4).y;
+
+        this.egoPosition = new float[2];
+        this.egoPosition[0] = gameSaveList.getVectorValue(5).x;
+        this.egoPosition[1] = gameSaveList.getVectorValue(5).y;
+
+        this.indulgencePosition = new float[2];
+        this.indulgencePosition[0] = gameSaveList.getVectorValue(6).x;
+        this.indulgencePosition[1] = gameSaveList.getVectorValue(6).y;
 
         this.IndulgenceAbilityPickup = gameSaveList.getBoolValue(7);
         this.EgoAbilityPickup = gameSaveList.getBoolValue(8);
