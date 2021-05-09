@@ -18,6 +18,10 @@ public class ApathyNPC : Interactable
         " currently happening.")]
     public GameObject sceneTransition;
 
+    //whether or not the player has started the fight in that particular instance
+    //of the apathy room
+    private bool fightStarted = false;
+
     //whether or not apathy has been defeated
     public static bool fightCompleted = false;
 
@@ -81,7 +85,7 @@ public class ApathyNPC : Interactable
         When the scene unloads, this object will be destroyed. If fightCompleted
         is false when this is destroyed, that means the scene has been unloaded without the
         fight finishing, which means the player abandoned the fight...*/
-        if(!fightCompleted)
+        if(!fightStarted)
         {
             fightAbandoned = true;
         }
@@ -104,6 +108,8 @@ public class ApathyNPC : Interactable
         manager.setBoolValue(false, 11);
         //Remove the props from the room
         prop.SetActive(false);
+        //flag the fight as started
+        fightStarted = true;
 
         //Remove the scene transition
         sceneTransition.SetActive(false);
