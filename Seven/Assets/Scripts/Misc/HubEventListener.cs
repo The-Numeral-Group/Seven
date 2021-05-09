@@ -16,7 +16,19 @@ public class HubEventListener : MonoBehaviour
     void Start()
     {
         this.gameSaveManagerScript = gameSaveManager.GetComponent<GameSaveManager>();
+        checkPlayerRespawn();
         checkBossProgress();
+    }
+
+    private void checkPlayerRespawn()
+    {
+        var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
+        if (this.gameSaveManagerScript.getBoolValue(19))
+        {
+            // Play Respawn animation
+            PlayerAnimationHandler anim = playerObject.GetComponent<Actor>().myAnimationHandler as PlayerAnimationHandler;
+            anim.animateRespawn();
+        }
     }
 
     private void checkBossProgress()

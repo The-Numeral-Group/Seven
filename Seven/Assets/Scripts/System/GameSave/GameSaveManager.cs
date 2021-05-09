@@ -103,6 +103,8 @@ public class GameSaveManager : MonoBehaviour
             gameSaveList.setBoolValue(gameSaveData.IndulgenceSinCorrupted, 17);
             gameSaveList.setBoolValue(gameSaveData.IndulgenceDefeated, 18);
 
+            gameSaveList.setBoolValue(gameSaveData.PlayerRespawn, 19);
+
             file.Close();
         }
     }

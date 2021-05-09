@@ -44,6 +44,8 @@ public class GameSaveList : MonoBehaviour
 
     // Element 18 - IndulgenceDefeated
 
+    // Element 19 - PlayerRespawn
+
     /* ----- BOOL VALUE ----- */
     public void setBoolValue(bool newValue, int id)
     {

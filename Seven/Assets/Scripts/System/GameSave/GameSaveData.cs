@@ -5,43 +5,27 @@ using UnityEngine;
 [System.Serializable]
 public class GameSaveData
 {
-    public bool newGame;
-
-    public string playerCurrentScene;
-
-    public float[] playerPosition;
-
-    public float[] ghostKnightPosition;
-
-    public float[] apathyPosition;
-
-    public float[] egoPosition;
-
-    public float[] indulgencePosition;
-
-    public bool IndulgenceAbilityPickup;
-
-    public bool EgoAbilityPickup;
-
-    public bool ApathyAbilityPickup;
-
-    public bool ApathyOpening;
-
-    public bool ApathySinCorrupted;
-
-    public bool ApathyDefeated;
-
-    public bool EgoOpening;
-
-    public bool EgoSinCorrupted;
-
-    public bool EgoDefeated;
-
-    public bool IndulgenceOpening;
-
-    public bool IndulgenceSinCorrupted;
-
-    public bool IndulgenceDefeated;
+    // Element List (ID)
+    public bool newGame; // 0
+    public string playerCurrentScene; // 1
+    public float[] playerPosition; // 2
+    public float[] ghostKnightPosition; // 3
+    public float[] apathyPosition; // 4
+    public float[] egoPosition; // 5
+    public float[] indulgencePosition; // 6
+    public bool IndulgenceAbilityPickup; // 7
+    public bool EgoAbilityPickup; // 8
+    public bool ApathyAbilityPickup; // 9
+    public bool ApathyOpening; // 10
+    public bool ApathySinCorrupted; // 11
+    public bool ApathyDefeated; // 12
+    public bool EgoOpening; // 13
+    public bool EgoSinCorrupted; // 14
+    public bool EgoDefeated; // 15
+    public bool IndulgenceOpening; // 16
+    public bool IndulgenceSinCorrupted; // 17
+    public bool IndulgenceDefeated; // 18
+    public bool PlayerRespawn; // 19
 
     public GameSaveData(GameSaveList gameSaveList)
     {
@@ -83,6 +67,8 @@ public class GameSaveData
         this.IndulgenceOpening = gameSaveList.getBoolValue(16);
         this.IndulgenceSinCorrupted = gameSaveList.getBoolValue(17);
         this.IndulgenceDefeated = gameSaveList.getBoolValue(18);
+
+        this.PlayerRespawn = gameSaveList.getBoolValue(19);
     }
 
 }
