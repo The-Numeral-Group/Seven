@@ -25,9 +25,18 @@ public class HubEventListener : MonoBehaviour
         var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
         if (this.gameSaveManagerScript.getBoolValue(19))
         {
+            // Place playerObject next to pond
+            playerObject.transform.position = new Vector2(0.0f, 4.24f);
+
+            StartCoroutine(playerObject.GetComponent<Actor>().myMovement.LockActorMovement(3.0f));
+            
+            StartCoroutine(playerObject.GetComponent<Actor>().mySoundManager.muteSoundForDuration("PlayerRun", 3.0f));
+
             // Play Respawn animation
             PlayerAnimationHandler anim = playerObject.GetComponent<Actor>().myAnimationHandler as PlayerAnimationHandler;
             anim.animateRespawn();
+
+            this.gameSaveManagerScript.setBoolValue(false, 19);
         }
     }
 
