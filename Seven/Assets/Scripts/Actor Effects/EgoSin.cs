@@ -17,6 +17,11 @@ public class EgoSin : ActorEffect
     //Whether or not this instance should count applications for sin tracking
     private bool countSin;
 
+    ///DEBUG
+    //the effectee's orignal color
+    private Color origColor = Color.white;
+    ///DEBUG
+
     //The amount of times this sin has been applied during runtime
     //only incremented if the constructor recieves true
     public static int applicationCount { get; protected set; }
@@ -48,6 +53,16 @@ public class EgoSin : ActorEffect
             //then make the effectee invincible
             actor.myHealth.SetVulnerable(false, duration, true);
 
+            ///DEBUG
+            //and turn them yellow
+            var ren = actor.gameObject.GetComponent<SpriteRenderer>();
+            if(ren)
+            {
+                origColor = ren.color;
+                ren.color = Color.yellow;
+            }
+            ///DEBUG
+
             //count up the amount of times this effect has been applied
             if(countSin) {++EgoSin.applicationCount;}
             
@@ -62,6 +77,15 @@ public class EgoSin : ActorEffect
     {
         //remove the speed boost
         actor.myMovement.speed -= trueSpeedBoost;
+
+        ///DEBUG
+        //and unyellow them
+        var ren = actor.gameObject.GetComponent<SpriteRenderer>();
+        if(ren)
+        {
+            ren.color = origColor;
+        }
+        ///DEBUG
 
         /*Invulnerability will not be cleaned, because there is no easy way to remove
         invulnerability without cancelling it entirely, and the effectee might have
