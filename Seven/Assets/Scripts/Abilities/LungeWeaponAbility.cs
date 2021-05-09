@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class LungeWeaponAbility : WindupWeaponAbility
 {
+    //FIELDS---------------------------------------------------------------------------------------
     //the ways in which LungeWeaponAbility can calcuate its travelling
     public enum TRAVEL_MODE
     {
@@ -39,13 +40,13 @@ public class LungeWeaponAbility : WindupWeaponAbility
     //the original position of the user, for distance calculations
     private Vector3 origPos = Vector3.zero;
 
-    /*the direction in which the user is lunging (calculated as the direction of the user to its
-    face anchor i.e. the normalized position of the user's face anchor)*/
+    /*the direction in which the user is lunging*/
     private Vector3 moveDir = Vector3.zero;
 
     //the func use to calculate, execute, and judge the movement of the lunge
     private Func<bool> travelling;
 
+    //METHODS--------------------------------------------------------------------------------------
     // Generates the Func used for the travelling logic
     protected override void Start()
     {
@@ -67,7 +68,7 @@ public class LungeWeaponAbility : WindupWeaponAbility
     protected override IEnumerator delayedAttack(params Actor[] args)
     {
         //calculate the direction to lunge in
-        moveDir = user.faceAnchor.position.normalized;
+        moveDir = (user.faceAnchor.position - user.gameObject.transform.position).normalized;
         //save the user's current position
         origPos = this.user.gameObject.transform.position;
         //save the current time
@@ -92,10 +93,12 @@ public class LungeWeaponAbility : WindupWeaponAbility
 
         //save the user's speed and change it to the lunge speed
         origSpeed = user.myMovement.speed;
-        user.myMovement.speed = origSpeed;
+        user.myMovement.speed = lungeSpeed;
 
         //wait until the travel has completed
         yield return new WaitWhile(travelling);
+
+        user.myMovement.speed = origSpeed;
 
         //sheathe the weapon
         yield return sheathe;
@@ -118,6 +121,10 @@ public class LungeWeaponAbility : WindupWeaponAbility
                 )
             );
 
+            ///DEBUG
+            Debug.Log($"LungeWeaponAbility: hitconnected is {this.hitConnected}");
+            ///DEBUG
+
             if(!this.hitConnected && fullDist < lungeDistance)
             {
                 this.user.myMovement.MoveActor(moveDir);
@@ -139,6 +146,11 @@ public class LungeWeaponAbility : WindupWeaponAbility
         return new Func<bool>( () => 
         {
             var fullTime = Time.time - origTime;
+
+            ///DEBUG
+            Debug.Log($"LungeWeaponAbility: hitconnected is {this.hitConnected}");
+            ///DEBUG
+
             if(!this.hitConnected && fullTime < lungeDuration)
             {
                 this.user.myMovement.MoveActor(moveDir);
