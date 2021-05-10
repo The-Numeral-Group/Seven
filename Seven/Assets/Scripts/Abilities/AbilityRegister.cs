@@ -67,4 +67,12 @@
     public static string INDULGENCE_CHARGE = "";
     public static string INDULGENCE_SPECIAL = "";
     public static string INDULGENCE_SIN = "";
+
+    //WRATH
+    public static string WRATH_CHAINPULL = "";
+    public static string WRATH_FIREWALL = "";
+    public static string WRATH_SLUDGE = "";
+    public static string WRATH_SWORDATTACK = "";
+    public static string WRATH_SWORDRUSH = "";
+
 }
