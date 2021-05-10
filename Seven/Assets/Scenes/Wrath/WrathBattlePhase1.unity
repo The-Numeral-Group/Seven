@@ -1074,7 +1074,7 @@ GameObject:
   - component: {fileID: 1157568859}
   - component: {fileID: 1157568858}
   m_Layer: 0
-  m_Name: Wrath
+  m_Name: WrathP1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2750,10 +2750,12 @@ GameObject:
   - component: {fileID: 2135220268}
   - component: {fileID: 2135220267}
   - component: {fileID: 2135220266}
-  - component: {fileID: 2135220265}
   - component: {fileID: 2135220264}
   - component: {fileID: 2135220263}
   - component: {fileID: 2135220262}
+  - component: {fileID: 2135220274}
+  - component: {fileID: 2135220273}
+  - component: {fileID: 2135220265}
   m_Layer: 0
   m_Name: WrathP1
   m_TagString: Untagged
@@ -2972,6 +2974,8 @@ MonoBehaviour:
   chainPull: {fileID: 2135220264}
   fireWall: {fileID: 2135220263}
   sludge: {fileID: 2135220262}
+  swordAttack: {fileID: 2135220274}
+  swordRush: {fileID: 2135220273}
 --- !u!114 &2135220267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3051,6 +3055,36 @@ MonoBehaviour:
   damageResistance: 0
   invincibilityDuration: 1
   startInvulnerable: 0
+--- !u!114 &2135220273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135220256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4d4ae2f1513b714b9379d806ef17d25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+--- !u!114 &2135220274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135220256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 595bea98b5a637b498d840a9582382e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
 --- !u!1001 &220097795559556439
 PrefabInstance:
   m_ObjectHideFlags: 0

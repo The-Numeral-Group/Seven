@@ -7,6 +7,8 @@ public class WrathP1AbilityInitiator : ActorAbilityInitiator
     public WrathChainPull chainPull;
     public WrathFireWall fireWall;
     public WrathSludge sludge;
+    public WrathSwordAttack swordAttack;
+    public WrathSwordRush swordRush;
 
     void Awake()
     {
@@ -18,5 +20,11 @@ public class WrathP1AbilityInitiator : ActorAbilityInitiator
 
         this.abilities.Add("Wrath" + nameof(sludge), sludge);
         AbilityRegister.WRATH_SLUDGE = "Wrath" + nameof(sludge);
+
+        this.abilities.Add("Wrath" + nameof(swordAttack), swordAttack);
+        AbilityRegister.WRATH_SWORDATTACK = "Wrath" + nameof(swordAttack);
+
+        this.abilities.Add("Wrath" + nameof(swordRush), swordRush);
+        AbilityRegister.WRATH_SWORDRUSH = "Wrath" + nameof(swordRush);
     }
 }
