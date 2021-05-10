@@ -50,15 +50,22 @@ public class IndulgenceP1Actor : Actor
 
     public override void DoActorDeath()
     {
+        
         var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
         this.gameSaveManager.GetComponent<GameSaveManager>().setVectorValue(playerObject.transform.position, 2);
         this.gameSaveManager.GetComponent<GameSaveManager>().setVectorValue(transform.position, 6);
 
         // Check for Corruption
-        // SceneManager.LoadScene("Indulgence_BossW");
-
-        // else
-        SceneManager.LoadScene("Indulgence_Transition");
+        if (SIN_COMITTED)
+        {
+            SIN_COMITTED = false;
+            gameSaveManager.GetComponent<GameSaveManager>().setBoolValue(true, 17);
+            SceneManager.LoadScene("Indulgence_BossW");
+        }
+        else 
+        {// else
+            SceneManager.LoadScene("Indulgence_Transition");
+        }
 
         /*System.Tuple<Actor, System.Action<Actor>> p2 = 
             new System.Tuple<Actor, System.Action<Actor>>(self, null);

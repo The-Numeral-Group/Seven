@@ -7,16 +7,18 @@ public class IndulgenceSin : ActorAbilityFunction<Actor, int>
 {
     public IndulgenceCrush crushAbility;
     public Actor dummyLocation;
-    public GameObject IndulgenceSinObject;
+    public GameObject indulgenceSinObject;
     public float rangeToDisengageAttack = 5f;
     List<Vector3> spawnPoints;
     Actor target;
     bool targetInRange;
     IEnumerator CheckRangeRoutine;
     IEnumerator MovementLockRoutine;
+    List<IndulgenceSinInteractable> monitors;
 
     void Awake()
     {
+        monitors = new List<IndulgenceSinInteractable>();
         if (dummyLocation == null)
         {
             Debug.LogWarning("IndulgenceSin: Dummylocation actor needs to be set.");
@@ -29,15 +31,11 @@ public class IndulgenceSin : ActorAbilityFunction<Actor, int>
         targetInRange = false;
         CheckRangeRoutine = CalculateDistanceToTarget();
         spawnPoints = new List<Vector3>();
-        spawnPoints.Add(dummyLocation.transform.position + new Vector3(5, -10, 0));
-        spawnPoints.Add(dummyLocation.transform.position + new Vector3(0, -10, 0));
-        spawnPoints.Add(dummyLocation.transform.position + new Vector3(-5, -10, 0));
+        spawnPoints.Add(dummyLocation.transform.position + new Vector3(5, -1 * rangeToDisengageAttack, 0));
+        spawnPoints.Add(dummyLocation.transform.position + new Vector3(0, -1 * rangeToDisengageAttack, 0));
+        spawnPoints.Add(dummyLocation.transform.position + new Vector3(-5, -1 * rangeToDisengageAttack, 0));
+        monitors = new List<IndulgenceSinInteractable>();
         IndulgenceSinInteractable.TOTAL_CONSUMED = 0;
-    }
-
-    void Start()
-    {
-        
     }
 
     public override void Invoke(ref Actor user)
@@ -74,12 +72,18 @@ public class IndulgenceSin : ActorAbilityFunction<Actor, int>
         yield return new WaitForSeconds(1f);
         yield return new WaitUntil(()=> crushAbility.getIsFinished() == true);
         StartCoroutine(MovementLockRoutine);
+        for (int i = 0; i < spawnPoints.Count; i++)
+        {
+            var monitor = Instantiate(indulgenceSinObject, spawnPoints[i], Quaternion.identity);
+            monitors.Add(monitor.GetComponent<IndulgenceSinInteractable>());
+        }
+        yield return new WaitForSeconds(1f);
         StartCoroutine(CheckRangeRoutine);
     }
 
     IEnumerator CalculateDistanceToTarget()
     {
-        while (!targetInRange)
+        while (!targetInRange && target)
         {
             yield return new WaitForFixedUpdate();
             float distance = Vector2.Distance(this.user.transform.position, target.transform.position);
@@ -96,6 +100,13 @@ public class IndulgenceSin : ActorAbilityFunction<Actor, int>
         StopCoroutine(MovementLockRoutine);
         StopCoroutine(CheckRangeRoutine);
         StartCoroutine(this.user.myMovement.LockActorMovement(-1f));
+        for(int i = 0; i < monitors.Count; i++)
+        {
+            if (monitors[i] && !monitors[i].pickupMode)
+            {
+                Destroy(monitors[i].gameObject);
+            }
+        }
         CheckRangeRoutine = CalculateDistanceToTarget();
         targetInRange = false;
         this.isFinished = true;

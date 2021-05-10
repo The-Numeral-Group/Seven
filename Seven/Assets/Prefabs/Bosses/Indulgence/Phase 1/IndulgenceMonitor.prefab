@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 7900556847160439998}
   - component: {fileID: 7900556847160439992}
   - component: {fileID: 7900556847160439999}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: IndulgenceMonitor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
