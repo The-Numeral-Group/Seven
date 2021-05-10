@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class IndulgenceP1Actor : Actor
 {
+    public static bool SIN_COMITTED;
     public int wallSlamTriggerCounter;
     int physicalAttackCounter;
     public float jumpTriggerDistance;
@@ -15,6 +16,8 @@ public class IndulgenceP1Actor : Actor
     public Collider2D wallCollider;
     bool redirectingPath = false;
     int layerMask;
+    int sinHealthTriggerIndex;
+    float[] sinHealthTrigger;
     IEnumerator MovementCoroutinePtr;
     public GameObject gameSaveManager;
     public enum State
@@ -23,6 +26,7 @@ public class IndulgenceP1Actor : Actor
         PHYSICAL,
         PROJECTILE,
         WALLCRAWL,
+        SIN,
         WAITING,
     }
 
@@ -30,7 +34,10 @@ public class IndulgenceP1Actor : Actor
     {
         currAbility = null;
         physicalAttackCounter = 0;
+        sinHealthTriggerIndex = 0;
         MovementCoroutinePtr = StopRedirecting(1f);
+        sinHealthTrigger = new float[]{.66f, .33f};
+        SIN_COMITTED = false;
     }
 
     protected override void Start()
@@ -43,10 +50,23 @@ public class IndulgenceP1Actor : Actor
 
     public override void DoActorDeath()
     {
+        
         var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
         this.gameSaveManager.GetComponent<GameSaveManager>().setVectorValue(playerObject.transform.position, 2);
         this.gameSaveManager.GetComponent<GameSaveManager>().setVectorValue(transform.position, 6);
-        SceneManager.LoadScene("Indulgence_Transition");
+
+        // Check for Corruption
+        if (SIN_COMITTED)
+        {
+            SIN_COMITTED = false;
+            gameSaveManager.GetComponent<GameSaveManager>().setBoolValue(true, 17);
+            SceneManager.LoadScene("Indulgence_BossW");
+        }
+        else 
+        {// else
+            SceneManager.LoadScene("Indulgence_Transition");
+        }
+
         /*System.Tuple<Actor, System.Action<Actor>> p2 = 
             new System.Tuple<Actor, System.Action<Actor>>(self, null);
         gameObject.SendMessage("NextPhase", p2);*/
@@ -86,6 +106,10 @@ public class IndulgenceP1Actor : Actor
         if (target == null)
         {
             currState = State.WAITING;
+        }
+        else if (EvaluateHealth())
+        {
+            currState = State.SIN;
         }
         else if (physicalAttackCounter >= wallSlamTriggerCounter && this.myAbilityInitiator.abilities[AbilityRegister.INDULGENCE_WALLCRAWL].getUsable())
         {
@@ -139,6 +163,10 @@ public class IndulgenceP1Actor : Actor
                 currAbility = this.myAbilityInitiator.abilities[AbilityRegister.INDULGENCE_WALLCRAWL];
                 currAbility.Invoke(ref self, target);
                 break;
+            case State.SIN:
+                currAbility = this.myAbilityInitiator.abilities[AbilityRegister.INDULGENCE_SIN];
+                currAbility.Invoke(ref self, target);
+                break;
             case State.WAITING:
                 break;
             default:
@@ -180,6 +208,19 @@ public class IndulgenceP1Actor : Actor
             this.myMovement.MoveActor(directionToDestination);
             this.myAnimationHandler.animateWalk();
         }
+    }
+
+    public bool EvaluateHealth()
+    {
+        if (sinHealthTriggerIndex < sinHealthTrigger.Length)
+        {
+            if (this.myHealth.currentHealth < this.myHealth.maxHealth * sinHealthTrigger[sinHealthTriggerIndex])
+            {
+                sinHealthTriggerIndex++;
+                return true;
+            }
+        }
+        return false;
     }
 
     void RedirectPath(ref Vector2 directionToDestination, float distanceToDestination)

@@ -8,6 +8,7 @@ public class IndulgenceP1AbilityInitiator : ActorAbilityInitiator
     public IndulgenceWallCrawl wallCrawl;
     public IndulgenceLegAttack legAttack;
     public IndulgenceP1ProjAttack projAttack;
+    public IndulgenceSin sinAbility;
     void Awake()
     {
         this.abilities.Add("Indulgence" + nameof(crush), crush);
@@ -21,5 +22,8 @@ public class IndulgenceP1AbilityInitiator : ActorAbilityInitiator
 
         this.abilities.Add("Indulgence" + nameof(projAttack), projAttack);
         AbilityRegister.INDULGENCE_PROJECTILE = "Indulgence" + nameof(projAttack);
+
+        this.abilities.Add("Indulgence" + nameof(sinAbility), sinAbility);
+        AbilityRegister.INDULGENCE_SIN = "Indulgence" + nameof(sinAbility);
     }
 }

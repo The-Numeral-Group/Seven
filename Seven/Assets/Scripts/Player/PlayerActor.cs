@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 //using UnityEditor.Animations;
@@ -36,6 +38,16 @@ public class PlayerActor : Actor
 
     public override void DoActorDeath()
     {
+        // Death animation
+        this.myAnimationHandler.Animator.SetTrigger("player_dead");
+
+        StartCoroutine(callMenuManager());
+    }
+
+    private IEnumerator callMenuManager()
+    {
+        // delay before calling GameOver function
+        yield return new WaitForSeconds(0.5f);
         MenuManager.StartGameOver();
         if (MenuManager.BATTLE_UI)
         {
@@ -43,7 +55,6 @@ public class PlayerActor : Actor
             MenuManager.BATTLE_UI.Hide();
         }
         this.enabled = false;
-        //this.gameObject.SetActive(false);
     }
 
     /*Engages the dialogue sequence. Disables the players health component, and sets its

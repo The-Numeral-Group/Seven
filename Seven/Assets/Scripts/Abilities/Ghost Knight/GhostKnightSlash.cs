@@ -38,13 +38,12 @@ public class GhostKnightSlash : ActorAbilityFunction<Actor, int>
         if (whichAtt == 1)
         {
             PerformVSlash(args[0]);
-            StartCoroutine(SlashFinished(args[0]));
         }
         else
         {
             PerformHSlash(args[0]);
-            StartCoroutine(SlashFinished(args[0]));
         }
+        StartCoroutine(SlashFinished(args[0]));
         return 0;
     }
 
@@ -60,21 +59,17 @@ public class GhostKnightSlash : ActorAbilityFunction<Actor, int>
     private void PerformVSlash(Actor user)
     {
         ghostKnightAnimationHandler.animateVSlash();
-        //user.myMovement.DragActor(new Vector2(0.0f, -0.5f));
-
-        //StartCoroutine(SlashFinished(user));
+        user.myMovement.DragActor(new Vector2(0.0f, -0.5f));
     }
     private void PerformHSlash(Actor user)
     {
         ghostKnightAnimationHandler.animateHSlash();
-        //user.myMovement.DragActor(new Vector2(0.0f, -0.5f));
-
-        //StartCoroutine(SlashFinished(user));
+        user.myMovement.DragActor(new Vector2(0.0f, -0.5f));
     }
     private IEnumerator SlashFinished(Actor user)
     {
         yield return new WaitForSeconds(this.duration);
-        //user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
+        user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
         isFinished = true;
     }
 }

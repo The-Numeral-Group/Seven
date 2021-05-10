@@ -56,6 +56,7 @@ public class IndulgenceWallCrawl : ActorAbilityFunction<Actor, int>
         indulgenceCrush.useTrackingCrush = true;
         indulgenceCrush.SetTotalAbilityDuration(0.25f, 1.5f, 0.5f, 0.5f, 1f);
         indulgenceCrush.Invoke(ref this.user, target);
+        yield return new WaitForSeconds(1f);
         while (!indulgenceCrush.getIsFinished())
         {
             yield return new WaitForFixedUpdate();

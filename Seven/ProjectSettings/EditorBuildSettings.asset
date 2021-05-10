@@ -57,6 +57,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Indulgence/Cutscene/Indulgence_BossD.unity
     guid: 174a7ab1194367741b6ecf224fcf17a1
   - enabled: 1
+    path: Assets/Scenes/Indulgence/Cutscene/Indulgence_BossW.unity
+    guid: 7e25a74d66f72b645a46420c5040bd49
+  - enabled: 1
     path: Assets/Scenes/Indulgence/IndulgencePostFight.unity
     guid: f098dad5602f9d046b34dd17a4784a4c
   m_configObjects: {}

@@ -52,4 +52,9 @@ public class PlayerAnimationHandler : ActorAnimationHandler
         Animator.SetTrigger("player_dodging");
     }
 
+    public void animateRespawn()
+    {
+        Animator.SetTrigger("player_respawn");
+    }
+
 }
