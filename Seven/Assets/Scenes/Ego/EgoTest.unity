@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 505191988}
   - component: {fileID: 505191992}
   - component: {fileID: 505191981}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Ego 2
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -1034,7 +1034,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 829256759}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: FaceAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
