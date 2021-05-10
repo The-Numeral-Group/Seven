@@ -66,4 +66,5 @@
     public static string INDULGENCE_PROJECTILE = "";
     public static string INDULGENCE_CHARGE = "";
     public static string INDULGENCE_SPECIAL = "";
+    public static string INDULGENCE_SIN = "";
 }
