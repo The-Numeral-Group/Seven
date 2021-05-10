@@ -58,7 +58,7 @@ public class MenuManager : MonoBehaviour
     //Set static members to the inspector references
     void Awake()
     {
-        Debug.Log("MenuManager Awake");
+        //Debug.Log("MenuManager Awake");
         SetupStaticReferences();
     }
 

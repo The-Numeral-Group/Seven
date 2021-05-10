@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &335584580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3372392985872605520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b6a6f3eb41c1949a1658700de6c550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  crushAbility: {fileID: 3372392985872605615}
+  dummyLocation: {fileID: 0}
+  indulgenceSinObject: {fileID: 7900556847160439946, guid: a2ef488a9caab4f418187ae042687afc, type: 3}
+  rangeToDisengageAttack: 5
 --- !u!1 &3372392985914523465
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,6 +126,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6735736805293186651, guid: 576248deba686134f8b9515839d42c58, type: 3}
+      propertyPath: sinAbility
+      value: 
+      objectReference: {fileID: 335584580}
     - target: {fileID: 6735736805293186734, guid: 576248deba686134f8b9515839d42c58, type: 3}
       propertyPath: m_Name
       value: IndulgenceP1
@@ -125,8 +148,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 576248deba686134f8b9515839d42c58, type: 3}
+--- !u!1 &3372392985872605520 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6735736805293186734, guid: 576248deba686134f8b9515839d42c58, type: 3}
+  m_PrefabInstance: {fileID: 8338134756893065214}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3372392985872605609 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6735736805293186647, guid: 576248deba686134f8b9515839d42c58, type: 3}
   m_PrefabInstance: {fileID: 8338134756893065214}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3372392985872605615 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6735736805293186641, guid: 576248deba686134f8b9515839d42c58, type: 3}
+  m_PrefabInstance: {fileID: 8338134756893065214}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3372392985872605520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ddb4cafb6e92414dbcec1a4badf3a0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

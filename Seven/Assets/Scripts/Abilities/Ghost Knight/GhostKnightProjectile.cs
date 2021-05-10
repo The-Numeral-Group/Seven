@@ -9,6 +9,7 @@ public class GhostKnightProjectile : ActorAbilityFunction<Actor, int>
     public Vector2 centerPos;
     //The projectile that ghost knight will spawn. Must have an ActorMovement component.
     public GameObject toInstantiateProjectile;
+    public float duration;
     //Time ghost knight will take to move to center.
     public float travelDuration;
     //Time it will take to spawn the projectiles.
@@ -35,9 +36,9 @@ public class GhostKnightProjectile : ActorAbilityFunction<Actor, int>
             this.travelDuration = 10f;
             this.projectileSpawnTime = 2f;
         }
-        StartCoroutine(args[0].myMovement.LockActorMovementOnly(this.travelDuration + this.projectileSpawnTime));
+        StartCoroutine(args[0].myMovement.LockActorMovementOnly(this.duration));
         StartCoroutine(MoveToPoint(args[0]));
-
+        StartCoroutine(ProjectileFinished(args[0]));
         return 0;
     }
 
@@ -48,12 +49,11 @@ public class GhostKnightProjectile : ActorAbilityFunction<Actor, int>
     private IEnumerator MoveToPoint(Actor user)
     {
         Vector2 direction = this.centerPos - new Vector2(user.gameObject.transform.position.x, user.gameObject.transform.position.y);
-        /*direction.Normalize();
-        /*
+        direction.Normalize();
         float distance = Vector2.Distance(this.centerPos, user.gameObject.transform.position);
-        float speed = distance / (this.travelDuration);*/
-        //Debug.Log(direction);
-        user.myMovement.DragActor(direction);
+        float speed = distance / (this.travelDuration);
+
+        user.myMovement.DragActor(direction * speed);
         yield return new WaitForSeconds(this.travelDuration);
         user.myMovement.DragActor(Vector2.zero);
         StartCoroutine(SpawnProjectiles(user));
@@ -73,13 +73,18 @@ public class GhostKnightProjectile : ActorAbilityFunction<Actor, int>
             Vector2 projPos = new Vector2(offset[i, 0], offset[i, 1]);
             GameObject ghostKnightProjectile = Instantiate(this.toInstantiateProjectile, projPos, Quaternion.identity);
             projectiles.Add(ghostKnightProjectile);
-            yield return new WaitForSeconds(this.projectileSpawnTime/5);
+            yield return new WaitForSeconds(this.projectileSpawnTime/4);
         }
         for (int i = 0; i < numProjectiles; i++)
         {
             projectiles[i].GetComponent<GhostKnightProjectileMovement>().setProjMove(true);
         }
-        yield return new WaitForSeconds(this.projectileSpawnTime / 5);
+    }
+
+    private IEnumerator ProjectileFinished(Actor user)
+    {
+        yield return new WaitForSeconds(this.duration);
+        user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
         isFinished = true;
     }
 }

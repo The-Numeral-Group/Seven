@@ -78,6 +78,19 @@ public class GameSaveManager : MonoBehaviour
             Vector2 newGKPos = new Vector2(gameSaveData.ghostKnightPosition[0], gameSaveData.ghostKnightPosition[1]);
             gameSaveList.setVectorValue(newGKPos, 3);
 
+            Vector2 newApathyPos = new Vector2(gameSaveData.apathyPosition[0], gameSaveData.apathyPosition[1]);
+            gameSaveList.setVectorValue(newApathyPos, 4);
+
+            Vector2 newEgoPos = new Vector2(gameSaveData.egoPosition[0], gameSaveData.egoPosition[1]);
+            gameSaveList.setVectorValue(newEgoPos, 5);
+
+            Vector2 newIndulgencePos = new Vector2(gameSaveData.indulgencePosition[0], gameSaveData.indulgencePosition[1]);
+            gameSaveList.setVectorValue(newIndulgencePos, 6);
+
+            gameSaveList.setBoolValue(gameSaveData.IndulgenceAbilityPickup, 7);
+            gameSaveList.setBoolValue(gameSaveData.EgoAbilityPickup, 8);
+            gameSaveList.setBoolValue(gameSaveData.ApathyAbilityPickup, 9);
+
             gameSaveList.setBoolValue(gameSaveData.ApathyOpening, 10);
             gameSaveList.setBoolValue(gameSaveData.ApathySinCorrupted, 11);
             gameSaveList.setBoolValue(gameSaveData.ApathyDefeated, 12);
@@ -89,6 +102,8 @@ public class GameSaveManager : MonoBehaviour
             gameSaveList.setBoolValue(gameSaveData.IndulgenceOpening, 16);
             gameSaveList.setBoolValue(gameSaveData.IndulgenceSinCorrupted, 17);
             gameSaveList.setBoolValue(gameSaveData.IndulgenceDefeated, 18);
+
+            gameSaveList.setBoolValue(gameSaveData.PlayerRespawn, 19);
 
             file.Close();
         }

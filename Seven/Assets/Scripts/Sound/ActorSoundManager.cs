@@ -101,4 +101,16 @@ public class ActorSoundManager : MonoBehaviour
 
         AudioSource.PlayClipAtPoint(s.audioClip, Vector2.zero);
     }
+
+    public IEnumerator muteSoundForDuration (string name, float duration)
+    {
+        SoundAudioClip s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.Log("SoundManager.StopSound: Cannot find " + name);
+        }
+        s.source.mute = true;
+        yield return new WaitForSeconds(duration);
+        s.source.mute = false;
+    }
 }

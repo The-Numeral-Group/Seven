@@ -6,17 +6,12 @@ using UnityEngine;
 public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
 {
     //How long this entire process should take.
-    // duration = duration_vanish_start + duration_vanish + duration_appear + 2 * duration_slash
+    // duration = duration_vanishing + duration_vanish * (3/4) + duration_slash
     public float duration;
-    //How long the vanising start process should take.
-    public float duration_vanish_start;
+    //How long the disappearing/appearing process should take.
+    public float duration_vanishing;
     //How long the ghost knight should be invisible for.
     public float duration_vanish;
-    //How long the reappearing process should take.
-    public float duration_appear;
-
-    // Duration of slash moves after appearing
-    public float duration_slash;
 
     private Actor player;
 
@@ -49,6 +44,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
 
         StartCoroutine(args[0].myMovement.LockActorMovement(duration));
         StartCoroutine(Vanish(args[0]));
+        StartCoroutine(SpecialFinished(args[0]));
         return 0;
     }
     private IEnumerator Vanish(Actor user)
@@ -64,7 +60,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
         {
             opacity -= 0.1f ;
             gkSpriteRenderer.color = new Color(1f, 1f, 1f, opacity);
-            yield return new WaitForSeconds(this.duration_vanish_start / 10);
+            yield return new WaitForSeconds(this.duration_vanishing / 10);
         }
         yield return new WaitForSeconds(this.duration_vanish * (3/4));
         Teleport(user);
@@ -83,7 +79,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
         var glint = Instantiate(this.glintObject, user.transform.position, Quaternion.identity);
 
         // Perform VSlash while appearing.
-        StartCoroutine(PerformSpecialSlash(user));
+        PerformSpecialSlash(user);
 
         // Play glint audio
         user.mySoundManager.PlaySound("SpecialEyeGlint");
@@ -99,7 +95,7 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
         {
             opacity += 0.1f;
             gkSpriteRenderer.color = new Color(1f, 1f, 1f, opacity);
-            yield return new WaitForSeconds(this.duration_appear / 10);
+            yield return new WaitForSeconds(this.duration_vanishing / 10);
         }
 
         // Set both actors to be no longer invincible.
@@ -107,12 +103,16 @@ public class GhostKnightSpecial : ActorAbilityFunction<Actor, int>
 
     }
 
-    private IEnumerator PerformSpecialSlash(Actor user)
+    private void PerformSpecialSlash(Actor user)
     {
         ghostKnightAnimationHandler.animateSpecialSlash();
-        //user.myMovement.DragActor(new Vector2(0.0f, -1f));
-        yield return new WaitForSeconds(this.duration_slash);
-        //user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
+        user.myMovement.DragActor(new Vector2(0.0f, -1f));
+    }
+
+    private IEnumerator SpecialFinished(Actor user)
+    {
+        yield return new WaitForSeconds(this.duration);
+        user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
         isFinished = true;
     }
 
