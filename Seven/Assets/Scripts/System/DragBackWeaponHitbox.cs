@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DragBackWeaponHitbox : WeaponHitbox
 {
+    //FIELDS---------------------------------------------------------------------------------------
     [Tooltip("Should this hitbox ALWAYS drag the target in the oppisite direction of the" + 
         " user.")]   
     public bool alwaysDragAwayFromUser = false;
@@ -17,6 +18,7 @@ public class DragBackWeaponHitbox : WeaponHitbox
     [Tooltip("How many seconds the drag should last.")]
     public float dragBackDuration = 2f;
 
+    //METHODS--------------------------------------------------------------------------------------
     //OnTrigger function
     protected override void OnTriggerEnter2D(Collider2D collider)
     {
@@ -94,7 +96,7 @@ public class DragBackWeaponHitbox : WeaponHitbox
     }
 
     /*Timing for the drag of the user*/
-    IEnumerator DragBack(ActorMovement mover)
+    protected virtual IEnumerator DragBack(ActorMovement mover)
     {
         //timer variable
         float clock = 0f;
