@@ -413,7 +413,7 @@ MonoBehaviour:
   teleMesh: {fileID: 1774437467}
   teleCount: 3
   teleWait: 1
-  attackWait: 0.5
+  attackWait: 2
   teleMinDist: 3
   teleMaxDist: 10
   specialAttackGate: 7
@@ -492,7 +492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingMaxHealth: 30
   damageResistance: 0
-  invincibilityDuration: 1
+  invincibilityDuration: 0
   startInvulnerable: 0
 --- !u!212 &505191986
 SpriteRenderer:

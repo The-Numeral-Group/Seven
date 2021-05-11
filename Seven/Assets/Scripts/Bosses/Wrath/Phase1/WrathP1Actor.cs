@@ -18,10 +18,10 @@ public class WrathP1Actor : Actor
     private ActorAbility swordRush;
 
     private char poolType = 'A';
+    private bool canAttack = true;
 
     public enum State
     {
-        WAITING,
         WALK,
         ABILITY_CHAINPULL,
         ABILITY_FIREWALL,
@@ -65,13 +65,24 @@ public class WrathP1Actor : Actor
     {
         if (currAbility != null)
         {
-            checkIfAbilityDone();
+            StartCoroutine(checkIfAbilityDone());
         }
-        if ((currentState == State.WAITING) || (currentState == State.WALK))
+
+        if (currentState == State.WALK)
         {
             decideNextState();
             EvaluateState(currentState);
         }
+        /*if (canAttack)
+        {
+            canAttack = false;
+            decideNextState();
+        }
+        else
+        {
+            currentState = State.WALK;
+        }
+        EvaluateState(currentState);*/
     }
     void EvaluateState(State state)
     {
@@ -117,23 +128,78 @@ public class WrathP1Actor : Actor
         this.myMovement.MoveActor(directionToPlayer);
     }
 
-    void checkIfAbilityDone()
+    IEnumerator checkIfAbilityDone()
     {
         // If the currAbility has finished, reset.
         if (currAbility.getIsFinished())
         {
             currAbility = null;
-            currentState = State.WAITING;
+            currentState = State.WALK;
+
+            if(poolType == 'A') // Pool Type A ability has finished. Switch to B
+            {
+                poolType = 'B';
+                canAttack = true;
+            }
+            else // Pool Type B ability has finished. Switch to A but wait for 3 seconds, then allow wrath to attack. 
+            {
+                poolType = 'A';
+                yield return new WaitForSeconds(3.0f);
+                canAttack = true;
+            }
         }
     }
 
     void decideNextState()
     {
-        // THINGS THAT NEED TO BE CLARIFIED BY DESIGN:
-        // 1. Design Document says that Wrath will perform an ability from Pool B immediately after ability from Pool A has finished,
-        //    will there be any delay after Pool B ability has finished? (Any delay after Pool B ability?)
-        //    If yes, how long?
-        // 2. What if Wrath chose Chain Pull form Pool A but that skill is on cooldown?
-        //    Are there going to be cooldowns for skills?
+        if(canAttack)
+        {
+            canAttack = false;
+            if (poolType == 'A') // Draw an ability from Pool A
+            {
+                // Determines which ability Wrath will perform
+                int abilityType = (int)Random.Range(0, 3);
+                switch (abilityType)
+                {
+                    case 0:
+                        currentState = State.ABILITY_CHAINPULL;
+                        currAbility = chainPull;
+                        break;
+                    case 1:
+                        currentState = State.ABILITY_FIREWALL;
+                        currAbility = fireWall;
+                        break;
+                    case 2:
+                        currentState = State.ABILITY_SLUDGE;
+                        currAbility = sludge;
+                        break;
+                    default:
+                        Debug.LogWarning("WrathP1Actor: Pool Type A abilityType out of bounds!");
+                        break;
+                }
+            }
+            else // Draw an ability from Pool B
+            {
+                int abilityType = (int)Random.Range(0, 2);
+                switch (abilityType)
+                {
+                    case 0:
+                        currentState = State.ABILITY_SWORDATTACK;
+                        currAbility = swordAttack;
+                        break;
+                    case 1:
+                        currentState = State.ABILITY_SWORDRUSH;
+                        currAbility = swordRush;
+                        break;
+                    default:
+                        Debug.LogWarning("WrathP1Actor: Pool Type B abilityType out of bounds!");
+                        break;
+                }
+            }
+        }
+        else
+        {
+            currentState = State.WALK;
+        }
     }
 }

@@ -165,11 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb82b7c4b4a7d94593d27fa64756a1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &283020683 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 220097795840936156, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
-  m_PrefabInstance: {fileID: 220097795559556439}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &358238265
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,7 +1034,7 @@ PrefabInstance:
     - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: targetPOIs.Array.data[0]
       value: 
-      objectReference: {fileID: 283020683}
+      objectReference: {fileID: 2135220257}
     - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: breakingDistance
       value: 50
@@ -1074,8 +1069,8 @@ GameObject:
   - component: {fileID: 1157568859}
   - component: {fileID: 1157568858}
   m_Layer: 0
-  m_Name: WrathP1
-  m_TagString: Untagged
+  m_Name: Wrath
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2756,7 +2751,7 @@ GameObject:
   - component: {fileID: 2135220274}
   - component: {fileID: 2135220273}
   - component: {fileID: 2135220265}
-  m_Layer: 11
+  m_Layer: 26
   m_Name: WrathP1
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -2823,14 +2818,14 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!95 &2135220260
 Animator:
@@ -2915,8 +2910,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownPeriod: 0
-  abilityName: 
+  abilityName: WrathSludge
   invokeBlankWhenBadArguments: 1
+  duration: 5
 --- !u!114 &2135220263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2930,8 +2926,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownPeriod: 0
-  abilityName: 
+  abilityName: WrathFireWall
   invokeBlankWhenBadArguments: 1
+  duration: 5
 --- !u!114 &2135220264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2945,8 +2942,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownPeriod: 0
-  abilityName: 
+  abilityName: WrathChainPull
   invokeBlankWhenBadArguments: 1
+  duration: 5
 --- !u!114 &2135220265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3019,7 +3017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453e150335b52ac4884472bf0e1bd9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 4
 --- !u!114 &2135220270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3073,8 +3071,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownPeriod: 0
-  abilityName: 
+  abilityName: WrathSwordRush
   invokeBlankWhenBadArguments: 1
+  duration: 5
 --- !u!114 &2135220274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3088,8 +3087,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownPeriod: 0
-  abilityName: 
+  abilityName: WrathSwordAttack
   invokeBlankWhenBadArguments: 1
+  duration: 5
 --- !u!1001 &220097795559556439
 PrefabInstance:
   m_ObjectHideFlags: 0
