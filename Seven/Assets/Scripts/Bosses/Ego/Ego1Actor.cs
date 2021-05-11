@@ -119,7 +119,7 @@ public class Ego1Actor : Actor
                 Debug.Log("Ego1Actor: Close");
             }
             //Step 2.3: If the player is far away, save the far
-            else if(dist <= chargeRange)
+            else if(dist > chargeRange)
             {
                 currAbility = 
                     this.myAbilityInitiator.abilities[AbilityRegister.PRIDE_FAR_ATTACK];
@@ -132,7 +132,7 @@ public class Ego1Actor : Actor
             {
                 //Reset Ego's sprinting/swaggering
                 StopCoroutine(sprintTimer);
-                StartCoroutine(sprintTimer);
+               
 
                 //stop moving
                 this.myMovement.MoveActor(Vector2.zero);
@@ -141,6 +141,9 @@ public class Ego1Actor : Actor
                 ++specialAttackCounter;
                 currAbility.Invoke(ref ego, player);
                 yield return new WaitUntil( () => currAbility.getIsFinished());
+
+                //starting the swagger once again
+                StartCoroutine(ResetSprint());
             }
             //If there isn't an attack...
             else

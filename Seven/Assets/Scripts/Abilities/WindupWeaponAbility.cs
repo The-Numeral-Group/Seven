@@ -22,7 +22,7 @@ public class WindupWeaponAbility : WeaponAbility
     public float attackShake = 1f;
 
     //a reference to the camera to cause the screenshake
-    private BaseCamera cameraFunc;
+    protected BaseCamera cameraFunc;
 
     //METHODS--------------------------------------------------------------------------------------
     // Start is called on the first frame of the scene
@@ -49,7 +49,7 @@ public class WindupWeaponAbility : WeaponAbility
 
     /*More closely follows the standard InternIvoke of WeaponAbility, but waits for a short delay
     before the actual attack is performed*/
-    IEnumerator delayedAttack(params Actor[] args)
+    protected virtual IEnumerator delayedAttack(params Actor[] args)
     {
         //clean the old attack instance
         this.hitConnected = false;

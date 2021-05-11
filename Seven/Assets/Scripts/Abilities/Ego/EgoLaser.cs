@@ -184,8 +184,8 @@ internal class EgoLaserProjectile : MonoBehaviour
 
         //shoot what is effectively a really thicc data laser
         RaycastHit2D[] hits = Physics2D.BoxCastAll(
-            launchPoint,                                    //start of box
-            new Vector2 (width, width),   //size of box
+            launchPoint + (damageDirection * width),        //start of box
+            new Vector2 (width, width),                     //size of box
             Vector3.Angle(Vector3.zero, damageDirection),   //rotation of box
             damageDirection,                                //direction of box "movement"
             laserMaxDistance                                //travel distance of box

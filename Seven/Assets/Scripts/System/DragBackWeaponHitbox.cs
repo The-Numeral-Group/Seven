@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DragBackWeaponHitbox : WeaponHitbox
 {
+    //FIELDS---------------------------------------------------------------------------------------
     [Tooltip("Should this hitbox ALWAYS drag the target in the oppisite direction of the" + 
         " user.")]   
     public bool alwaysDragAwayFromUser = false;
@@ -17,6 +18,7 @@ public class DragBackWeaponHitbox : WeaponHitbox
     [Tooltip("How many seconds the drag should last.")]
     public float dragBackDuration = 2f;
 
+    //METHODS--------------------------------------------------------------------------------------
     //OnTrigger function
     protected override void OnTriggerEnter2D(Collider2D collider)
     {
@@ -85,21 +87,25 @@ public class DragBackWeaponHitbox : WeaponHitbox
         }
 
         //if the enemy had an actor movement script...
-        Component enemyMove = null;
-        if(collider.gameObject.TryGetComponent(typeof(ActorMovement), out enemyMove))
+        ActorMovement enemyMove = null;
+        if(collider.gameObject.TryGetComponent(out enemyMove))
         {
             //drag them back as well
-            StartCoroutine(DragBack((enemyMove as ActorMovement)));
+            StartCoroutine(DragBack(enemyMove));
         }
     }
 
     /*Timing for the drag of the user*/
-    IEnumerator DragBack(ActorMovement mover)
+    protected virtual IEnumerator DragBack(ActorMovement mover)
     {
         //timer variable
         float clock = 0f;
 
         Vector2 dragAway;
+
+        //wait 1 frame for the weapon to swing long enough to initialize
+        //yield return new WaitUntil( () => this.wp.getUserTransform() );
+
         /*If desired, override the dragBackDirection with the direction from
         the user to the targe for an "Away" type of knock*/
         if(alwaysDragAwayFromUser)
