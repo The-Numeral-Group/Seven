@@ -1,0 +1,87 @@
+title: OpeningScene(OLDDATA)
+tags:
+colorID: 0
+position: -504,-532
+---
+Would it even matter if I got that part back?
+Would I even be the same person?
+ 
+
+
+
+Time is irrelevant to me. 
+Time doesn't care.
+
+No matter what how hard I tried
+Things never got better. 
+I couldn't fix anything. 
+
+I'm just so tired now.
+Of everything. 
+Life, the universe, and everything.
+===
+title: OpeningScene
+tags: 
+colorID: 0
+position: 243,-597
+---
+Apathy: Do you know what it is like...
+Apathy: To sit and watch your life slip away from you?
+Apathy: To stop feeling like yourself?
+Apathy: Plagued by the prison of your own mind?
+Apathy: Do you know what it is like to be me?
+Apathy: I don't feel anything anymore.
+Apathy: I can't. 
+Apathy: I've lost part of myself to time. 
+Apathy: I am not who I was. 
+Apathy: I am not who I want to be. 
+Apathy: ...
+Apathy: I used to be told that I had a spark in my eyes. 
+Apathy: But one day... 
+Apathy: That fire died out. 
+Apathy: I saw the world and retreated, into the prison of my own mind. 
+Apathy: My own loves turned against me, the things that I once enjoyed, now fear.
+Apathy: No matter what how hard I tried
+Apathy: Things never got better. 
+Apathy: I couldn't fix anything.
+Apathy: Even when I took the power of Time.
+Apathy: It took over me. 
+Apathy: And changed me...into this...
+Apathy: I don't remember who I was.
+Apathy: And I don't care. 
+Apathy: Because you see...
+Apathy: Time doesn't care about anyone.
+
+Apathy: You've been here long enough I think.
+Apathy: It's been a while since someone listened to me.
+Apathy: You deserve something for your patience.
+Apathy: Thanks for your...time.
+===
+title: ApathyWin
+tags: 
+colorID: 1
+position: 109,-375
+---
+Apathy: I knew it...
+Apathy: You're not different.
+//pause
+Apathy: You're just like the rest of them.
+Apathy: You're just like... me.
+//pause
+Apathy: You're trapped too. Whether you know it or not.
+//pause
+Apathy: The clock is ticking, Champion. And it won't stop.
+Apathy: Not for you, not for me, not for that "woman" hanging from the wall.
+Apathy: Time cares for no one.
+Apathy: Hurry on to meet your fate.
+===
+title: ApathyDefeat
+tags: 
+colorID: 0
+position: 356,-376
+---
+Apathy: ...
+Apathy: I'm finally free...
+Apathy: ...
+Apathy: ...Thank you...
+===
