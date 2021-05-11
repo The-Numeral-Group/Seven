@@ -900,7 +900,7 @@ MonoBehaviour:
   sprintSpeed: 6
   swaggerDuration: 3
   specialAttackGate: 7
-  chargeRange: 12
+  chargeRange: 100000
   punchRange: 3
   abilityDropObject: {fileID: 2937701324620886995, guid: cf7eef9d3c37b954fa77d9245a9364ce, type: 3}
 --- !u!114 &656284022
@@ -918,7 +918,7 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 656284017}
+  Close: {fileID: 1293176793}
   Far: {fileID: 656284019}
   Special: {fileID: 656284030}
 --- !u!114 &656284023
@@ -1401,13 +1401,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dd238a1ebebf7947894c73e11d2176f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 0
+  cooldownPeriod: 0.15
   abilityName: 
   invokeBlankWhenBadArguments: 1
   startingWeaponObject: {fileID: 1312713688638645245, guid: b74f6eaf6c35d6206955974044fc0cd0, type: 3}
-  duration: 0
-  weaponPositionScale: {x: 2, y: 2}
-  damagePerHitbox: 
+  duration: 1
+  weaponPositionScale: {x: 3.2, y: 3.2}
+  damagePerHitbox: 01000000
 --- !u!4 &1293176794
 Transform:
   m_ObjectHideFlags: 0

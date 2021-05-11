@@ -119,7 +119,7 @@ public class Ego1Actor : Actor
                 Debug.Log("Ego1Actor: Close");
             }
             //Step 2.3: If the player is far away, save the far
-            else if(dist <= chargeRange)
+            else if(dist > chargeRange)
             {
                 currAbility = 
                     this.myAbilityInitiator.abilities[AbilityRegister.PRIDE_FAR_ATTACK];

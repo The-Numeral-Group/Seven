@@ -87,11 +87,11 @@ public class DragBackWeaponHitbox : WeaponHitbox
         }
 
         //if the enemy had an actor movement script...
-        Component enemyMove = null;
-        if(collider.gameObject.TryGetComponent(typeof(ActorMovement), out enemyMove))
+        ActorMovement enemyMove = null;
+        if(collider.gameObject.TryGetComponent(out enemyMove))
         {
             //drag them back as well
-            StartCoroutine(DragBack((enemyMove as ActorMovement)));
+            StartCoroutine(DragBack(enemyMove));
         }
     }
 
@@ -102,6 +102,10 @@ public class DragBackWeaponHitbox : WeaponHitbox
         float clock = 0f;
 
         Vector2 dragAway;
+
+        //wait 1 frame for the weapon to swing long enough to initialize
+        //yield return new WaitUntil( () => this.wp.getUserTransform() );
+
         /*If desired, override the dragBackDirection with the direction from
         the user to the targe for an "Away" type of knock*/
         if(alwaysDragAwayFromUser)

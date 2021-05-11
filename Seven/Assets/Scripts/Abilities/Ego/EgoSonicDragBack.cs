@@ -12,11 +12,11 @@ public class EgoSonicDragBack : DragBackWeaponHitbox
     public string stunAnimTrigger = "";
 
     //METHODS--------------------------------------------------------------------------------------
-    /*Standard DragBack, but attempts to */
-    protected virtual IEnumerator DragBack(ActorMovement mover)
+    /*Standard DragBack, but attempts to stun the target as well*/
+    protected override IEnumerator DragBack(ActorMovement mover)
     {
         Actor moverActor;
-        if(TryGetComponent(out moverActor))
+        if(mover.gameObject.TryGetComponent(out moverActor))
         {
             Debug.LogWarning("EgoSonicDragBack: target lacks an Actor, so stun could not be" + 
                 " safely applied.");
