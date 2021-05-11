@@ -98,8 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alwaysDragAwayFromUser: 1
   dragBackDirection: {x: -1, y: 0}
-  dragBackIntensity: 4
-  dragBackDuration: 1
+  dragBackIntensity: 0.5
+  dragBackDuration: 0.5
   stunDuration: 2.75
   stunAnimTrigger: 
 --- !u!61 &8309442521021883119
