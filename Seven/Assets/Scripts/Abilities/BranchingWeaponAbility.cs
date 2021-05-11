@@ -8,6 +8,10 @@ using WeightTuple = System.Tuple<WeaponAbility, int>;
 public class BranchingWeaponAbility : WeaponAbility
 {
     //FIELDS---------------------------------------------------------------------------------------
+    [Tooltip("Whether or not this BWA should wait for the selected ability to cooldown" + 
+        " before trying to use it. If set to false, weapons must be off cooldown to be chosen.")]
+    public bool waitForCooldowns = false;
+
     [Tooltip("The weapons that can potentailly be used when this weapon is invoked.")]
     public List<WeaponAbility> potentialWeps;
 
@@ -73,7 +77,8 @@ public class BranchingWeaponAbility : WeaponAbility
         int winner = largestWeight;
         foreach(WeightTuple tupl in wepPairs)
         {
-            if(tupl.Item2 > opt && tupl.Item2 < winner)
+            bool cooldownClear = waitForCooldowns || tupl.Item1.getUsable();
+            if(tupl.Item2 > opt && tupl.Item2 < winner && cooldownClear)
             {
                 winner = tupl.Item2;
             }
@@ -83,17 +88,27 @@ public class BranchingWeaponAbility : WeaponAbility
         var winners = wepPairs.FindAll( (tuple) => {return tuple.Item2 == largestWeight;} );
 
         //pick a random from 0 to the winners.Count - 1
-        opt = rand.Next(0, winners.Count);
+        var tie = rand.Next(0, winners.Count);
         
         //use that weapon
-        var nextWep = potentialWeps[opt];
-        Debug.Log($"BranchingWeaponAbility: Choosing Item {opt}: {nextWep.name}");
+        var nextWep = potentialWeps[tie];
+        Debug.Log($"BranchingWeaponAbility: Selected {opt}. Choosing Item: {nextWep.name}, {winner}");
+
+        //if we're waiting on cooldowns...
+        if(waitForCooldowns)
+        {
+            //pause for the cooldown
+            yield return new WaitUntil( () => nextWep.getIsFinished() );
+        }
 
         //invoke that weapon
         nextWep.Invoke(ref user);
 
         //wait for it to end
         yield return new WaitUntil( () => nextWep.getIsFinished());
+
+        Debug.Log("BranchingWeaponAbility: Branch done!");
+        this.isFinished = true;
     }
 
     /*none of these methods are actually doing anything, they are simply overriden here

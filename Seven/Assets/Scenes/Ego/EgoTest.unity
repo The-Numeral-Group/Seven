@@ -160,6 +160,7 @@ MonoBehaviour:
   duration: 0
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 
+  waitForCooldowns: 0
   potentialWeps:
   - {fileID: 1293176795}
   - {fileID: 1293176792}
@@ -855,13 +856,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cd01c314682b0e169c7e4df91081ffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 0
+  cooldownPeriod: 1.5
   abilityName: basically all of ego's attack logic lol
   invokeBlankWhenBadArguments: 1
   startingWeaponObject: {fileID: 0}
   duration: 0.5
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 
+  waitForCooldowns: 0
   potentialWeps:
   - {fileID: 1113196130}
   - {fileID: 1293176792}
@@ -918,7 +920,7 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 1293176795}
+  Close: {fileID: 656284017}
   Far: {fileID: 656284019}
   Special: {fileID: 656284030}
 --- !u!114 &656284023
@@ -2529,6 +2531,7 @@ MonoBehaviour:
   duration: 0
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 
+  waitForCooldowns: 0
   potentialWeps:
   - {fileID: 928636631}
   - {fileID: 1722037466}
