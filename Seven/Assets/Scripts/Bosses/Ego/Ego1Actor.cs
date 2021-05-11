@@ -132,7 +132,7 @@ public class Ego1Actor : Actor
             {
                 //Reset Ego's sprinting/swaggering
                 StopCoroutine(sprintTimer);
-                StartCoroutine(sprintTimer);
+               
 
                 //stop moving
                 this.myMovement.MoveActor(Vector2.zero);
@@ -141,6 +141,9 @@ public class Ego1Actor : Actor
                 ++specialAttackCounter;
                 currAbility.Invoke(ref ego, player);
                 yield return new WaitUntil( () => currAbility.getIsFinished());
+
+                //starting the swagger once again
+                StartCoroutine(ResetSprint());
             }
             //If there isn't an attack...
             else

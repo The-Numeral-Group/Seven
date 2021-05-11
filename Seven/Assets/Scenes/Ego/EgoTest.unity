@@ -899,7 +899,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sinGate: 3
   swaggerSpeed: 4
-  sprintSpeed: 6
+  sprintSpeed: 7
   swaggerDuration: 3
   specialAttackGate: 7
   chargeRange: 100000
