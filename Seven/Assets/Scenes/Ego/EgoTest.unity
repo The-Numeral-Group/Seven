@@ -868,7 +868,7 @@ MonoBehaviour:
   - {fileID: 1113196130}
   - {fileID: 1293176792}
   - {fileID: 1293176795}
-  wepWeights: 0a0000000300000001000000
+  wepWeights: 030000000300000001000000
   defaultWeight: 5
 --- !u!114 &656284019
 MonoBehaviour:
