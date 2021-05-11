@@ -4,26 +4,33 @@ using UnityEngine;
 
 public class WrathSwordRush : ActorAbilityFunction<Actor, int>
 {
+    public float duration;
+
     public override void Invoke(ref Actor user)
     {
         if (usable)
         {
             isFinished = false;
             InternInvoke(user);
-            StartCoroutine(coolDown(cooldownPeriod));
+            //StartCoroutine(coolDown(cooldownPeriod));
         }
     }
     protected override int InternInvoke(params Actor[] args)
     {
-        //StartCoroutine(args[0].myMovement.LockActorMovementOnly(this.duration));
+        // Making sure the movementDirection and dragDirection have been resetted.
+        args[0].myMovement.MoveActor(Vector2.zero);
+        args[0].myMovement.DragActor(Vector2.zero);
+
+        StartCoroutine(args[0].myMovement.LockActorMovement(this.duration));
         StartCoroutine(SwordRushFinished(args[0]));
         return 0;
     }
 
     private IEnumerator SwordRushFinished(Actor user)
     {
-        yield return new WaitForSeconds(0.0f);
-        user.myMovement.DragActor(new Vector2(0.0f, 0.0f));
+        yield return new WaitForSeconds(this.duration);
+        // Resetting the dragDirection
+        user.myMovement.DragActor(Vector2.zero);
         isFinished = true;
     }
 }
