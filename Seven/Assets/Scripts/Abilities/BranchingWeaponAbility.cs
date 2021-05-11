@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using CsharpRandom = System.Random;
+using WeightTuple = System.Tuple<WeaponAbility, int>;
 
 public class BranchingWeaponAbility : WeaponAbility
 {
@@ -10,15 +11,44 @@ public class BranchingWeaponAbility : WeaponAbility
     [Tooltip("The weapons that can potentailly be used when this weapon is invoked.")]
     public List<WeaponAbility> potentialWeps;
 
+    [Tooltip("The weights of each weapon being chosen (higher number = higher relative odds." + 
+        " Applied to potentialWeps in a 1-to-1 order.")]
+    public List<int> wepWeights;
+
+    [Tooltip("The weight to give to weapons that don't have weights")]
+    public int defaultWeight = 5;
+
     //the random number generator that determines which weapon gets used
     private CsharpRandom rand;
+
+    //the pairs of weapons and weights
+    private List<WeightTuple> wepPairs;
+
+    //the biggest number in wepWeights
+    private int largestWeight = 0;
 
     //METHODS--------------------------------------------------------------------------------------
     // Start is called before the first frame update
     protected override void Start()
     {
         rand = new CsharpRandom();
+        wepPairs = new List<WeightTuple>();
 
+        //pair up the weapons and the weights together for ease 
+        //also save the biggest weight, for range constructions
+        for(int i = 0; i < potentialWeps.Count; ++i)
+        {
+            if(i >= wepWeights.Count)
+            {
+                wepPairs.Add(new WeightTuple(potentialWeps[i], defaultWeight));
+                largestWeight = defaultWeight > largestWeight ? defaultWeight : largestWeight;
+            }
+            else
+            {
+                wepPairs.Add(new WeightTuple(potentialWeps[i], wepWeights[i]));
+                largestWeight = wepWeights[i] > largestWeight ? wepWeights[i] : largestWeight;
+            }
+        }
     }
     //Wrapper for coroutine-based timing function
     protected override int InternInvoke(params Actor[] args)
@@ -36,10 +66,26 @@ public class BranchingWeaponAbility : WeaponAbility
     /*Randomly selects a weapon ability to use, invokes it, and then waits for it to finish*/
     IEnumerator PickAbility()
     {
-        //pick a weapon to use by randomly choosing an index value
-        ///DEBUG
-        int opt = rand.Next(potentialWeps.Count);
-        ///DEBUG
+        //pick a random from 0 to the largestWeight - 1
+        int opt = rand.Next(0, largestWeight);
+
+        //determine the smallest item in weights that is larger than opt
+        int winner = largestWeight;
+        foreach(WeightTuple tupl in wepPairs)
+        {
+            if(tupl.Item2 > opt && tupl.Item2 < winner)
+            {
+                winner = tupl.Item2;
+            }
+        }
+
+        //find all tuples with that weight
+        var winners = wepPairs.FindAll( (tuple) => {return tuple.Item2 == largestWeight;} );
+
+        //pick a random from 0 to the winners.Count - 1
+        opt = rand.Next(0, winners.Count);
+        
+        //use that weapon
         var nextWep = potentialWeps[opt];
         Debug.Log($"BranchingWeaponAbility: Choosing Item {opt}: {nextWep.name}");
 
