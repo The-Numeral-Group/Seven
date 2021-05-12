@@ -67,6 +67,7 @@ public class ActorMovement : MonoBehaviour
     {
         if (this.movementLocked)
         {
+            Debug.Log($"Only drag in direction {this.dragDirection}");
             movementController.Move(this.dragDirection * Time.deltaTime);
         }
         else
@@ -84,6 +85,10 @@ public class ActorMovement : MonoBehaviour
             that the drag needs to stop after this movement instance*/
             this.dragDirection = Vector2.zero;
         }
+
+        /*Only needed if character can still move. If movement is locked, we assume
+        that the drag needs to stop after this movement instance*/
+        this.dragDirection = Vector2.zero;
 
         if(!this.faceLocked)
         {

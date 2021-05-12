@@ -16,12 +16,13 @@ public class SimpleStun : ActorEffect
     //METHODS--------------------------------------------------------------------------------------
     public bool ApplyEffect(ref Actor actor)
     {
+        Debug.Log($"Applying stun to {actor.gameObject.name}");
         //play a stun animation, if possible
         actor.myAnimationHandler.TrySetTrigger(animTrigger);
 
         //lock down the Actor's movement. It's on the applicator to remove this effect,
         //so this will last forever.
-        actor.myMovement.LockActorMovement(Mathf.Infinity);
+        actor.StartCoroutine(actor.myMovement.LockActorMovement(1000000.0f));
 
         return true;
     }
@@ -32,6 +33,6 @@ public class SimpleStun : ActorEffect
         actor.myAnimationHandler.TrySetTrigger(animTrigger);
 
         //unlock actor's movement
-        actor.myMovement.LockActorMovement(0.0f);
+        actor.StartCoroutine(actor.myMovement.LockActorMovement(0.0f));
     }
 }
