@@ -351,7 +351,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &505191977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -736,6 +736,8 @@ GameObject:
   - component: {fileID: 656284019}
   - component: {fileID: 656284030}
   - component: {fileID: 656284017}
+  - component: {fileID: 656284018}
+  - component: {fileID: 656284020}
   m_Layer: 0
   m_Name: Ego 1
   m_TagString: Untagged
@@ -870,6 +872,35 @@ MonoBehaviour:
   - {fileID: 1293176795}
   wepWeights: 030000000300000001000000
   defaultWeight: 5
+--- !u!114 &656284018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656284013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3861aebd807904db8836110bb39f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 1
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 6037738158253827827, guid: 5556a8bd922df730999b356a82f03310, type: 3}
+  duration: 0
+  weaponPositionScale: {x: 4, y: 4}
+  damagePerHitbox: 01000000
+  windupDelay: 1.5
+  animTrigger: 
+  shouldShake: 0
+  windShake: 0.1
+  attackShake: 1
+  mode: 0
+  lungeDistance: 20
+  lungeDuration: 2
+  lungeSpeed: 10
+  endlagDuration: 2
 --- !u!114 &656284019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -885,6 +916,25 @@ MonoBehaviour:
   cooldownPeriod: 0
   abilityName: 
   invokeBlankWhenBadArguments: 1
+--- !u!114 &656284020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656284013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dd238a1ebebf7947894c73e11d2176f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 1
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 1312713688638645245, guid: b74f6eaf6c35d6206955974044fc0cd0, type: 3}
+  duration: 0.5
+  weaponPositionScale: {x: 4, y: 4}
+  damagePerHitbox: 01000000
 --- !u!114 &656284021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -920,7 +970,7 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 656284017}
+  Close: {fileID: 656284020}
   Far: {fileID: 656284019}
   Special: {fileID: 656284030}
 --- !u!114 &656284023

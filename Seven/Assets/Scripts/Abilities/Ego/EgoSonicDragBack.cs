@@ -15,6 +15,7 @@ public class EgoSonicDragBack : DragBackWeaponHitbox
     /*Standard DragBack, but attempts to stun the target as well*/
     protected override IEnumerator DragBack(ActorMovement mover)
     {
+        Debug.Log("trying for components on " + mover.gameObject.name);
         Actor moverActor;
         if(mover.gameObject.TryGetComponent(out moverActor))
         {
@@ -28,6 +29,11 @@ public class EgoSonicDragBack : DragBackWeaponHitbox
                 stunDuration
             );
         }
+
+        mover.gameObject.GetComponent<ActorEffectHandler>()?.AddTimedEffect(
+            new SimpleStun(stunAnimTrigger), 
+            stunDuration
+        );
 
         yield return base.DragBack(mover);
     }
