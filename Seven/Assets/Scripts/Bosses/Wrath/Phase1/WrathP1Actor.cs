@@ -73,16 +73,6 @@ public class WrathP1Actor : Actor
             decideNextState();
             EvaluateState(currentState);
         }
-        /*if (canAttack)
-        {
-            canAttack = false;
-            decideNextState();
-        }
-        else
-        {
-            currentState = State.WALK;
-        }
-        EvaluateState(currentState);*/
     }
     void EvaluateState(State state)
     {
@@ -158,7 +148,11 @@ public class WrathP1Actor : Actor
             if (poolType == 'A') // Draw an ability from Pool A
             {
                 // Determines which ability Wrath will perform
-                int abilityType = (int)Random.Range(0, 3);
+
+                //int abilityType = (int)Random.Range(0, 3);
+                // TESTING CHAINPULL
+                int abilityType = 0;
+
                 switch (abilityType)
                 {
                     case 0:
