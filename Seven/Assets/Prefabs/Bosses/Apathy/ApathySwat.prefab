@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alwaysDragAwayFromUser: 1
   dragBackDirection: {x: -1, y: 0}
-  dragBackIntensity: 0.5
+  dragBackIntensity: 12
   dragBackDuration: 0.1
 --- !u!61 &7889562923704180447
 BoxCollider2D:
