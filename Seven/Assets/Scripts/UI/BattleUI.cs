@@ -30,10 +30,6 @@ public class BattleUI : BaseUI
     [Tooltip("Reference to the prefab used to create boss health bars.")]
     public GameObject bossBar;
     List<BossBar> bossList;
-    //reference to the boss position scriptable object.
-    //This is here for TemporaryDeathCheckFunction.
-    //This will be moved once we use different way to check death.
-    public VectorValue bossPos;
     ///////
     //reference to the player
     ActorHealth playerHealth;

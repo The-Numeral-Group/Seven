@@ -33,6 +33,9 @@ public class EgoFireLaunch : ActorAbilityFunction<GameObject, int>
         " specify a Transform, Vector2 direction, Actor, or gameObject target")]
     public Vector2 projectileDirection = Vector2.left;
 
+    //the last object that had firewalls launched at
+    public GameObject lastTarget { get; private set; }
+
     /*[Tooltip("Whether or not the animation for this attack is at a good spot to" + 
         " actually create the projectile. Please do not manually edit this.")]*/
     //helper bool to track animation progress, if any
@@ -45,6 +48,7 @@ public class EgoFireLaunch : ActorAbilityFunction<GameObject, int>
     //Used to initialize the single-fire ability
     void Start()
     {
+        lastTarget = null;
         single = this.gameObject.AddComponent<EgoFireSingle>();
         single.Init(this);
     }
@@ -95,6 +99,7 @@ public class EgoFireLaunch : ActorAbilityFunction<GameObject, int>
     protected override int InternInvoke(params GameObject[] args)
     {
         usable = false;
+        lastTarget = args[0];
         StartCoroutine(FireInvokation(args[0]));
         return 1;
     }
@@ -186,8 +191,14 @@ internal class EgoFireSingle : ProjectileAbility
         projectileDirection = wrap.projectileDirection;
     }
 
+    /*Launch the projectile. The anticipated argument is the gameObject being shot at. The 
+    gameObject may-or-may-not have an ActorHealth component.*/
     protected override int InternInvoke(params Vector2[] args)
     {
-        return base.InternInvoke(args);
+        projObj.GetComponent<FilterProjectile>().Launch(args[0], launchMode, wrap.lastTarget);
+
+        isFinished = true;
+
+        return 0;
     }
 }

@@ -174,6 +174,11 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
     //the position of the target reletive to the user
     public Transform getUserTransform()
     {
+        if(!this.user)
+        {
+            return this.gameObject.transform;
+        }
+
         return user.gameObject.transform;
     }
 

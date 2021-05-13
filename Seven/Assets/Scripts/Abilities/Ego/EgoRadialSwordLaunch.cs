@@ -98,13 +98,11 @@ public class EgoRadialSwordLaunch : ActorAbilityCoroutine<GameObject>
                 Quaternion.identity
             );
 
-            sword.transform.up = target.transform.position - sword.transform.position;
-            //sword.transform.up = Vector3.Lerp(sword.transform.up, new Vector3(0f, 0f, sword.transform.up.z), 1f);
-            /* = Quaternion.Euler(
-                Vector3.RotateTowards(
-                    sword.transform.up, target.transform.position - swordPos, Mathf.PI, -180f
-                )
-            );*/
+            /*Rotate the sword towards the target by forcing it's "up" to point towards the
+            target. The direction is casted as a Vector2 to negate the z component, which can
+            cause the swords to roll outside of the game's significant dimensions (i.e. into the
+            3rd dimension where it cannot be seen).*/
+            sword.transform.up = (Vector2)(target.transform.position - sword.transform.position);
 
             //Step 1.3: Create the sword and enqueue it
             swordQueue.Enqueue(sword);

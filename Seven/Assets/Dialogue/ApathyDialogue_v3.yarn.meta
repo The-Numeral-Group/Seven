@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 6152a990adce80d0e9779b50253eb701
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: en-US
+  stringIDs: []
+  compilationStatus: 0
+  isSuccesfullyCompiled: 0
+  compilationErrorMessage: The node 'Opening Scene OLDATA' contains illegal characters
+    in its title.
+  baseLanguage: {instanceID: 0}
+  localizations: []
