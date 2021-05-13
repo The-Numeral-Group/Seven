@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ActorHealth))]
-public class EgoFirewallCompositeProjectile : BasicProjectile
+public class EgoFirewallCompositeProjectile : FilterProjectile
 {
     //FIELDS---------------------------------------------------------------------------------------
     [Tooltip("How far this firewall should travel before stopping.")]
