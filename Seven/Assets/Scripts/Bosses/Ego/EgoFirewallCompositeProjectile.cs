@@ -54,25 +54,11 @@ public class EgoFirewallCompositeProjectile : FilterProjectile
 
         */
     /*Starts the projectile! Also rotates the firewall and starts its lifetime*/
-    public override void Launch(Vector2 target, LAUNCH_MODE mode = LAUNCH_MODE.POINT)
+    public override void Launch(Vector2 target, LAUNCH_MODE mode = LAUNCH_MODE.POINT,
+        GameObject targetObj = null)
     {
-        /*An explicit cast is added here, even though Vector3 implicitly converts
-        to Vector2, to remove the ambiguity between subtracting the this.gameObject's position as
-        a Vector3 or a Vector2*/
-        if(mode == LAUNCH_MODE.POINT)
-        {
-            launchDirection = (target - (Vector2)this.gameObject.transform.position).normalized;
-        }
-        else
-        {
-            launchDirection = target.normalized;
-        }
-
-        //hard rotate the firewall
-        //this.gameObject.transform.up = launchDirection;
-
-        //S H M O O V E
-        moveFunction = new System.Action<Vector2>(InternalMovement);
+        //do the regular launch lmao
+        base.Launch(target, mode, targetObj);
 
         //Begin lifetime
         StartCoroutine(Lifetime());
