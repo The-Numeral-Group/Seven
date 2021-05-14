@@ -177,8 +177,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: fd32012bd3758e9408cd36dedf58def6, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -225,7 +225,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 4600860261832309335}
   m_OnClick:
     m_PersistentCalls:
@@ -719,6 +719,7 @@ GameObject:
   - component: {fileID: 3838137146001244892}
   - component: {fileID: 3838137145630887551}
   - component: {fileID: 4112994920670129075}
+  - component: {fileID: 4152254180761092166}
   m_Layer: 5
   m_Name: BattleUI
   m_TagString: Untagged
@@ -824,7 +825,6 @@ MonoBehaviour:
   playerPos: {fileID: 11400000, guid: 99196f5b96b14c048985c90ceaf6bdff, type: 2}
   bossContainers: {fileID: 3724874611025221647}
   bossBar: {fileID: 1742091852106443169, guid: c83b84db928ff9b44a1b2f7ea6313cff, type: 3}
-  bossPos: {fileID: 0}
 --- !u!114 &4112994920670129075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -843,6 +843,24 @@ MonoBehaviour:
   - {fileID: 3881996932607668545}
   player: {fileID: 0}
   abilityHighLightIndicator: {fileID: 4153090015159757115}
+  gameSaveManager: {fileID: 0}
+--- !u!114 &4152254180761092166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3838137146001244893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 926b2f8cfade8744eaba9be033b506d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sinIndicators:
+  - {fileID: 1955142541137057739}
+  - {fileID: 7019273657881341799}
+  - {fileID: 5476622129521291819}
+  sinFlagIndices: 0b0000000e00000011000000
   gameSaveManager: {fileID: 0}
 --- !u!1 &3838137146176063221
 GameObject:
@@ -1146,8 +1164,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: fd32012bd3758e9408cd36dedf58def6, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1194,7 +1212,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 8192761175119125927}
   m_OnClick:
     m_PersistentCalls:
@@ -1589,8 +1607,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: fd32012bd3758e9408cd36dedf58def6, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1637,7 +1655,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2912649928128080674}
   m_OnClick:
     m_PersistentCalls:

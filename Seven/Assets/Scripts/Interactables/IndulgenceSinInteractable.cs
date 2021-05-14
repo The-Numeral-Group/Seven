@@ -25,9 +25,10 @@ public class IndulgenceSinInteractable : Interactable
         player.myHealth.currentHealth = 
             player.myHealth.currentHealth + healAmount > player.myHealth.maxHealth ? 
                 player.myHealth.maxHealth : player.myHealth.currentHealth + healAmount;
-        if (TOTAL_CONSUMED > 1)
+        if (TOTAL_CONSUMED > 1 && !IndulgenceP1Actor.SIN_COMITTED)
         {
             IndulgenceP1Actor.SIN_COMITTED = true;
+            MenuManager.SIN_MENU.DisplaySin();
         }
         ShowIndicator(false);
         SetPotentialInteractable(false, player.gameObject);

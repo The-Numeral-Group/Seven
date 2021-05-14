@@ -49,6 +49,7 @@ public class SinIndicatorUI : BaseUI
             if (!indicator.gameObject.activeSelf)
             {
                 indicator.gameObject.SetActive(true);
+                break;
             }
         }
     }
