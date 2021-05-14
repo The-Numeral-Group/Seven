@@ -23,11 +23,11 @@ public class ApathyNPC : Interactable
     private bool fightStarted = false;
 
     //whether or not apathy has been defeated
-    public static bool fightCompleted = false;
+    private bool fightCompleted = false;
 
     //whether or not the player walked out on Apathy without fighting it
     //Static to be remembered across instances (i.e. between room entries)
-    public static bool fightAbandoned = false;
+    private bool fightAbandoned = false;
 
     //the game save manager
     private GameSaveManager manager;
@@ -38,6 +38,13 @@ public class ApathyNPC : Interactable
     {
         //save the gamestate manager
         manager = GameObject.Find("GameSaveManager")?.GetComponent<GameSaveManager>();
+
+        /*save whether or not the fight has been abandoned. If the sin flag is set, this is the
+        case.*/
+        fightAbandoned = manager.getBoolValue(11);
+
+        /*save whether or not the fight has already been completed*/
+        fightCompleted = manager.getBoolValue(12);
 
         if(fightAbandoned && !fightCompleted)
         {
@@ -104,6 +111,10 @@ public class ApathyNPC : Interactable
     //Turns on the Apathy fight. This instance handles prepping the arena
     public void ActivateSloth()
     {
+        //turn off the interactable UI
+        //this needs the player's collider specifically, so just fish that out
+        base.OnTriggerExit2D(GameObject.FindWithTag("Player").GetComponent<Collider2D>());
+
         //save the sin uncommitment
         manager.setBoolValue(false, 11);
         //Remove the props from the room
@@ -143,7 +154,8 @@ public class ApathyNPC : Interactable
         sceneTransition.SetActive(true);
 
         //mark the fight as completed
-        ApathyNPC.fightCompleted = true;
+        //ApathyNPC.fightCompleted = true;
+        manager.setBoolValue(true, 12);
     }
 
     //Starts dialogue on the next frame. Can't be anonymous because a yield is used
