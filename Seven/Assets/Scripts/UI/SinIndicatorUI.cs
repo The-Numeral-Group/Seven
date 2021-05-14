@@ -7,10 +7,10 @@ public class SinIndicatorUI : BaseUI
 {
     //expects 3 buttons
     [SerializeField]
-    List<Button> sinIndicators;
+    List<Button> sinIndicators = null;
     //expects 3 values
     [SerializeField]
-    List<int> sinFlagIndices;
+    List<int> sinFlagIndices = null;
     public GameSaveManager gameSaveManager;
     
     void Start()

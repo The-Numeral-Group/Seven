@@ -10,7 +10,7 @@ public class AbilityMenu : BaseUI
     int pointerToCurrentSelectedButton;
     public PlayerAbilityInitiator player;
     [SerializeField]
-    RectTransform abilityHighLightIndicator;
+    RectTransform abilityHighLightIndicator = null;
     List<(int, int)> gameSaveAbilityIndices;
     public GameSaveManager gameSaveManager;
 

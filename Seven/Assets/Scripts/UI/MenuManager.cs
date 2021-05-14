@@ -58,6 +58,7 @@ public class MenuManager : MonoBehaviour
     //Set static members to the inspector references
     void Awake()
     {
+        ActiveSpeaker.ACTIVE_NPC = null;
         //Debug.Log("MenuManager Awake");
         SetupStaticReferences();
     }

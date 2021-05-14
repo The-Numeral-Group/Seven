@@ -194,7 +194,7 @@ public class DialogueMenu : BaseUI
     {
         Vector2 viewPortPosition = 
             Camera.main.WorldToViewportPoint(ActiveSpeaker.ACTIVE_NPC.gameObject.transform.position 
-            + new Vector3(0f, ActiveSpeaker.ACTIVE_NPC.spriteInfo.size.y / 2, 0f));
+            + new Vector3(0f, ActiveSpeaker.ACTIVE_NPC.spriteInfo.size.y / 2, 0f) + ActiveSpeaker.ACTIVE_NPC.chatBoxOffset);
         Vector2 proportionalPosition = new Vector2(
             viewPortPosition.x * canvasTransform.sizeDelta.x,
             (viewPortPosition.y * canvasTransform.sizeDelta.y) + chatBubble.rect.height / 2);
