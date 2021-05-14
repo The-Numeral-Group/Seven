@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 //Document link: https://docs.google.com/document/d/18lYFFhUkIy72RahBtPS0Hf00NOF2xylJcnMHjfXqQbE/edit?usp=sharing
 //Base abstract class for ui related classes.
@@ -8,6 +9,7 @@ using UnityEngine.SceneManagement;
 public abstract class BaseUI : MonoBehaviour
 {
     protected Canvas canvas;
+    public RectTransform uiSelector;
     protected virtual void Awake()
     {
         canvas = GetComponent<Canvas>();
@@ -17,6 +19,15 @@ public abstract class BaseUI : MonoBehaviour
     public virtual void SetVisibility(bool value)
     {
         this.gameObject.SetActive(value);
+    }
+
+    protected virtual void Update()
+    {
+        if (uiSelector != null)
+        {
+            uiSelector.transform.position = EventSystem.current.currentSelectedGameObject.transform.position + 
+                new Vector3( -1*EventSystem.current.currentSelectedGameObject.GetComponent<RectTransform>().sizeDelta.x/2,0,0);
+        }
     }
 
     /*enable the menu*/
