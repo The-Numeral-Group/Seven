@@ -113,7 +113,7 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
-            if (CURRENT_MENU == PAUSE_MENU)
+            if (CURRENT_MENU == PAUSE_MENU && PAUSE_MENU)
             {
                 PAUSE_MENU.OnResume();
                 return false;
