@@ -3252,6 +3252,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 2200475627425788189, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2200475627425788190, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
       propertyPath: m_Camera
       value: 
