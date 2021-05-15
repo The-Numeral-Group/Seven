@@ -118,8 +118,8 @@ public abstract class Interactable : MonoBehaviour
         {
             Interactable.POTENTIAL_INTERACTABLE = this;
             MenuManager.INTERACT_MENU.target = t;
-            MenuManager.INTERACT_MENU.uiElementTextOffset = new Vector2(2, -2);
-            MenuManager.INTERACT_MENU.uiElementImageOffset = new Vector2(-1, -2);
+            //MenuManager.INTERACT_MENU.uiElementTextOffset = new Vector2(2, -2);
+            //MenuManager.INTERACT_MENU.uiElementImageOffset = new Vector2(-1, -2);
             MenuManager.INTERACT_MENU.Show();
         }
         else if (Interactable.POTENTIAL_INTERACTABLE == this) 
