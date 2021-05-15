@@ -26,7 +26,7 @@ public abstract class BaseUI : MonoBehaviour
         if (uiSelector != null)
         {
             uiSelector.transform.position = EventSystem.current.currentSelectedGameObject.transform.position + 
-                new Vector3( -1*EventSystem.current.currentSelectedGameObject.GetComponent<RectTransform>().sizeDelta.x/2,0,0);
+                new Vector3( -1*EventSystem.current.currentSelectedGameObject.GetComponent<RectTransform>().sizeDelta.x,0,0);
         }
     }
 

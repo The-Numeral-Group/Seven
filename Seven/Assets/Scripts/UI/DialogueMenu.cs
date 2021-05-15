@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 using Yarn.Unity;
 
 //Document Link: https://docs.google.com/document/d/1ISJ17xagrhSbJcoxoc88jhtgvp-RxcH3ay3h2u4Jq-g/edit?usp=sharing
@@ -23,6 +24,7 @@ public class DialogueMenu : BaseUI
     public List<YarnProgram> dialogueFiles;
     //reference to the text passed in from yarnspinner.
     public string untrimmedText {get; set;}
+    bool playerMovmentLocked;
 
     //reference to the ui menus canvas transform
     RectTransform canvasTransform;
@@ -33,6 +35,7 @@ public class DialogueMenu : BaseUI
     protected override void Awake()
     {
         base.Awake();
+        playerMovmentLocked = true;
         foreach(YarnProgram yarnFile in dialogueFiles)
         {
             dialogueRunner.Add(yarnFile);
@@ -162,6 +165,7 @@ public class DialogueMenu : BaseUI
     to determine if the player can move during the dialogue sequence.*/
     public void SetupPlayer(bool lockValue)
     {
+        playerMovmentLocked = lockValue;
         var player = GameObject.FindGameObjectWithTag("Player");
         if (!player)
         {
@@ -199,5 +203,16 @@ public class DialogueMenu : BaseUI
             viewPortPosition.x * canvasTransform.sizeDelta.x,
             (viewPortPosition.y * canvasTransform.sizeDelta.y) + chatBubble.rect.height / 2);
         return proportionalPosition;
+    }
+
+    public void SetPlayerInputMapUI(string input)
+    {
+        if (playerMovmentLocked && input == "Player")
+        {
+            return;
+        }
+        var player = GameObject.FindGameObjectWithTag("Player");
+        PlayerInput pInput = player.GetComponent<PlayerInput>();
+        pInput.SwitchCurrentActionMap(input);
     }
 }
