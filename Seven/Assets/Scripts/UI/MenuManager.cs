@@ -115,7 +115,7 @@ public class MenuManager : MonoBehaviour
         {
             if (CURRENT_MENU == PAUSE_MENU)
             {
-                CURRENT_MENU.Hide();
+                PAUSE_MENU.OnResume();
                 return false;
             }
             /*else
