@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ApathySinCorrupted
   m_EditorClassIdentifier: 
   initialValue: 0
-  RuntimeValue: 0
+  RuntimeValue: 1
