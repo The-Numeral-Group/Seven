@@ -124,6 +124,7 @@ public class IndulgenceCharge : ActorAbilityFunction<Actor, int>
             }
             if (collider.gameObject.tag == "Environment")
             {
+                isCharging = false;
                 Camera.main.GetComponent<BaseCamera>().Shake(2.0f, 0.2f);
                 this.user.myMovement.DragActor(Vector2.zero);
                 hasCollided = true;
