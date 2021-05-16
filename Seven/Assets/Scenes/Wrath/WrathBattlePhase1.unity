@@ -2766,7 +2766,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135220256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.63, y: -3.37, z: 0}
+  m_LocalPosition: {x: -0.09, y: 1.81, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 1157568859}
@@ -2944,8 +2944,11 @@ MonoBehaviour:
   cooldownPeriod: 0
   abilityName: WrathChainPull
   invokeBlankWhenBadArguments: 1
-  duration: 2
-  stunned_duration: 1
+  centerPos: {x: 0, y: 5}
+  duration: 7
+  travelDuration: 1
+  stunnedDuration: 1
+  pullAttemptNumber: 5
   pullIntensity: 2
   toInstantiateChainList: {fileID: 8004185409683232675, guid: 3cbac1eaec9196543a4912c51ac204f1, type: 3}
 --- !u!114 &2135220265
@@ -3020,7 +3023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453e150335b52ac4884472bf0e1bd9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 6
 --- !u!114 &2135220270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3902,11 +3905,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4332445788766981374, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.9
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: -4332445788766981374, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.14
+      value: -4.27
       objectReference: {fileID: 0}
     - target: {fileID: -4332445788766981374, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_LocalPosition.z

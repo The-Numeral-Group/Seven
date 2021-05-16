@@ -67,7 +67,7 @@ public class ActorMovement : MonoBehaviour
     {
         if (this.movementLocked)
         {
-            Debug.Log($"Only drag in direction {this.dragDirection}");
+            //Debug.Log($"Only drag in direction {this.dragDirection}");
             movementController.Move(this.dragDirection * Time.deltaTime);
         }
         else
