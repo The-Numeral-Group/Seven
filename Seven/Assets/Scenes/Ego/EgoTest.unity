@@ -864,7 +864,7 @@ MonoBehaviour:
   - {fileID: 1113196130}
   - {fileID: 1293176792}
   - {fileID: 1293176795}
-  wepWeights: 030000000300000001000000
+  wepWeights: 070000000300000001000000
   defaultWeight: 5
 --- !u!60 &656284018
 PolygonCollider2D:
@@ -1005,7 +1005,7 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 1293176795}
+  Close: {fileID: 656284017}
   Far: {fileID: 656284019}
   Special: {fileID: 656284030}
 --- !u!114 &656284024
@@ -1338,17 +1338,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1113196125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dd238a1ebebf7947894c73e11d2176f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c3861aebd807904db8836110bb39f72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownPeriod: 1
   abilityName: Three-Punch
   invokeBlankWhenBadArguments: 1
   startingWeaponObject: {fileID: 1844393178547753448, guid: 6813d0bc0b85df114885d10a1a08d801, type: 3}
-  duration: 0.25
+  duration: 0
   weaponPositionScale: {x: 3.2, y: 3.2}
   damagePerHitbox: 01000000
   animTrigger: 
+  windupDelay: 0
+  shouldShake: 0
+  windShake: 0.1
+  attackShake: 1
+  animFlag: 
+  mode: 1
+  lungeDistance: 0.25
+  lungeDuration: 0.1
+  lungeSpeed: 10
+  endlagDuration: 1
 --- !u!114 &1113196128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1365,7 +1375,7 @@ MonoBehaviour:
   abilityName: Two-Punch
   invokeBlankWhenBadArguments: 1
   startingWeaponObject: {fileID: 1844393178547753448, guid: 6813d0bc0b85df114885d10a1a08d801, type: 3}
-  duration: 0.25
+  duration: 0.1
   weaponPositionScale: {x: 3.2, y: 3.2}
   damagePerHitbox: 01000000
   animTrigger: 
@@ -1378,17 +1388,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1113196125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dd238a1ebebf7947894c73e11d2176f, type: 3}
+  m_Script: {fileID: 11500000, guid: 6338bdabf54e9e69fa0f9a7c78ed1082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cooldownPeriod: 1
   abilityName: One-Punch
   invokeBlankWhenBadArguments: 1
   startingWeaponObject: {fileID: 1844393178547753448, guid: 6813d0bc0b85df114885d10a1a08d801, type: 3}
-  duration: 0.25
+  duration: 0.1
   weaponPositionScale: {x: 3.2, y: 3.2}
   damagePerHitbox: 01000000
   animTrigger: 
+  windupDelay: 1
+  shouldShake: 0
+  windShake: 0.1
+  attackShake: 1
 --- !u!114 &1113196130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1465,7 +1479,7 @@ MonoBehaviour:
   attackShake: 1
   animFlag: ego_chargefalcon
   mode: 0
-  lungeDistance: 5
+  lungeDistance: 7.5
   lungeDuration: 2
   lungeSpeed: 10
   endlagDuration: 2
