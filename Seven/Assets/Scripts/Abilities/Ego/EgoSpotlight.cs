@@ -119,6 +119,8 @@ public class EgoSpotlight : ActorAbilityCoroutine<int>
                 "OnAnyInteract",
                 user
             );
+
+            this.user.gameObject.SendMessage("animateFLEX", SendMessageOptions.DontRequireReceiver);
         }
     }
 }

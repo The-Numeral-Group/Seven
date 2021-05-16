@@ -22,13 +22,14 @@ public class Ego1AnimationHandler : ActorAnimationHandler
     }
 
     //picks a random flex and animates it
-    public void animateFLEX()
+    public System.Func<bool> animateFLEX()
     {
         //Step 1: pick a random flex to do by generating a 0 to 1 float
-        this.Animator.SetBool("ego_flextype", Random.value > 0.5);
+        this.Animator.SetFloat("ego_flextype", Random.value);
 
         //Step 2: actually... you know... animate the flex
-        this.Animator.SetTrigger("ego_flex");
+        //the trigger will always be there, we want the bool
+        return this.TryFlaggedSetTrigger("ego_flex");
     }
 
     //Toggles Ego between its swagger and sprint animations
