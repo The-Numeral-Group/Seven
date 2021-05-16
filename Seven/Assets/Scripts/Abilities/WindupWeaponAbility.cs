@@ -8,8 +8,8 @@ public class WindupWeaponAbility : WeaponAbility
     [Tooltip("How long the windup for the attack is")]
     public float windupDelay = 1.5f;
 
-    [Tooltip("The trigger to start an animation to play during this attack, if any.")]
-    public string animTrigger = "";
+    //[Tooltip("The trigger to start an animation to play during this attack, if any.")]
+    //public string animTrigger = "";
 
     [Header("Screen Shake Settings")]
     [Tooltip("Whether this attack should cause the screen to shake when it is used.")]
@@ -38,9 +38,9 @@ public class WindupWeaponAbility : WeaponAbility
     /*Wrapper for a delayedAttack()*/
     protected override int InternInvoke(params Actor[] args)
     {
-        if(animTrigger.Length != 0)
+        if(this.animTrigger.Length != 0)
         {
-            user.myAnimationHandler.TrySetTrigger(animTrigger);
+            user.myAnimationHandler.TrySetTrigger(this.animTrigger);
         }
 
         StartCoroutine(delayedAttack(args));
