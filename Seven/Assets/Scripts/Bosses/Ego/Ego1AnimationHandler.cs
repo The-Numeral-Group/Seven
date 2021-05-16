@@ -34,6 +34,14 @@ public class Ego1AnimationHandler : ActorAnimationHandler
     //Toggles Ego between its swagger and sprint animations
     public void SetSwagger(bool swagger)
     {
-        this.Animator.SetBool("ego_swagger", swagger);
+        if(swagger)
+        {
+            this.Animator.SetFloat("ego_swagger", 1f);
+        }
+        else
+        {
+            this.Animator.SetFloat("ego_swagger", 0f);
+        }
+        
     }
 }

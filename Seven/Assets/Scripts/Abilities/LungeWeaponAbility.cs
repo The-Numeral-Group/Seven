@@ -6,6 +6,9 @@ using UnityEngine;
 public class LungeWeaponAbility : WindupWeaponAbility
 {
     //FIELDS---------------------------------------------------------------------------------------
+    [Tooltip("The boolean to flag the animator that the windup animation should loop.")]
+    public string animFlag = "";
+
     //the ways in which LungeWeaponAbility can calcuate its travelling
     public enum TRAVEL_MODE
     {
@@ -67,6 +70,10 @@ public class LungeWeaponAbility : WindupWeaponAbility
     for travel and for an "endlag" period.*/
     protected override IEnumerator delayedAttack(params Actor[] args)
     {
+        //flag the user's animator that the windup animation needs to loop
+        //Starting that animation is handled in base.InternInvoke.
+        this.user.myAnimationHandler.TrySetBool(animFlag, true);
+
         //calculate the direction to lunge in
         moveDir = (user.faceAnchor.position - user.gameObject.transform.position).normalized;
         //save the user's current position
@@ -82,6 +89,9 @@ public class LungeWeaponAbility : WindupWeaponAbility
         //if the screen should shake, start the minor shake
         if(shouldShake){ cameraFunc.Shake(windupDelay, windShake); }
         yield return new WaitForSeconds(windupDelay);
+        
+        //now that the windup is over, tell the animator to stop looping
+        this.user.myAnimationHandler.TrySetBool(animFlag, false);
 
         //then do the rest of the attack as normal
         sheathe = SheatheWeapon();
@@ -103,8 +113,15 @@ public class LungeWeaponAbility : WindupWeaponAbility
         //sheathe the weapon
         yield return sheathe;
 
+        //enter the recovery animation
+        var recoverAnimFinished = 
+            this.user.myAnimationHandler.TryFlaggedSetTrigger(this.animTrigger);
+
         //experience the endlag
         yield return user.myMovement.LockActorMovement(endlagDuration);
+
+        //make sure the recovery animation has also ended
+        yield return new WaitUntil(recoverAnimFinished);
     }
 
     /*factory method. Whenever the func is evaluated, it will check if the user has

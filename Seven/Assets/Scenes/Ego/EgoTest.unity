@@ -160,7 +160,6 @@ MonoBehaviour:
   duration: 0
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 
-  animationTrigger: 
   waitForCooldowns: 0
   potentialWeps:
   - {fileID: 1293176795}
@@ -858,7 +857,6 @@ MonoBehaviour:
   duration: 0.5
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 
-  animationTrigger: 
   waitForCooldowns: 0
   potentialWeps:
   - {fileID: 1113196130}
@@ -1005,7 +1003,7 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 656284017}
+  Close: {fileID: 1293176792}
   Far: {fileID: 656284019}
   Special: {fileID: 656284030}
 --- !u!114 &656284024
@@ -1207,7 +1205,6 @@ MonoBehaviour:
   duration: 1
   weaponPositionScale: {x: 3.2, y: 3.2}
   damagePerHitbox: 01000000
-  animationTrigger: 
 --- !u!114 &928636631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1227,7 +1224,6 @@ MonoBehaviour:
   duration: 0
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 
-  animationTrigger: 
   comboGapDuration: 1
   cooldownCancel: 0
   comboList:
@@ -1348,7 +1344,6 @@ MonoBehaviour:
   duration: 0.25
   weaponPositionScale: {x: 3.2, y: 3.2}
   damagePerHitbox: 01000000
-  animationTrigger: 
 --- !u!114 &1113196128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1368,7 +1363,6 @@ MonoBehaviour:
   duration: 0.25
   weaponPositionScale: {x: 3.2, y: 3.2}
   damagePerHitbox: 01000000
-  animationTrigger: 
 --- !u!114 &1113196129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1388,7 +1382,6 @@ MonoBehaviour:
   duration: 0.25
   weaponPositionScale: {x: 3.2, y: 3.2}
   damagePerHitbox: 01000000
-  animationTrigger: 
 --- !u!114 &1113196130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1408,7 +1401,6 @@ MonoBehaviour:
   duration: 0
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 01000000
-  animationTrigger: 
   comboGapDuration: 1
   cooldownCancel: 1
   comboList:
@@ -1451,21 +1443,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c3861aebd807904db8836110bb39f72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 0
+  cooldownPeriod: 10
   abilityName: 
   invokeBlankWhenBadArguments: 1
   startingWeaponObject: {fileID: 6037738158253827827, guid: 5556a8bd922df730999b356a82f03310, type: 3}
   duration: 0
   weaponPositionScale: {x: 3.2, y: 3.2}
   damagePerHitbox: 
-  animationTrigger: 
   windupDelay: 1.5
-  animTrigger: 
+  animTrigger: ego_falcon
   shouldShake: 0
   windShake: 0.1
   attackShake: 1
+  animFlag: ego_chargefalcon
   mode: 0
-  lungeDistance: 20
+  lungeDistance: 5
   lungeDuration: 2
   lungeSpeed: 10
   endlagDuration: 2
@@ -1488,7 +1480,6 @@ MonoBehaviour:
   duration: 1
   weaponPositionScale: {x: 3.2, y: 3.2}
   damagePerHitbox: 01000000
-  animationTrigger: ego_sonic
 --- !u!4 &1293176794
 Transform:
   m_ObjectHideFlags: 0
@@ -1522,7 +1513,6 @@ MonoBehaviour:
   duration: 0
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 
-  animationTrigger: 
   comboGapDuration: 0
   cooldownCancel: 0
   comboList:
@@ -2025,7 +2015,6 @@ MonoBehaviour:
   duration: 0.1
   weaponPositionScale: {x: 5, y: 5}
   damagePerHitbox: 05000000
-  animationTrigger: 
   windupDelay: 1.5
   animTrigger: 
   shouldShake: 1
@@ -2050,7 +2039,6 @@ MonoBehaviour:
   duration: 0
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 
-  animationTrigger: 
   comboGapDuration: 1
   cooldownCancel: 0
   comboList:
@@ -2065,11 +2053,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4332445788766981374, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.55
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: -4332445788766981374, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.8
+      value: -4.4
       objectReference: {fileID: 0}
     - target: {fileID: -4332445788766981374, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2232,7 +2220,6 @@ MonoBehaviour:
   duration: 0
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 
-  animationTrigger: 
   comboGapDuration: 1
   cooldownCancel: 1
   comboList:
@@ -2257,7 +2244,6 @@ MonoBehaviour:
   duration: 0.25
   weaponPositionScale: {x: 3.2, y: 3.2}
   damagePerHitbox: 01000000
-  animationTrigger: 
 --- !u!114 &1801753359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2277,7 +2263,6 @@ MonoBehaviour:
   duration: 0.25
   weaponPositionScale: {x: 3.2, y: 3.2}
   damagePerHitbox: 01000000
-  animationTrigger: 
 --- !u!4 &1801753360
 Transform:
   m_ObjectHideFlags: 0
@@ -2681,7 +2666,6 @@ MonoBehaviour:
   duration: 0
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 
-  animationTrigger: 
   waitForCooldowns: 0
   potentialWeps:
   - {fileID: 928636631}
