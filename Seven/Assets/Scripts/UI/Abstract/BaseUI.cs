@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 public abstract class BaseUI : MonoBehaviour
 {
     protected Canvas canvas;
+    [Tooltip("Reference to the selector game boject indicator. Do not set a reference if the ui does not need a selector image.")]
     public RectTransform uiSelector;
     protected virtual void Awake()
     {

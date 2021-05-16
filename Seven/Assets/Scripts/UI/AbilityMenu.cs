@@ -33,7 +33,6 @@ public class AbilityMenu : BaseUI
     {
         SetupPlayerReference();
         //hard coded values cause lazy to vix visual bug
-        abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position;
         if (gameSaveManager)
         {
             UnlockAbilities();
@@ -55,6 +54,10 @@ public class AbilityMenu : BaseUI
         abilityButtons[0].SetSelectedAbility(true);
         abilityButtons[1].SetSelectedAbility(false);
         abilityButtons[2].SetSelectedAbility(false);
+        foreach(AbilityButton button in abilityButtons)
+        {
+            Debug.Log(button.transform.position);
+        }
         UpdatePlayerSelectedAbility();
         //End of temporary
     }
@@ -97,6 +100,7 @@ public class AbilityMenu : BaseUI
             {
                 pointerToCurrentSelectedButton = dummyIndex;
                 abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position;
+                Debug.Log(abilityHighLightIndicator.transform.position + ":" + abilityButtons[pointerToCurrentSelectedButton].transform.position);
                 UpdatePlayerSelectedAbility();
                 break;
             }
@@ -114,6 +118,7 @@ public class AbilityMenu : BaseUI
             {
                 pointerToCurrentSelectedButton = dummyIndex;
                 abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position;
+                Debug.Log(abilityHighLightIndicator.transform.position + ":" + abilityButtons[pointerToCurrentSelectedButton].transform.position);
                 UpdatePlayerSelectedAbility();
                 break;
             }
