@@ -128,7 +128,6 @@ public abstract class BaseCamera : MonoBehaviour
         {
             Vector3 dialogBubblePos = 
                 MenuManager.DIALOGUE_MENU.chatBubble.position;
-            Debug.Log(MenuManager.DIALOGUE_MENU.chatBubble.position);
             bounds.Encapsulate(dialogBubblePos);
         }
         return bounds.center;
