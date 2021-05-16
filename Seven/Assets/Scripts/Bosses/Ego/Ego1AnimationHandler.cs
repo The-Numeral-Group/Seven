@@ -19,7 +19,6 @@ public class Ego1AnimationHandler : ActorAnimationHandler
         TrySet because Ego1 should have this property in its unique animator.*/
         this.Animator.SetBool(
             "ego_walking", hostActor.myMovement.movementDirection != Vector2.zero);
-        Debug.Log($"Ego walking? {hostActor.myMovement.movementDirection != Vector2.zero}");
     }
 
     //picks a random flex and animates it
