@@ -727,7 +727,6 @@ GameObject:
   - component: {fileID: 656284026}
   - component: {fileID: 656284025}
   - component: {fileID: 656284024}
-  - component: {fileID: 656284023}
   - component: {fileID: 656284022}
   - component: {fileID: 656284021}
   - component: {fileID: 656284016}
@@ -737,6 +736,7 @@ GameObject:
   - component: {fileID: 656284017}
   - component: {fileID: 656284018}
   - component: {fileID: 656284015}
+  - component: {fileID: 656284020}
   m_Layer: 0
   m_Name: Ego 1
   m_TagString: Untagged
@@ -954,6 +954,20 @@ MonoBehaviour:
   cooldownPeriod: 0
   abilityName: 
   invokeBlankWhenBadArguments: 1
+--- !u!114 &656284020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656284013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7eb283e268e8ea7e8a1754420c08e29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 0}
+  sp: {fileID: 0}
 --- !u!114 &656284021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -992,20 +1006,6 @@ MonoBehaviour:
   Close: {fileID: 656284017}
   Far: {fileID: 656284019}
   Special: {fileID: 656284030}
---- !u!114 &656284023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656284013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27600644c33641846a3618949c49a0fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Animator: {fileID: 0}
-  sp: {fileID: 0}
 --- !u!114 &656284024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2052,7 +2052,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4332445788766981374, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -10.55
       objectReference: {fileID: 0}
     - target: {fileID: -4332445788766981374, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_LocalPosition.y

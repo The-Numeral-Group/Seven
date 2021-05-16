@@ -43,6 +43,9 @@ public class Ego1Actor : Actor
     //reference to player for movement tracking and convinience
     private Actor player;
 
+    //Ego1's ActorAnimationHandler casted to its derived type for domain-specific functions
+    private Ego1AnimationHandler egoAnims;
+
     //whatever ability Ego is currently using, if any
     private ActorAbility currAbility;
 
@@ -79,8 +82,26 @@ public class Ego1Actor : Actor
         //save ego's sprint-related timer
         sprintTimer = ResetSprint();
 
+        //save ego's AAH, if it's the ego1 specific version
+        if(this.myAnimationHandler is Ego1AnimationHandler)
+        {
+            egoAnims = (this.myAnimationHandler as Ego1AnimationHandler);
+        }
+
         StartCoroutine(sprintTimer);
         StartCoroutine(BossBehaviour());
+    }
+
+    // fixed update is called every phyiscs sim tick
+    void FixedUpdate()
+    {
+        //move Ego's face anchor towards the player
+        DoActorUpdateFacing(
+            (player.gameObject.transform.position - this.gameObject.transform.position).normalized
+        );
+
+        //update Ego's animations
+        this.myAnimationHandler.animateWalk();
     }
 
     /*Ego's computational driver. Initially I (Thomas) intended to recycle PrideActor, but I like
@@ -92,6 +113,9 @@ public class Ego1Actor : Actor
     {
         while(true)
         {
+            //Step 0: Animate ego's idle/walk, if needed
+            this.myAnimationHandler.animateWalk();
+
             //Step 1: Check how far from the player Ego is
             var dist = Mathf.Abs(Vector2.Distance(
                 player.transform.position, 
@@ -178,8 +202,10 @@ public class Ego1Actor : Actor
     IEnumerator ResetSprint()
     {
         this.myMovement.speed = swaggerSpeed;
+        egoAnims?.SetSwagger(true);
         yield return new WaitForSeconds(swaggerDuration);
         this.myMovement.speed = sprintSpeed;
+        egoAnims?.SetSwagger(false);
     }
 
     //Ego1 will switch to Ego2 upon death.
