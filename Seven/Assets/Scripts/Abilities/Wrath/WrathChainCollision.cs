@@ -18,7 +18,7 @@ public class WrathChainCollision : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            this.wrath.SendMessage("testChainFunction");
+            this.wrath.SendMessage("onChainCollision");
         }
     }
 }
