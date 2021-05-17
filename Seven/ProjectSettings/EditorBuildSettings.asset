@@ -39,7 +39,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Ego/EgoTest.unity
     guid: 894f09a184f6a7b9db0910ff28b99cf6
   - enabled: 1
-    path: Assets/Scenes/Indulgence/Cutscene/Indulgence_Opening.unity
+    path: Assets/Scenes/Indulgence/Indulgence_Opening.unity
     guid: cdb30706057b18741b346ed08a6a41bc
   - enabled: 1
     path: Assets/Scenes/Indulgence/Cutscene/Indulgence_Retry.unity

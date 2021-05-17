@@ -174,7 +174,9 @@ public class WrathP1Actor : Actor
             }
             else // Draw an ability from Pool B
             {
-                int abilityType = (int)Random.Range(0, 2);
+                // int abilityType = (int)Random.Range(0, 2);
+                // TESTING SWORD ATTACK
+                int abilityType = 0;
                 switch (abilityType)
                 {
                     case 0:
