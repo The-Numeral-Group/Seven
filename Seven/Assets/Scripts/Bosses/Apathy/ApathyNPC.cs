@@ -18,6 +18,16 @@ public class ApathyNPC : Interactable
         " currently happening.")]
     public GameObject sceneTransition;
 
+    [Header("Music")]
+    [Tooltip("The ambience that plays while not fighting Apathy if it is still alive.")]
+    public AudioClip prefightAmbiance;
+
+    [Tooltip("The ambience that plays while not fighting Apathy if it isn't alive anymore.")]
+    public AudioClip postfightAmbiance;
+
+    [Tooltip("The ambience that plays while fighting Apathy.")]
+    public AudioClip fightAmbiance;
+
     //whether or not the player has started the fight in that particular instance
     //of the apathy room
     private bool fightStarted = false;
@@ -32,12 +42,18 @@ public class ApathyNPC : Interactable
     //the game save manager
     private GameSaveManager manager;
 
+    //this object's audiosource
+    private AudioSource audiosource;
+
     //METHODS--------------------------------------------------------------------------------------
     // Start is called before the first frame update
     void Start()
     {
         //save the gamestate manager
         manager = GameObject.Find("GameSaveManager")?.GetComponent<GameSaveManager>();
+
+        //save the audio source
+        audiosource = this.gameObject.GetComponent<AudioSource>();
 
         /*save whether or not the fight has been abandoned. If the sin flag is set, this is the
         case.*/
@@ -54,10 +70,14 @@ public class ApathyNPC : Interactable
             //apathyObj.SetActive(false);
             Destroy(apathyObj);
             prop.SetActive(false);
+
             var abilityPickup = Instantiate(abilityDropObject, Vector3.zero, Quaternion.identity)
                 .GetComponent<AbilityPickup>();
             abilityPickup.gameSaveManager = manager;
             abilityPickup.gameSaveAbilityPickupIndex = 9;
+
+            //also do post-fight music
+            SetMusic(postfightAmbiance);
 
             return;
         }
@@ -68,6 +88,9 @@ public class ApathyNPC : Interactable
             Destroy(apathyObj);
             prop.SetActive(false);
 
+            //also do post-fight music
+            SetMusic(postfightAmbiance);
+
             return;
         }
 
@@ -76,6 +99,8 @@ public class ApathyNPC : Interactable
         //the player actually starts the fight.
         manager.setBoolValue(true, 11);
 
+        //turn on prefight music
+        SetMusic(prefightAmbiance);
     }
 
     // Update is called once per frame
@@ -119,6 +144,8 @@ public class ApathyNPC : Interactable
         manager.setBoolValue(false, 11);
         //Remove the props from the room
         prop.SetActive(false);
+        //turn on the fight music
+        SetMusic(fightAmbiance);
         //flag the fight as started
         fightStarted = true;
 
@@ -153,6 +180,9 @@ public class ApathyNPC : Interactable
         //bring back the scene transition
         sceneTransition.SetActive(true);
 
+        //turn on the postfight music
+        SetMusic(postfightAmbiance);
+
         //mark the fight as completed
         //ApathyNPC.fightCompleted = true;
         manager.setBoolValue(true, 12);
@@ -168,6 +198,14 @@ public class ApathyNPC : Interactable
             new DialogueMenu.TestDelegate( () => EngageFight() ), 
             false
         );
+    }
+
+    //Immediately switches the audio source to start playing this clip
+    void SetMusic(AudioClip clip)
+    {
+        audiosource.Stop();
+        audiosource.clip = clip;
+        audiosource.Play();
     }
 }
 
