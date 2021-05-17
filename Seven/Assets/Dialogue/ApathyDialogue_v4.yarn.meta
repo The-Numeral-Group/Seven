@@ -1,0 +1,60 @@
+fileFormatVersion: 2
+guid: 4defa66d2eba6bc4188c5c3a64c37164
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: en-US
+  stringIDs:
+  - NewYarnScript-Opening_Scene-0
+  - NewYarnScript-Opening_Scene-1
+  - NewYarnScript-Opening_Scene-2
+  - NewYarnScript-Opening_Scene-3
+  - NewYarnScript-Opening_Scene-4
+  - NewYarnScript-Opening_Scene-5
+  - NewYarnScript-Opening_Scene-6
+  - NewYarnScript-Opening_Scene-7
+  - NewYarnScript-Opening_Scene-8
+  - NewYarnScript-Opening_Scene-9
+  - NewYarnScript-Opening_Scene-10
+  - NewYarnScript-Opening_Scene-11
+  - NewYarnScript-Opening_Scene-12
+  - NewYarnScript-Opening_Scene-13
+  - NewYarnScript-Opening_Scene-14
+  - NewYarnScript-Opening_Scene-15
+  - NewYarnScript-Opening_Scene-16
+  - NewYarnScript-Opening_Scene-17
+  - NewYarnScript-Opening_Scene-18
+  - NewYarnScript-Opening_Scene-19
+  - NewYarnScript-Opening_Scene-20
+  - NewYarnScript-Opening_Scene-21
+  - NewYarnScript-Opening_Scene-22
+  - NewYarnScript-Opening_Scene-23
+  - NewYarnScript-Opening_Scene-24
+  - NewYarnScript-Opening_Scene-25
+  - NewYarnScript-Apathy_Win-26
+  - NewYarnScript-Apathy_Win-27
+  - NewYarnScript-Apathy_Win-28
+  - NewYarnScript-Apathy_Win-29
+  - NewYarnScript-Apathy_Win-30
+  - NewYarnScript-Apathy_Win-31
+  - NewYarnScript-Apathy_Win-32
+  - NewYarnScript-Apathy_Win-33
+  - NewYarnScript-Apathy_Win-34
+  - NewYarnScript-Apathy_Defeat-35
+  - NewYarnScript-Apathy_Defeat-36
+  - NewYarnScript-Apathy_Defeat-37
+  - NewYarnScript-Apathy_Defeat-38
+  - NewYarnScript-Transition-39
+  - NewYarnScript-Transition-40
+  - NewYarnScript-Transition-41
+  - NewYarnScript-Transition-42
+  compilationStatus: 1
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: 
+  baseLanguage: {fileID: 7128917941130120860, guid: 4defa66d2eba6bc4188c5c3a64c37164, type: 3}
+  localizations: []
