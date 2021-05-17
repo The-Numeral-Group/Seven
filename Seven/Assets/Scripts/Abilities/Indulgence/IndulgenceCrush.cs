@@ -70,7 +70,18 @@ public class IndulgenceCrush : ActorAbilityFunction<Actor, int>
         var actorColliders = this.user.gameObject.GetComponents<Collider2D>();
         foreach(var actorCollider in actorColliders)
         {
-            actorCollider.enabled = value;
+            if (actorCollider.gameObject.activeSelf)
+            {
+                actorCollider.enabled = value;
+            }
+        }
+        var childColliders = this.user.gameObject.GetComponentsInChildren<Collider2D>();
+        foreach(var actorCollider in childColliders)
+        {
+            if (actorCollider.gameObject.activeSelf)
+            {
+                actorCollider.enabled = value;
+            }
         }
     }
     public override void Invoke(ref Actor user)
@@ -203,7 +214,7 @@ public class IndulgenceCrush : ActorAbilityFunction<Actor, int>
         this.isFinished = true;
     }
 
-    /*void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerEnter2D(Collider2D collider)
     {
         if (this.isFinished || collider.gameObject != abilityTarget.gameObject || !hasLanded)
         {
@@ -223,5 +234,5 @@ public class IndulgenceCrush : ActorAbilityFunction<Actor, int>
             }
             enemyHealth.takeDamage(1);
         }
-    }*/
+    }
 }

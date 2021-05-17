@@ -105,6 +105,20 @@ public class IndulgenceCharge : ActorAbilityFunction<Actor, int>
     {
         if (!isFinished && isCharging)
         {
+            if (collider.gameObject.tag == "Environment")
+            {
+                isCharging = false;
+                Camera.main.GetComponent<BaseCamera>().Shake(2.0f, 0.2f);
+                this.user.myMovement.DragActor(Vector2.zero);
+                hasCollided = true;
+            }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (!isFinished && isCharging)
+        {
             if (collider.gameObject.tag == "Player")
             {
                 var enemyHealth = collider.gameObject.GetComponent<ActorHealth>();
@@ -121,13 +135,6 @@ public class IndulgenceCharge : ActorAbilityFunction<Actor, int>
                     }
                     enemyHealth.takeDamage(1);
                 }
-            }
-            if (collider.gameObject.tag == "Environment")
-            {
-                isCharging = false;
-                Camera.main.GetComponent<BaseCamera>().Shake(2.0f, 0.2f);
-                this.user.myMovement.DragActor(Vector2.zero);
-                hasCollided = true;
             }
         }
     }

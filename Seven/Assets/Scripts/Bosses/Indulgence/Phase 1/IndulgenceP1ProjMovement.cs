@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class IndulgenceP1ProjMovement : ActorMovement
 {
     //How long this projectile will last for. Must be greated thatn 0.
@@ -19,6 +20,7 @@ public class IndulgenceP1ProjMovement : ActorMovement
     public bool makeStatic = false;
     public Collider2D projCollider;
     public Rigidbody2D rb;
+    public SpriteRenderer sp;
     public string targetTag = "Player";
 
     protected override void Awake()
@@ -45,6 +47,7 @@ public class IndulgenceP1ProjMovement : ActorMovement
     protected override void Start()
     {
         base.Start();
+        StartCoroutine(BlinkRed());
     }
 
     //Similar to base class dragActor but calls a coroutine which will stop the projectile.
@@ -104,6 +107,24 @@ public class IndulgenceP1ProjMovement : ActorMovement
             {
                 Destroy(this.gameObject);
             }
+        }
+    }
+
+    IEnumerator BlinkRed()
+    {
+        Color defaultColor = sp.color;
+        Color modifiedColor = sp.color;
+        while(true)
+        {
+            modifiedColor.r = 1;
+            modifiedColor.g = 0;
+            modifiedColor.b = 0;
+            sp.color = modifiedColor;
+            yield return new WaitForSeconds(0.3f);
+            modifiedColor.r = defaultColor.r;
+            modifiedColor.g = defaultColor.g;
+            modifiedColor.b = defaultColor.b;
+            sp.color = modifiedColor;yield return new WaitForSeconds(0.3f);
         }
     }
 

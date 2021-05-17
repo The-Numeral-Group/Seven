@@ -174,4 +174,5 @@ MonoBehaviour:
   makeStatic: 0
   projCollider: {fileID: 4678962615504643894}
   rb: {fileID: 4678962615504643895}
+  sp: {fileID: 4678962615504643888}
   targetTag: Player

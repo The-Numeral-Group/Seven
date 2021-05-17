@@ -13,7 +13,6 @@ public class IndulgenceP1Actor : Actor
     Actor self;
     ActorAbility currAbility;
     public State currState;
-    public Collider2D wallCollider;
     bool redirectingPath = false;
     int layerMask;
     int sinHealthTriggerIndex;
@@ -82,8 +81,6 @@ public class IndulgenceP1Actor : Actor
             {
                 target = playerObject.GetComponent<Actor>();
                 Collider2D tCollider = target.GetComponent<Collider2D>();
-                //This does not seem to be working.
-                Physics2D.IgnoreCollision(wallCollider, tCollider);
             }
             else
             {

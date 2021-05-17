@@ -36,7 +36,18 @@ public class IndulgenceWallCrawl : ActorAbilityFunction<Actor, int>
         var actorColliders = this.user.gameObject.GetComponents<Collider2D>();
         foreach(var actorCollider in actorColliders)
         {
-            actorCollider.enabled = value;
+            if (actorCollider.gameObject.activeSelf)
+            {
+                actorCollider.enabled = value;
+            }
+        }
+        var childColliders = this.user.gameObject.GetComponentsInChildren<Collider2D>();
+        foreach(var actorCollider in childColliders)
+        {
+            if (actorCollider.gameObject.activeSelf)
+            {
+                actorCollider.enabled = value;
+            }
         }
     }
 
