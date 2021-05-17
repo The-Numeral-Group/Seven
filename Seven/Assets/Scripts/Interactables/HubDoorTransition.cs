@@ -42,7 +42,7 @@ public class HubDoorTransition : Interactable
             return;
         }
 
-        if (this.gameSaveManagerScript.getBoolValue(bossDefeatedIndex))
+        if (this.gameSaveManagerScript.getBoolValue(!bossDefeatedIndex))
         {
             // This will be used once opening cutscene has been implemented.
             if (this.gameSaveManagerScript.getBoolValue(bossID))
