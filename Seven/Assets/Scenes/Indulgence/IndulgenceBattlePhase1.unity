@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 180689935}
   loop: 1
-  loopStartTime: 0
+  loopStartTime: 13.343
 --- !u!82 &180689935
 AudioSource:
   m_ObjectHideFlags: 0
