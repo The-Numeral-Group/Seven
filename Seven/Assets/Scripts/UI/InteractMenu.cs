@@ -9,14 +9,18 @@ public class InteractMenu : BaseUI
     public GameObject target;
     [SerializeField]
     RectTransform canvasTransform = null;
-    [SerializeField]
+    
+    /*[SerializeField]
     RectTransform uiElementTextTransform = null;
-
     public Vector2 uiElementTextOffset { get; set;}
 
     [SerializeField]
     RectTransform uiElementImageTransform = null;
-    public Vector2 uiElementImageOffset { get; set;}
+    public Vector2 uiElementImageOffset { get; set;}*/
+
+    [SerializeField]
+    RectTransform interactUIElement = null;
+    public Vector2 interactUIElementOffset;
 
     protected override void Awake()
     {
@@ -31,7 +35,7 @@ public class InteractMenu : BaseUI
     {
         if (target)
         {
-            // Add Instruction Text (Image)
+            /*// Add Instruction Text (Image)
             Vector3 textOffset = uiElementTextOffset;
             Vector2 viewPortPosition = 
                 Camera.main.WorldToViewportPoint(target.transform.position + textOffset);
@@ -47,7 +51,16 @@ public class InteractMenu : BaseUI
             proportionalPosition = new Vector2(
                 viewPortPosition.x * canvasTransform.sizeDelta.x,
                 viewPortPosition.y * canvasTransform.sizeDelta.y);
-            uiElementImageTransform.localPosition = proportionalPosition;
+            uiElementImageTransform.localPosition = proportionalPosition;*/
+
+            Vector3 uiOffset = interactUIElementOffset;
+            Vector2 viewPortPosition = 
+                Camera.main.WorldToViewportPoint(target.transform.position + uiOffset);
+            Vector2 proportionalPosition = new Vector2(
+                viewPortPosition.x * canvasTransform.sizeDelta.x,
+                viewPortPosition.y * canvasTransform.sizeDelta.y
+            );
+            interactUIElement.localPosition = proportionalPosition;
         }
     }
 

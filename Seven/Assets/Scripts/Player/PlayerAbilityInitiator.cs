@@ -109,7 +109,7 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
 
     void OnNavigateRightAbility()
     {
-        if (selectedAbility != null || selectedAbility.getIsFinished())
+        if (selectedAbility == null || selectedAbility.getIsFinished())
         {
             MenuManager.ABILITY_MENU.SelectRightAbility();
         }
