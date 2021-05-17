@@ -159,7 +159,11 @@ public class WrathChainPull : ActorAbilityFunction<Actor, int>
         if (!pulled)
         {
             pulled = true;
+            // Lock player's movement
             StartCoroutine(player.GetComponent<Actor>().myMovement.LockActorMovement(this.stunnedDuration));
+
+            // Turn off player's dodge ability.
+            player.GetComponent<PlayerAbilityInitiator>().canDodge = false;
 
             yield return new WaitForSeconds(this.stunnedDuration / 2);
 
@@ -172,6 +176,9 @@ public class WrathChainPull : ActorAbilityFunction<Actor, int>
             yield return new WaitForSeconds(this.stunnedDuration / 2);
 
             player.GetComponent<Actor>().myMovement.DragActor(Vector2.zero);
+
+            // Turn on player's dodge ability.
+            player.GetComponent<PlayerAbilityInitiator>().canDodge = true;
         }
     }
 }

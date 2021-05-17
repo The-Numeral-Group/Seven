@@ -61,11 +61,11 @@ public class WrathP1Actor : Actor
 
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (currAbility != null)
         {
-            StartCoroutine(checkIfAbilityDone());
+            checkIfAbilityDone();
         }
 
         if (currentState == State.WALK)
@@ -74,7 +74,7 @@ public class WrathP1Actor : Actor
             EvaluateState(currentState);
         }
     }
-    void EvaluateState(State state)
+    private void EvaluateState(State state)
     {
         switch (state)
         {
@@ -99,7 +99,7 @@ public class WrathP1Actor : Actor
                 break;
 
             case State.ABILITY_SWORDRUSH:
-                swordRush.Invoke(ref wrath);
+                swordRush.Invoke(ref wrath, player);
                 break;
 
             default:
@@ -108,7 +108,7 @@ public class WrathP1Actor : Actor
         }
     }
 
-    void stepTowardsPlayer()
+    private void stepTowardsPlayer()
     {
         var myPos = this.gameObject.transform.position;
         var playerPos = player.gameObject.transform.position;
@@ -118,7 +118,13 @@ public class WrathP1Actor : Actor
         this.myMovement.MoveActor(directionToPlayer);
     }
 
-    IEnumerator checkIfAbilityDone()
+    private IEnumerator startDelayBeforeAttack()
+    {
+        yield return new WaitForSeconds(3.0f);
+        canAttack = true;
+    }
+
+    private void checkIfAbilityDone()
     {
         // If the currAbility has finished, reset.
         if (currAbility.getIsFinished())
@@ -134,13 +140,12 @@ public class WrathP1Actor : Actor
             else // Pool Type B ability has finished. Switch to A but wait for 3 seconds, then allow wrath to attack. 
             {
                 poolType = 'A';
-                yield return new WaitForSeconds(3.0f);
-                canAttack = true;
+                StartCoroutine(startDelayBeforeAttack());
             }
         }
     }
 
-    void decideNextState()
+    private void decideNextState()
     {
         if(canAttack)
         {
@@ -174,9 +179,8 @@ public class WrathP1Actor : Actor
             }
             else // Draw an ability from Pool B
             {
-                // int abilityType = (int)Random.Range(0, 2);
-                // TESTING SWORD ATTACK
-                int abilityType = 0;
+                int abilityType = (int)Random.Range(0, 2);
+
                 switch (abilityType)
                 {
                     case 0:

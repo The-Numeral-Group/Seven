@@ -14,4 +14,9 @@ public class WrathAnimationHandler : ActorAnimationHandler
     {
         Animator.SetTrigger("Wrath_SwordAttack");
     }
+
+    public void animateSwordRush()
+    {
+        Animator.SetTrigger("Wrath_SwordRush");
+    }
 }

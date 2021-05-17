@@ -24,6 +24,9 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     //internal VFX manager
     private PlayerAbilityVFX VFXManager;
 
+    // If player can dodge or not. 
+    public bool canDodge { get; set; }
+
     void Awake()
     {
         //Manual initialization, 'cause I (Thomas) have come to realize it can't be done automatically
@@ -42,6 +45,8 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
 
         this.abilities.Add("" + nameof(playerInteract), playerInteract);
         AbilityRegister.PLAYER_INTERACT = "" + nameof(playerInteract);
+
+        this.canDodge = true;
 
         //also construct a VFX manager
         //VFXManager = new PlayerAbilityVFX(this);
@@ -76,7 +81,10 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
 
     public void DoDodge()
     {
-        playerDodge.Invoke(ref userActor);
+        if(canDodge)
+        {
+            playerDodge.Invoke(ref userActor);
+        }
     }
 
     public void OnInteract()

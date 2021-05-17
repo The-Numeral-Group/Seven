@@ -12,7 +12,6 @@ public class WrathSludge : ActorAbilityFunction<Actor, int>
         {
             isFinished = false;
             InternInvoke(user);
-            //StartCoroutine(coolDown(cooldownPeriod));
         }
     }
     protected override int InternInvoke(params Actor[] args)

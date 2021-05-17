@@ -2,17 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WrathChainCollision : MonoBehaviour
+public class WrathRushCollision : MonoBehaviour
 {
-    private Actor player;
-    private GameObject wrath;
-
-    private void Awake()
-    {
-        var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
-        player = playerObject.GetComponent<Actor>();
-        wrath = GameObject.FindGameObjectsWithTag("Boss")?[0];
-    }
+    public int damage;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,7 +20,7 @@ public class WrathChainCollision : MonoBehaviour
                 {
                     return;
                 }
-                this.wrath.SendMessage("onChainCollision");
+                playerHealth.takeDamage(this.damage);
             }
         }
     }

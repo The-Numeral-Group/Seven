@@ -1,25 +1,16 @@
 fileFormatVersion: 2
-guid: 22a028065107c4b409496fb639ab3917
+guid: bb8054fd1d9f30f43bc0fa431c10635d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 143896338361316068
-    second: PCsouthRun_0
+      213: 5668734868937085890
+    second: wrath_rush(temp)_0
   - first:
-      213: -1783452442294023424
-    second: PCsouthRun_1
+      213: 2544359434462194283
+    second: wrath_rush(temp)_1
   - first:
-      213: -7592636112743249569
-    second: PCsouthRun_2
-  - first:
-      213: -185585373531860649
-    second: PCsouthRun_3
-  - first:
-      213: 7566339996242810345
-    second: PCsouthRun_4
-  - first:
-      213: -6420396546143223124
-    second: PCsouthRun_5
+      213: 6901916874598598077
+    second: wrath_rush(temp)_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -119,127 +110,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PCsouthRun_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 275
-        width: 195
-        height: 275
-      alignment: 9
-      pivot: {x: 0.5063958, y: 0.69047606}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4e2718415f83ff100800000000000000
-      internalID: 143896338361316068
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PCsouthRun_1
-      rect:
-        serializedVersion: 2
-        x: 195
-        y: 275
-        width: 195
-        height: 275
-      alignment: 9
-      pivot: {x: 0.49680206, y: 0.6678005}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 00b034fe377ef37e0800000000000000
-      internalID: -1783452442294023424
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PCsouthRun_2
-      rect:
-        serializedVersion: 2
-        x: 390
-        y: 275
-        width: 195
-        height: 275
-      alignment: 9
-      pivot: {x: 0.5095936, y: 0.7267572}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f59c227dea981a690800000000000000
-      internalID: -7592636112743249569
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PCsouthRun_3
+      name: wrath_rush(temp)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 195
-        height: 275
-      alignment: 9
-      pivot: {x: 0.49680224, y: 0.7018141}
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7511027061bac6df0800000000000000
-      internalID: -185585373531860649
+      spriteID: 2c39ddc34546bae40800000000000000
+      internalID: 5668734868937085890
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PCsouthRun_4
+      name: wrath_rush(temp)_1
       rect:
         serializedVersion: 2
-        x: 195
+        x: 40
         y: 0
-        width: 195
-        height: 275
-      alignment: 9
-      pivot: {x: 0.5127914, y: 0.6632654}
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e512ed632a010960800000000000000
-      internalID: 7566339996242810345
+      spriteID: b6a6800dc616f4320800000000000000
+      internalID: 2544359434462194283
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PCsouthRun_5
+      name: wrath_rush(temp)_2
       rect:
         serializedVersion: 2
-        x: 389
-        y: 1
-        width: 195
-        height: 275
-      alignment: 9
-      pivot: {x: 0.5127916, y: 0.7199547}
+        x: 80
+        y: 0
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca20df5ab5b26e6a0800000000000000
-      internalID: -6420396546143223124
+      spriteID: db549bb54d888cf50800000000000000
+      internalID: 6901916874598598077
       vertices: []
       indices: 
       edges: []
