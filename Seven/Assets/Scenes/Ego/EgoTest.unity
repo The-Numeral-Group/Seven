@@ -1005,7 +1005,7 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 656284017}
+  Close: {fileID: 656284030}
   Far: {fileID: 656284019}
   Special: {fileID: 656284030}
 --- !u!114 &656284024
@@ -1121,6 +1121,7 @@ MonoBehaviour:
   lightMesh: {fileID: 1774437467}
   lightPrefab: {fileID: 7930759915255675865, guid: 37edfb677fba320ee86114d2d1cc8017, type: 3}
   lightTime: 0.5
+  debugDelay: 0.6
 --- !u!224 &668382802 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6919360707961699820, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}

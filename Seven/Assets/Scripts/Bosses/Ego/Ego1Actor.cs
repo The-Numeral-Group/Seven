@@ -93,16 +93,16 @@ public class Ego1Actor : Actor
     }
 
     // fixed update is called every phyiscs sim tick
-    /*void FixedUpdate()
+    void FixedUpdate()
     {
         //move Ego's face anchor towards the player
-        DoActorUpdateFacing(
+        /*DoActorUpdateFacing(
             (player.gameObject.transform.position - this.gameObject.transform.position).normalized
-        );
+        );*/
 
         //update Ego's animations
         this.myAnimationHandler.animateWalk();
-    }*/
+    }
 
     /*Ego's computational driver. Initially I (Thomas) intended to recycle PrideActor, but I like
     the coroutine-based behaviours so much that I'm doing it again.

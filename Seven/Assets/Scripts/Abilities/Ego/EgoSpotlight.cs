@@ -14,6 +14,9 @@ public class EgoSpotlight : ActorAbilityCoroutine<int>
     [Tooltip("How much time the user must spend in the light before recieving its effects.")]
     public float lightTime;
 
+    [Tooltip("[DEBUG] How long the user should be stuck in place when they grab the spotlight")]
+    public float debugDelay = 0.25f;
+
     //an internal reference to the currently active spotlight 
     private GameObject spotlight;
 
@@ -22,6 +25,9 @@ public class EgoSpotlight : ActorAbilityCoroutine<int>
 
     //internal timer for measuring how long the user has been in the light
     private float lTimer = 0f;
+
+    //internal flag for whether or noth the user of this ability obtained the spotlight
+    private bool userObtained = false;
 
     //METHODS--------------------------------------------------------------------------------------
     // Start is called before the first frame update
@@ -33,6 +39,9 @@ public class EgoSpotlight : ActorAbilityCoroutine<int>
 
     protected override IEnumerator InternCoroutine(params int[] args)
     {
+        //reset obtainment flag
+        userObtained = false;
+
         //represents the area of the lMesh
         Bounds meshBound = lMesh.bounds;
 
@@ -64,6 +73,30 @@ public class EgoSpotlight : ActorAbilityCoroutine<int>
 
             yield return null;
         }
+
+        //give the user a moment to think
+        yield return null;
+
+        Debug.Log($"user obtained: {userObtained}");
+
+        /*//if the user got the spotlight AND they have Ego1's animator...
+        if(userObtained && user.myAnimationHandler is Ego1AnimationHandler)
+        {
+            //let the user do a flex animation before the ability ends
+            
+        }*/
+
+        if(!userObtained) yield break;
+
+        ///DEBUG
+        //normally you'd want to make the user wait for the animation to finish,
+        //but that just isn't working right now
+        user.myMovement.MoveActor(Vector2.zero);
+        var flex = user.myAnimationHandler.TrySetTrigger("ego_flex");
+        yield return new WaitForSeconds(debugDelay);
+        ///DEBUG
+
+        Debug.Log("spotlight finished");
     }
 
     /*an additional collision detector that ignores everything that isn't the spotlight (or 
@@ -112,6 +145,8 @@ public class EgoSpotlight : ActorAbilityCoroutine<int>
         {
             lTimer = 0f;
 
+            userObtained = true;
+
             //We use send message for consistency, that's how OnInteract is designed to be used
             //If the message has no reciever, an error will be throw.
             collided.gameObject.SendMessage
@@ -119,8 +154,6 @@ public class EgoSpotlight : ActorAbilityCoroutine<int>
                 "OnAnyInteract",
                 user
             );
-
-            this.user.gameObject.SendMessage("animateFLEX", SendMessageOptions.DontRequireReceiver);
         }
     }
 }
