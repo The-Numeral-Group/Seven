@@ -18,7 +18,7 @@ public class WrathP1Actor : Actor
     private ActorAbility swordRush;
 
     private char poolType = 'A';
-    private bool canAttack = true;
+    private bool canAttack = false;
 
     public enum State
     {
@@ -54,6 +54,16 @@ public class WrathP1Actor : Actor
         wrath = this.gameObject.GetComponent<WrathP1Actor>();
         currentState = State.WALK;
         currAbility = null;
+
+        StartCoroutine(introDelay());
+    }
+
+    // Delay before Wrath can start attacking.
+    // This allows some abilities to call their Start function and get the componenets they need.
+    private IEnumerator introDelay()
+    {
+        yield return new WaitForSeconds(1.0f);
+        canAttack = true;
     }
 
     public override void DoActorDeath()
@@ -91,7 +101,7 @@ public class WrathP1Actor : Actor
                 break;
 
             case State.ABILITY_SLUDGE:
-                sludge.Invoke(ref wrath);
+                sludge.Invoke(ref wrath, player);
                 break;
 
             case State.ABILITY_SWORDATTACK:
@@ -155,8 +165,8 @@ public class WrathP1Actor : Actor
                 // Determines which ability Wrath will perform
 
                 //int abilityType = (int)Random.Range(0, 3);
-                // TESTING CHAINPULL
-                int abilityType = 0;
+                // TESTING FIREWALL
+                int abilityType = 1;
 
                 switch (abilityType)
                 {

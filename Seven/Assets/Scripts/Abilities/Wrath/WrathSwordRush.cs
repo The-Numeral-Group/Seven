@@ -90,7 +90,6 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
         IEnumerator FailSafeRoutine = FailSafe();
         for (int i = 0; i < chargeCount; i++)
         {
-            Debug.Log(i);
             StopCoroutine(FailSafeRoutine);
             hasCollided = false;
             ChargeRoutine = Charge();
@@ -102,7 +101,6 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
             yield return new WaitUntil(() => hasCollided);
         }
         StopCoroutine(FailSafeRoutine);
-        Debug.Log("STOPPED");
         FinishAbilitySequence();
 
     }

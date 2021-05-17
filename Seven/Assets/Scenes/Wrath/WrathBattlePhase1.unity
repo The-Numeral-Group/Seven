@@ -665,10 +665,10 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.35}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -680,13 +680,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.24499685, y: 0.34667486}
-      - {x: 0.0117384195, y: 0.34340248}
-      - {x: -0.24097113, y: 0.34971932}
-      - {x: -0.49616396, y: 0.1046825}
-      - {x: -0.2739887, y: -0.12553322}
-      - {x: 0.27256912, y: -0.13096325}
-      - {x: 0.50404453, y: 0.08980936}
+    - - {x: -2.009907, y: -0.017674923}
+      - {x: -4.1312904, y: -2.184286}
+      - {x: -2.3432739, y: -3.9892507}
+      - {x: 2.2923903, y: -4.0910177}
+      - {x: 4.1213417, y: -2.1571555}
+      - {x: 2.095941, y: -0.12349373}
 --- !u!114 &802845981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3004,7 +3003,7 @@ Transform:
   m_GameObject: {fileID: 2135220256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.05, y: 3.69, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1058415253}
   - {fileID: 1367552312}
@@ -3027,8 +3026,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.4, y: 0.4}
+    pivot: {x: 0.5, y: 1}
+    oldSize: {x: 8.333333, y: 5.8333335}
     newSize: {x: 0.2, y: 0.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3150,7 +3149,12 @@ MonoBehaviour:
   cooldownPeriod: 0
   abilityName: WrathSludge
   invokeBlankWhenBadArguments: 1
-  duration: 2
+  pairCount: 2
+  projectile: {fileID: 8453795746997737593, guid: 8533f31204304b74da62512b80989022, type: 3}
+  marker: {fileID: 203477084623807014, guid: d16cc8cac92a68940927c1dba12c0b35, type: 3}
+  leadMarkerDistance: 2
+  initialWaitTime: 3
+  shotFlightTime: 1
 --- !u!114 &2135220263
 MonoBehaviour:
   m_ObjectHideFlags: 0
