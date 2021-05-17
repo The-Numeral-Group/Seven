@@ -24,7 +24,7 @@ public class CorruptedData : ActorAbilityFunction<Actor, int>
     {
         this.user = user;
         //by default, Invoke just does InternInvoke with no arguments
-        if(usable && this.isFinished && user.myHealth.currentHealth > 1)
+        if(usable && this.isFinished)// && user.myHealth.currentHealth > 1)
         {
             isFinished = false;
             InternInvoke(new Actor[0]);
@@ -39,9 +39,9 @@ public class CorruptedData : ActorAbilityFunction<Actor, int>
 
     protected override int InternInvoke(params Actor[] args)
     {
-        Vector2 originalDirection = user.faceAnchor.localPosition;
+        Vector2 originalDirection = user.faceAnchor.localPosition != Vector3.zero ?  user.faceAnchor.localPosition : Vector3.up;
         int directionMultiplier = 1;
-        user.myHealth.takeDamage(1f, false, true);
+        //user.myHealth.takeDamage(1f, false, true);
         for (int i = 0; i < numProjectiles; i++)
         {
             if (i % 2 == 1)

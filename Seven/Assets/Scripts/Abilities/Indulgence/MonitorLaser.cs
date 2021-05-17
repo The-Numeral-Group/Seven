@@ -59,6 +59,7 @@ public class MonitorLaser : ActorAbilityFunction<Actor, int>
     {
         StopCoroutine(DetectTargetRoutine);
         StopCoroutine(FireBeamPTR);
+        this.laserObject.SetActive(false);
         isFinished = true;
     }
 }

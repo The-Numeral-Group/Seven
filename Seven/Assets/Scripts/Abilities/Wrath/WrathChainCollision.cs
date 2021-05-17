@@ -18,7 +18,18 @@ public class WrathChainCollision : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            this.wrath.SendMessage("testChainFunction");
+            var playerHealth = collision.gameObject.GetComponent<ActorHealth>();
+
+            if (playerHealth == null) { collision.gameObject.GetComponent<ActorWeakPoint>(); }
+
+            if (playerHealth != null)
+            {
+                if (!playerHealth.vulnerable)
+                {
+                    return;
+                }
+                this.wrath.SendMessage("onChainCollision");
+            }
         }
     }
 }

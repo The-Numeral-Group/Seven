@@ -7,6 +7,7 @@ public class IndulgenceWallCrawl : ActorAbilityFunction<Actor, int>
 {
     IndulgenceCrush indulgenceCrush;
     Actor target;
+    bool wallReached;
 
     void Start()
     {
@@ -35,7 +36,18 @@ public class IndulgenceWallCrawl : ActorAbilityFunction<Actor, int>
         var actorColliders = this.user.gameObject.GetComponents<Collider2D>();
         foreach(var actorCollider in actorColliders)
         {
-            actorCollider.enabled = value;
+            if (actorCollider.gameObject.activeSelf)
+            {
+                actorCollider.enabled = value;
+            }
+        }
+        var childColliders = this.user.gameObject.GetComponentsInChildren<Collider2D>();
+        foreach(var actorCollider in childColliders)
+        {
+            if (actorCollider.gameObject.activeSelf)
+            {
+                actorCollider.enabled = value;
+            }
         }
     }
 
@@ -65,12 +77,14 @@ public class IndulgenceWallCrawl : ActorAbilityFunction<Actor, int>
         indulgenceCrush.overrideCooldown = false;
         indulgenceCrush.useTrackingCrush = false;
         isFinished = true;
+        wallReached = false;
     }
 
-    void OnCollisionEnter2D(Collision2D collider)
+    void OnCollisionStay2D(Collision2D collider)
     {
-        if (!isFinished && collider.gameObject.tag == "Environment")
+        if (!isFinished && collider.gameObject.tag == "Environment" && !wallReached)
         {
+            wallReached = true;
             SetupColliders(false);
             StartCoroutine(CheckForFinish());
         }

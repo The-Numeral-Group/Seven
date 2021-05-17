@@ -624,6 +624,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2046270003705110988, guid: 7d585d1a118c2b24cb1f9e1c4722e250, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1750435999}
     - target: {fileID: 2046270003705110991, guid: 7d585d1a118c2b24cb1f9e1c4722e250, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -712,6 +716,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 2046270003760093563, guid: 7d585d1a118c2b24cb1f9e1c4722e250, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2046270004437777524, guid: 7d585d1a118c2b24cb1f9e1c4722e250, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
@@ -748,24 +756,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1236848507}
-    - target: {fileID: 2046270004730279699, guid: 7d585d1a118c2b24cb1f9e1c4722e250, type: 3}
-      propertyPath: m_Text
-      value: 'Commands:
-
-        WASD - Move/Navigate UI
-
-        Left Shift -Interact
-
-        Space
-        - Dodge
-
-        Enter - Attack/Confirm
-
-        Q/E - Select abilities
-
-        \
-        - Activate Ability'
-      objectReference: {fileID: 0}
     - target: {fileID: 2046270004789097814, guid: 7d585d1a118c2b24cb1f9e1c4722e250, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
@@ -780,6 +770,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2046270004789097814, guid: 7d585d1a118c2b24cb1f9e1c4722e250, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2972710441070716580, guid: 7d585d1a118c2b24cb1f9e1c4722e250, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2972710441070716580, guid: 7d585d1a118c2b24cb1f9e1c4722e250, type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

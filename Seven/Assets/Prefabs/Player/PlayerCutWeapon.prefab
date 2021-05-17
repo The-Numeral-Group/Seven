@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6267475182251316487}
   m_Layer: 15
   m_Name: East
-  m_TagString: Untagged
+  m_TagString: Player Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 21385084560543136}
   m_Layer: 15
   m_Name: South
-  m_TagString: Untagged
+  m_TagString: Player Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 2139552009093571572}
   m_Layer: 15
   m_Name: SouthWest
-  m_TagString: Untagged
+  m_TagString: Player Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 4500116111874064444}
   m_Layer: 15
   m_Name: West
-  m_TagString: Untagged
+  m_TagString: Player Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -452,7 +452,7 @@ GameObject:
   - component: {fileID: 9120761617124522538}
   m_Layer: 15
   m_Name: North
-  m_TagString: Untagged
+  m_TagString: Player Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 697691134927003733}
   m_Layer: 15
   m_Name: SouthEast
-  m_TagString: Untagged
+  m_TagString: Player Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -641,7 +641,7 @@ GameObject:
   - component: {fileID: 3523682130030560057}
   m_Layer: 15
   m_Name: SpinAttackBox
-  m_TagString: Untagged
+  m_TagString: Player Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -728,7 +728,7 @@ GameObject:
   - component: {fileID: 245325442453488592}
   m_Layer: 15
   m_Name: NorthWest
-  m_TagString: Untagged
+  m_TagString: Player Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -822,7 +822,7 @@ GameObject:
   - component: {fileID: 6823715043704979000}
   m_Layer: 15
   m_Name: NorthEast
-  m_TagString: Untagged
+  m_TagString: Player Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

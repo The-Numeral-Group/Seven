@@ -45,6 +45,7 @@ public class IndulgenceP2Actor : Actor
     {
         // Save Positions
         var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
+        gameSaveManager.GetComponent<GameSaveManager>().setBoolValue(true, 18);
         this.gameSaveManager.GetComponent<GameSaveManager>().setVectorValue(playerObject.transform.position, 2);
         this.gameSaveManager.GetComponent<GameSaveManager>().setVectorValue(transform.position, 6);
 

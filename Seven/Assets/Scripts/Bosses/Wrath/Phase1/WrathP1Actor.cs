@@ -18,7 +18,7 @@ public class WrathP1Actor : Actor
     private ActorAbility swordRush;
 
     private char poolType = 'A';
-    private bool canAttack = true;
+    private bool canAttack = false;
 
     public enum State
     {
@@ -54,6 +54,16 @@ public class WrathP1Actor : Actor
         wrath = this.gameObject.GetComponent<WrathP1Actor>();
         currentState = State.WALK;
         currAbility = null;
+
+        StartCoroutine(introDelay());
+    }
+
+    // Delay before Wrath can start attacking.
+    // This allows some abilities to call their Start function and get the componenets they need.
+    private IEnumerator introDelay()
+    {
+        yield return new WaitForSeconds(1.0f);
+        canAttack = true;
     }
 
     public override void DoActorDeath()
@@ -61,11 +71,11 @@ public class WrathP1Actor : Actor
 
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (currAbility != null)
         {
-            StartCoroutine(checkIfAbilityDone());
+            checkIfAbilityDone();
         }
 
         if (currentState == State.WALK)
@@ -74,7 +84,7 @@ public class WrathP1Actor : Actor
             EvaluateState(currentState);
         }
     }
-    void EvaluateState(State state)
+    private void EvaluateState(State state)
     {
         switch (state)
         {
@@ -91,7 +101,7 @@ public class WrathP1Actor : Actor
                 break;
 
             case State.ABILITY_SLUDGE:
-                sludge.Invoke(ref wrath);
+                sludge.Invoke(ref wrath, player);
                 break;
 
             case State.ABILITY_SWORDATTACK:
@@ -99,7 +109,7 @@ public class WrathP1Actor : Actor
                 break;
 
             case State.ABILITY_SWORDRUSH:
-                swordRush.Invoke(ref wrath);
+                swordRush.Invoke(ref wrath, player);
                 break;
 
             default:
@@ -108,7 +118,7 @@ public class WrathP1Actor : Actor
         }
     }
 
-    void stepTowardsPlayer()
+    private void stepTowardsPlayer()
     {
         var myPos = this.gameObject.transform.position;
         var playerPos = player.gameObject.transform.position;
@@ -118,7 +128,13 @@ public class WrathP1Actor : Actor
         this.myMovement.MoveActor(directionToPlayer);
     }
 
-    IEnumerator checkIfAbilityDone()
+    private IEnumerator startDelayBeforeAttack()
+    {
+        yield return new WaitForSeconds(3.0f);
+        canAttack = true;
+    }
+
+    private void checkIfAbilityDone()
     {
         // If the currAbility has finished, reset.
         if (currAbility.getIsFinished())
@@ -134,13 +150,12 @@ public class WrathP1Actor : Actor
             else // Pool Type B ability has finished. Switch to A but wait for 3 seconds, then allow wrath to attack. 
             {
                 poolType = 'A';
-                yield return new WaitForSeconds(3.0f);
-                canAttack = true;
+                StartCoroutine(startDelayBeforeAttack());
             }
         }
     }
 
-    void decideNextState()
+    private void decideNextState()
     {
         if(canAttack)
         {
@@ -150,7 +165,7 @@ public class WrathP1Actor : Actor
                 // Determines which ability Wrath will perform
 
                 //int abilityType = (int)Random.Range(0, 3);
-                // TESTING CHAINPULL
+                // TESTING CHAIN
                 int abilityType = 0;
 
                 switch (abilityType)
@@ -174,7 +189,11 @@ public class WrathP1Actor : Actor
             }
             else // Draw an ability from Pool B
             {
-                int abilityType = (int)Random.Range(0, 2);
+                //int abilityType = (int)Random.Range(0, 2);
+
+                // TESTING SWORD RUSH
+                int abilityType = 1;
+
                 switch (abilityType)
                 {
                     case 0:

@@ -9,4 +9,14 @@ public class WrathAnimationHandler : ActorAnimationHandler
     {
         hostActor = GetComponent<Actor>();
     }
+
+    public void animateSwordAttack()
+    {
+        Animator.SetTrigger("Wrath_SwordAttack");
+    }
+
+    public void animateSwordRush()
+    {
+        Animator.SetTrigger("Wrath_SwordRush");
+    }
 }

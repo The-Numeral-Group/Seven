@@ -94,6 +94,9 @@ public class PauseMenu : BaseUI
     public override void Show()
     {
         base.Show();
+        var player = GameObject.FindGameObjectWithTag("Player");
+        PlayerInput pInput = player.GetComponent<PlayerInput>();
+        pInput.SwitchCurrentActionMap("UI");
         ShowSubMenu(subMenus[currentSelectedSubMenuIndex]);
         PauseGame();
     }

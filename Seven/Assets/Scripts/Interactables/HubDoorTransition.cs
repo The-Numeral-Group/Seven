@@ -7,6 +7,8 @@ public class HubDoorTransition : Interactable
 {
     [Tooltip("The ID of the bossOpening ScriptableObject.")]
     public int bossID;
+    public int bossDefeatedIndex;
+    public string postFightScene;
 
     public string openingScene;
 
@@ -40,15 +42,21 @@ public class HubDoorTransition : Interactable
             return;
         }
 
-        // This will be used once opening cutscene has been implemented.
-        if (this.gameSaveManagerScript.getBoolValue(bossID))
+        if (!this.gameSaveManagerScript.getBoolValue(bossDefeatedIndex))
         {
-            SceneManager.LoadScene(openingScene);
+            // This will be used once opening cutscene has been implemented.
+            if (this.gameSaveManagerScript.getBoolValue(bossID))
+            {
+                SceneManager.LoadScene(openingScene);
+            }
+            else
+            {
+                SceneManager.LoadScene(retryScene);
+            }
         }
         else
         {
-            SceneManager.LoadScene(retryScene);
+            SceneManager.LoadScene(postFightScene);
         }
-
     }
 }

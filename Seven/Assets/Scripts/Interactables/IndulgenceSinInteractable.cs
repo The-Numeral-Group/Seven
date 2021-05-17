@@ -5,6 +5,7 @@ using UnityEngine;
 //total consumed gets reset by the onawake function of the indulgencesinability
 public class IndulgenceSinInteractable : Interactable
 {
+    //Total consumed gets reset in indulgencesin.cs
     public static int TOTAL_CONSUMED = 0;
     public int healAmount = 1;
     public bool pickupMode { get; set;}
@@ -25,9 +26,10 @@ public class IndulgenceSinInteractable : Interactable
         player.myHealth.currentHealth = 
             player.myHealth.currentHealth + healAmount > player.myHealth.maxHealth ? 
                 player.myHealth.maxHealth : player.myHealth.currentHealth + healAmount;
-        if (TOTAL_CONSUMED > 1)
+        if (TOTAL_CONSUMED > 1 && !IndulgenceP1Actor.SIN_COMITTED)
         {
             IndulgenceP1Actor.SIN_COMITTED = true;
+            MenuManager.SIN_MENU.DisplaySin();
         }
         ShowIndicator(false);
         SetPotentialInteractable(false, player.gameObject);

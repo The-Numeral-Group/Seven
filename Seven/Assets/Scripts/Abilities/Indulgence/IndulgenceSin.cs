@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(IndulgenceCrush))]
 public class IndulgenceSin : ActorAbilityFunction<Actor, int>
 {
     public IndulgenceCrush crushAbility;
+    public float maxCorrutionVfxDistance = 5f;
+    public Volume corruptionVfx;
     public Actor dummyLocation;
     public GameObject indulgenceSinObject;
     public float rangeToDisengageAttack = 5f;
@@ -36,6 +39,11 @@ public class IndulgenceSin : ActorAbilityFunction<Actor, int>
         spawnPoints.Add(dummyLocation.transform.position + new Vector3(-5, -1 * rangeToDisengageAttack, 0));
         monitors = new List<IndulgenceSinInteractable>();
         IndulgenceSinInteractable.TOTAL_CONSUMED = 0;
+    }
+
+    void FixedUpdate()
+    {
+        CalculatePostProcessingWeight();
     }
 
     public override void Invoke(ref Actor user)
@@ -105,10 +113,43 @@ public class IndulgenceSin : ActorAbilityFunction<Actor, int>
             if (monitors[i] && !monitors[i].pickupMode)
             {
                 Destroy(monitors[i].gameObject);
+                monitors.RemoveAt(i);
+                i--;
             }
         }
         CheckRangeRoutine = CalculateDistanceToTarget();
         targetInRange = false;
         this.isFinished = true;
+    }
+
+    void CalculatePostProcessingWeight()
+    {
+        if (IndulgenceSinInteractable.TOTAL_CONSUMED > 0 && target)
+        {
+            float minMonitorDistance = Mathf.Infinity;
+            for(int i = 0; i < monitors.Count; i++)
+            {
+                if (monitors[i])
+                {
+                    if (monitors[i].pickupMode)
+                    {
+                        Vector2 pos = monitors[i].transform.position;
+                        float tempDistance = Vector2.Distance(target.transform.position, pos);
+                        if (tempDistance < minMonitorDistance)
+                        {
+                            minMonitorDistance = tempDistance;
+                        }
+                    }
+                }
+                else
+                {
+                    monitors.RemoveAt(i);
+                    i--;
+                }
+            }
+            float distanceToWeight = Mathf.Min(minMonitorDistance, maxCorrutionVfxDistance);
+            float proportionalweight = 1 - (distanceToWeight /maxCorrutionVfxDistance);
+            corruptionVfx.weight = proportionalweight;
+        }
     }
 }

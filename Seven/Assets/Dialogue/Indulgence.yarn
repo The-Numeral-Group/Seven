@@ -3,7 +3,29 @@ tags:
 colorID: 0
 position: 859,388
 ---
-Indulgence: Indulgence Opening.
+//Player attacks Gluttony once
+//Indulgence notices, but his animations do not change
+Indulgence: Hey. Is that you, Ego? You know I told you not to interrupt my personal time. Leave me alone.
+===
+title: Indulgence.Opening.Dialogue1
+tags: 
+colorID: 0
+position: 859,388
+---
+//Indulgence's animations still are not interrupted
+Ind: HEY. You're not Ego, are you? Has it been a century already?
+Ind: Listen, champion, you don't stand a chance against me. 
+Ind: If you're distracting me from my leisure time... 
+Ind: I'll just have to delete you.
+===
+title: Indulgence.Opening.Dialogue2
+tags: 
+colorID: 0
+position: 859,388
+---
+//Indulgence turns around, eyes full of fury.
+Ind: Alright, tough guy. Let's make this quick.
+//He stands from his chair, and his spider legs extend out from his back, menacingly. The battle begins.
 ===
 title: Indulgence.Retry.Dialogue0
 tags: 
@@ -24,5 +46,9 @@ tags:
 colorID: 0
 position: 859,388
 ---
-Indulgence: Indulgence Death.
+Ind: Huff... huff... Alright, kid... I hope you're satisfied...
+//Indulgence returns to his seat, and goes back to watching his monitors.
+Ind: Because you feel it too. That hunger, burning inside you...
+//
+Ind: That drive to indulge yourself... Isn't it so delicious?
 ===

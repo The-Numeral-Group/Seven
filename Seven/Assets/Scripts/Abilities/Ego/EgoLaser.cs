@@ -182,6 +182,16 @@ internal class EgoLaserProjectile : MonoBehaviour
             ///DEBUG
         }*/
 
+        ///DEBUG
+        //this line represents this laser's length. It will not show up in game
+        Debug.DrawLine(
+            launchPoint + (damageDirection * width), 
+            launchPoint + (damageDirection * laserMaxDistance), 
+            Color.red, 
+            10.0f
+        );
+        ///DEBUG
+
         //shoot what is effectively a really thicc data laser
         RaycastHit2D[] hits = Physics2D.BoxCastAll(
             launchPoint + (damageDirection * width),        //start of box

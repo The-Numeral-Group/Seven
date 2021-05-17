@@ -104,8 +104,9 @@ public class PlayerActor : Actor
     void OnMenu()
     {
         this.myMovement.MoveActor(Vector2.zero);
+        MenuManager.StartPauseMenu();
         //Temporary measure
-        if (MenuManager.GAME_IS_OVER)
+        /*if (MenuManager.GAME_IS_OVER)
         {
             return;
         }
@@ -118,14 +119,14 @@ public class PlayerActor : Actor
         {
             playerInput.SwitchCurrentActionMap("UI");
         }
-        bool value = MenuManager.StartPauseMenu();
-        if (!value)
-        {
+        bool value = MenuManager.StartPauseMenu();*/
+        //if (!value)
+        //{
             /*WARNING: there is a potential redundancy with this line. a menus close callback function
             should reset the players input map. This was added solely for the case where there is issue
             with regards to menumanagers current menu reference.*/
-            playerInput.SwitchCurrentActionMap("Player");
-        }
+            //playerInput.SwitchCurrentActionMap("Player");
+        //}
     }
     
     /*void OnSetAbilityOne()

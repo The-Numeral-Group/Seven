@@ -1753,6 +1753,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8067875665855393487, guid: 68cf7eabcdb9b9b4f858309c9fbded90, type: 3}
+      propertyPath: interactIndicatorPrefab
+      value: 
+      objectReference: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
     - target: {fileID: 8272826705330973571, guid: 68cf7eabcdb9b9b4f858309c9fbded90, type: 3}
       propertyPath: m_Controller
       value: 
