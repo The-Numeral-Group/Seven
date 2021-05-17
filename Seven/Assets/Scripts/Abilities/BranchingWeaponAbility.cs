@@ -85,13 +85,13 @@ public class BranchingWeaponAbility : WeaponAbility
         }
 
         //find all tuples with that weight
-        var winners = wepPairs.FindAll( (tuple) => {return tuple.Item2 == largestWeight;} );
+        List<WeightTuple> winners = wepPairs.FindAll( (tuple) => {return tuple.Item2 == largestWeight;} );
 
         //pick a random from 0 to the winners.Count - 1
         var tie = rand.Next(0, winners.Count);
         
         //use that weapon
-        var nextWep = potentialWeps[tie];
+        WeaponAbility nextWep = winners[tie].Item1;
         Debug.Log($"BranchingWeaponAbility: Selected {opt}. Choosing Item: {nextWep.name}, {winner}");
 
         //if we're waiting on cooldowns...
