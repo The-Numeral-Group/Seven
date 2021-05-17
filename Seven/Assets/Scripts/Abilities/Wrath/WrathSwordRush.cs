@@ -10,6 +10,7 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
     public float chargeDelay;
 
     public GameObject hitbox;
+    public GameObject targetPoint;
 
     private IEnumerator ChargeRoutine;
     private IEnumerator TrackRoutine;
@@ -17,13 +18,16 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
     private IEnumerator TotalRoutine;
 
     private Vector2 chargeDirection;
+    private Vector3 targetLocation;
 
-    private bool isTracking;
     private bool isCharging;
-    private bool hasCollided;
+    private bool hasArrived;
+    private bool isTracking;
 
     private Actor wrath;
     private Actor target;
+
+    private GameObject targetPointObject;
 
     void Awake()
     {
@@ -66,6 +70,34 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
         while (isTracking && target != null)
         {
             chargeDirection = target.transform.position - wrath.gameObject.transform.position;
+            targetLocation = target.transform.position;
+
+            if (chargeDirection.x > 5.0f) // MAX X
+            {
+                targetLocation.x += 7.5f;
+            }
+            else if (chargeDirection.x < -5.0f)
+            {
+                targetLocation.x -= 7.5f;
+            }
+            else
+            {
+                targetLocation.x += chargeDirection.x * 1.5f;
+            }
+
+            if (chargeDirection.y > 5.0f) // MAX Y
+            {
+                targetLocation.y += 7.5f;
+            }
+            else if (chargeDirection.y < -5.0f)
+            {
+                targetLocation.y -= 7.5f;
+            }
+            else
+            {
+                targetLocation.y += chargeDirection.y * 1.5f;
+            }
+
             //wrath.myAnimationHandler.Flip(chargeDirection);
             yield return new WaitForFixedUpdate();
         }
@@ -75,11 +107,19 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
     {
         hitbox.SetActive(false);
         yield return new WaitForSeconds(trackTime);
+
         isTracking = false;
+
+        // Play Wrath charging animation
         WrathAnimationHandler wrathAnimationHandler = wrath.myAnimationHandler as WrathAnimationHandler;
         wrathAnimationHandler.animateSwordRush();
+
+        // Place target Point
+        targetPointObject = Instantiate(this.targetPoint, targetLocation, Quaternion.identity);
+
         yield return new WaitForSeconds(chargeDelay);
         hitbox.SetActive(true);
+
         wrath.myMovement.DragActor(
             chargeDirection * chargeSpeedMultiplier * wrath.myMovement.speed);
         isCharging = true;
@@ -91,14 +131,15 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
         for (int i = 0; i < chargeCount; i++)
         {
             StopCoroutine(FailSafeRoutine);
-            hasCollided = false;
+            hasArrived = false;
             ChargeRoutine = Charge();
-            TrackRoutine = TrackTarget();
             FailSafeRoutine = FailSafe();
+            TrackRoutine = TrackTarget();
             StartCoroutine(TrackRoutine);
             StartCoroutine(ChargeRoutine);
             StartCoroutine(FailSafeRoutine);
-            yield return new WaitUntil(() => hasCollided);
+            yield return new WaitUntil(() => hasArrived);
+            Destroy(targetPointObject);
         }
         StopCoroutine(FailSafeRoutine);
         FinishAbilitySequence();
@@ -121,13 +162,20 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
                 Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
             }
 
-            if (collision.gameObject.tag == "Environment")
+            if (collision.gameObject.tag == "Target Point" || collision.gameObject.tag == "Environment")
+            {
+                isCharging = false;
+                wrath.myMovement.DragActor(Vector2.zero);
+                hasArrived = true;
+            }
+
+            /*if (collision.gameObject.tag == "Environment")
             {
                 isCharging = false;
                 Camera.main.GetComponent<BaseCamera>().Shake(2.0f, 0.2f);
                 wrath.myMovement.DragActor(Vector2.zero);
                 hasCollided = true;
-            }
+            }*/
         }
     }
 
@@ -135,16 +183,16 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
     {
         StopCoroutine(MovementLockroutine);
         StopCoroutine(TotalRoutine);
-        StopCoroutine(TrackRoutine);
         StopCoroutine(ChargeRoutine);
+        StopCoroutine(TrackRoutine);
         StartCoroutine(wrath.myMovement.LockActorMovement(-1f));
         //wrath.myAnimationHandler.Animator.SetBool("charging", false);
         wrath.myMovement.DragActor(Vector2.zero);
         chargeDirection = Vector2.right;
         hitbox.SetActive(false);
-        hasCollided = false;
-        isTracking = false;
+        hasArrived = false;
         isCharging = false;
+        isTracking = false;
         isFinished = true;
     }
 
