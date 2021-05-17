@@ -74,6 +74,7 @@ public class IndulgenceMonitorActor : Actor
                 break;
             case State.DEAD:
                 myCollider.isTrigger = true;
+                myCollider.offset = new Vector2(0, -1);
                 interactableSin.pickupMode = true;
                 break;
             default:

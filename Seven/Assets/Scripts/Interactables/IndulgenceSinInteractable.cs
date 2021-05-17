@@ -5,6 +5,7 @@ using UnityEngine;
 //total consumed gets reset by the onawake function of the indulgencesinability
 public class IndulgenceSinInteractable : Interactable
 {
+    //Total consumed gets reset in indulgencesin.cs
     public static int TOTAL_CONSUMED = 0;
     public int healAmount = 1;
     public bool pickupMode { get; set;}

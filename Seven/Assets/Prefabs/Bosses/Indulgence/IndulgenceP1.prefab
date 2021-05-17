@@ -16,6 +16,8 @@ MonoBehaviour:
   abilityName: 
   invokeBlankWhenBadArguments: 1
   crushAbility: {fileID: 3372392985872605615}
+  maxCorrutionVfxDistance: 8
+  corruptionVfx: {fileID: 0}
   dummyLocation: {fileID: 0}
   indulgenceSinObject: {fileID: 7900556847160439946, guid: a2ef488a9caab4f418187ae042687afc, type: 3}
   rangeToDisengageAttack: 5
