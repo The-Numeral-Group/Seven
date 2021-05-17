@@ -15,6 +15,9 @@ public class ActiveSpeaker : Interactable
     //The starting string used to initiate the yarn node
     [Tooltip("The starting string used to initiate the yarn node. Should be the name of the node.")]
     public string yarnStartNode = "Start";
+    //How far to offset the dialogue box from the speaker
+    [Tooltip("How far to offset the dialogue box from the speaker.")]
+    public Vector3 chatBoxOffset;
     //A reference to the current activepseaker object which is talking.
     public static ActiveSpeaker ACTIVE_NPC { get; set; }
     //Set whether this speaker is being interacted with as an npc.

@@ -50,7 +50,7 @@ public class BattleUI : BaseUI
         SetReferences();
     }
 
-    void Update()
+    protected override void Update()
     {
         UpdateReferences();
         UpdateSlider(ref playerHealth, ref playerSlider);

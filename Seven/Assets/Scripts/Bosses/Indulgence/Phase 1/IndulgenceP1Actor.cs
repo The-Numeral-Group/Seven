@@ -60,6 +60,7 @@ public class IndulgenceP1Actor : Actor
         {
             SIN_COMITTED = false;
             gameSaveManager.GetComponent<GameSaveManager>().setBoolValue(true, 17);
+            gameSaveManager.GetComponent<GameSaveManager>().setBoolValue(true, 18);
             SceneManager.LoadScene("Indulgence_BossW");
         }
         else 

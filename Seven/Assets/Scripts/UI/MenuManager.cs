@@ -58,6 +58,7 @@ public class MenuManager : MonoBehaviour
     //Set static members to the inspector references
     void Awake()
     {
+        ActiveSpeaker.ACTIVE_NPC = null;
         //Debug.Log("MenuManager Awake");
         SetupStaticReferences();
     }
@@ -112,9 +113,9 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
-            if (CURRENT_MENU == PAUSE_MENU)
+            if (CURRENT_MENU == PAUSE_MENU && PAUSE_MENU)
             {
-                CURRENT_MENU.Hide();
+                PAUSE_MENU.OnResume();
                 return false;
             }
             /*else

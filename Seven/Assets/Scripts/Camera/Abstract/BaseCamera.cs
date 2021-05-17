@@ -127,7 +127,7 @@ public abstract class BaseCamera : MonoBehaviour
         if (MenuManager.DIALOGUE_MENU && MenuManager.DIALOGUE_MENU.dialogueRunner.gameObject.activeSelf)
         {
             Vector3 dialogBubblePos = 
-                cam.ScreenToWorldPoint(MenuManager.DIALOGUE_MENU.chatBubble.localPosition);
+                MenuManager.DIALOGUE_MENU.chatBubble.position;
             bounds.Encapsulate(dialogBubblePos);
         }
         return bounds.center;

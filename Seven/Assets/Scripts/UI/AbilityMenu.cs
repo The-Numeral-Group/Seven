@@ -10,7 +10,7 @@ public class AbilityMenu : BaseUI
     int pointerToCurrentSelectedButton;
     public PlayerAbilityInitiator player;
     [SerializeField]
-    RectTransform abilityHighLightIndicator;
+    RectTransform abilityHighLightIndicator = null;
     List<(int, int)> gameSaveAbilityIndices;
     public GameSaveManager gameSaveManager;
 
@@ -33,7 +33,6 @@ public class AbilityMenu : BaseUI
     {
         SetupPlayerReference();
         //hard coded values cause lazy to vix visual bug
-        abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position;
         if (gameSaveManager)
         {
             UnlockAbilities();
@@ -48,13 +47,13 @@ public class AbilityMenu : BaseUI
             }
         }
         //Temporary setup
-        abilityHighLightIndicator.gameObject.SetActive(true);
+        /*abilityHighLightIndicator.gameObject.SetActive(true);
         abilityButtons[0].gameObject.SetActive(true);
         abilityButtons[1].gameObject.SetActive(true);
         abilityButtons[2].gameObject.SetActive(true);
         abilityButtons[0].SetSelectedAbility(true);
         abilityButtons[1].SetSelectedAbility(false);
-        abilityButtons[2].SetSelectedAbility(false);
+        abilityButtons[2].SetSelectedAbility(false);*/
         UpdatePlayerSelectedAbility();
         //End of temporary
     }
@@ -97,6 +96,7 @@ public class AbilityMenu : BaseUI
             {
                 pointerToCurrentSelectedButton = dummyIndex;
                 abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position;
+                Debug.Log(abilityHighLightIndicator.transform.position + ":" + abilityButtons[pointerToCurrentSelectedButton].transform.position);
                 UpdatePlayerSelectedAbility();
                 break;
             }
@@ -114,6 +114,7 @@ public class AbilityMenu : BaseUI
             {
                 pointerToCurrentSelectedButton = dummyIndex;
                 abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position;
+                Debug.Log(abilityHighLightIndicator.transform.position + ":" + abilityButtons[pointerToCurrentSelectedButton].transform.position);
                 UpdatePlayerSelectedAbility();
                 break;
             }

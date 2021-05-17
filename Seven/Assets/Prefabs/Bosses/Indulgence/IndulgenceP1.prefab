@@ -74,6 +74,14 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6735736805293186640, guid: 576248deba686134f8b9515839d42c58, type: 3}
+      propertyPath: jumpTriggerDistance
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735736805293186641, guid: 576248deba686134f8b9515839d42c58, type: 3}
+      propertyPath: shadowOffset.y
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 6735736805293186646, guid: 576248deba686134f8b9515839d42c58, type: 3}
       propertyPath: startingMaxHealth
       value: 25
