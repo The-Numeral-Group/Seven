@@ -48,13 +48,9 @@ public class IndulgenceLegAttack : ActorAbilityFunction<Vector2, int>
         Vector2 direction = args[0];
         direction = direction.normalized;
         float dtheta = Mathf.Acos(((Vector2.Dot(direction, defaultFacingDirection)) / (direction.magnitude * defaultFacingDirection.magnitude)));
-        if (direction.y < 0 && direction.x < 0)
+        if (direction.y < 0)
         {
-            dtheta += Mathf.PI/2;
-        }
-        else if (direction.y < 0 && direction.x >= 0)
-        {
-            dtheta -= Mathf.PI/2;
+            dtheta *= -1;
         }
         dtheta = dtheta * (180/Mathf.PI);
         indulgenceLeg.transform.localPosition = new Vector3(direction.x, direction.y, 0);

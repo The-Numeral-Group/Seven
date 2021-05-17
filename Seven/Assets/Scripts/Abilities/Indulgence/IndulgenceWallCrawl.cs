@@ -7,6 +7,7 @@ public class IndulgenceWallCrawl : ActorAbilityFunction<Actor, int>
 {
     IndulgenceCrush indulgenceCrush;
     Actor target;
+    bool wallReached;
 
     void Start()
     {
@@ -65,12 +66,14 @@ public class IndulgenceWallCrawl : ActorAbilityFunction<Actor, int>
         indulgenceCrush.overrideCooldown = false;
         indulgenceCrush.useTrackingCrush = false;
         isFinished = true;
+        wallReached = false;
     }
 
-    void OnCollisionEnter2D(Collision2D collider)
+    void OnCollisionStay2D(Collision2D collider)
     {
-        if (!isFinished && collider.gameObject.tag == "Environment")
+        if (!isFinished && collider.gameObject.tag == "Environment" && !wallReached)
         {
+            wallReached = true;
             SetupColliders(false);
             StartCoroutine(CheckForFinish());
         }

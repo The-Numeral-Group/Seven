@@ -47,17 +47,13 @@ public class AbilityMenu : BaseUI
             }
         }
         //Temporary setup
-        abilityHighLightIndicator.gameObject.SetActive(true);
+        /*abilityHighLightIndicator.gameObject.SetActive(true);
         abilityButtons[0].gameObject.SetActive(true);
         abilityButtons[1].gameObject.SetActive(true);
         abilityButtons[2].gameObject.SetActive(true);
         abilityButtons[0].SetSelectedAbility(true);
         abilityButtons[1].SetSelectedAbility(false);
-        abilityButtons[2].SetSelectedAbility(false);
-        foreach(AbilityButton button in abilityButtons)
-        {
-            Debug.Log(button.transform.position);
-        }
+        abilityButtons[2].SetSelectedAbility(false);*/
         UpdatePlayerSelectedAbility();
         //End of temporary
     }
