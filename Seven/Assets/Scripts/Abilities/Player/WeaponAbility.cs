@@ -18,6 +18,10 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
     //A list of damage per each hitbox on the weapon.
     [Tooltip("A list to contain the damage for each hitbox of a weapon. Default value is 0.")]
     public List<int> damagePerHitbox = new List<int>();
+
+    [Tooltip("The trigger to pass to the user's animator to animate the attack")]
+    public string animTrigger = "";
+
     //A pointer to the instatiation of the starting weapon object.
     protected GameObject weaponObject;
     /*A reference to the SheatheWeapon Coroutine. Used to cancel the coroutine if another call to
@@ -91,6 +95,11 @@ public class WeaponAbility : ActorAbilityFunction<Actor, int>
     In the future it will likely need to control how the weaponPrefab is swung in some manner.*/
     protected override int InternInvoke(params Actor[] args)
     {
+        if(animTrigger.Length != 0)
+        {
+            user.myAnimationHandler.TrySetTrigger(animTrigger);
+        }
+        
         this.hitConnected = false;
         StopCoroutine(sheathe);
         sheathe = SheatheWeapon();

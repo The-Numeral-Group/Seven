@@ -73,6 +73,40 @@ public class ActorAnimationHandler : MonoBehaviour
         return false;
     }
 
+    //Checks if this animator has a bool named boolName. If so, set it
+    //and return true. If not, print a suppressable warning to console and return
+    //false
+    public bool TrySetBool(string boolName, bool value, bool suppressWarnings=false)
+    {
+        //Does the trigger exist?
+        bool boolExists = 
+            //Please search the AnimatorControllerParameter array...
+            System.Array.Find<AnimatorControllerParameter>(
+                Animator.parameters,    //called Animator.parameters...
+                //for a value that is Trigger type and has this name
+                param => param.type == AnimatorControllerParameterType.Bool 
+                    && param.name == boolName
+            //Find returns the default of the generic type if no match is found
+            ) != default(AnimatorControllerParameter);
+
+        //If it does
+        if(boolExists)
+        {
+            //Set it and go
+            Animator.SetBool(boolName, value);
+            return true;
+        }
+        //If it doesn't...
+        else if(!suppressWarnings)
+        {
+            //Throw a warning, if so desired
+            Debug.LogWarning($"ActorAnimationHandler: Animator"
+                + $" {Animator.GetType().Name} has no bool named {boolName}");
+        }
+
+        return false;
+    }
+
     /*Calls TrySetTrigger, but returns a delegate that evaluates to true while the animator
     is in the state of the requested animation (even if it isn't necessarily playing)*/
     public System.Func<bool> TryFlaggedSetTrigger(string trigger)
