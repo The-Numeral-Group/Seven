@@ -39,7 +39,7 @@ public class CorruptedData : ActorAbilityFunction<Actor, int>
 
     protected override int InternInvoke(params Actor[] args)
     {
-        Vector2 originalDirection = user.faceAnchor.localPosition;
+        Vector2 originalDirection = user.faceAnchor.localPosition != Vector3.zero ?  user.faceAnchor.localPosition : Vector3.up;
         int directionMultiplier = 1;
         //user.myHealth.takeDamage(1f, false, true);
         for (int i = 0; i < numProjectiles; i++)

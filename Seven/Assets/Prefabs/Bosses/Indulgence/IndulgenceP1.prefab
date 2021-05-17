@@ -76,7 +76,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6735736805293186640, guid: 576248deba686134f8b9515839d42c58, type: 3}
       propertyPath: jumpTriggerDistance
-      value: 15
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6735736805293186641, guid: 576248deba686134f8b9515839d42c58, type: 3}
       propertyPath: shadowOffset.y
@@ -92,11 +92,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6735736805293186647, guid: 576248deba686134f8b9515839d42c58, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6735736805293186647, guid: 576248deba686134f8b9515839d42c58, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.38
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6735736805293186647, guid: 576248deba686134f8b9515839d42c58, type: 3}
       propertyPath: m_LocalPosition.z

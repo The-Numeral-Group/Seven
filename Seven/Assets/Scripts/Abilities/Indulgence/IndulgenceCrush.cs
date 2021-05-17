@@ -162,18 +162,26 @@ public class IndulgenceCrush : ActorAbilityFunction<Actor, int>
         shadowSpriteMovement.DragActor(Vector2.zero);
         this.user.transform.position = new Vector3(shadowSprite.transform.position.x, 
             destination.y + 100, this.user.transform.position.z);
-        Debug.Log("First:" + destination + ":" + this.user.transform.position);
-        Vector2 direction = Vector2.down;
+        //Debug.Log("First:" + destination + ":" + this.user.transform.position);
+        /*Vector2 direction = Vector2.down;
         float distance = Vector2.Distance(this.user.transform.position, destination);
-        float speed = distance / crushDuration;
-        Debug.Log(distance + ":" + speed + ":" +crushDuration);
+        float speed = distance / crushDuration;*/
+        //Debug.Log(distance + ":" + speed + ":" +crushDuration);
         yield return new WaitForSeconds(crushDelay);
-        this.user.myMovement.DragActor(direction * speed);
-        yield return new WaitForSeconds(crushDuration );
+        float currentTime = 0f;
+        Vector2 startPosition = this.user.transform.position;
+        while (currentTime <= crushDuration)
+        {
+            this.user.transform.position = Vector3.Lerp(startPosition, destination, currentTime / crushDuration);
+            currentTime += 0.5f * Time.deltaTime;
+            yield return null;
+        }
+        //this.user.myMovement.DragActor(direction * speed);
+        //yield return new WaitForSeconds(crushDuration);
         this.user.myMovement.DragActor(Vector2.zero);
         hasLanded = true;
         this.user.myAnimationHandler.Animator.SetTrigger("landing");
-        Debug.Log("Second:" + destination + ":" + this.user.transform.position);
+        //Debug.Log("Second:" + destination + ":" + this.user.transform.position);
         StartCoroutine(shadowSpriteMovement.LockActorMovementOnly(-1f));
         shadowSprite.transform.parent = this.user.transform;
         shadowSprite.transform.localPosition = Vector3.zero;
