@@ -99,7 +99,7 @@ public class DragBackWeaponHitbox : WeaponHitbox
     protected virtual IEnumerator DragBack(ActorMovement mover)
     {
         //timer variable
-        float clock = 0f;
+        //float clock = 0f;
 
         Vector2 dragAway;
 
