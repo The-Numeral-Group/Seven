@@ -83,6 +83,10 @@ public class WrathP1Actor : Actor
             decideNextState();
             EvaluateState(currentState);
         }
+        //move Wrath's face anchor towards the player
+        DoActorUpdateFacing(
+            (player.gameObject.transform.position - this.gameObject.transform.position).normalized
+        );
     }
     private void EvaluateState(State state)
     {
@@ -97,7 +101,7 @@ public class WrathP1Actor : Actor
                 break;
 
             case State.ABILITY_FIREWALL:
-                fireWall.Invoke(ref wrath);
+                fireWall.Invoke(ref wrath, player);
                 break;
 
             case State.ABILITY_SLUDGE:
@@ -162,11 +166,8 @@ public class WrathP1Actor : Actor
             canAttack = false;
             if (poolType == 'A') // Draw an ability from Pool A
             {
-                // Determines which ability Wrath will perform
-
-                //int abilityType = (int)Random.Range(0, 3);
-                // TESTING CHAIN
-                int abilityType = 0;
+                // Determines which ability Wrath will perform.
+                int abilityType = (int)Random.Range(0, 3);
 
                 switch (abilityType)
                 {
@@ -189,10 +190,7 @@ public class WrathP1Actor : Actor
             }
             else // Draw an ability from Pool B
             {
-                //int abilityType = (int)Random.Range(0, 2);
-
-                // TESTING SWORD RUSH
-                int abilityType = 1;
+                int abilityType = (int)Random.Range(0, 2);
 
                 switch (abilityType)
                 {
@@ -215,4 +213,12 @@ public class WrathP1Actor : Actor
             currentState = State.WALK;
         }
     }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
+        }
+    }
+
 }

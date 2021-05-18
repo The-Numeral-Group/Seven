@@ -665,7 +665,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -680,12 +680,16 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -2.009907, y: -0.017674923}
-      - {x: -4.1312904, y: -2.184286}
-      - {x: -2.3432739, y: -3.9892507}
-      - {x: 2.2923903, y: -4.0910177}
-      - {x: 4.1213417, y: -2.1571555}
-      - {x: 2.095941, y: -0.12349373}
+    - - {x: -1.7262394, y: 1.0091758}
+      - {x: -2.3640597, y: 0.9597914}
+      - {x: -4.406494, y: 0.90506744}
+      - {x: -3.621337, y: -1.9009789}
+      - {x: -2.2512398, y: -3.3470416}
+      - {x: 0.25003237, y: -3.8640106}
+      - {x: 2.5296118, y: -3.1109982}
+      - {x: 3.7655892, y: -1.0312994}
+      - {x: 4.0080194, y: 0.47760272}
+      - {x: 3.2858312, y: 1.3780351}
 --- !u!114 &802845981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,6 +739,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1822677002206680982, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1844696639541075003, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -767,6 +775,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 250
       objectReference: {fileID: 0}
+    - target: {fileID: 2567174885220939049, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3449210260684156313, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
@@ -791,6 +803,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3944778251419281012, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106209530112793648, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5584603568582872739, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
@@ -813,6 +833,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5584603568582872739, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5665453730289326254, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5665453730289326254, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5665453730289326254, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5665453730289326254, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6919360707732132549, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
@@ -918,6 +954,22 @@ PrefabInstance:
     - target: {fileID: 7377796702531089797, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SaveScene, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7501233189177544635, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7501233189177544635, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7501233189177544635, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7501233189177544635, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7991687936560476849, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
       propertyPath: m_AnchorMin.y
@@ -3037,14 +3089,40 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.14, y: 0.19999999}
-      - {x: -0.19999999, y: 0.17999999}
-      - {x: -0.19999999, y: -0.14}
-      - {x: -0.17999999, y: -0.19999999}
-      - {x: 0.12, y: -0.19999999}
-      - {x: 0.19999999, y: -0.12}
-      - {x: 0.19999999, y: 0.12}
-      - {x: 0.12, y: 0.19999999}
+    - - {x: 0.64, y: -0.82}
+      - {x: 0.77, y: -0.7}
+      - {x: 0.84999996, y: -0.59999996}
+      - {x: 0.94, y: -0.44}
+      - {x: 0.98999995, y: -0.32}
+      - {x: 1, y: -0.29}
+      - {x: 1, y: 0.26}
+      - {x: 0.98999995, y: 0.29999998}
+      - {x: 0.95, y: 0.42999998}
+      - {x: 0.89, y: 0.53}
+      - {x: 0.77, y: 0.69}
+      - {x: 0.64, y: 0.81}
+      - {x: 0.48999998, y: 0.90999997}
+      - {x: 0.38, y: 0.96999997}
+      - {x: 0.26999998, y: 1}
+      - {x: -0.24, y: 1}
+      - {x: -0.44, y: 0.94}
+      - {x: -0.53, y: 0.88}
+      - {x: -0.69, y: 0.76}
+      - {x: -0.81, y: 0.63}
+      - {x: -0.90999997, y: 0.48}
+      - {x: -0.96999997, y: 0.37}
+      - {x: -1, y: 0.25}
+      - {x: -1, y: -0.26}
+      - {x: -0.94, y: -0.44}
+      - {x: -0.88, y: -0.53999996}
+      - {x: -0.76, y: -0.7}
+      - {x: -0.63, y: -0.82}
+      - {x: -0.48, y: -0.93}
+      - {x: -0.31, y: -1}
+      - {x: 0.26999998, y: -1}
+      - {x: 0.31, y: -0.98999995}
+      - {x: 0.38, y: -0.97999996}
+      - {x: 0.59999996, y: -0.85999995}
 --- !u!50 &2135220259
 Rigidbody2D:
   serializedVersion: 4
@@ -3124,7 +3202,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: e19e50cb9d7fb274cb59a5a778dccfea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3152,8 +3230,8 @@ MonoBehaviour:
   abilityName: WrathSludge
   invokeBlankWhenBadArguments: 1
   pairCount: 2
-  projectile: {fileID: 8453795746997737593, guid: 8533f31204304b74da62512b80989022, type: 3}
-  marker: {fileID: 203477084623807014, guid: d16cc8cac92a68940927c1dba12c0b35, type: 3}
+  projectile: {fileID: 993374650974002788, guid: 383b2e3f4bae2e34face80a1e0a33c07, type: 3}
+  marker: {fileID: 9056802611949407787, guid: a92beb2f23e691b4aa26046681bc616b, type: 3}
   leadMarkerDistance: 2
   initialWaitTime: 3
   shotFlightTime: 1
@@ -3172,7 +3250,14 @@ MonoBehaviour:
   cooldownPeriod: 0
   abilityName: WrathFireWall
   invokeBlankWhenBadArguments: 1
-  duration: 2
+  teleMinDist: 5
+  teleMaxDist: 10
+  attackDelay: 0.5
+  launchDelay: 0.5
+  attackCount: 4
+  projectile: {fileID: 4462813894760251864, guid: 88693950b0a8b09459833fa2b420af16, type: 3}
+  projectileScale: {x: 1, y: 1}
+  projectileDirection: {x: -1, y: 0}
 --- !u!114 &2135220264
 MonoBehaviour:
   m_ObjectHideFlags: 0

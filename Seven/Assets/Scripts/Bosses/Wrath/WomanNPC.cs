@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class WomanNPC : MonoBehaviour
 {
-    private int nextDialogueNum = 1;
+    public int nextDialogueNum = 1;
 
     public string endingType;
+
+    public bool playDialogueAtStart;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(startDialogueDelay());
+        if(playDialogueAtStart)
+        {
+            StartCoroutine(startDialogueDelay());
+        }
     }
 
     private IEnumerator startDialogueDelay()
