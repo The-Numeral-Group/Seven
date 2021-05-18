@@ -72,7 +72,24 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
             chargeDirection = target.transform.position - wrath.gameObject.transform.position;
             targetLocation = target.transform.position;
 
-            if (chargeDirection.x > 5.0f) // MAX X
+            if (chargeDirection.x > 0.0f) {
+                targetLocation.x += 5.0f;
+            }
+            else
+            {
+                targetLocation.x += -5.0f;
+            }
+
+            if (chargeDirection.y > 0.0f)
+            {
+                targetLocation.y += 5.0f;
+            }
+            else
+            {
+                targetLocation.y += -5.0f;
+            }
+
+            /*if (chargeDirection.x > 5.0f) // MAX X
             {
                 targetLocation.x += 7.5f;
             }
@@ -96,7 +113,7 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
             else
             {
                 targetLocation.y += chargeDirection.y * 1.5f;
-            }
+            }*/
 
             //wrath.myAnimationHandler.Flip(chargeDirection);
             yield return new WaitForFixedUpdate();

@@ -137,8 +137,8 @@ public class WrathChainPull : ActorAbilityFunction<Actor, int>
     {
         StopCoroutine(MovementLockroutine); // Stop the original movement Lock function
         StopCoroutine(ChainPullFinished()); // Stop the original abilityFinished function
-        StartCoroutine(wrath.myMovement.LockActorMovement(1.0f));
-        yield return new WaitForSeconds(1.0f);
+        StartCoroutine(wrath.myMovement.LockActorMovement(0.5f));
+        yield return new WaitForSeconds(0.5f); // In case if you want to add any delay after chain pull. 
         wrath.myMovement.DragActor(Vector2.zero);
         pulled = false;
         isFinished = true;
