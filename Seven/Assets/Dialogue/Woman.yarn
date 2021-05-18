@@ -3,34 +3,82 @@ tags:
 colorID: 0
 position: 859,388
 ---
-Woman: AoS Ending.
+//On the Wall
+Woman: ...Champion...
+Woman: Thank you...for freeing me..
+Woman: Now I can unleash my WRATH upon those who put me in this hell!
 ===
 title: Woman.AoS.Dialogue1
 tags: 
 colorID: 0
 position: 859,388
 ---
-Woman: Bye!
+//Throw the Sword, stabby stabh
+//Flash Out
+//Fade in
+//Woman Freed
+Woman: You are now the new vessel of corruption. 
+Woman: But after I am done with this world...
+Woman: There will be no Champion to save you.
+Woman: ...ha...hah..hahah...
+Woman: HAHAHAHAHAHAHA!
+//Woman Leave
 ===
 title: Woman.HnH.Dialogue0
 tags: 
 colorID: 0
 position: 859,388
 ---
-Woman: HnH Ending.
-===
-title: Woman.HnH.Dialogue1
-tags: 
-colorID: 0
-position: 859,388
----
-Woman: Thank you.
+//Bittersweet
+//dying in arms
+//freed but...
+//player committed corruption
+
+Woman: You...
+Woman: ...you saved me...
+Woman: I am finally free after so many moons
+Woman: Imprisoned by the unending thirst for vengeance.
+Woman: *COUGH COUGH*
+Woman: ...
+//How do you write someone who is dying
+Woman: After many centuries of immortality...
+Woman: ...Controlled by that demon...
+Woman: ...I finally am allowed to die...
+Woman: ...and take him down with me.
+Woman: Thank you my Champion...
+Woman: ...no...
+Woman: What is your name?
+Woman: ...
+Woman: ...Miguel?
+Woman: What a strong name...
+Woman: You have given me freedom. 
+Woman: *COUGH COUGH* 
+Woman: My only regret that I will never be able to rectify my misdeeds.
+Woman: If only these wretched Gods weren't so tempting. 
+Woman: If only you had not fell for their tricks...alas, to err is human.
+Woman: Something that I knew too well...
+Woman: Perhaps in another life, if things transpired differently,
+Woman: We would have met a different fate. 
+Woman: *WHEEZE*
+Woman: ... 
+Woman: Thank you...Miguel... 
+//Woman fades away in a fade away and particle effect
 ===
 title: Woman.ToD.Dialogue0
 tags: 
 colorID: 0
 position: 859,388
 ---
-Woman: ToD Ending.
-Woman: HAHAHA.
+//Woman on the wall
+Woman: Champion...
+Woman: ...you...are not like the others...
+Woman: You are pure. Uncorrupted by humanities weaknesses...
+//Woman unhinged
+Woman: heh...haaaa...
+Woman: HAHAHAHAHAHAHA!!
+//Woman unhinged animation? + laugh sfx
+Woman: We admire your foolish purity...
+Woman: But it will be your undoing!
+//Woman breaks free
+//boss fight start
 ===

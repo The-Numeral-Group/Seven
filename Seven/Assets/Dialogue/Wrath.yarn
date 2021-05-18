@@ -5,11 +5,39 @@ position: 859,388
 ---
 Wrath: Wrath Opening.
 ===
+title: Wrath.Transition.Dialogue0
+tags: 
+colorID: 0
+position: 859,388
+---
+//player deals last blow on 1st phase
+Wrath: ...
+Wrath: ...I'm sorry...
+===
 title: Wrath.Death.Dialogue0
 tags: 
 colorID: 0
 position: 859,388
 ---
-Wrath: Wrath Death.
-Wrath: Thank you.
+//After the fight
+Wrath: You...
+Wrath: ...you were not like the others...
+Wrath: ...you saved me...
+Wrath: I am finally free after so many moons
+Wrath: Imprisoned by the unending thirst for vengeance.
+Wrath: Wrath clouding my mind...I've forgotten whom I once was. 
+Wrath: Although... if who I was placed me here...
+Wrath: ...perhaps she is better left forgotten
+
+Wrath: Champion...no...
+Wrath: What is your name?
+Wrath: ...
+Wrath: ...Miguel?
+Wrath: Miguel, thank you for the life you have given back to me. 
+Wrath: Please...let us leave this horrid place.
+Wrath: I wish to make amends for the wrath I've unleashed on this world.
+//Walking out with the player
+//Screen fades completely white
+Wrath: Daylight... how many centuries has it been...
+Wrath: ...Thank you.
 ===
