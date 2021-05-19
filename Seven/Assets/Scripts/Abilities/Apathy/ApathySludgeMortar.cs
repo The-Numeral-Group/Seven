@@ -188,6 +188,9 @@ internal class ApathySludgeSingle : ProjectileAbility
         projObj.GetComponent<FilterProjectile>()
             .Launch(markObjA.transform.position, LAUNCH_MODE.POINT, target.gameObject);
 
+        //Step 6.... uh... 61?: Make a throw sound
+        user.mySoundManager.PlaySound("Sludge_Throw");
+
         //Step 6.75: wait for the previous anim to finish
         //this should wait until the animator exits the throw state
         yield return new WaitWhile(animDelegate);
@@ -230,6 +233,9 @@ internal class ApathySludgeSingle : ProjectileAbility
         //Step 10.5: And we're gonna launch it too
         projObj.GetComponent<FilterProjectile>()
             .Launch(markObjB.transform.position, LAUNCH_MODE.POINT, target.gameObject);
+
+        //Step 10.75?: Make a throw sound
+        user.mySoundManager.PlaySound("Sludge_Throw");
 
         //Step 11: Wait again...
         yield return new WaitForSeconds(shotFlightTime);
