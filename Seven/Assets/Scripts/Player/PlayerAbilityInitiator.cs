@@ -21,6 +21,9 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     to change how the player interacts*/
     public ActorAbility playerInteract;
 
+    /*The material that the player gains when an ability is used*/
+    public Material abilityMat;
+
     //internal VFX manager
     private PlayerAbilityVFX VFXManager;
 
@@ -49,7 +52,7 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
         this.canDodge = true;
 
         //also construct a VFX manager
-        //VFXManager = new PlayerAbilityVFX(this);
+        VFXManager = new PlayerAbilityVFX(this, abilityMat);
     }
 
     //Don't know if this is needed, but just using the player actor to pass by ref to the invoke for attack and dodge.
@@ -103,6 +106,7 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
         if (selectedAbility != null && selectedAbility.getUsable() && selectedAbility.getIsFinished())
         {
             selectedAbility.Invoke(ref userActor);
+            VFXManager.DoAbilityMaterial(selectedAbility);
             MenuManager.ABILITY_MENU.PutButtonOnCooldown(selectedAbility.getCooldown(), selectedAbility);
         }
     }
@@ -172,9 +176,15 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
         finished. It should still*/
         IEnumerator MaterialSwap()
         {
+            //abort if the material provided was invalid
+            if(specialMat == null) {yield break;}
+
             //swap the materials
             originalMat = renderer.material;
             renderer.material = specialMat;
+
+            //hold the material for a little bit, even if it doesn't last too long
+            yield return new WaitForSeconds(0.25f);
 
             yield return new WaitUntil( () => 
             {
