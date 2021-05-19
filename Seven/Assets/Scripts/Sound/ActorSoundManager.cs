@@ -113,4 +113,15 @@ public class ActorSoundManager : MonoBehaviour
         yield return new WaitForSeconds(duration);
         s.source.mute = false;
     }
+
+    //This function is called from the sound settings menu to update the volume of the audio clips an actor has.
+    //I am noit sure if updating all the volumes at once, or only when they are played is better.
+    //I think the size of audio clips getting updated in a scene is small enough that I think it is fine.
+    public void SetClipVolume()
+    {
+        foreach(SoundAudioClip s in sounds)
+        {
+            s.source.volume = s.volume * GameSettings.MASTER_VOLUME * GameSettings.SFX_VOLUME;
+        }
+    }
 }

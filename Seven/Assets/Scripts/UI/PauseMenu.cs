@@ -18,6 +18,8 @@ public class PauseMenu : BaseUI
     [SerializeField]
     [Tooltip("List containing the various submenus.")]
     List<SubMenu> subMenus = null;
+    [Tooltip("Reference to the settings sub menu")]
+    public SettingsSubMenu settings;
     //Index of the current selected sub menu in the list
     int currentSelectedSubMenuIndex = 0;
     /*[SerializeField]
