@@ -280,7 +280,7 @@ MonoBehaviour:
   playerDodge: {fileID: 7512802453659592074}
   playerAttack: {fileID: 1274274346198698562}
   playerInteract: {fileID: 889948524402226234}
-  abilityMat: {fileID: 2100000, guid: 4ec4e890922a2894a959f3229a161a77, type: 2}
+  abilityMat: {fileID: 2100000, guid: 3d9dda8042690c24bab17ca1d6033137, type: 2}
 --- !u!114 &4115977272152067183
 MonoBehaviour:
   m_ObjectHideFlags: 0
