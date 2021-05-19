@@ -10,6 +10,8 @@ public class WindupWeaponAbility : WeaponAbility
 
     //[Tooltip("The trigger to start an animation to play during this attack, if any.")]
     //public string animTrigger = "";
+    [Tooltip("The name of a sound clip to play when the attack becomes active.")]
+    public string attackSound;
 
     [Header("Screen Shake Settings")]
     [Tooltip("Whether this attack should cause the screen to shake when it is used.")]
@@ -67,6 +69,8 @@ public class WindupWeaponAbility : WeaponAbility
 
         //start the screen shake here, since we can't override SheathWeapon()
         if(shouldShake){ cameraFunc.Shake(duration, attackShake); }
+        //also play the sound here
+        if(attackSound.Length != 0){ user.mySoundManager?.PlaySound(attackSound); }
         StartCoroutine(sheathe);
     }
 }

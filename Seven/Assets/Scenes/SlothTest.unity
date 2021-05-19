@@ -708,6 +708,7 @@ MonoBehaviour:
   damagePerHitbox: 01000000
   animTrigger: apathy_swat
   windupDelay: 0.85
+  attackSound: Swat
   shouldShake: 1
   windShake: 0.1
   attackShake: 0.5
@@ -726,7 +727,7 @@ MonoBehaviour:
   sounds:
   - name: Swat
     audioClip: {fileID: 8300000, guid: 0224e502729d430969fcd7457f8e82a8, type: 3}
-    volume: 0.1
+    volume: 1
     pitch: 0
     loop: 0
     hasCooldown: 0
@@ -734,7 +735,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Sludge_Throw
     audioClip: {fileID: 8300000, guid: 0d4f5b85003ee7e66a095c4d915b7691, type: 3}
-    volume: 0.1
+    volume: 1
     pitch: 0
     loop: 0
     hasCooldown: 0
