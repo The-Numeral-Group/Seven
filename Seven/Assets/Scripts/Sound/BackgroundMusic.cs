@@ -17,7 +17,6 @@ public class BackgroundMusic : MonoBehaviour
         this.audioSource = this.GetComponent<AudioSource>();
         // Don't use the audioSource's builtin loop. Update() will manually loop the audio clip
         this.audioSource.loop = false;
-        SetVolume();
     }
 
     // Update is called once per frame
@@ -28,10 +27,5 @@ public class BackgroundMusic : MonoBehaviour
             this.audioSource.time = this.loopStartTime;
             this.audioSource.Play();
         }
-    }
-
-    public void SetVolume()
-    {
-        this.audioSource.volume = GameSettings.MASTER_VOLUME * GameSettings.MUSIC_VOLUME;
     }
 }
