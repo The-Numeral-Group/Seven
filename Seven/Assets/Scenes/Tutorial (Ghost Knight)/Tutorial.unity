@@ -8423,7 +8423,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 4115977272152067176, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: startingMaxHealth
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4115977272152067180, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: playerDodge
@@ -8461,6 +8461,18 @@ PrefabInstance:
       propertyPath: Animator
       value: 
       objectReference: {fileID: 4115977273667405725}
+    - target: {fileID: 7512802453659592074, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: invincibleDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7512802453659592074, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: dodgeDistance
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7512802453659592074, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: dodgeDuration
+      value: 0.17
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
 --- !u!1 &4115977273667405723 stripped
