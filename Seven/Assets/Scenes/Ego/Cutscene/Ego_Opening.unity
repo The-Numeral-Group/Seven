@@ -210,6 +210,35 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 857419686127162967, guid: aff426102da3180439214a08476cad21, type: 3}
   m_PrefabInstance: {fileID: 857419686244890980}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &420688362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2283877871945625103, guid: 5d863846b43d92344ade055b66610994, type: 3}
+  m_PrefabInstance: {fileID: 2283877871225390140}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &420688367 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2283877871945625092, guid: 5d863846b43d92344ade055b66610994, type: 3}
+  m_PrefabInstance: {fileID: 2283877871225390140}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &420688368
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420688362}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &439736645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -232,6 +261,38 @@ PrefabInstance:
     - target: {fileID: 1209953905, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1021901336570858442, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1021901336570858442, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1021901336570858442, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1021901336570858442, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107069110725450522, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107069110725450522, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107069110725450522, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3107069110725450522, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8081415500026683232, guid: da9dffed97bc97f48acd31bb97935c32, type: 3}
       propertyPath: battleUI
@@ -378,6 +439,8 @@ PlayableDirector:
     value: {fileID: 682692956}
   - key: {fileID: 727789094850741609, guid: 4da0532deb37f5440913cb39bd0ed411, type: 2}
     value: {fileID: 682692956}
+  - key: {fileID: 5158091607518708042, guid: 4da0532deb37f5440913cb39bd0ed411, type: 2}
+    value: {fileID: 420688368}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &562492860
@@ -436,7 +499,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Hub
+            m_StringArgument: EgoTest
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1001 &665444910
@@ -749,7 +812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4321893605475107958, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.78
       objectReference: {fileID: 0}
     - target: {fileID: 4321893605475107958, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -826,6 +889,14 @@ PrefabInstance:
     - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: leftBound
       value: -1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: mainTargetTransform
+      value: 
+      objectReference: {fileID: 420688367}
+    - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: offset.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7897472732076878603, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_Name
@@ -985,7 +1056,7 @@ PrefabInstance:
     - target: {fileID: 2200475627425788176, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
       propertyPath: dialogueFiles.Array.data[0]
       value: 
-      objectReference: {fileID: 2480198943629176163, guid: 80f2780db9ee5a843a3b6f7b5a04b26e, type: 3}
+      objectReference: {fileID: 2480198943629176163, guid: 6376a3c22158a964eb439f94c3e10496, type: 3}
     - target: {fileID: 2200475627425788187, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
       propertyPath: m_Name
       value: DialogueMenu
@@ -1402,8 +1473,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2283877871945625096, guid: 5d863846b43d92344ade055b66610994, type: 3}
       propertyPath: yarnStartNode
-      value: Ego.Opening.Dialogue0
+      value: Opening
       objectReference: {fileID: 0}
+    - target: {fileID: 2283877871945625099, guid: 5d863846b43d92344ade055b66610994, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -407615921903925703, guid: 137b15f4be2ab026e9fc37a2d3415d36, type: 3}
     - target: {fileID: 2283877871945625103, guid: 5d863846b43d92344ade055b66610994, type: 3}
       propertyPath: m_Name
       value: Ego (Cutscene)

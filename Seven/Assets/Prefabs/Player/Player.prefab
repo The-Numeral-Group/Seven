@@ -330,9 +330,9 @@ MonoBehaviour:
   cooldownPeriod: 0.5
   abilityName: Dodge
   invokeBlankWhenBadArguments: 1
-  dodgeDistance: 40
-  dodgeDuration: 0.1
-  invincibleDuration: 0.15
+  dodgeDistance: 50
+  dodgeDuration: 0.17
+  invincibleDuration: 0.2
 --- !u!114 &889948524402226234
 MonoBehaviour:
   m_ObjectHideFlags: 0
