@@ -77,6 +77,7 @@ MonoBehaviour:
   indicatorOffset: {x: 0, y: 5}
   boostFactor: 1
   duration: 10
+  effectMaterial: {fileID: 2100000, guid: 3d9dda8042690c24bab17ca1d6033137, type: 2}
 --- !u!212 &7930759915255675868
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -426,13 +427,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
---- !u!4 &4339038148471335911 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5924736184738779975, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
-  m_PrefabInstance: {fileID: 7930759915021449376}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4565095744627111305 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
+  m_PrefabInstance: {fileID: 7930759915021449376}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4339038148471335911 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5924736184738779975, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
   m_PrefabInstance: {fileID: 7930759915021449376}
   m_PrefabAsset: {fileID: 0}

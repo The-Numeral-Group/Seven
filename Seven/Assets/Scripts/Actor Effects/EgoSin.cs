@@ -11,16 +11,17 @@ public class EgoSin : ActorEffect
     //How long the effectee's invincibility will last
     private float duration = 5f;
 
+    //The material to apply to the effectee
+    private Material effectMat;
+
     //The actual amount the user's speed will be increased by
     private float trueSpeedBoost;
 
     //Whether or not this instance should count applications for sin tracking
     private bool countSin;
 
-    ///DEBUG
-    //the effectee's orignal color
-    private Color origColor = Color.white;
-    ///DEBUG
+    //the effectee's orignal material
+    private Material origMat;
 
     //The amount of times this sin has been applied during runtime
     //only incremented if the constructor recieves true
@@ -30,13 +31,14 @@ public class EgoSin : ActorEffect
     //messed with at runtime.
     public static readonly int effectMaxStack = 1;
     //METHODS--------------------------------------------------------------------------------------
-    public EgoSin(float speedBoost, float duration, bool countSin=true)
+    public EgoSin(float speedBoost, float duration, Material effectMat, bool countSin=true)
     {
         ///DEBUG
         Debug.Log("EgoSin: effect applied");
         ///DEBUG
         this.speedBoost = speedBoost;
         this.duration = duration;
+        this.effectMat = effectMat;
         this.countSin = countSin;
     }
     
@@ -53,15 +55,13 @@ public class EgoSin : ActorEffect
             //then make the effectee invincible
             actor.myHealth.SetVulnerable(false, duration, true);
 
-            ///DEBUG
-            //and turn them yellow
+            //and apply the special material
             var ren = actor.gameObject.GetComponent<SpriteRenderer>();
             if(ren)
             {
-                origColor = ren.color;
-                ren.color = Color.yellow;
+                origMat = ren.material;
+                ren.material = effectMat;
             }
-            ///DEBUG
 
             //count up the amount of times this effect has been applied
             if(countSin) {++EgoSin.applicationCount;}
@@ -78,14 +78,12 @@ public class EgoSin : ActorEffect
         //remove the speed boost
         actor.myMovement.speed -= trueSpeedBoost;
 
-        ///DEBUG
-        //and unyellow them
+        //and unmaterial them
         var ren = actor.gameObject.GetComponent<SpriteRenderer>();
         if(ren)
         {
-            ren.color = origColor;
+            ren.material = origMat;
         }
-        ///DEBUG
 
         /*Invulnerability will not be cleaned, because there is no easy way to remove
         invulnerability without cancelling it entirely, and the effectee might have
