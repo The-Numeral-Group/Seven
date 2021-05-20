@@ -1190,9 +1190,21 @@ PrefabInstance:
       propertyPath: tickSpeed
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 7522185283508685397, guid: 2186ce7d5301fab41b4a7553326e9396, type: 3}
+      propertyPath: counterClockwise
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7522185283508685397, guid: 2186ce7d5301fab41b4a7553326e9396, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7522185283508685397, guid: 2186ce7d5301fab41b4a7553326e9396, type: 3}
+      propertyPath: tickCount
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 7522185283508685398, guid: 2186ce7d5301fab41b4a7553326e9396, type: 3}
       propertyPath: rotationRate
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7522185283508685398, guid: 2186ce7d5301fab41b4a7553326e9396, type: 3}
       propertyPath: m_Enabled
