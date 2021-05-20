@@ -7877,6 +7877,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 220097795840936157, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
+      propertyPath: actorName
+      value: Ghost Knight
+      objectReference: {fileID: 0}
     - target: {fileID: 220097795840936158, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: m_Name
       value: Ghost Knight

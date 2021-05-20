@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3372392985914523463}
   - component: {fileID: 3372392985914523462}
   m_Layer: 0
-  m_Name: IndulgenceP2
+  m_Name: IndulgenceP2Multi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88a42a50265773cd1a36dcc48c0d331c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actorName: Indulgence
 --- !u!1001 &3372392986724270841
 PrefabInstance:
   m_ObjectHideFlags: 0
