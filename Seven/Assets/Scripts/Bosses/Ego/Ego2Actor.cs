@@ -19,8 +19,8 @@ public class Ego2Actor : Actor
     */
 
     //FIELDS---------------------------------------------------------------------------------------
-    [Tooltip("The mesh in which Ego's teleports will randomly arrive in.")]
-    public GameObject teleMesh;
+    //[Tooltip("The mesh in which Ego's teleports will randomly arrive in.")]
+    //public GameObject teleMesh;
 
     [Tooltip("How many times Ego should teleport before the final attack teleport.")]
     public int teleCount = 3;
@@ -67,7 +67,7 @@ public class Ego2Actor : Actor
     private GameObject player;
 
     //reference to the teleMesh's literal mesh for ease
-    private Mesh tMesh;
+    //private Mesh tMesh;
 
     //METHODS--------------------------------------------------------------------------------------
     // Start calls the first frame this gameObject is active
@@ -83,7 +83,7 @@ public class Ego2Actor : Actor
         ego = this.gameObject.GetComponent<Actor>();
 
         //get teleMesh's mesh
-        tMesh = teleMesh.GetComponent<MeshFilter>().mesh;
+        //tMesh = teleMesh.GetComponent<MeshFilter>().mesh;
 
         //get ActorMovement as Ego2Movement
         if(this.myMovement is Ego2Movement)
@@ -124,6 +124,9 @@ public class Ego2Actor : Actor
     // Controls the timing of Ego's attacks and teleportations
     IEnumerator BossBehaviour()
     {
+        //give apathy a little bit of time to chill...
+        yield return new WaitForSeconds(attackWait);
+
         while(true)
         {
             //Step 1: Random Teleports
@@ -143,20 +146,9 @@ public class Ego2Actor : Actor
     //executes teleCount many random teleports, then teleports near the player
     IEnumerator TeleportRush()
     {
-        //represents the area of the teleMesh
-        Bounds meshBound = tMesh.bounds;
-
         for(int i = 0; i < teleCount; ++i)
         {
-            //Ego will teleport to a random position within the mesh's area
-            var randomDestinationVec = new Vector3(
-                //Random.Range(meshBound.min.x, meshBound.max.x) * meshBound.size.x,
-                Random.Range(-1f, 1f) * meshBound.size.x,
-                //Random.Range(meshBound.min.y, meshBound.max.y) * meshBound.size.y,
-                Random.Range(-1f, 1f) * meshBound.size.y,
-                0f
-            );
-            yield return uniqueMovement?.EgoTeleport(randomDestinationVec);
+            yield return uniqueMovement?.RandomEgoTeleport();
 
             //wait a little bit before doing the next teleport
             yield return new WaitForSeconds(teleWait);

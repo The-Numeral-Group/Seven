@@ -383,6 +383,7 @@ MonoBehaviour:
   speed: 7.5
   intangibleTime: 0.2
   debugTeleShiftTime: 0.1
+  teleMesh: {fileID: 1774437467}
   teleportAnimClear: 0
 --- !u!114 &505191979
 MonoBehaviour:
@@ -414,7 +415,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6b29bff6c2bef5ab139be0580714db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleMesh: {fileID: 1774437467}
   teleCount: 3
   teleWait: 1
   attackWait: 2
@@ -1382,6 +1382,7 @@ MonoBehaviour:
   damagePerHitbox: 01000000
   animTrigger: 
   windupDelay: 0
+  attackSound: 
   shouldShake: 0
   windShake: 0.1
   attackShake: 1
@@ -1432,6 +1433,7 @@ MonoBehaviour:
   damagePerHitbox: 01000000
   animTrigger: 
   windupDelay: 1
+  attackSound: 
   shouldShake: 0
   windShake: 0.1
   attackShake: 1
@@ -1506,6 +1508,7 @@ MonoBehaviour:
   damagePerHitbox: 
   animTrigger: ego_falcon
   windupDelay: 1.5
+  attackSound: 
   shouldShake: 0
   windShake: 0.1
   attackShake: 1
@@ -1575,6 +1578,7 @@ MonoBehaviour:
   damagePerHitbox: 01000000
   animTrigger: ego_sonic
   windupDelay: 1
+  attackSound: 
   shouldShake: 0
   windShake: 0.1
   attackShake: 1
@@ -2177,6 +2181,7 @@ MonoBehaviour:
   damagePerHitbox: 05000000
   animTrigger: 
   windupDelay: 1.5
+  attackSound: 
   shouldShake: 1
   windShake: 0.1
   attackShake: 1
