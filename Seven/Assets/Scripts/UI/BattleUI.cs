@@ -129,7 +129,7 @@ public class BattleUI : BaseUI
                     bBar.bossContainer.SetActive(true);
                     bBar.bossSlider.maxValue = bBar.bossHealth.maxHealth;
                     bBar.bossSlider.value = bBar.bossHealth.currentHealth;
-                    bBar.bossText.text = bBar.bossMultiActor.gameObject.name;
+                    bBar.bossText.text = bBar.boss.name;
                 }
             }
         }
