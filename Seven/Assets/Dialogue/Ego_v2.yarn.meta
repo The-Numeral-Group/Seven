@@ -1,0 +1,37 @@
+fileFormatVersion: 2
+guid: 6376a3c22158a964eb439f94c3e10496
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: en-US
+  stringIDs:
+  - Ego_v2-Opening-0
+  - Ego_v2-Opening-1
+  - Ego_v2-Opening-2
+  - Ego_v2-Opening-3
+  - Ego_v2-Opening-4
+  - Ego_v2-Opening-5
+  - Ego_v2-Opening-6
+  - Ego_v2-Opening-7
+  - Ego_v2-Opening-8
+  - Ego_v2-Opening-9
+  - Ego_v2-Opening-10
+  - Ego_v2-Transition-11
+  - Ego_v2-Transition-12
+  - Ego_v2-Transition-13
+  - Ego_v2-Transition-14
+  - Ego_v2-Transition-15
+  - Ego_v2-Transition-16
+  - Ego_v2-Transition-17
+  - Ego_v2-Transition-18
+  - Ego_v2-Transition-19
+  compilationStatus: 1
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: 
+  baseLanguage: {fileID: 7128917941130120860, guid: 6376a3c22158a964eb439f94c3e10496, type: 3}
+  localizations: []
