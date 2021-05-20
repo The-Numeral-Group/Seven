@@ -34,6 +34,11 @@ public class GameSaveManager : MonoBehaviour
 
     }
 
+    public void OnNewGame()
+    {
+        gameSaveList.ResetRunTimeFlags();
+    }
+
     // Reset all the SaveObjects.
     public void ResetSaveList()
     {

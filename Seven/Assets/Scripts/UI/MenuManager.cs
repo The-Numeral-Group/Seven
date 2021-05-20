@@ -65,7 +65,10 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
-        PAUSE_MENU.settings.init();
+        if (PAUSE_MENU)
+        {
+            PAUSE_MENU.settings.init();
+        }
     }
 
     public void SetupStaticReferences()
