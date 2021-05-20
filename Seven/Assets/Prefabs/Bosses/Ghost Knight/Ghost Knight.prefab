@@ -519,6 +519,7 @@ MonoBehaviour:
   invokeBlankWhenBadArguments: 1
   centerPos: {x: 0, y: 0}
   toInstantiateProjectile: {fileID: 1116733311778260002, guid: fe0d1340115b50d448565aaeace12aab, type: 3}
+  duration: 0
   travelDuration: 1
   projectileSpawnTime: 1
   numProjectiles: 4
@@ -539,10 +540,8 @@ MonoBehaviour:
   abilityName: 
   invokeBlankWhenBadArguments: 1
   duration: 9
-  duration_vanish_start: 1
+  duration_vanishing: 0
   duration_vanish: 3
-  duration_appear: 1
-  duration_slash: 2
   glintObject: {fileID: 304075295471522891, guid: afab189a157e3364e9dc9b4a8bf6c145, type: 3}
 --- !u!114 &220097794664941641
 MonoBehaviour:
@@ -560,7 +559,6 @@ MonoBehaviour:
   abilityName: Slash
   invokeBlankWhenBadArguments: 1
   duration: 2
-  moveForward: 1
   slashPlaySound: 0
 --- !u!114 &1647299139
 MonoBehaviour:
@@ -660,6 +658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88a42a50265773cd1a36dcc48c0d331c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actorName: Ghost Knight
 --- !u!1 &6988185064560544882
 GameObject:
   m_ObjectHideFlags: 0
