@@ -61,7 +61,7 @@ public class PlayerWeaponAbility : WeaponAbility, PlayerSwordAbility
         playerAnimationHandler.animateAttack();
 
         // Play Attack Audio
-        user.mySoundManager.PlaySound("PlayerAttack", 0.8f, 1.0f);
+        //user.mySoundManager.PlaySound("PlayerAttack", 0.8f, 1.0f);
 
         //this.hitConnected = false;
         //invoke the ability as normal

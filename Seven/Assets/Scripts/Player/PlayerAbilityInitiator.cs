@@ -74,7 +74,11 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
 
     public override void DoAttack()
     {
-        playerAttack.Invoke(ref userActor);
+        if(playerAttack.getUsable())
+        {
+            userActor.mySoundManager.PlaySound("PlayerAttack", 0.8f, 1.0f);
+            playerAttack.Invoke(ref userActor);
+        }
     }
 
     public void OnDodge()
@@ -86,6 +90,7 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     {
         if(canDodge)
         {
+            userActor.mySoundManager.PlaySound("PlayerDodge", 0.8f, 1.2f);
             playerDodge.Invoke(ref userActor);
         }
     }
