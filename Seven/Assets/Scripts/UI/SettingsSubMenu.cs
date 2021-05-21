@@ -9,14 +9,25 @@ public class SettingsSubMenu : SubMenu
     public Slider ambienceVolume;
     public Slider sfxVolume; 
 
+    public void init()
+    {
+        masterVolume.value = GameSettings.MASTER_VOLUME;
+        musicVolume.value = GameSettings.MASTER_VOLUME;
+        ambienceVolume.value = GameSettings.AMBIENT_VOLUME;
+        sfxVolume.value = GameSettings.SFX_VOLUME;
+        SetBackgroundMusic();
+        SetSFXSound();
+    }
     public void SetMasterVolume()
     {
         GameSettings.MASTER_VOLUME = masterVolume.value;
-        Debug.Log(GameSettings.MASTER_VOLUME);
+        SetBackgroundMusic();
+        SetSFXSound();
     }
     public void SetMusicVolume()
     {
         GameSettings.MUSIC_VOLUME = musicVolume.value;
+        SetBackgroundMusic();
     }
     public void SetAmbientVolume()
     {
@@ -25,5 +36,23 @@ public class SettingsSubMenu : SubMenu
     public void SetSFXVolume()
     {
         GameSettings.SFX_VOLUME = sfxVolume.value;
+        SetSFXSound();
+    }
+    void SetBackgroundMusic()
+    {
+        var backgroundmusicObjects = FindObjectsOfType<BackgroundMusic>();
+        foreach(var bg in backgroundmusicObjects)
+        {
+            bg.GetComponent<BackgroundMusic>().SetVolume();
+        }
+    }
+
+    void SetSFXSound()
+    {
+        var sfxObjects = FindObjectsOfType<ActorSoundManager>();
+        foreach(var sfxSource in sfxObjects)
+        {
+            sfxSource.GetComponent<ActorSoundManager>().SetClipVolume();
+        }
     }
 }

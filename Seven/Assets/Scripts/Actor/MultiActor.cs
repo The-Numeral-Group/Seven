@@ -5,6 +5,13 @@ using UnityEngine;
 
 public class MultiActor : MonoBehaviour
 {
+    /*MultiActor name component for battle ui
+    I chose the string method because I ran into unhooking a multiactor prefab. 
+    I was unhooking the indulgencep1 object from its prefab in a scene. I was doing this to set the
+    object name. Produced unintended resultss in how indulgence set its transform parent. Therefore
+    my solution is to add a name to multiactor for now.*/
+    [Tooltip("The name of the actor to be used by the battle ui object.")]
+    public string actorName = "default";
     /*The list of every "phase" (that is, unique Actor objects)
     that this MultiActor uses. They are ordered by index, and will
     be traversed by index unless manually jumped around.

@@ -1232,7 +1232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1027082126515424791, guid: f530a043178fee34798cd4cc9d5060c3, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1027082126515424791, guid: f530a043178fee34798cd4cc9d5060c3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1399,6 +1399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88a42a50265773cd1a36dcc48c0d331c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actorName: default
 --- !u!4 &1157568859
 Transform:
   m_ObjectHideFlags: 0
@@ -1412,7 +1413,7 @@ Transform:
   m_Children:
   - {fileID: 2135220257}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1197971341
 GameObject:
@@ -3532,6 +3533,7 @@ MonoBehaviour:
   chargeDelay: 1
   hitbox: {fileID: 1367552311}
   targetPoint: {fileID: 1642947900134007727, guid: 19c9a2f7f2c0e8a4d848d6e9d1222727, type: 3}
+  directionIndicatorPrefab: {fileID: 7844965136158205026, guid: d33fdd4af9234bf4ab4113fb0f29f4e2, type: 3}
 --- !u!114 &2135220274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4209,7 +4211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 220097795840936156, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 220097795840936156, guid: 37c5490919b781943aaa4d60f390439c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4385,7 +4387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4332445788766981374, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4332445788766981374, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

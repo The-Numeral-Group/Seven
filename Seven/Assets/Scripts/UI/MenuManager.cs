@@ -63,6 +63,14 @@ public class MenuManager : MonoBehaviour
         SetupStaticReferences();
     }
 
+    void Start()
+    {
+        if (PAUSE_MENU)
+        {
+            PAUSE_MENU.settings.init();
+        }
+    }
+
     public void SetupStaticReferences()
     {
         MenuManager.GAME_IS_OVER = false;

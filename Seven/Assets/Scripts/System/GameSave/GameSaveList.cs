@@ -190,4 +190,29 @@ public class GameSaveList : MonoBehaviour
         Debug.Log("IndulgenceDefeated: " + ((BoolValue)SaveObjects[18]).RuntimeValue);
     }
 
+    //Function for resetting runtime values back to their intitial values
+    public void ResetRunTimeFlags()
+    {
+        ((BoolValue)SaveObjects[0]).RuntimeValue = ((BoolValue)SaveObjects[0]).initialValue;
+        ((StringValue)SaveObjects[1]).RuntimeValue = ((StringValue)SaveObjects[1]).initialValue;
+        ((VectorValue)SaveObjects[2]).RuntimeValue = ((VectorValue)SaveObjects[2]).initialValue;
+        ((VectorValue)SaveObjects[3]).RuntimeValue = ((VectorValue)SaveObjects[3]).initialValue;
+        ((VectorValue)SaveObjects[4]).RuntimeValue = ((VectorValue)SaveObjects[4]).initialValue;
+        ((VectorValue)SaveObjects[5]).RuntimeValue = ((VectorValue)SaveObjects[5]).initialValue;
+        ((VectorValue)SaveObjects[6]).RuntimeValue = ((VectorValue)SaveObjects[6]).initialValue;
+        ((BoolValue)SaveObjects[7]).RuntimeValue = ((BoolValue)SaveObjects[7]).initialValue;
+        ((BoolValue)SaveObjects[8]).RuntimeValue = ((BoolValue)SaveObjects[8]).initialValue;
+        ((BoolValue)SaveObjects[9]).RuntimeValue = ((BoolValue)SaveObjects[9]).initialValue;
+        ((BoolValue)SaveObjects[10]).RuntimeValue = ((BoolValue)SaveObjects[10]).initialValue;
+        ((BoolValue)SaveObjects[11]).RuntimeValue = ((BoolValue)SaveObjects[11]).initialValue;
+        ((BoolValue)SaveObjects[12]).RuntimeValue = ((BoolValue)SaveObjects[12]).initialValue;
+        ((BoolValue)SaveObjects[13]).RuntimeValue = ((BoolValue)SaveObjects[13]).initialValue;
+        ((BoolValue)SaveObjects[14]).RuntimeValue = ((BoolValue)SaveObjects[14]).initialValue;
+        ((BoolValue)SaveObjects[15]).RuntimeValue = ((BoolValue)SaveObjects[15]).initialValue;
+        ((BoolValue)SaveObjects[16]).RuntimeValue = ((BoolValue)SaveObjects[16]).initialValue;
+        ((BoolValue)SaveObjects[17]).RuntimeValue = ((BoolValue)SaveObjects[17]).initialValue;
+        ((BoolValue)SaveObjects[18]).RuntimeValue = ((BoolValue)SaveObjects[18]).initialValue;
+        ((BoolValue)SaveObjects[19]).RuntimeValue = ((BoolValue)SaveObjects[19]).initialValue;
+    }
+
 }
