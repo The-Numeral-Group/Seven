@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 //Document Link: https://docs.google.com/document/d/1xRoI-Sgd_mhcsRJRdVyNVtCo6J9Vg1foxXbZLyPI7GE/edit?usp=sharing
@@ -39,11 +40,16 @@ public class BattleUI : BaseUI
     GameObject playerObject;
     //reference to all the audio sources;
     private AudioSource[] allAudioSources;
+    //Reference to health bar shake coroutine
+    IEnumerator ShakePTR;
+    Vector3 sliderOriginalPos;
 
     protected override void Awake()
     {
         base.Awake();
         bossList = new List<BossBar>();
+        ShakePTR = ShakePlayerHealthRoutine(1f, 0.1f);
+        sliderOriginalPos = playerSlider.transform.position;
     }
     void Start()
     {
@@ -170,5 +176,35 @@ public class BattleUI : BaseUI
         foreach (AudioSource audioS in allAudioSources) {
             audioS.Stop();
         }
+    }
+
+    public void ShakePlayerHealthBar()
+    {
+        if (ShakePTR != null)
+        {
+            StopCoroutine(ShakePTR);
+        }
+        playerSlider.transform.position = sliderOriginalPos;
+        ShakePTR = ShakePlayerHealthRoutine(1f, 1.5f);
+        StartCoroutine(ShakePTR);
+    }
+
+    IEnumerator ShakePlayerHealthRoutine(float duration, float magnitude)
+    {
+        float elapsed = 0.0f;
+        while (elapsed < duration)
+        {
+            float offsetX = Random.Range(-1f, 1f) * magnitude;
+            float offsetY = Random.Range(-1f, 1f) * magnitude;
+
+            playerSlider.transform.position = 
+                new Vector3(playerSlider.transform.position.x + offsetX,
+                playerSlider.transform.position.y + offsetY,
+                playerSlider.transform.position.z);
+
+            elapsed += Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        playerSlider.transform.position = sliderOriginalPos;
     }
 }
