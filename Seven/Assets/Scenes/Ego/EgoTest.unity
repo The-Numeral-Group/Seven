@@ -651,8 +651,8 @@ MonoBehaviour:
   laserMaxDist: 50
   laserWidth: 3
   damage: 3
-  preLaserDuration: 0.25
-  laserDuration: 0.3
+  preLaserDuration: 1
+  laserDuration: 0.75
 --- !u!114 &505191990
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -62,8 +62,7 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
     protected override int InternInvoke(params Vector3[] args)
     {
         usable = false;
-        //Animate the attack now for when the laser exists
-        user.myAnimationHandler.TrySetTrigger("ego_shoot");
+        
         
         StartCoroutine(LaserInvokation(args[0]));
         return 1;
@@ -93,10 +92,16 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
         //Step 5: wait a little bit
         yield return new WaitForSeconds(preLaserDuration);
         //Lock the user's movement during this time...
-        yield return user.myMovement.LockActorMovement(preLaserDuration);
+        //yield return user.myMovement.LockActorMovement(preLaserDuration);
+
+        //Animate the attack now for when the laser exists
+        user.myAnimationHandler.TrySetTrigger("ego_shoot");
+
+        //wait a magical number of seconds
+        yield return new WaitForSeconds(0.55f);
 
         //Step 6: fire the actual laser
-        laser.CastDamage(user.faceAnchor.position, targetDirection);
+        StartCoroutine(laser.CastDamage(user.faceAnchor.position, targetDirection));
 
         //Step 7: wait a little bit longer
         yield return new WaitForSeconds(laserDuration);
@@ -148,8 +153,9 @@ internal class EgoLaserProjectile : MonoBehaviour
     }
 
     //Handles the literal boxCast of the 
-    public void CastDamage(Vector3 launchPoint, Vector3 damageDirection)
+    public IEnumerator CastDamage(Vector3 launchPoint, Vector3 damageDirection)
     {
+        this.gameObject.GetComponent<Animator>().SetTrigger("go");
         //set the points for the laser
         //what C# doesn't have implicit arrays? Really?
         //Vector3[] laserPoints = new Vector3[] {laserStart, laserEnd};
@@ -191,6 +197,8 @@ internal class EgoLaserProjectile : MonoBehaviour
             10.0f
         );
         ///DEBUG
+
+        yield return new WaitForSeconds(0.25f);
 
         //shoot what is effectively a really thicc data laser
         RaycastHit2D[] hits = Physics2D.BoxCastAll(
