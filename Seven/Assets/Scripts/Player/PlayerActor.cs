@@ -152,5 +152,9 @@ public class PlayerActor : Actor
         // Play TakeDamage Audio
         base.DoActorDamageEffect(damage);
         mySoundManager.PlaySound("TakeDamage");
+        if (MenuManager.BATTLE_UI)
+        {
+            MenuManager.BATTLE_UI.ShakePlayerHealthBar();
+        }
     }
 }
