@@ -28,11 +28,30 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
     private Actor target;
 
     private GameObject targetPointObject;
+    [SerializeField]
+    [Tooltip("The direction telegraph image for the charge.")]
+    protected GameObject directionIndicatorPrefab;
+    //Reference to actual instantiated directionindicator
+    GameObject directionIndicator;
+    //Default facing direction of the indicator
+    Vector2 defaultFacingDirection;
 
     void Awake()
     {
         target = null;
         chargeDirection = Vector2.right;
+        defaultFacingDirection = Vector2.right;
+        if (directionIndicatorPrefab == null)
+        {
+            Debug.LogWarning("WrathSwordRush: directionIndicator prefab not attached.");
+            directionIndicator = new GameObject();
+            directionIndicator.transform.parent = this.gameObject.transform;
+        }
+        else
+        {
+            directionIndicator = Instantiate(directionIndicatorPrefab, this.gameObject.transform);
+        }
+        directionIndicator.SetActive(false);
     }
 
     public override void Invoke(ref Actor user)
@@ -67,11 +86,19 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
     private IEnumerator TrackTarget()
     {
         isTracking = true;
+        directionIndicator.SetActive(true);
         while (isTracking && target != null)
         {
-            chargeDirection = target.transform.position - wrath.gameObject.transform.position;
+            chargeDirection = (target.transform.position - wrath.gameObject.transform.position).normalized;
             targetLocation = target.transform.position;
-
+            float dtheta = Mathf.Acos(((Vector2.Dot(chargeDirection, defaultFacingDirection)) / (chargeDirection.magnitude * defaultFacingDirection.magnitude)));
+            if (chargeDirection.y < 0)
+            {
+                dtheta *= -1;
+            }
+            dtheta = dtheta * (180/Mathf.PI);
+            directionIndicator.transform.localPosition = new Vector3(chargeDirection.x, chargeDirection.y, 0);
+            directionIndicator.transform.localRotation = Quaternion.Euler(0, 0, dtheta);
             if (chargeDirection.x > 0.0f) {
                 targetLocation.x += 5.0f;
             }
@@ -135,6 +162,7 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
         targetPointObject = Instantiate(this.targetPoint, targetLocation, Quaternion.identity);
 
         yield return new WaitForSeconds(chargeDelay);
+        directionIndicator.SetActive(false);
         hitbox.SetActive(true);
 
         wrath.myMovement.DragActor(
@@ -206,6 +234,9 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
         //wrath.myAnimationHandler.Animator.SetBool("charging", false);
         wrath.myMovement.DragActor(Vector2.zero);
         chargeDirection = Vector2.right;
+        directionIndicator.transform.localPosition = defaultFacingDirection;
+        directionIndicator.transform.localRotation = Quaternion.identity;
+        directionIndicator.SetActive(false);
         hitbox.SetActive(false);
         hasArrived = false;
         isCharging = false;

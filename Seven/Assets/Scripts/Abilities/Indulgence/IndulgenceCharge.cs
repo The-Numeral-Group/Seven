@@ -77,6 +77,7 @@ public class IndulgenceCharge : ActorAbilityFunction<Actor, int>
 
     protected override int InternInvoke(params Actor[] args)
     {
+        directionIndicator.transform.parent = user.transform;
         MovementLockroutine = this.user.myMovement.LockActorMovement((20f + trackTime) * chargeCount);
         TotalRoutine = ChargeSequence();
         target = args[0];
