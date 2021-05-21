@@ -346,6 +346,7 @@ GameObject:
   - component: {fileID: 505191988}
   - component: {fileID: 505191992}
   - component: {fileID: 505191981}
+  - component: {fileID: 505191993}
   m_Layer: 0
   m_Name: Ego 2
   m_TagString: Boss
@@ -571,7 +572,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505191976}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -714,6 +715,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &505191993
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505191976}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.3, y: 0}
+  m_Size: {x: 2, y: 6}
+  m_Direction: 0
 --- !u!1 &656284013
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,6 +755,7 @@ GameObject:
   - component: {fileID: 656284018}
   - component: {fileID: 656284015}
   - component: {fileID: 656284020}
+  - component: {fileID: 656284023}
   m_Layer: 0
   m_Name: Ego 1
   m_TagString: Untagged
@@ -827,7 +845,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: -407615921903925703, guid: 137b15f4be2ab026e9fc37a2d3415d36, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -873,7 +891,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656284013}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1008,6 +1026,22 @@ MonoBehaviour:
   Close: {fileID: 656284017}
   Far: {fileID: 656284019}
   Special: {fileID: 656284030}
+--- !u!70 &656284023
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656284013}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.2, y: 0}
+  m_Size: {x: 2.5, y: 6}
+  m_Direction: 0
 --- !u!114 &656284024
 MonoBehaviour:
   m_ObjectHideFlags: 0
