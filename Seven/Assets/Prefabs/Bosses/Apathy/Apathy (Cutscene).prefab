@@ -132,6 +132,9 @@ MonoBehaviour:
   abilityDropObject: {fileID: 0}
   prop: {fileID: 0}
   sceneTransition: {fileID: 0}
+  prefightAmbiance: {fileID: 0}
+  postfightAmbiance: {fileID: 0}
+  fightAmbiance: {fileID: 0}
 --- !u!114 &6785325949612782731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,8 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd89403b09c1874caac8312df28ef1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
+  interactIndicatorPrefab: {fileID: 5725056411618185430, guid: 0fae7975420221144aa605f016da6481, type: 3}
   indicatorOffset: {x: 0, y: 5}
   speakerName: Apathy
   yarnStartNode: 
+  chatBoxOffset: {x: 0, y: 0, z: 0}
   npcMode: 0
