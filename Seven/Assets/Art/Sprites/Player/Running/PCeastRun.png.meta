@@ -20,6 +20,12 @@ TextureImporter:
   - first:
       213: 8853384837164698658
     second: PCeastRun_5
+  - first:
+      213: 7251433111076224285
+    second: PCeastRun_0
+  - first:
+      213: -4327358746403729291
+    second: PCeastRun_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -119,36 +125,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PCeastRun_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 275
-        width: 195
-        height: 275
-      alignment: 9
-      pivot: {x: 0.6694867, y: 0.79024947}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b55b0a28a2048db50800000000000000
-      internalID: 6618110203745318235
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: PCeastRun_1
       rect:
         serializedVersion: 2
-        x: 196
+        x: 204
         y: 275
-        width: 195
+        width: 161
         height: 275
       alignment: 9
-      pivot: {x: 0.65349734, y: 0.7653062}
+      pivot: {x: 0.79043585, y: 0.7789116}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -164,12 +149,12 @@ TextureImporter:
       name: PCeastRun_2
       rect:
         serializedVersion: 2
-        x: 390
-        y: 275
-        width: 195
+        x: 0
+        y: 0
+        width: 193
         height: 275
       alignment: 9
-      pivot: {x: 0.6918717, y: 0.79931974}
+      pivot: {x: 0.7289316, y: 0.7879819}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -182,64 +167,43 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PCeastRun_3
+      name: PCeastRun_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 195
+        y: 275
+        width: 193
         height: 275
       alignment: 9
-      pivot: {x: 0.67268455, y: 0.79251707}
+      pivot: {x: 0.7289316, y: 0.7947846}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6048a312f18fda6e0800000000000000
-      internalID: -1824529461430025210
+      spriteID: d1d343aaef342a460800000000000000
+      internalID: 7251433111076224285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PCeastRun_4
+      name: PCeastRun_3
       rect:
         serializedVersion: 2
-        x: 195
-        y: 1
-        width: 195
-        height: 275
-      alignment: 9
-      pivot: {x: 0.6790801, y: 0.7653062}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 666f7b839d3779380800000000000000
-      internalID: -8964569156461005210
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PCeastRun_5
-      rect:
-        serializedVersion: 2
-        x: 390
+        x: 204
         y: 0
-        width: 195
+        width: 161
         height: 275
       alignment: 9
-      pivot: {x: 0.6950696, y: 0.7970522}
+      pivot: {x: 0.79726964, y: 0.77664405}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22c08072a9a8dda70800000000000000
-      internalID: 8853384837164698658
+      spriteID: 5701de0c52222f3c0800000000000000
+      internalID: -4327358746403729291
       vertices: []
       indices: 
       edges: []

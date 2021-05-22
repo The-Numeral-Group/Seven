@@ -133,7 +133,7 @@ TextureImporter:
         width: 205
         height: 275
       alignment: 9
-      pivot: {x: 0.6034236, y: 0.8356009}
+      pivot: {x: 0.64600974, y: 0.84240365}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -154,7 +154,7 @@ TextureImporter:
         width: 205
         height: 275
       alignment: 9
-      pivot: {x: 0.7655911, y: 0.8106576}
+      pivot: {x: 0.7990516, y: 0.8106576}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -175,7 +175,7 @@ TextureImporter:
         width: 205
         height: 275
       alignment: 9
-      pivot: {x: 0.60038173, y: 0.8378685}
+      pivot: {x: 0.639926, y: 0.84240365}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -191,12 +191,12 @@ TextureImporter:
       name: PCnortheastRunSword_3
       rect:
         serializedVersion: 2
-        x: 204
+        x: 205
         y: 0
         width: 205
         height: 275
       alignment: 9
-      pivot: {x: 0.75950736, y: 0.8106577}
+      pivot: {x: 0.80817723, y: 0.8242631}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
