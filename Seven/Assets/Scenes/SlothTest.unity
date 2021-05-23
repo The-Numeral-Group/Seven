@@ -1619,6 +1619,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MultiActor
       objectReference: {fileID: 0}
+    - target: {fileID: 8938251648488443226, guid: fb7fac46d5a210f45a451e02c6e12e1e, type: 3}
+      propertyPath: actorName
+      value: Apathy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb7fac46d5a210f45a451e02c6e12e1e, type: 3}
 --- !u!1 &934572920
@@ -2006,14 +2010,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2087267177}
     m_Modifications:
-    - target: {fileID: 2200475627225062245, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 5.0700073
-      objectReference: {fileID: 0}
-    - target: {fileID: 2200475627225062245, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.18005371
-      objectReference: {fileID: 0}
     - target: {fileID: 2200475627425788176, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
       propertyPath: dialogueFiles.Array.size
       value: 1
