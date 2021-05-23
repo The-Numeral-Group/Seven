@@ -51,6 +51,11 @@ public class PlayerActor : Actor
         
         if (timelineManager != null && timelineManager.tag == "GameOver")
         {
+            AudioSource deathSFX = timelineManager.GetComponentInChildren<AudioSource>();
+            if (deathSFX)
+            {
+                deathSFX.volume = GameSettings.MASTER_VOLUME * GameSettings.SFX_VOLUME;
+            }
             // Switch back the color
             this.gameObject.GetComponent<SpriteRenderer>().color = defaultColor;
 
