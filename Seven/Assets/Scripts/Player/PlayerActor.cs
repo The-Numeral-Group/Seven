@@ -53,19 +53,6 @@ public class PlayerActor : Actor
         }
     }
 
-    private IEnumerator callMenuManager()
-    {
-        // delay before calling GameOver function
-        yield return new WaitForSeconds(0.5f);
-        MenuManager.StartGameOver();
-        if (MenuManager.BATTLE_UI)
-        {
-            MenuManager.BATTLE_UI.StopAllAudio();
-            MenuManager.BATTLE_UI.Hide();
-        }
-        this.enabled = false;
-    }
-
     /*Engages the dialogue sequence. Disables the players health component, and sets its
     movement direction to 0. Essentially locks the player in place and makes them invulnerable.
     Requires ActiveSpeaker to have been set.*/
