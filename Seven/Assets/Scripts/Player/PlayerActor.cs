@@ -20,6 +20,8 @@ public class PlayerActor : Actor
 
     public bool hasSword { get; protected set; }
 
+    private Color defaultColor;
+
     //Initialize non monobehaviour fields
     void Awake()
     {
@@ -35,6 +37,8 @@ public class PlayerActor : Actor
         playerInput = GetComponent<PlayerInput>();
 
         SetSwordState(startWithSword);
+
+        defaultColor = this.gameObject.GetComponent<SpriteRenderer>().color;
     }
 
     public override void DoActorDeath()
@@ -47,6 +51,9 @@ public class PlayerActor : Actor
         
         if (timelineManager != null && timelineManager.tag == "GameOver")
         {
+            // Switch back the color
+            this.gameObject.GetComponent<SpriteRenderer>().color = defaultColor;
+
             MenuManager.StartGameOver();
             if (MenuManager.BATTLE_UI)
             {
