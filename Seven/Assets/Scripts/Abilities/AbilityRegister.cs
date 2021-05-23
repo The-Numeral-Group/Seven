@@ -74,5 +74,6 @@
     public static string WRATH_SLUDGE = "";
     public static string WRATH_SWORDATTACK = "";
     public static string WRATH_SWORDRUSH = "";
+    public static string WRATH_ARMSWEEP = "";
 
 }
