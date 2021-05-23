@@ -38,23 +38,19 @@ public class PlayerActor : Actor
 
     public override void DoActorDeath()
     {
-        // Death animation
-        this.myAnimationHandler.Animator.SetTrigger("player_dead");
-
-        StartCoroutine(callMenuManager());
-    }
-
-    private IEnumerator callMenuManager()
-    {
-        // delay before calling GameOver function
-        yield return new WaitForSeconds(0.5f);
-        MenuManager.StartGameOver();
-        if (MenuManager.BATTLE_UI)
+        // Find TimelineManager
+        GameObject timelineManager = GameObject.Find("TimelineManager");
+        
+        if (timelineManager != null && timelineManager.tag == "GameOver")
         {
-            MenuManager.BATTLE_UI.StopAllAudio();
-            MenuManager.BATTLE_UI.Hide();
+            MenuManager.StartGameOver();
+            if (MenuManager.BATTLE_UI)
+            {
+                MenuManager.BATTLE_UI.StopAllAudio();
+                MenuManager.BATTLE_UI.Hide();
+            }
+            timelineManager.GetComponent<TimelineManager>().startTimeline();
         }
-        this.enabled = false;
     }
 
     /*Engages the dialogue sequence. Disables the players health component, and sets its

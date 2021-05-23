@@ -26,7 +26,7 @@ public class TimelineManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Gluttony Crush: does not have access to a camera that can shake");
+            Debug.LogWarning("TimelineManager: does not have access to a camera that can shake");
         }
     }
     public void goBackLoop()
@@ -48,22 +48,6 @@ public class TimelineManager : MonoBehaviour
     {
         this.loopIt++;
     }
-
-    /*public void loopFromStartTimeline()
-    {
-        if(loop)
-        {
-            director.time = director.initialTime;
-        }
-    }
-
-    public void loopfromSpecificTimeline(float time)
-    {
-        if(loop)
-        {
-            director.time = (double)time;
-        }
-    }*/
 
     public void setLoop(bool newLoop)
     {
@@ -88,5 +72,10 @@ public class TimelineManager : MonoBehaviour
     public void cameraShake()
     {
         cam.Shake(2.0f, 0.2f);
+    }
+
+    public void deathCutscene()
+    {
+        director.Play();
     }
 }
