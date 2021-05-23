@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class IndulgenceSpecial : ActorAbilityFunction<Actor, int>
 {
+    [Range(0.1f, 10f)]
+    public float rangeToStop = 5f;
     public float suckSpeed = 7f;
     [Range(1f, 10f)]
     public float suckDuration = 5f;
@@ -126,6 +128,14 @@ public class IndulgenceSpecial : ActorAbilityFunction<Actor, int>
             Vector2 destination = (this.user.transform.position - this.target.gameObject.transform.position).normalized;
             destination = destination * suckSpeed;
             this.target.myMovement.DragActor(destination);
+            float distance = Vector2.Distance(this.user.transform.position, this.target.gameObject.transform.position);
+            if (distance <= rangeToStop)
+            {
+                Debug.Log("SStopping");
+                StopCoroutine(FinishRoutine);
+                FinishAbilitySequence();
+                break;
+            }
             yield return new WaitForFixedUpdate();
         }
     }

@@ -103,11 +103,12 @@ MonoBehaviour:
   offset: {x: 0, y: 2}
   cameraSmoothRate: 0.5
   breakingDistance: 5
+  zoomTriggerDistance: 5
   upperBound: 3.4028235e+38
   lowerBound: -3.4028235e+38
   rightBound: 3.4028235e+38
   leftBound: -3.4028235e+38
-  dummyvalue: 20
+  zoomMode: 1
   defaultZoom: 15
   minZoom: 7
   zoomSpeed: 5

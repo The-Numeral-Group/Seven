@@ -27,8 +27,10 @@ public abstract class BaseCamera : MonoBehaviour
     [Tooltip("Smooth the cameras movement. Values ideally between 0 and 1.")]
     public float cameraSmoothRate = 0.5f;
     //Distance used by derived camera classes to manage the focus between player and points of interest.
-    [Tooltip("Distance required between a targetPOI to the player in order affect the cameras focus.")]
+    [Tooltip("Distance required between a targetPOI to the player in order to affect if the camera breaks focus.")]
     public float breakingDistance = 0f;
+    [Tooltip("Distance required for a camera to zoom in on a target.")]
+    public float zoomTriggerDistance = 5f;
     //upper boundary for the camera
     [Tooltip("Upper Boundary of the camera.")]
     public float upperBound = float.MaxValue;
@@ -41,13 +43,32 @@ public abstract class BaseCamera : MonoBehaviour
     //left boundary for the camera
     [Tooltip("Left Boundary of the camera.")]
     public float leftBound = float.MinValue;
-    [Tooltip("Unused value at the moment.")]
-    public float dummyvalue = 20f;
+    [Tooltip("Whether or not this camera should foricbly zoom in on POIs")]
+    public bool zoomMode = false;
+    //The defaultZoom level.
+    [Tooltip("The default zoom level when the player is the only object in focus.")]
+    public float defaultZoom = 40f;
+    //The closest zoom the camera can perform
+    [Tooltip("How far a camera can zoom in on a point of interest.")]
+    public float minZoom = 17f;
+    //The speed at which the camera will zoom in and out
+    [Tooltip("How fast a camera can zoom in on a point of interest")]
+    public float zoomSpeed = 5.0f;
+    //Flag used to to let ZoomCamera know if zooming is required.
+    protected bool closeToPOI;
+    //Of all the points of interest close to the player, this variable holds the one which is closest.
+    protected Vector3 closestPOI;
     //Reference variable that is utilized by the SmoothDamp function.
     protected Vector3 velocity;
     //Reference to this objects camera component
     protected Camera cam;
     IEnumerator shakePointer;
+
+    protected virtual void Awake()
+    {
+        closeToPOI = false;
+        closestPOI = Vector3.zero;
+    }
 
     //Initialize monobehaviour fields.
     protected virtual void Start()
@@ -73,6 +94,10 @@ public abstract class BaseCamera : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         MoveCamera();
+        if (zoomMode)
+        {
+            ZoomCamera();
+        }
     }
 
     //Method used to add a transform to a cameras target points of interest.
@@ -83,6 +108,22 @@ public abstract class BaseCamera : MonoBehaviour
 
     //How the camera should move. Functionality should be implemented on a class by class basis.
     protected abstract void MoveCamera();
+
+    /*ZoomCamera will soom the camera based on whether or not the player it close to a POI
+    The zoom is done gradually using Linear Interpolation.*/
+    protected virtual void ZoomCamera()
+    {
+        float newZoom;
+        if (closeToPOI)
+        {
+            newZoom = Mathf.Lerp(cam.orthographicSize, minZoom, (zoomSpeed * Time.deltaTime));
+        }
+        else
+        {
+            newZoom = Mathf.Lerp(cam.orthographicSize, defaultZoom, (zoomSpeed * Time.deltaTime));
+        }
+        cam.orthographicSize = newZoom;
+    }
 
     //How a camera gets its focus point. Functionality should be implemented on a class by class basis.
     protected abstract Vector3 GetCenterPos();

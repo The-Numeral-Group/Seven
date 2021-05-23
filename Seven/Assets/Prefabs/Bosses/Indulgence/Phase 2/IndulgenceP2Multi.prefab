@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: suckDuration
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2783546447038969407, guid: 37b89f1d1955b6545b66339529b712d2, type: 3}
+      propertyPath: rangeToStop
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4442329231913377666, guid: 37b89f1d1955b6545b66339529b712d2, type: 3}
       propertyPath: speed
       value: 4.9
