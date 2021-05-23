@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WrathP2Actor : Actor
@@ -50,6 +49,7 @@ public class WrathP2Actor : Actor
         WrathP2Actor.abilityDamageAddition = 0;
         isDead = false;
         phaseChangePercentageActual = phaseChangePercentageInspector;
+        currAbility = null;
     }
 
     //Setup reference to the target
@@ -60,6 +60,11 @@ public class WrathP2Actor : Actor
         //Start the state machine
         StateMachinePTR = StateMachine();
         StartCoroutine(StateMachinePTR);
+    }
+
+    void FixedUpdate()
+    {
+
     }
 
     //Do Actor death function
@@ -91,13 +96,14 @@ public class WrathP2Actor : Actor
     //EvaluateState is called from the statemachine coroutine.
     void EvalauteState()
     {
+        Debug.Log("Evaluating State");
         State decidingState = currState;
         if(isDead) //Death is used to kill the state machine.
         {
             decidingState = State.DEAD;
             ExecuteState(decidingState);
         }
-        else if (targetInRange)
+        else if (WrathP2Actor.targetInRange && this.myAbilityInitiator.abilities[AbilityRegister.WRATH_ARMSWEEP].getUsable())
         {
             decidingState = State.PHYSICAL;
         }
@@ -122,7 +128,10 @@ public class WrathP2Actor : Actor
         switch(state)
         {
             case State.PHYSICAL:
+                Debug.Log("Choosing arm sweep");
                 currState = State.PHYSICAL;
+                currAbility = this.myAbilityInitiator.abilities[AbilityRegister.WRATH_ARMSWEEP];
+                currAbility.Invoke(ref self);
                 break;
             case State.WAITING:
                 currState = State.WAITING;
@@ -164,7 +173,7 @@ public class WrathP2Actor : Actor
     IEnumerator StateMachine()
     {
         yield return new WaitForFixedUpdate();
-        yield return new WaitUntil(()=> currAbility == null || currAbility.getIsFinished());
+        yield return new WaitUntil(()=> (currAbility == null || currAbility.getIsFinished()));
         if (currState != State.WAITING)
         {
             yield return new WaitForSeconds(delayBetweenAttacks);

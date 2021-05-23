@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class WrathP2AbilityInitiator : ActorAbilityInitiator
 {
-    //ActorAbility wrathArmSweep
+    public ActorAbility wrathArmSweep;
     void Awake()
     {
-        /*this.abilities.Add("Wrath" + nameof(wrathArmSweep), wrathArmSweep);
-        AbilityRegister.WRATH_ARMSWEEP = "Wrath" + nameof(wrathArmSweep);*/
+        this.abilities.Add("Wrath" + nameof(wrathArmSweep), wrathArmSweep);
+        AbilityRegister.WRATH_ARMSWEEP = "Wrath" + nameof(wrathArmSweep);
     }
 }

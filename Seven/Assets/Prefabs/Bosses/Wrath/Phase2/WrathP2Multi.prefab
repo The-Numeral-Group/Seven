@@ -1,5 +1,114 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1943835307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1943835308}
+  m_Layer: 14
+  m_Name: Wrath Arm Sweep
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1943835308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943835307}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6801097111444358030}
+  m_Father: {fileID: 8581417415270867761}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &257615665851054375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6801097111444358030}
+  - component: {fileID: 1799861353140031460}
+  - component: {fileID: 1926732482366689238}
+  m_Layer: 14
+  m_Name: Arm Sweep Hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6801097111444358030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257615665851054375}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1943835308}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1799861353140031460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257615665851054375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e0a49d9f848f7f1a8cecfc6acfa2a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alwaysDragAwayFromUser: 1
+  dragBackDirection: {x: 0, y: -1}
+  dragBackIntensity: 5
+  dragBackDuration: 5
+--- !u!60 &1926732482366689238
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257615665851054375}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 3.556597, y: -0.13342094}
+      - {x: -3.5891922, y: 0.25039238}
+      - {x: -3.1784914, y: -2.5687861}
+      - {x: -0.09666649, y: -3.5094373}
+      - {x: 3.505872, y: -1.6650879}
 --- !u!1 &1929146243393720051
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,6 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8581417415270867761}
   - component: {fileID: 2473339075437257590}
+  - component: {fileID: 1048545866}
   - component: {fileID: 2688743516045599179}
   - component: {fileID: 5541655781900561451}
   - component: {fileID: 4356191576071300436}
@@ -64,13 +174,14 @@ GameObject:
   - component: {fileID: 7873656976052742098}
   - component: {fileID: 5283909003347113446}
   - component: {fileID: 737185324583889991}
+  - component: {fileID: 7696531761945222991}
   m_Layer: 26
   m_Name: WrathP2
   m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8581417415270867761
 Transform:
   m_ObjectHideFlags: 0
@@ -80,9 +191,10 @@ Transform:
   m_GameObject: {fileID: 4950743182952501645}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.01, y: 3.06, z: 1}
   m_Children:
-  - {fileID: 1722723479935141710}
+  - {fileID: 8989000160696563934}
+  - {fileID: 1943835308}
   m_Father: {fileID: 6081538999315364633}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -107,6 +219,157 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!60 &1048545866
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4950743182952501645}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.8, y: 10.8}
+    newSize: {x: 10.8, y: 10.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 4.0078125, y: -1.9669915}
+      - {x: 4.0078125, y: -1.5187494}
+      - {x: 3.9023438, y: -1.4396478}
+      - {x: 3.4277344, y: -1.2550775}
+      - {x: 3.1376953, y: -1.2550775}
+      - {x: 3.5332031, y: -0.25312436}
+      - {x: 3.5332031, y: -0.042186856}
+      - {x: 3.4804688, y: 0.2742194}
+      - {x: 3.3222656, y: 0.5115241}
+      - {x: 3.243164, y: 0.4851569}
+      - {x: 2.8740234, y: 0.64336}
+      - {x: 2.6103516, y: 0.8542975}
+      - {x: 2.3730469, y: 1.3552741}
+      - {x: 2.2148438, y: 1.48711}
+      - {x: 1.8720703, y: 1.7771491}
+      - {x: 2.0302734, y: 1.9617194}
+      - {x: 2.1621094, y: 2.2517586}
+      - {x: 2.1357422, y: 2.4099617}
+      - {x: 1.7929688, y: 2.462696}
+      - {x: 1.4501953, y: 2.1199226}
+      - {x: 1.2128906, y: 1.8562506}
+      - {x: 0.6328125, y: 1.8562506}
+      - {x: 0.6064453, y: 2.1990242}
+      - {x: 1.0019531, y: 2.3572273}
+      - {x: 1.5029297, y: 2.6472664}
+      - {x: 1.8457031, y: 3.016407}
+      - {x: 2.0566406, y: 3.306446}
+      - {x: 2.109375, y: 3.991993}
+      - {x: 2.0039062, y: 4.0710945}
+      - {x: 1.9248047, y: 4.0447273}
+      - {x: 1.7138672, y: 3.570118}
+      - {x: 1.265625, y: 3.1218758}
+      - {x: 0.6064453, y: 2.9373055}
+      - {x: 0.6591797, y: 3.148243}
+      - {x: 0.3955078, y: 3.3855476}
+      - {x: 0.3955078, y: 4.255665}
+      - {x: 0.31640625, y: 4.387501}
+      - {x: 0.26367188, y: 4.387501}
+      - {x: 0.2109375, y: 4.3611336}
+      - {x: 0.15820312, y: 4.0974617}
+      - {x: 0.026367188, y: 3.5964851}
+      - {x: -0.026367188, y: 3.7546883}
+      - {x: -0.18457031, y: 3.5964851}
+      - {x: -0.34277344, y: 4.255665}
+      - {x: -0.421875, y: 4.387501}
+      - {x: -0.50097656, y: 4.3611336}
+      - {x: -0.5800781, y: 3.8337898}
+      - {x: -0.55371094, y: 3.2537117}
+      - {x: -0.7910156, y: 3.2009773}
+      - {x: -1.0546875, y: 3.0691414}
+      - {x: -1.5556641, y: 3.3328133}
+      - {x: -2.1884766, y: 4.0447273}
+      - {x: -2.2675781, y: 4.01836}
+      - {x: -2.2675781, y: 3.6755867}
+      - {x: -1.8984375, y: 2.884571}
+      - {x: -1.5556641, y: 2.5681648}
+      - {x: -0.8173828, y: 2.172657}
+      - {x: -0.8173828, y: 1.8035163}
+      - {x: -1.3710938, y: 1.908985}
+      - {x: -1.5029297, y: 2.0671883}
+      - {x: -1.9248047, y: 2.4890633}
+      - {x: -2.0039062, y: 2.462696}
+      - {x: -2.0039062, y: 2.3835945}
+      - {x: -2.3203125, y: 2.304493}
+      - {x: -2.0566406, y: 1.7507819}
+      - {x: -2.3466797, y: 1.5398444}
+      - {x: -3.0058594, y: 0.7224616}
+      - {x: -3.4804688, y: 0.56425846}
+      - {x: -3.665039, y: 0.2742194}
+      - {x: -3.7177734, y: 0.08964908}
+      - {x: -3.7441406, y: -0.22675717}
+      - {x: -3.5332031, y: -0.72773373}
+      - {x: -3.2167969, y: -1.1759759}
+      - {x: -3.5595703, y: -1.2550775}
+      - {x: -4.0341797, y: -1.3605462}
+      - {x: -4.192383, y: -1.5187494}
+      - {x: -4.192383, y: -1.5714837}
+      - {x: -4.1660156, y: -1.6242181}
+      - {x: -3.928711, y: -1.6242181}
+      - {x: -3.9814453, y: -1.6242181}
+      - {x: -4.1132812, y: -1.7824212}
+      - {x: -4.1660156, y: -1.9142572}
+      - {x: -3.9814453, y: -2.1251945}
+      - {x: -3.796875, y: -2.177929}
+      - {x: -3.2958984, y: -1.8615228}
+      - {x: -3.375, y: -2.046093}
+      - {x: -3.4013672, y: -2.204296}
+      - {x: -3.2695312, y: -2.2570305}
+      - {x: -3.243164, y: -2.2570305}
+      - {x: -3.0585938, y: -2.1251945}
+      - {x: -2.7421875, y: -1.756054}
+      - {x: -2.0302734, y: -1.6242181}
+      - {x: -1.8984375, y: -1.7824212}
+      - {x: -1.7666016, y: -1.88789}
+      - {x: -1.6347656, y: -1.8351556}
+      - {x: -1.6611328, y: -1.5714837}
+      - {x: -1.9511719, y: -1.2287103}
+      - {x: -2.399414, y: -1.0705072}
+      - {x: -2.5048828, y: -0.3849603}
+      - {x: -2.1884766, y: -0.20038998}
+      - {x: -1.9511719, y: -0.015819669}
+      - {x: -1.3710938, y: -0.09492123}
+      - {x: -1.2128906, y: -0.49042904}
+      - {x: -1.0810547, y: -0.93867123}
+      - {x: -1.0283203, y: -1.3869134}
+      - {x: -0.6328125, y: -1.6769525}
+      - {x: 0.36914062, y: -1.6769525}
+      - {x: 0.8173828, y: -1.3869134}
+      - {x: 0.7910156, y: -0.9914056}
+      - {x: 1.0019531, y: -0.43769467}
+      - {x: 1.1865234, y: 0.08964908}
+      - {x: 1.5292969, y: 0.08964908}
+      - {x: 2.3730469, y: -0.41132748}
+      - {x: 2.2148438, y: -1.1232415}
+      - {x: 1.6875, y: -1.3605462}
+      - {x: 1.5029297, y: -1.8087884}
+      - {x: 1.5556641, y: -1.8615228}
+      - {x: 1.7929688, y: -1.8351556}
+      - {x: 2.241211, y: -1.6242181}
+      - {x: 2.53125, y: -1.756054}
+      - {x: 3.0585938, y: -2.2570305}
+      - {x: 3.2167969, y: -2.2570305}
+      - {x: 3.2695312, y: -2.2306633}
+      - {x: 3.1640625, y: -1.7824212}
+      - {x: 3.4541016, y: -2.0724602}
+      - {x: 3.6386719, y: -2.204296}
 --- !u!114 &2688743516045599179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,7 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53943011222afea4892e3f7c4b631c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBetweenAttacks: 1
+  delayBetweenAttacks: 4
   phaseChangePercentageInspector: 0.25
   currState: 0
 --- !u!212 &5541655781900561451
@@ -162,15 +425,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -7135552027878191630, guid: 6a3f7b6a0bc83a0438e7b7ccd819d3a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10.8, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &4356191576071300436
@@ -183,7 +446,7 @@ Animator:
   m_GameObject: {fileID: 4950743182952501645}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 46f350ad72e45f54385f13bba5498026, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -274,7 +537,29 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
---- !u!1 &8498597131447197517
+  wrathArmSweep: {fileID: 7696531761945222991}
+--- !u!114 &7696531761945222991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4950743182952501645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 249062ca42331b64986baf5b7ccb20f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 0}
+  duration: 0
+  weaponPositionScale: {x: 0, y: 0}
+  damagePerHitbox: 02000000
+  animTrigger: sweep
+  alreadyInstantiatedWeaponObject: {fileID: 1943835307}
+--- !u!1 &7585676839348255502
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -282,8 +567,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1722723479935141710}
-  - component: {fileID: 6261866823840127253}
+  - component: {fileID: 8989000160696563934}
+  - component: {fileID: 8996302718286436342}
+  - component: {fileID: 2754771479586472617}
   m_Layer: 14
   m_Name: Wrath Melee Trigger
   m_TagString: Untagged
@@ -291,27 +577,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1722723479935141710
+--- !u!4 &8989000160696563934
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8498597131447197517}
+  m_GameObject: {fileID: 7585676839348255502}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -7, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.083333336, y: -3.3333335, z: 0}
+  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 1}
   m_Children: []
   m_Father: {fileID: 8581417415270867761}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &6261866823840127253
+--- !u!60 &8996302718286436342
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8498597131447197517}
+  m_GameObject: {fileID: 7585676839348255502}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -332,11 +618,23 @@ PolygonCollider2D:
     m_Paths:
     - - {x: -8.955194, y: 5.6220365}
       - {x: -9.858103, y: 9.264211}
-      - {x: -19.701828, y: 7.520275}
-      - {x: -13.66349, y: -0.6645781}
-      - {x: 0.10173917, y: -3.8498435}
-      - {x: 13.66349, y: -0.6645781}
-      - {x: 18.909592, y: 7.7235327}
+      - {x: -16.615028, y: 8.220974}
+      - {x: -11.763921, y: 1.49591}
+      - {x: 0.04237765, y: -0.34634852}
+      - {x: 12.0013685, y: 1.4959093}
+      - {x: 17.010021, y: 8.132275}
       - {x: 11.928391, y: 8.590164}
       - {x: 8.991473, y: 5.075492}
       - {x: 0, y: 3.3422272}
+--- !u!114 &2754771479586472617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7585676839348255502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3aadca9ee83e1d049ab14b93750d459e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
