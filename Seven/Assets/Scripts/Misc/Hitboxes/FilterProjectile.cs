@@ -6,7 +6,7 @@ public class FilterProjectile : BasicProjectile
 {
     //FIELDS---------------------------------------------------------------------------------------
     //the gameobject this projectile will try to collide with. All others will be ignored
-    private GameObject targetObj = null;
+    protected GameObject targetObj = null;
 
     //METHODS--------------------------------------------------------------------------------------
     //What happens when the projectile actually hits something

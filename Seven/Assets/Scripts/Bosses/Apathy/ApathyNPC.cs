@@ -101,6 +101,9 @@ public class ApathyNPC : Interactable
 
         //turn on prefight music
         SetMusic(prefightAmbiance);
+
+        //turn on the corruption visual
+        sceneTransition.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     // Update is called once per frame
