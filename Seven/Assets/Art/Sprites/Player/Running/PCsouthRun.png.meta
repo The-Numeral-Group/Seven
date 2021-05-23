@@ -20,6 +20,15 @@ TextureImporter:
   - first:
       213: -6420396546143223124
     second: PCsouthRun_5
+  - first:
+      213: 7677680665290184605
+    second: PCsouthRun_0
+  - first:
+      213: -4709099875714116140
+    second: PCsouthRun_1
+  - first:
+      213: -8778065982052505737
+    second: PCsouthRun_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -119,6 +128,27 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
+      name: PCsouthRun_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 195
+        height: 275
+      alignment: 9
+      pivot: {x: 0.4904064, y: 0.79024947}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f59c227dea981a690800000000000000
+      internalID: -7592636112743249569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
       name: PCsouthRun_0
       rect:
         serializedVersion: 2
@@ -127,14 +157,14 @@ TextureImporter:
         width: 195
         height: 275
       alignment: 9
-      pivot: {x: 0.5063958, y: 0.69047606}
+      pivot: {x: 0.5, y: 0.77664393}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e2718415f83ff100800000000000000
-      internalID: 143896338361316068
+      spriteID: d97918113e99c8a60800000000000000
+      internalID: 7677680665290184605
       vertices: []
       indices: 
       edges: []
@@ -148,35 +178,14 @@ TextureImporter:
         width: 195
         height: 275
       alignment: 9
-      pivot: {x: 0.49680206, y: 0.6678005}
+      pivot: {x: 0.4936043, y: 0.7562358}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00b034fe377ef37e0800000000000000
-      internalID: -1783452442294023424
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PCsouthRun_2
-      rect:
-        serializedVersion: 2
-        x: 390
-        y: 275
-        width: 195
-        height: 275
-      alignment: 9
-      pivot: {x: 0.5095936, y: 0.7267572}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f59c227dea981a690800000000000000
-      internalID: -7592636112743249569
+      spriteID: 4d55938ec9ae5aeb0800000000000000
+      internalID: -4709099875714116140
       vertices: []
       indices: 
       edges: []
@@ -185,61 +194,19 @@ TextureImporter:
       name: PCsouthRun_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 195
-        height: 275
-      alignment: 9
-      pivot: {x: 0.49680224, y: 0.7018141}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7511027061bac6df0800000000000000
-      internalID: -185585373531860649
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PCsouthRun_4
-      rect:
-        serializedVersion: 2
         x: 195
         y: 0
         width: 195
         height: 275
       alignment: 9
-      pivot: {x: 0.5127914, y: 0.6632654}
+      pivot: {x: 0.5063957, y: 0.7517007}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e512ed632a010960800000000000000
-      internalID: 7566339996242810345
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PCsouthRun_5
-      rect:
-        serializedVersion: 2
-        x: 389
-        y: 1
-        width: 195
-        height: 275
-      alignment: 9
-      pivot: {x: 0.5127916, y: 0.7199547}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ca20df5ab5b26e6a0800000000000000
-      internalID: -6420396546143223124
+      spriteID: 777e1dc5f7b0e2680800000000000000
+      internalID: -8778065982052505737
       vertices: []
       indices: 
       edges: []
