@@ -31,6 +31,9 @@ public class HubEventListener : MonoBehaviour
 
             timelineManager.GetComponent<TimelineManager>().startTimeline();
 
+            // Lock player's movement
+            StartCoroutine(playerObject.GetComponent<Actor>().myMovement.LockActorMovement(14.0f));
+
             /*StartCoroutine(playerObject.GetComponent<Actor>().myMovement.LockActorMovement(3.0f));
             
             StartCoroutine(playerObject.GetComponent<Actor>().mySoundManager.muteSoundForDuration("PlayerRun", 3.0f));

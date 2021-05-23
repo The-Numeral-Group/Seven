@@ -100,20 +100,20 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
             directionIndicator.transform.localPosition = new Vector3(chargeDirection.x, chargeDirection.y, 0);
             directionIndicator.transform.localRotation = Quaternion.Euler(0, 0, dtheta);
             if (chargeDirection.x > 0.0f) {
-                targetLocation.x += 7.5f;
+                targetLocation.x += 6.0f;
             }
             else
             {
-                targetLocation.x += -7.5f;
+                targetLocation.x += -6.0f;
             }
 
             if (chargeDirection.y > 0.0f)
             {
-                targetLocation.y += 7.5f;
+                targetLocation.y += 6.0f;
             }
             else
             {
-                targetLocation.y += -7.5f;
+                targetLocation.y += -6.0f;
             }
 
             //wrath.myAnimationHandler.Flip(chargeDirection);
@@ -141,6 +141,7 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
 
         wrath.myMovement.DragActor(
             chargeDirection * chargeSpeedMultiplier * wrath.myMovement.speed);
+        Debug.Log(wrath.myMovement.dragDirection);
         isCharging = true;
     }
 
@@ -176,6 +177,7 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
     {
         if (!isFinished && isCharging)
         {
+            Debug.Log(collision);
             if (collision.gameObject.tag == "Player")
             {
                 Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
@@ -206,6 +208,7 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
         StopCoroutine(TrackRoutine);
         StartCoroutine(wrath.myMovement.LockActorMovement(-1f));
         //wrath.myAnimationHandler.Animator.SetBool("charging", false);
+        Destroy(targetPointObject);
         wrath.myMovement.DragActor(Vector2.zero);
         chargeDirection = Vector2.right;
         directionIndicator.transform.localPosition = defaultFacingDirection;
