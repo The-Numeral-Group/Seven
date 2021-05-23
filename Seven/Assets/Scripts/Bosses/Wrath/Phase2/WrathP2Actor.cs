@@ -95,6 +95,7 @@ public class WrathP2Actor : Actor
         if(isDead) //Death is used to kill the state machine.
         {
             decidingState = State.DEAD;
+            ExecuteState(decidingState);
         }
         else if (targetInRange)
         {
@@ -128,6 +129,8 @@ public class WrathP2Actor : Actor
                 currAbility = null;
                 break;
             case State.DEAD: //Dead state is used to kill the state machine
+                currState = State.DEAD;
+                currAbility = null;
                 return;
             default:
                 Debug.Log("Wrathp2Actor: No longer inside the state machine.");
