@@ -3309,3 +3309,45 @@ PrefabInstance:
       objectReference: {fileID: 181865546}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2186ce7d5301fab41b4a7553326e9396, type: 3}
+--- !u!1 &7522185283639680500 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7522185283508685393, guid: 2186ce7d5301fab41b4a7553326e9396, type: 3}
+  m_PrefabInstance: {fileID: 7522185283639680499}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7522185283639680501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7522185283639680500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: normal_tick
+    audioClip: {fileID: 8300000, guid: 63482e32c31212526b158f0e1c7ddbb0, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: fast_tick
+    audioClip: {fileID: 8300000, guid: 4b1294c30cfcd401e9b581233818ef7d, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: clock_hit
+    audioClip: {fileID: 8300000, guid: 4c99c01cff8fb8c699aa48b8ef5a4288, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
