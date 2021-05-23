@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 //using UnityEditor.Animations;
 
 [RequireComponent(typeof(PlayerInput))]
@@ -19,6 +20,8 @@ public class PlayerActor : Actor
 
     public bool hasSword { get; protected set; }
 
+    private Color defaultColor;
+
     //Initialize non monobehaviour fields
     void Awake()
     {
@@ -34,27 +37,37 @@ public class PlayerActor : Actor
         playerInput = GetComponent<PlayerInput>();
 
         SetSwordState(startWithSword);
+
+        defaultColor = this.gameObject.GetComponent<SpriteRenderer>().color;
     }
 
     public override void DoActorDeath()
     {
-        // Death animation
-        this.myAnimationHandler.Animator.SetTrigger("player_dead");
+        // Find TimelineManager
+        GameObject timelineManager = GameObject.Find("TimelineManager");
 
-        StartCoroutine(callMenuManager());
-    }
-
-    private IEnumerator callMenuManager()
-    {
-        // delay before calling GameOver function
-        yield return new WaitForSeconds(0.5f);
-        MenuManager.StartGameOver();
-        if (MenuManager.BATTLE_UI)
+        // Find GameSaveManager
+        GameObject gameSaveManager = GameObject.Find("GameSaveManager");
+        
+        if (timelineManager != null && timelineManager.tag == "GameOver")
         {
-            MenuManager.BATTLE_UI.StopAllAudio();
-            MenuManager.BATTLE_UI.Hide();
+            // Switch back the color
+            this.gameObject.GetComponent<SpriteRenderer>().color = defaultColor;
+
+            MenuManager.StartGameOver();
+            if (MenuManager.BATTLE_UI)
+            {
+                MenuManager.BATTLE_UI.StopAllAudio();
+                MenuManager.BATTLE_UI.Hide();
+            }
+
+            // If player died in tutorial scene, don't turn the Respawn flag to true.
+            if (SceneManager.GetActiveScene().name != "Tutorial")
+            {
+                gameSaveManager.GetComponent<GameSaveManager>().setBoolValue(true, 19);
+            } 
+            timelineManager.GetComponent<TimelineManager>().startTimeline();
         }
-        this.enabled = false;
     }
 
     /*Engages the dialogue sequence. Disables the players health component, and sets its
@@ -152,5 +165,9 @@ public class PlayerActor : Actor
         // Play TakeDamage Audio
         base.DoActorDamageEffect(damage);
         mySoundManager.PlaySound("TakeDamage");
+        if (MenuManager.BATTLE_UI)
+        {
+            MenuManager.BATTLE_UI.ShakePlayerHealthBar();
+        }
     }
 }
