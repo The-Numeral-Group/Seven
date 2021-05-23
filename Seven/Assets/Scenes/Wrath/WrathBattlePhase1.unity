@@ -849,6 +849,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brokenPillar
       objectReference: {fileID: 0}
+    - target: {fileID: 7581123479736852971, guid: 53fb65b901c0d5e47a0854fac8fb8052, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     - target: {fileID: 7581123479736852973, guid: 53fb65b901c0d5e47a0854fac8fb8052, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.46
@@ -3163,7 +3167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5535586733847164690, guid: bec6814719020c34fbbdc352222e181a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -31.92
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5535586733847164690, guid: bec6814719020c34fbbdc352222e181a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -3205,6 +3209,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5535586733847164691, guid: bec6814719020c34fbbdc352222e181a, type: 3}
+      propertyPath: m_TagString
+      value: Environment
+      objectReference: {fileID: 0}
     - target: {fileID: 5535586733847164702, guid: bec6814719020c34fbbdc352222e181a, type: 3}
       propertyPath: m_Color.r
       value: 0.5943396
@@ -3216,6 +3224,10 @@ PrefabInstance:
     - target: {fileID: 5535586733847164702, guid: bec6814719020c34fbbdc352222e181a, type: 3}
       propertyPath: m_Color.b
       value: 0.047659315
+      objectReference: {fileID: 0}
+    - target: {fileID: 5535586733847164702, guid: bec6814719020c34fbbdc352222e181a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bec6814719020c34fbbdc352222e181a, type: 3}
@@ -4044,7 +4056,7 @@ MonoBehaviour:
   cooldownPeriod: 0
   abilityName: WrathSwordRush
   invokeBlankWhenBadArguments: 1
-  chargeSpeedMultiplier: 3
+  chargeSpeedMultiplier: 5
   chargeCount: 4
   trackTime: 1
   chargeDelay: 1

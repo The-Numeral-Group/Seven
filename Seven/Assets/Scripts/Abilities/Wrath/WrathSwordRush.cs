@@ -100,47 +100,21 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
             directionIndicator.transform.localPosition = new Vector3(chargeDirection.x, chargeDirection.y, 0);
             directionIndicator.transform.localRotation = Quaternion.Euler(0, 0, dtheta);
             if (chargeDirection.x > 0.0f) {
-                targetLocation.x += 5.0f;
+                targetLocation.x += 7.5f;
             }
             else
             {
-                targetLocation.x += -5.0f;
+                targetLocation.x += -7.5f;
             }
 
             if (chargeDirection.y > 0.0f)
             {
-                targetLocation.y += 5.0f;
-            }
-            else
-            {
-                targetLocation.y += -5.0f;
-            }
-
-            /*if (chargeDirection.x > 5.0f) // MAX X
-            {
-                targetLocation.x += 7.5f;
-            }
-            else if (chargeDirection.x < -5.0f)
-            {
-                targetLocation.x -= 7.5f;
-            }
-            else
-            {
-                targetLocation.x += chargeDirection.x * 1.5f;
-            }
-
-            if (chargeDirection.y > 5.0f) // MAX Y
-            {
                 targetLocation.y += 7.5f;
             }
-            else if (chargeDirection.y < -5.0f)
-            {
-                targetLocation.y -= 7.5f;
-            }
             else
             {
-                targetLocation.y += chargeDirection.y * 1.5f;
-            }*/
+                targetLocation.y += -7.5f;
+            }
 
             //wrath.myAnimationHandler.Flip(chargeDirection);
             yield return new WaitForFixedUpdate();
