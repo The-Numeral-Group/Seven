@@ -95,6 +95,9 @@ public class GhostKnightProjectileMovement : ActorMovement
 
         SpriteRenderer projSpriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
 
+        // Turn off collider
+        this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+
         float opacity = 1f;
         while (opacity > 0f)
         {
