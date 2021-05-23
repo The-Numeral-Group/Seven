@@ -115,6 +115,7 @@ public class SlothClockSpeedWarp : MonoBehaviour
             //apply the fast for a limited time, if it's not already there
             if(!handler.EffectInstancePresent(fast))
             {
+                
                 handler.AddTimedEffect(fast, fastDuration);
             }
         }
@@ -128,6 +129,9 @@ public class SlothClockSpeedWarp : MonoBehaviour
             //and if that number is now 0, remove it
             if(trackedObjects[obj] == 0)
             {
+                //also return the hand to normal speed
+                obj.GetComponent<SmartTickRotation>()
+                    ?.SetSpeed(SmartTickRotation.SpeedMode.normal);
                 trackedObjects.Remove(obj);
             }
             ///DEBUG
@@ -167,6 +171,11 @@ public class SlothClockSpeedWarp : MonoBehaviour
         if(!handler.EffectInstancePresent(slow))
         {
             handler.AddEffect(slow);
+            foreach(GameObject hand in colliderObjects)
+            {
+                hand.GetComponent<SmartTickRotation>()
+                    ?.SetSpeed(SmartTickRotation.SpeedMode.slow);
+            }
         }
     }
 }
@@ -199,6 +208,7 @@ internal class SlothSpeedClockObserver : MonoBehaviour
         if(collided.gameObject.TryGetComponent(out potentialWep) 
             && potentialWep.gameObject.GetComponentInParent(typeof(PlayerSwordAbility)))
         {
+            this.GetComponent<ActorSoundManager>().PlaySound("clock_hit");
             responseEvent.Invoke(this.gameObject);
         }
     }

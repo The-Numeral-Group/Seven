@@ -11,6 +11,12 @@ public class SmartTickRotation : MonoBehaviour
         Z
     }
 
+    public enum SpeedMode : int {
+        fast = 15,
+        normal = 10,
+        slow = 5
+    }
+
     [Tooltip("Which axis the object should rotate around.")]
     public RotationAxis axis = RotationAxis.Z;
 
@@ -30,9 +36,17 @@ public class SmartTickRotation : MonoBehaviour
 
     private Vector3 rotationEulers;
 
+    private ActorSoundManager soundManager;
+
+    private SpeedMode speed = SpeedMode.normal;
+
+    private string tickAudio = "normal_tick";
+
     // Start is called before the first frame update
     void Start()
     {
+        soundManager = this.gameObject.GetComponent<ActorSoundManager>();
+
         float realTickDistance = -fullCircle / tickCount;
 
         /*a tick lasts for its travel distance (360 / tickCount) divided by tickSpeed seconds*/
@@ -108,5 +122,23 @@ public class SmartTickRotation : MonoBehaviour
 
         //snap the remainder of the rotation into place
         this.gameObject.transform.eulerAngles = newRot;
+
+        //play a tick sound
+        float pitchVal = (int)speed / 10f;
+        soundManager?.PlaySound(tickAudio, pitchVal, pitchVal);
+    }
+
+    public void SetSpeed(SpeedMode newMode)
+    {
+        if(newMode == speed)
+        {
+            return;
+        }
+        else if(newMode == SpeedMode.slow)
+        {
+            soundManager?.PlaySound("slowdown_effect");
+        }
+
+        speed = newMode;
     }
 }
