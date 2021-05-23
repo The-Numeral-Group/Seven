@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial (Ghost Knight)/Cutscene/Tutorial_PostFight.unity
     guid: d57bb4d849d4b6e46ab40eef8e9d9f64
   - enabled: 1
+    path: Assets/Scenes/Tutorial (Ghost Knight)/Tutorial_Retry.unity
+    guid: 7d0b5027ee1dc6749b4018636289d01c
+  - enabled: 1
     path: Assets/Scenes/Tutorial (Ghost Knight)/Tutorial.unity
     guid: fadccadc2a13e1c4dad241addb33c212
   - enabled: 1

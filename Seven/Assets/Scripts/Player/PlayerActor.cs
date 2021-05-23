@@ -38,10 +38,19 @@ public class PlayerActor : Actor
 
     public override void DoActorDeath()
     {
-        // Death animation
-        this.myAnimationHandler.Animator.SetTrigger("player_dead");
-
-        StartCoroutine(callMenuManager());
+        // Find TimelineManager
+        GameObject timelineManager = GameObject.Find("TimelineManager");
+        
+        if (timelineManager != null && timelineManager.tag == "GameOver")
+        {
+            MenuManager.StartGameOver();
+            if (MenuManager.BATTLE_UI)
+            {
+                MenuManager.BATTLE_UI.StopAllAudio();
+                MenuManager.BATTLE_UI.Hide();
+            }
+            timelineManager.GetComponent<TimelineManager>().startTimeline();
+        }
     }
 
     private IEnumerator callMenuManager()
