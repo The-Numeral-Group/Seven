@@ -100,7 +100,7 @@ public class EgoRadialSwordLaunch : ActorAbilityCoroutine<GameObject>
                 Quaternion.identity
             );
 
-            activeSwords[(int)(rOffset / radialOffset)] = sword;
+            activeSwords[(int)(rOffset / radialOffset) + 1] = sword;
 
             /*Rotate the sword towards the target by forcing it's "up" to point towards the
             target. The direction is casted as a Vector2 to negate the z component, which can
