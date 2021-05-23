@@ -37,8 +37,10 @@ public class BossCamera : BaseCamera
         }
         var bounds = new Bounds(mainTargetTransform.position, Vector3.zero);
         bounds.Encapsulate(mainTargetTransform.position);
+        closeToPOI = false;
         if (targetPOIs.Count > 0 && !ignoreTargetPOIs)
         {
+            float closestVal = zoomTriggerDistance;
             for (int i = 0; i < targetPOIs.Count; i++)
             {
                 if (targetPOIs[i] == null || !targetPOIs[i].gameObject.activeSelf)
@@ -56,6 +58,16 @@ public class BossCamera : BaseCamera
                     bounds.Encapsulate(targetPOIs[i].position);
                     currOffset = Vector2.zero;
                 }
+                if (targetDist < zoomTriggerDistance && targetDist < closestVal)
+                {
+                    closeToPOI = true;
+                    closestVal = targetDist;
+                    closestPOI = targetPOIs[i].position;
+                }
+            }
+            if (closeToPOI)
+            {
+                bounds.Encapsulate(closestPOI);
             }
         }
         return bounds.center;
