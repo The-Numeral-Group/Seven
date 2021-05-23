@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 //using UnityEditor.Animations;
 
 [RequireComponent(typeof(PlayerInput))]
@@ -40,6 +41,9 @@ public class PlayerActor : Actor
     {
         // Find TimelineManager
         GameObject timelineManager = GameObject.Find("TimelineManager");
+
+        // Find GameSaveManager
+        GameObject gameSaveManager = GameObject.Find("GameSaveManager");
         
         if (timelineManager != null && timelineManager.tag == "GameOver")
         {
@@ -49,6 +53,12 @@ public class PlayerActor : Actor
                 MenuManager.BATTLE_UI.StopAllAudio();
                 MenuManager.BATTLE_UI.Hide();
             }
+
+            // If player died in tutorial scene, don't turn the Respawn flag to true.
+            if (SceneManager.GetActiveScene().name != "Tutorial")
+            {
+                gameSaveManager.GetComponent<GameSaveManager>().setBoolValue(true, 19);
+            } 
             timelineManager.GetComponent<TimelineManager>().startTimeline();
         }
     }
