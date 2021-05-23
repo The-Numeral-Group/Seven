@@ -1307,7 +1307,7 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 656284017}
+  Close: {fileID: 656284030}
   Far: {fileID: 656284019}
   Special: {fileID: 656284030}
 --- !u!70 &656284023
@@ -3297,6 +3297,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 6626352412544228878, guid: 3dde89c1062032e4e8ae3e86bf69a35d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 6626352412544228879, guid: 3dde89c1062032e4e8ae3e86bf69a35d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
