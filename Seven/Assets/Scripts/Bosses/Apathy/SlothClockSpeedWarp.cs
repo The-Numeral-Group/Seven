@@ -98,6 +98,7 @@ public class SlothClockSpeedWarp : MonoBehaviour
     reset the list and apply the time effect*/
     void UpdateClock(GameObject obj)
     {
+        obj.GetComponent<ActorSoundManager>().PlaySound("clock_hit");
         //if the fast has been applied...
         if(handler.EffectInstancePresent(fast))
         {
@@ -116,9 +117,30 @@ public class SlothClockSpeedWarp : MonoBehaviour
             if(!handler.EffectInstancePresent(fast))
             {
                 
-                handler.AddTimedEffect(fast, fastDuration);
+                StartCoroutine(TimeFastClockHand(obj));
             }
         }
+    }
+
+    IEnumerator TimeFastClockHand(GameObject hand)
+    {
+        handler.AddTimedEffect(fast, fastDuration);
+        var tickRot = hand.GetComponent<SmartTickRotation>();
+
+        if(tickRot == null)
+        {
+            yield break;
+        }
+
+        tickRot.SetSpeed(SmartTickRotation.SpeedMode.fast);
+                    
+        yield return new WaitForSeconds(fastDuration);
+
+        if(tickRot.speed == SmartTickRotation.SpeedMode.fast)
+        {
+            tickRot.SetSpeed(SmartTickRotation.SpeedMode.normal);
+        }
+
     }
 
     void ClockHandLogic(GameObject obj)
@@ -208,7 +230,6 @@ internal class SlothSpeedClockObserver : MonoBehaviour
         if(collided.gameObject.TryGetComponent(out potentialWep) 
             && potentialWep.gameObject.GetComponentInParent(typeof(PlayerSwordAbility)))
         {
-            this.GetComponent<ActorSoundManager>().PlaySound("clock_hit");
             responseEvent.Invoke(this.gameObject);
         }
     }

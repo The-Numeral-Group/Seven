@@ -3329,7 +3329,7 @@ MonoBehaviour:
   sounds:
   - name: normal_tick
     audioClip: {fileID: 8300000, guid: 63482e32c31212526b158f0e1c7ddbb0, type: 3}
-    volume: 1
+    volume: 0.75
     pitch: 0
     loop: 0
     hasCooldown: 0
@@ -3337,7 +3337,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: fast_tick
     audioClip: {fileID: 8300000, guid: 4b1294c30cfcd401e9b581233818ef7d, type: 3}
-    volume: 1
+    volume: 0.75
     pitch: 0
     loop: 0
     hasCooldown: 0
@@ -3345,6 +3345,14 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: clock_hit
     audioClip: {fileID: 8300000, guid: 4c99c01cff8fb8c699aa48b8ef5a4288, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: slowdown_effect
+    audioClip: {fileID: 8300000, guid: 81a5c70404986203c90de119df25fe04, type: 3}
     volume: 1
     pitch: 0
     loop: 0

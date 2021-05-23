@@ -12,7 +12,7 @@ public class SmartTickRotation : MonoBehaviour
     }
 
     public enum SpeedMode : int {
-        fast = 15,
+        fast = 20,
         normal = 10,
         slow = 5
     }
@@ -38,13 +38,19 @@ public class SmartTickRotation : MonoBehaviour
 
     private ActorSoundManager soundManager;
 
-    private SpeedMode speed = SpeedMode.normal;
+    [Tooltip("The current speed the clock hand is running at. Please do not" +
+        " adjust this at runtime.")]
+    public SpeedMode speed = SpeedMode.normal;
 
     private string tickAudio = "normal_tick";
+
+    private float baseTickGap;
 
     // Start is called before the first frame update
     void Start()
     {
+        baseTickGap = tickGap;
+
         soundManager = this.gameObject.GetComponent<ActorSoundManager>();
 
         float realTickDistance = -fullCircle / tickCount;
@@ -130,6 +136,8 @@ public class SmartTickRotation : MonoBehaviour
 
     public void SetSpeed(SpeedMode newMode)
     {
+        Debug.Log($"SmartTickRotation: Adjusting speed to {newMode}");
+
         if(newMode == speed)
         {
             return;
@@ -140,5 +148,6 @@ public class SmartTickRotation : MonoBehaviour
         }
 
         speed = newMode;
+        tickGap = baseTickGap / ((int)speed / 10f);
     }
 }
