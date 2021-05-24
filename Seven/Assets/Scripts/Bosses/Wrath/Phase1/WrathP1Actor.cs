@@ -167,8 +167,8 @@ public class WrathP1Actor : Actor
             if (poolType == 'A') // Draw an ability from Pool A
             {
                 // Determines which ability Wrath will perform.
-                //int abilityType = (int)Random.Range(0, 3);
-                int abilityType = 0;
+                int abilityType = (int)Random.Range(0, 3);
+                //int abilityType = 0;
 
                 switch (abilityType)
                 {
@@ -191,8 +191,8 @@ public class WrathP1Actor : Actor
             }
             else // Draw an ability from Pool B
             {
-                //int abilityType = (int)Random.Range(0, 2);
-                int abilityType = 1;
+                int abilityType = (int)Random.Range(0, 2);
+                //int abilityType = 1;
 
                 switch (abilityType)
                 {

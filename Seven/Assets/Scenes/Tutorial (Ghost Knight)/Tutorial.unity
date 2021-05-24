@@ -674,7 +674,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 025336b40c350c141ae4911299371def, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -834,6 +834,8 @@ PlayableDirector:
     value: {fileID: 907591175}
   - key: {fileID: 3946259390508229318, guid: 60f361a65b975ee489af0e9c232eaebe, type: 2}
     value: {fileID: 4115977273667405725}
+  - key: {fileID: 0}
+    value: {fileID: 1139608413}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &770125451
@@ -1839,6 +1841,18 @@ PrefabInstance:
       propertyPath: leftBound
       value: -1000
       objectReference: {fileID: 0}
+    - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: defaultZoom
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: zoomMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: ignoreTargetPOIs
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7897472732076878603, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_Name
       value: BossCamera
@@ -1846,6 +1860,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4905909914710698995, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+--- !u!95 &1139608413 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5541060872299539179, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+  m_PrefabInstance: {fileID: 1139608412}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1152078903 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8411390099431399261, guid: 4fd57652e3fd50c4cba3355da66050d8, type: 3}
