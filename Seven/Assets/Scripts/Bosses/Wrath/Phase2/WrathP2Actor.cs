@@ -153,12 +153,20 @@ public class WrathP2Actor : Actor
     //Used to determine the phases we are in for the wrath p2 fight.
     //Called from within evaluate state.
     //returns true pn phase change, false otherwise.
+    //Can produce unintended results it phasechangePercentageInspector is changed at runtime.
     bool EvaluateHealth()
     {
         if (this.myHealth.currentHealth < this.myHealth.maxHealth * (1-phaseChangePercentageActual))
         {
             //every 2 phase changes we bump up the damage
-            WrathP2Actor.abilityDamageAddition = ((int)(phaseChangePercentageActual / phaseChangePercentageInspector)) / 2;
+            int damageValue = ((int)(phaseChangePercentageActual / phaseChangePercentageInspector));
+            //Increase damage every two phase changes
+            if (damageValue % 2 == 0)
+            {
+                WrathP2Actor.abilityDamageAddition = damageValue / 2;
+                WrathArmSweep armSweep = this.myAbilityInitiator.abilities[AbilityRegister.WRATH_ARMSWEEP] as WrathArmSweep;
+                armSweep.AddDamage(WrathP2Actor.abilityDamageAddition/WrathP2Actor.abilityDamageAddition);
+            }
             //Every phase change we increase the speed
             WrathP2Actor.abilitySpeedMultiplier += 0.5f;
             this.myAnimationHandler.Animator.SetFloat("anim_speed", WrathP2Actor.abilitySpeedMultiplier);
