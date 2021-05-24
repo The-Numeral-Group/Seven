@@ -161,6 +161,7 @@ public class WrathP2Actor : Actor
             WrathP2Actor.abilityDamageAddition = ((int)(phaseChangePercentageActual / phaseChangePercentageInspector)) / 2;
             //Every phase change we increase the speed
             WrathP2Actor.abilitySpeedMultiplier += 0.5f;
+            this.myAnimationHandler.Animator.SetFloat("anim_speed", WrathP2Actor.abilitySpeedMultiplier);
             //We increase what the value for which the next phase should be evaluated at.
             phaseChangePercentageActual += phaseChangePercentageInspector;
             return true;
