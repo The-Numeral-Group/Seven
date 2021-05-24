@@ -30,7 +30,8 @@ public class WrathChainPull : ActorAbilityFunction<Actor, int>
     private Actor wrath;
     private GameObject chainList;
 
-    private bool pulled = false;
+    private bool pulled;
+    private int pulledNumber;
 
     public override void Invoke(ref Actor user)
     {
@@ -49,10 +50,12 @@ public class WrathChainPull : ActorAbilityFunction<Actor, int>
         player = GameObject.FindGameObjectsWithTag("Player")?[0];
         wrath = args[0];
 
-        MovementLockroutine = wrath.myMovement.LockActorMovement(this.duration);
+        pulledNumber = 0;
+        pulled = false;
+
+        MovementLockroutine = wrath.myMovement.LockActorMovement(Mathf.Infinity);
         StartCoroutine(MovementLockroutine);
         StartCoroutine(MoveToPoint());
-        StartCoroutine(ChainPullFinished());
         return 0;
     }
     
@@ -75,6 +78,7 @@ public class WrathChainPull : ActorAbilityFunction<Actor, int>
         {
             if(!pulled) // Player has not been pulled yet, keep throwing chain.
             {
+                pulledNumber++;
                 chainList = Instantiate(this.toInstantiateChainList, wrath.transform.position, Quaternion.identity);
                 StartCoroutine(spawnChainPulling());
                 yield return new WaitForSeconds(1.0f); // Each chain lasts for 1 second. 
@@ -84,6 +88,10 @@ public class WrathChainPull : ActorAbilityFunction<Actor, int>
             {
                 StartCoroutine(ChainPulledFinishedEarly());
             }
+        }
+        if(pulledNumber == 4)
+        {
+            ChainPullFinished();
         }
 
     }
@@ -136,7 +144,6 @@ public class WrathChainPull : ActorAbilityFunction<Actor, int>
     private IEnumerator ChainPulledFinishedEarly()
     {
         StopCoroutine(MovementLockroutine); // Stop the original movement Lock function
-        StopCoroutine(ChainPullFinished()); // Stop the original abilityFinished function
         StartCoroutine(wrath.myMovement.LockActorMovement(0.5f));
         yield return new WaitForSeconds(0.5f); // In case if you want to add any delay after chain pull. 
         wrath.myMovement.DragActor(Vector2.zero);
@@ -144,9 +151,8 @@ public class WrathChainPull : ActorAbilityFunction<Actor, int>
         isFinished = true;
     }
 
-    private IEnumerator ChainPullFinished()
+    private void ChainPullFinished()
     {
-        yield return new WaitForSeconds(this.duration);
         // Resetting the dragDirection
         wrath.myMovement.DragActor(Vector2.zero);
         pulled = false;
