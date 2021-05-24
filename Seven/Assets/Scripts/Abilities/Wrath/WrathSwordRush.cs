@@ -91,7 +91,11 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
         {
             chargeDirection = (target.transform.position - wrath.gameObject.transform.position).normalized;
             targetLocation = target.transform.position;
-            float dtheta = Mathf.Acos(((Vector2.Dot(chargeDirection, defaultFacingDirection)) / (chargeDirection.magnitude * defaultFacingDirection.magnitude)));
+            float dtheta = 0;
+            if (chargeDirection != Vector2.zero)
+            {
+                dtheta = Mathf.Acos(((Vector2.Dot(chargeDirection, defaultFacingDirection)) / (chargeDirection.magnitude * defaultFacingDirection.magnitude)));
+            }
             if (chargeDirection.y < 0)
             {
                 dtheta *= -1;

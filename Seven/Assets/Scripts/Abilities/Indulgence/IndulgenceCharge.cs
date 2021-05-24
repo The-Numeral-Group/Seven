@@ -93,12 +93,16 @@ public class IndulgenceCharge : ActorAbilityFunction<Actor, int>
         directionIndicator.SetActive(true);
         while (isTracking && target != null)
         {
+            float dtheta = 0;
             chargeDirection = (target.transform.position - this.user.gameObject.transform.position).normalized;
-            this.user.myAnimationHandler.Flip(chargeDirection);
-            float dtheta = Mathf.Acos(((Vector2.Dot(chargeDirection, defaultFacingDirection)) / (chargeDirection.magnitude * defaultFacingDirection.magnitude)));
+            if (chargeDirection != Vector2.zero)
+            {
+                this.user.myAnimationHandler.Flip(chargeDirection);
+                dtheta= Mathf.Acos(((Vector2.Dot(chargeDirection, defaultFacingDirection)) / (chargeDirection.magnitude * defaultFacingDirection.magnitude)));
+            }
             if (chargeDirection.y < 0)
             {
-                dtheta *= -1;
+                dtheta = (dtheta *-1) + (2*Mathf.PI);
             }
             dtheta = dtheta * (180/Mathf.PI);
             directionIndicator.transform.localPosition = new Vector3(chargeDirection.x, chargeDirection.y, 0);
