@@ -145,7 +145,6 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
 
         wrath.myMovement.DragActor(
             chargeDirection * chargeSpeedMultiplier * wrath.myMovement.speed);
-        Debug.Log(wrath.myMovement.dragDirection);
         isCharging = true;
     }
 

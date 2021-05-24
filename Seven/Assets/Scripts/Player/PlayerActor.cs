@@ -22,6 +22,8 @@ public class PlayerActor : Actor
 
     private Color defaultColor;
 
+    private BaseCamera cam;
+
     //Initialize non monobehaviour fields
     void Awake()
     {
@@ -39,6 +41,12 @@ public class PlayerActor : Actor
         SetSwordState(startWithSword);
 
         defaultColor = this.gameObject.GetComponent<SpriteRenderer>().color;
+
+        var camObjects = FindObjectsOfType<BaseCamera>();
+        if (camObjects.Length > 0)
+        {
+            cam = camObjects[0];
+        }
     }
 
     public override void DoActorDeath()
@@ -59,6 +67,12 @@ public class PlayerActor : Actor
             // Switch back the color
             this.gameObject.GetComponent<SpriteRenderer>().color = defaultColor;
 
+            this.myMovement.MoveActor(Vector2.zero);
+
+            // Turn on camera's zoom
+            cam.zoomMode = true;
+            cam.ignoreTargetPOIs = true;
+
             MenuManager.StartGameOver();
             if (MenuManager.BATTLE_UI)
             {
@@ -72,7 +86,15 @@ public class PlayerActor : Actor
                 gameSaveManager.GetComponent<GameSaveManager>().setBoolValue(true, 19);
             } 
             timelineManager.GetComponent<TimelineManager>().startTimeline();
+
+            StartCoroutine(freezeTime());
         }
+    }
+
+    private IEnumerator freezeTime()
+    {
+        yield return new WaitForSeconds(1.0f);
+        Time.timeScale = 0f;
     }
 
     /*Engages the dialogue sequence. Disables the players health component, and sets its
