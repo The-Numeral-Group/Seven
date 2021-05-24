@@ -168,7 +168,7 @@ public class MenuManager : MonoBehaviour
             BATTLE_UI.Hide();
         }
         //CURRENT_MENU = GAME_OVER;
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         //GAME_OVER.Show();
     }
 
