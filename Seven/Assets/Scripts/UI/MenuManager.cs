@@ -175,7 +175,7 @@ public class MenuManager : MonoBehaviour
     //Function to swap input images based on players current input.
     public static void SwapControlUIImages(string controlScheme)
     {
-        SwapUIImage[] uiSwappers = FindObjectsOfType<SwapUIImage>();
+        SwapUIImage[] uiSwappers = Resources.FindObjectsOfTypeAll(typeof(SwapUIImage)) as SwapUIImage[];
         foreach(SwapUIImage uiSwapper in uiSwappers)
         {
             uiSwapper.SwapImage(controlScheme);
