@@ -80,7 +80,6 @@ public class IndulgenceP1Actor : Actor
             if (playerObject != null)
             {
                 target = playerObject.GetComponent<Actor>();
-                Collider2D tCollider = target.GetComponent<Collider2D>();
             }
             else
             {

@@ -17,6 +17,8 @@ public class EgoRadialSwordLaunch : ActorAbilityCoroutine<GameObject>
     [Tooltip("How many seconds should be between each sword launch.")]
     public float launchTimeOffset = 2f;
 
+    private GameObject[] activeSwords = new GameObject[3];
+
     //METHODS--------------------------------------------------------------------------------------
     /*Activates the ability with no arguments. In this case, it will default the target to
     the player*/
@@ -98,6 +100,8 @@ public class EgoRadialSwordLaunch : ActorAbilityCoroutine<GameObject>
                 Quaternion.identity
             );
 
+            activeSwords[(int)(rOffset / radialOffset) + 1] = sword;
+
             /*Rotate the sword towards the target by forcing it's "up" to point towards the
             target. The direction is casted as a Vector2 to negate the z component, which can
             cause the swords to roll outside of the game's significant dimensions (i.e. into the
@@ -161,5 +165,13 @@ public class EgoRadialSwordLaunch : ActorAbilityCoroutine<GameObject>
         }*/
 
         //By the time we get here, the method is done!
+    }
+
+    void OnDestroy()
+    {
+        foreach(GameObject sword in activeSwords)
+        {
+            Destroy(sword);
+        }
     }
 }

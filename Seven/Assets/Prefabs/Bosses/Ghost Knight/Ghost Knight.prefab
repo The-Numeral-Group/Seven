@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookAt: {fileID: 220097794664941642}
-  offset: {x: -0.6, y: 4, z: 0}
+  offset: {x: 0.1, y: 6, z: 0}
 --- !u!1 &220097794664941643
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 220097794664941641}
   - component: {fileID: 1647299139}
   m_Layer: 26
-  m_Name: Ghost Knight Fight
+  m_Name: Ghost Knight
   m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -276,7 +276,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 1192363339704144038, guid: cd90bc4597ea76a45a5f266bb84166c0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -302,7 +302,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -338,37 +338,20 @@ PolygonCollider2D:
       - {x: 0.8950076, y: -0.18055248}
       - {x: 0.9378167, y: 0.035564482}
       - {x: 1.0004772, y: 0.5083953}
-      - {x: 0.6892452, y: 0.34573603}
       - {x: 0.8335961, y: 0.7365519}
       - {x: 0.8524028, y: 0.8609804}
       - {x: 1.0858622, y: 1.0618452}
       - {x: 0.852999, y: 1.2412351}
       - {x: 0.5568176, y: 1.3272849}
       - {x: 0.30743194, y: 1.2553406}
-      - {x: 0.21215594, y: 1.371094}
-      - {x: 0.2363815, y: 1.5120642}
-      - {x: 0.3851701, y: 1.5866776}
-      - {x: 0.47054058, y: 1.7832422}
-      - {x: 0.38778776, y: 1.9252086}
-      - {x: 0.41041243, y: 2.0772543}
-      - {x: 0.26812762, y: 1.981576}
-      - {x: 0.07234031, y: 2.082981}
-      - {x: -0.016848713, y: 2.088529}
-      - {x: -0.23754893, y: 1.9932938}
-      - {x: -0.3529443, y: 2.1004968}
-      - {x: -0.34991586, y: 1.9261742}
-      - {x: -0.45941144, y: 1.8151412}
-      - {x: -0.41717976, y: 1.6097026}
-      - {x: -0.19142093, y: 1.4972246}
-      - {x: -0.18193316, y: 1.2305355}
-      - {x: -0.542232, y: 1.3486063}
+      - {x: 0.20359215, y: 1.1317071}
+      - {x: -0.123726666, y: 1.1513789}
+      - {x: -0.5011326, y: 1.3362144}
       - {x: -0.99220645, y: 1.061929}
       - {x: -0.7662973, y: 0.65247077}
-      - {x: -0.9607808, y: 0.4561301}
-      - {x: -0.9361213, y: -0.15971127}
-      - {x: -0.9022158, y: -0.3517546}
-      - {x: -0.85206014, y: -0.5628224}
-      - {x: -0.61866075, y: -0.43921036}
+      - {x: -0.99814904, y: 0.45464587}
+      - {x: -0.9022481, y: -0.33616585}
+      - {x: -0.9672645, y: -0.58861196}
       - {x: -0.59019053, y: -0.8952771}
       - {x: -0.3628065, y: -1.3652517}
       - {x: -0.11076394, y: -1.993234}
@@ -463,7 +446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453e150335b52ac4884472bf0e1bd9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 6
 --- !u!114 &220097794664941685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,7 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   specialAttackGate: 7
-  slashRange: 25
+  slashRange: 6
   projectileRatio: 1
   damage: 1
   introDelay: 1
@@ -514,14 +497,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac8ad8577481e64189e1a848f8f1ba8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 15
+  cooldownPeriod: 12
   abilityName: Projectile
   invokeBlankWhenBadArguments: 1
-  centerPos: {x: 0, y: 0}
+  centerPos: {x: 0, y: 5}
   toInstantiateProjectile: {fileID: 1116733311778260002, guid: fe0d1340115b50d448565aaeace12aab, type: 3}
-  duration: 0
+  duration: 3
   travelDuration: 1
-  projectileSpawnTime: 1
+  projectileSpawnTime: 2
   numProjectiles: 4
   offsetValue: 4
 --- !u!114 &220097794664941640
@@ -536,11 +519,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a31b9de4dc354db40884d619561014c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 5
+  cooldownPeriod: 10
   abilityName: 
   invokeBlankWhenBadArguments: 1
-  duration: 9
-  duration_vanishing: 0
+  duration: 5
+  duration_vanishing: 1
   duration_vanish: 3
   glintObject: {fileID: 304075295471522891, guid: afab189a157e3364e9dc9b4a8bf6c145, type: 3}
 --- !u!114 &220097794664941641
@@ -555,7 +538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934a4cee7141fad4e9b7d1f730f86570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 10
+  cooldownPeriod: 4
   abilityName: Slash
   invokeBlankWhenBadArguments: 1
   duration: 2
@@ -671,6 +654,7 @@ GameObject:
   - component: {fileID: 7412362457495138580}
   - component: {fileID: 6629303576720607773}
   - component: {fileID: 2910249644076397672}
+  - component: {fileID: 208700924}
   m_Layer: 5
   m_Name: AttackImage
   m_TagString: Untagged
@@ -695,7 +679,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 100, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7412362457495138580
 CanvasRenderer:
@@ -725,7 +709,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 23792810d2747ef429a9d3ac89ed8ea2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 46ffa062ecf280b499514235d16edb73, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -748,7 +732,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookAt: {fileID: 220097794664941642}
-  offset: {x: 1.7, y: 3.9, z: 0}
+  offset: {x: 0, y: 4, z: 0}
+--- !u!114 &208700924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6988185064560544882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22655c0480d8256469760fcf15432a20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 6629303576720607773}
+  keyboardSprite: {fileID: 21300000, guid: 46ffa062ecf280b499514235d16edb73, type: 3}
+  gamepadSprite: {fileID: 21300000, guid: a13164be7e1762441904eb555c3c0e31, type: 3}
 --- !u!114 &500667302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1140,14 +1139,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d9c26e9469ec1c4cbc95af75729a6ed, type: 3}
---- !u!4 &8415373319009634433 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8630190690789134945, guid: 5d9c26e9469ec1c4cbc95af75729a6ed, type: 3}
-  m_PrefabInstance: {fileID: 220097794206079712}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8415373318957554022 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8630190690837709702, guid: 5d9c26e9469ec1c4cbc95af75729a6ed, type: 3}
+  m_PrefabInstance: {fileID: 220097794206079712}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8415373319009634433 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8630190690789134945, guid: 5d9c26e9469ec1c4cbc95af75729a6ed, type: 3}
   m_PrefabInstance: {fileID: 220097794206079712}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8415373318680778200 stripped
@@ -1214,6 +1213,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1192363339704144038, guid: cd90bc4597ea76a45a5f266bb84166c0, type: 3}
+    - target: {fileID: 7457165337242284553, guid: a1ac01f6588c1724d9195a2d3e5d6a85, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7237528255522500623, guid: a1ac01f6588c1724d9195a2d3e5d6a85, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a1ac01f6588c1724d9195a2d3e5d6a85, type: 3}

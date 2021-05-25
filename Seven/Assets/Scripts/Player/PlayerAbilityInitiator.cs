@@ -30,6 +30,12 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     // If player can dodge or not. 
     public bool canDodge { get; set; }
 
+    // If player can attack or not. 
+    public bool canAttack { get; set; }
+
+    // If player can use ability or not.
+    public bool canUseAbility { get; set; }
+
     void Awake()
     {
         //Manual initialization, 'cause I (Thomas) have come to realize it can't be done automatically
@@ -50,6 +56,8 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
         AbilityRegister.PLAYER_INTERACT = "" + nameof(playerInteract);
 
         this.canDodge = true;
+        this.canAttack = true;
+        this.canUseAbility = true;
 
         //also construct a VFX manager
         VFXManager = new PlayerAbilityVFX(this, abilityMat);
@@ -69,7 +77,10 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     //this is the method called by an input press
     public void OnAttack()
     {
-        DoAttack();
+        if(canAttack)
+        {
+            DoAttack();
+        }
     }
 
     public override void DoAttack()
@@ -79,15 +90,16 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
 
     public void OnDodge()
     {
-        DoDodge();
+        if(canDodge)
+        {
+            DoDodge();
+        }
     }
 
     public void DoDodge()
     {
-        if(canDodge)
-        {
-            playerDodge.Invoke(ref userActor);
-        }
+        playerDodge.Invoke(ref userActor);
+        
     }
 
     public void OnInteract()
@@ -102,12 +114,15 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
 
     void OnAbility()
     {
-        //Since the the cooldown for an ability is tied to actorabilityfunction
-        if (selectedAbility != null && selectedAbility.getUsable() && selectedAbility.getIsFinished())
+        if(canUseAbility)
         {
-            selectedAbility.Invoke(ref userActor);
-            VFXManager.DoAbilityMaterial(selectedAbility);
-            MenuManager.ABILITY_MENU.PutButtonOnCooldown(selectedAbility.getCooldown(), selectedAbility);
+            //Since the the cooldown for an ability is tied to actorabilityfunction
+            if (selectedAbility != null && selectedAbility.getUsable() && selectedAbility.getIsFinished())
+            {
+                selectedAbility.Invoke(ref userActor);
+                VFXManager.DoAbilityMaterial(selectedAbility);
+                MenuManager.ABILITY_MENU.PutButtonOnCooldown(selectedAbility.getCooldown(), selectedAbility);
+            }
         }
     }
 

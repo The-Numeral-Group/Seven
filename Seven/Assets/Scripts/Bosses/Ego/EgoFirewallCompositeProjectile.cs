@@ -75,8 +75,9 @@ public class EgoFirewallCompositeProjectile : FilterProjectile
     }
 
     //allow outside objects to force this object to stop moving
-    public void StopFlight()
+    public void StopFlight(GameObject retarget)
     {
+        targetObj = retarget;
         StartCoroutine(InternStop());
     }
 
@@ -131,7 +132,7 @@ public class EgoFirewallCompositeProjectile : FilterProjectile
                 this.gameObject, 
                 this.gameObject.transform.position, 
                 Quaternion.identity
-            ).GetComponent<EgoFirewallCompositeProjectile>().StopFlight();
+            ).GetComponent<EgoFirewallCompositeProjectile>().StopFlight(targetObj);
             lastFireSpot = this.gameObject.transform.position;
         }
 

@@ -49,6 +49,8 @@ public class PlayerAnimationHandler : ActorAnimationHandler
     private void doAnimateDodge()
     {
         Animator.SetBool("player_walking", false);
+        Animator.SetFloat("playerDodge_H", movementDirection.x);
+        Animator.SetFloat("playerDodge_V", movementDirection.y);
         Animator.SetTrigger("player_dodging");
     }
 

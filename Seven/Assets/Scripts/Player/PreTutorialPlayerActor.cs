@@ -87,6 +87,13 @@ public class PreTutorialPlayerActor : Actor
         }
     }
 
+    //https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_currentControlScheme
+    public void OnControlsChanged()
+    {
+        MenuManager.SwapControlUIImages(playerInput.currentControlScheme);
+    }
+
+
     public override void DoActorDamageEffect(float damage)
     {
         // Play TakeDamage Audio

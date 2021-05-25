@@ -47,7 +47,11 @@ public class IndulgenceLegAttack : ActorAbilityFunction<Vector2, int>
         indulgenceLeg.transform.parent = this.user.transform;
         Vector2 direction = args[0];
         direction = direction.normalized;
-        float dtheta = Mathf.Acos(((Vector2.Dot(direction, defaultFacingDirection)) / (direction.magnitude * defaultFacingDirection.magnitude)));
+        float dtheta = 0;
+        if (direction != Vector2.zero)
+        {
+            dtheta = Mathf.Acos(((Vector2.Dot(direction, defaultFacingDirection)) / (direction.magnitude * defaultFacingDirection.magnitude)));
+        }
         if (direction.y < 0)
         {
             dtheta *= -1;
