@@ -20,10 +20,8 @@ GhostKnight: I see now that title belongs to you.
 GhostKnight: Now, listen to me carefully.
 GhostKnight: As the Champion, you must defeat the Gods of Corruption.
 GhostKnight: They feed off of Humanity's fears, impulses, and selfish tendencies. 
-GhostKnight: They will try to do the same to you and trick you into becoming corrupted. 
-GhostKnight: Remember why you are fighting them. 
-GhostKnight: Remember who you are fighting when you are fighting them.
-GhostKnight: Resist them. 
+GhostKnight: They will trick you into falling for their corruption. 
+GhostKnight: Remember who you are fighting. Resist them. 
 GhostKnight: For the minute you give into your desires, you shall be defeated. 
 GhostKnight: Young Champion, stay strong, stay vigilant, and above all 
 GhostKnight: Resist Temptation
@@ -76,7 +74,7 @@ GhostKnight: Although, as of late, their consumption has shifted from food to an
 GhostKnight: Magic tablets surround Indulgence and when they touch the tablets, images seem to move across them. 
 GhostKnight: Such powerful magic of the likes I've never encountered. 
 //GHK gives advice on the yield to corruption
-GhostKnight: Be weary of Indulgence and these magic \"screens\". 
+GhostKnight: Be weary of Indulgence and these magic "screens". 
 GhostKnight: They will try and entice you into taking more than you need.
 ===
 title: GhostKnight.Hub.Advice.Apathy
@@ -129,9 +127,12 @@ position: 182,-181
 ---
 GhostKnight: Me? Hmm...not many have asked about me. 
 GhostKnight: It has been centuries since I've thought of myself. I actually don't remember who I was.
-GhostKnight: I am a Champion, sent in here to defeat the Gods of Corruption. 
+GhostKnight: I am a Champion, sent in here to defeat the Gods of Corruption.
+GhostKnight: And to save the Marytr from eternal damnation. 
 GhostKnight: Unfortunately, I succumbed to death before I could finish my task.
-GhostKnight: Although, I am unsure of why I am still here.
+GhostKnight: This is my only regret, 
+GhostKnight: This is why I believe I have not yet passed on,
+GhostKnight: Please, young warrior. Defeat these vile Gods and set us free.
 ===
 title: GhostKnight.Hub.AbilitiesTutorial
 tags: 
