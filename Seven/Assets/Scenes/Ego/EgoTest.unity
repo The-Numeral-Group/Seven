@@ -1307,7 +1307,7 @@ MonoBehaviour:
   abilities:
     m_keys: []
     m_values: []
-  Close: {fileID: 656284030}
+  Close: {fileID: 656284017}
   Far: {fileID: 656284019}
   Special: {fileID: 656284030}
 --- !u!70 &656284023
