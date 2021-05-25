@@ -26,6 +26,8 @@ public class WrathP2Actor : Actor
         WAITING,
         DEAD,
         PHYSICAL,
+        SHOCKWAVE,
+        FIREBRIMSTONE
     }
     //Rerference to the statemachine coroutine
     IEnumerator StateMachinePTR;
@@ -96,6 +98,10 @@ public class WrathP2Actor : Actor
     //EvaluateState is called from the statemachine coroutine.
     void EvalauteState()
     {
+        // Chooses either Shockwave or Fire&Brimstone
+        //int abilityType = (int)Random.Range(0, 2);
+        int abilityType = 1;  // FOR TESTING FIRE BRIM
+
         Debug.Log("Evaluating State");
         State decidingState = currState;
         if(isDead) //Death is used to kill the state machine.
@@ -106,6 +112,14 @@ public class WrathP2Actor : Actor
         else if (WrathP2Actor.targetInRange && this.myAbilityInitiator.abilities[AbilityRegister.WRATH_ARMSWEEP].getUsable())
         {
             decidingState = State.PHYSICAL;
+        }
+        else if (abilityType == 0 && this.myAbilityInitiator.abilities[AbilityRegister.WRATH_SHOCKWAVE].getUsable())
+        {
+            decidingState = State.SHOCKWAVE;
+        }
+        else if (abilityType == 1 && this.myAbilityInitiator.abilities[AbilityRegister.WRATH_FIREBRIMSTONE].getUsable())
+        {
+            decidingState = State.FIREBRIMSTONE;
         }
         else
         {
@@ -131,6 +145,18 @@ public class WrathP2Actor : Actor
                 Debug.Log("Choosing arm sweep");
                 currState = State.PHYSICAL;
                 currAbility = this.myAbilityInitiator.abilities[AbilityRegister.WRATH_ARMSWEEP];
+                currAbility.Invoke(ref self);
+                break;
+            case State.SHOCKWAVE:
+                Debug.Log("Choosing Shockwave");
+                currState = State.SHOCKWAVE;
+                currAbility = this.myAbilityInitiator.abilities[AbilityRegister.WRATH_SHOCKWAVE];
+                currAbility.Invoke(ref self);
+                break;
+            case State.FIREBRIMSTONE:
+                Debug.Log("Choosing Fire and Brimstone");
+                currState = State.FIREBRIMSTONE;
+                currAbility = this.myAbilityInitiator.abilities[AbilityRegister.WRATH_FIREBRIMSTONE];
                 currAbility.Invoke(ref self);
                 break;
             case State.WAITING:
