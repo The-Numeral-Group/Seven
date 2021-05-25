@@ -2030,6 +2030,7 @@ GameObject:
   - component: {fileID: 897289280}
   - component: {fileID: 897289282}
   - component: {fileID: 897289281}
+  - component: {fileID: 897289283}
   m_Layer: 5
   m_Name: SpaceBar
   m_TagString: Untagged
@@ -2094,6 +2095,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 897289279}
   m_CullTransparentMesh: 0
+--- !u!114 &897289283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 897289279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22655c0480d8256469760fcf15432a20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 897289281}
+  keyboardSprite: {fileID: 21300000, guid: 843b9561a7681f147b86a1f962a1ddd9, type: 3}
+  gamepadSprite: {fileID: 21300000, guid: 52ebbe4a9d6af8a4cb0352aa859ab0ca, type: 3}
 --- !u!1 &901844950
 GameObject:
   m_ObjectHideFlags: 0
