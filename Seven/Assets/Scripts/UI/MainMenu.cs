@@ -7,7 +7,6 @@ public class MainMenu : BaseUI
 {
     //ptr to the button to be selected
     public Button startingButton;
-
     protected override void Awake()
     {
         base.Awake();
