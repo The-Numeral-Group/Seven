@@ -3645,7 +3645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingMaxHealth: 30
   damageResistance: 0
-  invincibilityDuration: 1
+  invincibilityDuration: 0
   startInvulnerable: 0
 --- !u!114 &2135220273
 MonoBehaviour:
