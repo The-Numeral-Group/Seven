@@ -834,6 +834,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 358238266}
+  - {fileID: 1130418131}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1512,6 +1513,85 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7581123479736852973, guid: 53fb65b901c0d5e47a0854fac8fb8052, type: 3}
   m_PrefabInstance: {fileID: 642772752}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1130418130
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 474950302}
+    m_Modifications:
+    - target: {fileID: 2251520013785920480, guid: 7ebfaf85f1525e5448211a6f69cda00b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251520013785920480, guid: 7ebfaf85f1525e5448211a6f69cda00b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251520013785920480, guid: 7ebfaf85f1525e5448211a6f69cda00b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251520013785920480, guid: 7ebfaf85f1525e5448211a6f69cda00b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251520013785920480, guid: 7ebfaf85f1525e5448211a6f69cda00b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251520013785920480, guid: 7ebfaf85f1525e5448211a6f69cda00b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251520013785920480, guid: 7ebfaf85f1525e5448211a6f69cda00b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251520013785920480, guid: 7ebfaf85f1525e5448211a6f69cda00b, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251520013785920480, guid: 7ebfaf85f1525e5448211a6f69cda00b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251520013785920480, guid: 7ebfaf85f1525e5448211a6f69cda00b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251520013785920480, guid: 7ebfaf85f1525e5448211a6f69cda00b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251520013785920482, guid: 7ebfaf85f1525e5448211a6f69cda00b, type: 3}
+      propertyPath: m_Size.x
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251520013785920482, guid: 7ebfaf85f1525e5448211a6f69cda00b, type: 3}
+      propertyPath: m_Size.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251520013785920482, guid: 7ebfaf85f1525e5448211a6f69cda00b, type: 3}
+      propertyPath: m_Offset.y
+      value: -8.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2251520013785920485, guid: 7ebfaf85f1525e5448211a6f69cda00b, type: 3}
+      propertyPath: m_Name
+      value: Teleportation Area
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7ebfaf85f1525e5448211a6f69cda00b, type: 3}
+--- !u!4 &1130418131 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2251520013785920480, guid: 7ebfaf85f1525e5448211a6f69cda00b, type: 3}
+  m_PrefabInstance: {fileID: 1130418130}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1130418132 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2251520013785920485, guid: 7ebfaf85f1525e5448211a6f69cda00b, type: 3}
+  m_PrefabInstance: {fileID: 1130418130}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1139608412
 PrefabInstance:
@@ -3201,7 +3281,6 @@ GameObject:
   - component: {fileID: 2135220272}
   - component: {fileID: 2135220271}
   - component: {fileID: 2135220270}
-  - component: {fileID: 2135220269}
   - component: {fileID: 2135220268}
   - component: {fileID: 2135220267}
   - component: {fileID: 2135220266}
@@ -3211,6 +3290,7 @@ GameObject:
   - component: {fileID: 2135220274}
   - component: {fileID: 2135220273}
   - component: {fileID: 2135220265}
+  - component: {fileID: 2135220269}
   m_Layer: 11
   m_Name: WrathP1
   m_TagString: Boss
@@ -3519,10 +3599,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2135220256}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 453e150335b52ac4884472bf0e1bd9cc, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c9945a0c4cc627539650677ba156574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
+  intangibleTime: 0.1
+  debugTeleShiftTime: 0.1
+  teleMesh: {fileID: 1130418132}
+  teleportAnimClear: 0
 --- !u!114 &2135220270
 MonoBehaviour:
   m_ObjectHideFlags: 0
