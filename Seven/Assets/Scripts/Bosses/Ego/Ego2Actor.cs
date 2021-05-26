@@ -148,6 +148,7 @@ public class Ego2Actor : Actor
     {
         for(int i = 0; i < teleCount; ++i)
         {
+            Debug.Log("Ego2Actor: trying random teleport");
             yield return uniqueMovement?.RandomEgoTeleport();
 
             //wait a little bit before doing the next teleport
