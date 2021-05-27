@@ -45,6 +45,10 @@ public class ApathyNPC : Interactable
         " dialogue.")]
     public string transitionNode;
 
+    [Tooltip("The cutscene Scene to play when the dialogue ends. The fight will begin as soon as" + 
+        " the cutscene is over.")]
+    public string cutscene;
+
     //whether or not the player has started the fight in that particular instance
     //of the apathy room
     private bool fightStarted = false;
@@ -174,6 +178,8 @@ public class ApathyNPC : Interactable
         SetMusic(fightAmbiance);
         //flag the fight as started
         fightStarted = true;
+        //and lower the flag to start the fight
+        ApathyNPC.goToFightNow = false;
 
         //Remove the scene transition
         sceneTransition.SetActive(false);
@@ -246,19 +252,29 @@ public class ApathyNPC : Interactable
             );
         });
 
+        //Tell the dialogue to play the prefight cutscene
+        System.Action goToCutscene = new System.Action( () =>
+        {
+            //flag the next load of this script to throw hands
+            ApathyNPC.goToFightNow = true;
+
+            //and play the cutscene
+            GameObject.Find("TimelineManager").SendMessage("loadScene", cutscene);
+        });
+
         //start the dialogue where the player can't move
         MenuManager.DIALOGUE_MENU.StartDialogue(
             speakingObject, 
-            new DialogueMenu.TestDelegate( () => EngageFight() ),
-            false
+            new DialogueMenu.TestDelegate(goToCutscene),
+            true
         );
     }
 
     [YarnCommand("EZPlayerUnlock")]
     public void EZPlayerUnlock()
     {
-        Debug.Log("fdsafsd");
-        MenuManager.DIALOGUE_MENU.SetupPlayer(false);
+        //Debug.Log("ApathyNPC: Unlocking player movement");
+        //MenuManager.DIALOGUE_MENU.SetupPlayer(false);
     }
 
     //Immediately switches the audio source to start playing this clip
