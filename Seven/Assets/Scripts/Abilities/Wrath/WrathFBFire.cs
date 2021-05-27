@@ -7,7 +7,7 @@ public class WrathFBFire : ActorMovement
     // How much damage the fireball will do
     public float damage;
 
-    // How long the fireball will last
+    // How long the fireball will take to drop
     public float duration;
 
     protected override void Start()
