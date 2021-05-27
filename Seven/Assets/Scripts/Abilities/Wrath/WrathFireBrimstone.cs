@@ -17,6 +17,8 @@ public class WrathFireBrimstone : ActorAbilityFunction<Actor, int>
 
     public GameObject toInstantiateObject;
 
+    public GameObject areaToChoose;
+
 
     // Delay time before camera shake
     private float shake_delay = 1.0f;
@@ -60,13 +62,22 @@ public class WrathFireBrimstone : ActorAbilityFunction<Actor, int>
         // Do camera shake
         cam.Shake(2.0f, 0.2f);
 
+        //Debug.Log(areaToChoose.GetComponent<PolygonCollider2D>().bounds.min);
+
         for(int i = 0; i < shadowCount; i++)
         {
             // Choose where to spawn
+            var bounds = areaToChoose.GetComponent<Collider2D>().bounds;
+            var center = bounds.center;
 
-            // Temporary position finder
-            float xPos = Random.Range(-25.0f, 25.0f);
-            float yPos = Random.Range(-12.0f, 4.0f);
+            float xPos = 0;
+            float yPos = 0;
+
+            do
+            {
+                xPos = Random.Range(center.x - bounds.extents.x, center.x + bounds.extents.x);
+                yPos = Random.Range(center.y - bounds.extents.y, center.y + bounds.extents.y);
+            } while (!areaToChoose.GetComponent<Collider2D>().OverlapPoint(new Vector2(xPos, yPos)));
 
             Instantiate(toInstantiateObject,new Vector3(xPos, yPos, 0.0f), Quaternion.identity);
             yield return new WaitForSeconds(shadowDelay);
