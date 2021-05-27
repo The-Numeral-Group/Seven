@@ -1,0 +1,86 @@
+fileFormatVersion: 2
+guid: 10829f9c2a70655429dcf7f5c1d05dcd
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 94073015eacc34c1d8fc6786e43d60ca, type: 3}
+  baseLanguageID: en-US
+  stringIDs:
+  - ApathyDialogue_v5-Corruption-0
+  - ApathyDialogue_v5-Corruption-1
+  - ApathyDialogue_v5-Corruption-2
+  - ApathyDialogue_v5-Corruption-3
+  - ApathyDialogue_v5-Corruption-4
+  - ApathyDialogue_v5-Corruption-5
+  - ApathyDialogue_v5-Corruption-6
+  - ApathyDialogue_v5-Corruption-7
+  - ApathyDialogue_v5-Corruption-8
+  - ApathyDialogue_v5-Corruption-9
+  - ApathyDialogue_v5-Corruption-10
+  - ApathyDialogue_v5-Corruption-11
+  - ApathyDialogue_v5-Corruption-12
+  - ApathyDialogue_v5-Corruption-13
+  - ApathyDialogue_v5-Corruption-14
+  - ApathyDialogue_v5-Corruption-15
+  - ApathyDialogue_v5-Corruption-16
+  - ApathyDialogue_v5-Corruption-17
+  - ApathyDialogue_v5-Corruption-18
+  - ApathyDialogue_v5-Corruption-19
+  - ApathyDialogue_v5-Corruption-20
+  - ApathyDialogue_v5-Corruption-21
+  - ApathyDialogue_v5-Corruption-22
+  - ApathyDialogue_v5-Corruption-23
+  - ApathyDialogue_v5-Corruption-24
+  - ApathyDialogue_v5-Corruption-25
+  - ApathyDialogue_v5-Corruption-26
+  - ApathyDialogue_v5-Apathy_Win-27
+  - ApathyDialogue_v5-Apathy_Win-28
+  - ApathyDialogue_v5-Apathy_Win-29
+  - ApathyDialogue_v5-Apathy_Win-30
+  - ApathyDialogue_v5-Apathy_Win-31
+  - ApathyDialogue_v5-Apathy_Win-32
+  - ApathyDialogue_v5-Apathy_Win-33
+  - ApathyDialogue_v5-Apathy_Win-34
+  - ApathyDialogue_v5-Apathy_Win-35
+  - ApathyDialogue_v5-Apathy_Win-36
+  - ApathyDialogue_v5-Apathy_Defeat-37
+  - ApathyDialogue_v5-Apathy_Defeat-38
+  - ApathyDialogue_v5-Apathy_Defeat-39
+  - ApathyDialogue_v5-Apathy_Defeat-40
+  - ApathyDialogue_v5-Transition-41
+  - ApathyDialogue_v5-Transition-42
+  - ApathyDialogue_v5-Transition-43
+  - ApathyDialogue_v5-Transition-44
+  - ApathyDialogue_v5-Opening_Scene-45
+  - ApathyDialogue_v5-Opening_Scene-46
+  - ApathyDialogue_v5-Opening_Scene-47
+  - ApathyDialogue_v5-Opening_Scene-48
+  - ApathyDialogue_v5-Opening_Scene-49
+  - ApathyDialogue_v5-Opening_Scene-50
+  - ApathyDialogue_v5-Opening_Scene-51
+  - ApathyDialogue_v5-Opening_Scene-52
+  - ApathyDialogue_v5-Opening_Scene-53
+  - ApathyDialogue_v5-Opening_Scene-54
+  - ApathyDialogue_v5-Opening_Scene-55
+  - ApathyDialogue_v5-Opening_Scene-56
+  - ApathyDialogue_v5-Opening_Scene-57
+  - ApathyDialogue_v5-Opening_Scene-58
+  - ApathyDialogue_v5-Opening_Scene-59
+  - ApathyDialogue_v5-Opening_Scene-60
+  - ApathyDialogue_v5-Opening_Scene-61
+  - ApathyDialogue_v5-Opening_Scene-62
+  - ApathyDialogue_v5-Opening_Scene-63
+  - ApathyDialogue_v5-Opening_Scene-64
+  - ApathyDialogue_v5-Opening_Scene-65
+  - ApathyDialogue_v5-Opening_Scene-66
+  - ApathyDialogue_v5-Opening_Scene-67
+  compilationStatus: 1
+  isSuccesfullyCompiled: 1
+  compilationErrorMessage: The node 'Opening Scene (OLDATA)' contains illegal characters
+    in its title.
+  baseLanguage: {fileID: 7128917941130120860, guid: 10829f9c2a70655429dcf7f5c1d05dcd, type: 3}
+  localizations: []
