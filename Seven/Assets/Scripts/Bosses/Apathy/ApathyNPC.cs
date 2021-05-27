@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 public class ApathyNPC : Interactable
 {
@@ -70,6 +71,12 @@ public class ApathyNPC : Interactable
 
         //save the audio source
         audiosource = this.gameObject.GetComponent<AudioSource>();
+
+        //if the fight should start now, skip all of this and throw hands
+        if(ApathyNPC.goToFightNow)
+        {
+            EngageFight();
+        }
 
         /*save whether or not the fight has been abandoned. If the sin flag is set, this is the
         case.*/
@@ -215,6 +222,8 @@ public class ApathyNPC : Interactable
     {
         yield return null;
 
+        Debug.Log("ApathyNPC: starting dialogue...");
+
         //set the first node of ActiveSpeaker
         var activeSpeak = speakingObject.GetComponent<ActiveSpeaker>();
 
@@ -235,14 +244,21 @@ public class ApathyNPC : Interactable
                 new DialogueMenu.TestDelegate( () => EngageFight() ),
                 false
             );
-
         });
 
         //start the dialogue where the player can't move
         MenuManager.DIALOGUE_MENU.StartDialogue(
             speakingObject, 
-            new DialogueMenu.TestDelegate(dialoguePartTwo)
+            new DialogueMenu.TestDelegate( () => EngageFight() ),
+            false
         );
+    }
+
+    [YarnCommand("EZPlayerUnlock")]
+    public void EZPlayerUnlock()
+    {
+        Debug.Log("fdsafsd");
+        MenuManager.DIALOGUE_MENU.SetupPlayer(false);
     }
 
     //Immediately switches the audio source to start playing this clip
