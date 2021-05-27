@@ -5,6 +5,9 @@ using UnityEngine;
 public class ApathyNPC : Interactable
 {
     //FIELDS---------------------------------------------------------------------------------------
+    //whether or not script should skip all the nonsense and get straight to the fight
+    private static bool goToFightNow = false;
+
     [Tooltip("A reference to Apathy, so it can be activated/deactived properly")]
     public GameObject apathyObj;
 
@@ -27,6 +30,19 @@ public class ApathyNPC : Interactable
 
     [Tooltip("The ambience that plays while fighting Apathy.")]
     public AudioClip fightAmbiance;
+
+    [Header("Dialogue")]
+    [Tooltip("The gameObject that is going to be the speaker for Apathy." + 
+        "Must have an activeSpeaker object")]
+    public GameObject speakingObject;
+
+    [Tooltip("The node of dialogue that Apathy starts with. The player cannot move during this" + 
+        " dialogue.")]
+    public string openingNode;
+
+    [Tooltip("The node of dialogue that Apathy contiunes with. The player can move during this" + 
+        " dialogue.")]
+    public string transitionNode;
 
     //whether or not the player has started the fight in that particular instance
     //of the apathy room
@@ -183,6 +199,9 @@ public class ApathyNPC : Interactable
         //bring back the scene transition
         sceneTransition.SetActive(true);
 
+        //but turn off the corruption effect
+        sceneTransition.transform.GetChild(0).gameObject.SetActive(false);
+
         //turn on the postfight music
         SetMusic(postfightAmbiance);
 
@@ -196,10 +215,33 @@ public class ApathyNPC : Interactable
     {
         yield return null;
 
+        //set the first node of ActiveSpeaker
+        var activeSpeak = speakingObject.GetComponent<ActiveSpeaker>();
+
+        //set its node to be the starting node
+        activeSpeak.yarnStartNode = openingNode;
+
+        //Tell the dialogue what to do when the first node is finished
+        System.Action dialoguePartTwo = new System.Action( () =>
+        {
+            //Switch which node should be used for the dialogue menu
+            activeSpeak.yarnStartNode = transitionNode;
+
+            /*And start the new dialogue which begins the transition cutscene and flags this class
+            to skip all the dialogue and whatever and just start fighting*/
+            ApathyNPC.goToFightNow = true;
+            MenuManager.DIALOGUE_MENU.StartDialogue(
+                speakingObject,
+                new DialogueMenu.TestDelegate( () => EngageFight() ),
+                false
+            );
+
+        });
+
+        //start the dialogue where the player can't move
         MenuManager.DIALOGUE_MENU.StartDialogue(
-            this.gameObject, 
-            new DialogueMenu.TestDelegate( () => EngageFight() ), 
-            false
+            speakingObject, 
+            new DialogueMenu.TestDelegate(dialoguePartTwo)
         );
     }
 

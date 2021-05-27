@@ -2026,7 +2026,7 @@ PrefabInstance:
     - target: {fileID: 2200475627425788176, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
       propertyPath: dialogueFiles.Array.data[0]
       value: 
-      objectReference: {fileID: 2480198943629176163, guid: 6152a990adce80d0e9779b50253eb701, type: 3}
+      objectReference: {fileID: 2480198943629176163, guid: 10829f9c2a70655429dcf7f5c1d05dcd, type: 3}
     - target: {fileID: 2200475627425788187, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
       propertyPath: m_Name
       value: DialogueMenu
@@ -3580,6 +3580,9 @@ MonoBehaviour:
   prefightAmbiance: {fileID: 8300000, guid: 15568d2ef51bd7249bf7bc4d08eb2aae, type: 3}
   postfightAmbiance: {fileID: 8300000, guid: 86cb17bc01b19246b92949be7576d341, type: 3}
   fightAmbiance: {fileID: 8300000, guid: 44b09e2529b643e758a2f7132a4f78ec, type: 3}
+  speakingObject: {fileID: 2051050981}
+  openingNode: Opening_scene
+  transitionNode: Corruption
 --- !u!61 &2051050983
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4034,7 +4037,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 13.71, y: 8.34}
+    oldSize: {x: 25.005266, y: 23.65}
     newSize: {x: 13.71, y: 8.34}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4101,6 +4104,10 @@ PrefabInstance:
     - target: {fileID: 7522185284568880459, guid: 2186ce7d5301fab41b4a7553326e9396, type: 3}
       propertyPath: m_Name
       value: Sloth Clock
+      objectReference: {fileID: 0}
+    - target: {fileID: 7522185284568880459, guid: 2186ce7d5301fab41b4a7553326e9396, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7522185284568880463, guid: 2186ce7d5301fab41b4a7553326e9396, type: 3}
       propertyPath: handler
