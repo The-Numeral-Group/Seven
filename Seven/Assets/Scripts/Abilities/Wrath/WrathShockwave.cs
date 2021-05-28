@@ -45,8 +45,8 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
         }
 
         // Chooses type of shockwave
-        //int shockwaveType = (int)Random.Range(0, 2);
-        int shockwaveType = 1; // TESTING FULL ROOM
+        int shockwaveType = (int)Random.Range(0, 2);
+
         if(shockwaveType == 0)
         {
             // 4 Shockwave Pillars
