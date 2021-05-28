@@ -4,7 +4,19 @@ using UnityEngine;
 
 public class WrathShockwave : ActorAbilityFunction<Actor, int>
 {
+    // Delay after the fist animation
+    public float delayAnim;
+
+    // Delay for each shockwave creation
+    public float delayShockwave;
+
+    // Delay after all the shockwaves were spawned
+    public float delayAfterShockwave;
+
     public string animTrigger;
+
+    public GameObject toInstantiateObject;
+
     public override void Invoke(ref Actor user)
     {
         this.user = user;
@@ -26,33 +38,68 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
         }
 
         // Chooses type of shockwave
-        int shockwaveType = (int)Random.Range(0, 2);
+        //int shockwaveType = (int)Random.Range(0, 2);
+        int shockwaveType = 0; // TESTING 4 PILLARS
         if(shockwaveType == 0)
         {
             // 4 Shockwave Pillars
+            StartCoroutine(startShockwavePillars());
         }
         else
         {
             // 1 Full Room Shockwave
         }
         // Temporary calling end function
-        StartCoroutine(CheckIfAnimFinished());
+        //StartCoroutine(CheckIfAnimFinished());
 
         return 0;
     }
-    // Temporary calling end function
-    private IEnumerator CheckIfAnimFinished()
-    {
-        while (this.user.myAnimationHandler.IsInState(animTrigger))
-        {
-            yield return new WaitForFixedUpdate();
-        }
-        FinishShockwave();
-    }
 
-    // Temporary calling end function
-    private void FinishShockwave()
+    private IEnumerator startShockwavePillars()
     {
-        this.isFinished = true;
+        // Delay after animation
+        yield return new WaitForSeconds(delayAnim);
+
+        // Start spawning shockwaves
+        List<Vector3> firstCoord = new List<Vector3>() { new Vector3(0.0f, 5.5f, 0.0f), new Vector3(0.0f, 1.5f, -1.0f), new Vector3(0.0f, -2.5f, -2.0f),
+                                                         new Vector3(0.0f, -6.5f, -3.0f), new Vector3(0.0f, -10.5f, -4.0f), new Vector3(0.0f, -14.5f, -5.0f)};
+
+        List<Vector3> secondCoord = new List<Vector3>() { new Vector3(7.5f, 8.5f, 0.0f), new Vector3(9.5f, 4.5f, -1.0f), new Vector3(11.5f, 0.5f, -2.0f),
+                                                         new Vector3(13.5f, -3.5f, -3.0f), new Vector3(15.5f, -7.5f, -4.0f), new Vector3(17.5f, -11.5f, -5.0f)};
+
+        List<Vector3> thirdCoord = new List<Vector3>() { new Vector3(11.0f, 12.0f, 0.0f), new Vector3(15.0f, 10.0f, -1.0f), new Vector3(19.0f, 8.0f, -2.0f),
+                                                         new Vector3(23.0f, 6.0f, -3.0f), new Vector3(27.0f, 4.0f, -4.0f), new Vector3(31.0f, 2.0f, -5.0f)};
+
+        List<Vector3> fourthCoord = new List<Vector3>() { new Vector3(-7.5f, 8.5f, 0.0f), new Vector3(-9.5f, 4.5f, -1.0f), new Vector3(-11.5f, 0.5f, -2.0f),
+                                                         new Vector3(-13.5f, -3.5f, -3.0f), new Vector3(-15.5f, -7.5f, -4.0f), new Vector3(-17.5f, -11.5f, -5.0f)};
+
+        List<Vector3> fifthCoord = new List<Vector3>() { new Vector3(-11.0f, 12.0f, 0.0f), new Vector3(-15.0f, 10.0f, -1.0f), new Vector3(-19.0f, 8.0f, -2.0f),
+                                                         new Vector3(-23.0f, 6.0f, -3.0f), new Vector3(-27.0f, 4.0f, -4.0f), new Vector3(-31.0f, 2.0f, -5.0f)};
+
+        GameObject shockwaveStorage = new GameObject("WrathP2Shockwaves");
+
+        for (int i = 0; i < 6; i++)
+        {
+            GameObject firstShockwave = Instantiate(toInstantiateObject, firstCoord[i], Quaternion.identity);
+            firstShockwave.transform.parent = shockwaveStorage.transform;
+
+            GameObject secondShockwave = Instantiate(toInstantiateObject, secondCoord[i], Quaternion.identity);
+            secondShockwave.transform.parent = shockwaveStorage.transform;
+
+            GameObject thirdShockwave = Instantiate(toInstantiateObject, thirdCoord[i], Quaternion.identity);
+            thirdShockwave.transform.parent = shockwaveStorage.transform;
+
+            GameObject fourthShockwave = Instantiate(toInstantiateObject, fourthCoord[i], Quaternion.identity);
+            fourthShockwave.transform.parent = shockwaveStorage.transform;
+
+            GameObject fifthShockwave = Instantiate(toInstantiateObject, fifthCoord[i], Quaternion.identity);
+            fifthShockwave.transform.parent = shockwaveStorage.transform;
+
+            yield return new WaitForSeconds(delayShockwave);
+        }
+
+        yield return new WaitForSeconds(delayAfterShockwave);
+        isFinished = true;
     }
 }
+
