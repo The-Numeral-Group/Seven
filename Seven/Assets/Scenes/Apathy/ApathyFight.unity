@@ -3582,8 +3582,7 @@ MonoBehaviour:
   fightAmbiance: {fileID: 8300000, guid: 44b09e2529b643e758a2f7132a4f78ec, type: 3}
   speakingObject: {fileID: 2051050981}
   openingNode: Opening_Scene
-  transitionNode: Corruption
-  cutscene: Apathy_Transition
+  deathCutscene: Apathy_BossD
 --- !u!61 &2051050983
 BoxCollider2D:
   m_ObjectHideFlags: 0

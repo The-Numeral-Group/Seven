@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
+using Yarn.Unity;
 
 // Doc: https://docs.google.com/document/d/1t8toHhDSd4lvUUPEubfjjK5jV6X9huaLechlpcymaXY/edit
 public class TimelineManager : MonoBehaviour
@@ -64,6 +65,7 @@ public class TimelineManager : MonoBehaviour
         director.Resume();
     }
 
+    [YarnCommand("loadScene")]
     public void loadScene(string name)
     {
         SceneManager.LoadScene(name);

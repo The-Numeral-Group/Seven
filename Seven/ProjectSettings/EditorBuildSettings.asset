@@ -42,6 +42,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Apathy/Cutscene/Apathy_Transition.unity
     guid: 24215df6cc781a64b98fa0bc743a10a8
   - enabled: 1
+    path: Assets/Scenes/Apathy/Cutscene/Apathy_BossD.unity
+    guid: 7dd7c88de8572884ea98b43926aeca1a
+  - enabled: 1
+    path: Assets/Scenes/Apathy/Cutscene/Apathy_BossW.unity
+    guid: bfc43870a1c287e48a42aa663e4fd0f0
+  - enabled: 1
     path: Assets/Scenes/Ego/EgoTest.unity
     guid: 894f09a184f6a7b9db0910ff28b99cf6
   - enabled: 1

@@ -31,6 +31,7 @@ Apathy: I don't remember who I was.
 Apathy: And I don't care. 
 Apathy: Because you see...
 Apathy: Time doesn't care about anyone.
+<<loadScene TimelineManager Apathy_Transition>>
 ===
 title: Apathy_Win
 tags: 
@@ -101,5 +102,6 @@ Apathy: Will you listen to what I have to say?
 	[[Corruption]]
 //play opening scene node
 -> No
+	<<loadScene TimelineManager Apathy_BossW>>
     Apathy: ...thought so...but I'll give you a chance to change your mind.
 ===
