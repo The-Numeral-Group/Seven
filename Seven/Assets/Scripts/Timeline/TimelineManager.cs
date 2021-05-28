@@ -18,6 +18,12 @@ public class TimelineManager : MonoBehaviour
 
     private BaseCamera cam;
 
+    //the name of the last scene that was asyncronously loaded
+    private string asyncScene;
+
+    //and the object responsible for loading it
+    private AsyncOperation sceneLoader;
+
     private void Start()
     {
         var camObjects = FindObjectsOfType<BaseCamera>();
@@ -68,7 +74,21 @@ public class TimelineManager : MonoBehaviour
     [YarnCommand("loadScene")]
     public void loadScene(string name)
     {
-        SceneManager.LoadScene(name);
+        if(asyncScene != null || name == asyncScene)
+        {
+            sceneLoader.allowSceneActivation = true;
+        }
+        else
+        {
+            SceneManager.LoadScene(name);
+        }
+    }
+
+    public void asyncLoadScene(string name)
+    {
+        sceneLoader = SceneManager.LoadSceneAsync(name);
+        asyncScene = name;
+        sceneLoader.allowSceneActivation = false;
     }
 
     public void cameraShake()
