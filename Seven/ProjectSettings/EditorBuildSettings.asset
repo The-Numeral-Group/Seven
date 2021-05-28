@@ -80,4 +80,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Wrath/WrathBattlePhase2.unity
     guid: 3b63b0e9de8915644b4afd490174748b
+  - enabled: 1
+    path: Assets/Scenes/Ending/Cutscene/ToD_PostFight.unity
+    guid: 7d8597e0fec8cc847aa2e74bc5b6ab42
   m_configObjects: {}
