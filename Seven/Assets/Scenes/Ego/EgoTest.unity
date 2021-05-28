@@ -943,6 +943,7 @@ MonoBehaviour:
   damage: 3
   preLaserDuration: 1
   laserDuration: 0.75
+  laserOffset: {x: 1.5, y: 1.5}
 --- !u!114 &505191990
 MonoBehaviour:
   m_ObjectHideFlags: 0
