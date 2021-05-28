@@ -8632,6 +8632,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WrathP2Multi
       objectReference: {fileID: 0}
+    - target: {fileID: 2688743516045599179, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: delayBetweenAttacks
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4132197406195292903, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: animTrigger
       value: fist
@@ -8668,6 +8672,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5541655781900561451, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6081538999315364633, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.25

@@ -3291,7 +3291,7 @@ Transform:
   m_GameObject: {fileID: 2135220256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.05, y: 3.69, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 1058415253}
   - {fileID: 1367552312}
@@ -3453,7 +3453,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3504,7 +3504,7 @@ MonoBehaviour:
   projectile: {fileID: 993374650974002788, guid: 383b2e3f4bae2e34face80a1e0a33c07, type: 3}
   marker: {fileID: 9056802611949407787, guid: a92beb2f23e691b4aa26046681bc616b, type: 3}
   leadMarkerDistance: 2
-  initialWaitTime: 3
+  initialWaitTime: 2
   shotFlightTime: 1
 --- !u!114 &2135220263
 MonoBehaviour:
@@ -3546,7 +3546,7 @@ MonoBehaviour:
   invokeBlankWhenBadArguments: 1
   centerPos: {x: 0, y: 5}
   duration: 7
-  travelDuration: 1
+  travelDuration: 0.3
   stunnedDuration: 1.5
   pullAttemptNumber: 4
   pullIntensity: 2
@@ -3684,9 +3684,9 @@ MonoBehaviour:
   abilityName: WrathSwordRush
   invokeBlankWhenBadArguments: 1
   chargeSpeedMultiplier: 5
-  chargeCount: 4
+  chargeCount: 3
   trackTime: 1
-  chargeDelay: 1
+  chargeDelay: 0.5
   hitbox: {fileID: 1367552311}
   targetPoint: {fileID: 1642947900134007727, guid: 19c9a2f7f2c0e8a4d848d6e9d1222727, type: 3}
   directionIndicatorPrefab: {fileID: 7844965136158205026, guid: d33fdd4af9234bf4ab4113fb0f29f4e2, type: 3}
