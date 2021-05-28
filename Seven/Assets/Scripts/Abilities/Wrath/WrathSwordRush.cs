@@ -133,8 +133,8 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
         isTracking = false;
 
         // Play Wrath charging animation
-        WrathAnimationHandler wrathAnimationHandler = wrath.myAnimationHandler as WrathAnimationHandler;
-        wrathAnimationHandler.animateSwordRush();
+        //WrathAnimationHandler wrathAnimationHandler = wrath.myAnimationHandler as WrathAnimationHandler;
+        //wrathAnimationHandler.animateSwordRush();
 
         // Place target Point
         targetPointObject = Instantiate(this.targetPoint, targetLocation, Quaternion.identity);

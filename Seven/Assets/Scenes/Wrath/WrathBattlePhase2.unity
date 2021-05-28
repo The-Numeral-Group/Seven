@@ -8604,6 +8604,22 @@ PrefabInstance:
       propertyPath: animTrigger
       value: fist
       objectReference: {fileID: 0}
+    - target: {fileID: 412269036355777620, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: toInstantiateObject
+      value: 
+      objectReference: {fileID: 5036942542288751202, guid: fbcee8a5c07c2734aafac814693367b3, type: 3}
+    - target: {fileID: 412269036355777620, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: delayAnim
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 412269036355777620, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: delayShockwave
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 412269036355777620, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: delayAfterShockwave
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 737185324583889991, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: wrathShockwave
       value: 
