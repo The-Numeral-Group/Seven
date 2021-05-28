@@ -8,14 +8,21 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
     public float delayAnim;
 
     // Delay for each shockwave creation
-    public float delayShockwave;
+    public float delayPillarShockwave;
+
+    // Max x and y Scale for large shockwave
+    public float maxX, maxY;
+
+    // Delay for large shockwave iteration
+    public float delayLargeShockwave;
 
     // Delay after all the shockwaves were spawned
     public float delayAfterShockwave;
 
     public string animTrigger;
 
-    public GameObject toInstantiateObject;
+    public GameObject pillarShockwaveObject;
+    public GameObject largeShockwaveObject;
 
     public override void Invoke(ref Actor user)
     {
@@ -38,8 +45,8 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
         }
 
         // Chooses type of shockwave
-        //int shockwaveType = (int)Random.Range(0, 2);
-        int shockwaveType = 0; // TESTING 4 PILLARS
+        int shockwaveType = (int)Random.Range(0, 2);
+
         if(shockwaveType == 0)
         {
             // 4 Shockwave Pillars
@@ -48,6 +55,7 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
         else
         {
             // 1 Full Room Shockwave
+            StartCoroutine(startShockwaveLarge());
         }
         // Temporary calling end function
         //StartCoroutine(CheckIfAnimFinished());
@@ -80,26 +88,48 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
 
         for (int i = 0; i < 6; i++)
         {
-            GameObject firstShockwave = Instantiate(toInstantiateObject, firstCoord[i], Quaternion.identity);
+            GameObject firstShockwave = Instantiate(pillarShockwaveObject, firstCoord[i], Quaternion.identity);
             firstShockwave.transform.parent = shockwaveStorage.transform;
 
-            GameObject secondShockwave = Instantiate(toInstantiateObject, secondCoord[i], Quaternion.identity);
+            GameObject secondShockwave = Instantiate(pillarShockwaveObject, secondCoord[i], Quaternion.identity);
             secondShockwave.transform.parent = shockwaveStorage.transform;
 
-            GameObject thirdShockwave = Instantiate(toInstantiateObject, thirdCoord[i], Quaternion.identity);
+            GameObject thirdShockwave = Instantiate(pillarShockwaveObject, thirdCoord[i], Quaternion.identity);
             thirdShockwave.transform.parent = shockwaveStorage.transform;
 
-            GameObject fourthShockwave = Instantiate(toInstantiateObject, fourthCoord[i], Quaternion.identity);
+            GameObject fourthShockwave = Instantiate(pillarShockwaveObject, fourthCoord[i], Quaternion.identity);
             fourthShockwave.transform.parent = shockwaveStorage.transform;
 
-            GameObject fifthShockwave = Instantiate(toInstantiateObject, fifthCoord[i], Quaternion.identity);
+            GameObject fifthShockwave = Instantiate(pillarShockwaveObject, fifthCoord[i], Quaternion.identity);
             fifthShockwave.transform.parent = shockwaveStorage.transform;
 
-            yield return new WaitForSeconds(delayShockwave);
+            yield return new WaitForSeconds(delayPillarShockwave);
         }
 
         yield return new WaitForSeconds(delayAfterShockwave);
         isFinished = true;
+    }
+
+    private IEnumerator startShockwaveLarge()
+    {
+        // Delay after animation
+        yield return new WaitForSeconds(delayAnim);
+
+        Vector3 pos = new Vector3(0f, 2.0f, -1.0f);
+        GameObject shockwave = Instantiate(largeShockwaveObject, pos, Quaternion.identity);
+
+        while (shockwave.transform.localScale.x <= maxX && shockwave.transform.localScale.y <= maxY)
+        {
+            var currScale = shockwave.transform.localScale;
+            currScale.x += 0.1f;
+            currScale.y += 0.1f;
+            shockwave.transform.localScale = currScale;
+            yield return new WaitForSeconds(delayLargeShockwave);
+        }
+
+        yield return new WaitForSeconds(delayAfterShockwave);
+        isFinished = true;
+        Destroy(shockwave);
     }
 }
 

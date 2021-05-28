@@ -3,6 +3,7 @@ tags:
 colorID: 0
 position: 242,-614
 ---
+<<EZPlayerUnlock ApathyPreFightManager>>
 Apathy: ...
 Apathy: Do you know what it is like...
 Apathy: To sit and watch your life slip away from you?
@@ -30,6 +31,7 @@ Apathy: I don't remember who I was.
 Apathy: And I don't care. 
 Apathy: Because you see...
 Apathy: Time doesn't care about anyone.
+<<loadScene TimelineManager Apathy_Transition>>
 ===
 title: Apathy_Win
 tags: 
@@ -97,7 +99,9 @@ Apathy: Will you listen to what I have to say?
 -> Yes
     Apathy: Heh...we'll see.
     Apathy: Where should I begin...
+	[[Corruption]]
 //play opening scene node
 -> No
+	<<loadScene TimelineManager Apathy_BossW>>
     Apathy: ...thought so...but I'll give you a chance to change your mind.
 ===

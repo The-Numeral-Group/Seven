@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
+using Yarn.Unity;
 
 // Doc: https://docs.google.com/document/d/1t8toHhDSd4lvUUPEubfjjK5jV6X9huaLechlpcymaXY/edit
 public class TimelineManager : MonoBehaviour
@@ -16,6 +17,12 @@ public class TimelineManager : MonoBehaviour
     private int loopIt = 0;
 
     private BaseCamera cam;
+
+    //the name of the last scene that was asyncronously loaded
+    private string asyncScene;
+
+    //and the object responsible for loading it
+    private AsyncOperation sceneLoader;
 
     private void Start()
     {
@@ -64,9 +71,24 @@ public class TimelineManager : MonoBehaviour
         director.Resume();
     }
 
+    [YarnCommand("loadScene")]
     public void loadScene(string name)
     {
-        SceneManager.LoadScene(name);
+        if(asyncScene != null || name == asyncScene)
+        {
+            sceneLoader.allowSceneActivation = true;
+        }
+        else
+        {
+            SceneManager.LoadScene(name);
+        }
+    }
+
+    public void asyncLoadScene(string name)
+    {
+        sceneLoader = SceneManager.LoadSceneAsync(name);
+        asyncScene = name;
+        sceneLoader.allowSceneActivation = false;
     }
 
     public void cameraShake()

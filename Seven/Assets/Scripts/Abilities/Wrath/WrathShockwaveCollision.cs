@@ -42,4 +42,28 @@ public class WrathShockwaveCollision : MonoBehaviour
             }
         }
     }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        // Only collide with player
+        if (other.gameObject.tag == "Player")
+        {
+            var playerHealth = other.gameObject.GetComponent<ActorHealth>();
+
+            //or a weakpoint if there's no regular health
+            if (playerHealth == null) { other.gameObject.GetComponent<ActorWeakPoint>(); }
+
+            //if the enemy can take damage (if it has an ActorHealth component),
+            //hurt them. Do nothing if they can't take damage.
+            if (playerHealth != null)
+            {
+                if (!playerHealth.vulnerable)
+                {
+                    return;
+                }
+                //this.gameObject.GetComponent<ActorSoundManager>().PlaySound("AttackHit");
+                playerHealth.takeDamage(damage);
+            }
+        }
+    }
 }

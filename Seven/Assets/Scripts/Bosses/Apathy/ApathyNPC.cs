@@ -1,10 +1,14 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 public class ApathyNPC : Interactable
 {
     //FIELDS---------------------------------------------------------------------------------------
+    //whether or not script should skip all the nonsense and get straight to the fight
+    private static bool goToFightNow = false;
+
     [Tooltip("A reference to Apathy, so it can be activated/deactived properly")]
     public GameObject apathyObj;
 
@@ -27,6 +31,27 @@ public class ApathyNPC : Interactable
 
     [Tooltip("The ambience that plays while fighting Apathy.")]
     public AudioClip fightAmbiance;
+
+    [Header("Dialogue and Cutscenes")]
+    [Tooltip("The gameObject that is going to be the speaker for Apathy." + 
+        "Must have an activeSpeaker object")]
+    public GameObject speakingObject;
+
+    [Tooltip("The node of dialogue that Apathy starts with. The player cannot move during this" + 
+        " dialogue.")]
+    public string openingNode;
+
+    //[Tooltip("The node of dialogue that Apathy contiunes with. The player can move during this" + 
+        //" dialogue.")]
+    //public string transitionNode;
+
+    /*[Tooltip("The cutscene Scene to play when the dialogue ends. The fight will begin as soon as" + 
+        " the cutscene is over.")]
+    public string endCutscene;
+    */
+
+    [Tooltip("The cutscene to play when Apathy dies")]
+    public string deathCutscene;
 
     //whether or not the player has started the fight in that particular instance
     //of the apathy room
@@ -54,6 +79,13 @@ public class ApathyNPC : Interactable
 
         //save the audio source
         audiosource = this.gameObject.GetComponent<AudioSource>();
+
+        //if the fight should start now, skip all of this and throw hands
+        if(ApathyNPC.goToFightNow)
+        {
+            EngageFight();
+            return;
+        }
 
         /*save whether or not the fight has been abandoned. If the sin flag is set, this is the
         case.*/
@@ -87,6 +119,15 @@ public class ApathyNPC : Interactable
             //apathyObj.SetActive(false);
             Destroy(apathyObj);
             prop.SetActive(false);
+
+            //place the TOD, but only if the player doesn't have it already
+            if(!manager.getBoolValue(9))
+            {
+                var abilityPickup = Instantiate(abilityDropObject, Vector3.zero, 
+                    Quaternion.identity).GetComponent<AbilityPickup>();
+                abilityPickup.gameSaveManager = manager;
+                abilityPickup.gameSaveAbilityPickupIndex = 9;
+            }
 
             //also do post-fight music
             SetMusic(postfightAmbiance);
@@ -133,6 +174,10 @@ public class ApathyNPC : Interactable
         //remains unlocked so the player can choose to leave
         //we offload this to the next frame to make sure the player's actor components
         //are loaded enough for the dialogue to work
+
+        //however, if the fight's over, don't trigger it
+        if(fightAbandoned || fightCompleted) return;
+
         StartCoroutine(DialogueOffsetStart());
     }
 
@@ -151,6 +196,8 @@ public class ApathyNPC : Interactable
         SetMusic(fightAmbiance);
         //flag the fight as started
         fightStarted = true;
+        //and lower the flag to start the fight
+        ApathyNPC.goToFightNow = false;
 
         //Remove the scene transition
         sceneTransition.SetActive(false);
@@ -174,7 +221,7 @@ public class ApathyNPC : Interactable
     //Performs arena-based actions that occur when Apathy dies
     public void DisengageFight()
     {
-        //drop the TOD
+        /*//drop the TOD
         var abilityPickup = Instantiate(abilityDropObject, Vector3.zero, Quaternion.identity)
                 .GetComponent<AbilityPickup>();
         abilityPickup.gameSaveManager = manager;
@@ -183,12 +230,19 @@ public class ApathyNPC : Interactable
         //bring back the scene transition
         sceneTransition.SetActive(true);
 
+        //but turn off the corruption effect
+        sceneTransition.transform.GetChild(0).gameObject.SetActive(false);
+
         //turn on the postfight music
-        SetMusic(postfightAmbiance);
+        SetMusic(postfightAmbiance);*/
 
         //mark the fight as completed
         //ApathyNPC.fightCompleted = true;
         manager.setBoolValue(true, 12);
+
+        //play the death cutscene
+        GameObject.Find("TimelineManager").SendMessage("loadScene", deathCutscene);
+
     }
 
     //Starts dialogue on the next frame. Can't be anonymous because a yield is used
@@ -196,11 +250,54 @@ public class ApathyNPC : Interactable
     {
         yield return null;
 
+        Debug.Log("ApathyNPC: starting dialogue...");
+
+        //set the first node of ActiveSpeaker
+        var activeSpeak = speakingObject.GetComponent<ActiveSpeaker>();
+
+        //set its node to be the starting node
+        activeSpeak.yarnStartNode = openingNode;
+
+        //Tell the dialogue what to do when the first node is finished
+        /*System.Action dialoguePartTwo = new System.Action( () =>
+        {
+            //Switch which node should be used for the dialogue menu
+            activeSpeak.yarnStartNode = transitionNode;
+
+            /*And start the new dialogue which begins the transition cutscene and flags this class
+            to skip all the dialogue and whatever and just start fighting*
+            ApathyNPC.goToFightNow = true;
+            MenuManager.DIALOGUE_MENU.StartDialogue(
+                speakingObject,
+                new DialogueMenu.TestDelegate( () => EngageFight() ),
+                false
+            );
+        });*/
+
+        //Tell the dialogue to play the prefight cutscene
+        System.Action goToCutscene = new System.Action( () =>
+        {
+            //flag the next load of this script to throw hands
+            ApathyNPC.goToFightNow = true;
+
+            //and play the cutscene
+            //GameObject.Find("TimelineManager").SendMessage("loadScene", cutscene);
+            
+        });
+
+        //start the dialogue where the player can't move
         MenuManager.DIALOGUE_MENU.StartDialogue(
-            this.gameObject, 
-            new DialogueMenu.TestDelegate( () => EngageFight() ), 
+            speakingObject, 
+            new DialogueMenu.TestDelegate(goToCutscene),
             false
         );
+    }
+
+    [YarnCommand("EZPlayerUnlock")]
+    public void EZPlayerUnlock()
+    {
+        //Debug.Log("ApathyNPC: Unlocking player movement");
+        //MenuManager.DIALOGUE_MENU.SetupPlayer(false);
     }
 
     //Immediately switches the audio source to start playing this clip
