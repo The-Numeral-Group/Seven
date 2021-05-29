@@ -5,7 +5,9 @@ using System.Collections;
 [RequireComponent(typeof(Button))]
 public class AbilityButton : MonoBehaviour
 {
-    Button abilityButton;
+    //set everything via inspector
+    public Button abilityButton;
+    public Image sourceImage;
     public Slider coolDownSlider;
     public ActorAbility TOD;
     public ActorAbility AOS;
@@ -16,7 +18,7 @@ public class AbilityButton : MonoBehaviour
 
     void Awake()
     {
-        abilityButton = GetComponent<Button>();
+        //abilityButton = GetComponent<Button>();
         CooldownRoutine = AbilityCooldown(0f);
     }
 
@@ -25,11 +27,11 @@ public class AbilityButton : MonoBehaviour
         if (sinCommitted == true)
         {
             selectedAbility = AOS;
-            abilityButton.GetComponent<Image>().sprite = AOSImage;
+            sourceImage.sprite = AOSImage;
         }
         else
         {
-            abilityButton.GetComponent<Image>().sprite = TODImage;
+            sourceImage.sprite = TODImage;
             selectedAbility = TOD;
         }
     }
