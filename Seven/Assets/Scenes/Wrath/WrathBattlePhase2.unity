@@ -4436,6 +4436,10 @@ PrefabInstance:
       propertyPath: wrathFireBrimstone
       value: 
       objectReference: {fileID: 2074162971}
+    - target: {fileID: 1799861353140031460, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: dragBackIntensity
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1929146243393720051, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: m_Name
       value: WrathP2Multi
