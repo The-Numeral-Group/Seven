@@ -180,6 +180,10 @@ public class DialogueMenu : BaseUI
                 pActor.playerInput.SwitchCurrentActionMap("UI");
                 pActor.myMovement.MoveActor(Vector2.zero);
             }
+            else
+            {
+                pActor.playerInput.SwitchCurrentActionMap("Player");
+            }
             pActor.isTalking = true;
             pActor.myHealth.enabled = false;
         }

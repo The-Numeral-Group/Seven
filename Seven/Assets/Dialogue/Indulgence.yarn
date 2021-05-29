@@ -34,14 +34,7 @@ position: 859,388
 ---
 Indulgence: Indulgence Retry. Welcome back!
 ===
-title: Indulgence.Win.Dialogue0
-tags: 
-colorID: 0
-position: 859,388
----
-Indulgence: Indulgence Win.
-===
-title: Indulgence.Death.Dialogue0
+title: Indulgence_Win
 tags: 
 colorID: 0
 position: 859,388
@@ -49,6 +42,6 @@ position: 859,388
 Ind: Huff... huff... Alright, kid... I hope you're satisfied...
 //Indulgence returns to his seat, and goes back to watching his monitors.
 Ind: Because you feel it too. That hunger, burning inside you...
-//
 Ind: That drive to indulge yourself... Isn't it so delicious?
+Ind: Now leave me be, I have much more to consume. 
 ===

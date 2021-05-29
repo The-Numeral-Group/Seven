@@ -24,6 +24,9 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
         " hitbox lasts).")]
     public float laserDuration = 0.3f;
 
+    //[Tooltip("How far the laser beam should be from the user's faceAnchor")]
+    //public Vector2 laserOffset = Vector2.zero;
+
     /*[Tooltip("How long the ability should linger (holding up its user). If this number is " + 
         " too low, the user might move or some other thing before the laser is destroyed.")]
     public float laserEndDuration = 0.15f;*/
@@ -75,10 +78,13 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
         Vector3 targetDirection = (targetPoint - user.gameObject.transform.position).normalized;
 
         //Step 2: create a laser object and attach the EgoLaserProjectile component
-        var laser = Instantiate(laserObj, user.faceAnchor.position, Quaternion.identity)
+        //var laser = Instantiate(laserObj, user.faceAnchor.position, 
+            //Quaternion.identity).AddComponent<EgoLaserProjectile>();
+        var laser = Instantiate(laserObj, user.gameObject.transform)
             .AddComponent<EgoLaserProjectile>();
         //but set it's direction towards the player manually
         //needs to be offset by 45 degrees because the laser asset is rotated that way
+        laser.gameObject.transform.localPosition = user.faceAnchor.localPosition;// * laserOffset;
         laser.gameObject.transform.up = targetDirection; //+ new Vector3(-45f, 0f, 0f);
         
         
@@ -101,7 +107,7 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
         yield return new WaitForSeconds(0.55f);
 
         //Step 6: fire the actual laser
-        StartCoroutine(laser.CastDamage(user.faceAnchor.position, targetDirection));
+        StartCoroutine(laser.CastDamage(user.faceAnchor.localPosition, targetDirection));
 
         //Step 7: wait a little bit longer
         yield return new WaitForSeconds(laserDuration);

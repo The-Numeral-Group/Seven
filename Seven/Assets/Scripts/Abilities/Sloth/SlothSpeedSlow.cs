@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class SlothSpeedSlow : ActorAbilityFunction<int, int>
 {
@@ -27,6 +29,7 @@ public class SlothSpeedSlow : ActorAbilityFunction<int, int>
             Debug.Log("SlothSpeedSlow: slow occurring...");
             ///DEBUG
             clock.ForceSlow();
+            StartCoroutine(timeAnimation());
             return 1;
         }
         else
@@ -36,5 +39,11 @@ public class SlothSpeedSlow : ActorAbilityFunction<int, int>
         }
 
         return 0;
+    }
+
+    IEnumerator timeAnimation()
+    {
+        yield return new WaitWhile(user.myAnimationHandler.TryFlaggedSetTrigger("apathy_slow"));
+        this.isFinished = true;
     }
 }

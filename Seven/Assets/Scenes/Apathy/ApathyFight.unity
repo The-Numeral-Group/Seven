@@ -265,6 +265,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 4115977272152067176, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: startingMaxHealth
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4115977272152067180, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: selectedAbilityAlpha
       value: 
@@ -370,7 +374,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 3845884084362400254, guid: 1026e279643e20b029465bc57e739dc6, type: 3}
+  m_Sprite: {fileID: 3845884084362400254, guid: cdc21eadc538bf83283482a5f4b801cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -517,7 +521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingMaxHealth: 25
   damageResistance: 0
-  invincibilityDuration: 1
+  invincibilityDuration: 0
   startInvulnerable: 0
 --- !u!95 &315102719
 Animator:
@@ -2026,7 +2030,7 @@ PrefabInstance:
     - target: {fileID: 2200475627425788176, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
       propertyPath: dialogueFiles.Array.data[0]
       value: 
-      objectReference: {fileID: 2480198943629176163, guid: 6152a990adce80d0e9779b50253eb701, type: 3}
+      objectReference: {fileID: 2480198943629176163, guid: 10829f9c2a70655429dcf7f5c1d05dcd, type: 3}
     - target: {fileID: 2200475627425788187, guid: 7f65f4a3ec7f81844a5718005f3c0914, type: 3}
       propertyPath: m_Name
       value: DialogueMenu
@@ -3553,7 +3557,7 @@ GameObject:
   - component: {fileID: 2051050986}
   - component: {fileID: 2051050987}
   m_Layer: 0
-  m_Name: Apathy PreFight Manager
+  m_Name: ApathyPreFightManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3580,6 +3584,9 @@ MonoBehaviour:
   prefightAmbiance: {fileID: 8300000, guid: 15568d2ef51bd7249bf7bc4d08eb2aae, type: 3}
   postfightAmbiance: {fileID: 8300000, guid: 86cb17bc01b19246b92949be7576d341, type: 3}
   fightAmbiance: {fileID: 8300000, guid: 44b09e2529b643e758a2f7132a4f78ec, type: 3}
+  speakingObject: {fileID: 2051050981}
+  openingNode: Opening_Scene
+  deathCutscene: Apathy_BossD
 --- !u!61 &2051050983
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3687,7 +3694,7 @@ MonoBehaviour:
   indicatorOffset: {x: 0, y: 5}
   speakerName: Apathy
   yarnStartNode: OpeningScene
-  chatBoxOffset: {x: 0, y: 0, z: 0}
+  chatBoxOffset: {x: -0.5, y: 10, z: 0}
   npcMode: 0
 --- !u!82 &2051050987
 AudioSource:
@@ -4034,7 +4041,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 13.71, y: 8.34}
+    oldSize: {x: 25.005266, y: 23.65}
     newSize: {x: 13.71, y: 8.34}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4101,6 +4108,10 @@ PrefabInstance:
     - target: {fileID: 7522185284568880459, guid: 2186ce7d5301fab41b4a7553326e9396, type: 3}
       propertyPath: m_Name
       value: Sloth Clock
+      objectReference: {fileID: 0}
+    - target: {fileID: 7522185284568880459, guid: 2186ce7d5301fab41b4a7553326e9396, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7522185284568880463, guid: 2186ce7d5301fab41b4a7553326e9396, type: 3}
       propertyPath: handler

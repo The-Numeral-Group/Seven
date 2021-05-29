@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WrathP2Actor : Actor
 {
@@ -75,6 +76,7 @@ public class WrathP2Actor : Actor
         base.DoActorDeath();
         //We set isdead so that the state machine no longer reloops on its next evaluation.
         isDead = true;
+        SceneManager.LoadScene("ToD_PostFight");
     }
 
     //Function is used to setup the reference to whomever wrath is targeting. i.e. the player
@@ -99,8 +101,7 @@ public class WrathP2Actor : Actor
     void EvalauteState()
     {
         // Chooses either Shockwave or Fire&Brimstone
-        //int abilityType = (int)Random.Range(0, 2);
-        int abilityType = 1;  // FOR TESTING FIRE BRIM
+        int abilityType = (int)Random.Range(0, 2);
 
         Debug.Log("Evaluating State");
         State decidingState = currState;
