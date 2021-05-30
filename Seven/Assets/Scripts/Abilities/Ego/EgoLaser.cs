@@ -102,6 +102,7 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
 
         //Animate the attack now for when the laser exists
         user.myAnimationHandler.TrySetTrigger("ego_shoot");
+        this.gameObject.GetComponent<AudioSource>()?.Play();
 
         //wait a magical number of seconds
         yield return new WaitForSeconds(0.55f);

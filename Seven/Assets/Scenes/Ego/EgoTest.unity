@@ -636,6 +636,7 @@ GameObject:
   - component: {fileID: 505191992}
   - component: {fileID: 505191981}
   - component: {fileID: 505191993}
+  - component: {fileID: 505191994}
   m_Layer: 0
   m_Name: Ego 2
   m_TagString: Boss
@@ -1020,6 +1021,27 @@ CapsuleCollider2D:
   m_Offset: {x: -0.3, y: 0}
   m_Size: {x: 2, y: 6}
   m_Direction: 0
+--- !u!114 &505191994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505191976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: ego_teleport
+    audioClip: {fileID: 8300000, guid: 21f4568b39dea9153ac7390c4e5ddf64, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
 --- !u!1 &656284013
 GameObject:
   m_ObjectHideFlags: 0

@@ -169,6 +169,7 @@ public class Ego2Movement : ActorMovement
         //Step 2: Teleportation visuals
         var animNotDone = this.gameObject.GetComponent<ActorAnimationHandler>()
             ?.TryFlaggedSetTrigger("ego_teleport");
+        this.gameObject.GetComponent<ActorSoundManager>().PlaySound("ego_teleport");
 
         //Step 3: Wait a little bit...
         yield return new WaitForSeconds(intangibleTime);
