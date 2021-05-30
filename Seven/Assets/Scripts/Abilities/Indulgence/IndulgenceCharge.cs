@@ -90,7 +90,7 @@ public class IndulgenceCharge : ActorAbilityFunction<Actor, int>
     IEnumerator TrackTarget()
     {
         isTracking = true;
-        directionIndicator.SetActive(true);
+        //directionIndicator.SetActive(true);
         while (isTracking && target != null)
         {
             float dtheta = 0;
@@ -98,15 +98,15 @@ public class IndulgenceCharge : ActorAbilityFunction<Actor, int>
             if (chargeDirection != Vector2.zero)
             {
                 this.user.myAnimationHandler.Flip(chargeDirection);
-                dtheta= Mathf.Acos(((Vector2.Dot(chargeDirection, defaultFacingDirection)) / (chargeDirection.magnitude * defaultFacingDirection.magnitude)));
+                //dtheta= Mathf.Acos(((Vector2.Dot(chargeDirection, defaultFacingDirection)) / (chargeDirection.magnitude * defaultFacingDirection.magnitude)));
             }
             if (chargeDirection.y < 0)
             {
                 dtheta = (dtheta *-1) + (2*Mathf.PI);
             }
             dtheta = dtheta * (180/Mathf.PI);
-            directionIndicator.transform.localPosition = new Vector3(chargeDirection.x, chargeDirection.y, 0);
-            directionIndicator.transform.localRotation = Quaternion.Euler(0, 0, dtheta);
+            //directionIndicator.transform.localPosition = new Vector3(chargeDirection.x, chargeDirection.y, 0);
+            //directionIndicator.transform.localRotation = Quaternion.Euler(0, 0, dtheta);
             yield return new WaitForFixedUpdate();
         }
     }
