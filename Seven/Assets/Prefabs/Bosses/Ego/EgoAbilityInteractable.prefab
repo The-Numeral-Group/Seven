@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2851010350734553188}
   - component: {fileID: 3555202452943982409}
   m_Layer: 0
-  m_Name: AbilityInteractable
+  m_Name: EgoAbilityInteractable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +105,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7297709419845792864, guid: bc2025bfecb642848a390a4f6e07bd60, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a0a643556c5888d458a1af4beaf69dda, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
