@@ -15,24 +15,22 @@ position: 859,388
 //Indulgence's animations still are not interrupted
 Ind: HEY. You're not Ego, are you? Has it been a century already?
 Ind: Listen, champion, you don't stand a chance against me. 
-Ind: If you're distracting me from my leisure time... 
-Ind: I'll just have to delete you.
 ===
 title: Indulgence.Opening.Dialogue2
 tags: 
 colorID: 0
 position: 859,388
 ---
-//Indulgence turns around, eyes full of fury.
-Ind: Alright, tough guy. Let's make this quick.
-//He stands from his chair, and his spider legs extend out from his back, menacingly. The battle begins.
+Ind: If you're distracting me from my leisure time... 
+Ind: I'll just have to delete you.
 ===
 title: Indulgence.Retry.Dialogue0
 tags: 
 colorID: 0
 position: 859,388
 ---
-Indulgence: Indulgence Retry. Welcome back!
+Indulgence: You just don't want to give up don't you?
+Indulgence: Alright tough guy, let's make this quick.
 ===
 title: Indulgence_Win
 tags: 

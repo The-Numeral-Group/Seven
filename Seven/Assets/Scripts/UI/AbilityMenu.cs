@@ -69,9 +69,11 @@ public class AbilityMenu : BaseUI
                 abilityHighLightIndicator.gameObject.SetActive(true);
                 abilityButtons[i].gameObject.SetActive(true);
                 abilityButtons[i].SetSelectedAbility(gameSaveManager.getBoolValue(indexTuple.Item2));
+                pointerToCurrentSelectedButton = i;
             }
             i++;
         }
+        abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position;
     }
 
     void SetupPlayerReference()
@@ -96,7 +98,7 @@ public class AbilityMenu : BaseUI
             {
                 pointerToCurrentSelectedButton = dummyIndex;
                 abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position;
-                Debug.Log(abilityHighLightIndicator.transform.position + ":" + abilityButtons[pointerToCurrentSelectedButton].transform.position);
+                //Debug.Log(abilityHighLightIndicator.transform.position + ":" + abilityButtons[pointerToCurrentSelectedButton].transform.position);
                 UpdatePlayerSelectedAbility();
                 break;
             }
@@ -114,7 +116,7 @@ public class AbilityMenu : BaseUI
             {
                 pointerToCurrentSelectedButton = dummyIndex;
                 abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position;
-                Debug.Log(abilityHighLightIndicator.transform.position + ":" + abilityButtons[pointerToCurrentSelectedButton].transform.position);
+                //Debug.Log(abilityHighLightIndicator.transform.position + ":" + abilityButtons[pointerToCurrentSelectedButton].transform.position);
                 UpdatePlayerSelectedAbility();
                 break;
             }

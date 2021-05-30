@@ -19,6 +19,8 @@ public class WrathFireBrimstone : ActorAbilityFunction<Actor, int>
 
     public GameObject areaToChoose;
 
+    private float delaySpeedMultiplier;
+
 
     // Delay time before camera shake
     private float shake_delay = 1.0f;
@@ -46,6 +48,8 @@ public class WrathFireBrimstone : ActorAbilityFunction<Actor, int>
             cam = camObjects[0];
         }
 
+        delaySpeedMultiplier = WrathP2Actor.abilitySpeedMultiplier;
+
         if (animTrigger.Length != 0)
         {
             user.myAnimationHandler.TrySetTrigger(animTrigger);
@@ -57,7 +61,7 @@ public class WrathFireBrimstone : ActorAbilityFunction<Actor, int>
     private IEnumerator spawnShadow()
     {
         // Delay before camera shake
-        yield return new WaitForSeconds(shake_delay);
+        yield return new WaitForSeconds(shake_delay / delaySpeedMultiplier);
 
         // Do camera shake
         cam.Shake(2.0f, 0.2f);
@@ -80,10 +84,10 @@ public class WrathFireBrimstone : ActorAbilityFunction<Actor, int>
             } while (!areaToChoose.GetComponent<Collider2D>().OverlapPoint(new Vector2(xPos, yPos)));
 
             Instantiate(toInstantiateObject,new Vector3(xPos, yPos, 0.0f), Quaternion.identity);
-            yield return new WaitForSeconds(shadowDelay);
+            yield return new WaitForSeconds(shadowDelay / delaySpeedMultiplier);
         }
 
-        yield return new WaitForSeconds(afterShadowDelay);
+        yield return new WaitForSeconds(afterShadowDelay / delaySpeedMultiplier);
         isFinished = true;
     }
 }
