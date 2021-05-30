@@ -1822,6 +1822,7 @@ GameObject:
   - component: {fileID: 1113196130}
   - component: {fileID: 1113196129}
   - component: {fileID: 1113196128}
+  - component: {fileID: 1113196131}
   - component: {fileID: 1113196127}
   m_Layer: 0
   m_Name: One-Two-Three Punch
@@ -1864,17 +1865,18 @@ MonoBehaviour:
   weaponPositionScale: {x: 3.2, y: 3.2}
   damagePerHitbox: 01000000
   animTrigger: ego_combo
-  windupDelay: 0
+  windupDelay: 0.2
   attackSound: 
   shouldShake: 0
   windShake: 0.1
   attackShake: 1
   animFlag: 
+  recoveryTrigger: 
   mode: 1
   lungeDistance: 0.25
   lungeDuration: 0.1
   lungeSpeed: 10
-  endlagDuration: 1
+  endlagDuration: 0.7
 --- !u!114 &1113196128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1882,7 +1884,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113196125}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1dd238a1ebebf7947894c73e11d2176f, type: 3}
   m_Name: 
@@ -1915,7 +1917,7 @@ MonoBehaviour:
   weaponPositionScale: {x: 3.2, y: 3.2}
   damagePerHitbox: 01000000
   animTrigger: ego_combo
-  windupDelay: 1
+  windupDelay: 0.8
   attackSound: 
   shouldShake: 0
   windShake: 0.1
@@ -1936,16 +1938,41 @@ MonoBehaviour:
   abilityName: One-Two-Three Punch
   invokeBlankWhenBadArguments: 1
   startingWeaponObject: {fileID: 0}
-  duration: 0
+  duration: 0.1
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 01000000
   animTrigger: 
-  comboGapDuration: 1
+  comboGapDuration: 0.5
   cooldownCancel: 1
   comboList:
   - {fileID: 1113196129}
-  - {fileID: 1113196128}
+  - {fileID: 1113196131}
   - {fileID: 1113196127}
+--- !u!114 &1113196131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113196125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6338bdabf54e9e69fa0f9a7c78ed1082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 1
+  abilityName: Two-Punch
+  invokeBlankWhenBadArguments: 1
+  startingWeaponObject: {fileID: 1844393178547753448, guid: 6813d0bc0b85df114885d10a1a08d801, type: 3}
+  duration: 0.1
+  weaponPositionScale: {x: 3.2, y: 3.2}
+  damagePerHitbox: 01000000
+  animTrigger: ego_combo
+  windupDelay: 0.2
+  attackSound: 
+  shouldShake: 0
+  windShake: 0.1
+  attackShake: 1
 --- !u!4 &1153083609 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4332445788766981374, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
@@ -1996,6 +2023,7 @@ MonoBehaviour:
   windShake: 0.1
   attackShake: 1
   animFlag: ego_chargefalcon
+  recoveryTrigger: ego_falcon
   mode: 0
   lungeDistance: 7.5
   lungeDuration: 2
