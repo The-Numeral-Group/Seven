@@ -126,11 +126,11 @@ public class IndulgenceCrush : ActorAbilityFunction<Actor, int>
 
     IEnumerator JumpUp(Actor target)
     {
-        this.user.myAnimationHandler.Animator.SetTrigger("jump");
+        /*this.user.myAnimationHandler.Animator.SetTrigger("jump");
         while(this.user.myAnimationHandler.Animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
         {
             yield return new WaitForFixedUpdate();
-        }
+        }*/
         Vector3 launchPosition = this.user.transform.position;
         shadowSprite.transform.parent = null;
         Vector2 direction = new Vector2(0, 1) * jumpSpeed;

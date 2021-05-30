@@ -1635,7 +1635,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1562341910261810668, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: orthographic size
-      value: 13
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4321893605475107958, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1711,7 +1711,7 @@ PrefabInstance:
       objectReference: {fileID: 335584577}
     - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: defaultZoom
-      value: 13
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: minZoom

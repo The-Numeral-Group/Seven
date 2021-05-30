@@ -82,7 +82,11 @@ public class IndulgenceSin : ActorAbilityFunction<Actor, int>
     IEnumerator InternalCoroutine()
     {
         yield return new WaitForSeconds(1f);
-        yield return new WaitUntil(()=> crushAbility.getIsFinished() == true);
+        while(crushAbility.getIsFinished() != true)
+        {
+            target.myMovement.DragActor(Vector2.down * 0.2f);
+            yield return new WaitForFixedUpdate();
+        }
         StartCoroutine(MovementLockRoutine);
         for (int i = 0; i < spawnPoints.Count; i++)
         {
