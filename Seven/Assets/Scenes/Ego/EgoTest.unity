@@ -1036,7 +1036,7 @@ MonoBehaviour:
   sounds:
   - name: ego_teleport
     audioClip: {fileID: 8300000, guid: 21f4568b39dea9153ac7390c4e5ddf64, type: 3}
-    volume: 0
+    volume: 1
     pitch: 0
     loop: 0
     hasCooldown: 0

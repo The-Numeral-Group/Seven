@@ -296,15 +296,15 @@ MonoBehaviour:
   sounds:
   - name: sword_appear
     audioClip: {fileID: 8300000, guid: b7ffde7a97874167689e15990ac935a8, type: 3}
-    volume: 0
+    volume: 1
     pitch: 0
     loop: 0
     hasCooldown: 0
-    playOnAwake: 1
+    playOnAwake: 0
     source: {fileID: 0}
   - name: sword_land
     audioClip: {fileID: 8300000, guid: 6bcbd824e23df87908302818c4932279, type: 3}
-    volume: 0
+    volume: 1
     pitch: 0
     loop: 0
     hasCooldown: 0
