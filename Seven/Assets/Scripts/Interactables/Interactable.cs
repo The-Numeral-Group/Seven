@@ -42,7 +42,7 @@ public abstract class Interactable : MonoBehaviour
         if (other.tag == "Player")
         {
             ShowIndicator(true);
-            SetPotentialInteractable(true, other.gameObject);
+            SetPotentialInteractable(true, this.gameObject);
         }
     }
 
@@ -52,7 +52,7 @@ public abstract class Interactable : MonoBehaviour
         if (other.tag == "Player")
         {
             ShowIndicator(false);
-            SetPotentialInteractable(false, other.gameObject);
+            SetPotentialInteractable(false, this.gameObject);
         }
     }
 
