@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c893b171e8fe11f4e8d1b1f3f233f3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 5
+  cooldownPeriod: 2.5
   abilityName: 
   invokeBlankWhenBadArguments: 1
   laserObject: {fileID: 7900556846022077386}
@@ -463,5 +463,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 2.5}
+  m_Size: {x: 3.5, y: 2.5}
   m_EdgeRadius: 0

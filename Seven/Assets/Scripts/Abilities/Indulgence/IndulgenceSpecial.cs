@@ -16,6 +16,7 @@ public class IndulgenceSpecial : ActorAbilityFunction<Actor, int>
     [Range(0f, 5f)]
     public float projSpeed = 5;
     public GameObject indulgenceProjectilePrefab;
+    public GameObject SuckEFX;
     public Vector2 centerOfArena = Vector2.zero;
     protected static List<GameObject> PROJECTILE_MANAGER;
     float totalDuration;
@@ -36,6 +37,7 @@ public class IndulgenceSpecial : ActorAbilityFunction<Actor, int>
         {
             IndulgenceSpecial.PROJECTILE_MANAGER = new List<GameObject>();
         }
+        SuckEFX.SetActive(false);
     }
     public override void Invoke(ref Actor user)
     {
@@ -83,6 +85,8 @@ public class IndulgenceSpecial : ActorAbilityFunction<Actor, int>
         StopCoroutine(DragRoutine);
         StopCoroutine(ProjectileRoutine);
         StopCoroutine(FinishRoutine);
+        this.user.myAnimationHandler.Animator.SetBool("suck", false);
+        SuckEFX.SetActive(false);
         StartCoroutine(this.user.myMovement.LockActorMovement(-1f));
         CleanProjectiles();
         isFinished = true;
@@ -123,6 +127,8 @@ public class IndulgenceSpecial : ActorAbilityFunction<Actor, int>
     }
     IEnumerator DragTarget()
     {
+        SuckEFX.SetActive(true);
+        this.user.myAnimationHandler.Animator.SetBool("suck", true);
         while(target != null)
         {
             Vector2 destination = (this.user.transform.position - this.target.gameObject.transform.position).normalized;
