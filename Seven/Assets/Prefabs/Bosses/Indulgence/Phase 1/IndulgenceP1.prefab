@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 6735736805293186652}
   - component: {fileID: 929553791}
   - component: {fileID: 7232055228637172454}
+  - component: {fileID: 4329509927639505833}
   m_Layer: 11
   m_Name: IndulgenceP1
   m_TagString: Boss
@@ -214,7 +215,6 @@ MonoBehaviour:
   physicalTriggerDistance: 5
   target: {fileID: 0}
   currState: 0
-  wallCollider: {fileID: 6735736805293186650}
   gameSaveManager: {fileID: 0}
 --- !u!95 &6735736805293186648
 Animator:
@@ -346,6 +346,35 @@ MonoBehaviour:
   projPrefab: {fileID: 4678962615504643899, guid: 87cf123623309f84a93b96283995d65f, type: 3}
   lockActor: 1
   projectileSpawnTime: 2
+--- !u!114 &4329509927639505833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6735736805293186734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: leg_attack
+    audioClip: {fileID: 8300000, guid: 2a6c1ca24ad0f554b9dc951bd06df423, type: 3}
+    volume: 0.3
+    pitch: 0
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: leg_hit
+    audioClip: {fileID: 8300000, guid: d7032639bc37ebf4eb5c9e5acabb8785, type: 3}
+    volume: 0.3
+    pitch: 0
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
 --- !u!1 &8677509557185012361
 GameObject:
   m_ObjectHideFlags: 0

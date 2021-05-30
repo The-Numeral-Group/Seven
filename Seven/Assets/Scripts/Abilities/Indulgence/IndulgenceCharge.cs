@@ -113,9 +113,11 @@ public class IndulgenceCharge : ActorAbilityFunction<Actor, int>
 
     IEnumerator Charge()
     {
+        user.mySoundManager.PlaySound("skitter", 0.8f, 1.2f);
         yield return new WaitForSeconds(trackTime);
         isTracking = false;
         yield return new WaitForSeconds(chargeDelay);
+        user.mySoundManager.StopSound("skitter");
         directionIndicator.SetActive(false);
         this.user.myMovement.DragActor(
             chargeDirection * chargeSpeedMultiplier  * this.user.myMovement.speed);
@@ -149,6 +151,20 @@ public class IndulgenceCharge : ActorAbilityFunction<Actor, int>
     }
 
     void OnCollisionEnter2D(Collision2D collider)
+    {
+        if (!isFinished && isCharging)
+        {
+            if (collider.gameObject.tag == "Environment")
+            {
+                isCharging = false;
+                Camera.main.GetComponent<BaseCamera>().Shake(2.0f, 0.2f);
+                this.user.myMovement.DragActor(Vector2.zero);
+                hasCollided = true;
+            }
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D collider)
     {
         if (!isFinished && isCharging)
         {
