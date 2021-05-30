@@ -24,6 +24,8 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
     public GameObject pillarShockwaveObject;
     public GameObject largeShockwaveObject;
 
+    private float delaySpeedMultiplier;
+
     public override void Invoke(ref Actor user)
     {
         this.user = user;
@@ -43,6 +45,8 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
         {
             user.myAnimationHandler.TrySetTrigger(animTrigger);
         }
+
+        delaySpeedMultiplier = WrathP2Actor.abilitySpeedMultiplier;
 
         // Chooses type of shockwave
         int shockwaveType = (int)Random.Range(0, 2);
@@ -66,7 +70,7 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
     private IEnumerator startShockwavePillars()
     {
         // Delay after animation
-        yield return new WaitForSeconds(delayAnim);
+        yield return new WaitForSeconds(delayAnim / delaySpeedMultiplier);
 
         // Start spawning shockwaves
         List<Vector3> firstCoord = new List<Vector3>() { new Vector3(0.0f, 5.5f, 0.0f), new Vector3(0.0f, 1.5f, -1.0f), new Vector3(0.0f, -2.5f, -2.0f),
@@ -103,17 +107,17 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
             GameObject fifthShockwave = Instantiate(pillarShockwaveObject, fifthCoord[i], Quaternion.identity);
             fifthShockwave.transform.parent = shockwaveStorage.transform;
 
-            yield return new WaitForSeconds(delayPillarShockwave);
+            yield return new WaitForSeconds(delayPillarShockwave / delaySpeedMultiplier);
         }
 
-        yield return new WaitForSeconds(delayAfterShockwave);
+        yield return new WaitForSeconds(delayAfterShockwave / delaySpeedMultiplier);
         isFinished = true;
     }
 
     private IEnumerator startShockwaveLarge()
     {
         // Delay after animation
-        yield return new WaitForSeconds(delayAnim);
+        yield return new WaitForSeconds(delayAnim / delaySpeedMultiplier);
 
         Vector3 pos = new Vector3(0f, 2.0f, -1.0f);
         GameObject shockwave = Instantiate(largeShockwaveObject, pos, Quaternion.identity);
@@ -124,10 +128,10 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
             currScale.x += 0.1f;
             currScale.y += 0.1f;
             shockwave.transform.localScale = currScale;
-            yield return new WaitForSeconds(delayLargeShockwave);
+            yield return new WaitForSeconds(delayLargeShockwave / delaySpeedMultiplier);
         }
 
-        yield return new WaitForSeconds(delayAfterShockwave);
+        yield return new WaitForSeconds(delayAfterShockwave / delaySpeedMultiplier);
         isFinished = true;
         Destroy(shockwave);
     }

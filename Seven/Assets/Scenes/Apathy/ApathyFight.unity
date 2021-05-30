@@ -3400,7 +3400,7 @@ MonoBehaviour:
   interactIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
   indicatorOffset: {x: 0, y: 5}
   apathyObj: {fileID: 315102708}
-  abilityDropObject: {fileID: 2937701324620886995, guid: cf7eef9d3c37b954fa77d9245a9364ce, type: 3}
+  abilityDropObject: {fileID: 2937701324620886995, guid: fde30141c6801f84db5abf77b9a93fd3, type: 3}
   prop: {fileID: 37142923}
   sceneTransition: {fileID: 1781768215}
   prefightAmbiance: {fileID: 8300000, guid: 15568d2ef51bd7249bf7bc4d08eb2aae, type: 3}

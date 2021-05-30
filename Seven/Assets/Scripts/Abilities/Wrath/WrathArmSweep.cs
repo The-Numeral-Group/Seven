@@ -5,6 +5,9 @@ using UnityEngine;
 //Wraths sweep ability. Animation handles enabling and disabling of hitbox
 public class WrathArmSweep : WeaponAbility
 {
+    // How long the player will be stunned for after getting hit.
+    public float stunnedDuration;
+
     public GameObject alreadyInstantiatedWeaponObject;
     protected override void Start()
     {
@@ -47,5 +50,37 @@ public class WrathArmSweep : WeaponAbility
     {
         weaponObject.SetActive(false);
         this.isFinished = true;
+    }
+
+    public IEnumerator stunPlayer(float dragBackDuration)
+    {
+        yield return new WaitForSeconds(dragBackDuration);
+
+        var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
+        playerObject.GetComponent<Actor>().myMovement.DragActor(Vector2.zero);
+        playerObject.GetComponent<Actor>().myMovement.MoveActor(Vector2.zero);
+
+        // Stop player's animation
+        playerObject.GetComponent<Animator>().SetBool("player_walking", false);
+
+        // Stop player's sound
+        playerObject.GetComponent<ActorSoundManager>().StopSound("PlayerRun");
+
+        // Lock player's movement animation and sound
+        playerObject.GetComponent<PlayerMovement>().canMove = false;
+
+        // Lock player's movement
+        StartCoroutine(playerObject.GetComponent<Actor>().myMovement.LockActorMovement(this.stunnedDuration));
+
+        // Turn off player's dodge ability.
+        playerObject.GetComponent<PlayerAbilityInitiator>().canDodge = false;
+
+        yield return new WaitForSeconds(this.stunnedDuration);
+
+        // Turn on player's dodge ability.
+        playerObject.GetComponent<PlayerAbilityInitiator>().canDodge = true;
+
+        // Turn on player's movement animation and sound
+        playerObject.GetComponent<PlayerMovement>().canMove = true;
     }
 }

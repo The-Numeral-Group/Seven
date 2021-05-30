@@ -4444,6 +4444,14 @@ PrefabInstance:
       propertyPath: dragBackIntensity
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1799861353140031460, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: stunDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799861353140031460, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: dragBackDuration
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1929146243393720051, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: m_Name
       value: WrathP2Multi
@@ -4535,6 +4543,10 @@ PrefabInstance:
     - target: {fileID: 6081538999315364633, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7696531761945222991, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: stunnedDuration
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}

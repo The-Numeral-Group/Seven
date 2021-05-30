@@ -9,6 +9,9 @@ public class LungeWeaponAbility : WindupWeaponAbility
     [Tooltip("The boolean to flag the animator that the windup animation should loop.")]
     public string animFlag = "";
 
+    [Tooltip("The trigger to activate the recovery animation, if any.")]
+    public string recoveryTrigger = "";
+
     //the ways in which LungeWeaponAbility can calcuate its travelling
     public enum TRAVEL_MODE
     {
@@ -115,7 +118,7 @@ public class LungeWeaponAbility : WindupWeaponAbility
 
         //enter the recovery animation
         var recoverAnimFinished = 
-            this.user.myAnimationHandler.TryFlaggedSetTrigger(this.animTrigger);
+            this.user.myAnimationHandler.TryFlaggedSetTrigger(this.recoveryTrigger);
 
         //experience the endlag
         yield return user.myMovement.LockActorMovement(endlagDuration);
