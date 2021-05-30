@@ -943,7 +943,6 @@ MonoBehaviour:
   damage: 3
   preLaserDuration: 1
   laserDuration: 0.75
-  laserOffset: {x: 1.5, y: 1.5}
 --- !u!114 &505191990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1864,7 +1863,7 @@ MonoBehaviour:
   duration: 0
   weaponPositionScale: {x: 3.2, y: 3.2}
   damagePerHitbox: 01000000
-  animTrigger: 
+  animTrigger: ego_combo
   windupDelay: 0
   attackSound: 
   shouldShake: 0
@@ -1895,7 +1894,7 @@ MonoBehaviour:
   duration: 0.1
   weaponPositionScale: {x: 3.2, y: 3.2}
   damagePerHitbox: 01000000
-  animTrigger: 
+  animTrigger: ego_combo
 --- !u!114 &1113196129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1915,7 +1914,7 @@ MonoBehaviour:
   duration: 0.1
   weaponPositionScale: {x: 3.2, y: 3.2}
   damagePerHitbox: 01000000
-  animTrigger: 
+  animTrigger: ego_combo
   windupDelay: 1
   attackSound: 
   shouldShake: 0
