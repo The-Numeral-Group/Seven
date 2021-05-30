@@ -268,4 +268,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxScale: 4
   delayShadow: 3
+  delayShadowScale: 0.03
   delayFire: 0.1

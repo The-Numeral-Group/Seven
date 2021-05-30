@@ -26,6 +26,7 @@ public class WrathP2Actor : Actor
     {
         WAITING,
         DEAD,
+        ENRAGED,
         PHYSICAL,
         SHOCKWAVE,
         FIREBRIMSTONE
@@ -101,7 +102,8 @@ public class WrathP2Actor : Actor
     void EvalauteState()
     {
         // Chooses either Shockwave or Fire&Brimstone
-        int abilityType = (int)Random.Range(0, 2);
+        //int abilityType = (int)Random.Range(0, 2);
+        int abilityType = 1;
 
         Debug.Log("Evaluating State");
         State decidingState = currState;
@@ -133,6 +135,8 @@ public class WrathP2Actor : Actor
         if(EvaluateHealth())
         {
             //some state change
+            Debug.Log("ENRAGED");
+
         }
         ExecuteState(decidingState);
     }
@@ -185,6 +189,9 @@ public class WrathP2Actor : Actor
     {
         if (this.myHealth.currentHealth < this.myHealth.maxHealth * (1-phaseChangePercentageActual))
         {
+            // Get shockwave
+            WrathShockwave shockwave = this.myAbilityInitiator.abilities[AbilityRegister.WRATH_SHOCKWAVE] as WrathShockwave;
+
             //every 2 phase changes we bump up the damage
             int damageValue = ((int)(phaseChangePercentageActual / phaseChangePercentageInspector));
             //Increase damage every two phase changes

@@ -5,14 +5,20 @@ using UnityEngine;
 public class WrathFBFire : ActorMovement
 {
     // How much damage the fireball will do
-    public float damage;
+    public int damage;
 
     // How long the fireball will take to drop
     public float duration;
 
+    private int additionalDamage;
+    private float delaySpeedMultiplier;
+
     protected override void Start()
     {
         base.Start();
+
+        additionalDamage = WrathP2Actor.abilityDamageAddition;
+        delaySpeedMultiplier = WrathP2Actor.abilitySpeedMultiplier;
 
         StartCoroutine(LockActorMovement(Mathf.Infinity));
         StartCoroutine(flyProjectile());
@@ -30,9 +36,9 @@ public class WrathFBFire : ActorMovement
         float distance = Vector2.Distance(this.transform.position, parentPos);
         float flyingSpeed = distance / (this.duration);
 
-        this.DragActor(new Vector2(0.0f, -1.0f) * flyingSpeed);
+        this.DragActor(new Vector2(0.0f, -1.0f) * flyingSpeed * delaySpeedMultiplier);
 
-        yield return new WaitForSeconds(this.duration);
+        yield return new WaitForSeconds(this.duration / delaySpeedMultiplier);
 
         this.DragActor(Vector2.zero);
 
@@ -56,7 +62,7 @@ public class WrathFBFire : ActorMovement
             {
                 if (playerHealth.vulnerable)
                 {
-                    playerHealth.takeDamage(damage);
+                    playerHealth.takeDamage(damage + additionalDamage);
                 }
                 Destroy(this.gameObject);
             }
