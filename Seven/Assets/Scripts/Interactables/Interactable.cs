@@ -70,7 +70,7 @@ public abstract class Interactable : MonoBehaviour
                 if (myDistanceToPlayer < closestPotentialDistanceToPlayer)
                 {
                     ShowIndicator(true);
-                    SetPotentialInteractable(true, other.gameObject);
+                    SetPotentialInteractable(true, this.gameObject);
                 }
                 else
                 {
@@ -80,7 +80,7 @@ public abstract class Interactable : MonoBehaviour
             else if (!POTENTIAL_INTERACTABLE)
             {
                 ShowIndicator(true);
-                SetPotentialInteractable(true, other.gameObject);
+                SetPotentialInteractable(true, this.gameObject);
             }
         }
     }
