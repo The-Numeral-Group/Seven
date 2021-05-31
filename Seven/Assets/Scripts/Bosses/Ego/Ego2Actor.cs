@@ -232,11 +232,13 @@ public class Ego2Actor : Actor
         //assuming the player hasn't grabbed it already
         if(gameSaveManager.getBoolValue(8) == false)
         {
-            Instantiate(
+            var abilityObj = Instantiate(
                 abilityDropObject, 
                 this.gameObject.transform.position, 
                 Quaternion.identity
-            ).GetComponent<AbilityPickup>().gameSaveAbilityPickupIndex = 8;
+            ).GetComponent<AbilityPickup>();
+            abilityObj.gameSaveAbilityPickupIndex = 8;
+            abilityObj.gameSaveManager = gameSaveManager;
         }
 
         yield return null;
