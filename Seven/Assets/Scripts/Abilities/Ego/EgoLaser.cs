@@ -239,7 +239,7 @@ internal class EgoLaserProjectile : MonoBehaviour
         ///DEBUG
 
         yield return new WaitForSeconds(0.25f);
-        this.gameObject.GetComponent<AudioSource>()?.Play();
+        this.gameObject.GetComponent<ActorSoundManager>().PlaySound("laser_fire");
 
         //shoot what is effectively a really thicc data laser
         RaycastHit2D[] hits = Physics2D.BoxCastAll(
