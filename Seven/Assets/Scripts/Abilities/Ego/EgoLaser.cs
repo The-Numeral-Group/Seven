@@ -85,6 +85,9 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
         //Step 1: figure out the direction to the target
         Vector3 targetDirection = (targetPoint - user.gameObject.transform.position).normalized;
 
+        //Step 1.5: face the user in that direction
+        user.gameObject.SendMessage("DoActorUpdateFacing", targetDirection);
+
         //Step 2: create a laser object and attach the EgoLaserProjectile component
         //var laser = Instantiate(laserObj, user.faceAnchor.position, 
             //Quaternion.identity).AddComponent<EgoLaserProjectile>();
