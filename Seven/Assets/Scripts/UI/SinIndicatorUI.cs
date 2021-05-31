@@ -16,7 +16,10 @@ public class SinIndicatorUI : BaseUI
     void Start()
     {
         if (sinFlagIndices.Count != sinIndicators.Count)
-        if (gameSaveManager)
+        {
+            Debug.LogWarning("SSSinIndicator: flag indices and indicator object count are not equal.");
+        }
+        if (gameSaveManager != null)
         {
             DisplaySinFromSaveFlag();
         }

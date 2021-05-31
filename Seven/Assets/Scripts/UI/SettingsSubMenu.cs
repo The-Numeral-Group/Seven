@@ -12,7 +12,7 @@ public class SettingsSubMenu : SubMenu
     public void init()
     {
         masterVolume.value = GameSettings.MASTER_VOLUME;
-        musicVolume.value = GameSettings.MASTER_VOLUME;
+        musicVolume.value = GameSettings.MUSIC_VOLUME;
         ambienceVolume.value = GameSettings.AMBIENT_VOLUME;
         sfxVolume.value = GameSettings.SFX_VOLUME;
         SetBackgroundMusic();
@@ -40,7 +40,7 @@ public class SettingsSubMenu : SubMenu
     }
     void SetBackgroundMusic()
     {
-        var backgroundmusicObjects = FindObjectsOfType<BackgroundMusic>();
+        var backgroundmusicObjects = Resources.FindObjectsOfTypeAll(typeof(BackgroundMusic)) as BackgroundMusic[];
         foreach(var bg in backgroundmusicObjects)
         {
             bg.GetComponent<BackgroundMusic>().SetVolume();
@@ -49,10 +49,19 @@ public class SettingsSubMenu : SubMenu
 
     void SetSFXSound()
     {
-        var sfxObjects = FindObjectsOfType<ActorSoundManager>();
+        var sfxObjects = Resources.FindObjectsOfTypeAll(typeof(ActorSoundManager)) as ActorSoundManager[];
         foreach(var sfxSource in sfxObjects)
         {
             sfxSource.GetComponent<ActorSoundManager>().SetClipVolume();
+        }
+    }
+
+    void SetAmbientNoise()
+    {
+        var ambientObjects = Resources.FindObjectsOfTypeAll(typeof(AmbientNoise)) as AmbientNoise[];
+        foreach(var ambientObject in ambientObjects)
+        {
+            ambientObject.GetComponent<AmbientNoise>().SetVolume();
         }
     }
 }

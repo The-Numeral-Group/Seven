@@ -8,14 +8,19 @@ public class WrathShockwaveCollision : MonoBehaviour
 
     public float duration;
 
+    public int additionalDamage;
+    public float delaySpeedMultiplier;
+
     private void Start()
     {
+        additionalDamage = WrathP2Actor.abilityDamageAddition;
+        delaySpeedMultiplier = WrathP2Actor.abilitySpeedMultiplier;
         StartCoroutine(DestroyObject());
     }
 
     private IEnumerator DestroyObject()
     {
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(duration / delaySpeedMultiplier);
         Destroy(this.gameObject);
     }
 
@@ -38,7 +43,7 @@ public class WrathShockwaveCollision : MonoBehaviour
                     return;
                 }
                 //this.gameObject.GetComponent<ActorSoundManager>().PlaySound("AttackHit");
-                playerHealth.takeDamage(damage);
+                playerHealth.takeDamage(damage + additionalDamage);
             }
         }
     }
@@ -62,7 +67,7 @@ public class WrathShockwaveCollision : MonoBehaviour
                     return;
                 }
                 //this.gameObject.GetComponent<ActorSoundManager>().PlaySound("AttackHit");
-                playerHealth.takeDamage(damage);
+                playerHealth.takeDamage(damage + additionalDamage);
             }
         }
     }

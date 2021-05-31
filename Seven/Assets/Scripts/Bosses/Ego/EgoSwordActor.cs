@@ -44,6 +44,12 @@ public class EgoSwordActor : Actor
     private Actor wthis;
 
     //METHODS--------------------------------------------------------------------------------------
+    protected override void Start()
+    {
+        base.Start();
+
+        this.mySoundManager.PlaySound("sword_appear");
+    }
     // Invoked every simulation tick (every 60th of a second)    
     void FixedUpdate()
     {

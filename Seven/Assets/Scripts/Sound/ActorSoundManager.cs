@@ -20,7 +20,7 @@ public class ActorSoundManager : MonoBehaviour
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.audioClip;
 
-            s.source.volume = s.volume;
+            s.source.volume = s.volume * GameSettings.MASTER_VOLUME * GameSettings.SFX_VOLUME;
             s.source.pitch = s.pitch;
 
             s.source.playOnAwake = s.playOnAwake;
@@ -121,7 +121,10 @@ public class ActorSoundManager : MonoBehaviour
     {
         foreach(SoundAudioClip s in sounds)
         {
-            s.source.volume = s.volume * GameSettings.MASTER_VOLUME * GameSettings.SFX_VOLUME;
+            if (s.source != null)
+            {
+                s.source.volume = s.volume * GameSettings.MASTER_VOLUME * GameSettings.SFX_VOLUME;
+            }
         }
     }
 }

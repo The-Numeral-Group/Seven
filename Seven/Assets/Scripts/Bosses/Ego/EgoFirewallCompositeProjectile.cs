@@ -96,6 +96,8 @@ public class EgoFirewallCompositeProjectile : FilterProjectile
     IEnumerator InternStop()
     {
         this.moveFunction = null;
+        this.gameObject.GetComponent<AudioSource>().Stop();
+        
         //this line prevents the wall from being pushed by other things
         this.gameObject.GetComponent<Rigidbody2D>().constraints 
             = RigidbodyConstraints2D.FreezeAll;

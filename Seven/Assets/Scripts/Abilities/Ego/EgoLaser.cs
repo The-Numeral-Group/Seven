@@ -109,7 +109,6 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
 
         //Animate the attack now for when the laser exists
         user.myAnimationHandler.TrySetTrigger("ego_shoot");
-        this.gameObject.GetComponent<AudioSource>()?.Play();
 
         //wait a magical number of seconds
         yield return new WaitForSeconds(0.55f);
@@ -185,6 +184,7 @@ internal class EgoLaserProjectile : MonoBehaviour
     public IEnumerator CastDamage(Vector3 launchPoint, Vector3 damageDirection)
     {
         this.gameObject.GetComponent<Animator>().SetTrigger("go");
+        
         //set the points for the laser
         //what C# doesn't have implicit arrays? Really?
         //Vector3[] laserPoints = new Vector3[] {laserStart, laserEnd};
@@ -228,6 +228,7 @@ internal class EgoLaserProjectile : MonoBehaviour
         ///DEBUG
 
         yield return new WaitForSeconds(0.25f);
+        this.gameObject.GetComponent<AudioSource>()?.Play();
 
         //shoot what is effectively a really thicc data laser
         RaycastHit2D[] hits = Physics2D.BoxCastAll(
