@@ -81,6 +81,7 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
     //launches the laser, and turns on its damage when the time comes
     IEnumerator LaserInvokation(Vector3 targetPoint)
     {
+
         //Step 1: figure out the direction to the target
         Vector3 targetDirection = (targetPoint - user.gameObject.transform.position).normalized;
 
@@ -94,10 +95,12 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
         laser.gameObject.transform.localPosition = user.faceAnchor.localPosition;// * laserOffset;
         laser.gameObject.transform.up = targetDirection; //+ new Vector3(-45f, 0f, 0f);
         
-        
-        
         //Step 3: initialize the laser
         laser.Initialize(laserMaxDist, laserWidth, damage);
+
+        //Step 2.5: lock the user's movement
+        var moveStop = user.myMovement.LockActorMovement(Mathf.Infinity);
+        StartCoroutine(moveStop);
 
         //Step 4: fire the prelaser
         laser.ShootLaser(user.faceAnchor.position, targetDirection);
@@ -108,7 +111,7 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
         //yield return user.myMovement.LockActorMovement(preLaserDuration);
 
         //Animate the attack now for when the laser exists
-        user.myAnimationHandler.TrySetTrigger("ego_shoot");
+        var attackanim = user.myAnimationHandler.TryFlaggedSetTrigger("ego_shoot");
 
         //wait a magical number of seconds
         yield return new WaitForSeconds(0.55f);
@@ -128,7 +131,12 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
         //actually disable it then destroy it
         //because the destruction will always wait for the next physics tick
         yield return new WaitForSeconds(laserEndDuration);*/
+        yield return new WaitWhile(attackanim);
         isFinished = true;
+
+        //Step 8.75: unlock the user's movement
+        StopCoroutine(moveStop);
+        StartCoroutine(user.myMovement.LockActorMovement(0f));
         
         //Step 9: cooldown
         StartCoroutine(coolDown(cooldownPeriod));

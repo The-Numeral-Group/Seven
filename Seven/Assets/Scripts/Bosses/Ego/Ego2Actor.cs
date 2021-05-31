@@ -112,11 +112,16 @@ public class Ego2Actor : Actor
     // fixed update is called every phyiscs sim tick
     void FixedUpdate()
     {
-        //move Ego's face anchor towards the player
-        DoActorUpdateFacing(
-            (player.gameObject.transform.position - this.gameObject.transform.position).normalized
-        );
-
+        /*move Ego's face anchor towards the player. This needs to be done manually because
+        Ego never actually moves.*/
+        if(!this.myMovement.movementLocked)
+        {
+            DoActorUpdateFacing(
+                (player.gameObject.transform.position - 
+                    this.gameObject.transform.position).normalized
+            );
+        }
+        
         //update Ego's animations
         uniqueAnim.animateIdle();
     }
