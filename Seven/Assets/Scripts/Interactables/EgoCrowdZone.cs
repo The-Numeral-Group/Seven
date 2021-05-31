@@ -29,7 +29,8 @@ public class EgoCrowdZone : Interactable
         var sin = new EgoSin(boostFactor, duration, effectMaterial);
         player.myEffectHandler.AddTimedEffect(sin, duration);
         //if too much sin...
-        if(EgoSin.sinMax > EgoSin.applicationCount)
+        Debug.Log($"applied: {EgoSin.applicationCount}, max: {EgoSin.sinMax}");
+        if(EgoSin.applicationCount >= EgoSin.sinMax)
         {
             //update UI
             MenuManager.SIN_MENU.DisplaySin();

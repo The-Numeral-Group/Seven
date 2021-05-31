@@ -46,8 +46,8 @@ public class EgoSpotlight : ActorAbilityCoroutine<int>
 
         //Pick a random point for the light to appear in
         var randomDestinationVec = new Vector3(
-            Random.Range(-1f, 1f) * lMesh.size.x,
-            Random.Range(-1f, 1f) * lMesh.size.y,
+            Random.Range(lMesh.min.x, lMesh.max.x),
+            Random.Range(lMesh.min.y, lMesh.max.y),
             0f
         );
 
