@@ -2311,9 +2311,9 @@ MonoBehaviour:
   indicatorOffset: {x: 0, y: 0.5}
   bossID: 10
   bossDefeatedIndex: 12
-  postFightScene: SlothTest
+  postFightScene: ApathyFight
   openingScene: ApathyFight
-  retryScene: SlothTest
+  retryScene: ApathyFight
   gameSaveManager: {fileID: 740934186}
 --- !u!212 &757197281
 SpriteRenderer:
@@ -2601,9 +2601,9 @@ MonoBehaviour:
   indicatorOffset: {x: 0, y: 0.5}
   bossID: 13
   bossDefeatedIndex: 15
-  postFightScene: EgoTest
-  openingScene: EgoTest
-  retryScene: EgoTest
+  postFightScene: EgoFight
+  openingScene: Ego_Opening
+  retryScene: EgoFight
   gameSaveManager: {fileID: 740934186}
 --- !u!212 &902590682
 SpriteRenderer:

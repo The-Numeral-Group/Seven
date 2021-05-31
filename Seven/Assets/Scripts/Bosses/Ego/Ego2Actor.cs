@@ -69,6 +69,9 @@ public class Ego2Actor : Actor
     //reference to the teleMesh's literal mesh for ease
     //private Mesh tMesh;
 
+    //the gamesave manager for accurately judging ego's aliveness
+    private GameSaveManager gameSaveManager;
+
     //METHODS--------------------------------------------------------------------------------------
     // Start calls the first frame this gameObject is active
     new void Start()
@@ -103,6 +106,20 @@ public class Ego2Actor : Actor
         else
         {
             Debug.LogError("Ego2Actor: No Ego2AnimationHandler found, anims will not function");
+        }
+
+        //save the gamesave manager
+        gameSaveManager = GameObject.Find("GameSaveManager").GetComponent<GameSaveManager>();
+        if(gameSaveManager == null)
+        {
+            Debug.LogWarning("Ego1Actor: Ego can't find the gameSave!");
+        }
+        //if ego has already been defeated...
+        else if(gameSaveManager.getBoolValue(15) == true)
+        {
+            //Auto-kill ego
+            StartCoroutine(Die());
+            return;
         }
 
         //start the behaviour coroutine
@@ -208,13 +225,20 @@ public class Ego2Actor : Actor
     //this can be deletaed when a real death effect is added
     IEnumerator Die()
     {
-        //create an ability object and set it's flag to 8 to reference Ego's ability
-        Instantiate(
-            abilityDropObject, 
-            this.gameObject.transform.position, 
-            Quaternion.identity
-        ).GetComponent<AbilityPickup>().gameSaveAbilityPickupIndex = 8;
+        //save Ego's death
+        gameSaveManager.setBoolValue(true, 15);
         
+        //create an ability object and set it's flag to 8 to reference Ego's ability
+        //assuming the player hasn't grabbed it already
+        if(gameSaveManager.getBoolValue(8) == false)
+        {
+            Instantiate(
+                abilityDropObject, 
+                this.gameObject.transform.position, 
+                Quaternion.identity
+            ).GetComponent<AbilityPickup>().gameSaveAbilityPickupIndex = 8;
+        }
+
         yield return null;
 
         //fukkin die
