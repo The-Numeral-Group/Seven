@@ -22,6 +22,8 @@ public class WrathP2Actor : Actor
     //Reference to the current state
     [Tooltip("The current state the actor is in. Meant to just be inspector viewable. Changint the value in inspector will do nothing.")]
     public State currState;
+    //flat to let the actor know to enter the next enraged stage
+    public bool isEnraged;
     public enum State
     {
         WAITING,
@@ -52,6 +54,7 @@ public class WrathP2Actor : Actor
         WrathP2Actor.abilitySpeedMultiplier = 1f;
         WrathP2Actor.abilityDamageAddition = 0;
         isDead = false;
+        isEnraged = false;
         phaseChangePercentageActual = phaseChangePercentageInspector;
         currAbility = null;
     }
@@ -68,7 +71,17 @@ public class WrathP2Actor : Actor
 
     void FixedUpdate()
     {
+        if(!isEnraged)
+        {
+            // Check Wrath's Health if it is ready to go to next Enraged Stage
+            if (this.myHealth.currentHealth < this.myHealth.maxHealth * (1 - phaseChangePercentageActual))
+            {
+                isEnraged = true;
 
+                // Make Wrath Invulnerable
+                this.myHealth.SetVulnerable(false, -1f);
+            }
+        }
     }
 
     //Do Actor death function
@@ -102,8 +115,7 @@ public class WrathP2Actor : Actor
     void EvalauteState()
     {
         // Chooses either Shockwave or Fire&Brimstone
-        //int abilityType = (int)Random.Range(0, 2);
-        int abilityType = 1;
+        int abilityType = (int)Random.Range(0, 2);
 
         Debug.Log("Evaluating State");
         State decidingState = currState;
@@ -128,15 +140,24 @@ public class WrathP2Actor : Actor
         {
             decidingState = State.WAITING;
         }
+        // (Mingun) This is no longer needed, since FixedUpdate() will handle the checking
         /*After checking the other states we do a health evaluation.
         We perform this just in case we want an ability to happen on phase change
         It is separate from the if-else chain above so that it can override w/e state decision
         was made by the if-else checks.*/
-        if(EvaluateHealth())
+        /*if(EvaluateHealth())
         {
             //some state change
-            Debug.Log("ENRAGED");
 
+        }*/
+        // If Wrath needs to enter the Enraged Mode
+        if (isEnraged)
+        {
+            isEnraged = false;
+            // If yes, override the state 
+            decidingState = State.ENRAGED;
+            // Make changes to Wrath's damage and speed
+            WrathEnraged();
         }
         ExecuteState(decidingState);
     }
@@ -172,6 +193,12 @@ public class WrathP2Actor : Actor
                 currState = State.DEAD;
                 currAbility = null;
                 return;
+            case State.ENRAGED:
+                Debug.Log("Choosing Enraged");
+                currState = State.ENRAGED;
+                currAbility = this.myAbilityInitiator.abilities[AbilityRegister.WRATH_ENRAGED];
+                currAbility.Invoke(ref self);
+                break;
             default:
                 Debug.Log("Wrathp2Actor: No longer inside the state machine.");
                 break;
@@ -181,34 +208,29 @@ public class WrathP2Actor : Actor
         StartCoroutine(StateMachinePTR);
     }
 
-    //Used to determine the phases we are in for the wrath p2 fight.
-    //Called from within evaluate state.
-    //returns true pn phase change, false otherwise.
-    //Can produce unintended results it phasechangePercentageInspector is changed at runtime.
-    bool EvaluateHealth()
+    // (PREVIOUS)
+    // Used to determine the phases we are in for the wrath p2 fight.
+    // Called from within evaluate state.
+    // returns true pn phase change, false otherwise.
+    // Can produce unintended results it phasechangePercentageInspector is changed at runtime.
+    // (CURRENT)
+    // Used to make changes to Wrath's attack damage and animation speed.
+    void WrathEnraged()
     {
-        if (this.myHealth.currentHealth < this.myHealth.maxHealth * (1-phaseChangePercentageActual))
+        //every 2 phase changes we bump up the damage
+        int damageValue = ((int)(phaseChangePercentageActual / phaseChangePercentageInspector));
+        //Increase damage every two phase changes
+        if (damageValue % 2 == 0)
         {
-            // Get shockwave
-            WrathShockwave shockwave = this.myAbilityInitiator.abilities[AbilityRegister.WRATH_SHOCKWAVE] as WrathShockwave;
-
-            //every 2 phase changes we bump up the damage
-            int damageValue = ((int)(phaseChangePercentageActual / phaseChangePercentageInspector));
-            //Increase damage every two phase changes
-            if (damageValue % 2 == 0)
-            {
-                WrathP2Actor.abilityDamageAddition = damageValue / 2;
-                WrathArmSweep armSweep = this.myAbilityInitiator.abilities[AbilityRegister.WRATH_ARMSWEEP] as WrathArmSweep;
-                armSweep.AddDamage(WrathP2Actor.abilityDamageAddition/WrathP2Actor.abilityDamageAddition);
-            }
-            //Every phase change we increase the speed
-            WrathP2Actor.abilitySpeedMultiplier += 0.5f;
-            this.myAnimationHandler.Animator.SetFloat("anim_speed", WrathP2Actor.abilitySpeedMultiplier);
-            //We increase what the value for which the next phase should be evaluated at.
-            phaseChangePercentageActual += phaseChangePercentageInspector;
-            return true;
+            WrathP2Actor.abilityDamageAddition = damageValue / 2;
+            WrathArmSweep armSweep = this.myAbilityInitiator.abilities[AbilityRegister.WRATH_ARMSWEEP] as WrathArmSweep;
+            armSweep.AddDamage(WrathP2Actor.abilityDamageAddition/WrathP2Actor.abilityDamageAddition);
         }
-        return false;
+        //Every phase change we increase the speed
+        WrathP2Actor.abilitySpeedMultiplier += 0.5f;
+        this.myAnimationHandler.Animator.SetFloat("anim_speed", WrathP2Actor.abilitySpeedMultiplier);
+        //We increase what the value for which the next phase should be evaluated at.
+        phaseChangePercentageActual += phaseChangePercentageInspector;
     }
 
     /*Instead of using fixedupdate, I am using a coroutine to handle the statemachine. This gives me a bit of flexibility in

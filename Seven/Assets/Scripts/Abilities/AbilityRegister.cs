@@ -77,5 +77,6 @@
     public static string WRATH_ARMSWEEP = "";
     public static string WRATH_SHOCKWAVE = "";
     public static string WRATH_FIREBRIMSTONE = "";
+    public static string WRATH_ENRAGED = "";
 
 }
