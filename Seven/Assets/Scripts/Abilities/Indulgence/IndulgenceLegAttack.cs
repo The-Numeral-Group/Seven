@@ -51,6 +51,7 @@ public class IndulgenceLegAttack : ActorAbilityFunction<Vector2, int>
         if (direction != Vector2.zero)
         {
             dtheta = Mathf.Acos(((Vector2.Dot(direction, defaultFacingDirection)) / (direction.magnitude * defaultFacingDirection.magnitude)));
+            this.user.myAnimationHandler.Flip(direction);
         }
         if (direction.y < 0)
         {

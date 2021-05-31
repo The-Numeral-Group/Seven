@@ -42,7 +42,7 @@ public class IndulgenceSinInteractable : Interactable
         if (other.tag == "Player" && pickupMode)
         {
             ShowIndicator(true);
-            SetPotentialInteractable(true, other.gameObject);
+            SetPotentialInteractable(true, this.gameObject);
         }
     }
 
@@ -52,7 +52,7 @@ public class IndulgenceSinInteractable : Interactable
         if (other.tag == "Player" && pickupMode)
         {
             ShowIndicator(false);
-            SetPotentialInteractable(false, other.gameObject);
+            SetPotentialInteractable(false, this.gameObject);
         }
     }
 

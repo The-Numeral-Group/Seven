@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: speed
       value: 4.9
       objectReference: {fileID: 0}
+    - target: {fileID: 4442329231913377671, guid: 37b89f1d1955b6545b66339529b712d2, type: 3}
+      propertyPath: startingMaxHealth
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 4442329231913377676, guid: 37b89f1d1955b6545b66339529b712d2, type: 3}
       propertyPath: m_Name
       value: IndulgenceP2
@@ -79,6 +83,10 @@ PrefabInstance:
     - target: {fileID: 4442329231913377720, guid: 37b89f1d1955b6545b66339529b712d2, type: 3}
       propertyPath: chargeSpeedMultiplier
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442329231913377720, guid: 37b89f1d1955b6545b66339529b712d2, type: 3}
+      propertyPath: chargeDelay
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4442329231913377721, guid: 37b89f1d1955b6545b66339529b712d2, type: 3}
       propertyPath: m_LocalPosition.x

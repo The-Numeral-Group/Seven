@@ -111,6 +111,7 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
         }
 
         yield return new WaitForSeconds(delayAfterShockwave / delaySpeedMultiplier);
+        Destroy(shockwaveStorage);
         isFinished = true;
     }
 

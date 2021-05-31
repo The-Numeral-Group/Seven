@@ -7,6 +7,7 @@ public class WrathP2AbilityInitiator : ActorAbilityInitiator
     public ActorAbility wrathArmSweep;
     public WrathShockwave wrathShockwave;
     public WrathFireBrimstone wrathFireBrimstone;
+    public WrathEnraged wrathEnraged;
 
     void Awake()
     {
@@ -18,5 +19,8 @@ public class WrathP2AbilityInitiator : ActorAbilityInitiator
 
         this.abilities.Add("Wrath" + nameof(wrathFireBrimstone), wrathFireBrimstone);
         AbilityRegister.WRATH_FIREBRIMSTONE = "Wrath" + nameof(wrathFireBrimstone);
+
+        this.abilities.Add("Wrath" + nameof(wrathEnraged), wrathEnraged);
+        AbilityRegister.WRATH_ENRAGED = "Wrath" + nameof(wrathEnraged);
     }
 }
