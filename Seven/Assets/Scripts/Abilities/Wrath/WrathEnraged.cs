@@ -80,6 +80,5 @@ public class WrathEnraged : ActorAbilityFunction<Actor, int>
         user.myHealth.SetVulnerable(true, -1f);
 
         this.isFinished = true;
-        Debug.Log("DONE");
     }
 }

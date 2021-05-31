@@ -4537,7 +4537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 412269036355777620, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: delayAfterShockwave
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 412269036355777620, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: pillarShockwaveObject
