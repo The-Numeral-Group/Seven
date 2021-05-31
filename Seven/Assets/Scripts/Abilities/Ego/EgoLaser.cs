@@ -189,6 +189,9 @@ internal class EgoLaserProjectile : MonoBehaviour
         laserDamage = damage;
 
         this.width = width;
+
+        //also play the chargeup sound
+        this.gameObject.GetComponent<ActorSoundManager>().PlaySound("laser_charge");
     }
 
     //Handles the literal boxCast of the 
@@ -239,7 +242,9 @@ internal class EgoLaserProjectile : MonoBehaviour
         ///DEBUG
 
         yield return new WaitForSeconds(0.25f);
-        this.gameObject.GetComponent<ActorSoundManager>().PlaySound("laser_fire");
+        var sound = this.gameObject.GetComponent<ActorSoundManager>();
+        sound.StopSound("laser_charge");
+        sound.PlaySound("laser_fire");
 
         //shoot what is effectively a really thicc data laser
         RaycastHit2D[] hits = Physics2D.BoxCastAll(
