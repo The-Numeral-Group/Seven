@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,6 +28,12 @@ public class EgoCrowdZone : Interactable
     {
         var sin = new EgoSin(boostFactor, duration, effectMaterial);
         player.myEffectHandler.AddTimedEffect(sin, duration);
+        //if too much sin...
+        if(EgoSin.sinMax > EgoSin.applicationCount)
+        {
+            //update UI
+            MenuManager.SIN_MENU.DisplaySin();
+        }
         Cleanup();
     }
 

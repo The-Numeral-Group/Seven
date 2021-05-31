@@ -88,6 +88,10 @@ public class Ego1Actor : Actor
             egoAnims = (this.myAnimationHandler as Ego1AnimationHandler);
         }
 
+        //set EgoSin's SinMax to be the sin gate
+        EgoSin.sinMax = sinGate;
+        EgoSin.applicationCount = 0;
+
         StartCoroutine(sprintTimer);
         StartCoroutine(BossBehaviour());
     }
@@ -256,5 +260,11 @@ public class Ego1Actor : Actor
 
         //fukkin die
         Destroy(this.gameObject);
+    }
+
+    void OnDestroy()
+    {
+        //reset the sin counter
+        EgoSin.applicationCount = 0;
     }
 }

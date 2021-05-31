@@ -25,7 +25,11 @@ public class EgoSin : ActorEffect
 
     //The amount of times this sin has been applied during runtime
     //only incremented if the constructor recieves true
-    public static int applicationCount { get; protected set; }
+    public static int applicationCount { get; set; }
+
+    //The amount of times this sin needs to be applied during runtime
+    //before the sin has been fully committed
+    public static int sinMax {get; set; }
 
     //The amount of times this effect can stack. Readonly to prevent stack maxes from being
     //messed with at runtime.
