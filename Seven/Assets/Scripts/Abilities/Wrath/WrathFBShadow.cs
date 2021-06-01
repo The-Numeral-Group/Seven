@@ -34,12 +34,16 @@ public class WrathFBShadow : MonoBehaviour
         // Delay before shadow gets bigger
         yield return new WaitForSeconds(delayShadow / delaySpeedMultiplier);
 
+        this.gameObject.GetComponent<ActorSoundManager>().PlaySound("firebrim");
+
         // Play animation to make shadows bigger
-        while(this.gameObject.transform.localScale.x < maxScale){
+        while (this.gameObject.transform.localScale.x < maxScale){
             this.gameObject.transform.localScale += new Vector3(0.1f, 0.1f, 0f);
             yield return new WaitForSeconds(delayShadowScale / delaySpeedMultiplier);
 
         }
+
+       // this.gameObject.GetComponent<ActorSoundManager>().PlaySound("firebrim");
 
         // Now Fireball drops.
         this.transform.GetChild(0).gameObject.SetActive(true);

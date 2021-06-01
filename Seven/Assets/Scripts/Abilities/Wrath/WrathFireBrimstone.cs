@@ -50,10 +50,12 @@ public class WrathFireBrimstone : ActorAbilityFunction<Actor, int>
 
         delaySpeedMultiplier = WrathP2Actor.abilitySpeedMultiplier;
 
+        // Play fist animation
         if (animTrigger.Length != 0)
         {
             user.myAnimationHandler.TrySetTrigger(animTrigger);
         }
+
         StartCoroutine(spawnShadow());
         return 0;
     }
@@ -62,6 +64,9 @@ public class WrathFireBrimstone : ActorAbilityFunction<Actor, int>
     {
         // Delay before camera shake
         yield return new WaitForSeconds(shake_delay / delaySpeedMultiplier);
+
+        // Play fist sound
+        user.mySoundManager.PlaySound("fist");
 
         // Do camera shake
         cam.Shake(2.0f, 0.2f);

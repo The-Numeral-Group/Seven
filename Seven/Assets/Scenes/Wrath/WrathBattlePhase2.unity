@@ -2144,6 +2144,27 @@ MonoBehaviour:
   pushDuration: 1
   pushIntensity: 3
   animTrigger: roar
+--- !u!114 &1020262350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020262348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: fist
+    audioClip: {fileID: 8300000, guid: fc285f8eebd89804ea92ba4f2cbcc0b3, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
 --- !u!1001 &1028582164
 PrefabInstance:
   m_ObjectHideFlags: 0
