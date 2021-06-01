@@ -163,7 +163,8 @@ public class ApathyNPC : Interactable
         fight finishing, which means the player abandoned the fight...*/
         if(!fightStarted)
         {
-            fightAbandoned = true;
+            fightAbandoned = true;  //fight is abandoned
+            manager.setBoolValue(true, 12); //but apathy is still technically dead
         }
     }
 
