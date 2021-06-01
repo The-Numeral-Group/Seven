@@ -4618,7 +4618,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2688743516045599179, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: delayBetweenAttacks
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4132197406195292903, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: animTrigger
@@ -4630,7 +4630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4132197406195292903, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: shadowCount
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4132197406195292903, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: toInstantiateObject
@@ -4646,7 +4646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4132197406195292903, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: afterShadowDelay
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4132197406195292903, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: areaToChoose
