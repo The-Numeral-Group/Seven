@@ -19,8 +19,8 @@ public class Ego2Actor : Actor
     */
 
     //FIELDS---------------------------------------------------------------------------------------
-    [Tooltip("The mesh in which Ego's teleports will randomly arrive in.")]
-    public GameObject teleMesh;
+    //[Tooltip("The mesh in which Ego's teleports will randomly arrive in.")]
+    //public GameObject teleMesh;
 
     [Tooltip("How many times Ego should teleport before the final attack teleport.")]
     public int teleCount = 3;
@@ -67,7 +67,10 @@ public class Ego2Actor : Actor
     private GameObject player;
 
     //reference to the teleMesh's literal mesh for ease
-    private Mesh tMesh;
+    //private Mesh tMesh;
+
+    //the gamesave manager for accurately judging ego's aliveness
+    private GameSaveManager gameSaveManager;
 
     //METHODS--------------------------------------------------------------------------------------
     // Start calls the first frame this gameObject is active
@@ -83,7 +86,7 @@ public class Ego2Actor : Actor
         ego = this.gameObject.GetComponent<Actor>();
 
         //get teleMesh's mesh
-        tMesh = teleMesh.GetComponent<MeshFilter>().mesh;
+        //tMesh = teleMesh.GetComponent<MeshFilter>().mesh;
 
         //get ActorMovement as Ego2Movement
         if(this.myMovement is Ego2Movement)
@@ -105,6 +108,20 @@ public class Ego2Actor : Actor
             Debug.LogError("Ego2Actor: No Ego2AnimationHandler found, anims will not function");
         }
 
+        //save the gamesave manager
+        gameSaveManager = GameObject.Find("GameSaveManager").GetComponent<GameSaveManager>();
+        if(gameSaveManager == null)
+        {
+            Debug.LogWarning("Ego1Actor: Ego can't find the gameSave!");
+        }
+        //if ego has already been defeated...
+        else if(gameSaveManager.getBoolValue(15) == true)
+        {
+            //Auto-kill ego
+            StartCoroutine(Die());
+            return;
+        }
+
         //start the behaviour coroutine
         StartCoroutine(BossBehaviour());
     }
@@ -112,11 +129,16 @@ public class Ego2Actor : Actor
     // fixed update is called every phyiscs sim tick
     void FixedUpdate()
     {
-        //move Ego's face anchor towards the player
-        DoActorUpdateFacing(
-            (player.gameObject.transform.position - this.gameObject.transform.position).normalized
-        );
-
+        /*move Ego's face anchor towards the player. This needs to be done manually because
+        Ego never actually moves.*/
+        if(!this.myMovement.movementLocked)
+        {
+            DoActorUpdateFacing(
+                (player.gameObject.transform.position - 
+                    this.gameObject.transform.position).normalized
+            );
+        }
+        
         //update Ego's animations
         uniqueAnim.animateIdle();
     }
@@ -124,6 +146,9 @@ public class Ego2Actor : Actor
     // Controls the timing of Ego's attacks and teleportations
     IEnumerator BossBehaviour()
     {
+        //give apathy a little bit of time to chill...
+        yield return new WaitForSeconds(attackWait);
+
         while(true)
         {
             //Step 1: Random Teleports
@@ -143,20 +168,10 @@ public class Ego2Actor : Actor
     //executes teleCount many random teleports, then teleports near the player
     IEnumerator TeleportRush()
     {
-        //represents the area of the teleMesh
-        Bounds meshBound = tMesh.bounds;
-
         for(int i = 0; i < teleCount; ++i)
         {
-            //Ego will teleport to a random position within the mesh's area
-            var randomDestinationVec = new Vector3(
-                //Random.Range(meshBound.min.x, meshBound.max.x) * meshBound.size.x,
-                Random.Range(-1f, 1f) * meshBound.size.x,
-                //Random.Range(meshBound.min.y, meshBound.max.y) * meshBound.size.y,
-                Random.Range(-1f, 1f) * meshBound.size.y,
-                0f
-            );
-            yield return uniqueMovement?.EgoTeleport(randomDestinationVec);
+            Debug.Log("Ego2Actor: trying random teleport");
+            yield return uniqueMovement?.RandomEgoTeleport();
 
             //wait a little bit before doing the next teleport
             yield return new WaitForSeconds(teleWait);
@@ -210,13 +225,22 @@ public class Ego2Actor : Actor
     //this can be deletaed when a real death effect is added
     IEnumerator Die()
     {
-        //create an ability object and set it's flag to 8 to reference Ego's ability
-        Instantiate(
-            abilityDropObject, 
-            this.gameObject.transform.position, 
-            Quaternion.identity
-        ).GetComponent<AbilityPickup>().gameSaveAbilityPickupIndex = 8;
+        //save Ego's death
+        gameSaveManager.setBoolValue(true, 15);
         
+        //create an ability object and set it's flag to 8 to reference Ego's ability
+        //assuming the player hasn't grabbed it already
+        if(gameSaveManager.getBoolValue(8) == false)
+        {
+            var abilityObj = Instantiate(
+                abilityDropObject, 
+                this.gameObject.transform.position, 
+                Quaternion.identity
+            ).GetComponent<AbilityPickup>();
+            abilityObj.gameSaveAbilityPickupIndex = 8;
+            abilityObj.gameSaveManager = gameSaveManager;
+        }
+
         yield return null;
 
         //fukkin die

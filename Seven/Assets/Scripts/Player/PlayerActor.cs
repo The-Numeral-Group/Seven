@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 //using UnityEditor.Animations;
 
 [RequireComponent(typeof(PlayerInput))]
@@ -19,6 +20,10 @@ public class PlayerActor : Actor
 
     public bool hasSword { get; protected set; }
 
+    private Color defaultColor;
+
+    private BaseCamera cam;
+
     //Initialize non monobehaviour fields
     void Awake()
     {
@@ -34,27 +39,62 @@ public class PlayerActor : Actor
         playerInput = GetComponent<PlayerInput>();
 
         SetSwordState(startWithSword);
+
+        defaultColor = this.gameObject.GetComponent<SpriteRenderer>().color;
+
+        var camObjects = FindObjectsOfType<BaseCamera>();
+        if (camObjects.Length > 0)
+        {
+            cam = camObjects[0];
+        }
     }
 
     public override void DoActorDeath()
     {
-        // Death animation
-        this.myAnimationHandler.Animator.SetTrigger("player_dead");
+        // Find TimelineManager
+        GameObject timelineManager = GameObject.Find("TimelineManager");
 
-        StartCoroutine(callMenuManager());
+        // Find GameSaveManager
+        GameObject gameSaveManager = GameObject.Find("GameSaveManager");
+        
+        if (timelineManager != null && timelineManager.tag == "GameOver")
+        {
+            AudioSource deathSFX = timelineManager.GetComponentInChildren<AudioSource>();
+            if (deathSFX)
+            {
+                deathSFX.volume = GameSettings.MASTER_VOLUME * GameSettings.SFX_VOLUME;
+            }
+            // Switch back the color
+            this.gameObject.GetComponent<SpriteRenderer>().color = defaultColor;
+
+            this.myMovement.MoveActor(Vector2.zero);
+
+            // Turn on camera's zoom
+            cam.zoomMode = true;
+            cam.ignoreTargetPOIs = true;
+
+            MenuManager.StartGameOver();
+            if (MenuManager.BATTLE_UI)
+            {
+                MenuManager.BATTLE_UI.StopAllAudio();
+                MenuManager.BATTLE_UI.Hide();
+            }
+
+            // If player died in tutorial scene, don't turn the Respawn flag to true.
+            if (SceneManager.GetActiveScene().name != "Tutorial")
+            {
+                gameSaveManager.GetComponent<GameSaveManager>().setBoolValue(true, 19);
+            } 
+            timelineManager.GetComponent<TimelineManager>().startTimeline();
+
+            StartCoroutine(freezeTime());
+        }
     }
 
-    private IEnumerator callMenuManager()
+    private IEnumerator freezeTime()
     {
-        // delay before calling GameOver function
-        yield return new WaitForSeconds(0.5f);
-        MenuManager.StartGameOver();
-        if (MenuManager.BATTLE_UI)
-        {
-            MenuManager.BATTLE_UI.StopAllAudio();
-            MenuManager.BATTLE_UI.Hide();
-        }
-        this.enabled = false;
+        yield return new WaitForSeconds(1.0f);
+        Time.timeScale = 0f;
     }
 
     /*Engages the dialogue sequence. Disables the players health component, and sets its
@@ -147,10 +187,25 @@ public class PlayerActor : Actor
         }
     }*/
 
+    //https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/api/UnityEngine.InputSystem.PlayerInput.html#UnityEngine_InputSystem_PlayerInput_currentControlScheme
+    public void OnControlsChanged()
+    {
+        //MenuManager.SwapControlUIImages(playerInput.currentControlScheme);
+        SwapUIImage[] uiSwappers = Resources.FindObjectsOfTypeAll(typeof(SwapUIImage)) as SwapUIImage[];
+        foreach(SwapUIImage uiSwapper in uiSwappers)
+        {
+            uiSwapper.SwapImage(playerInput.currentControlScheme);
+        }
+    }
+
     public override void DoActorDamageEffect(float damage)
     {
         // Play TakeDamage Audio
         base.DoActorDamageEffect(damage);
         mySoundManager.PlaySound("TakeDamage");
+        if (MenuManager.BATTLE_UI)
+        {
+            MenuManager.BATTLE_UI.ShakePlayerHealthBar();
+        }
     }
 }

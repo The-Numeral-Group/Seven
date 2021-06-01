@@ -80,7 +80,6 @@ public class IndulgenceP1Actor : Actor
             if (playerObject != null)
             {
                 target = playerObject.GetComponent<Actor>();
-                Collider2D tCollider = target.GetComponent<Collider2D>();
             }
             else
             {
@@ -147,6 +146,7 @@ public class IndulgenceP1Actor : Actor
             case State.PHYSICAL:
                 //animation should call PerformPhysicalAttack();
                 this.myAnimationHandler.Animator.SetTrigger("physical_attack");
+                this.mySoundManager.PlaySound("leg_attack", 0.8f, 1.2f);
                 currAbility = this.myAbilityInitiator.abilities[AbilityRegister.INDULGENCE_PHYSICAL];
                 Vector2 direction = target.transform.position - this.transform.position;
                 currAbility.Invoke(ref self, direction);
@@ -252,5 +252,11 @@ public class IndulgenceP1Actor : Actor
         redirectingPath = true;
         yield return new WaitForSeconds(seconds);
         redirectingPath = false;
+    }
+
+    //Callback from leg attack. function gets called when the leg hitbox reaches the player
+    public void PlayLegHit()
+    {
+        this.mySoundManager.PlaySound("leg_hit", 0.8f, 1.2f);
     }
 }

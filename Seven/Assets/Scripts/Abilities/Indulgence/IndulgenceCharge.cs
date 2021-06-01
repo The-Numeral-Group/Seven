@@ -90,28 +90,34 @@ public class IndulgenceCharge : ActorAbilityFunction<Actor, int>
     IEnumerator TrackTarget()
     {
         isTracking = true;
-        directionIndicator.SetActive(true);
+        //directionIndicator.SetActive(true);
         while (isTracking && target != null)
         {
+            float dtheta = 0;
             chargeDirection = (target.transform.position - this.user.gameObject.transform.position).normalized;
-            this.user.myAnimationHandler.Flip(chargeDirection);
-            float dtheta = Mathf.Acos(((Vector2.Dot(chargeDirection, defaultFacingDirection)) / (chargeDirection.magnitude * defaultFacingDirection.magnitude)));
+            if (chargeDirection != Vector2.zero)
+            {
+                this.user.myAnimationHandler.Flip(chargeDirection);
+                //dtheta= Mathf.Acos(((Vector2.Dot(chargeDirection, defaultFacingDirection)) / (chargeDirection.magnitude * defaultFacingDirection.magnitude)));
+            }
             if (chargeDirection.y < 0)
             {
-                dtheta *= -1;
+                dtheta = (dtheta *-1) + (2*Mathf.PI);
             }
             dtheta = dtheta * (180/Mathf.PI);
-            directionIndicator.transform.localPosition = new Vector3(chargeDirection.x, chargeDirection.y, 0);
-            directionIndicator.transform.localRotation = Quaternion.Euler(0, 0, dtheta);
+            //directionIndicator.transform.localPosition = new Vector3(chargeDirection.x, chargeDirection.y, 0);
+            //directionIndicator.transform.localRotation = Quaternion.Euler(0, 0, dtheta);
             yield return new WaitForFixedUpdate();
         }
     }
 
     IEnumerator Charge()
     {
+        user.mySoundManager.PlaySound("skitter", 0.8f, 1.2f);
         yield return new WaitForSeconds(trackTime);
         isTracking = false;
         yield return new WaitForSeconds(chargeDelay);
+        user.mySoundManager.StopSound("skitter");
         directionIndicator.SetActive(false);
         this.user.myMovement.DragActor(
             chargeDirection * chargeSpeedMultiplier  * this.user.myMovement.speed);
@@ -145,6 +151,20 @@ public class IndulgenceCharge : ActorAbilityFunction<Actor, int>
     }
 
     void OnCollisionEnter2D(Collision2D collider)
+    {
+        if (!isFinished && isCharging)
+        {
+            if (collider.gameObject.tag == "Environment")
+            {
+                isCharging = false;
+                Camera.main.GetComponent<BaseCamera>().Shake(2.0f, 0.2f);
+                this.user.myMovement.DragActor(Vector2.zero);
+                hasCollided = true;
+            }
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D collider)
     {
         if (!isFinished && isCharging)
         {

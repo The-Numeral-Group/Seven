@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
+using Yarn.Unity;
 
 // Doc: https://docs.google.com/document/d/1t8toHhDSd4lvUUPEubfjjK5jV6X9huaLechlpcymaXY/edit
 public class TimelineManager : MonoBehaviour
@@ -17,6 +18,12 @@ public class TimelineManager : MonoBehaviour
 
     private BaseCamera cam;
 
+    //the name of the last scene that was asyncronously loaded
+    private string asyncScene;
+
+    //and the object responsible for loading it
+    private AsyncOperation sceneLoader;
+
     private void Start()
     {
         var camObjects = FindObjectsOfType<BaseCamera>();
@@ -26,7 +33,7 @@ public class TimelineManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Gluttony Crush: does not have access to a camera that can shake");
+            Debug.LogWarning("TimelineManager: does not have access to a camera that can shake");
         }
     }
     public void goBackLoop()
@@ -49,22 +56,6 @@ public class TimelineManager : MonoBehaviour
         this.loopIt++;
     }
 
-    /*public void loopFromStartTimeline()
-    {
-        if(loop)
-        {
-            director.time = director.initialTime;
-        }
-    }
-
-    public void loopfromSpecificTimeline(float time)
-    {
-        if(loop)
-        {
-            director.time = (double)time;
-        }
-    }*/
-
     public void setLoop(bool newLoop)
     {
         this.loop = newLoop;
@@ -80,13 +71,33 @@ public class TimelineManager : MonoBehaviour
         director.Resume();
     }
 
+    [YarnCommand("loadScene")]
     public void loadScene(string name)
     {
-        SceneManager.LoadScene(name);
+        if(asyncScene != null || name == asyncScene)
+        {
+            sceneLoader.allowSceneActivation = true;
+        }
+        else
+        {
+            SceneManager.LoadScene(name);
+        }
+    }
+
+    public void asyncLoadScene(string name)
+    {
+        sceneLoader = SceneManager.LoadSceneAsync(name);
+        asyncScene = name;
+        sceneLoader.allowSceneActivation = false;
     }
 
     public void cameraShake()
     {
         cam.Shake(2.0f, 0.2f);
+    }
+
+    public void deathCutscene()
+    {
+        director.Play();
     }
 }

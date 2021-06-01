@@ -6,38 +6,52 @@ using UnityEngine.SceneManagement;
 public class HubEventListener : MonoBehaviour
 {
     public GameObject gameSaveManager;
+    public GameObject timelineManager;
 
     private int bossDefeated = 0;
     private int numSinCorrupted = 0;
 
     private GameSaveManager gameSaveManagerScript;
+
+    private GameObject playerObject;
     
     // Start is called before the first frame update
     void Start()
     {
         this.gameSaveManagerScript = gameSaveManager.GetComponent<GameSaveManager>();
+        this.playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
         checkPlayerRespawn();
         checkBossProgress();
     }
 
     private void checkPlayerRespawn()
     {
-        var playerObject = GameObject.FindGameObjectsWithTag("Player")?[0];
         if (this.gameSaveManagerScript.getBoolValue(19))
         {
             // Place playerObject next to pond
             playerObject.transform.position = new Vector2(0.0f, 4.24f);
 
-            StartCoroutine(playerObject.GetComponent<Actor>().myMovement.LockActorMovement(3.0f));
-            
-            StartCoroutine(playerObject.GetComponent<Actor>().mySoundManager.muteSoundForDuration("PlayerRun", 3.0f));
+            timelineManager.GetComponent<TimelineManager>().startTimeline();
 
-            // Play Respawn animation
-            PlayerAnimationHandler anim = playerObject.GetComponent<Actor>().myAnimationHandler as PlayerAnimationHandler;
-            anim.animateRespawn();
+            // Lock player's movement
+            StartCoroutine(playerObject.GetComponent<Actor>().myMovement.LockActorMovement(14.0f));
+
+            // Lock player's dodge
+            StartCoroutine(lockPlayerAbility(14.0f));
 
             this.gameSaveManagerScript.setBoolValue(false, 19);
         }
+    }
+
+    private IEnumerator lockPlayerAbility(float duration)
+    {
+        this.playerObject.GetComponent<PlayerAbilityInitiator>().canDodge = false;
+        this.playerObject.GetComponent<PlayerAbilityInitiator>().canAttack = false;
+        this.playerObject.GetComponent<PlayerAbilityInitiator>().canUseAbility = false;
+        yield return new WaitForSeconds(duration);
+        this.playerObject.GetComponent<PlayerAbilityInitiator>().canDodge = true;
+        this.playerObject.GetComponent<PlayerAbilityInitiator>().canAttack = true;
+        this.playerObject.GetComponent<PlayerAbilityInitiator>().canUseAbility = true;
     }
 
     private void checkBossProgress()
@@ -67,18 +81,18 @@ public class HubEventListener : MonoBehaviour
             if(numSinCorrupted == 3)
             {
                 // Play AoS Ending
-                Debug.Log("Playing AoS Ending");
+                SceneManager.LoadScene("AoS");
             }
             else
             {
                 // Play HnH Ending
-                Debug.Log("Playing HnH Ending");
+                SceneManager.LoadScene("HnH");
             }
         }
         else
         {
             // Play ToD Ending (Wrath Fight)
-            Debug.Log("Playing ToD Ending");
+            SceneManager.LoadScene("ToD");
         }
     }
 

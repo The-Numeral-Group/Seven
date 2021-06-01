@@ -21,7 +21,7 @@ public class EgoSpotlight : ActorAbilityCoroutine<int>
     private GameObject spotlight;
 
     //reference to the lightMesh's literal mesh for ease
-    private Mesh lMesh;
+    private Bounds lMesh;
 
     //internal timer for measuring how long the user has been in the light
     private float lTimer = 0f;
@@ -34,7 +34,7 @@ public class EgoSpotlight : ActorAbilityCoroutine<int>
     void Start()
     {
         //get lightMesh's mesh
-        lMesh = lightMesh.GetComponent<MeshFilter>().mesh;
+        lMesh = lightMesh.GetComponent<Collider2D>().bounds;
     }
 
     protected override IEnumerator InternCoroutine(params int[] args)
@@ -43,12 +43,11 @@ public class EgoSpotlight : ActorAbilityCoroutine<int>
         userObtained = false;
 
         //represents the area of the lMesh
-        Bounds meshBound = lMesh.bounds;
 
         //Pick a random point for the light to appear in
         var randomDestinationVec = new Vector3(
-            Random.Range(-1f, 1f) * meshBound.size.x,
-            Random.Range(-1f, 1f) * meshBound.size.y,
+            Random.Range(lMesh.min.x, lMesh.max.x),
+            Random.Range(lMesh.min.y, lMesh.max.y),
             0f
         );
 

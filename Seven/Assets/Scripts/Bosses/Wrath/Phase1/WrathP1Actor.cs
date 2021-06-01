@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WrathP1Actor : Actor
 {
@@ -68,7 +69,7 @@ public class WrathP1Actor : Actor
 
     public override void DoActorDeath()
     {
-
+        SceneManager.LoadScene("WrathBattlePhase2");
     }
 
     private void FixedUpdate()
@@ -90,6 +91,8 @@ public class WrathP1Actor : Actor
     }
     private void EvaluateState(State state)
     {
+        // TEMPORARY variable
+        var anim = myAnimationHandler as WrathAnimationHandler;
         switch (state)
         {
             case State.WALK:
@@ -97,22 +100,27 @@ public class WrathP1Actor : Actor
                 break;
 
             case State.ABILITY_CHAINPULL:
+                anim.resetMovementDirection(); // temp function to just reset animation before ability begins
                 chainPull.Invoke(ref wrath);
                 break;
 
             case State.ABILITY_FIREWALL:
+                anim.resetMovementDirection();
                 fireWall.Invoke(ref wrath, player);
                 break;
 
             case State.ABILITY_SLUDGE:
+                anim.resetMovementDirection();
                 sludge.Invoke(ref wrath, player);
                 break;
 
             case State.ABILITY_SWORDATTACK:
+                anim.resetMovementDirection();
                 swordAttack.Invoke(ref wrath);
                 break;
 
             case State.ABILITY_SWORDRUSH:
+                anim.resetMovementDirection();
                 swordRush.Invoke(ref wrath, player);
                 break;
 
@@ -130,6 +138,8 @@ public class WrathP1Actor : Actor
         var directionToPlayer = (playerPos - myPos).normalized;
 
         this.myMovement.MoveActor(directionToPlayer);
+
+        this.myAnimationHandler.animateWalk();
     }
 
     private IEnumerator startDelayBeforeAttack()
@@ -215,7 +225,7 @@ public class WrathP1Actor : Actor
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" || collision.gameObject.name == "Pond")
         {
             Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
         }

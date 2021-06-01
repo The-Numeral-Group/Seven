@@ -9,14 +9,18 @@ public class IndulgenceOpening : MonoBehaviour
 
     public void nextDialogue()
     {
-        this.gameObject.GetComponent<ActiveSpeaker>().yarnStartNode = "Indulgence.Opening.Dialogue" + nextDialogueNum;
-        MenuManager.DIALOGUE_MENU.StartDialogue(this.gameObject);
+        if (nextDialogueNum > 2)
+        {
+            return;
+        }
         nextDialogueNum++;
+        this.gameObject.GetComponent<ActiveSpeaker>().yarnStartNode = "Indulgence.Opening.Dialogue" + nextDialogueNum;
+        //MenuManager.DIALOGUE_MENU.StartDialogue(this.gameObject);
     }
 
     public void checkDialogueProgress()
     {
-        if(nextDialogueNum == 3)
+        if(nextDialogueNum == 2)
         {
             SceneManager.LoadScene("IndulgenceBattlePhase1");
         }

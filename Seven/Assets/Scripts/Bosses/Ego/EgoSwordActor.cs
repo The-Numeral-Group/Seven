@@ -44,6 +44,12 @@ public class EgoSwordActor : Actor
     private Actor wthis;
 
     //METHODS--------------------------------------------------------------------------------------
+    protected override void Start()
+    {
+        base.Start();
+
+        this.mySoundManager.PlaySound("sword_appear");
+    }
     // Invoked every simulation tick (every 60th of a second)    
     void FixedUpdate()
     {
@@ -132,6 +138,7 @@ public class EgoSwordActor : Actor
         //Step 3.5: Switch to the landed animation. And, no, I am not going to write
         //a custom AAH just for this one thing
         this.myAnimationHandler.Animator.SetBool("egosword_landed", true);
+        this.mySoundManager.PlaySound("sword_land");
 
         //Step 4: Shoot the lasers
         for(int i = 0; i < attackCount; ++i)

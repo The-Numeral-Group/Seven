@@ -3,13 +3,12 @@ tags:
 colorID: 0
 position: 785,-278
 ---
-Mayor: Good afternoon, denizens of our wonderful city!
+Mayor: Good afternoon everyone!
 Mayor: Thank you all for gathering here to celebrate our centennial tradition:
 Mayor: The Festival of the Martyr!
-Mayor: It was centuries years ago when our ancestors founded a small village around our Sacred Hub. 
-Mayor: To pay homage to the woman who sacrificed herself to save us from the Gods of Corruption!
-Mayor: Since then, that settlement has evolved into the amazing city that we reside within today, which we will keep pure and perfect for eternity!
-Mayor: Now, for the moment you've all been waiting for: the announcement of the next Champion!
+Mayor: We are here to pay homage to the woman who sacrificed herself to save us from the Gods of Corruption!
+Mayor: Now, for the moment you've all been waiting for: 
+Mayor: The announcement of the next Champion!
 Mayor: The proud hero who will descend into the Hub and save our Martyr is among us!
 Mayor: Come on up here, young man!
 //Mayor: Don't be shy, just use the movement controls! 
@@ -23,7 +22,7 @@ position: 783,-68
 ---
 Mayor: This brave lad has been chosen to be our centennial champion!! Give them a big hand!
 //crowd cheers
-Mayor: Now, as the mayor of our city, I dub thee: Champion of the People! 
+Mayor: Now, with the power vested in me, I dub thee: Champion of the People! 
 Mayor: Go forth and make us proud!
 ===
 title: Mayor.Opening.Dialogue2

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +10,9 @@ public class EgoCrowdZone : Interactable
 
     [Tooltip("How long the effect should last.")]
     public float duration = 5f;
+
+    [Tooltip("The material to apply to whoever recieves the spotlight.")]
+    public Material effectMaterial;
 
     //reference to the player
     private Actor player;
@@ -23,8 +26,15 @@ public class EgoCrowdZone : Interactable
     //what happens when this object is interacted with
     public override void OnInteract()
     {
-        var sin = new EgoSin(boostFactor, duration);
+        var sin = new EgoSin(boostFactor, duration, effectMaterial);
         player.myEffectHandler.AddTimedEffect(sin, duration);
+        //if too much sin...
+        Debug.Log($"applied: {EgoSin.applicationCount}, max: {EgoSin.sinMax}");
+        if(EgoSin.applicationCount >= EgoSin.sinMax)
+        {
+            //update UI
+            MenuManager.SIN_MENU.DisplaySin();
+        }
         Cleanup();
     }
 
@@ -33,7 +43,7 @@ public class EgoCrowdZone : Interactable
     //increment the sin counter for this fight
     public void OnAnyInteract(Actor interactor)
     {
-        var sin = new EgoSin(boostFactor, duration, false);
+        var sin = new EgoSin(boostFactor, duration, effectMaterial, false);
         interactor.myEffectHandler.AddTimedEffect(sin, duration);
         Cleanup();
     }

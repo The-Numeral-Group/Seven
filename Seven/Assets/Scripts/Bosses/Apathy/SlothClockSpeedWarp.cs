@@ -98,6 +98,7 @@ public class SlothClockSpeedWarp : MonoBehaviour
     reset the list and apply the time effect*/
     void UpdateClock(GameObject obj)
     {
+        obj.GetComponent<ActorSoundManager>().PlaySound("clock_hit");
         //if the fast has been applied...
         if(handler.EffectInstancePresent(fast))
         {
@@ -115,9 +116,31 @@ public class SlothClockSpeedWarp : MonoBehaviour
             //apply the fast for a limited time, if it's not already there
             if(!handler.EffectInstancePresent(fast))
             {
-                handler.AddTimedEffect(fast, fastDuration);
+                
+                StartCoroutine(TimeFastClockHand(obj));
             }
         }
+    }
+
+    IEnumerator TimeFastClockHand(GameObject hand)
+    {
+        handler.AddTimedEffect(fast, fastDuration);
+        var tickRot = hand.GetComponent<SmartTickRotation>();
+
+        if(tickRot == null)
+        {
+            yield break;
+        }
+
+        tickRot.SetSpeed(SmartTickRotation.SpeedMode.fast);
+                    
+        yield return new WaitForSeconds(fastDuration);
+
+        if(tickRot.speed == SmartTickRotation.SpeedMode.fast)
+        {
+            tickRot.SetSpeed(SmartTickRotation.SpeedMode.normal);
+        }
+
     }
 
     void ClockHandLogic(GameObject obj)
@@ -128,6 +151,9 @@ public class SlothClockSpeedWarp : MonoBehaviour
             //and if that number is now 0, remove it
             if(trackedObjects[obj] == 0)
             {
+                //also return the hand to normal speed
+                obj.GetComponent<SmartTickRotation>()
+                    ?.SetSpeed(SmartTickRotation.SpeedMode.normal);
                 trackedObjects.Remove(obj);
             }
             ///DEBUG
@@ -167,6 +193,11 @@ public class SlothClockSpeedWarp : MonoBehaviour
         if(!handler.EffectInstancePresent(slow))
         {
             handler.AddEffect(slow);
+            foreach(GameObject hand in colliderObjects)
+            {
+                hand.GetComponent<SmartTickRotation>()
+                    ?.SetSpeed(SmartTickRotation.SpeedMode.slow);
+            }
         }
     }
 }

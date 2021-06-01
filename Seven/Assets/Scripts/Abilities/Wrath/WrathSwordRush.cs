@@ -86,61 +86,39 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
     private IEnumerator TrackTarget()
     {
         isTracking = true;
-        directionIndicator.SetActive(true);
+        //directionIndicator.SetActive(true);
         while (isTracking && target != null)
         {
             chargeDirection = (target.transform.position - wrath.gameObject.transform.position).normalized;
             targetLocation = target.transform.position;
-            float dtheta = Mathf.Acos(((Vector2.Dot(chargeDirection, defaultFacingDirection)) / (chargeDirection.magnitude * defaultFacingDirection.magnitude)));
+            float dtheta = 0;
+            if (chargeDirection != Vector2.zero)
+            {
+                //dtheta = Mathf.Acos(((Vector2.Dot(chargeDirection, defaultFacingDirection)) / (chargeDirection.magnitude * defaultFacingDirection.magnitude)));
+            }
             if (chargeDirection.y < 0)
             {
                 dtheta *= -1;
             }
             dtheta = dtheta * (180/Mathf.PI);
-            directionIndicator.transform.localPosition = new Vector3(chargeDirection.x, chargeDirection.y, 0);
-            directionIndicator.transform.localRotation = Quaternion.Euler(0, 0, dtheta);
+            //directionIndicator.transform.localPosition = new Vector3(chargeDirection.x, chargeDirection.y, 0);
+            //directionIndicator.transform.localRotation = Quaternion.Euler(0, 0, dtheta);
             if (chargeDirection.x > 0.0f) {
-                targetLocation.x += 5.0f;
+                targetLocation.x += 6.0f;
             }
             else
             {
-                targetLocation.x += -5.0f;
+                targetLocation.x += -6.0f;
             }
 
             if (chargeDirection.y > 0.0f)
             {
-                targetLocation.y += 5.0f;
+                targetLocation.y += 6.0f;
             }
             else
             {
-                targetLocation.y += -5.0f;
+                targetLocation.y += -6.0f;
             }
-
-            /*if (chargeDirection.x > 5.0f) // MAX X
-            {
-                targetLocation.x += 7.5f;
-            }
-            else if (chargeDirection.x < -5.0f)
-            {
-                targetLocation.x -= 7.5f;
-            }
-            else
-            {
-                targetLocation.x += chargeDirection.x * 1.5f;
-            }
-
-            if (chargeDirection.y > 5.0f) // MAX Y
-            {
-                targetLocation.y += 7.5f;
-            }
-            else if (chargeDirection.y < -5.0f)
-            {
-                targetLocation.y -= 7.5f;
-            }
-            else
-            {
-                targetLocation.y += chargeDirection.y * 1.5f;
-            }*/
 
             //wrath.myAnimationHandler.Flip(chargeDirection);
             yield return new WaitForFixedUpdate();
@@ -155,8 +133,8 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
         isTracking = false;
 
         // Play Wrath charging animation
-        WrathAnimationHandler wrathAnimationHandler = wrath.myAnimationHandler as WrathAnimationHandler;
-        wrathAnimationHandler.animateSwordRush();
+        //WrathAnimationHandler wrathAnimationHandler = wrath.myAnimationHandler as WrathAnimationHandler;
+        //wrathAnimationHandler.animateSwordRush();
 
         // Place target Point
         targetPointObject = Instantiate(this.targetPoint, targetLocation, Quaternion.identity);
@@ -202,6 +180,7 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
     {
         if (!isFinished && isCharging)
         {
+            Debug.Log(collision);
             if (collision.gameObject.tag == "Player")
             {
                 Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
@@ -232,6 +211,7 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
         StopCoroutine(TrackRoutine);
         StartCoroutine(wrath.myMovement.LockActorMovement(-1f));
         //wrath.myAnimationHandler.Animator.SetBool("charging", false);
+        Destroy(targetPointObject);
         wrath.myMovement.DragActor(Vector2.zero);
         chargeDirection = Vector2.right;
         directionIndicator.transform.localPosition = defaultFacingDirection;

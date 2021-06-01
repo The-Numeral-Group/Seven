@@ -24,9 +24,19 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
         " hitbox lasts).")]
     public float laserDuration = 0.3f;
 
+    //the last laser to be used
+    private EgoLaserProjectile laser;
+
+    //the coroutine of the laser invokation
+    private Coroutine laserTiming;
+
+    //[Tooltip("How far the laser beam should be from the user's faceAnchor")]
+    //public Vector2 laserOffset = Vector2.zero;
+
     /*[Tooltip("How long the ability should linger (holding up its user). If this number is " + 
         " too low, the user might move or some other thing before the laser is destroyed.")]
     public float laserEndDuration = 0.15f;*/
+    
     
     //METHODS--------------------------------------------------------------------------------------
     /*Activates the ability with no arguments. In this case, it will default the target position
@@ -62,30 +72,38 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
     protected override int InternInvoke(params Vector3[] args)
     {
         usable = false;
-        //Animate the attack now for when the laser exists
-        user.myAnimationHandler.TrySetTrigger("ego_shoot");
         
-        StartCoroutine(LaserInvokation(args[0]));
+        
+        laserTiming = StartCoroutine(LaserInvokation(args[0]));
         return 1;
     }
 
     //launches the laser, and turns on its damage when the time comes
     IEnumerator LaserInvokation(Vector3 targetPoint)
     {
+
         //Step 1: figure out the direction to the target
         Vector3 targetDirection = (targetPoint - user.gameObject.transform.position).normalized;
 
+        //Step 1.5: face the user in that direction
+        user.gameObject.SendMessage("DoActorUpdateFacing", targetDirection);
+
         //Step 2: create a laser object and attach the EgoLaserProjectile component
-        var laser = Instantiate(laserObj, user.faceAnchor.position, Quaternion.identity)
+        //var laser = Instantiate(laserObj, user.faceAnchor.position, 
+            //Quaternion.identity).AddComponent<EgoLaserProjectile>();
+        laser = Instantiate(laserObj, user.gameObject.transform)
             .AddComponent<EgoLaserProjectile>();
         //but set it's direction towards the player manually
         //needs to be offset by 45 degrees because the laser asset is rotated that way
+        laser.gameObject.transform.localPosition = user.faceAnchor.localPosition;// * laserOffset;
         laser.gameObject.transform.up = targetDirection; //+ new Vector3(-45f, 0f, 0f);
-        
-        
         
         //Step 3: initialize the laser
         laser.Initialize(laserMaxDist, laserWidth, damage);
+
+        //Step 2.5: lock the user's movement
+        var moveStop = user.myMovement.LockActorMovement(Mathf.Infinity);
+        StartCoroutine(moveStop);
 
         //Step 4: fire the prelaser
         laser.ShootLaser(user.faceAnchor.position, targetDirection);
@@ -93,10 +111,16 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
         //Step 5: wait a little bit
         yield return new WaitForSeconds(preLaserDuration);
         //Lock the user's movement during this time...
-        yield return user.myMovement.LockActorMovement(preLaserDuration);
+        //yield return user.myMovement.LockActorMovement(preLaserDuration);
+
+        //Animate the attack now for when the laser exists
+        var attackanim = user.myAnimationHandler.TryFlaggedSetTrigger("ego_shoot");
+
+        //wait a magical number of seconds
+        yield return new WaitForSeconds(0.55f);
 
         //Step 6: fire the actual laser
-        laser.CastDamage(user.faceAnchor.position, targetDirection);
+        StartCoroutine(laser.CastDamage(user.faceAnchor.localPosition, targetDirection));
 
         //Step 7: wait a little bit longer
         yield return new WaitForSeconds(laserDuration);
@@ -110,10 +134,30 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
         //actually disable it then destroy it
         //because the destruction will always wait for the next physics tick
         yield return new WaitForSeconds(laserEndDuration);*/
+        yield return new WaitWhile(attackanim);
         isFinished = true;
+
+        //Step 8.75: unlock the user's movement
+        StopCoroutine(moveStop);
+        StartCoroutine(user.myMovement.LockActorMovement(0f));
         
         //Step 9: cooldown
         StartCoroutine(coolDown(cooldownPeriod));
+    }
+
+    /*update is called once per frame
+    it is used here to check if the user of the laser is still alive. If they aren't, the beam
+    should be destroyed*/
+    void Update()
+    {
+        //if the ability is being used but there is no user...
+        if(!isFinished && !user)
+        {
+            //stop the launch sequence
+            StopCoroutine(laserTiming);
+            //and destroy the laser, if there is one
+            Destroy(laser?.gameObject);
+        }
     }
 }
 
@@ -145,11 +189,16 @@ internal class EgoLaserProjectile : MonoBehaviour
         laserDamage = damage;
 
         this.width = width;
+
+        //also play the chargeup sound
+        this.gameObject.GetComponent<ActorSoundManager>().PlaySound("laser_charge");
     }
 
     //Handles the literal boxCast of the 
-    public void CastDamage(Vector3 launchPoint, Vector3 damageDirection)
+    public IEnumerator CastDamage(Vector3 launchPoint, Vector3 damageDirection)
     {
+        this.gameObject.GetComponent<Animator>().SetTrigger("go");
+        
         //set the points for the laser
         //what C# doesn't have implicit arrays? Really?
         //Vector3[] laserPoints = new Vector3[] {laserStart, laserEnd};
@@ -191,6 +240,11 @@ internal class EgoLaserProjectile : MonoBehaviour
             10.0f
         );
         ///DEBUG
+
+        yield return new WaitForSeconds(0.25f);
+        var sound = this.gameObject.GetComponent<ActorSoundManager>();
+        sound.StopSound("laser_charge");
+        sound.PlaySound("laser_fire");
 
         //shoot what is effectively a really thicc data laser
         RaycastHit2D[] hits = Physics2D.BoxCastAll(

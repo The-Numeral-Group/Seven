@@ -120,6 +120,9 @@ public class DragBackWeaponHitbox : WeaponHitbox
         }
 
         mover.DragActor(dragAway * dragBackIntensity);
+
+        this.gameObject.SendMessageUpwards("stunPlayer", dragBackDuration);
+
         yield return new WaitForSeconds(dragBackDuration);
         mover.DragActor(Vector2.zero);
 
@@ -131,4 +134,5 @@ public class DragBackWeaponHitbox : WeaponHitbox
             clock += Time.deltaTime;
         }*/
     }
+
 }

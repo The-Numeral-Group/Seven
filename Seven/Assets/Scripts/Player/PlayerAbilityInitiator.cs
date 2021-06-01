@@ -30,6 +30,15 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     // If player can dodge or not. 
     public bool canDodge { get; set; }
 
+    // If player can attack or not. 
+    public bool canAttack { get; set; }
+
+    // If player can use ability or not.
+    public bool canUseAbility { get; set; }
+
+    //The player's typecasted actor, for checking when the player is talking
+    private PlayerActor player;
+
     void Awake()
     {
         //Manual initialization, 'cause I (Thomas) have come to realize it can't be done automatically
@@ -50,6 +59,8 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
         AbilityRegister.PLAYER_INTERACT = "" + nameof(playerInteract);
 
         this.canDodge = true;
+        this.canAttack = true;
+        this.canUseAbility = true;
 
         //also construct a VFX manager
         VFXManager = new PlayerAbilityVFX(this, abilityMat);
@@ -60,6 +71,31 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     //  ActorAbilityInitiator, so now it's innate to the class -Thomas
     //public Actor playerActor;
 
+    //called when the component is set to active. This occurs after Start is called
+    void OnEnable()
+    {
+        //resave userActor as PlayerActor to access the isTalking variable
+        if(userActor is PlayerActor)
+        {
+            player = (userActor as PlayerActor);
+        }
+        else
+        {
+            if(userActor == null)
+            {
+                Debug.Log("userActor is null");
+                //ideally we'd error-handle this differently but we're short on time
+                var act = this.gameObject.GetComponent<PlayerActor>();
+                userActor = act;
+                player = act;
+            }
+            else
+            {
+                Debug.Log("userActor is not a PlayerActor");
+            }
+        }
+    }
+
     /* Update is called once per frame
     void Update()
     {
@@ -69,7 +105,11 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     //this is the method called by an input press
     public void OnAttack()
     {
-        DoAttack();
+        //Debug.Log($"player talking? {player.isTalking}");
+        if(canAttack && player?.isTalking != true)
+        {
+            DoAttack();
+        }
     }
 
     public override void DoAttack()
@@ -83,7 +123,10 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
 
     public void OnDodge()
     {
-        DoDodge();
+        if(canDodge)
+        {
+            DoDodge();
+        }
     }
 
     public void DoDodge()
@@ -107,12 +150,15 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
 
     void OnAbility()
     {
-        //Since the the cooldown for an ability is tied to actorabilityfunction
-        if (selectedAbility != null && selectedAbility.getUsable() && selectedAbility.getIsFinished())
+        if(canUseAbility)
         {
-            selectedAbility.Invoke(ref userActor);
-            VFXManager.DoAbilityMaterial(selectedAbility);
-            MenuManager.ABILITY_MENU.PutButtonOnCooldown(selectedAbility.getCooldown(), selectedAbility);
+            //Since the the cooldown for an ability is tied to actorabilityfunction
+            if (selectedAbility != null && selectedAbility.getUsable() && selectedAbility.getIsFinished())
+            {
+                selectedAbility.Invoke(ref userActor);
+                VFXManager.DoAbilityMaterial(selectedAbility);
+                MenuManager.ABILITY_MENU.PutButtonOnCooldown(selectedAbility.getCooldown(), selectedAbility);
+            }
         }
     }
 

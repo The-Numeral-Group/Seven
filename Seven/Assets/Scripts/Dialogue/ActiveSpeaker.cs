@@ -60,7 +60,42 @@ public class ActiveSpeaker : Interactable
         if (this.npcMode && collider.CompareTag("Player"))
         {
             ShowIndicator(true);
-            SetPotentialInteractable(true, collider.gameObject);
+            SetPotentialInteractable(true, this.gameObject);
+        }
+    }
+
+    protected override void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag == "Player" && this.npcMode && !this.isTalking)
+        {
+            if (POTENTIAL_INTERACTABLE && POTENTIAL_INTERACTABLE != this)
+            {
+                float myDistanceToPlayer = Vector2.Distance(other.transform.position, this.transform.position);
+                float closestPotentialDistanceToPlayer = Vector2.Distance(other.transform.position, 
+                                                            POTENTIAL_INTERACTABLE.transform.position);
+                if (myDistanceToPlayer < closestPotentialDistanceToPlayer)
+                {
+                    ShowIndicator(true);
+                    SetPotentialInteractable(true, this.gameObject);
+                }
+                else
+                {
+                    ShowIndicator(false);
+                }
+            }
+            else if (!POTENTIAL_INTERACTABLE)
+            {
+                ShowIndicator(true);
+                SetPotentialInteractable(true, this.gameObject);
+            }
+        }
+        else
+        {
+            if (POTENTIAL_INTERACTABLE == this)
+            {
+                SetPotentialInteractable(false, this.gameObject);
+                ShowIndicator(false);
+            }
         }
     }
 
@@ -70,7 +105,7 @@ public class ActiveSpeaker : Interactable
         if (this.npcMode && collider.CompareTag("Player"))
         {
             ShowIndicator(false);
-            SetPotentialInteractable(false, collider.gameObject);
+            SetPotentialInteractable(false, this.gameObject);
         }
     }
 

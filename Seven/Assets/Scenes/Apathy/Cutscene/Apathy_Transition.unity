@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 519573800}
   - component: {fileID: 519573799}
   - component: {fileID: 519573801}
+  - component: {fileID: 519573802}
   m_Layer: 0
   m_Name: TimelineManager
   m_TagString: Untagged
@@ -367,6 +368,51 @@ PlayableDirector:
     value: {fileID: 1867903039}
   m_ExposedReferences:
     m_References: []
+--- !u!114 &519573802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519573798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: ac62fa7f9cde5a74fbeffd22f5f2eca3, type: 2}
+    - {fileID: 11400000, guid: 354051d22b9f8da4e9f123a513e93c63, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 519573799}
+          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+          m_MethodName: loadScene
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: ApathyFight
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 519573799}
+          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+          m_MethodName: asyncLoadScene
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: ApathyFight
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &622712325 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6785325949612782728, guid: ddf23faf4e4d0044bbfbca7d10be50f2, type: 3}
@@ -890,11 +936,11 @@ PrefabInstance:
     - target: {fileID: 6785325949612782836, guid: ddf23faf4e4d0044bbfbca7d10be50f2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6785325949612782836, guid: ddf23faf4e4d0044bbfbca7d10be50f2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 3845884084362400254, guid: 1026e279643e20b029465bc57e739dc6, type: 3}
+      objectReference: {fileID: -1395405650311847223, guid: cdc21eadc538bf83283482a5f4b801cc, type: 3}
     - target: {fileID: 6785325949612782839, guid: ddf23faf4e4d0044bbfbca7d10be50f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

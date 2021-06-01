@@ -1,0 +1,406 @@
+fileFormatVersion: 2
+guid: f3a9009c54ceeaf31950f8aa7a067e8b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 662485787321773307
+    second: ego_2_shoot_e_0
+  - first:
+      213: 2455911112416104982
+    second: ego_2_shoot_e_1
+  - first:
+      213: 5839922054203742328
+    second: ego_2_shoot_e_2
+  - first:
+      213: 8412319228017199666
+    second: ego_2_shoot_e_3
+  - first:
+      213: 4360403994045008048
+    second: ego_2_shoot_e_4
+  - first:
+      213: -7763603053787849818
+    second: ego_2_shoot_e_5
+  - first:
+      213: 4369527096508007709
+    second: ego_2_shoot_e_6
+  - first:
+      213: 7530404714500304404
+    second: ego_2_shoot_e_7
+  - first:
+      213: 7660533074924505353
+    second: ego_2_shoot_e_8
+  - first:
+      213: -1699489609736779044
+    second: ego_2_shoot_e_9
+  - first:
+      213: 7429652284555457821
+    second: ego_2_shoot_e_10
+  - first:
+      213: 5578444183289505107
+    second: ego_2_shoot_e_11
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ego_2_shoot_e_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2160
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfc2f06405f913900800000000000000
+      internalID: 662485787321773307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ego_2_shoot_e_1
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 2160
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6121f7f0526251220800000000000000
+      internalID: 2455911112416104982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ego_2_shoot_e_2
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 2160
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87898c4ca229b0150800000000000000
+      internalID: 5839922054203742328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ego_2_shoot_e_3
+      rect:
+        serializedVersion: 2
+        x: 3240
+        y: 2160
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23a472b74cf8eb470800000000000000
+      internalID: 8412319228017199666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ego_2_shoot_e_4
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 2160
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b84f368454438c30800000000000000
+      internalID: 4360403994045008048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ego_2_shoot_e_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1080
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ab56d9e724224490800000000000000
+      internalID: -7763603053787849818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ego_2_shoot_e_6
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 1080
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d15cdc75ebda3ac30800000000000000
+      internalID: 4369527096508007709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ego_2_shoot_e_7
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 1080
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41ea7b6a03f518860800000000000000
+      internalID: 7530404714500304404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ego_2_shoot_e_8
+      rect:
+        serializedVersion: 2
+        x: 3240
+        y: 1080
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90981019e3eaf4a60800000000000000
+      internalID: 7660533074924505353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ego_2_shoot_e_9
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 1080
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cda0c2844333a68e0800000000000000
+      internalID: -1699489609736779044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ego_2_shoot_e_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d15f899836d6b1760800000000000000
+      internalID: 7429652284555457821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ego_2_shoot_e_11
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 0
+        width: 1080
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 355a058cd6d9a6d40800000000000000
+      internalID: 5578444183289505107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

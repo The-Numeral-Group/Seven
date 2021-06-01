@@ -44,6 +44,7 @@ public class WrathFireWall : ActorAbilityFunction<GameObject, int>
     WrathFireSingle single;
 
     private IEnumerator MovementLockroutine;
+    private Vector3 originalScale;
 
     //METHODS--------------------------------------------------------------------------------------
     // Called the first frame of the scene
@@ -63,6 +64,7 @@ public class WrathFireWall : ActorAbilityFunction<GameObject, int>
         if (usable)
         {
             isFinished = false;
+
             InternInvoke(GameObject.FindWithTag("Player"));
         }
 
@@ -77,6 +79,9 @@ public class WrathFireWall : ActorAbilityFunction<GameObject, int>
         if (usable)
         {
             isFinished = false;
+
+            originalScale = this.user.gameObject.transform.localScale;
+            this.user.gameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
             //make sure the argument is a gameObject of some sort
             if (args[0] is GameObject)
@@ -160,6 +165,7 @@ public class WrathFireWall : ActorAbilityFunction<GameObject, int>
         // Teleport Wrath to Player
         this.user.transform.position = target.transform.position;
         StopCoroutine(MovementLockroutine); // Unlock wrath's movement.
+        this.user.gameObject.transform.localScale = originalScale;
         isFinished = true;
         Debug.Log("WrathFireWall: ability done");
     }
@@ -188,6 +194,13 @@ internal class WrathFireSingle : ProjectileAbility
         projectile = wrap.projectile;
         projectileScale = wrap.projectileScale;
         projectileDirection = wrap.projectileDirection;
+
+        // This currently is not affecting the volume for some reason.
+        AudioSource fireSFX = projectile.gameObject.GetComponent<AudioSource>();
+        if (fireSFX)
+        {
+            fireSFX.volume = GameSettings.MASTER_VOLUME * GameSettings.SFX_VOLUME;
+        }
     }
 
     /*Launch the projectile. The anticipated argument is the gameObject being shot at. The 

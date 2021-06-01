@@ -55,6 +55,9 @@ public class Ego1Actor : Actor
     //the timer that runs whether or not Ego should Swagger or Sprint
     private IEnumerator sprintTimer;
 
+    //the gamesave manager for accurately judging ego's aliveness
+    private GameSaveManager gameSaveManager;
+
     //METHODS--------------------------------------------------------------------------------------
     /*Aquires references to needed actor components, then sets Ego's speed based on
     overrideDefaultSpeed and speedModifer*/
@@ -87,6 +90,24 @@ public class Ego1Actor : Actor
         {
             egoAnims = (this.myAnimationHandler as Ego1AnimationHandler);
         }
+
+        //save the gamesave manager
+        gameSaveManager = GameObject.Find("GameSaveManager").GetComponent<GameSaveManager>();
+        if(gameSaveManager == null)
+        {
+            Debug.LogWarning("Ego1Actor: Ego can't find the gameSave!");
+        }
+        //if ego has already been defeated...
+        else if(gameSaveManager.getBoolValue(15) == true)
+        {
+            //Auto-kill ego
+            StartCoroutine(Die());
+            return;
+        }
+
+        //set EgoSin's SinMax to be the sin gate
+        EgoSin.sinMax = sinGate;
+        EgoSin.applicationCount = 0;
 
         StartCoroutine(sprintTimer);
         StartCoroutine(BossBehaviour());
@@ -211,12 +232,11 @@ public class Ego1Actor : Actor
     //Ego1 will switch to Ego2 upon death.
     public override void DoActorDeath()
     {
-        var gameSave = GameObject.Find("GameSaveManager");
         //if the player hasn'y sinned enough...
         if(EgoSin.applicationCount < sinGate)
         {
             //save the lack of sin
-            gameSave?.GetComponent<GameSaveManager>().setBoolValue(false, 14);
+            gameSaveManager.setBoolValue(false, 14);
 
             ///DEBUG
             Debug.Log("Ego1Actor: Phase change!");
@@ -234,7 +254,7 @@ public class Ego1Actor : Actor
         else
         {
             //save the sin
-            gameSave?.GetComponent<GameSaveManager>().setBoolValue(true, 14);
+            gameSaveManager.setBoolValue(true, 14);
 
             ///just destroy this Ego
             StartCoroutine(Die());
@@ -245,16 +265,31 @@ public class Ego1Actor : Actor
     //this can be deletaed when a real death effect is added
     IEnumerator Die()
     {
+        //save Ego's death
+        gameSaveManager.setBoolValue(true, 15);
+
         //create an ability object and set it's flag to 8 to reference Ego's ability
-        Instantiate(
-            abilityDropObject, 
-            this.gameObject.transform.position, 
-            Quaternion.identity
-        ).GetComponent<AbilityPickup>().gameSaveAbilityPickupIndex = 8;
+        //assuming the player hasn't grabbed it already
+        if(gameSaveManager.getBoolValue(8) == false)
+        {
+            var abilityObj = Instantiate(
+                abilityDropObject, 
+                this.gameObject.transform.position, 
+                Quaternion.identity
+            ).GetComponent<AbilityPickup>();
+            abilityObj.gameSaveAbilityPickupIndex = 8;
+            abilityObj.gameSaveManager = gameSaveManager;
+        }
 
         yield return null;
 
         //fukkin die
         Destroy(this.gameObject);
+    }
+
+    void OnDestroy()
+    {
+        //reset the sin counter
+        EgoSin.applicationCount = 0;
     }
 }

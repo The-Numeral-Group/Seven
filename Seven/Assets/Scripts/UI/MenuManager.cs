@@ -167,9 +167,19 @@ public class MenuManager : MonoBehaviour
         {
             BATTLE_UI.Hide();
         }
-        CURRENT_MENU = GAME_OVER;
-        Time.timeScale = 0f;
-        GAME_OVER.Show();
+        //CURRENT_MENU = GAME_OVER;
+        //Time.timeScale = 0f;
+        //GAME_OVER.Show();
+    }
+
+    //Function to swap input images based on players current input.
+    public static void SwapControlUIImages(string controlScheme)
+    {
+        SwapUIImage[] uiSwappers = Resources.FindObjectsOfTypeAll(typeof(SwapUIImage)) as SwapUIImage[];
+        foreach(SwapUIImage uiSwapper in uiSwappers)
+        {
+            uiSwapper.SwapImage(controlScheme);
+        }
     }
 
     public static void ResetStaticReferences()

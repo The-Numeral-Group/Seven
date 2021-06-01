@@ -9,11 +9,13 @@ public class Credits : MonoBehaviour
     public GameObject startMenu;
     public Button startMenuDefaultButton;
     public GameObject creditsContainer;
+    public GameObject uiSelector;
 
     public void CreditsFinishSequence()
     {
         creditsContainer.SetActive(false);
         mainMenu.startingButton = startMenuDefaultButton;
         mainMenu.ShowSubMenu(startMenu);
+        uiSelector.SetActive(true);
     }
 }

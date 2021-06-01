@@ -32,6 +32,9 @@ public class BackgroundMusic : MonoBehaviour
 
     public void SetVolume()
     {
-        this.audioSource.volume = GameSettings.MASTER_VOLUME * GameSettings.MUSIC_VOLUME;
+        if (this.audioSource != null)
+        {
+            this.audioSource.volume = GameSettings.MASTER_VOLUME * GameSettings.MUSIC_VOLUME;
+        }
     }
 }

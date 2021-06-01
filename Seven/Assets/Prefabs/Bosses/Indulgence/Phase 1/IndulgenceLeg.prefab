@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5783529023888686640}
   - component: {fileID: 5783529023888686643}
   - component: {fileID: 5783529023888686642}
-  - component: {fileID: 2010211852319179094}
+  - component: {fileID: 1725991455752584725}
   m_Layer: 14
   m_Name: IndulgenceLeg
   m_TagString: Untagged
@@ -130,7 +130,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2010211852319179094
+--- !u!114 &1725991455752584725
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5783529023888686645}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f16476c3200f0047878d52097af0967, type: 3}
+  m_Script: {fileID: 11500000, guid: ff16112d49f42e94bae8de9137529d1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1

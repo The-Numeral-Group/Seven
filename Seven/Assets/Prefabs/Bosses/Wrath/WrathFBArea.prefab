@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5805730522764719899
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5805730522764719897}
+  - component: {fileID: 5805730522764719898}
+  m_Layer: 0
+  m_Name: WrathFBArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5805730522764719897
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805730522764719899}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &5805730522764719898
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805730522764719899}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.7469878, y: 2.6190772}
+      - {x: -8.899281, y: 4.3835883}
+      - {x: -10.443128, y: 8.788832}
+      - {x: -21.35147, y: 6.584136}
+      - {x: -27.944355, y: 4.0529337}
+      - {x: -32.905926, y: 0.9171848}
+      - {x: -30.792686, y: -8.089387}
+      - {x: -22.414316, y: -14.0536}
+      - {x: -21.477272, y: -14.486119}
+      - {x: -2.3179154, y: -18.851381}
+      - {x: 10.363256, y: -17.235384}
+      - {x: 20.91131, y: -14.727395}
+      - {x: 30.076721, y: -9.153682}
+      - {x: 32.22495, y: -2.163682}
+      - {x: 30.829426, y: 1.6999395}
+      - {x: 22.035187, y: 5.8644695}
+      - {x: 12.710377, y: 7.8207493}
+      - {x: 9.059985, y: 4.1607594}

@@ -675,7 +675,9 @@ MonoBehaviour:
   m_Children: []
   m_Clips: []
   m_Markers:
-    m_Objects: []
+    m_Objects:
+    - {fileID: 6512803337470799394}
+    - {fileID: 6667245384401328075}
 --- !u!114 &-5648138725601718339
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1549,7 +1551,7 @@ MonoBehaviour:
     m_PreExtrapolationMode: 1
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: swat(se)
+    m_DisplayName: roar
   - m_Version: 1
     m_Start: 7.666666666666667
     m_ClipIn: 0
@@ -1712,7 +1714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f85c3f73729f4f976f66ffb23b875, type: 3}
   m_Name: AnimationPlayableAsset(Clone)
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: 7400000, guid: c1e3731126bbaea6e833142e5fe00784, type: 2}
+  m_Clip: {fileID: 7400000, guid: c5e356a345d68fb36b4e1e0c3725f6c9, type: 2}
   m_Position: {x: 0, y: 0, z: 0}
   m_EulerAngles: {x: 0, y: 0, z: 0}
   m_UseTrackMatchFields: 1
@@ -1808,7 +1810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f85c3f73729f4f976f66ffb23b875, type: 3}
   m_Name: AnimationPlayableAsset
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: 7400000, guid: c1e3731126bbaea6e833142e5fe00784, type: 2}
+  m_Clip: {fileID: 7400000, guid: c5e356a345d68fb36b4e1e0c3725f6c9, type: 2}
   m_Position: {x: 0, y: 0, z: 0}
   m_EulerAngles: {x: 0, y: 0, z: 0}
   m_UseTrackMatchFields: 1
@@ -1862,6 +1864,38 @@ MonoBehaviour:
   m_Loop: 1
   m_Version: 1
   m_Rotation: {x: 0, y: 0, z: 0, w: 1}
+--- !u!114 &6512803337470799394
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 8.883333333333333
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: ac62fa7f9cde5a74fbeffd22f5f2eca3, type: 2}
+--- !u!114 &6667245384401328075
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: 
+  m_Time: 0
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: 354051d22b9f8da4e9f123a513e93c63, type: 2}
 --- !u!114 &6890805311515787140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1935,6 +1969,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 2.4666667
         value: 1
+        inSlope: 0.27108437
+        outSlope: 0.27108437
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 2.7666667
+        value: 1.2
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1969,7 +2012,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 2.4666667
+    m_StopTime: 2.7666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -2000,6 +2043,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 2.4666667
         value: 1
+        inSlope: 0.27108437
+        outSlope: 0.27108437
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 2.7666667
+        value: 1.2
         inSlope: 0
         outSlope: 0
         tangentMode: 136

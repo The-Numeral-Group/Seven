@@ -37,6 +37,10 @@ public class IndulgenceSin : ActorAbilityFunction<Actor, int>
         spawnPoints.Add(dummyLocation.transform.position + new Vector3(5, -1 * rangeToDisengageAttack, 0));
         spawnPoints.Add(dummyLocation.transform.position + new Vector3(0, -1 * rangeToDisengageAttack, 0));
         spawnPoints.Add(dummyLocation.transform.position + new Vector3(-5, -1 * rangeToDisengageAttack, 0));
+        spawnPoints.Add(dummyLocation.transform.position + new Vector3(-10, -1 * rangeToDisengageAttack, 0));
+        spawnPoints.Add(dummyLocation.transform.position + new Vector3(10, -1 * rangeToDisengageAttack, 0));
+        spawnPoints.Add(dummyLocation.transform.position + new Vector3(-15, -1 * rangeToDisengageAttack, 0));
+        spawnPoints.Add(dummyLocation.transform.position + new Vector3(15, -1 * rangeToDisengageAttack, 0));
         monitors = new List<IndulgenceSinInteractable>();
         IndulgenceSinInteractable.TOTAL_CONSUMED = 0;
     }
@@ -78,7 +82,11 @@ public class IndulgenceSin : ActorAbilityFunction<Actor, int>
     IEnumerator InternalCoroutine()
     {
         yield return new WaitForSeconds(1f);
-        yield return new WaitUntil(()=> crushAbility.getIsFinished() == true);
+        while(crushAbility.getIsFinished() != true)
+        {
+            target.myMovement.DragActor(Vector2.down * 0.2f);
+            yield return new WaitForFixedUpdate();
+        }
         StartCoroutine(MovementLockRoutine);
         for (int i = 0; i < spawnPoints.Count; i++)
         {

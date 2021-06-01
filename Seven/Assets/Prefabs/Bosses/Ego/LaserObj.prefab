@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8733214243072098439}
   - component: {fileID: 6322400457778334470}
   - component: {fileID: 7378458374706817468}
+  - component: {fileID: 6946389384276262818}
   m_Layer: 0
   m_Name: LaserObj
   m_TagString: Untagged
@@ -102,3 +103,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!114 &6946389384276262818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4417132022118089685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: laser_charge
+    audioClip: {fileID: 8300000, guid: 2574c50a9d9ea23258f98259d41cf6f6, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 1
+    source: {fileID: 0}
+  - name: laser_fire
+    audioClip: {fileID: 8300000, guid: 7dc6effe1cc5ecf68a991451add62e8d, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}

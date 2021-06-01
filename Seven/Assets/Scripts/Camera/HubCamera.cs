@@ -6,34 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class HubCamera : BaseCamera
 {
-    //The defaultZoom level.
-    [Tooltip("The default zoom level when the player is the only object in focus.")]
-    public float defaultZoom = 40f;
-    //The closest zoom the camera can perform
-    [Tooltip("How far a camera can zoom in on a point of interest.")]
-    public float minZoom = 17f;
-    //The speed at which the camera will zoom in and out
-    [Tooltip("How fast a camera can zoom in on a point of interest")]
-    public float zoomSpeed = 5.0f;
-    //Flag used to to let ZoomCamera know if zooming is required.
-    bool closeToPOI;
-    //Of all the points of interest close to the player, this variable holds the one which is closest.
-    Vector3 closestPOI;
-
-    //Initialize member variables.
-    void Awake()
-    {
-        closeToPOI = false;
-        closestPOI = Vector3.zero;
-    }
-
-    //Did you know FixedUpdate is called before each physics update?
-    protected override void FixedUpdate()
-    {
-        MoveCamera();
-        ZoomCamera();
-    }
-
     /*MoveCamera will move the camera to a specified position.
     The position in this case will be the players transform by default.
     If there is point of interest close to the player, the camera will move to 
@@ -53,22 +25,6 @@ public class HubCamera : BaseCamera
             ref velocity, cameraSmoothRate);
     }
 
-    /*ZoomCamera will soom the camera based on whether or not the player it close to a POI
-    The zoom is done gradually using Linear Interpolation.*/
-    private void ZoomCamera()
-    {
-        float newZoom;
-        if (closeToPOI)
-        {
-            newZoom = Mathf.Lerp(cam.orthographicSize, minZoom, (zoomSpeed * Time.deltaTime));
-        }
-        else
-        {
-            newZoom = Mathf.Lerp(cam.orthographicSize, defaultZoom, (zoomSpeed * Time.deltaTime));
-        }
-        cam.orthographicSize = newZoom;
-    }
-
     /*GetCenterPos well fetches the position the camera should be following.
     It uses Bounds to mediate the camera if there are multiple positions that need to be accounted for.
     It will check if a player is close to any POI's and adjust the camera's position based on 
@@ -85,12 +41,12 @@ public class HubCamera : BaseCamera
         closeToPOI = false;
         if (!ignoreTargetPOIs)
         {
-            float closestVal = breakingDistance;
+            float closestVal = zoomTriggerDistance;
             for (int i = 0; i < targetPOIs.Count; i++)
             {
                 float distToPOI = Vector2.Distance(new Vector2(mainTargetTransform.position.x, mainTargetTransform.position.y),
                                                     new Vector2(targetPOIs[i].position.x, targetPOIs[i].position.y));
-                if (distToPOI <= breakingDistance && distToPOI < closestVal)
+                if (distToPOI <= zoomTriggerDistance && distToPOI < closestVal)
                 {
                     closeToPOI = true;
                     closestVal = distToPOI;
