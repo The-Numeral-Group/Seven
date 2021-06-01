@@ -164,7 +164,7 @@ public class ApathyNPC : Interactable
         if(!fightStarted)
         {
             fightAbandoned = true;  //fight is abandoned
-            manager.setBoolValue(true, 12); //but apathy is still technically dead
+            //manager.setBoolValue(true, 12); //but apathy is still technically dead
         }
     }
 
