@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 380494465729752740}
   - component: {fileID: 380494465729752743}
   - component: {fileID: 380494465729752741}
+  - component: {fileID: 967992804384072855}
   m_Layer: 12
   m_Name: WrathFBObject
   m_TagString: Untagged
@@ -294,3 +295,24 @@ MonoBehaviour:
   delayShadow: 3
   delayShadowScale: 0.03
   delayFire: 0.1
+--- !u!114 &967992804384072855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380494465729752742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: firebrim
+    audioClip: {fileID: 8300000, guid: e4a45a78654c4cf4dad0125bf3d8fab3, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}

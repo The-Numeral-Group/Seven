@@ -81,18 +81,18 @@ public class HubEventListener : MonoBehaviour
             if(numSinCorrupted == 3)
             {
                 // Play AoS Ending
-                Debug.Log("Playing AoS Ending");
+                SceneManager.LoadScene("AoS");
             }
             else
             {
                 // Play HnH Ending
-                Debug.Log("Playing HnH Ending");
+                SceneManager.LoadScene("HnH");
             }
         }
         else
         {
             // Play ToD Ending (Wrath Fight)
-            Debug.Log("Playing ToD Ending");
+            SceneManager.LoadScene("ToD");
         }
     }
 

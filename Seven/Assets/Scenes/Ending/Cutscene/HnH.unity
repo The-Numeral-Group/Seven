@@ -564,11 +564,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4514d82f37f7c714ebf5217bc5378289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &341074262 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8861051730678643335, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
-  m_PrefabInstance: {fileID: 435954427}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &350411569
 GameObject:
   m_ObjectHideFlags: 0
@@ -1105,7 +1100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d73198362922184291099f7d28adcdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObjectTarget: {fileID: 341074262}
+  gameObjectTarget: {fileID: 0}
 --- !u!1001 &603069498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2814,6 +2809,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7a0c43ca1dc73fa4c83516300fa39a51, type: 2}
     - {fileID: 11400000, guid: c92c2dfce8811b34e91d9cab3d4dad52, type: 2}
     - {fileID: 11400000, guid: 3bed5b03733008c4bb792695d99a35a9, type: 2}
+    - {fileID: 11400000, guid: ac62fa7f9cde5a74fbeffd22f5f2eca3, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -2856,6 +2852,20 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 1
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1236873150}
+          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+          m_MethodName: loadScene
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: MainMenu
+            m_BoolArgument: 0
           m_CallState: 2
 --- !u!114 &1236873150
 MonoBehaviour:
@@ -3584,6 +3594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  canMove: 1
 --- !u!50 &1857178616
 Rigidbody2D:
   serializedVersion: 4

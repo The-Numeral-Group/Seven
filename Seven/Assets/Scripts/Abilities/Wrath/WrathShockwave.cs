@@ -41,6 +41,7 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
         user.myMovement.MoveActor(Vector2.zero);
         user.myMovement.DragActor(Vector2.zero);
 
+        // Play fist animation
         if (animTrigger.Length != 0)
         {
             user.myAnimationHandler.TrySetTrigger(animTrigger);
@@ -61,8 +62,6 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
             // 1 Full Room Shockwave
             StartCoroutine(startShockwaveLarge());
         }
-        // Temporary calling end function
-        //StartCoroutine(CheckIfAnimFinished());
 
         return 0;
     }
@@ -71,6 +70,9 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
     {
         // Delay after animation
         yield return new WaitForSeconds(delayAnim / delaySpeedMultiplier);
+
+        // Play fist sound
+        user.mySoundManager.PlaySound("fist");
 
         // Start spawning shockwaves
         List<Vector3> firstCoord = new List<Vector3>() { new Vector3(0.0f, 5.5f, 0.0f), new Vector3(0.0f, 1.5f, -1.0f), new Vector3(0.0f, -2.5f, -2.0f),
@@ -119,6 +121,9 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
     {
         // Delay after animation
         yield return new WaitForSeconds(delayAnim / delaySpeedMultiplier);
+
+        // Play fist sound
+        user.mySoundManager.PlaySound("fist");
 
         Vector3 pos = new Vector3(0f, 2.0f, -1.0f);
         GameObject shockwave = Instantiate(largeShockwaveObject, pos, Quaternion.identity);
