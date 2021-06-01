@@ -38,6 +38,9 @@ public class SlothActor : Actor
     //whether or not sloth is actively fighting the player
     private bool activated = false;
 
+    //whether or not apathy has had time to set up
+    private bool initialized = false;
+
     //player reference for easy access
     private Actor player;
 
@@ -75,7 +78,7 @@ public class SlothActor : Actor
         this.myHealth.SetVulnerable(false, -10f);
 
         //add sloth sin here
-        if(player.myEffectHandler == null)
+        /*if(player.myEffectHandler == null)
         {
             Debug.LogWarning("SlothActor: Sloth was unable to locate the player's effect" + 
                 " handler during start");
@@ -84,7 +87,7 @@ public class SlothActor : Actor
         else
         {
             player.myEffectHandler.AddEffect(new SlothSin());
-        }
+        }*/
         
         //create AAM object here (to reduce load/lag when starting the fight)
         AAM = new SlothClockMod();
@@ -96,6 +99,9 @@ public class SlothActor : Actor
 
         //initialize sloth/apathy's current ability to its close attack
         currAbility = this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_PHYSICAL];
+
+        //apathy is now ready to go!
+        initialized = true;
     }
 
     // FixedUpdate is called once per simulation tick
@@ -135,17 +141,34 @@ public class SlothActor : Actor
     //ITS TIME
     public void ActivateSloth()
     {
+        //if apathy hasn't been given the chance to, let it start
+        if(!initialized)
+        {
+            this.Start();
+        }
+
+        if(player == null)
+        {
+           Debug.LogWarning("SlothActor: Apathy was unable to locate the player" + 
+                " on fight start");
+            player = GameObject.FindWithTag("Player")?.GetComponent<Actor>();
+        }
+
         //we are officially throwing hands
         activated = true;
 
         //remove sloth sin here
-        player.myEffectHandler.SubtractEffectByType<SlothSin>();
+        //player.myEffectHandler.SubtractEffectByType<SlothSin>();
 
         //turn on sloth's ability to get hurt while it's talking
         //negative values are the "forever" value
         this.myHealth.SetVulnerable(true, -10f);
 
         //create an observer and places it on the player
+        if(player == null)
+        {
+            Debug.LogWarning("SlothActor: Apathy can't find the player!");
+        }
         observer = player.gameObject.AddComponent<SlothPlayerObserver>();
 
         //setting the observer's attack delay
@@ -171,6 +194,14 @@ public class SlothActor : Actor
         });
 
         //engage the Sloth Clock being used by Sloth's Special Ability
+        if(AAM == null)
+        {
+            Debug.LogError("SlothActor: AAM not loaded");
+        }
+        if(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_SPECIAL] == null)
+        {
+            Debug.LogError("SlothActor: Special ability not loaded");
+        }
         AAM.ModifyAbility(this.myAbilityInitiator.abilities[AbilityRegister.SLOTH_SPECIAL]);
     }
 
@@ -244,6 +275,10 @@ public class SlothActor : Actor
             Action<dynamic> del = new Action<dynamic> ( (dynamic arg) => {
                 if(ActorAbilityModifier.DoesMemberExist(arg.clock, "enabled"))
                 {
+                    if(arg.clock == null)
+                    {
+                        Debug.LogError("SlothClockMod: SlothSpeedSlow has no clock!");
+                    }
                     arg.clock.enabled = true;
                     arg.clock.gameObject.SetActive(true);
                 }
