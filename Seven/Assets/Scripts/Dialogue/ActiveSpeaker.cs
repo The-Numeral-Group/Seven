@@ -68,7 +68,7 @@ public class ActiveSpeaker : Interactable
     {
         if (other.tag == "Player" && this.npcMode)
         {
-            if (POTENTIAL_INTERACTABLE && POTENTIAL_INTERACTABLE != this)
+            if (Interactable.POTENTIAL_INTERACTABLE && Interactable.POTENTIAL_INTERACTABLE != this && !isTalking)
             {
                 float myDistanceToPlayer = Vector2.Distance(other.transform.position, this.transform.position);
                 float closestPotentialDistanceToPlayer = Vector2.Distance(other.transform.position, 
@@ -83,23 +83,15 @@ public class ActiveSpeaker : Interactable
                     ShowIndicator(false);
                 }
             }
-            else if (!POTENTIAL_INTERACTABLE)
+            else if (!Interactable.POTENTIAL_INTERACTABLE && !isTalking)
             {
                 ShowIndicator(true);
                 SetPotentialInteractable(true, this.gameObject);
             }
-            else if (POTENTIAL_INTERACTABLE == this && isTalking)
+            else if (Interactable.POTENTIAL_INTERACTABLE == this && isTalking)
             {
                 ShowIndicator(false);
                 SetPotentialInteractable(false, this.gameObject);
-            }
-        }
-        else
-        {
-            if (POTENTIAL_INTERACTABLE == this)
-            {
-                SetPotentialInteractable(false, this.gameObject);
-                ShowIndicator(false);
             }
         }
     }
