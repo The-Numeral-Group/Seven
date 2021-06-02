@@ -2203,7 +2203,7 @@ Animator:
   m_GameObject: {fileID: 920958692}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c934578a334d1684da9fb66985608a96, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2897,8 +2897,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Events:
-    m_Signals: []
-    m_Events: []
+    m_Signals:
+    - {fileID: 11400000, guid: ac62fa7f9cde5a74fbeffd22f5f2eca3, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1236873150}
+          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+          m_MethodName: loadScene
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: WrathBattlePhase1
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &1236873150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2984,7 +2999,9 @@ PlayableDirector:
   - key: {fileID: 3631770316223628343, guid: 5b08369bf16095b428cb3b1c2438f356, type: 2}
     value: {fileID: 0}
   - key: {fileID: -2252265559235214317, guid: 5b08369bf16095b428cb3b1c2438f356, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 920958695}
+  - key: {fileID: 1923120301735898201, guid: 5b08369bf16095b428cb3b1c2438f356, type: 2}
+    value: {fileID: 920958695}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1236873152

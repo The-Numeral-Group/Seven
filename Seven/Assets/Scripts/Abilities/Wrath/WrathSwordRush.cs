@@ -97,7 +97,7 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
             chargeDirection = chargeDirectionNonNorm.normalized;
 
             targetLocation = target.transform.position;
-            /*float dtheta = 0;
+            float dtheta = 0;
             if (chargeDirection != Vector2.zero)
             {
                 dtheta = Mathf.Acos(((Vector2.Dot(chargeDirection, defaultFacingDirection)) / (chargeDirection.magnitude * defaultFacingDirection.magnitude)));
@@ -106,13 +106,12 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
             {
                 dtheta *= -1;
             }
-            dtheta = dtheta * (180/Mathf.PI);*/
+            dtheta = dtheta * (180/Mathf.PI);
 
             // Update Wrath's facing direction for animator
             WrathAnimationHandler wrathAnimationHandler = wrath.myAnimationHandler as WrathAnimationHandler;
             wrathAnimationHandler.animateSwordRush(chargeDirection);
 
-            dtheta = dtheta * (180/Mathf.PI);
             directionIndicator.transform.localPosition = new Vector3(chargeDirection.x, chargeDirection.y, 0);
             directionIndicator.transform.localRotation = Quaternion.Euler(0, 0, dtheta);
 
