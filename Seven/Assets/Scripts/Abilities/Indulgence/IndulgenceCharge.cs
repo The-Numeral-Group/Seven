@@ -124,7 +124,7 @@ public class IndulgenceCharge : ActorAbilityFunction<Actor, int>
         this.user.myMovement.DragActor(
             chargeDirection * chargeSpeedMultiplier  * this.user.myMovement.speed);
         isCharging = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         onWallCheck = true;
     }
 

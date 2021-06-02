@@ -49,7 +49,7 @@ public class BattleUI : BaseUI
         base.Awake();
         bossList = new List<BossBar>();
         ShakePTR = ShakePlayerHealthRoutine(1f, 0.1f);
-        sliderOriginalPos = playerSlider.transform.position;
+        sliderOriginalPos = playerSlider.transform.localPosition;
     }
     void Start()
     {
@@ -184,7 +184,7 @@ public class BattleUI : BaseUI
         {
             StopCoroutine(ShakePTR);
         }
-        playerSlider.transform.position = sliderOriginalPos;
+        playerSlider.transform.localPosition = sliderOriginalPos;
         ShakePTR = ShakePlayerHealthRoutine(1f, 1.5f);
         StartCoroutine(ShakePTR);
     }
@@ -197,14 +197,14 @@ public class BattleUI : BaseUI
             float offsetX = Random.Range(-1f, 1f) * magnitude;
             float offsetY = Random.Range(-1f, 1f) * magnitude;
 
-            playerSlider.transform.position = 
-                new Vector3(playerSlider.transform.position.x + offsetX,
-                playerSlider.transform.position.y + offsetY,
-                playerSlider.transform.position.z);
+            playerSlider.transform.localPosition = 
+                new Vector3(playerSlider.transform.localPosition.x + offsetX,
+                playerSlider.transform.localPosition.y + offsetY,
+                playerSlider.transform.localPosition.z);
 
             elapsed += Time.deltaTime;
             yield return new WaitForFixedUpdate();
         }
-        playerSlider.transform.position = sliderOriginalPos;
+        playerSlider.transform.localPosition = sliderOriginalPos;
     }
 }
