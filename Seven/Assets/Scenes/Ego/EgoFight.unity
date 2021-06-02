@@ -3003,6 +3003,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 809726809053908821, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: sounds.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 809726809053908821, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: sounds.Array.data[4].name
+      value: CrowdCheer
+      objectReference: {fileID: 0}
+    - target: {fileID: 809726809053908821, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: sounds.Array.data[4].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a482744b679ae6b3199025176811e6d3, type: 3}
+    - target: {fileID: 809726809053908821, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: sounds.Array.data[4].volume
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 809726809053908821, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: sounds.Array.data[4].pitch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4115977272152067176, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: startingMaxHealth
       value: 10
