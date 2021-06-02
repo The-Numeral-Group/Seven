@@ -25,7 +25,7 @@ public class ActiveSpeaker : Interactable
     //Reference to the objects sprite renderer
     public SpriteRenderer spriteInfo { get; private set;}
     //flag used to tell if this npc is talking.
-    bool isTalking;
+    public bool isTalking { get; protected set;}
 
     //Initialize monobehaviour fields
     void Start()
