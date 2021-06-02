@@ -4071,6 +4071,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10, y: 8}
   m_EdgeRadius: 0
+--- !u!114 &1505475741844249965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505475741844249960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac30a03d4c3b4843ad0700230114f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 1505475741844249961}
+  loop: 1
+  loopStartTime: 0
 --- !u!1001 &7522185283639680499
 PrefabInstance:
   m_ObjectHideFlags: 0
