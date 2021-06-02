@@ -13,7 +13,7 @@ public class IndulgenceNPC : MonoBehaviour
     private IEnumerator startDialogueDelay()
     {
         yield return new WaitForSeconds(0.1f);
-        if (this.gameObject.GetComponent<ActiveSpeaker>().npcMode == false)
+        if (this.gameObject.GetComponent<ActiveSpeaker>().npcMode == false && MenuManager.DIALOGUE_MENU)
         {
             MenuManager.DIALOGUE_MENU.StartDialogue(this.gameObject);
         }
