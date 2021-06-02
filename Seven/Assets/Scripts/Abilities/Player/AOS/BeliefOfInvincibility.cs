@@ -29,10 +29,10 @@ public class BeliefOfInvincibility : ActorAbilityCoroutine<int>
     protected override IEnumerator InternCoroutine(params int[] args)
     {
         //immediately exit if there are no uses remaining
-        if(usesRemaining == 0)
+        /*if(usesRemaining == 0)
         {
             yield break;
-        }
+        }*/
 
         //Step 0: Make the user invulnerable
         this.user.myHealth.SetVulnerable(false, -1f);

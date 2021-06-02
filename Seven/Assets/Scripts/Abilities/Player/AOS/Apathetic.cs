@@ -50,7 +50,7 @@ public class Apathetic : ActorAbilityFunction<int, int>, ActorEffect
     protected override int InternInvoke(params int[] args)
     {
         usable = false;
-        if(!user.myEffectHandler.EffectPresent<Apathetic>() && usesRemaining > 0)
+        if(!user.myEffectHandler.EffectPresent<Apathetic>())// && usesRemaining > 0)
         {
             StartCoroutine(PauseThenActivate());
             return 0;
