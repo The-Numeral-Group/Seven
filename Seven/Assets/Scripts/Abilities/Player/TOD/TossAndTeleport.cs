@@ -75,7 +75,7 @@ public class TossAndTeleport : ProjectileAbility
         else
         {
             ThrowSword();
-            yield return null;
+            //yield return null;
         }
 
         //swordOut = true;

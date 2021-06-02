@@ -201,6 +201,9 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
         //the player's material the last time MaterialSwap was started
         private Material originalMat;
 
+        //tracks whether or not the material clock needs more time to finish
+        private bool resolvingMaterials = false;
+
         //CONSTRUCTORS-----------------------------------------------------------------------------
         public PlayerAbilityVFX(PlayerAbilityInitiator PAI, Material specialMat)
         {
@@ -229,6 +232,10 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
         {
             //abort if the material provided was invalid
             if(specialMat == null) {yield break;}
+
+            yield return new WaitWhile( () => resolvingMaterials );
+
+            resolvingMaterials = true;
 
             //swap the materials
             originalMat = renderer.material;
@@ -263,6 +270,8 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
 
             //swap the materials back
             renderer.material = originalMat;
+
+            resolvingMaterials = false;
 
             //and clear the timer reference
             currentAbilityTimer = null;

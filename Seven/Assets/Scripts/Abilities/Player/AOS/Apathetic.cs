@@ -68,7 +68,6 @@ public class Apathetic : ActorAbilityFunction<int, int>, ActorEffect
         user.myEffectHandler.AddTimedEffect(this, effectDuration);
             
         --usesRemaining;
-        
         StartCoroutine(coolDown(cooldownPeriod));
     }
 
@@ -105,6 +104,9 @@ public class Apathetic : ActorAbilityFunction<int, int>, ActorEffect
             //then grab that ability and increase its damage
             offAAM.ModifyAbility(actor.myAbilityInitiator.abilities[playerAttackName]);
         }
+
+        //count the ability as finished
+        isFinished = true;
     }
 
     //AMM subclass for increasing the player's attack damage
