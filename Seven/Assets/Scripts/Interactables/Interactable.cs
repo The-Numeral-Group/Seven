@@ -62,7 +62,7 @@ public abstract class Interactable : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (POTENTIAL_INTERACTABLE && POTENTIAL_INTERACTABLE != this)
+            if (Interactable.POTENTIAL_INTERACTABLE && Interactable.POTENTIAL_INTERACTABLE != this)
             {
                 float myDistanceToPlayer = Vector2.Distance(other.transform.position, this.transform.position);
                 float closestPotentialDistanceToPlayer = Vector2.Distance(other.transform.position, 
@@ -77,7 +77,7 @@ public abstract class Interactable : MonoBehaviour
                     ShowIndicator(false);
                 }
             }
-            else if (!POTENTIAL_INTERACTABLE)
+            else if (!Interactable.POTENTIAL_INTERACTABLE)
             {
                 ShowIndicator(true);
                 SetPotentialInteractable(true, this.gameObject);
@@ -126,8 +126,23 @@ public abstract class Interactable : MonoBehaviour
         {
             //implicitly this is only reached if value is false as well.
             Interactable.POTENTIAL_INTERACTABLE = null;
-            MenuManager.INTERACT_MENU.target = null;
-            MenuManager.INTERACT_MENU.Hide();
+            if (MenuManager.INTERACT_MENU)
+            {
+                MenuManager.INTERACT_MENU.target = null;
+                MenuManager.INTERACT_MENU.Hide();
+            }
         }
+    }
+
+    protected virtual void OnDisable()
+    {
+        ShowIndicator(false);
+        SetPotentialInteractable(false, this.gameObject);
+    }
+
+    protected virtual void OnDestroy()
+    {
+        ShowIndicator(false);
+        SetPotentialInteractable(false, this.gameObject);
     }
 }

@@ -25,7 +25,7 @@ public class ActiveSpeaker : Interactable
     //Reference to the objects sprite renderer
     public SpriteRenderer spriteInfo { get; private set;}
     //flag used to tell if this npc is talking.
-    bool isTalking;
+    public bool isTalking { get; protected set;}
 
     //Initialize monobehaviour fields
     void Start()
@@ -57,7 +57,7 @@ public class ActiveSpeaker : Interactable
     //Check if the player is in range to talk to this speaker.
     protected override void OnTriggerEnter2D(Collider2D collider)
     {
-        if (this.npcMode && collider.CompareTag("Player"))
+        if (this.npcMode && collider.CompareTag("Player") && !isTalking)
         {
             ShowIndicator(true);
             SetPotentialInteractable(true, this.gameObject);
@@ -66,9 +66,9 @@ public class ActiveSpeaker : Interactable
 
     protected override void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag == "Player" && this.npcMode && !this.isTalking)
+        if (other.tag == "Player" && this.npcMode)
         {
-            if (POTENTIAL_INTERACTABLE && POTENTIAL_INTERACTABLE != this)
+            if (Interactable.POTENTIAL_INTERACTABLE && Interactable.POTENTIAL_INTERACTABLE != this && !isTalking)
             {
                 float myDistanceToPlayer = Vector2.Distance(other.transform.position, this.transform.position);
                 float closestPotentialDistanceToPlayer = Vector2.Distance(other.transform.position, 
@@ -83,18 +83,15 @@ public class ActiveSpeaker : Interactable
                     ShowIndicator(false);
                 }
             }
-            else if (!POTENTIAL_INTERACTABLE)
+            else if (!Interactable.POTENTIAL_INTERACTABLE && !isTalking)
             {
                 ShowIndicator(true);
                 SetPotentialInteractable(true, this.gameObject);
             }
-        }
-        else
-        {
-            if (POTENTIAL_INTERACTABLE == this)
+            else if (Interactable.POTENTIAL_INTERACTABLE == this && isTalking)
             {
-                SetPotentialInteractable(false, this.gameObject);
                 ShowIndicator(false);
+                SetPotentialInteractable(false, this.gameObject);
             }
         }
     }

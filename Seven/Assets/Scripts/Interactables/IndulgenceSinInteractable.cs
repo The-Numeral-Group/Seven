@@ -10,6 +10,7 @@ public class IndulgenceSinInteractable : Interactable
     public int healAmount = 1;
     public bool pickupMode { get; set;}
     Actor player;
+    RecoverHealth playerRC;
 
     void Start()
     {
@@ -17,11 +18,16 @@ public class IndulgenceSinInteractable : Interactable
         if (pObject)
         {
             player = pObject.GetComponent<Actor>();
+            if (player)
+            {
+                playerRC = player.GetComponent<RecoverHealth>();
+            }
         }
     }
     public override void OnInteract()
     {
         //possible integet overflow
+        playerRC.healthEfx.Play();
         TOTAL_CONSUMED += 1;
         player.myHealth.currentHealth = 
             player.myHealth.currentHealth + healAmount > player.myHealth.maxHealth ? 

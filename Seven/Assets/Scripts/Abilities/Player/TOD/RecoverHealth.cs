@@ -5,6 +5,20 @@ using UnityEngine;
 public class RecoverHealth : ActorAbilityFunction<Actor, int>
 {
     public float healAmount = 3f;
+    [SerializeField]
+    [Tooltip("Reference to the health particle system prefab.")]
+    GameObject healthEfxPrefab;
+    public ParticleSystem healthEfx {get; private set;}
+
+    void Awake()
+    {
+        this.user = GetComponent<Actor>();
+        if (healthEfxPrefab)
+        {
+            GameObject particleSys = Instantiate(healthEfxPrefab, this.transform);
+            healthEfx = particleSys.GetComponent<ParticleSystem>();
+        }
+    }
     public override void Invoke(ref Actor user)
     {
         this.user = user;
@@ -17,6 +31,29 @@ public class RecoverHealth : ActorAbilityFunction<Actor, int>
         }
     }
 
+    public override bool getUsable()
+    {
+        if (this.user)
+        {
+            if (user.myHealth.currentHealth >= user.myHealth.maxHealth)
+            {
+                return false;
+            }
+        }
+        else
+        {
+            this.user = GetComponent<Actor>();
+            if (this.user)
+            {
+                if (user.myHealth.currentHealth >= user.myHealth.maxHealth)
+                {
+                    return false;
+                }
+            }
+        }
+        return usable;
+    }
+
     public override void Invoke(ref Actor user, params object[] args)
     {
         Invoke(ref user);
@@ -27,6 +64,7 @@ public class RecoverHealth : ActorAbilityFunction<Actor, int>
         user.myHealth.currentHealth = 
             user.myHealth.currentHealth + 3 <= user.myHealth.maxHealth ?  
             user.myHealth.currentHealth + 3 : user.myHealth.maxHealth;
+        healthEfx.Play();
         this.isFinished = true;
         return 0;
     }
