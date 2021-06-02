@@ -86,7 +86,7 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
     private IEnumerator TrackTarget()
     {
         isTracking = true;
-        //directionIndicator.SetActive(true);
+        directionIndicator.SetActive(true);
         while (isTracking && target != null)
         {
             chargeDirection = (target.transform.position - wrath.gameObject.transform.position).normalized;
@@ -94,15 +94,15 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
             float dtheta = 0;
             if (chargeDirection != Vector2.zero)
             {
-                //dtheta = Mathf.Acos(((Vector2.Dot(chargeDirection, defaultFacingDirection)) / (chargeDirection.magnitude * defaultFacingDirection.magnitude)));
+                dtheta = Mathf.Acos(((Vector2.Dot(chargeDirection, defaultFacingDirection)) / (chargeDirection.magnitude * defaultFacingDirection.magnitude)));
             }
             if (chargeDirection.y < 0)
             {
                 dtheta *= -1;
             }
             dtheta = dtheta * (180/Mathf.PI);
-            //directionIndicator.transform.localPosition = new Vector3(chargeDirection.x, chargeDirection.y, 0);
-            //directionIndicator.transform.localRotation = Quaternion.Euler(0, 0, dtheta);
+            directionIndicator.transform.localPosition = new Vector3(chargeDirection.x, chargeDirection.y, 0);
+            directionIndicator.transform.localRotation = Quaternion.Euler(0, 0, dtheta);
             if (chargeDirection.x > 0.0f) {
                 targetLocation.x += 6.0f;
             }
