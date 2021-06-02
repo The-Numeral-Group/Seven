@@ -2994,6 +2994,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExitToHub
       objectReference: {fileID: 0}
+    - target: {fileID: 7020924914329222516, guid: 553c5560b0eaffc4b9f602fb57204b1d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 553c5560b0eaffc4b9f602fb57204b1d, type: 3}
 --- !u!1 &1781768215 stripped
