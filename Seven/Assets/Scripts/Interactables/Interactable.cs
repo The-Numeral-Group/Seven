@@ -130,4 +130,16 @@ public abstract class Interactable : MonoBehaviour
             MenuManager.INTERACT_MENU.Hide();
         }
     }
+
+    protected virtual void OnDisable()
+    {
+        ShowIndicator(false);
+        SetPotentialInteractable(false, this.gameObject);
+    }
+
+    protected virtual void OnDestroy()
+    {
+        ShowIndicator(false);
+        SetPotentialInteractable(false, this.gameObject);
+    }
 }

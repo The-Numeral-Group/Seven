@@ -155,8 +155,9 @@ public class ApathyNPC : Interactable
     }
 
     // OnDestroy is called when this object is destroyed
-    void OnDestroy()
+    protected override void OnDestroy()
     {
+        base.OnDestroy();
         /*Gonna get kinda gimmicky here...
         When the scene unloads, this object will be destroyed. If fightCompleted
         is false when this is destroyed, that means the scene has been unloaded without the

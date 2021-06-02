@@ -57,7 +57,7 @@ public class ActiveSpeaker : Interactable
     //Check if the player is in range to talk to this speaker.
     protected override void OnTriggerEnter2D(Collider2D collider)
     {
-        if (this.npcMode && collider.CompareTag("Player"))
+        if (this.npcMode && collider.CompareTag("Player") && !isTalking)
         {
             ShowIndicator(true);
             SetPotentialInteractable(true, this.gameObject);
@@ -66,7 +66,7 @@ public class ActiveSpeaker : Interactable
 
     protected override void OnTriggerStay2D(Collider2D other)
     {
-        if (other.tag == "Player" && this.npcMode && !this.isTalking)
+        if (other.tag == "Player" && this.npcMode)
         {
             if (POTENTIAL_INTERACTABLE && POTENTIAL_INTERACTABLE != this)
             {
@@ -87,6 +87,11 @@ public class ActiveSpeaker : Interactable
             {
                 ShowIndicator(true);
                 SetPotentialInteractable(true, this.gameObject);
+            }
+            else if (POTENTIAL_INTERACTABLE == this && isTalking)
+            {
+                ShowIndicator(false);
+                SetPotentialInteractable(false, this.gameObject);
             }
         }
         else

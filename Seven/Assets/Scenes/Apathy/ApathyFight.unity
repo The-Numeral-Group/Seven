@@ -3572,12 +3572,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fd89403b09c1874caac8312df28ef1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactIndicatorPrefab: {fileID: 0}
+  interactIndicatorPrefab: {fileID: 5725056411618185430, guid: 0fae7975420221144aa605f016da6481, type: 3}
   indicatorOffset: {x: 0, y: 5}
   speakerName: Apathy
   yarnStartNode: OpeningScene
   chatBoxOffset: {x: -0.5, y: 10, z: 0}
-  npcMode: 0
+  npcMode: 1
 --- !u!82 &2051050987
 AudioSource:
   m_ObjectHideFlags: 0
