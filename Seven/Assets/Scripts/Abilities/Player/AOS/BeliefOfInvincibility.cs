@@ -96,7 +96,7 @@ public class BeliefOfInvincibility : ActorAbilityCoroutine<int>
     {
         recentAttack = true;
 
-        Debug.Log("BeliefOfInvincibility: attack read");
+        //Debug.Log("BeliefOfInvincibility: attack read");
 
         yield return new WaitForSeconds(0.5f);
 

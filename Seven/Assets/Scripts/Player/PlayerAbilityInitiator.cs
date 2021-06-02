@@ -36,6 +36,9 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     // If player can use ability or not.
     public bool canUseAbility { get; set; }
 
+    //The player's typecasted actor, for checking when the player is talking
+    private PlayerActor player;
+
     void Awake()
     {
         //Manual initialization, 'cause I (Thomas) have come to realize it can't be done automatically
@@ -68,6 +71,31 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     //  ActorAbilityInitiator, so now it's innate to the class -Thomas
     //public Actor playerActor;
 
+    //called when the component is set to active. This occurs after Start is called
+    void OnEnable()
+    {
+        //resave userActor as PlayerActor to access the isTalking variable
+        if(userActor is PlayerActor)
+        {
+            player = (userActor as PlayerActor);
+        }
+        else
+        {
+            if(userActor == null)
+            {
+                Debug.Log("userActor is null");
+                //ideally we'd error-handle this differently but we're short on time
+                var act = this.gameObject.GetComponent<PlayerActor>();
+                userActor = act;
+                player = act;
+            }
+            else
+            {
+                Debug.Log("userActor is not a PlayerActor");
+            }
+        }
+    }
+
     /* Update is called once per frame
     void Update()
     {
@@ -77,7 +105,8 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
     //this is the method called by an input press
     public void OnAttack()
     {
-        if(canAttack)
+        //Debug.Log($"player talking? {player.isTalking}");
+        if(canAttack && player?.isTalking != true)
         {
             DoAttack();
         }
