@@ -31,6 +31,7 @@ public class IndulgenceCharge : ActorAbilityFunction<Actor, int>
     bool isTracking;
     bool isCharging;
     bool hasCollided;
+    bool onWallCheck;
     //target being charged at.
     Actor target;
 
@@ -78,7 +79,7 @@ public class IndulgenceCharge : ActorAbilityFunction<Actor, int>
     protected override int InternInvoke(params Actor[] args)
     {
         directionIndicator.transform.parent = user.transform;
-        MovementLockroutine = this.user.myMovement.LockActorMovement((20f + trackTime) * chargeCount);
+        MovementLockroutine = this.user.myMovement.LockActorMovement((20f + trackTime + chargeDelay) * chargeCount);
         TotalRoutine = ChargeSequence();
         target = args[0];
         this.user.myAnimationHandler.Animator.SetBool("charging", true);
@@ -90,7 +91,7 @@ public class IndulgenceCharge : ActorAbilityFunction<Actor, int>
     IEnumerator TrackTarget()
     {
         isTracking = true;
-        //directionIndicator.SetActive(true);
+        directionIndicator.SetActive(true);
         while (isTracking && target != null)
         {
             float dtheta = 0;
@@ -98,15 +99,15 @@ public class IndulgenceCharge : ActorAbilityFunction<Actor, int>
             if (chargeDirection != Vector2.zero)
             {
                 this.user.myAnimationHandler.Flip(chargeDirection);
-                //dtheta= Mathf.Acos(((Vector2.Dot(chargeDirection, defaultFacingDirection)) / (chargeDirection.magnitude * defaultFacingDirection.magnitude)));
+                dtheta= Mathf.Acos(((Vector2.Dot(chargeDirection, defaultFacingDirection)) / (chargeDirection.magnitude * defaultFacingDirection.magnitude)));
             }
             if (chargeDirection.y < 0)
             {
                 dtheta = (dtheta *-1) + (2*Mathf.PI);
             }
             dtheta = dtheta * (180/Mathf.PI);
-            //directionIndicator.transform.localPosition = new Vector3(chargeDirection.x, chargeDirection.y, 0);
-            //directionIndicator.transform.localRotation = Quaternion.Euler(0, 0, dtheta);
+            directionIndicator.transform.localPosition = new Vector3(chargeDirection.x, chargeDirection.y, 0);
+            directionIndicator.transform.localRotation = Quaternion.Euler(0, 0, dtheta);
             yield return new WaitForFixedUpdate();
         }
     }
@@ -115,13 +116,16 @@ public class IndulgenceCharge : ActorAbilityFunction<Actor, int>
     {
         user.mySoundManager.PlaySound("skitter", 0.8f, 1.2f);
         yield return new WaitForSeconds(trackTime);
+        directionIndicator.SetActive(false);
         isTracking = false;
+        this.user.myMovement.DragActor(chargeDirection * -1 * this.user.myMovement.speed);
         yield return new WaitForSeconds(chargeDelay);
         user.mySoundManager.StopSound("skitter");
-        directionIndicator.SetActive(false);
         this.user.myMovement.DragActor(
             chargeDirection * chargeSpeedMultiplier  * this.user.myMovement.speed);
         isCharging = true;
+        yield return new WaitForSeconds(0.5f);
+        onWallCheck = true;
     }
 
     IEnumerator ChargeSequence()
@@ -152,11 +156,12 @@ public class IndulgenceCharge : ActorAbilityFunction<Actor, int>
 
     void OnCollisionEnter2D(Collision2D collider)
     {
-        if (!isFinished && isCharging)
+        if (!isFinished && isCharging && onWallCheck)
         {
             if (collider.gameObject.tag == "Environment")
             {
                 isCharging = false;
+                onWallCheck = false;
                 Camera.main.GetComponent<BaseCamera>().Shake(2.0f, 0.2f);
                 this.user.myMovement.DragActor(Vector2.zero);
                 hasCollided = true;
@@ -166,11 +171,12 @@ public class IndulgenceCharge : ActorAbilityFunction<Actor, int>
 
     void OnCollisionStay2D(Collision2D collider)
     {
-        if (!isFinished && isCharging)
+        if (!isFinished && isCharging && onWallCheck)
         {
             if (collider.gameObject.tag == "Environment")
             {
                 isCharging = false;
+                onWallCheck = false;
                 Camera.main.GetComponent<BaseCamera>().Shake(2.0f, 0.2f);
                 this.user.myMovement.DragActor(Vector2.zero);
                 hasCollided = true;
@@ -218,6 +224,7 @@ public class IndulgenceCharge : ActorAbilityFunction<Actor, int>
         hasCollided = false;
         isTracking = false;
         isCharging = false;
+        onWallCheck = false;
         isFinished = true;
     }
 }

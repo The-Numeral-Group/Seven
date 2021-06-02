@@ -1218,11 +1218,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &341074262 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8861051730678643335, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
-  m_PrefabInstance: {fileID: 435954427}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &399828220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1614,7 +1609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d73198362922184291099f7d28adcdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObjectTarget: {fileID: 341074262}
+  gameObjectTarget: {fileID: 0}
 --- !u!1001 &603069498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2208,7 +2203,7 @@ Animator:
   m_GameObject: {fileID: 920958692}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c934578a334d1684da9fb66985608a96, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2902,8 +2897,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Events:
-    m_Signals: []
-    m_Events: []
+    m_Signals:
+    - {fileID: 11400000, guid: ac62fa7f9cde5a74fbeffd22f5f2eca3, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1236873150}
+          m_TargetAssemblyTypeName: TimelineManager, Assembly-CSharp
+          m_MethodName: loadScene
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: WrathBattlePhase1
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &1236873150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2989,7 +2999,9 @@ PlayableDirector:
   - key: {fileID: 3631770316223628343, guid: 5b08369bf16095b428cb3b1c2438f356, type: 2}
     value: {fileID: 0}
   - key: {fileID: -2252265559235214317, guid: 5b08369bf16095b428cb3b1c2438f356, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 920958695}
+  - key: {fileID: 1923120301735898201, guid: 5b08369bf16095b428cb3b1c2438f356, type: 2}
+    value: {fileID: 920958695}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1236873152
@@ -3571,6 +3583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  canMove: 1
 --- !u!50 &1857178616
 Rigidbody2D:
   serializedVersion: 4

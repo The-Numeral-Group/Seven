@@ -199,7 +199,7 @@ internal class WrathFireSingle : ProjectileAbility
         AudioSource fireSFX = projectile.gameObject.GetComponent<AudioSource>();
         if (fireSFX)
         {
-            fireSFX.volume = GameSettings.MASTER_VOLUME * GameSettings.SFX_VOLUME;
+            fireSFX.volume = GameSettings.MASTER_VOLUME * GameSettings.SFX_VOLUME / 4; // The sound source is already too loud, so dividing by 4
         }
     }
 

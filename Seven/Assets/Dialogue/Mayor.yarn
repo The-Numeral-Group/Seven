@@ -3,7 +3,6 @@ tags:
 colorID: 0
 position: 785,-278
 ---
-Mayor: Good afternoon everyone!
 Mayor: Thank you all for gathering here to celebrate our centennial tradition:
 Mayor: The Festival of the Martyr!
 Mayor: We are here to pay homage to the woman who sacrificed herself to save us from the Gods of Corruption!
@@ -11,9 +10,7 @@ Mayor: Now, for the moment you've all been waiting for:
 Mayor: The announcement of the next Champion!
 Mayor: The proud hero who will descend into the Hub and save our Martyr is among us!
 Mayor: Come on up here, young man!
-//Mayor: Don't be shy, just use the movement controls! 
 
-//Move using the [movement] keys
 ===
 title: Mayor.Opening.Dialogue1
 tags: 

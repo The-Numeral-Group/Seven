@@ -11,15 +11,13 @@ colorID: 1
 position: 986,208
 ---
 GhostKnight: You fight well for someone so young. I'm impressed.
-GhostKnight: Do not be afraid, young warrior
+GhostKnight: Do not be afraid, young warrior.
 GhostKnight: I am the Champion, the chosen hero of the people.
 GhostKnight: ...but perhaps, not anymore.
-GhostKnight: It's been centuries since I have been called that.
 GhostKnight: I see now that title belongs to you.
 
-GhostKnight: Now, listen to me carefully.
 GhostKnight: As the Champion, you must defeat the Gods of Corruption.
-GhostKnight: They feed off of Humanity's fears, impulses, and selfish tendencies. 
+GhostKnight: They feed off of Humanity's selfish tendencies. 
 GhostKnight: They will trick you into falling for their corruption. 
 GhostKnight: Remember who you are fighting. Resist them. 
 GhostKnight: For the minute you give into your desires, you shall be defeated. 
@@ -87,7 +85,6 @@ GhostKnight: That is Apathy.
 GhostKnight: My heart goes out for the boy behind the clock. 
 GhostKnight: For when he was in pain, the world left him behind.
 GhostKnight: And so he left the world. 
-//GHK gives advice on the yield to corruption
 GhostKnight: Those who are in pain sometimes simply need someone to listen to their woes.
 GhostKnight: Someone to let them know they are cared about where others deny them.
 GhostKnight: My advice is only this: 
