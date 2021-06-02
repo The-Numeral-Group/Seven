@@ -69,11 +69,14 @@ public class ApathyNPC : Interactable
 
     //this object's audiosource
     private AudioSource audiosource;
+    //Reference to ActiveSpeaker
+    ActiveSpeaker activeS;
 
     //METHODS--------------------------------------------------------------------------------------
     // Start is called before the first frame update
     void Start()
     {
+        activeS = GetComponent<ActiveSpeaker>();
         //save the gamestate manager
         manager = GameObject.Find("GameSaveManager")?.GetComponent<GameSaveManager>();
 
@@ -179,8 +182,10 @@ public class ApathyNPC : Interactable
 
         //however, if the fight's over, don't trigger it
         if(fightAbandoned || fightCompleted) return;
-
-        StartCoroutine(DialogueOffsetStart());
+        if (!activeS.isTalking)
+        {
+            StartCoroutine(DialogueOffsetStart());
+        }
     }
 
     //Turns on the Apathy fight. This instance handles prepping the arena
@@ -308,6 +313,50 @@ public class ApathyNPC : Interactable
         audiosource.Stop();
         audiosource.clip = clip;
         audiosource.Play();
+    }
+
+    //overrider interact ontriggers
+    protected override void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player" && !activeS.isTalking)
+        {
+            ShowIndicator(true);
+            SetPotentialInteractable(true, this.gameObject);
+        }
+    }
+
+    /*On trigger stay used to choose between multiple interactable objects within range of the player.
+    performs selection based on distance.*/
+    protected override void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            if (Interactable.POTENTIAL_INTERACTABLE && Interactable.POTENTIAL_INTERACTABLE != this && !activeS.isTalking)
+            {
+                float myDistanceToPlayer = Vector2.Distance(other.transform.position, this.transform.position);
+                float closestPotentialDistanceToPlayer = Vector2.Distance(other.transform.position, 
+                                                            POTENTIAL_INTERACTABLE.transform.position);
+                if (myDistanceToPlayer < closestPotentialDistanceToPlayer)
+                {
+                    ShowIndicator(true);
+                    SetPotentialInteractable(true, this.gameObject);
+                }
+                else
+                {
+                    ShowIndicator(false);
+                }
+            }
+            else if (!Interactable.POTENTIAL_INTERACTABLE && !activeS.isTalking)
+            {
+                ShowIndicator(true);
+                SetPotentialInteractable(true, this.gameObject);
+            }
+            else if (Interactable.POTENTIAL_INTERACTABLE == this && activeS.isTalking)
+            {
+                ShowIndicator(false);
+                SetPotentialInteractable(false, this.gameObject);
+            }
+        }
     }
 }
 
