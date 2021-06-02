@@ -126,8 +126,11 @@ public abstract class Interactable : MonoBehaviour
         {
             //implicitly this is only reached if value is false as well.
             Interactable.POTENTIAL_INTERACTABLE = null;
-            MenuManager.INTERACT_MENU.target = null;
-            MenuManager.INTERACT_MENU.Hide();
+            if (MenuManager.INTERACT_MENU)
+            {
+                MenuManager.INTERACT_MENU.target = null;
+                MenuManager.INTERACT_MENU.Hide();
+            }
         }
     }
 

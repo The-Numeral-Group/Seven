@@ -5,6 +5,11 @@ using UnityEngine;
 public class RecoverHealth : ActorAbilityFunction<Actor, int>
 {
     public float healAmount = 3f;
+
+    void Start()
+    {
+        this.user = GetComponent<Actor>();
+    }
     public override void Invoke(ref Actor user)
     {
         this.user = user;
@@ -15,6 +20,18 @@ public class RecoverHealth : ActorAbilityFunction<Actor, int>
             InternInvoke(new Actor[0]);
             StartCoroutine(coolDown(cooldownPeriod));
         }
+    }
+
+    public override bool getUsable()
+    {
+        if (!this.user)
+        {
+            if (user.myHealth.currentHealth >= user.myHealth.maxHealth)
+            {
+                return false;
+            }
+        }
+        return usable;
     }
 
     public override void Invoke(ref Actor user, params object[] args)
