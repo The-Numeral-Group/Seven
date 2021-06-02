@@ -1218,11 +1218,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &341074262 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8861051730678643335, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
-  m_PrefabInstance: {fileID: 435954427}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &399828220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1614,7 +1609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d73198362922184291099f7d28adcdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObjectTarget: {fileID: 341074262}
+  gameObjectTarget: {fileID: 0}
 --- !u!1001 &603069498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3571,6 +3566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  canMove: 1
 --- !u!50 &1857178616
 Rigidbody2D:
   serializedVersion: 4
