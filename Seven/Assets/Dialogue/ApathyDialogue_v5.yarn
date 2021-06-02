@@ -4,7 +4,6 @@ colorID: 0
 position: 242,-614
 ---
 <<EZPlayerUnlock ApathyPreFightManager>>
-Apathy: ...
 Apathy: Do you know what it is like...
 Apathy: To sit and watch your life slip away from you?
 Apathy: To stop feeling like yourself?
@@ -30,7 +29,7 @@ Apathy: And changed me...into this...
 Apathy: I don't remember who I was.
 Apathy: And I don't care. 
 Apathy: Because you see...
-Apathy: Time doesn't care about anyone.
+Apathy: ...Time doesn't care about anyone.
 <<loadScene TimelineManager Apathy_Transition>>
 ===
 title: Apathy_Win
@@ -78,17 +77,15 @@ colorID: 0
 position: 241,-841
 ---
 Apathy: ...
-Apathy: ...another champion...
-Apathy: Sigh...
+Apathy: ...Another champion...
 Apathy: Don't you guys ever stop trying to save her?
 Apathy: It's been centuries. 
 Apathy: Give up already...I have.
 Apathy: I'm not going to fight you so you might as well just leave. 
 
-Apathy: I don't want to fight...
 Apathy: Its always the same outcome.
 Apathy: Champion comes in, I try to talk to them, they punch me in the face
-Apathy: they die
+Apathy: They die
 Apathy: Nobody ever stops to listen to what I have to say
 Apathy: And if they do, they always leave in the middle of my story.
 Apathy: ...
