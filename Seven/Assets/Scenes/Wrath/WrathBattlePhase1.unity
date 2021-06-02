@@ -2723,7 +2723,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5535586733847164690, guid: bec6814719020c34fbbdc352222e181a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20.5
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5535586733847164690, guid: bec6814719020c34fbbdc352222e181a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -3516,6 +3516,7 @@ MonoBehaviour:
   invokeBlankWhenBadArguments: 1
   centerPos: {x: 0, y: 5}
   duration: 7
+  animDelay: 1
   travelDuration: 0.3
   stunnedDuration: 1.5
   pullAttemptNumber: 4
@@ -3657,6 +3658,7 @@ MonoBehaviour:
   chargeCount: 3
   trackTime: 1
   chargeDelay: 0.5
+  animateDelay: 1
   hitbox: {fileID: 1367552311}
   targetPoint: {fileID: 1642947900134007727, guid: 19c9a2f7f2c0e8a4d848d6e9d1222727, type: 3}
   directionIndicatorPrefab: {fileID: 7844965136158205026, guid: d33fdd4af9234bf4ab4113fb0f29f4e2, type: 3}

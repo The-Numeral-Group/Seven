@@ -10,6 +10,9 @@ public class WrathChainPull : ActorAbilityFunction<Actor, int>
     // The duration of the ability. (How long the wrath's movement will be locked for)
     public float duration;
 
+    // The delay after animation gets played
+    public float animDelay;
+    
     // The duration that wrath will take to move to the centerPos.
     public float travelDuration;
 
@@ -78,6 +81,9 @@ public class WrathChainPull : ActorAbilityFunction<Actor, int>
         {
             if(!pulled) // Player has not been pulled yet, keep throwing chain.
             {
+                wrath.myAnimationHandler.TrySetTrigger("Wrath_Chain");
+                yield return new WaitForSeconds(animDelay);
+
                 pulledNumber++;
                 chainList = Instantiate(this.toInstantiateChainList, wrath.transform.position, Quaternion.identity);
                 StartCoroutine(spawnChainPulling());

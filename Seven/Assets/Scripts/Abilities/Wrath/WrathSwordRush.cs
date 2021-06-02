@@ -8,16 +8,19 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
     public int chargeCount;
     public float trackTime;
     public float chargeDelay;
+    public float animateDelay;
 
     public GameObject hitbox;
     public GameObject targetPoint;
 
     private IEnumerator ChargeRoutine;
     private IEnumerator TrackRoutine;
+    private IEnumerator animateRoutine;
     private IEnumerator MovementLockroutine;
     private IEnumerator TotalRoutine;
 
     private Vector2 chargeDirection;
+    private Vector2 chargeDirectionNonNorm;
     private Vector3 targetLocation;
 
     private bool isCharging;
@@ -89,18 +92,26 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
         //directionIndicator.SetActive(true);
         while (isTracking && target != null)
         {
-            chargeDirection = (target.transform.position - wrath.gameObject.transform.position).normalized;
+            chargeDirectionNonNorm = target.transform.position - wrath.gameObject.transform.position;
+
+            chargeDirection = chargeDirectionNonNorm.normalized;
+
             targetLocation = target.transform.position;
-            float dtheta = 0;
+            /*float dtheta = 0;
             if (chargeDirection != Vector2.zero)
             {
-                //dtheta = Mathf.Acos(((Vector2.Dot(chargeDirection, defaultFacingDirection)) / (chargeDirection.magnitude * defaultFacingDirection.magnitude)));
+                dtheta = Mathf.Acos(((Vector2.Dot(chargeDirection, defaultFacingDirection)) / (chargeDirection.magnitude * defaultFacingDirection.magnitude)));
             }
             if (chargeDirection.y < 0)
             {
                 dtheta *= -1;
             }
-            dtheta = dtheta * (180/Mathf.PI);
+            dtheta = dtheta * (180/Mathf.PI);*/
+
+            // Update Wrath's facing direction for animator
+            WrathAnimationHandler wrathAnimationHandler = wrath.myAnimationHandler as WrathAnimationHandler;
+            wrathAnimationHandler.animateSwordRush(chargeDirection);
+
             //directionIndicator.transform.localPosition = new Vector3(chargeDirection.x, chargeDirection.y, 0);
             //directionIndicator.transform.localRotation = Quaternion.Euler(0, 0, dtheta);
             if (chargeDirection.x > 0.0f) {
@@ -125,6 +136,19 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
         }
     }
 
+    private IEnumerator animateWrath()
+    {
+        // Only animate when Wrath is tracking 
+        if (isTracking && target != null)
+        {
+            // Delay before animation starts
+            yield return new WaitForSeconds(animateDelay);
+
+            // charge animation
+            wrath.myAnimationHandler.Animator.SetBool("Wrath_SwordRush", true);
+        }
+    }
+
     private IEnumerator Charge()
     {
         hitbox.SetActive(false);
@@ -132,14 +156,38 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
 
         isTracking = false;
 
-        // Play Wrath charging animation
-        //WrathAnimationHandler wrathAnimationHandler = wrath.myAnimationHandler as WrathAnimationHandler;
-        //wrathAnimationHandler.animateSwordRush();
-
         // Place target Point
         targetPointObject = Instantiate(this.targetPoint, targetLocation, Quaternion.identity);
 
         yield return new WaitForSeconds(chargeDelay);
+
+        Vector2 rotateDirection = chargeDirection * chargeSpeedMultiplier * wrath.myMovement.speed;
+        float angle = Mathf.Atan2(rotateDirection.y, rotateDirection.x) * Mathf.Rad2Deg;
+        if(rotateDirection.x >= 0.0f)
+        {
+            if (rotateDirection.y >= 0.0f)
+            {
+                angle -= 90.0f;
+            }
+            else
+            {
+                angle += 90.0f;
+            }
+        }
+        else
+        {
+            if(rotateDirection.y >= 0.0f)
+            {
+                angle -= 90.0f;
+            }
+            else
+            {
+                angle += 90.0f;
+            }
+        }
+        // Rotate wrath's gameObject
+        wrath.transform.localRotation = Quaternion.Euler(0, 0, angle);
+
         directionIndicator.SetActive(false);
         hitbox.SetActive(true);
 
@@ -153,15 +201,19 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
         IEnumerator FailSafeRoutine = FailSafe();
         for (int i = 0; i < chargeCount; i++)
         {
+            wrath.transform.localRotation = Quaternion.Euler(0, 0, 0);
             StopCoroutine(FailSafeRoutine);
             hasArrived = false;
             ChargeRoutine = Charge();
             FailSafeRoutine = FailSafe();
             TrackRoutine = TrackTarget();
+            animateRoutine = animateWrath();
             StartCoroutine(TrackRoutine);
+            StartCoroutine(animateRoutine);
             StartCoroutine(ChargeRoutine);
             StartCoroutine(FailSafeRoutine);
             yield return new WaitUntil(() => hasArrived);
+            wrath.myAnimationHandler.Animator.SetBool("Wrath_SwordRush", false);
             Destroy(targetPointObject);
         }
         StopCoroutine(FailSafeRoutine);
@@ -209,6 +261,7 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
         StopCoroutine(TotalRoutine);
         StopCoroutine(ChargeRoutine);
         StopCoroutine(TrackRoutine);
+        StopCoroutine(animateRoutine);
         StartCoroutine(wrath.myMovement.LockActorMovement(-1f));
         //wrath.myAnimationHandler.Animator.SetBool("charging", false);
         Destroy(targetPointObject);
@@ -216,6 +269,7 @@ public class WrathSwordRush : ActorAbilityFunction<Actor, int>
         chargeDirection = Vector2.right;
         directionIndicator.transform.localPosition = defaultFacingDirection;
         directionIndicator.transform.localRotation = Quaternion.identity;
+        wrath.transform.localRotation = Quaternion.Euler(0, 0, 0);
         directionIndicator.SetActive(false);
         hitbox.SetActive(false);
         hasArrived = false;

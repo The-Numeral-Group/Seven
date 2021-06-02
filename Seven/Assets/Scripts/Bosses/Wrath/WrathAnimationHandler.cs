@@ -28,8 +28,18 @@ public class WrathAnimationHandler : ActorAnimationHandler
         Animator.SetTrigger("Wrath_SwordAttack");
     }
 
-    public void animateSwordRush()
+    public void animateSwordRush(Vector2 facingDirection)
     {
-        Animator.SetTrigger("Wrath_SwordRush");
+        // check facingDirection
+        if(facingDirection.y >= 0.0f)
+        {
+            Animator.SetBool("Wrath_SwordRush_N", true);
+            Animator.SetBool("Wrath_SwordRush_S", false);
+        }
+        else
+        {
+            Animator.SetBool("Wrath_SwordRush_S", true);
+            Animator.SetBool("Wrath_SwordRush_N", false);
+        }
     }
 }
