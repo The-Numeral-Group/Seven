@@ -33,25 +33,18 @@ public class HubEventListener : MonoBehaviour
 
             timelineManager.GetComponent<TimelineManager>().startTimeline();
 
-            // Lock player's movement
-            StartCoroutine(playerObject.GetComponent<Actor>().myMovement.LockActorMovement(14.0f));
-
-            // Lock player's dodge
-            StartCoroutine(lockPlayerAbility(14.0f));
+            // Lock player
+            StartCoroutine(lockPlayer(12.0f));
 
             this.gameSaveManagerScript.setBoolValue(false, 19);
         }
     }
 
-    private IEnumerator lockPlayerAbility(float duration)
+    private IEnumerator lockPlayer(float duration)
     {
-        this.playerObject.GetComponent<PlayerAbilityInitiator>().canDodge = false;
-        this.playerObject.GetComponent<PlayerAbilityInitiator>().canAttack = false;
-        this.playerObject.GetComponent<PlayerAbilityInitiator>().canUseAbility = false;
+        this.playerObject.GetComponent<PlayerActor>().playerInput.SwitchCurrentActionMap("UI");
         yield return new WaitForSeconds(duration);
-        this.playerObject.GetComponent<PlayerAbilityInitiator>().canDodge = true;
-        this.playerObject.GetComponent<PlayerAbilityInitiator>().canAttack = true;
-        this.playerObject.GetComponent<PlayerAbilityInitiator>().canUseAbility = true;
+        this.playerObject.GetComponent<PlayerActor>().playerInput.SwitchCurrentActionMap("Player");
     }
 
     private void checkBossProgress()

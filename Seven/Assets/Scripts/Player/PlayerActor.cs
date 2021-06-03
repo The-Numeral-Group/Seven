@@ -29,6 +29,7 @@ public class PlayerActor : Actor
     {
         isTalking = false;
         hasSword = true;
+        playerInput = GetComponent<PlayerInput>();
     }
 
     //Initialize monobehaviour fields
@@ -36,7 +37,7 @@ public class PlayerActor : Actor
     {
         base.Start();
         //this.myAbilityInitiator = GetComponent<PlayerAbilityInitiator>();
-        playerInput = GetComponent<PlayerInput>();
+        //playerInput = GetComponent<PlayerInput>();
 
         SetSwordState(startWithSword);
 
