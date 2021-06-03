@@ -439,34 +439,6 @@ PrefabInstance:
       propertyPath: dummyLocation
       value: 
       objectReference: {fileID: 4550933279877287971}
-    - target: {fileID: 3372392985872605520, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3372392985872605604, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.120257795
-      objectReference: {fileID: 0}
-    - target: {fileID: 3372392985872605604, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
-      propertyPath: m_Size.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3372392985872605604, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.5751598
-      objectReference: {fileID: 0}
-    - target: {fileID: 3372392985872605604, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
-      propertyPath: m_Size.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3372392985872605604, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3372392985872605608, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
-      propertyPath: startingMaxHealth
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 3372392985872605614, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
       propertyPath: gameSaveManager
       value: 
@@ -514,14 +486,6 @@ PrefabInstance:
     - target: {fileID: 3372392985914523463, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3372392985914523463, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3372392985914523463, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3372392985914523465, guid: 607633a6ec321954ca1bcffefe922eaf, type: 3}
       propertyPath: m_Name

@@ -20,7 +20,7 @@ MonoBehaviour:
   corruptionVfx: {fileID: 0}
   dummyLocation: {fileID: 0}
   indulgenceSinObject: {fileID: 7900556847160439946, guid: a2ef488a9caab4f418187ae042687afc, type: 3}
-  rangeToDisengageAttack: 5
+  rangeToDisengageAttack: 9
 --- !u!1 &3372392985914523465
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,7 +47,7 @@ Transform:
   m_GameObject: {fileID: 3372392985914523465}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 3372392985872605609}
   m_Father: {fileID: 0}
@@ -87,7 +87,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6735736805293186646, guid: 576248deba686134f8b9515839d42c58, type: 3}
       propertyPath: startingMaxHealth
-      value: 25
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 6735736805293186646, guid: 576248deba686134f8b9515839d42c58, type: 3}
       propertyPath: invincibilityDuration
@@ -136,6 +136,22 @@ PrefabInstance:
     - target: {fileID: 6735736805293186647, guid: 576248deba686134f8b9515839d42c58, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735736805293186650, guid: 576248deba686134f8b9515839d42c58, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.120257795
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735736805293186650, guid: 576248deba686134f8b9515839d42c58, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.5751598
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735736805293186650, guid: 576248deba686134f8b9515839d42c58, type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6735736805293186650, guid: 576248deba686134f8b9515839d42c58, type: 3}
+      propertyPath: m_Size.y
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6735736805293186651, guid: 576248deba686134f8b9515839d42c58, type: 3}
       propertyPath: sinAbility
