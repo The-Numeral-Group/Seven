@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 203477084623807018}
   - component: {fileID: 203477084623807013}
   - component: {fileID: 4051809323466200683}
+  - component: {fileID: 5483110088345659860}
   m_Layer: 0
   m_Name: Apathy Ranged Marker
   m_TagString: Untagged
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7373000448512826187, guid: 8fcfd223351c66655ac08dd5c0fa4ff9, type: 3}
+  m_Sprite: {fileID: 3184024161003463675, guid: 5809d526a7c174cd095bd1dbc0ee3741, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,3 +103,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &5483110088345659860
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203477084623807014}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2
