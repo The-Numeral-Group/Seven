@@ -58,7 +58,7 @@ public class IndulgenceP1ProjAttack : ActorAbilityFunction<Vector2, int>
             {
                 StopCoroutine(movementLock);
             }
-            movementLock = this.user.myMovement.LockActorMovement(projectileSpawnTime);
+            movementLock = this.user.myMovement.LockActorMovement(projectileSpawnTime * 2);
             StartCoroutine(movementLock);
             this.user.myMovement.DragActor(Vector2.zero);
         }
@@ -128,6 +128,8 @@ public class IndulgenceP1ProjAttack : ActorAbilityFunction<Vector2, int>
         {
             yield return new WaitForFixedUpdate();
         }
+        StopCoroutine(movementLock);
+        StartCoroutine(this.user.myMovement.LockActorMovement(-1f));
         isFinished = true;
     }
 

@@ -222,7 +222,7 @@ public class IndulgenceP1Actor : Actor
 
     void RedirectPath(ref Vector2 directionToDestination, float distanceToDestination)
     {
-        //rotate angle of movement slightly scan for a wall.
+        //rotate angle of movement slightly scan for a wall.//
         float dtheta = Mathf.PI/3f;
         Vector2 newDirection = RotateVector2(directionToDestination, dtheta);
         distanceToDestination = (distanceToDestination/2) / dtheta;
