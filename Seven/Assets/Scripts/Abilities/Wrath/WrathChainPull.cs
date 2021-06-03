@@ -16,8 +16,12 @@ public class WrathChainPull : ActorAbilityFunction<Actor, int>
     // The duration that wrath will take to move to the centerPos.
     public float travelDuration;
 
+    // How long the player will be pulled
+    public float pullDuration;
+   
     // How long player will be stunned when gets hooked.
     public float stunnedDuration;
+
 
     // The number of pulls that wrath will attempt before moving on.
     public float pullAttemptNumber;
@@ -172,12 +176,9 @@ public class WrathChainPull : ActorAbilityFunction<Actor, int>
         {
             pulled = true;
             // Lock player's movement
-            StartCoroutine(player.GetComponent<Actor>().myMovement.LockActorMovement(this.stunnedDuration));
+            StartCoroutine(stunPlayer());
 
-            // Turn off player's dodge ability.
-            player.GetComponent<PlayerAbilityInitiator>().canDodge = false;
-
-            yield return new WaitForSeconds(this.stunnedDuration / 2);
+            yield return new WaitForSeconds(this.pullDuration / 2);
 
             Vector2 wrathPos = new Vector2(wrath.transform.position.x, wrath.transform.position.y);
             Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.y);
@@ -185,12 +186,25 @@ public class WrathChainPull : ActorAbilityFunction<Actor, int>
 
             player.GetComponent<Actor>().myMovement.DragActor(pullDirection * pullIntensity);
 
-            yield return new WaitForSeconds(this.stunnedDuration / 2);
+            yield return new WaitForSeconds(this.pullDuration / 2);
 
             player.GetComponent<Actor>().myMovement.DragActor(Vector2.zero);
 
-            // Turn on player's dodge ability.
-            player.GetComponent<PlayerAbilityInitiator>().canDodge = true;
         }
+    }
+
+    private IEnumerator stunPlayer()
+    {
+        // Lock player's movement
+        StartCoroutine(player.GetComponent<Actor>().myMovement.LockActorMovement(this.stunnedDuration));
+
+        // Turn off player's dodge ability.
+        player.GetComponent<PlayerAbilityInitiator>().canDodge = false;
+
+        yield return new WaitForSeconds(this.stunnedDuration);
+
+        // Turn on player's dodge ability.
+        player.GetComponent<PlayerAbilityInitiator>().canDodge = true;
+
     }
 }

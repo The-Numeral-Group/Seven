@@ -9,14 +9,17 @@ public class BackgroundMusic : MonoBehaviour
     public AudioSource audioSource;
 
     public bool loop;
-
     public float loopStartTime;
-    float originalVolume;
+    [Tooltip("Baseline volume to be used to moderate volume control. Should essentially be the same as what you would set the audiosource volume to.")]
+    [Range(0, 1)]
+    public float originalVolume;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        this.audioSource = this.GetComponent<AudioSource>();
+        if (this.audioSource == null)
+        {
+            this.audioSource = GetComponent<AudioSource>();
+        }
         originalVolume = audioSource.volume;
         // Don't use the audioSource's builtin loop. Update() will manually loop the audio clip
         this.audioSource.loop = false;

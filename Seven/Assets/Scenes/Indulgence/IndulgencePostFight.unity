@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1613425606569046102, guid: f58695f9ef18332468eabad26d9dc5a0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7431792500328822264, guid: f58695f9ef18332468eabad26d9dc5a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -478,19 +482,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
       propertyPath: upperBound
-      value: 14.5
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
       propertyPath: lowerBound
-      value: -14.5
+      value: -31
       objectReference: {fileID: 0}
     - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
       propertyPath: rightBound
-      value: 22.5
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
       propertyPath: leftBound
-      value: -22.5
+      value: -34
       objectReference: {fileID: 0}
     - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
       propertyPath: defaultZoomLevel
@@ -498,7 +502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
       propertyPath: defaultZoom
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
       propertyPath: minZoom
@@ -524,9 +528,13 @@ PrefabInstance:
       propertyPath: targetPOIs.Array.data[0]
       value: 
       objectReference: {fileID: 8552285509040165028}
+    - target: {fileID: 7380622624676843008, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
+      propertyPath: zoomSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8339427917257392395, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
       propertyPath: orthographic size
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5da66ff09546d434e8ec12f0f3870a97, type: 3}
@@ -954,7 +962,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.3
+  m_Radius: 8
 --- !u!114 &1104539716766255744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,7 +992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3504412404802197980, guid: 553c5560b0eaffc4b9f602fb57204b1d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 3504412404802197980, guid: 553c5560b0eaffc4b9f602fb57204b1d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1022,9 +1030,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5506221146564284388, guid: 553c5560b0eaffc4b9f602fb57204b1d, type: 3}
+      propertyPath: m_Offset.y
+      value: -3
+      objectReference: {fileID: 0}
     - target: {fileID: 7020924914329222516, guid: 553c5560b0eaffc4b9f602fb57204b1d, type: 3}
       propertyPath: m_Name
       value: ExitToHub
+      objectReference: {fileID: 0}
+    - target: {fileID: 7020924914329222517, guid: 553c5560b0eaffc4b9f602fb57204b1d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220212263810353239, guid: 553c5560b0eaffc4b9f602fb57204b1d, type: 3}
+      propertyPath: m_Radius
+      value: 5.63
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 553c5560b0eaffc4b9f602fb57204b1d, type: 3}
