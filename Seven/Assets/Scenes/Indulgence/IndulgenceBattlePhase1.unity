@@ -170,6 +170,7 @@ MonoBehaviour:
   audioSource: {fileID: 180689935}
   loop: 1
   loopStartTime: 18.478
+  originalVolume: 0.2
 --- !u!82 &180689935
 AudioSource:
   m_ObjectHideFlags: 0
@@ -182,7 +183,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1e7136819661ffe44875f09d6e820155, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.05
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
