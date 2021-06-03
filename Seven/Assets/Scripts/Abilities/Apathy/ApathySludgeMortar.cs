@@ -18,14 +18,21 @@ public class ApathySludgeMortar : ActorAbilityFunction<GameObject, int>
 
     //the target will come from Invoke
 
-    [Tooltip("How far ahead of the target the leading markers should be.")]
-    public float leadMarkerDistance = 5f;
-
     [Tooltip("How long the markers should follow before they stop moving.")]
     public float initialWaitTime = 3f;
 
     [Tooltip("How long it should take for a projectile to reach its target.")]
     public float shotFlightTime = 2f;
+
+    [Header("Marker Settings")]
+    [Tooltip("How far ahead of the target the leading markers should be.")]
+    public float leadMarkerDistance = 5f;
+
+    [Tooltip("How long a marker should wait to grab someone before it disappears")]
+    public float waitDuration = 15f;
+
+    [Tooltip("How long a marker should hold a target in place for")]
+    public float grabDuration = 4f;
 
     //the single-shot version of the ability
     private ApathySludgeSingle single;
@@ -115,6 +122,8 @@ internal class ApathySludgeSingle : ProjectileAbility
 
     private float shotFlightTime;
 
+    private ApathySludgeMortar wrap;
+
     //recieves relevant initialization data
     public void Init(ApathySludgeMortar wrap)
     {
@@ -123,6 +132,8 @@ internal class ApathySludgeSingle : ProjectileAbility
         this.leadMarkerDistance = wrap.leadMarkerDistance;
         this.initialWaitTime = wrap.initialWaitTime;
         this.shotFlightTime = wrap.shotFlightTime;
+
+        this.wrap = wrap;
     }
 
     /*Launch the projectile. The anticipated argument is the gameObject being shot at. The 
@@ -208,7 +219,9 @@ internal class ApathySludgeSingle : ProjectileAbility
         
 
         //Step 8: Destroy the marker and the projectile, if they still exist
-        Destroy(markObjA);
+        //Destroy(markObjA);
+        markObjA.GetComponent<ApathySludgeMarker>()
+            .BecomeGrabber(wrap.waitDuration, wrap.grabDuration);
         //We need to double check here in case proj obj was destroyed on impact
         if(projObj)
         {
@@ -241,7 +254,8 @@ internal class ApathySludgeSingle : ProjectileAbility
         yield return new WaitForSeconds(shotFlightTime);
 
         //Step 12: Destroy the marker and the projectile, if they still exist
-        Destroy(markObjB);
+        markObjB.GetComponent<ApathySludgeMarker>()
+            .BecomeGrabber(wrap.waitDuration, wrap.grabDuration);
         //We need to double check here in case proj obj was destroyed on impact
         if(projObj)
         {
@@ -258,9 +272,16 @@ internal class ApathySludgeSingle : ProjectileAbility
 
 internal class ApathySludgeMarker : MonoBehaviour
 {
+    private bool grabbing = false;
+
+    private Transform markerTarget = null;
+
+    private ActorMovement grabTarget = null;
+
     //This is a simple wrapper for the coroutine
     public void Follow(Transform target, float offset, float duration, Transform faceAnchor = null)
     {
+        markerTarget = target;
         StartCoroutine(InternFollow(target, offset, duration, faceAnchor));
     }
 
@@ -295,5 +316,67 @@ internal class ApathySludgeMarker : MonoBehaviour
             timer += Time.deltaTime;
         }
         while(timer < duration);
+    }
+
+    //Turns a marker into a grabber so it can grab things
+    public void BecomeGrabber(float waitDuration, float grabDuration)
+    {
+        StartCoroutine(Grab(waitDuration, grabDuration));
+    }
+
+    IEnumerator Grab(float waitDuration, float grabDuration)
+    {
+        this.gameObject.GetComponent<Animator>().SetTrigger("go");
+        grabbing = true;
+        //for the duration of the wait...
+        for(float clock = 0f; clock < waitDuration; clock += Time.deltaTime)
+        {
+            //if something has been grabbed...
+            if(grabTarget != null)
+            {
+                //lock them in place and wait it out
+                grabTarget.StartCoroutine(grabTarget.LockActorMovement(grabDuration));
+                for(float grabClock = 0f; grabClock < grabDuration; grabClock += Time.deltaTime)
+                {
+                    //calculate the direction from the target to this object's center
+                    Vector2 centerDir = 
+                        ((this.gameObject.transform.position + new Vector3(0f, 1f, 0f))
+                            - grabTarget.gameObject.transform.position).normalized;
+
+                    //drag the target that way
+                    grabTarget.DragActor(centerDir * 1.5f);
+                    yield return null;
+                }
+                ConcludeMarker();
+                yield break;
+            }
+
+            //if not, just keep ticking
+            yield return null;
+        }
+
+        ConcludeMarker();
+    }
+
+    void OnTriggerEnter2D(Collider2D collided)
+    {
+        if(grabbing && collided.gameObject == markerTarget.gameObject)
+        {
+            if(!markerTarget.gameObject.TryGetComponent(out ActorMovement mov))
+            {
+                Debug.LogWarning($"ApathySludgeMortar: target {collided.gameObject.name} cannot" +  
+                    " be grabbed.");
+            }
+            else
+            {
+                grabTarget = mov;
+                grabbing = false;
+            }
+        }
+    }
+
+    void ConcludeMarker()
+    {
+        Destroy(this.gameObject);
     }
 }

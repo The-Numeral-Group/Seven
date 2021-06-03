@@ -3813,6 +3813,7 @@ MonoBehaviour:
   audioSource: {fileID: 2051050987}
   loop: 1
   loopStartTime: 0
+  originalVolume: 0
 --- !u!1 &2087267176
 GameObject:
   m_ObjectHideFlags: 0
@@ -3859,6 +3860,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1505475740721714201, guid: 99fcc2f793461c14cb476332c95751f1, type: 3}
+      propertyPath: m_ShapePath.Array.data[4].x
+      value: -3.3393323
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505475740721714201, guid: 99fcc2f793461c14cb476332c95751f1, type: 3}
+      propertyPath: m_ShapePath.Array.data[4].y
+      value: 5.154228
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505475740721714201, guid: 99fcc2f793461c14cb476332c95751f1, type: 3}
+      propertyPath: m_ShapePath.Array.data[3].x
+      value: 3.25482
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505475740721714201, guid: 99fcc2f793461c14cb476332c95751f1, type: 3}
+      propertyPath: m_ShapePath.Array.data[3].y
+      value: 5.028838
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505475740721714201, guid: 99fcc2f793461c14cb476332c95751f1, type: 3}
+      propertyPath: m_ShapePath.Array.data[2].x
+      value: 3.2859526
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505475740721714201, guid: 99fcc2f793461c14cb476332c95751f1, type: 3}
+      propertyPath: m_ShapePath.Array.data[2].y
+      value: 0.15915489
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505475740721714201, guid: 99fcc2f793461c14cb476332c95751f1, type: 3}
+      propertyPath: m_ShapePath.Array.data[5].x
+      value: -3.204395
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505475740721714201, guid: 99fcc2f793461c14cb476332c95751f1, type: 3}
+      propertyPath: m_ShapePath.Array.data[5].y
+      value: 0.17954731
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505475740721714201, guid: 99fcc2f793461c14cb476332c95751f1, type: 3}
+      propertyPath: m_ShapePath.Array.data[6].y
+      value: -1.5920835
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505475740721714201, guid: 99fcc2f793461c14cb476332c95751f1, type: 3}
+      propertyPath: m_ShapePath.Array.data[6].x
+      value: -3.9749248
+      objectReference: {fileID: 0}
     - target: {fileID: 1505475741029745774, guid: 99fcc2f793461c14cb476332c95751f1, type: 3}
       propertyPath: m_SortingOrder
       value: 5
@@ -3910,6 +3951,10 @@ PrefabInstance:
     - target: {fileID: 1505475741812186348, guid: 99fcc2f793461c14cb476332c95751f1, type: 3}
       propertyPath: m_Name
       value: Various Props
+      objectReference: {fileID: 0}
+    - target: {fileID: 1505475741812186348, guid: 99fcc2f793461c14cb476332c95751f1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99fcc2f793461c14cb476332c95751f1, type: 3}
@@ -4086,6 +4131,7 @@ MonoBehaviour:
   audioSource: {fileID: 1505475741844249961}
   loop: 1
   loopStartTime: 0
+  originalVolume: 0
 --- !u!1001 &7522185283639680499
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4095,11 +4141,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7522185283508685396, guid: 2186ce7d5301fab41b4a7553326e9396, type: 3}
       propertyPath: m_Size.y
-      value: 3
+      value: 2.999998
       objectReference: {fileID: 0}
     - target: {fileID: 7522185283508685396, guid: 2186ce7d5301fab41b4a7553326e9396, type: 3}
       propertyPath: m_Offset.y
-      value: 5
+      value: 6.1523447
       objectReference: {fileID: 0}
     - target: {fileID: 7522185283508685399, guid: 2186ce7d5301fab41b4a7553326e9396, type: 3}
       propertyPath: m_SortingOrder
