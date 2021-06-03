@@ -14,6 +14,9 @@ public class EgoCrowdZone : Interactable
     [Tooltip("The material to apply to whoever recieves the spotlight.")]
     public Material effectMaterial;
 
+    [Tooltip("How long the player should flex for when interacting with the spotlight")]
+    public float flexTime = 0.25f;
+
     //reference to the player
     private Actor player;
     //METHODS--------------------------------------------------------------------------------------
@@ -28,6 +31,9 @@ public class EgoCrowdZone : Interactable
     {
         var sin = new EgoSin(boostFactor, duration, effectMaterial);
         player.myEffectHandler.AddTimedEffect(sin, duration);
+        player.mySoundManager.PlaySound("CrowdCheer");
+        player.StartCoroutine(FlexAnimationTimer());
+        
         //if too much sin...
         Debug.Log($"applied: {EgoSin.applicationCount}, max: {EgoSin.sinMax}");
         if(EgoSin.applicationCount >= EgoSin.sinMax)
@@ -46,6 +52,13 @@ public class EgoCrowdZone : Interactable
         var sin = new EgoSin(boostFactor, duration, effectMaterial, false);
         interactor.myEffectHandler.AddTimedEffect(sin, duration);
         Cleanup();
+    }
+
+    IEnumerator FlexAnimationTimer()
+    {
+        player.myAnimationHandler.TrySetBool("ego_flex", true);
+        yield return new WaitForSeconds(flexTime);
+        player.myAnimationHandler.TrySetBool("ego_flex", false);
     }
 
     //remove this instance of the crowd from the world

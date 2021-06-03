@@ -195,6 +195,7 @@ MonoBehaviour:
   boostFactor: 1
   duration: 10
   effectMaterial: {fileID: 2100000, guid: 3d9dda8042690c24bab17ca1d6033137, type: 2}
+  flexTime: 0.5
 --- !u!212 &7930759915255675868
 SpriteRenderer:
   m_ObjectHideFlags: 0

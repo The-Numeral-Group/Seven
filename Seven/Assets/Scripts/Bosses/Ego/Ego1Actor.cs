@@ -177,8 +177,9 @@ public class Ego1Actor : Actor
             {
                 //Reset Ego's sprinting/swaggering
                 StopCoroutine(sprintTimer);
+                this.myMovement.speed = swaggerSpeed;
+                egoAnims?.SetSwagger(true);
                
-
                 //stop moving
                 this.myMovement.MoveActor(Vector2.zero);
                 

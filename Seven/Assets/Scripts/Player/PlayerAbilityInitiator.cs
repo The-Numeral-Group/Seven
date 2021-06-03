@@ -157,7 +157,8 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
             {
                 selectedAbility.Invoke(ref userActor);
                 VFXManager.DoAbilityMaterial(selectedAbility);
-                MenuManager.ABILITY_MENU.PutButtonOnCooldown(selectedAbility.getCooldown(), selectedAbility);
+                float time = selectedAbility.getCooldown() > 0 ? selectedAbility.getCooldown() : 0.1f;
+                MenuManager.ABILITY_MENU.PutButtonOnCooldown(time, selectedAbility);
             }
         }
     }

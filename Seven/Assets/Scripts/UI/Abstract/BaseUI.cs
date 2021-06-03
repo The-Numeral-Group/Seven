@@ -22,12 +22,14 @@ public abstract class BaseUI : MonoBehaviour
         this.gameObject.SetActive(value);
     }
 
+    //This is not done efficiently. Woiuld have been easier it was was invoked from ISelecter onselect
     protected virtual void Update()
     {
         if (uiSelector != null)
         {
             uiSelector.transform.position = EventSystem.current.currentSelectedGameObject.transform.position + 
-                new Vector3(EventSystem.current.currentSelectedGameObject.GetComponent<RectTransform>().sizeDelta.x,0,0);
+                new Vector3(EventSystem.current.currentSelectedGameObject.GetComponent<RectTransform>().sizeDelta.x + 
+                uiSelector.sizeDelta.x / 2, 0, 0);
         }
     }
 

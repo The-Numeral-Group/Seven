@@ -37,6 +37,7 @@ public class Apathetic : ActorAbilityFunction<int, int>, ActorEffect
     // Start is called before the first frame update
     void Start()
     {
+        cooldownPeriod = effectDuration;
         //initialize max uses
         usesRemaining = usesPerFight;
 
@@ -50,7 +51,7 @@ public class Apathetic : ActorAbilityFunction<int, int>, ActorEffect
     protected override int InternInvoke(params int[] args)
     {
         usable = false;
-        if(!user.myEffectHandler.EffectPresent<Apathetic>() && usesRemaining > 0)
+        if(!user.myEffectHandler.EffectPresent<Apathetic>())// && usesRemaining > 0)
         {
             StartCoroutine(PauseThenActivate());
             return 0;
@@ -93,6 +94,7 @@ public class Apathetic : ActorAbilityFunction<int, int>, ActorEffect
     //The reverse of ApplyEffect, attempts to undo everything that was changed
     public void RemoveEffect(ref Actor actor)
     {
+        Debug.Log("In here");
         //augment the effectee's speed
         actor.myMovement.speed += totalSpeedChange;
 
