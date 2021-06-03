@@ -10,7 +10,7 @@ public class IndulgenceLegAttack : ActorAbilityFunction<Vector2, int>
     Vector2 defaultFacingDirection = Vector2.right;
     bool animationTriggered;
     IEnumerator MovementLockRoutine;
-
+    IEnumerator AnimationCheckRoutine;
     void Start()
     {
         if (indulgenceLegPrefab)
@@ -44,6 +44,9 @@ public class IndulgenceLegAttack : ActorAbilityFunction<Vector2, int>
 
     protected override int InternInvoke(params Vector2[] args)
     {
+        AnimationCheckRoutine = CheckIfAnimationFinished("LegExtend");
+        this.user.myAnimationHandler.Animator.SetBool("in_physical", true);
+        this.user.mySoundManager.PlaySound("leg_attack", 0.8f, 1.2f);
         MovementLockRoutine = user.myMovement.LockActorMovement(20f);
         indulgenceLeg.transform.parent = this.user.transform;
         Vector2 direction = args[0];
@@ -61,6 +64,7 @@ public class IndulgenceLegAttack : ActorAbilityFunction<Vector2, int>
         dtheta = dtheta * (180/Mathf.PI);
         indulgenceLeg.transform.localPosition = new Vector3(direction.x, direction.y, 0);
         indulgenceLeg.transform.localRotation = Quaternion.Euler(0, 0, dtheta);
+        //This coroutine is called in casse the animation does not trigger the start leg attack.
         StartCoroutine(CheckIfAnimationTriggered());
         return 0;
     }
@@ -74,7 +78,7 @@ public class IndulgenceLegAttack : ActorAbilityFunction<Vector2, int>
         }
         else
         {
-            StartCoroutine(CheckIfAnimationFinished("LegExtend"));
+            StartCoroutine(AnimationCheckRoutine);
         }
     }
 
@@ -83,7 +87,7 @@ public class IndulgenceLegAttack : ActorAbilityFunction<Vector2, int>
         if (!isFinished && !animationTriggered)
         {
             animationTriggered = true;
-            StartCoroutine(CheckIfAnimationFinished("LegExtend"));
+            StartCoroutine(AnimationCheckRoutine);
         }
     }
     IEnumerator CheckIfAnimationFinished(string animationName)
@@ -94,11 +98,21 @@ public class IndulgenceLegAttack : ActorAbilityFunction<Vector2, int>
         {
             yield return new WaitForFixedUpdate();
         }
+        indulgenceLeg.SetActive(false);
+        this.user.myAnimationHandler.Animator.SetBool("in_physical", false);
+        //failsafe if animation triggerss to call finishlegattack
+        yield return new WaitForSeconds(10f);
+        FinishAttack();
+    }
+
+    public void FinishLegAttack()
+    {
         FinishAttack();
     }
 
     void FinishAttack()
     {
+        StopCoroutine(AnimationCheckRoutine);
         StopCoroutine(MovementLockRoutine);
         indulgenceLeg.transform.localPosition = Vector3.right;
         indulgenceLeg.transform.localRotation = Quaternion.identity;

@@ -145,8 +145,6 @@ public class IndulgenceP1Actor : Actor
                 break;
             case State.PHYSICAL:
                 //animation should call PerformPhysicalAttack();
-                this.myAnimationHandler.Animator.SetTrigger("physical_attack");
-                this.mySoundManager.PlaySound("leg_attack", 0.8f, 1.2f);
                 currAbility = this.myAbilityInitiator.abilities[AbilityRegister.INDULGENCE_PHYSICAL];
                 Vector2 direction = target.transform.position - this.transform.position;
                 currAbility.Invoke(ref self, direction);
