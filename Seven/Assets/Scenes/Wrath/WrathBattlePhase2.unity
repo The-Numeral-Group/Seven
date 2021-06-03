@@ -2251,22 +2251,6 @@ MonoBehaviour:
     hasCooldown: 0
     playOnAwake: 0
     source: {fileID: 0}
---- !u!70 &1020262363
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1020262348}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.111992255, y: -0.80947787}
-  m_Size: {x: 0.40293753, y: 1.0912509}
-  m_Direction: 0
 --- !u!1001 &1028582164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4879,7 +4863,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1048545866, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 412269036355777620, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: animTrigger
