@@ -150,7 +150,6 @@ public class IndulgenceP1Actor : Actor
                 currAbility.Invoke(ref self, direction);
                 break;
             case State.PROJECTILE:
-                this.myAnimationHandler.Animator.SetTrigger("projectile_attack");
                 currAbility = this.myAbilityInitiator.abilities[AbilityRegister.INDULGENCE_PROJECTILE];
                 Vector2 direction2 = target.transform.position - this.transform.position;
                 currAbility.Invoke(ref self, direction2);

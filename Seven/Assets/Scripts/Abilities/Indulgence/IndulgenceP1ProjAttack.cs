@@ -48,6 +48,7 @@ public class IndulgenceP1ProjAttack : ActorAbilityFunction<Vector2, int>
         {
             CleanProjectiles();
         }
+        this.user.myAnimationHandler.Animator.SetTrigger("projectile_attack");
         Vector2 initialTravelDirection = args[0].normalized;
         StopCoroutine(projRoutine);
         projRoutine = CreateProjectiles(initialTravelDirection);
@@ -114,13 +115,18 @@ public class IndulgenceP1ProjAttack : ActorAbilityFunction<Vector2, int>
                 this.user.transform.position + (2 * new Vector3(newDirection.x, newDirection.y, 0f));
             yield return new WaitForSeconds(delayBetweenSpawns);
         }
-
+        this.user.myAnimationHandler.Animator.SetTrigger("projectile_release");
         for (int i = 0; i < numProjectiles; i++)
         {
             if (projectilesArray[i] != null)
             {
                 projectilesArray[i].GetComponent<ActorMovement>().DragActor(projDirections[i] * projSpeed);
             }
+        }
+        while(this.user.myAnimationHandler.Animator.GetCurrentAnimatorStateInfo(0).IsName("Projectile Windup") ||
+        this.user.myAnimationHandler.Animator.GetCurrentAnimatorStateInfo(0).IsName("Projectile Release"))
+        {
+            yield return new WaitForFixedUpdate();
         }
         isFinished = true;
     }
