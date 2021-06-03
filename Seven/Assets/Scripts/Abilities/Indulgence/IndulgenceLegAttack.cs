@@ -9,6 +9,7 @@ public class IndulgenceLegAttack : ActorAbilityFunction<Vector2, int>
     Animator indulgenceLegAnimator;
     Vector2 defaultFacingDirection = Vector2.right;
     bool animationTriggered;
+    IEnumerator MovementLockRoutine;
 
     void Start()
     {
@@ -43,7 +44,7 @@ public class IndulgenceLegAttack : ActorAbilityFunction<Vector2, int>
 
     protected override int InternInvoke(params Vector2[] args)
     {
-        StartCoroutine(user.myMovement.LockActorMovement(-1f));
+        MovementLockRoutine = user.myMovement.LockActorMovement(20f);
         indulgenceLeg.transform.parent = this.user.transform;
         Vector2 direction = args[0];
         direction = direction.normalized;
@@ -98,10 +99,11 @@ public class IndulgenceLegAttack : ActorAbilityFunction<Vector2, int>
 
     void FinishAttack()
     {
+        StopCoroutine(MovementLockRoutine);
         indulgenceLeg.transform.localPosition = Vector3.right;
         indulgenceLeg.transform.localRotation = Quaternion.identity;
         indulgenceLeg.SetActive(false);
-        StartCoroutine(user.myMovement.LockActorMovement(0.0001f));
+        StartCoroutine(user.myMovement.LockActorMovement(-1f));
         animationTriggered = false;
         isFinished = true;
     }

@@ -181,6 +181,8 @@ public class IndulgenceP1Actor : Actor
         float distanceToDestination = Vector2.Distance(destination, ourPosition);
         if (distanceToDestination > jumpTriggerDistance && this.myAbilityInitiator.abilities[AbilityRegister.INDULGENCE_CRUSH].getUsable())
         {
+            this.myMovement.MoveActor(Vector2.zero);
+            this.myAnimationHandler.animateWalk();
             currAbility = this.myAbilityInitiator.abilities[AbilityRegister.INDULGENCE_CRUSH];
             IndulgenceCrush crush = currAbility as IndulgenceCrush;
             crush.useTrackingCrush = false;
