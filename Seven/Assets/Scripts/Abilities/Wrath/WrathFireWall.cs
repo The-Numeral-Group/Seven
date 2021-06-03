@@ -201,6 +201,7 @@ internal class WrathFireSingle : ProjectileAbility
         {
             fireSFX.volume = GameSettings.MASTER_VOLUME * GameSettings.SFX_VOLUME / 4; // The sound source is already too loud, so dividing by 4
         }
+        //projectile.gameObject.GetComponent<ActorSoundManager>().PlaySound("Firewall");
     }
 
     /*Launch the projectile. The anticipated argument is the gameObject being shot at. The 

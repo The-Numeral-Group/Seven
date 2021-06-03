@@ -17,7 +17,8 @@ GameObject:
   - component: {fileID: 2060369103467673753}
   - component: {fileID: 1052644687463321987}
   - component: {fileID: 4428750595311929268}
-  - component: {fileID: -1032290149945519108}
+  - component: {fileID: 4577388745747914104}
+  - component: {fileID: 3891068734128983960}
   m_Layer: 0
   m_Name: Wrath Composite Firewall
   m_TagString: Untagged
@@ -236,7 +237,28 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!82 &-1032290149945519108
+--- !u!114 &4577388745747914104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4462813894760251864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Firewall
+    audioClip: {fileID: 8300000, guid: 91b66e0ba614d8efba1c27f12e10dd25, type: 3}
+    volume: 0.125
+    pitch: 1
+    loop: 1
+    hasCooldown: 0
+    playOnAwake: 1
+    source: {fileID: 0}
+--- !u!82 &3891068734128983960
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

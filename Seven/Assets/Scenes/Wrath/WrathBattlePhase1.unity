@@ -3258,6 +3258,7 @@ MonoBehaviour:
   duration: 7
   animDelay: 1
   travelDuration: 0.3
+  pullDuration: 1
   stunnedDuration: 1.5
   pullAttemptNumber: 4
   pullIntensity: 2
