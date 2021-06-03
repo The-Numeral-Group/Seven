@@ -141,7 +141,8 @@ public class ApathyNPC : Interactable
         
         //save sin committal. We assume the player is going to leave, and change the value if
         //the player actually starts the fight.
-        manager.setBoolValue(true, 11);
+        //we actually can't make this assumption
+        //manager.setBoolValue(true, 11);
 
         //turn on prefight music
         SetMusic(prefightAmbiance);
@@ -165,9 +166,11 @@ public class ApathyNPC : Interactable
         When the scene unloads, this object will be destroyed. If fightCompleted
         is false when this is destroyed, that means the scene has been unloaded without the
         fight finishing, which means the player abandoned the fight...*/
-        if(!fightStarted)
+        if(!fightStarted && !ApathyNPC.goToFightNow && !fightCompleted)
         {
             fightAbandoned = true;  //fight is abandoned
+            //save the sin flag
+            manager.setBoolValue(true, 11);
             //manager.setBoolValue(true, 12); //but apathy is still technically dead
         }
     }
