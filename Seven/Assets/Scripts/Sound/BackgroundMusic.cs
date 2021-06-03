@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+[RequireComponent(typeof(AudioSource))]
 public class BackgroundMusic : MonoBehaviour
 {
     public AudioSource audioSource;
@@ -10,11 +11,13 @@ public class BackgroundMusic : MonoBehaviour
     public bool loop;
 
     public float loopStartTime;
+    float originalVolume;
 
     // Start is called before the first frame update
     void Start()
     {
         this.audioSource = this.GetComponent<AudioSource>();
+        originalVolume = audioSource.volume;
         // Don't use the audioSource's builtin loop. Update() will manually loop the audio clip
         this.audioSource.loop = false;
         SetVolume();
@@ -34,7 +37,7 @@ public class BackgroundMusic : MonoBehaviour
     {
         if (this.audioSource != null)
         {
-            this.audioSource.volume = GameSettings.MASTER_VOLUME * GameSettings.MUSIC_VOLUME;
+            this.audioSource.volume = originalVolume * GameSettings.MASTER_VOLUME * GameSettings.MUSIC_VOLUME;
         }
     }
 }
