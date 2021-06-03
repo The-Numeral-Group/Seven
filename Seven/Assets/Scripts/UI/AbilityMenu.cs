@@ -125,7 +125,6 @@ public class AbilityMenu : BaseUI
 
     public void PutButtonOnCooldown(float time, Component abilityType)
     {
-        Debug.Log(pointerToCurrentSelectedButton);
         if (abilityButtons[pointerToCurrentSelectedButton].gameObject.activeSelf &&
         abilityButtons[pointerToCurrentSelectedButton].GetComponent(abilityType.GetType()) != null)
         {
