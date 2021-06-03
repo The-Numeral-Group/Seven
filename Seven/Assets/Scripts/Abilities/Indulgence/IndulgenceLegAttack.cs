@@ -94,8 +94,10 @@ public class IndulgenceLegAttack : ActorAbilityFunction<Vector2, int>
     {
         //yield return new WaitForSeconds(0.5f);
         indulgenceLeg.SetActive(true);
-        while(indulgenceLegAnimator.GetCurrentAnimatorStateInfo(0).IsName(animationName))
+        float time = 0.0f;
+        while(indulgenceLegAnimator.GetCurrentAnimatorStateInfo(0).IsName(animationName) && time < 0.5f)
         {
+            time += 0.02f;
             yield return new WaitForFixedUpdate();
         }
         indulgenceLeg.SetActive(false);
