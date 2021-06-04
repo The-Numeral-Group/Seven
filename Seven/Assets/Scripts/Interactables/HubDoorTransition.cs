@@ -7,6 +7,7 @@ public class HubDoorTransition : MonoBehaviour
 {
     [Tooltip("The ID of the bossOpening ScriptableObject.")]
     public int bossID;
+    public int bossSinIndex;
     public int bossDefeatedIndex;
     public string postFightScene;
 
@@ -41,28 +42,42 @@ public class HubDoorTransition : MonoBehaviour
             Debug.LogWarning("SceneTranstion: No retry scene name provided for object " + this.gameObject.name);
             return;
         }
-        if (!this.gameSaveManagerScript.getBoolValue(bossDefeatedIndex))
+
+        if(collision.gameObject.tag == "Player")
         {
-            // This will be used once opening cutscene has been implemented.
-            if (this.gameSaveManagerScript.getBoolValue(bossID))
+            if (!this.gameSaveManagerScript.getBoolValue(bossDefeatedIndex))
             {
-                GameSettings.SCENE_TO_LOAD = openingScene;
+                // This will be used once opening cutscene has been implemented.
+                if (this.gameSaveManagerScript.getBoolValue(bossID))
+                {
+                    GameSettings.SCENE_TO_LOAD = openingScene;
+                }
+                else
+                {
+                    GameSettings.SCENE_TO_LOAD = retryScene;
+                }
             }
             else
             {
-                GameSettings.SCENE_TO_LOAD = retryScene;
+                GameSettings.SCENE_TO_LOAD = postFightScene;
             }
+            SceneManager.LoadScene("LoadScreen");
         }
-        else
-        {
-            GameSettings.SCENE_TO_LOAD = postFightScene;
-        }
-        SceneManager.LoadScene("LoadScreen");
     }
 
     private void checkParticleEffects()
     {
-
+        if(this.gameSaveManagerScript.getBoolValue(bossDefeatedIndex))
+        {
+            if (this.gameSaveManagerScript.getBoolValue(bossSinIndex))
+            {
+                this.gameObject.transform.GetChild(1).gameObject.SetActive(true);
+            }
+            else
+            {
+                this.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            }
+        }
     }
 
 
