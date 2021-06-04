@@ -51,7 +51,8 @@ public abstract class BaseUI : MonoBehaviour
 
     public virtual void LoadScene(string sceneToLoad)
     {
-        SceneManager.LoadScene(sceneToLoad);
+        GameSettings.SCENE_TO_LOAD = sceneToLoad;
+        SceneManager.LoadScene("LoadScreen");
     }
 
     public virtual void CloseApplication()

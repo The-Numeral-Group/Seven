@@ -95,4 +95,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ending/Cutscene/ToD_PostFight.unity
     guid: 7d8597e0fec8cc847aa2e74bc5b6ab42
+  - enabled: 1
+    path: Assets/Scenes/LoadScreen.unity
+    guid: f5199e60cae8b6d4bb1a8f42404b1482
   m_configObjects: {}
