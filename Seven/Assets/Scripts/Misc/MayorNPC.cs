@@ -5,6 +5,7 @@ using UnityEngine;
 public class MayorNPC : MonoBehaviour
 {
     private int nextDialogueNum = 2;
+    public Animator mayorAnimator;
 
     // Start is called before the first frame update
     void Start()
@@ -26,5 +27,21 @@ public class MayorNPC : MonoBehaviour
         this.gameObject.GetComponent<ActiveSpeaker>().yarnStartNode = "Mayor.Opening.Dialogue" + nextDialogueNum;
         MenuManager.DIALOGUE_MENU.StartDialogue(this.gameObject);
         nextDialogueNum++;
+    }
+
+    public void playTalkAnimation()
+    {
+        mayorAnimator.SetBool("Mayor_Talk", true);
+    }
+
+    public void playIdleAnimation()
+    {
+        mayorAnimator.SetBool("Mayor_Talk", false);
+    }
+
+    public void changeChatBoxYOffset(float value)
+    {
+        //Debug.Log(this.gameObject.GetComponent<ActiveSpeaker>().chatBoxOffset);
+        this.gameObject.GetComponent<ActiveSpeaker>().chatBoxOffset.y = value;
     }
 }
