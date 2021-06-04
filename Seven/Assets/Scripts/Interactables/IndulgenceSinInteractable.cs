@@ -27,7 +27,10 @@ public class IndulgenceSinInteractable : Interactable
     public override void OnInteract()
     {
         //possible integet overflow
-        playerRC.healthEfx.Play();
+        if (playerRC)
+        {
+            playerRC.PlayHealthEfx();
+        }
         TOTAL_CONSUMED += 1;
         player.myHealth.currentHealth = 
             player.myHealth.currentHealth + healAmount > player.myHealth.maxHealth ? 

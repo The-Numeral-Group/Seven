@@ -9,6 +9,7 @@ public class IndulgenceMonitorActor : Actor
     public MonitorLaser mLaser;
     public IndulgenceSinInteractable interactableSin;
     public State currState;
+    public ParticleSystem corrutionParticleEFX;
     Actor target;
     public Collider2D myCollider;
     public enum State
@@ -75,7 +76,9 @@ public class IndulgenceMonitorActor : Actor
             case State.DEAD:
                 myCollider.isTrigger = true;
                 myCollider.offset = new Vector2(0, -1);
+                corrutionParticleEFX.transform.localPosition = new Vector3(0, -1, 0);
                 interactableSin.pickupMode = true;
+                corrutionParticleEFX.Play();
                 break;
             default:
                 break;
