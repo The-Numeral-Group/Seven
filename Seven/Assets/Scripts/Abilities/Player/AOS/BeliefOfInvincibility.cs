@@ -50,6 +50,10 @@ public class BeliefOfInvincibility : ActorAbilityCoroutine<int>
         Animations might still update, but that'll be ammended when there are animations.
         Or... maybe it shouldn't be? I (Thomas) am gonna test that.*/
 
+        //No I'm ammending it
+        //Step 2.5: Animate a flex
+        user.myAnimationHandler.TrySetBool("ego_flex", true);
+
         //Step 3: wait a bit
         yield return new WaitForSeconds(minLockTime);
 
@@ -59,10 +63,14 @@ public class BeliefOfInvincibility : ActorAbilityCoroutine<int>
         This is part of the reason why constraints are used instead of LockActorMovement:
         so that movementDirection can keep updating*/
 
-        //Step 4: wait until the user tries to move
+        //Step 4: wait until the user tries to move or attack
         yield return new WaitUntil ( 
-            () => this.user.myMovement.movementDirection != Vector2.zero 
+            () => this.user.myMovement.movementDirection != Vector2.zero ||
+                recentAttack == true
         );
+
+        //Step 4.5: Deanimate the flex
+        user.myAnimationHandler.TrySetBool("ego_flex", false);
 
         //Step 5: Unlock the user's constraints
         this.user.myMovement.rigidbody.constraints = constraints;
