@@ -1686,6 +1686,10 @@ PrefabInstance:
       propertyPath: minZoom
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: breakingDistance
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7897472732076878603, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_Name
       value: BossCamera

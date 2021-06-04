@@ -64,8 +64,18 @@ public class RecoverHealth : ActorAbilityFunction<Actor, int>
         user.myHealth.currentHealth = 
             user.myHealth.currentHealth + 3 <= user.myHealth.maxHealth ?  
             user.myHealth.currentHealth + 3 : user.myHealth.maxHealth;
-        healthEfx.Play();
+        PlayHealthEfx();
         this.isFinished = true;
         return 0;
+    }
+
+    public void PlayHealthEfx()
+    {
+        if (healthEfx.isEmitting)
+        {
+            healthEfx.Clear();
+            healthEfx.Stop();
+        }
+        healthEfx.Play();
     }
 }

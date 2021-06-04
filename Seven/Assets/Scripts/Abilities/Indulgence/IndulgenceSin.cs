@@ -18,9 +18,11 @@ public class IndulgenceSin : ActorAbilityFunction<Actor, int>
     IEnumerator CheckRangeRoutine;
     IEnumerator MovementLockRoutine;
     List<IndulgenceSinInteractable> monitors;
+    float lerpT;
 
     void Awake()
     {
+        lerpT = 0;
         monitors = new List<IndulgenceSinInteractable>();
         if (dummyLocation == null)
         {
@@ -157,7 +159,14 @@ public class IndulgenceSin : ActorAbilityFunction<Actor, int>
             }
             float distanceToWeight = Mathf.Min(minMonitorDistance, maxCorrutionVfxDistance);
             float proportionalweight = 1 - (distanceToWeight /maxCorrutionVfxDistance);
-            corruptionVfx.weight = proportionalweight;
+            //https://docs.unity3d.com/ScriptReference/Mathf.Lerp.html
+            float temp = corruptionVfx.weight;
+            corruptionVfx.weight = Mathf.Lerp(temp, proportionalweight, lerpT);//proportionalweight;
+            lerpT += 0.75f * Time.deltaTime;
+            if (lerpT > 1.0f)
+            {
+                lerpT = 0f;
+            }
         }
     }
 }
