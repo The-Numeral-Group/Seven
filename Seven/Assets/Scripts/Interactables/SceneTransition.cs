@@ -16,6 +16,7 @@ public class SceneTransition : Interactable
             Debug.LogWarning("SceneTranstion: No scene name provided for object " + this.gameObject.name);
             return;
         }
-        SceneManager.LoadScene(sceneToLoad);
+        GameSettings.SCENE_TO_LOAD = sceneToLoad;
+        SceneManager.LoadScene("LoadScreen");
     }
 }

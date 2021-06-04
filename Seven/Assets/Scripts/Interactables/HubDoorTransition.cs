@@ -47,16 +47,17 @@ public class HubDoorTransition : Interactable
             // This will be used once opening cutscene has been implemented.
             if (this.gameSaveManagerScript.getBoolValue(bossID))
             {
-                SceneManager.LoadScene(openingScene);
+                GameSettings.SCENE_TO_LOAD = openingScene;
             }
             else
             {
-                SceneManager.LoadScene(retryScene);
+                GameSettings.SCENE_TO_LOAD = retryScene;
             }
         }
         else
         {
-            SceneManager.LoadScene(postFightScene);
+            GameSettings.SCENE_TO_LOAD = postFightScene;
         }
+        SceneManager.LoadScene("LoadScreen");
     }
 }

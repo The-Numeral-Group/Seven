@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//https://docs.unity3d.com/ScriptReference/AsyncOperation.html
+//credit: https://www.youtube.com/watch?v=fxxoACKCWVo user GameDevHQ
 public class LoadScreen : MonoBehaviour
 {
     public Slider progressBar;
