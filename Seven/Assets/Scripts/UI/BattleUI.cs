@@ -154,11 +154,11 @@ public class BattleUI : BaseUI
     //for testing purposes.
     void TemporaryDeathCheckFunction(BossBar bBar,ref int index)
     {
-        if (!bBar.bossHealth || !playerHealth)
+        if (!playerHealth)
         {
             return;
         }
-        if (bBar.bossHealth.currentHealth == 0f)
+        if (!bBar.bossHealth || bBar.bossHealth.currentHealth <= 0f || !bBar.bossMultiActor.gameObject.activeSelf)
         {
             StopAllAudio();
             bossList.Remove(bBar);
