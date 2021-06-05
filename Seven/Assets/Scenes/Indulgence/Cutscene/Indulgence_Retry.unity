@@ -1394,7 +1394,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1562341910261810668, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: orthographic size
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1562341910261810668, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_ClearFlags
@@ -1495,6 +1495,10 @@ PrefabInstance:
     - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: leftBound
       value: -1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: defaultZoom
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7897472732076878603, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_Name
@@ -1862,7 +1866,7 @@ PrefabInstance:
     - target: {fileID: 8067875665855393473, guid: 68cf7eabcdb9b9b4f858309c9fbded90, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1879917178250276208, guid: 0a2fae1ac0cd8fb43bd90df254478733, type: 3}
+      objectReference: {fileID: -6696270961169270530, guid: af3f9bf975eda3145aa3901d0b72abe9, type: 3}
     - target: {fileID: 8067875665855393475, guid: 68cf7eabcdb9b9b4f858309c9fbded90, type: 3}
       propertyPath: m_Name
       value: Indulgence (Cutscene)
