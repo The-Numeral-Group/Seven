@@ -47,6 +47,9 @@ public class Ego2Actor : Actor
     [Tooltip("The ability Object Ego should drop when it dies if the player doesn't sin.")]
     public GameObject abilityDropObject;
 
+    [Tooltip("The entry and exit door of this fight")]
+    public GameObject exitDoor;
+
     //How many times Ego has attacked (which determines which attack it uses). Needs to start at
     //one to work with the modulo-based attack determination
     private int attackCount = 1;
@@ -227,6 +230,10 @@ public class Ego2Actor : Actor
     {
         //save Ego's death
         gameSaveManager.setBoolValue(true, 15);
+
+        //open the exit door
+        exitDoor.SetActive(true);
+
         
         //create an ability object and set it's flag to 8 to reference Ego's ability
         //assuming the player hasn't grabbed it already

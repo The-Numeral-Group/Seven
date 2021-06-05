@@ -22,6 +22,9 @@ public class Ego1Actor : Actor
     [Tooltip("How long Ego will swagger for before just sprinting towards the player.")]
     public float swaggerDuration = 3f;
 
+    [Tooltip("The entry and exit door of this fight")]
+    public GameObject exitDoor;
+
     [Header("Attacks")]
     [Tooltip("Controls how many times should Ego use normal attacks before using it's special.")]
     public int specialAttackGate = 7;
@@ -90,6 +93,9 @@ public class Ego1Actor : Actor
         {
             egoAnims = (this.myAnimationHandler as Ego1AnimationHandler);
         }
+
+        //disable the exit door
+        exitDoor.SetActive(false);
 
         //save the gamesave manager
         gameSaveManager = GameObject.Find("GameSaveManager").GetComponent<GameSaveManager>();
@@ -270,6 +276,9 @@ public class Ego1Actor : Actor
     {
         //save Ego's death
         gameSaveManager.setBoolValue(true, 15);
+
+        //open the exit door
+        exitDoor.SetActive(true);
 
         //create an ability object and set it's flag to 8 to reference Ego's ability
         //assuming the player hasn't grabbed it already
