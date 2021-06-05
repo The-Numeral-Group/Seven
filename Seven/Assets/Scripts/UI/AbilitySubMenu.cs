@@ -7,11 +7,17 @@ using System.Collections.Generic;
 public class AbilitySubMenu : SubMenu
 {
     public string lockedAbilityText = "Ability not yet acquired.";
+    [TextArea]
     public string indulgenceTODText = "";
+    [TextArea]
     public string indulgenceAOSText = "";
+    [TextArea]
     public string egoTODText = "";
+    [TextArea]
     public string egoAOSText = "";
+    [TextArea]
     public string apathyTODText = "";
+    [TextArea]
     public string apathyAOSText = "";
     public Text infoBox;
     public Button indulgenceButton;

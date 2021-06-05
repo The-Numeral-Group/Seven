@@ -1838,12 +1838,33 @@ MonoBehaviour:
   menuName: Ability Info Menu
   defaultButton: {fileID: 3480992845108338752}
   lockedAbilityText: Ability not yet acquired.
-  indulgenceTODText: Heals 3 health on use
-  indulgenceAOSText: Fires 3 projectiles in a cone
-  egoTODText: Halts movement to charge and fire a laser.
-  egoAOSText: Strike a pose. If you do not move you will be invincible.
-  apathyTODText: Throw your sword. Activate ability to teleport to its location.
-  apathyAOSText: Buffs the players damage.
+  indulgenceTODText: 'Recover Health - Indulgence True Ability
+
+    Recover +3 HP
+
+    Cooldown:
+    1.5 minutes'
+  indulgenceAOSText: 'Corrupted Data - Indulgence Corrupted Ability
+
+    A spread
+    of 3 projectiles.
+
+    Deals 1 damage each.
+
+    Cooldown 45 seconds'
+  egoTODText: "Ego's Lazer - Ego True Ability\nWhen activated, stop in place and
+    charge up for 2 seconds. During this charge up you may change your direction
+    to aim. After fully charged, the beam will be unleashed!\n Deals 3 damage\nCooldown:
+    45 seconds"
+  egoAOSText: "Belief of Invincibility - Ego Corrupted Ability\nStrike a pose! Become
+    invincible to all damage for as long as you don't move out of the pose. \nCooldown:
+    1 minute"
+  apathyTODText: "Sword Throw - Apathy True Ability\nWhen activated, throw the sword
+    in the direction you are facing. \nDeals 2 damage if the sword hits an enemy.
+    \nActivate the ability again to teleport to your sword or pick it back up by
+    walking over it.\nCooldown: 0 seconds"
+  apathyAOSText: "Apathetic  - Apathy Corrupted Ability\nRaises Attack +2 but your
+    movement is slowed by 25%. \nActive for 20 seconds.\nCooldown: 20 seconds"
   infoBox: {fileID: 3493524590626484295}
   indulgenceButton: {fileID: 3072452363176494389}
   egoButton: {fileID: 2709241979155570020}
@@ -1884,7 +1905,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 609, y: 300}
-  m_SizeDelta: {x: 300, y: 250}
+  m_SizeDelta: {x: 400, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2922609725837266538
 CanvasRenderer:
