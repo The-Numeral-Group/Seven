@@ -12,6 +12,13 @@ public class Credits : MonoBehaviour
     public GameObject uiSelector;
     public bool notInMainMenu;
 
+    void Start()
+    {
+        if (notInMainMenu)
+        {
+            GetComponent<Animator>().SetBool("end", true);
+        }
+    }
 
     public void CreditsFinishSequence()
     {
