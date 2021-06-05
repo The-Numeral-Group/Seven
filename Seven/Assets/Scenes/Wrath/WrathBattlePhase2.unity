@@ -4495,7 +4495,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1562341910261810668, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: orthographic size
-      value: 15
+      value: 17.102364
       objectReference: {fileID: 0}
     - target: {fileID: 1562341910261810668, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_ClearFlags
@@ -4661,6 +4661,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1943835307, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 412269036355777620, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: animTrigger
       value: fist
@@ -4736,6 +4740,10 @@ PrefabInstance:
     - target: {fileID: 1929146243393720051, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: m_Name
       value: WrathP2Multi
+      objectReference: {fileID: 0}
+    - target: {fileID: 1929146243393720051, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2688743516045599179, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: delayBetweenAttacks
@@ -4827,7 +4835,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7696531761945222991, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: stunnedDuration
-      value: 1
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7696531761945222991, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: cooldownPeriod
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996302718286436342, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[9].y
+      value: 5.289769
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996302718286436342, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[9].x
+      value: 0.036664344
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996302718286436342, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[8].x
+      value: 8.016036
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996302718286436342, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[8].y
+      value: 5.9611526
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996302718286436342, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
+      value: -7.9542475
+      objectReference: {fileID: 0}
+    - target: {fileID: 8996302718286436342, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].y
+      value: 5.89437
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}

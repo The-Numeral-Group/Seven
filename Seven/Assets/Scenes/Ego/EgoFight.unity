@@ -1188,7 +1188,7 @@ MonoBehaviour:
   weaponPositionScale: {x: 0.1, y: 0.1}
   damagePerHitbox: 
   animTrigger: 
-  waitForCooldowns: 0
+  waitForCooldowns: 1
   potentialWeps:
   - {fileID: 1113196130}
   - {fileID: 1293176792}
