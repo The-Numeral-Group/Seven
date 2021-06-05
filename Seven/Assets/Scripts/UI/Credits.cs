@@ -12,6 +12,7 @@ public class Credits : MonoBehaviour
     public GameObject uiSelector;
     public bool notInMainMenu;
 
+
     public void CreditsFinishSequence()
     {
         if (!notInMainMenu)
@@ -25,6 +26,14 @@ public class Credits : MonoBehaviour
         {
             GameSettings.SCENE_TO_LOAD = "MainMenu";
             SceneManager.LoadScene("LoadScreen");
+        }
+    }
+
+    public void OnMenu()
+    {
+        if (this.gameObject.activeSelf)
+        {
+            CreditsFinishSequence();
         }
     }
 }
