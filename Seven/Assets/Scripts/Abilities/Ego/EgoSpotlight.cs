@@ -53,6 +53,7 @@ public class EgoSpotlight : ActorAbilityCoroutine<int>
 
         //create a light at that point
         spotlight = Instantiate(lightPrefab, randomDestinationVec, Quaternion.identity);
+        Camera.main.GetComponent<BaseCamera>().AddTransform(spotlight.transform);
 
         //fun visual effects will go here
 
