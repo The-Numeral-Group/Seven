@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class IndulgenceP2Actor : Actor
 {
@@ -52,7 +53,8 @@ public class IndulgenceP2Actor : Actor
         // Update Flag for game save
 
         // Load Death cutscene 
-        MenuManager.PAUSE_MENU.LoadScene("Indulgence_BossD");
+        //MenuManager.PAUSE_MENU.LoadScene("Indulgence_BossD");
+        SceneManager.LoadScene("Indulgence_BossD");
     }
 
     public void SetupTarget()
