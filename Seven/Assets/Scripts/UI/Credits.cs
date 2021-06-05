@@ -10,12 +10,21 @@ public class Credits : MonoBehaviour
     public Button startMenuDefaultButton;
     public GameObject creditsContainer;
     public GameObject uiSelector;
+    public bool notInMainMenu;
 
     public void CreditsFinishSequence()
     {
-        creditsContainer.SetActive(false);
-        mainMenu.startingButton = startMenuDefaultButton;
-        mainMenu.ShowSubMenu(startMenu);
-        uiSelector.SetActive(true);
+        if (!notInMainMenu)
+        {
+            creditsContainer.SetActive(false);
+            mainMenu.startingButton = startMenuDefaultButton;
+            mainMenu.ShowSubMenu(startMenu);
+            uiSelector.SetActive(true);
+        }
+        else
+        {
+            GameSettings.SCENE_TO_LOAD = "MainMenu";
+            SceneManager.LoadScene("LoadScreen");
+        }
     }
 }
