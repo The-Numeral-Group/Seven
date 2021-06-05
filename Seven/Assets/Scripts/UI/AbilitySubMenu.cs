@@ -6,6 +6,7 @@ using System.Collections.Generic;
 //sub menu used to handle displaying ability information text
 public class AbilitySubMenu : SubMenu
 {
+    //https://answers.unity.com/questions/1299564/how-to-create-new-line-in-string-from-inspector.html
     public string lockedAbilityText = "Ability not yet acquired.";
     [TextArea]
     public string indulgenceTODText = "";
