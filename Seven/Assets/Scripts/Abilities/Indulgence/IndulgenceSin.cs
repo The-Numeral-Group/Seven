@@ -12,6 +12,9 @@ public class IndulgenceSin : ActorAbilityFunction<Actor, int>
     public Actor dummyLocation;
     public GameObject indulgenceSinObject;
     public float rangeToDisengageAttack = 5f;
+    [Tooltip("Sin will at default place at least 1 monitor. This counter is for additional monitors.")]
+    [Range(0, 20)]
+    public int monitorCount = 10;
     List<Vector3> spawnPoints;
     Actor target;
     bool targetInRange;
@@ -36,13 +39,22 @@ public class IndulgenceSin : ActorAbilityFunction<Actor, int>
         targetInRange = false;
         CheckRangeRoutine = CalculateDistanceToTarget();
         spawnPoints = new List<Vector3>();
-        spawnPoints.Add(dummyLocation.transform.position + new Vector3(5, -1 * rangeToDisengageAttack, 0));
+        spawnPoints.Add(dummyLocation.transform.position + new Vector3(0, -1f * rangeToDisengageAttack, 0));
+        for (int i = 0; i < monitorCount; i++)
+        {
+            int temp =  (i + 2) / 2;
+            //even or odd?
+            temp *= i % 2 == 0 ? 1 : -1;
+            spawnPoints.Add(dummyLocation.transform.position + new Vector3(4f * temp,-1f * rangeToDisengageAttack,0));
+
+        }
+        /*spawnPoints.Add(dummyLocation.transform.position + new Vector3(5, -1 * rangeToDisengageAttack, 0));
         spawnPoints.Add(dummyLocation.transform.position + new Vector3(0, -1 * rangeToDisengageAttack, 0));
         spawnPoints.Add(dummyLocation.transform.position + new Vector3(-5, -1 * rangeToDisengageAttack, 0));
         spawnPoints.Add(dummyLocation.transform.position + new Vector3(-10, -1 * rangeToDisengageAttack, 0));
         spawnPoints.Add(dummyLocation.transform.position + new Vector3(10, -1 * rangeToDisengageAttack, 0));
         spawnPoints.Add(dummyLocation.transform.position + new Vector3(-15, -1 * rangeToDisengageAttack, 0));
-        spawnPoints.Add(dummyLocation.transform.position + new Vector3(15, -1 * rangeToDisengageAttack, 0));
+        spawnPoints.Add(dummyLocation.transform.position + new Vector3(15, -1 * rangeToDisengageAttack, 0));*/
         monitors = new List<IndulgenceSinInteractable>();
         IndulgenceSinInteractable.TOTAL_CONSUMED = 0;
     }
