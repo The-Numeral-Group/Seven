@@ -157,7 +157,7 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
             {
                 selectedAbility.Invoke(ref userActor);
                 VFXManager.DoAbilityMaterial(selectedAbility);
-                float time = selectedAbility.getCooldown() > 0 ? selectedAbility.getCooldown() : 0.1f;
+                float time = selectedAbility.getCooldown() > 0 ? selectedAbility.getCooldown() : 0.5f;
                 MenuManager.ABILITY_MENU.PutButtonOnCooldown(time, selectedAbility);
             }
         }
@@ -165,18 +165,20 @@ public class PlayerAbilityInitiator : ActorAbilityInitiator
 
     void OnNavigateLeftAbility()
     {
-        if (selectedAbility == null)// || selectedAbility.getIsFinished())
+        /*if (selectedAbility == null || selectedAbility.getIsFinished())
         {
             MenuManager.ABILITY_MENU.SelectLeftAbility();
-        }
+        }*/
+        MenuManager.ABILITY_MENU.SelectLeftAbility();
     }
 
     void OnNavigateRightAbility()
     {
-        if (selectedAbility == null)// || selectedAbility.getIsFinished())
+        /*if (selectedAbility == null || selectedAbility.getIsFinished())
         {
             MenuManager.ABILITY_MENU.SelectRightAbility();
-        }
+        }*/
+        MenuManager.ABILITY_MENU.SelectRightAbility();
     }
 
     //private class used for messing with the player's material on ability activation
