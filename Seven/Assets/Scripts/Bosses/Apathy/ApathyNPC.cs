@@ -114,8 +114,11 @@ public class ApathyNPC : Interactable
             //remove both props and Sloth, and place the AOS if it is not already there
             //also turn of this object's collider to prevent talking to sloth
             this.GetComponent<Collider2D>().enabled = false;
-            //apathyObj.SetActive(false);
+            
+            //get rid of Apathy and count it as dead
             Destroy(apathyObj);
+            manager.setBoolValue(true, 12);
+
             prop.SetActive(false);
 
             //adjust the lighting intensity
