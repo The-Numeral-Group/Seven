@@ -9,6 +9,7 @@ public class ApathyNPC : Interactable
     //whether or not script should skip all the nonsense and get straight to the fight
     private static bool goToFightNow = false;
 
+    [Header("Props")]
     [Tooltip("A reference to Apathy, so it can be activated/deactived properly")]
     public GameObject apathyObj = null;
 
@@ -52,6 +53,16 @@ public class ApathyNPC : Interactable
 
     [Tooltip("The cutscene to play when Apathy dies")]
     public string deathCutscene;
+
+    [Header("Lights")]
+    [Tooltip("The central light that provides most of the ambient light in the scene")]
+    public UnityEngine.Experimental.Rendering.Universal.Light2D centralLight = null;
+
+    [Tooltip("The intensity to make the light in the No-Sin end scene.")]
+    public float centralLightWinIntensity = 0.45f;
+
+    [Tooltip("The intensity to make the light in the Sin end scene.")]
+    public float centralLightSinIntensity = 0.45f;
 
     //whether or not the player has started the fight in that particular instance
     //of the apathy room
@@ -97,6 +108,7 @@ public class ApathyNPC : Interactable
         /*save whether or not the fight has already been completed*/
         fightCompleted = manager.getBoolValue(12);
 
+        //Sin End
         if(fightAbandoned && !fightCompleted)
         {
             //remove both props and Sloth, and place the AOS if it is not already there
@@ -105,6 +117,9 @@ public class ApathyNPC : Interactable
             //apathyObj.SetActive(false);
             Destroy(apathyObj);
             prop.SetActive(false);
+
+            //adjust the lighting intensity
+            centralLight.intensity = centralLightSinIntensity;
 
             var abilityPickup = Instantiate(abilityDropObject, Vector3.zero, Quaternion.identity)
                 .GetComponent<AbilityPickup>();
@@ -116,12 +131,16 @@ public class ApathyNPC : Interactable
 
             return;
         }
+        //No-Sin End
         else if(!fightAbandoned && fightCompleted)
         {
             //do the same, but don't drop the AOS
             //apathyObj.SetActive(false);
             Destroy(apathyObj);
             prop.SetActive(false);
+
+            //adjust the lighting intensity
+            centralLight.intensity = centralLightWinIntensity;
 
             //place the TOD, but only if the player doesn't have it already
             if(!manager.getBoolValue(9))
