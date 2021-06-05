@@ -9,33 +9,34 @@ public class ApathyNPC : Interactable
     //whether or not script should skip all the nonsense and get straight to the fight
     private static bool goToFightNow = false;
 
+    [Header("Props")]
     [Tooltip("A reference to Apathy, so it can be activated/deactived properly")]
-    public GameObject apathyObj;
+    public GameObject apathyObj = null;
 
     [Tooltip("The ability Object Apathy should drop when it dies.")]
-    public GameObject abilityDropObject;
+    public GameObject abilityDropObject = null;
 
     [Tooltip("Props that should vanish from the arena when the fight starts.")]
-    public GameObject prop;
+    public GameObject prop = null;
 
     [Tooltip("The scene transition object that should only be present if the fight isn't" + 
         " currently happening.")]
-    public GameObject sceneTransition;
+    public GameObject sceneTransition = null;
 
     [Header("Music")]
     [Tooltip("The ambience that plays while not fighting Apathy if it is still alive.")]
-    public AudioClip prefightAmbiance;
+    public AudioClip prefightAmbiance = null;
 
     [Tooltip("The ambience that plays while not fighting Apathy if it isn't alive anymore.")]
-    public AudioClip postfightAmbiance;
+    public AudioClip postfightAmbiance = null;
 
     [Tooltip("The ambience that plays while fighting Apathy.")]
-    public AudioClip fightAmbiance;
+    public AudioClip fightAmbiance = null;
 
     [Header("Dialogue and Cutscenes")]
     [Tooltip("The gameObject that is going to be the speaker for Apathy." + 
         "Must have an activeSpeaker object")]
-    public GameObject speakingObject;
+    public GameObject speakingObject = null;
 
     [Tooltip("The node of dialogue that Apathy starts with. The player cannot move during this" + 
         " dialogue.")]
@@ -52,6 +53,16 @@ public class ApathyNPC : Interactable
 
     [Tooltip("The cutscene to play when Apathy dies")]
     public string deathCutscene;
+
+    [Header("Lights")]
+    [Tooltip("The central light that provides most of the ambient light in the scene")]
+    public UnityEngine.Experimental.Rendering.Universal.Light2D centralLight = null;
+
+    [Tooltip("The intensity to make the light in the No-Sin end scene.")]
+    public float centralLightWinIntensity = 0.45f;
+
+    [Tooltip("The intensity to make the light in the Sin end scene.")]
+    public float centralLightSinIntensity = 0.45f;
 
     //whether or not the player has started the fight in that particular instance
     //of the apathy room
@@ -97,14 +108,21 @@ public class ApathyNPC : Interactable
         /*save whether or not the fight has already been completed*/
         fightCompleted = manager.getBoolValue(12);
 
+        //Sin End
         if(fightAbandoned && !fightCompleted)
         {
             //remove both props and Sloth, and place the AOS if it is not already there
             //also turn of this object's collider to prevent talking to sloth
             this.GetComponent<Collider2D>().enabled = false;
-            //apathyObj.SetActive(false);
+            
+            //get rid of Apathy and count it as dead
             Destroy(apathyObj);
+            manager.setBoolValue(true, 12);
+
             prop.SetActive(false);
+
+            //adjust the lighting intensity
+            centralLight.intensity = centralLightSinIntensity;
 
             var abilityPickup = Instantiate(abilityDropObject, Vector3.zero, Quaternion.identity)
                 .GetComponent<AbilityPickup>();
@@ -116,12 +134,16 @@ public class ApathyNPC : Interactable
 
             return;
         }
+        //No-Sin End
         else if(!fightAbandoned && fightCompleted)
         {
             //do the same, but don't drop the AOS
             //apathyObj.SetActive(false);
             Destroy(apathyObj);
             prop.SetActive(false);
+
+            //adjust the lighting intensity
+            centralLight.intensity = centralLightWinIntensity;
 
             //place the TOD, but only if the player doesn't have it already
             if(!manager.getBoolValue(9))

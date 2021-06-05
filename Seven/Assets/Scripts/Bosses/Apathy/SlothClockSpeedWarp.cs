@@ -62,13 +62,15 @@ public class SlothClockSpeedWarp : MonoBehaviour
         BE PLUGGED IN AND THE NUMBER OF TIMES THEY'VE BEEN STRUCK CAN BE PULLED OUT. OPERATES
         MUCH AS NORMAL.*/
 
-        Component movTemp;
-        if(!handler.gameObject.TryGetComponent(typeof(ActorMovement), out movTemp))
+        if(!handler || !handler.gameObject.TryGetComponent(out ActorMovement movTemp))
         {
-            Debug.LogError("SlothClockSpeedWarp: No actor movement on handler! Speed changes" +
+            Debug.LogError("SlothClockSpeedWarp: No actor movement or handler! Speed changes" +
                 " may not be applied correctly!");
         }
-        handlerMove = (movTemp as ActorMovement);
+        else
+        {
+            handlerMove = (movTemp as ActorMovement);
+        }
 
         //make the slow object
         slow = new SimpleSlow(handlerMove.speed * slowFactor);
