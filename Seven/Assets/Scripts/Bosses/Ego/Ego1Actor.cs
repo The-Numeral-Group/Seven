@@ -256,6 +256,8 @@ public class Ego1Actor : Actor
         {
             //save the sin
             gameSaveManager.setBoolValue(true, 14);
+            //Set the defetead flag
+            gameSaveManager.setBoolValue(true, 15);
 
             ///just destroy this Ego
             StartCoroutine(Die());
