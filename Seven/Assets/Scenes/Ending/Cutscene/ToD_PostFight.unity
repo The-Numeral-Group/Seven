@@ -895,11 +895,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &341074262 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8861051730678643335, guid: 56054a087dd7f6747a04d1ff1ba269e5, type: 3}
-  m_PrefabInstance: {fileID: 435954427}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &368149260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,7 +1432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d73198362922184291099f7d28adcdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObjectTarget: {fileID: 341074262}
+  gameObjectTarget: {fileID: 0}
 --- !u!1001 &603069498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3033,7 +3028,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: MainMenu
+            m_StringArgument: CreditScene
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!114 &1236873150
@@ -3988,6 +3983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  canMove: 1
 --- !u!50 &1857178616
 Rigidbody2D:
   serializedVersion: 4
@@ -4205,8 +4201,8 @@ PolygonCollider2D:
   m_Offset: {x: -0.1, y: -0.75}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.6169217, y: 0.69047624}
-    oldSize: {x: 2.4, y: 2.75}
+    pivot: {x: 0.623716, y: 0.78529924}
+    oldSize: {x: 3, y: 2.7}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
