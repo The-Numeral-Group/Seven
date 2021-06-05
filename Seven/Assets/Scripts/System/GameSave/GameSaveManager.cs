@@ -110,6 +110,8 @@ public class GameSaveManager : MonoBehaviour
 
             gameSaveList.setBoolValue(gameSaveData.PlayerRespawn, 19);
 
+            gameSaveList.setFloatValue(gameSaveData.AbilityTutorial, 20);
+
             file.Close();
         }
     }
