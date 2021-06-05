@@ -110,6 +110,32 @@ public class IndulgenceP1ProjMovement : ActorMovement
         }
     }
 
+    void OnCollisionStay2D(Collision2D collider)
+    {
+        if (collider.gameObject.tag != targetTag)
+        {
+            return;
+        }
+        var enemyHealth = collider.gameObject.GetComponent<ActorHealth>();
+
+        //or a weakpoint if there's no regular health
+        if(enemyHealth == null){collider.gameObject.GetComponent<ActorWeakPoint>();}
+
+        //if the enemy can take damage (if it has an ActorHealth component),
+        //hurt them. Do nothing if they can't take damage.
+        if(enemyHealth != null){
+            if (!enemyHealth.vulnerable)
+            {
+                return;
+            }
+            enemyHealth.takeDamage(damage);
+            if (!makeStatic)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+    }
+
     IEnumerator BlinkRed()
     {
         Color defaultColor = sp.color;
