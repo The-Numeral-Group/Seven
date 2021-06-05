@@ -171,7 +171,7 @@ public class ApathyNPC : Interactable
             fightAbandoned = true;  //fight is abandoned
             //save the sin flag
             manager.setBoolValue(true, 11);
-            //manager.setBoolValue(true, 12); //but apathy is still technically dead
+            manager.setBoolValue(true, 12); //but apathy is still technically dead
         }
     }
 
