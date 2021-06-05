@@ -10,32 +10,32 @@ public class ApathyNPC : Interactable
     private static bool goToFightNow = false;
 
     [Tooltip("A reference to Apathy, so it can be activated/deactived properly")]
-    public GameObject apathyObj;
+    public GameObject apathyObj = null;
 
     [Tooltip("The ability Object Apathy should drop when it dies.")]
-    public GameObject abilityDropObject;
+    public GameObject abilityDropObject = null;
 
     [Tooltip("Props that should vanish from the arena when the fight starts.")]
-    public GameObject prop;
+    public GameObject prop = null;
 
     [Tooltip("The scene transition object that should only be present if the fight isn't" + 
         " currently happening.")]
-    public GameObject sceneTransition;
+    public GameObject sceneTransition = null;
 
     [Header("Music")]
     [Tooltip("The ambience that plays while not fighting Apathy if it is still alive.")]
-    public AudioClip prefightAmbiance;
+    public AudioClip prefightAmbiance = null;
 
     [Tooltip("The ambience that plays while not fighting Apathy if it isn't alive anymore.")]
-    public AudioClip postfightAmbiance;
+    public AudioClip postfightAmbiance = null;
 
     [Tooltip("The ambience that plays while fighting Apathy.")]
-    public AudioClip fightAmbiance;
+    public AudioClip fightAmbiance = null;
 
     [Header("Dialogue and Cutscenes")]
     [Tooltip("The gameObject that is going to be the speaker for Apathy." + 
         "Must have an activeSpeaker object")]
-    public GameObject speakingObject;
+    public GameObject speakingObject = null;
 
     [Tooltip("The node of dialogue that Apathy starts with. The player cannot move during this" + 
         " dialogue.")]
