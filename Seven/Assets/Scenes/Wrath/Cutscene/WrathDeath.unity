@@ -4186,6 +4186,7 @@ GameObject:
   - component: {fileID: 2125582519}
   - component: {fileID: 2125582521}
   - component: {fileID: 2125582520}
+  - component: {fileID: 2125582522}
   m_Layer: 0
   m_Name: Wrath (Cutscene)
   m_TagString: Untagged
@@ -4277,3 +4278,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2125582522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125582518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: fist
+    audioClip: {fileID: 8300000, guid: fc285f8eebd89804ea92ba4f2cbcc0b3, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: TakeDamage
+    audioClip: {fileID: 8300000, guid: 25838854649f39547b7a8639e85d31c5, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
