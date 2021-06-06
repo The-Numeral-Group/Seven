@@ -3851,8 +3851,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190c80f5fc4cf7c46885c02148c09771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactIndicatorPrefab: {fileID: 0}
-  indicatorOffset: {x: 0, y: 1}
+  interactIndicatorPrefab: {fileID: 5725056411618185430, guid: 0fae7975420221144aa605f016da6481, type: 3}
+  indicatorOffset: {x: -0.84, y: 9}
   apathyObj: {fileID: 315102708}
   abilityDropObject: {fileID: 2937701324620886995, guid: fde30141c6801f84db5abf77b9a93fd3, type: 3}
   prop: {fileID: 37142923}
@@ -3890,7 +3890,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 10, y: 10}
   m_EdgeRadius: 0
 --- !u!212 &2051050984
 SpriteRenderer:
@@ -3951,8 +3951,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051050981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 35, y: 35, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -3970,7 +3970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactIndicatorPrefab: {fileID: 0}
-  indicatorOffset: {x: 0, y: 5}
+  indicatorOffset: {x: -0.7, y: 2.5}
   speakerName: Apathy
   yarnStartNode: OpeningScene
   chatBoxOffset: {x: -0.5, y: 10, z: 0}
