@@ -1288,7 +1288,7 @@ MonoBehaviour:
   - {fileID: 1113196130}
   - {fileID: 1293176792}
   - {fileID: 1293176795}
-  wepWeights: 070000000300000001000000
+  wepWeights: 000000000000000000000000
   defaultWeight: 5
 --- !u!60 &656284018
 PolygonCollider2D:
@@ -2247,7 +2247,7 @@ MonoBehaviour:
   attackShake: 1
   animFlag: ego_chargefalcon
   recoveryTrigger: ego_falcon
-  mode: 0
+  mode: 1
   lungeDistance: 7.5
   lungeDuration: 2
   lungeSpeed: 10
@@ -3037,7 +3037,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: breakingDistance
-      value: 20
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7897472732076878603, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_Name

@@ -1582,7 +1582,7 @@ MonoBehaviour:
   indicatorOffset: {x: 0, y: 5}
   speakerName: GhostKnight
   yarnStartNode: GhostKnight.PostFight.Dialogue0
-  chatBoxOffset: {x: 0, y: 0, z: 0}
+  chatBoxOffset: {x: 0, y: -2, z: 0}
   npcMode: 0
 --- !u!58 &688263419
 CircleCollider2D:
@@ -2616,7 +2616,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1562341910261810668, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: orthographic size
-      value: 15
+      value: 13.100876
       objectReference: {fileID: 0}
     - target: {fileID: 1562341910261810668, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_ClearFlags
@@ -3645,7 +3645,7 @@ MonoBehaviour:
   indicatorOffset: {x: 0, y: 5}
   speakerName: TheWoman
   yarnStartNode: 
-  chatBoxOffset: {x: 0, y: 0, z: 0}
+  chatBoxOffset: {x: 0, y: 2, z: 0}
   npcMode: 0
 --- !u!212 &2075772340
 SpriteRenderer:
