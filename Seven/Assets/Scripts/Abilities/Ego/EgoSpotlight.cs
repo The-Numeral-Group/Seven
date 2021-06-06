@@ -156,4 +156,16 @@ public class EgoSpotlight : ActorAbilityCoroutine<int>
             );
         }
     }
+
+    //if this script gets disabled, destroy the light
+    void OnDisable()
+    {
+        Destroy(spotlight);
+    }
+
+    //if this script gets destroyed, destroy the light
+    void OnDestroy()
+    {
+        Destroy(spotlight);
+    }
 }
