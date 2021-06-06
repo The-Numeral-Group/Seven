@@ -57,19 +57,19 @@ public class AbilitySubMenu : SubMenu
             if (gsm)
             {
                 gameSaveManager = gsm.GetComponent<GameSaveManager>();
-                SetDefaultButton();
+                //SetDefaultButton();
             }
         }
     }
 
-    public override void Show()
+    /*public override void Show()
     {
         Initialize();
         SetDefaultButton();
         base.Show();
-    }
+    }*/
 
-    public void SetDefaultButton()
+    /*public void SetDefaultButton()
     {
         if (gameSaveManager.getBoolValue(abilityFlag["Ego"].Item1))
         {
@@ -83,7 +83,7 @@ public class AbilitySubMenu : SubMenu
         {
             defaultButton = apathyButton;
         }
-    }
+    }*/
 
     public void UpdateAbilityText(string bossName)
     {

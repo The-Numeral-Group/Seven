@@ -1836,7 +1836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuName: Ability Info Menu
-  defaultButton: {fileID: 3480992845108338752}
+  defaultButton: {fileID: 2709241979155570020}
   lockedAbilityText: Ability not yet acquired.
   indulgenceTODText: 'Recover Health - Indulgence True Ability
 
