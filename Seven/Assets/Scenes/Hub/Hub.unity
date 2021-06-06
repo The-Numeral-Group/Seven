@@ -2521,7 +2521,7 @@ MonoBehaviour:
   bossDefeatedIndex: 12
   postFightScene: ApathyFight
   openingScene: ApathyFight
-  retryScene: ApathyFight
+  retryScene: Apathy_Transition
   gameSaveManager: {fileID: 740934186}
 --- !u!212 &757197281
 SpriteRenderer:
