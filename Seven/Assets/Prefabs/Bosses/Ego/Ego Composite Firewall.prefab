@@ -258,7 +258,7 @@ MonoBehaviour:
   sounds:
   - name: Firewall
     audioClip: {fileID: 8300000, guid: 91b66e0ba614d8efba1c27f12e10dd25, type: 3}
-    volume: 0.25
+    volume: 0.125
     pitch: 1
     loop: 1
     hasCooldown: 0
