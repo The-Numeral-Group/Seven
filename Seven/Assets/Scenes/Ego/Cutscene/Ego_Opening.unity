@@ -230,7 +230,7 @@ Animator:
   m_GameObject: {fileID: 420688362}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 040b7080be414bdffae2624ab49e9694, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1475,10 +1475,6 @@ PrefabInstance:
       propertyPath: yarnStartNode
       value: Opening
       objectReference: {fileID: 0}
-    - target: {fileID: 2283877871945625099, guid: 5d863846b43d92344ade055b66610994, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -407615921903925703, guid: 137b15f4be2ab026e9fc37a2d3415d36, type: 3}
     - target: {fileID: 2283877871945625103, guid: 5d863846b43d92344ade055b66610994, type: 3}
       propertyPath: m_Name
       value: Ego (Cutscene)

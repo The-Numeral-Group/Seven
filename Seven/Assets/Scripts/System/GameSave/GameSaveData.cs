@@ -27,6 +27,8 @@ public class GameSaveData
     public bool IndulgenceDefeated; // 18
     public bool PlayerRespawn; // 19
 
+    public float AbilityTutorial; // 20
+
     public GameSaveData(GameSaveList gameSaveList)
     {
         this.newGame = gameSaveList.getBoolValue(0);
@@ -69,6 +71,8 @@ public class GameSaveData
         this.IndulgenceDefeated = gameSaveList.getBoolValue(18);
 
         this.PlayerRespawn = gameSaveList.getBoolValue(19);
+
+        this.AbilityTutorial = gameSaveList.getFloatValue(20);
     }
 
 }

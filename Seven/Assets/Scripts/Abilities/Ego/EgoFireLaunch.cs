@@ -134,6 +134,10 @@ public class EgoFireLaunch : ActorAbilityFunction<GameObject, int>
             );
             yield return Ego2Movement.EgoTeleport(dest, user.gameObject);
 
+            //Step 2.33(repeating?): lock the user's movement
+            var moveStop = user.myMovement.LockActorMovement(Mathf.Infinity);
+            StartCoroutine(moveStop);
+
             //Step 2.25: Animate the attack
             //animClear = false;
             //var animNotDone = user.myAnimationHandler.TryFlaggedSetTrigger("ego_shoot");
@@ -150,6 +154,10 @@ public class EgoFireLaunch : ActorAbilityFunction<GameObject, int>
             //Step 2.3: Launch the projectile
             single.Invoke(ref this.user, target.transform.position, LAUNCH_MODE.POINT);
             
+            //Step 3: unlock the user's movement
+            StopCoroutine(moveStop);
+            StartCoroutine(user.myMovement.LockActorMovement(0f));
+
             //Repeat
         }
 

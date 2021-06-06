@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: -407615921903925703, guid: 57f129de09740b949aaf6e4c4e9e4edd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -129,4 +129,5 @@ MonoBehaviour:
   indicatorOffset: {x: 0, y: 5}
   speakerName: Ego
   yarnStartNode: 
+  chatBoxOffset: {x: 0, y: 0, z: 0}
   npcMode: 0

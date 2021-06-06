@@ -46,6 +46,8 @@ public class GameSaveList : MonoBehaviour
 
     // Element 19 - PlayerRespawn
 
+    // Element 20 - AbilityTutorial
+
     /* ----- BOOL VALUE ----- */
     public void setBoolValue(bool newValue, int id)
     {
@@ -213,6 +215,7 @@ public class GameSaveList : MonoBehaviour
         ((BoolValue)SaveObjects[17]).RuntimeValue = ((BoolValue)SaveObjects[17]).initialValue;
         ((BoolValue)SaveObjects[18]).RuntimeValue = ((BoolValue)SaveObjects[18]).initialValue;
         ((BoolValue)SaveObjects[19]).RuntimeValue = ((BoolValue)SaveObjects[19]).initialValue;
+        ((FloatValue)SaveObjects[20]).RuntimeValue = ((FloatValue)SaveObjects[20]).initialValue;
     }
 
 }
