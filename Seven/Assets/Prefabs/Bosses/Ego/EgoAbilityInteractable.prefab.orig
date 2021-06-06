@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2851010350734553188}
   - component: {fileID: 3555202452943982409}
   m_Layer: 0
-  m_Name: ApathyAbilityInteractable
+  m_Name: EgoAbilityInteractable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,8 +64,12 @@ MonoBehaviour:
   interactIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
   indicatorOffset: {x: 0, y: 2}
   gameSaveManager: {fileID: 0}
-  gameSaveAbilityPickupIndex: 9
+<<<<<<< HEAD
+  gameSaveAbilityPickupIndex: 8
+=======
+  gameSaveAbilityPickupIndex: -1
   abilityTutorial: {fileID: 3369233752332285812, guid: 23e1a9651bfd6f243a550d31e2d28b21, type: 3}
+>>>>>>> 6c8d31567d7177de7d8da5f130cb53dd0502cdfd
 --- !u!212 &3555202452943982409
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -106,7 +110,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a81cd9da8137bbc4388c4a600cf0064f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a0a643556c5888d458a1af4beaf69dda, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
