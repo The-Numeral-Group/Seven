@@ -19,7 +19,8 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
     // Delay after all the shockwaves were spawned
     public float delayAfterShockwave;
 
-    public string animTrigger;
+    public string animFistTrigger;
+    public string animPalmTrigger;
 
     public GameObject pillarShockwaveObject;
     public GameObject largeShockwaveObject;
@@ -41,12 +42,6 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
         user.myMovement.MoveActor(Vector2.zero);
         user.myMovement.DragActor(Vector2.zero);
 
-        // Play fist animation
-        if (animTrigger.Length != 0)
-        {
-            user.myAnimationHandler.TrySetTrigger(animTrigger);
-        }
-
         delaySpeedMultiplier = WrathP2Actor.abilitySpeedMultiplier;
 
         // Chooses type of shockwave
@@ -55,11 +50,24 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
         if(shockwaveType == 0)
         {
             // 4 Shockwave Pillars
+            
+            // Play fist animation
+            if (animFistTrigger.Length != 0)
+            {
+                user.myAnimationHandler.TrySetTrigger(animFistTrigger);
+            }
+
             StartCoroutine(startShockwavePillars());
         }
         else
         {
             // 1 Full Room Shockwave
+
+            // Play palm animation
+            if (animPalmTrigger.Length != 0)
+            {
+                user.myAnimationHandler.TrySetTrigger(animPalmTrigger);
+            }
             StartCoroutine(startShockwaveLarge());
         }
 

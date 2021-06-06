@@ -115,7 +115,8 @@ public class WrathP2Actor : Actor
     void EvalauteState()
     {
         // Chooses either Shockwave or Fire&Brimstone
-        int abilityType = (int)Random.Range(0, 2);
+        //int abilityType = (int)Random.Range(0, 2);
+        int abilityType = 0;
 
         Debug.Log("Evaluating State");
         State decidingState = currState;

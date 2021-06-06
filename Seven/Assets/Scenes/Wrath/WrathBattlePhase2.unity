@@ -4713,6 +4713,14 @@ PrefabInstance:
       propertyPath: maxY
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 412269036355777620, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: animFistTrigger
+      value: fist
+      objectReference: {fileID: 0}
+    - target: {fileID: 412269036355777620, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: animPalmTrigger
+      value: palm
+      objectReference: {fileID: 0}
     - target: {fileID: 737185324583889991, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: wrathShockwave
       value: 
