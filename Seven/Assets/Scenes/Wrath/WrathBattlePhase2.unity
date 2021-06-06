@@ -2364,6 +2364,8 @@ MonoBehaviour:
   abilityName: 
   invokeBlankWhenBadArguments: 1
   pushDuration: 1
+  spamDuration: 4
+  tiredDuration: 4
   pushIntensity: 3
   animTrigger: roar
 --- !u!114 &1020262350

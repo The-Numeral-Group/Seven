@@ -51,15 +51,18 @@ public class DragBackWeaponHitbox : WeaponHitbox
         if(enemyHealth != null){
             //Debug.Log("WeaponHitbox: Health was found on " + enemyHealth.gameObject.name);
             this.wp.hitConnected = true;
-            enemyHealth.takeDamage(this.damage);
-        }
-        
-        //if the enemy had an actor movement script...
-        Component enemyMove = null;
-        if(collider.gameObject.TryGetComponent(typeof(ActorMovement), out enemyMove))
-        {
-            //drag them back as well
-            StartCoroutine(DragBack((enemyMove as ActorMovement)));
+            if (enemyHealth.vulnerable)
+            {
+                enemyHealth.takeDamage(this.damage);
+
+                //if the enemy had an actor movement script...
+                Component enemyMove = null;
+                if (collider.gameObject.TryGetComponent(typeof(ActorMovement), out enemyMove))
+                {
+                    //drag them back as well
+                    StartCoroutine(DragBack((enemyMove as ActorMovement)));
+                }
+            }
         }
     }
 
@@ -80,18 +83,20 @@ public class DragBackWeaponHitbox : WeaponHitbox
 
         //or a weakpoint if there's no regular health
         if (enemyHealth == null) { collider.gameObject.GetComponent<ActorWeakPoint>(); }
-
         {
             this.wp.hitConnected = true;
-            enemyHealth.takeDamage(this.damage);
-        }
+            if (enemyHealth.vulnerable)
+            {
+                enemyHealth.takeDamage(this.damage);
 
-        //if the enemy had an actor movement script...
-        ActorMovement enemyMove = null;
-        if(collider.gameObject.TryGetComponent(out enemyMove))
-        {
-            //drag them back as well
-            StartCoroutine(DragBack(enemyMove));
+                //if the enemy had an actor movement script...
+                Component enemyMove = null;
+                if (collider.gameObject.TryGetComponent(typeof(ActorMovement), out enemyMove))
+                {
+                    //drag them back as well
+                    StartCoroutine(DragBack((enemyMove as ActorMovement)));
+                }
+            }
         }
     }
 
