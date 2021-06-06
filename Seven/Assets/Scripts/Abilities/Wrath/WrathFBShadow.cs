@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WrathFBShadow : MonoBehaviour
-{ 
+{
+    // How much damage the fireball will do
+    public int damage;
+
     // Maximum scale the shadow will get to
     public float maxScale;
     
@@ -19,6 +22,7 @@ public class WrathFBShadow : MonoBehaviour
     // Delay to turn off shadow sprite renderer
     private float delayShadowOff = 0.3f;
 
+    private int additionalDamage;
     private float delaySpeedMultiplier;
 
 
@@ -26,6 +30,7 @@ public class WrathFBShadow : MonoBehaviour
     void Start()
     {
         delaySpeedMultiplier = WrathP2Actor.abilitySpeedMultiplier;
+        additionalDamage = WrathP2Actor.abilityDamageAddition;
         StartCoroutine(StartShadow());
     }
 
@@ -56,5 +61,28 @@ public class WrathFBShadow : MonoBehaviour
         yield return new WaitForSeconds(delayFire / delaySpeedMultiplier);
 
         Destroy(this.gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Only collide with player
+        if (collision.gameObject.tag == "Player")
+        {
+            var playerHealth = collision.gameObject.GetComponent<ActorHealth>();
+
+            //or a weakpoint if there's no regular health
+            if (playerHealth == null) { collision.gameObject.GetComponent<ActorWeakPoint>(); }
+
+            //if the enemy can take damage (if it has an ActorHealth component),
+            //hurt them. Do nothing if they can't take damage.
+            if (playerHealth != null)
+            {
+                if (playerHealth.vulnerable)
+                {
+                    playerHealth.takeDamage(damage + additionalDamage);
+                }
+                Destroy(this.gameObject);
+            }
+        }
     }
 }
