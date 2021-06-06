@@ -336,6 +336,11 @@ internal class ApathySludgeMarker : MonoBehaviour
             {
                 //lock them in place and wait it out
                 grabTarget.StartCoroutine(grabTarget.LockActorMovement(grabDuration));
+                if(grabTarget.TryGetComponent(out PlayerAbilityInitiator pai))
+                {
+                    StartCoroutine(pai.playerDodge.coolDown(grabDuration));
+                }
+                
                 for(float grabClock = 0f; grabClock < grabDuration; grabClock += Time.deltaTime)
                 {
                     //calculate the direction from the target to this object's center
