@@ -121,7 +121,7 @@ public class DragBackWeaponHitbox : WeaponHitbox
 
         mover.DragActor(dragAway * dragBackIntensity);
 
-        this.gameObject.SendMessageUpwards("stunPlayer", dragBackDuration);
+        this.gameObject.SendMessageUpwards("stunPlayer", dragBackDuration, SendMessageOptions.DontRequireReceiver);
 
         yield return new WaitForSeconds(dragBackDuration);
         mover.DragActor(Vector2.zero);
