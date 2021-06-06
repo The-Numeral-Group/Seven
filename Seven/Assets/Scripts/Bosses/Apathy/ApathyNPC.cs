@@ -101,6 +101,9 @@ public class ApathyNPC : Interactable
             return;
         }
 
+        //save that the fight has been started in some form
+        manager.setBoolValue(false, 10);
+
         /*save whether or not the fight has been abandoned. If the sin flag is set, this is the
         case.*/
         fightAbandoned = manager.getBoolValue(11);
@@ -228,8 +231,6 @@ public class ApathyNPC : Interactable
         SetMusic(fightAmbiance);
         //flag the fight as started
         fightStarted = true;
-        //and lower the flag to start the fight
-        ApathyNPC.goToFightNow = false;
 
         //Remove the scene transition
         sceneTransition.SetActive(false);
@@ -271,6 +272,9 @@ public class ApathyNPC : Interactable
         //mark the fight as completed
         //ApathyNPC.fightCompleted = true;
         manager.setBoolValue(true, 12);
+        
+        //lower the flag that starts the fight
+        ApathyNPC.goToFightNow = false;
 
         //play the death cutscene
         GameObject.Find("TimelineManager").SendMessage("loadScene", deathCutscene);
