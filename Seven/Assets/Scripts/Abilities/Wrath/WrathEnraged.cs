@@ -84,7 +84,6 @@ public class WrathEnraged : ActorAbilityFunction<Actor, int>
 
     private IEnumerator WrathSpamAttack()
     {
-        Debug.Log("WRATH SPAMMING ATTACK");
         originalDelay = user.GetComponent<WrathP2Actor>().delayBetweenAttacks;
 
         // Set delay to 0 to allow Wrath to spam attacks.
@@ -97,7 +96,6 @@ public class WrathEnraged : ActorAbilityFunction<Actor, int>
 
     private IEnumerator WrathAfterSpam()
     {
-        Debug.Log("WRATH TIRED OUT");
         // Allow Wrath not to attack
         user.GetComponent<WrathP2Actor>().canAttack = false;
 
