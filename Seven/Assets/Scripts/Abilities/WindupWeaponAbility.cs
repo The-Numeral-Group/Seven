@@ -66,7 +66,9 @@ public class WindupWeaponAbility : WeaponAbility
         //wait for the windup
         //if the screen should shake, start the minor shake
         if(shouldShake){ cameraFunc.Shake(windupDelay, windShake); }
-        yield return new WaitForSeconds(windupDelay);
+        //yield return new WaitForSeconds(windupDelay);
+
+        yield return this.trackedWindup(this.windupDelay, args[0]);
 
         //if(windupSound.Length != 0){ user.mySoundManager?.StopSound(windupSound); }
 
@@ -80,5 +82,18 @@ public class WindupWeaponAbility : WeaponAbility
         //also play the sound here
         if(attackSound.Length != 0){ user.mySoundManager?.PlaySound(attackSound); }
         StartCoroutine(sheathe);
+    }
+
+    protected IEnumerator trackedWindup(float duration, Actor target)
+    {
+        for(float clock = 0f; clock < duration; clock += Time.deltaTime)
+        {
+            user.SendMessage("RotateActor", 
+                (Vector2)(target.gameObject.transform.position 
+                    - user.faceAnchor.position).normalized);
+            user.SendMessage("animateWalk");
+
+            yield return null;
+        }
     }
 }

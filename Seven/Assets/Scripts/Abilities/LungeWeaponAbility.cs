@@ -96,8 +96,13 @@ public class LungeWeaponAbility : WindupWeaponAbility
 
         //wait for the windup
         //if the screen should shake, start the minor shake
-        if(shouldShake){ cameraFunc.Shake(windupDelay, windShake); }
-        yield return new WaitForSeconds(windupDelay);
+        if(shouldShake){ cameraFunc.Shake(this.windupDelay, windShake); }
+        //yield return new WaitForSeconds(windupDelay);
+
+        yield return this.trackedWindup(this.windupDelay, args[0]);
+
+        //calculate the direction to lunge in
+        moveDir = (user.faceAnchor.position - user.gameObject.transform.position).normalized;
 
         user.mySoundManager?.StopSound(this.windupSound);
         user.mySoundManager?.PlaySound(this.attackSound);
@@ -199,5 +204,4 @@ public class LungeWeaponAbility : WindupWeaponAbility
             return false;
         } );
     }
-
 }
