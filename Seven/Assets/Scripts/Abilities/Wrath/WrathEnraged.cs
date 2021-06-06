@@ -6,6 +6,12 @@ public class WrathEnraged : ActorAbilityFunction<Actor, int>
 {
     // How long the player will get pushed away
     public float pushDuration;
+
+    // How long Wrath will be able to spam abilities
+    public float spamDuration;
+
+    // How long Wrath will be tired out after the spam
+    public float tiredDuration;
     
     // Rate of how hard the player will get pushed away
     public float pushIntensity;
@@ -14,6 +20,7 @@ public class WrathEnraged : ActorAbilityFunction<Actor, int>
 
     private bool isPushing;
     private Actor player;
+    private float originalDelay;
 
     public override void Invoke(ref Actor user)
     {
@@ -65,6 +72,7 @@ public class WrathEnraged : ActorAbilityFunction<Actor, int>
             player.myMovement.DragActor(pushAway * pushIntensity);
             yield return new WaitForFixedUpdate();
         }
+        StartCoroutine(WrathSpamAttack());
         FinishEnraged();
     }
 
@@ -74,11 +82,39 @@ public class WrathEnraged : ActorAbilityFunction<Actor, int>
         isPushing = false;
     }
 
-    private void FinishEnraged()
+    private IEnumerator WrathSpamAttack()
     {
+        Debug.Log("WRATH SPAMMING ATTACK");
+        originalDelay = user.GetComponent<WrathP2Actor>().delayBetweenAttacks;
+
+        // Set delay to 0 to allow Wrath to spam attacks.
+        user.GetComponent<WrathP2Actor>().delayBetweenAttacks = 0f;
+
+        yield return new WaitForSeconds(spamDuration);
+
+        StartCoroutine(WrathAfterSpam());
+    }
+
+    private IEnumerator WrathAfterSpam()
+    {
+        Debug.Log("WRATH TIRED OUT");
+        // Allow Wrath not to attack
+        user.GetComponent<WrathP2Actor>().canAttack = false;
+
         // Turn off wrath's invincibility
         user.myHealth.SetVulnerable(true, -1f);
 
+        yield return new WaitForSeconds(tiredDuration);
+
+        // Allow Wrath to attack
+        user.GetComponent<WrathP2Actor>().canAttack = true;
+
+        // Set delay back to normal 
+        user.GetComponent<WrathP2Actor>().delayBetweenAttacks = originalDelay;
+    }
+
+    private void FinishEnraged()
+    {
         this.isFinished = true;
     }
 }
