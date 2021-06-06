@@ -126,7 +126,11 @@ public class DragBackWeaponHitbox : WeaponHitbox
 
         mover.DragActor(dragAway * dragBackIntensity);
 
-        this.gameObject.SendMessageUpwards("stunPlayer", dragBackDuration, SendMessageOptions.DontRequireReceiver);
+        /*This attack shouldn't stun ever, so I (Thomas) am removing this line. However,
+        whoever put this here probably put it here for a reason, so just keep that in mind.
+        If someone comes by asking about why DragBack doesn't stun, it's because EgoSonicDragBack
+        is what does that, not this script.*/
+        //this.gameObject.SendMessageUpwards("stunPlayer", dragBackDuration, SendMessageOptions.DontRequireReceiver);
 
         yield return new WaitForSeconds(dragBackDuration);
         mover.DragActor(Vector2.zero);
