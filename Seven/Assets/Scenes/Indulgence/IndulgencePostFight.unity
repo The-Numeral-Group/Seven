@@ -975,10 +975,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c964ee89d097b943b745b61275f113d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
+  interactIndicatorPrefab: {fileID: 0}
   indicatorOffset: {x: 0, y: 2}
   gameSaveManager: {fileID: 431808886}
   gameSaveAbilityPickupIndex: 7
+  abilityTutorial: {fileID: 3369233752332285812, guid: 23e1a9651bfd6f243a550d31e2d28b21, type: 3}
 --- !u!1001 &5047970961534110072
 PrefabInstance:
   m_ObjectHideFlags: 0
