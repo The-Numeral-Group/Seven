@@ -1288,7 +1288,7 @@ MonoBehaviour:
   - {fileID: 1113196130}
   - {fileID: 1293176792}
   - {fileID: 1293176795}
-  wepWeights: 070000000300000001000000
+  wepWeights: 000000000000000000000000
   defaultWeight: 5
 --- !u!60 &656284018
 PolygonCollider2D:

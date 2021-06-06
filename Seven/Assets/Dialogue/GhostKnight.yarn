@@ -16,13 +16,11 @@ GhostKnight: I am the Champion, the chosen hero of the people.
 GhostKnight: ...but perhaps, not anymore.
 GhostKnight: I see now that title belongs to you.
 
-GhostKnight: As the Champion, you must defeat the Gods of Corruption.
-GhostKnight: They feed off of Humanity's selfish tendencies. 
-GhostKnight: They will trick you into falling for their corruption. 
-GhostKnight: Remember who you are fighting. Resist them. 
-GhostKnight: For the minute you give into your desires, you shall be defeated. 
-GhostKnight: Young Champion, stay strong, stay vigilant, and above all 
-GhostKnight: Resist Temptation
+GhostKnight: Now young Champion, look behind me. 
+TheWoman: ...u..rh..g...
+TheWoman: ...please.....help...me 
+GhostKnight: She is the Martyr. As the Champion you must save her. 
+GhostKnight: By defeating the Gods of Corruption who reside behind each door.
 
 //Ghost Knight disappears and reappears left of the pool of water
 ===
@@ -58,7 +56,7 @@ GhostKnight: Hail Young Champion, what would you like to know about?
 [[Indulgence|GhostKnight.Hub.Advice.Indulgence]]
 [[Ego|GhostKnight.Hub.Advice.Ego]]
 [[The Marytr|GhostKnight.Hub.Advice.TheWoman]]
-[[Me|GhostKnight.Hub.Advice.Me]]
+[[Ghost Knight|GhostKnight.Hub.Advice.Me]]
 ===
 title: GhostKnight.Hub.Advice.Indulgence
 tags: 
@@ -69,10 +67,9 @@ position: 1262,-196
 GhostKnight: Indulgence, a strange one. A being who crawled out of the depths of the void.
 GhostKnight: The ever consuming whose hunger is never satiated. 
 GhostKnight: Although, as of late, their consumption has shifted from food to an unending stream of knowledge. 
-GhostKnight: Magic tablets surround Indulgence and when they touch the tablets, images seem to move across them. 
-GhostKnight: Such powerful magic of the likes I've never encountered. 
+GhostKnight: There are magic "screens" that surround Indulgence. 
 //GHK gives advice on the yield to corruption
-GhostKnight: Be weary of Indulgence and these magic "screens". 
+GhostKnight: Be weary of Indulgence and these screens. 
 GhostKnight: They will try and entice you into taking more than you need.
 ===
 title: GhostKnight.Hub.Advice.Apathy
@@ -80,7 +77,7 @@ tags:
 colorID: 0
 position: 1048,60
 ---
-GhostKnight: To be disconnected from one's own emotions. A feeling of indifference. To not care. 
+GhostKnight: To be disconnected from one's own emotions. A feeling of indifference.
 GhostKnight: That is Apathy.
 GhostKnight: My heart goes out for the boy behind the clock. 
 GhostKnight: For when he was in pain, the world left him behind.
@@ -99,7 +96,7 @@ GhostKnight: Oh...him.. ~sigh~
 GhostKnight: He was a champion who came long before me. 
 GhostKnight: The strongest fool who wanted nothing more than to hear his own name be chanted by the masses.
 GhostKnight: It was only natural he succumbed to The Power of Ego.
-GhostKnight: As enticing as it may be, no matter how many times you land a hit on your opponent... 
+GhostKnight: As enticing as their spotlight may be...
 GhostKnight: Do not ever believe yourself better than another. 
 GhostKnight: As loud as those crowds may roar, their admiration is fleeting.
 GhostKnight: Stay humble young one and do not appeal to those who wouldn't care whether you win or lose.
