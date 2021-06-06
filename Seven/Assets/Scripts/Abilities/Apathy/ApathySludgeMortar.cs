@@ -349,7 +349,7 @@ internal class ApathySludgeMarker : MonoBehaviour
                 grabTarget.StartCoroutine(grabTarget.LockActorMovement(grabDuration));
                 if(grabTarget.TryGetComponent(out PlayerAbilityInitiator pai))
                 {
-                    StartCoroutine(pai.playerDodge.coolDown(grabDuration));
+                    pai.canDodge = false;
                 }
                 
                 for(float grabClock = 0f; grabClock < grabDuration; grabClock += Time.deltaTime)
@@ -362,6 +362,10 @@ internal class ApathySludgeMarker : MonoBehaviour
                     //drag the target that way
                     grabTarget.DragActor(centerDir * 1.5f);
                     yield return null;
+                }
+                if(pai != null)
+                {
+                    pai.canDodge = true;
                 }
                 ConcludeMarker();
                 yield break;
