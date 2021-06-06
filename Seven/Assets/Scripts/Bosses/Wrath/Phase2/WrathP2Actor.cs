@@ -120,8 +120,7 @@ public class WrathP2Actor : Actor
     void EvalauteState()
     {
         // Chooses either Shockwave or Fire&Brimstone
-        //int abilityType = (int)Random.Range(0, 2);
-        int abilityType = 0;
+        int abilityType = (int)Random.Range(0, 2);
 
         Debug.Log("Evaluating State");
         State decidingState = currState;
@@ -250,5 +249,12 @@ public class WrathP2Actor : Actor
             yield return new WaitForSeconds(delayBetweenAttacks);
         }
         EvalauteState();
+    }
+
+    public override void DoActorDamageEffect(float damage)
+    {
+        base.DoActorDamageEffect(damage);
+        // Play TakeDamage Audio
+        mySoundManager.PlaySound("TakeDamage");
     }
 }

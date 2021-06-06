@@ -2068,10 +2068,18 @@ PrefabInstance:
       propertyPath: originalVolume
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6902695608127423341, guid: dd611e239e0c17a71aaeda7b09a22d14, type: 3}
+      propertyPath: loopStartTime
+      value: 11.702
+      objectReference: {fileID: 0}
     - target: {fileID: 6902695608127423342, guid: dd611e239e0c17a71aaeda7b09a22d14, type: 3}
       propertyPath: m_Volume
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6902695608127423342, guid: dd611e239e0c17a71aaeda7b09a22d14, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: bdfe3fd1058a1af45b75171888d08fc1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd611e239e0c17a71aaeda7b09a22d14, type: 3}
 --- !u!1 &1421694991
@@ -3283,7 +3291,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: TakeDamage
+    audioClip: {fileID: 8300000, guid: 25838854649f39547b7a8639e85d31c5, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
 --- !u!114 &2135220266
 MonoBehaviour:
   m_ObjectHideFlags: 0

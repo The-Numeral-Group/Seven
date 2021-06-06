@@ -177,8 +177,7 @@ public class WrathP1Actor : Actor
             if (poolType == 'A') // Draw an ability from Pool A
             {
                 // Determines which ability Wrath will perform.
-                //int abilityType = (int)Random.Range(0, 3);
-                int abilityType = 0;
+                int abilityType = (int)Random.Range(0, 3);
 
                 switch (abilityType)
                 {
@@ -230,6 +229,12 @@ public class WrathP1Actor : Actor
         {
             Physics2D.IgnoreCollision(this.gameObject.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
         }
+    }
+    public override void DoActorDamageEffect(float damage)
+    {
+        base.DoActorDamageEffect(damage);
+        // Play TakeDamage Audio
+        mySoundManager.PlaySound("TakeDamage");
     }
 
 }
