@@ -30,6 +30,11 @@ public class ActorSoundManager : MonoBehaviour
             {
                 soundTimerDictionary[s.name] = -s.audioClip.length;
             }
+
+            if (s.playOnAwake)
+            {
+                s.source.Play();
+            }
         }
     }
 

@@ -27,11 +27,21 @@ public class AbilitySubMenu : SubMenu
     public GameSaveManager gameSaveManager;
     Dictionary<string, (string, string)> abilityInfo;
     Dictionary<string, (int, int)> abilityFlag;
+    bool initialize;
 
     //gamesaveindices 7, 8, 9 ability pickup :: 17, 14, 11 sin committed
 
     void Awake()
     {
+        Initialize();
+    }
+    void Initialize()
+    {
+        if (initialize)
+        {
+            return;
+        }
+        initialize = true;
         infoBox.text = "";
         abilityInfo = new Dictionary<string, (string, string)>();
         abilityFlag = new Dictionary<string, (int, int)>();
@@ -41,19 +51,39 @@ public class AbilitySubMenu : SubMenu
         abilityFlag.Add("Indulgence", (7, 17));
         abilityFlag.Add("Ego", (8, 14));
         abilityFlag.Add("Apathy", (9, 11));
-    }
-
-    void Start()
-    {
         if (gameSaveManager == null)
         {
             var gsm = GameObject.FindObjectOfType<GameSaveManager>();
             if (gsm)
             {
                 gameSaveManager = gsm.GetComponent<GameSaveManager>();
+                //SetDefaultButton();
             }
         }
     }
+
+    /*public override void Show()
+    {
+        Initialize();
+        SetDefaultButton();
+        base.Show();
+    }*/
+
+    /*public void SetDefaultButton()
+    {
+        if (gameSaveManager.getBoolValue(abilityFlag["Ego"].Item1))
+        {
+            defaultButton = egoButton;
+        }
+        else if (gameSaveManager.getBoolValue(abilityFlag["Indulgence"].Item1))
+        {
+            defaultButton = indulgenceButton;
+        }
+        else if (gameSaveManager.getBoolValue(abilityFlag["Apathy"].Item1))
+        {
+            defaultButton = apathyButton;
+        }
+    }*/
 
     public void UpdateAbilityText(string bossName)
     {

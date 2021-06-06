@@ -105,8 +105,7 @@ public class PauseMenu : BaseUI
 
     public void ShowSubMenu(SubMenu menu)
     {
-        menu.gameObject.SetActive(true);
-        menu.defaultButton.Select();
+        menu.Show();
     }
 
     //meant to be called by player upon closing pause menu through resume.
