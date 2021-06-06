@@ -10,6 +10,9 @@ public class WrathFireBrimstone : ActorAbilityFunction<Actor, int>
     // Delay between each shadow spawn
     public float shadowDelay;
 
+    // Delay between shake 
+    public float shakeDelay;
+
     // Delay between each anim
     public float animDelay;
 
@@ -23,10 +26,6 @@ public class WrathFireBrimstone : ActorAbilityFunction<Actor, int>
     public GameObject areaToChoose;
 
     private float delaySpeedMultiplier;
-
-
-    // Delay time before camera shake
-    private float shake_delay = 1.0f;
 
     // Camera object for Camera Shake
     private BaseCamera cam;
@@ -66,7 +65,7 @@ public class WrathFireBrimstone : ActorAbilityFunction<Actor, int>
     private IEnumerator spawnShadow()
     {
         // Delay before camera shake
-        yield return new WaitForSeconds(shake_delay / delaySpeedMultiplier);
+        yield return new WaitForSeconds(shakeDelay / delaySpeedMultiplier);
 
         // Play fist sound
         user.mySoundManager.PlaySound("fist");
@@ -84,7 +83,7 @@ public class WrathFireBrimstone : ActorAbilityFunction<Actor, int>
         }
 
         // Delay before camera shake
-        yield return new WaitForSeconds(shake_delay / delaySpeedMultiplier);
+        yield return new WaitForSeconds(shakeDelay / delaySpeedMultiplier);
 
         // Play fist sound
         user.mySoundManager.PlaySound("fist");

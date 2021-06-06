@@ -5,7 +5,10 @@ using UnityEngine;
 public class WrathShockwave : ActorAbilityFunction<Actor, int>
 {
     // Delay after the fist animation
-    public float delayAnim;
+    public float delayFistAnim;
+
+    // Delay after the palm animation
+    public float delayPalmAnim;
 
     // Delay for each shockwave creation
     public float delayPillarShockwave;
@@ -77,7 +80,7 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
     private IEnumerator startShockwavePillars()
     {
         // Delay after animation
-        yield return new WaitForSeconds(delayAnim / delaySpeedMultiplier);
+        yield return new WaitForSeconds(delayFistAnim / delaySpeedMultiplier);
 
         // Play fist sound
         user.mySoundManager.PlaySound("fist");
@@ -128,7 +131,7 @@ public class WrathShockwave : ActorAbilityFunction<Actor, int>
     private IEnumerator startShockwaveLarge()
     {
         // Delay after animation
-        yield return new WaitForSeconds(delayAnim / delaySpeedMultiplier);
+        yield return new WaitForSeconds(delayPalmAnim / delaySpeedMultiplier);
 
         // Play fist sound
         user.mySoundManager.PlaySound("fist");
