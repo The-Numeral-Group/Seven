@@ -45,6 +45,11 @@ public class HubEventListener : MonoBehaviour
         this.playerObject.GetComponent<PlayerActor>().playerInput.SwitchCurrentActionMap("UI");
         yield return new WaitForSeconds(duration);
         this.playerObject.GetComponent<PlayerActor>().playerInput.SwitchCurrentActionMap("Player");
+        yield return new WaitForSeconds(0.5f);
+        if (MenuManager.BATTLE_UI)
+        {
+            MenuManager.BATTLE_UI.gameObject.SetActive(true);
+        }
     }
 
     private void checkBossProgress()
