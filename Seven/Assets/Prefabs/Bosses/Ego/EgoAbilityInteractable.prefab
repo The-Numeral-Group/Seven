@@ -65,6 +65,7 @@ MonoBehaviour:
   indicatorOffset: {x: 0, y: 2}
   gameSaveManager: {fileID: 0}
   gameSaveAbilityPickupIndex: -1
+  abilityTutorial: {fileID: 2937701324620886995}
 --- !u!212 &3555202452943982409
 SpriteRenderer:
   m_ObjectHideFlags: 0
