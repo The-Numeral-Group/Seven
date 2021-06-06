@@ -19,6 +19,8 @@ public class WrathP2Actor : Actor
     [Tooltip("At which percentage differences do we change phases? I.e. if .25, the boss will change phases every 25%.")]
     [Range(0.1f, 0.5f)]
     public float phaseChangePercentageInspector = .25f;
+    // How much animation speed will increase at each enraged stage;
+    public float animSpeedIncrement;
     //Reference to the current state
     [Tooltip("The current state the actor is in. Meant to just be inspector viewable. Changint the value in inspector will do nothing.")]
     public State currState;
@@ -118,7 +120,8 @@ public class WrathP2Actor : Actor
     void EvalauteState()
     {
         // Chooses either Shockwave or Fire&Brimstone
-        int abilityType = (int)Random.Range(0, 2);
+        //int abilityType = (int)Random.Range(0, 2);
+        int abilityType = 0;
 
         Debug.Log("Evaluating State");
         State decidingState = currState;
@@ -230,7 +233,7 @@ public class WrathP2Actor : Actor
             armSweep.AddDamage(WrathP2Actor.abilityDamageAddition/WrathP2Actor.abilityDamageAddition);
         }
         //Every phase change we increase the speed
-        WrathP2Actor.abilitySpeedMultiplier += 0.5f;
+        WrathP2Actor.abilitySpeedMultiplier += animSpeedIncrement;
         this.myAnimationHandler.Animator.SetFloat("anim_speed", WrathP2Actor.abilitySpeedMultiplier);
         //We increase what the value for which the next phase should be evaluated at.
         phaseChangePercentageActual += phaseChangePercentageInspector;

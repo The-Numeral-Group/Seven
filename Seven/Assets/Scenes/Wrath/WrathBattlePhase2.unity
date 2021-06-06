@@ -4581,7 +4581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4115977272152067176, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: startingMaxHealth
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4115977272152067185, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_Name
@@ -4813,7 +4813,7 @@ PrefabInstance:
       objectReference: {fileID: 5036942542288751202, guid: fbcee8a5c07c2734aafac814693367b3, type: 3}
     - target: {fileID: 412269036355777620, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: delayAnim
-      value: 0.9
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 412269036355777620, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: delayShockwave
@@ -4859,6 +4859,14 @@ PrefabInstance:
       propertyPath: animPalmTrigger
       value: palm
       objectReference: {fileID: 0}
+    - target: {fileID: 412269036355777620, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: delayFistAnim
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 412269036355777620, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: delayPalmAnim
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 737185324583889991, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: wrathShockwave
       value: 
@@ -4895,6 +4903,10 @@ PrefabInstance:
       propertyPath: delayBetweenAttacks
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2688743516045599179, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: animSpeedIncrement
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4132197406195292903, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: animTrigger
       value: fist
@@ -4929,11 +4941,15 @@ PrefabInstance:
       objectReference: {fileID: 1337852591}
     - target: {fileID: 4132197406195292903, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: animDelay
-      value: 0.7
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132197406195292903, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: shakeDelay
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4950743182952501645, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5541655781900561451, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: m_Materials.Array.data[0]
