@@ -95,7 +95,7 @@ public class WrathP2Actor : Actor
         base.DoActorDeath();
         //We set isdead so that the state machine no longer reloops on its next evaluation.
         isDead = true;
-        SceneManager.LoadScene("ToD_PostFight");
+        SceneManager.LoadScene("WrathDeath");
     }
 
     //Function is used to setup the reference to whomever wrath is targeting. i.e. the player
