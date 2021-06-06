@@ -49,6 +49,8 @@ public class Ego2Actor : Actor
 
     [Tooltip("The entry and exit door of this fight")]
     public GameObject exitDoor;
+    [Tooltip("The barrier blocking the bottom of the arena.")]
+    public GameObject exitBarrier;
 
     //How many times Ego has attacked (which determines which attack it uses). Needs to start at
     //one to work with the modulo-based attack determination
@@ -233,6 +235,7 @@ public class Ego2Actor : Actor
 
         //open the exit door
         exitDoor.SetActive(true);
+        exitBarrier.SetActive(false);
 
         
         //create an ability object and set it's flag to 8 to reference Ego's ability
