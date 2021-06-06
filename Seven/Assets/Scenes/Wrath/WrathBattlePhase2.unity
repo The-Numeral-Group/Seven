@@ -473,7 +473,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7418090934611497149, guid: 6cfe7c8d001cadb40b787fd40357c238, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7418090934611497149, guid: 6cfe7c8d001cadb40b787fd40357c238, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2273,7 +2273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7418090934611497149, guid: 6cfe7c8d001cadb40b787fd40357c238, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7418090934611497149, guid: 6cfe7c8d001cadb40b787fd40357c238, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2364,8 +2364,8 @@ MonoBehaviour:
   abilityName: 
   invokeBlankWhenBadArguments: 1
   pushDuration: 1
-  spamDuration: 4
-  tiredDuration: 4
+  spamDuration: 5
+  tiredDuration: 8
   pushIntensity: 3
   animTrigger: roar
 --- !u!114 &1020262350
@@ -4110,7 +4110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 690711022610430580, guid: 61435a56224e28742a1abcac96abd308, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 690711022610430580, guid: 61435a56224e28742a1abcac96abd308, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4933,7 +4933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4950743182952501645, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5541655781900561451, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4990,6 +4990,10 @@ PrefabInstance:
     - target: {fileID: 7696531761945222991, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: cooldownPeriod
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7696531761945222991, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: damagePerHitbox.Array.data[0]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8996302718286436342, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[9].y
