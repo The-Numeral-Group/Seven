@@ -112,7 +112,7 @@ public class ApathyNPC : Interactable
         fightCompleted = manager.getBoolValue(12);
 
         //Sin End
-        if(fightAbandoned && !fightCompleted)
+        if(fightAbandoned)
         {
             //remove both props and Sloth, and place the AOS if it is not already there
             //also turn of this object's collider to prevent talking to sloth
@@ -196,6 +196,8 @@ public class ApathyNPC : Interactable
             fightAbandoned = true;  //fight is abandoned
             //save the sin flag
             manager.setBoolValue(true, 11);
+            //and count apathy as dead
+            manager.setBoolValue(true, 12);
             //manager.setBoolValue(true, 12); //but apathy is still technically dead
         }
     }
