@@ -145,6 +145,15 @@ public class MenuManager : MonoBehaviour
             {
                 inspectorRef = fooMenu.GetComponent<T>();
             }
+            else
+            {
+                var barmenu = Resources.FindObjectsOfTypeAll(typeof(T));
+                if (barmenu.Length > 0)
+                {
+                    GameObject bar = barmenu[0] as GameObject;
+                    inspectorRef = bar.GetComponent<T>();
+                }
+            }
         }
         STATIC_REF = inspectorRef;
         if (STATIC_REF == null)
