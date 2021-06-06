@@ -64,7 +64,8 @@ MonoBehaviour:
   interactIndicatorPrefab: {fileID: 5860804324667936041, guid: adfba454590f3054f82da8950a9a07a6, type: 3}
   indicatorOffset: {x: 0, y: 2}
   gameSaveManager: {fileID: 0}
-  gameSaveAbilityPickupIndex: 8
+  gameSaveAbilityPickupIndex: -1
+  abilityTutorial: {fileID: 3369233752332285812, guid: 23e1a9651bfd6f243a550d31e2d28b21, type: 3}
 --- !u!212 &3555202452943982409
 SpriteRenderer:
   m_ObjectHideFlags: 0

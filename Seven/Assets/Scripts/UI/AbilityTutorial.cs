@@ -54,6 +54,8 @@ public class AbilityTutorial : MonoBehaviour
             cycleUI.SetActive(true);
         }
 
+        gamesave.setFloatValue(progress + 1f, 20);
+
         //Turn on self destruct timer
         StartCoroutine(SelfDestruct());
     }
