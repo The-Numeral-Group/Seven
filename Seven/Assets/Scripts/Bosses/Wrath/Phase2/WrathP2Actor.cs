@@ -24,6 +24,8 @@ public class WrathP2Actor : Actor
     public State currState;
     //flat to let the actor know to enter the next enraged stage
     public bool isEnraged;
+    //Wrath can attack or not.
+    public bool canAttack;
     public enum State
     {
         WAITING,
@@ -55,6 +57,7 @@ public class WrathP2Actor : Actor
         WrathP2Actor.abilityDamageAddition = 0;
         isDead = false;
         isEnraged = false;
+        canAttack = true;
         phaseChangePercentageActual = phaseChangePercentageInspector;
         currAbility = null;
     }
@@ -124,15 +127,15 @@ public class WrathP2Actor : Actor
             decidingState = State.DEAD;
             ExecuteState(decidingState);
         }
-        else if (WrathP2Actor.targetInRange && this.myAbilityInitiator.abilities[AbilityRegister.WRATH_ARMSWEEP].getUsable())
+        else if (WrathP2Actor.targetInRange && this.myAbilityInitiator.abilities[AbilityRegister.WRATH_ARMSWEEP].getUsable() && canAttack)
         {
             decidingState = State.PHYSICAL;
         }
-        else if (abilityType == 0 && this.myAbilityInitiator.abilities[AbilityRegister.WRATH_SHOCKWAVE].getUsable())
+        else if (abilityType == 0 && this.myAbilityInitiator.abilities[AbilityRegister.WRATH_SHOCKWAVE].getUsable() && canAttack)
         {
             decidingState = State.SHOCKWAVE;
         }
-        else if (abilityType == 1 && this.myAbilityInitiator.abilities[AbilityRegister.WRATH_FIREBRIMSTONE].getUsable())
+        else if (abilityType == 1 && this.myAbilityInitiator.abilities[AbilityRegister.WRATH_FIREBRIMSTONE].getUsable() && canAttack)
         {
             decidingState = State.FIREBRIMSTONE;
         }
