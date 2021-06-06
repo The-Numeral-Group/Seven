@@ -5,12 +5,10 @@ position: 612,76
 ---
 Ego: Another adoring fan! You must want an autograph.
 Ego: Do you have a quill?
-//pause
+
 Ego: ...
 Ego: No?
-Ego: Then you must be an artist!
-Ego: Would you like me to pose for you?
-
+Ego: Then you must be an artist come to draw my beauty!
 Ego: ...
 Ego: No? 
 Ego: Well then, what ARE you here for?
@@ -32,11 +30,9 @@ colorID: 0
 position: 598,326
 ---
 Ego: Huff..huff...ha..
-Ego: You... You're just a child!
 Ego: How could I be beaten so easily...
-Ego: Do yoU ThInK yOur better THAN ME?!
+Ego: You... You're just a child!
 //pause
-Ego: I'll put an end to this charade.
 Ego: This body is weak, imperfect... it no longer serves me. 
 Ego: The body of the most powerful champion...
 Ego: IT IS STILL NOT GOOD ENOUGH!

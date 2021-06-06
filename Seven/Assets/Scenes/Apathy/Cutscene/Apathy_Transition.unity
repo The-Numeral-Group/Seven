@@ -366,6 +366,8 @@ PlayableDirector:
     value: {fileID: 1841223892}
   - key: {fileID: -6830860069334628541, guid: 426ee9374cc6cd74a9be2eb67e0548ef, type: 2}
     value: {fileID: 1867903039}
+  - key: {fileID: -6265841044224434676, guid: 426ee9374cc6cd74a9be2eb67e0548ef, type: 2}
+    value: {fileID: 1249115943}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &519573802
@@ -1297,6 +1299,11 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!95 &1249115943 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3980447957275875257, guid: 2186ce7d5301fab41b4a7553326e9396, type: 3}
+  m_PrefabInstance: {fileID: 1407262998}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1407262998
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1304,6 +1311,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2000469069284147995, guid: 2186ce7d5301fab41b4a7553326e9396, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7522185283508685397, guid: 2186ce7d5301fab41b4a7553326e9396, type: 3}
       propertyPath: tickSpeed
       value: 90

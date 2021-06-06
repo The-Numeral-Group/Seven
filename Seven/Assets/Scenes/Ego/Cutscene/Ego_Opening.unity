@@ -1372,7 +1372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 857419685585266692, guid: aff426102da3180439214a08476cad21, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.35
+      value: -1.81
       objectReference: {fileID: 0}
     - target: {fileID: 857419685585266692, guid: aff426102da3180439214a08476cad21, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1410,6 +1410,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 857419685585266747, guid: aff426102da3180439214a08476cad21, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5518357678009752123, guid: 5b53ff4b6c6a8a94da8e93b1e1d06f60, type: 3}
     - target: {fileID: 857419685585266751, guid: aff426102da3180439214a08476cad21, type: 3}
       propertyPath: m_Name
       value: Player (Cutscene)
@@ -1474,6 +1478,14 @@ PrefabInstance:
     - target: {fileID: 2283877871945625096, guid: 5d863846b43d92344ade055b66610994, type: 3}
       propertyPath: yarnStartNode
       value: Opening
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283877871945625096, guid: 5d863846b43d92344ade055b66610994, type: 3}
+      propertyPath: indicatorOffset.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283877871945625096, guid: 5d863846b43d92344ade055b66610994, type: 3}
+      propertyPath: chatBoxOffset.y
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 2283877871945625103, guid: 5d863846b43d92344ade055b66610994, type: 3}
       propertyPath: m_Name
