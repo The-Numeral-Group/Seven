@@ -2247,7 +2247,7 @@ MonoBehaviour:
   attackShake: 1
   animFlag: ego_chargefalcon
   recoveryTrigger: ego_falcon
-  mode: 0
+  mode: 1
   lungeDistance: 7.5
   lungeDuration: 2
   lungeSpeed: 10
