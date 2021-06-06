@@ -1139,7 +1139,7 @@ MonoBehaviour:
   - {fileID: 1113196130}
   - {fileID: 1293176792}
   - {fileID: 1293176795}
-  wepWeights: 000000000000000000000000
+  wepWeights: 000000000100000000000000
   defaultWeight: 5
 --- !u!60 &656284018
 PolygonCollider2D:
@@ -1391,9 +1391,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: PlayerAttack
-    audioClip: {fileID: 8300000, guid: 5e34decabea1cd543abefe301cb23600, type: 3}
-    volume: 0
+  - name: FirePunch
+    audioClip: {fileID: 8300000, guid: 10fa5b08bf2545a458d1088fa2c4c45c, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: SonicPunch
+    audioClip: {fileID: 8300000, guid: 31984b3671858404a8a11036a0c2f337, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: FireWind
+    audioClip: {fileID: 8300000, guid: 91b66e0ba614d8efba1c27f12e10dd25, type: 3}
+    volume: 0.8
+    pitch: 0
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: SonicPunch
+    audioClip: {fileID: 8300000, guid: 31984b3671858404a8a11036a0c2f337, type: 3}
+    volume: 1
     pitch: 0
     loop: 0
     hasCooldown: 0
@@ -1840,6 +1864,7 @@ MonoBehaviour:
   animTrigger: ego_combo
   windupDelay: 0.2
   attackSound: 
+  windupSound: 
   shouldShake: 0
   windShake: 0.1
   attackShake: 1
@@ -1850,6 +1875,7 @@ MonoBehaviour:
   lungeDuration: 0.1
   lungeSpeed: 10
   endlagDuration: 0.7
+  strikeSound: 
 --- !u!114 &1113196128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1892,6 +1918,7 @@ MonoBehaviour:
   animTrigger: ego_combo
   windupDelay: 0.8
   attackSound: 
+  windupSound: 
   shouldShake: 0
   windShake: 0.1
   attackShake: 1
@@ -1943,6 +1970,7 @@ MonoBehaviour:
   animTrigger: ego_combo
   windupDelay: 0.2
   attackSound: 
+  windupSound: 
   shouldShake: 0
   windShake: 0.1
   attackShake: 1
@@ -2068,7 +2096,8 @@ MonoBehaviour:
   damagePerHitbox: 
   animTrigger: ego_falcon
   windupDelay: 1.5
-  attackSound: 
+  attackSound: FirePunch
+  windupSound: FireWind
   shouldShake: 0
   windShake: 0.1
   attackShake: 1
@@ -2079,6 +2108,7 @@ MonoBehaviour:
   lungeDuration: 2
   lungeSpeed: 50
   endlagDuration: 2
+  strikeSound: FirePunch
 --- !u!4 &1293176794
 Transform:
   m_ObjectHideFlags: 0
@@ -2138,8 +2168,9 @@ MonoBehaviour:
   weaponPositionScale: {x: 3.2, y: 3.2}
   damagePerHitbox: 01000000
   animTrigger: ego_sonic
-  windupDelay: 1
+  windupDelay: 1.2
   attackSound: 
+  windupSound: SonicPunch
   shouldShake: 0
   windShake: 0.1
   attackShake: 1
@@ -2956,6 +2987,7 @@ MonoBehaviour:
   animTrigger: 
   windupDelay: 1.5
   attackSound: 
+  windupSound: 
   shouldShake: 1
   windShake: 0.1
   attackShake: 1

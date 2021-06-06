@@ -37,6 +37,9 @@ public class LungeWeaponAbility : WindupWeaponAbility
     [Tooltip("How long the user should be locked in place after the attack ends.")]
     public float endlagDuration = 2f;
 
+    [Tooltip("The name of the sound to play when this attack hits something")]
+    public string strikeSound;
+
     //the user's speed prior to the lunge (as to reset the user's speed post-lunge)
     private float origSpeed = 0f;
 
@@ -88,10 +91,16 @@ public class LungeWeaponAbility : WindupWeaponAbility
         this.hitConnected = false;
         StopCoroutine(sheathe);
 
+        //play the windup sound
+        user.mySoundManager?.PlaySound(this.windupSound);
+
         //wait for the windup
         //if the screen should shake, start the minor shake
         if(shouldShake){ cameraFunc.Shake(windupDelay, windShake); }
         yield return new WaitForSeconds(windupDelay);
+
+        user.mySoundManager?.StopSound(this.windupSound);
+        user.mySoundManager?.PlaySound(this.attackSound);
         
         //now that the windup is over, tell the animator to stop looping
         this.user.myAnimationHandler.TrySetBool(animFlag, false);
@@ -113,8 +122,12 @@ public class LungeWeaponAbility : WindupWeaponAbility
 
         user.myMovement.speed = origSpeed;
 
+        //play the attack sound
+        
         //sheathe the weapon
         yield return sheathe;
+
+        user.mySoundManager?.StopSound(this.attackSound);
 
         //enter the recovery animation
         var recoverAnimFinished = 
@@ -176,6 +189,11 @@ public class LungeWeaponAbility : WindupWeaponAbility
                 this.user.myMovement.MoveActor(moveDir);
 
                 return true;
+            }
+
+            if(this.hitConnected)
+            {
+                user.mySoundManager?.PlaySound(this.strikeSound);
             }
 
             return false;
