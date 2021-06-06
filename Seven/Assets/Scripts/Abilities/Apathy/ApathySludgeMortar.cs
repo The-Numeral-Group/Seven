@@ -218,14 +218,20 @@ internal class ApathySludgeSingle : ProjectileAbility
         yield return new WaitWhile(animDelegate);
         
 
-        //Step 8: Destroy the marker and the projectile, if they still exist
-        //Destroy(markObjA);
-        markObjA.GetComponent<ApathySludgeMarker>()
-            .BecomeGrabber(wrap.waitDuration, wrap.grabDuration);
+        
         //We need to double check here in case proj obj was destroyed on impact
         if(projObj)
         {
             Destroy(projObj);
+            //Step 8: Destroy the marker and the projectile, if they still exist
+            //Destroy(markObjA);
+            markObjA.GetComponent<ApathySludgeMarker>()
+                .BecomeGrabber(wrap.waitDuration, wrap.grabDuration);
+        }
+        else
+        {
+            //also destroy the marker, because the projectile must have hit the player
+            Destroy(markObjA);
         }
 
         //Step 9: Now we need a brand new proj obj
@@ -253,13 +259,18 @@ internal class ApathySludgeSingle : ProjectileAbility
         //Step 11: Wait again...
         yield return new WaitForSeconds(shotFlightTime);
 
-        //Step 12: Destroy the marker and the projectile, if they still exist
-        markObjB.GetComponent<ApathySludgeMarker>()
-            .BecomeGrabber(wrap.waitDuration, wrap.grabDuration);
+        
         //We need to double check here in case proj obj was destroyed on impact
         if(projObj)
         {
             Destroy(projObj);
+            //Step 12: Destroy the marker and the projectile, if they still exist
+            markObjB.GetComponent<ApathySludgeMarker>()
+                .BecomeGrabber(wrap.waitDuration, wrap.grabDuration);
+        }
+        else
+        {
+            Destroy(markObjB);
         }
 
         //Step 13: Cooldown
