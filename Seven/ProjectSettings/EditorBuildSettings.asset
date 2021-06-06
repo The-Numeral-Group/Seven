@@ -93,6 +93,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Wrath/WrathBattlePhase2.unity
     guid: 3b63b0e9de8915644b4afd490174748b
   - enabled: 1
+    path: Assets/Scenes/Wrath/Cutscene/WrathDeath.unity
+    guid: 76f048f9a12c87146aed6a2b02328808
+  - enabled: 1
     path: Assets/Scenes/Ending/Cutscene/ToD_PostFight.unity
     guid: 7d8597e0fec8cc847aa2e74bc5b6ab42
   - enabled: 1
