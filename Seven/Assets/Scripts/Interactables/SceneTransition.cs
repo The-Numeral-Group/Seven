@@ -8,6 +8,7 @@ public class SceneTransition : Interactable
     //Name of the scene that should be loaded when interacting with this object.
     [Tooltip("The name of the scene to be loaded.")]
     public string sceneToLoad = "";
+    public bool noLoadScreen;
 
     public override void OnInteract()
     {
@@ -16,7 +17,14 @@ public class SceneTransition : Interactable
             Debug.LogWarning("SceneTranstion: No scene name provided for object " + this.gameObject.name);
             return;
         }
-        GameSettings.SCENE_TO_LOAD = sceneToLoad;
-        SceneManager.LoadScene("LoadScreen");
+        if (noLoadScreen)
+        {
+            SceneManager.LoadScene(sceneToLoad);
+        }
+        else
+        {
+            GameSettings.SCENE_TO_LOAD = sceneToLoad;
+            SceneManager.LoadScene("LoadScreen");
+        }
     }
 }
