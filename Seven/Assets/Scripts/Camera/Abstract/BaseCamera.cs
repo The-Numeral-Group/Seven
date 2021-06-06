@@ -29,6 +29,8 @@ public abstract class BaseCamera : MonoBehaviour
     //Distance used by derived camera classes to manage the focus between player and points of interest.
     [Tooltip("Distance required between a targetPOI to the player in order to affect if the camera breaks focus.")]
     public float breakingDistance = 0f;
+    [Tooltip("If set to true, the camera will not focus on the digloauge box if it is beyond the breaking distance.")]
+    public bool breakFocusOnDialogueBox;
     [Tooltip("Distance required for a camera to zoom in on a target.")]
     public float zoomTriggerDistance = 5f;
     //upper boundary for the camera
@@ -169,6 +171,14 @@ public abstract class BaseCamera : MonoBehaviour
         {
             Vector3 dialogBubblePos = 
                 MenuManager.DIALOGUE_MENU.chatBubble.position;
+            if (breakFocusOnDialogueBox && mainTargetTransform)
+            {
+                float targetDist = Vector2.Distance(mainTargetTransform.position, dialogBubblePos);
+                if (targetDist >= breakingDistance)
+                {
+                    return bounds.center;
+                }
+            }
             bounds.Encapsulate(dialogBubblePos);
         }
         return bounds.center;

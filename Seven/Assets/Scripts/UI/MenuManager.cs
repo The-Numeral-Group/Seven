@@ -147,11 +147,10 @@ public class MenuManager : MonoBehaviour
             }
             else
             {
-                var barmenu = Resources.FindObjectsOfTypeAll(typeof(T));
+                T[] barmenu = Resources.FindObjectsOfTypeAll(typeof(T)) as T[];
                 if (barmenu.Length > 0)
                 {
-                    GameObject bar = barmenu[0] as GameObject;
-                    inspectorRef = bar.GetComponent<T>();
+                    inspectorRef = barmenu[0];
                 }
             }
         }

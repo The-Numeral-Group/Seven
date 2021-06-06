@@ -73,6 +73,7 @@ public class AbilityMenu : BaseUI
             }
             i++;
         }
+        UpdatePlayerSelectedAbility();
         abilityHighLightIndicator.position = abilityButtons[pointerToCurrentSelectedButton].transform.position;
     }
 
