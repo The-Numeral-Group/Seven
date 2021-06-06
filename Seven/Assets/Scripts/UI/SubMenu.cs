@@ -9,4 +9,10 @@ public class SubMenu : MonoBehaviour
     public string menuName;
     [Tooltip("The defauly button that should be selected when this menu is active.")]
     public Button defaultButton;
+
+    public virtual void Show()
+    {
+        this.gameObject.SetActive(true);
+        defaultButton.Select();
+    }
 }
