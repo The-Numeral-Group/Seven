@@ -218,14 +218,20 @@ internal class ApathySludgeSingle : ProjectileAbility
         yield return new WaitWhile(animDelegate);
         
 
-        //Step 8: Destroy the marker and the projectile, if they still exist
-        //Destroy(markObjA);
-        markObjA.GetComponent<ApathySludgeMarker>()
-            .BecomeGrabber(wrap.waitDuration, wrap.grabDuration);
+        
         //We need to double check here in case proj obj was destroyed on impact
         if(projObj)
         {
             Destroy(projObj);
+            //Step 8: Destroy the marker and the projectile, if they still exist
+            //Destroy(markObjA);
+            markObjA.GetComponent<ApathySludgeMarker>()
+                .BecomeGrabber(wrap.waitDuration, wrap.grabDuration);
+        }
+        else
+        {
+            //also destroy the marker, because the projectile must have hit the player
+            Destroy(markObjA);
         }
 
         //Step 9: Now we need a brand new proj obj
@@ -253,13 +259,18 @@ internal class ApathySludgeSingle : ProjectileAbility
         //Step 11: Wait again...
         yield return new WaitForSeconds(shotFlightTime);
 
-        //Step 12: Destroy the marker and the projectile, if they still exist
-        markObjB.GetComponent<ApathySludgeMarker>()
-            .BecomeGrabber(wrap.waitDuration, wrap.grabDuration);
+        
         //We need to double check here in case proj obj was destroyed on impact
         if(projObj)
         {
             Destroy(projObj);
+            //Step 12: Destroy the marker and the projectile, if they still exist
+            markObjB.GetComponent<ApathySludgeMarker>()
+                .BecomeGrabber(wrap.waitDuration, wrap.grabDuration);
+        }
+        else
+        {
+            Destroy(markObjB);
         }
 
         //Step 13: Cooldown
@@ -336,6 +347,11 @@ internal class ApathySludgeMarker : MonoBehaviour
             {
                 //lock them in place and wait it out
                 grabTarget.StartCoroutine(grabTarget.LockActorMovement(grabDuration));
+                if(grabTarget.TryGetComponent(out PlayerAbilityInitiator pai))
+                {
+                    pai.canDodge = false;
+                }
+                
                 for(float grabClock = 0f; grabClock < grabDuration; grabClock += Time.deltaTime)
                 {
                     //calculate the direction from the target to this object's center
@@ -346,6 +362,10 @@ internal class ApathySludgeMarker : MonoBehaviour
                     //drag the target that way
                     grabTarget.DragActor(centerDir * 1.5f);
                     yield return null;
+                }
+                if(pai != null)
+                {
+                    pai.canDodge = true;
                 }
                 ConcludeMarker();
                 yield break;

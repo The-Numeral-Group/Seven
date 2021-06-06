@@ -9,6 +9,9 @@ public class AbilityPickup : Interactable
     [Tooltip("Index of scriptable bool in game save lsit to be notified of ability pickup.")]
     public int gameSaveAbilityPickupIndex = 0;
 
+    [Tooltip("The UI prefab to attach to the player to tutorialize abilities")]
+    public GameObject abilityTutorial;
+
     void Start()
     {
         if (gameSaveManager.getBoolValue(gameSaveAbilityPickupIndex))
@@ -20,6 +23,7 @@ public class AbilityPickup : Interactable
     {
         gameSaveManager.setBoolValue(true, gameSaveAbilityPickupIndex);
         MenuManager.ABILITY_MENU.UnlockAbilities();
+        Instantiate(abilityTutorial, GameObject.Find("Player").transform);
         this.gameObject.SetActive(false);
     }
 }
