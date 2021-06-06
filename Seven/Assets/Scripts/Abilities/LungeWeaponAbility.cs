@@ -127,7 +127,7 @@ public class LungeWeaponAbility : WindupWeaponAbility
         //sheathe the weapon
         yield return sheathe;
 
-        user.mySoundManager?.StopSound(this.attackSound);
+        //user.mySoundManager?.StopSound(this.attackSound);
 
         //enter the recovery animation
         var recoverAnimFinished = 

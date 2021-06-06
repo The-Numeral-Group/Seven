@@ -68,7 +68,7 @@ public class WindupWeaponAbility : WeaponAbility
         if(shouldShake){ cameraFunc.Shake(windupDelay, windShake); }
         yield return new WaitForSeconds(windupDelay);
 
-        if(windupSound.Length != 0){ user.mySoundManager?.StopSound(windupSound); }
+        //if(windupSound.Length != 0){ user.mySoundManager?.StopSound(windupSound); }
 
         //then do the rest of the attack as normal
         sheathe = SheatheWeapon();
