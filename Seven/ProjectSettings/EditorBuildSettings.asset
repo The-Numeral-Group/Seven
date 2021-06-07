@@ -66,6 +66,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Ego/Cutscene/Ego_BossW.unity
     guid: e23d46a1a363edb4fa7a84e68962c65e
   - enabled: 1
+    path: Assets/Scenes/Ego/EgoClose.unity
+    guid: e65635e858d975b40adc34d779243f5f
+  - enabled: 1
     path: Assets/Scenes/Indulgence/Indulgence_Opening.unity
     guid: cdb30706057b18741b346ed08a6a41bc
   - enabled: 1
