@@ -22,10 +22,20 @@ public class Ego1Actor : Actor
     [Tooltip("How long Ego will swagger for before just sprinting towards the player.")]
     public float swaggerDuration = 3f;
 
+    [Header("Game Ordering")]
     [Tooltip("The entry and exit door of this fight")]
     public GameObject exitDoor;
     [Tooltip("The barrier blocking the bottom of the arena.")]
     public GameObject exitBarrier;
+
+    [Tooltip("The Timeline Manager to request cutscenes from.")]
+    public GameObject timelineManager;
+
+    [Tooltip("The cutscene to play when Ego dies and the player has sinned")]
+    public string deathCutscene;
+
+    [Tooltip("The cutscene to play when Ego dies and the player has not sinned.")]
+    public string transitionCutscene;
 
     [Header("Attacks")]
     [Tooltip("Controls how many times should Ego use normal attacks before using it's special.")]
@@ -113,6 +123,9 @@ public class Ego1Actor : Actor
             StartCoroutine(Die());
             return;
         }
+
+        //save that the fight has been started in some form
+        gameSaveManager.setBoolValue(false, 13);
 
         //set EgoSin's SinMax to be the sin gate
         EgoSin.sinMax = sinGate;
@@ -248,7 +261,7 @@ public class Ego1Actor : Actor
             //save the lack of sin
             gameSaveManager.setBoolValue(false, 14);
 
-            ///DEBUG
+            /*///DEBUG
             Debug.Log("Ego1Actor: Phase change!");
             ///DEBUG
             this.gameObject.SendMessage(
@@ -258,7 +271,10 @@ public class Ego1Actor : Actor
                     (actor) => 
                         {actor.gameObject.transform.position = this.gameObject.transform.position;}
                 )
-            );
+            );*/
+
+            //transition to the next phase
+            timelineManager.SendMessage("loadScene", transitionCutscene);
         }
         //if they haven't...
         else
@@ -269,7 +285,10 @@ public class Ego1Actor : Actor
             gameSaveManager.setBoolValue(true, 15);
 
             ///just destroy this Ego
-            StartCoroutine(Die());
+            //StartCoroutine(Die());
+
+            //play the death cutscene
+            timelineManager.SendMessage("loadScene", deathCutscene);
         }
     }
 

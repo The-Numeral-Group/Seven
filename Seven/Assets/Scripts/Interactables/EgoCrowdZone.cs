@@ -51,6 +51,7 @@ public class EgoCrowdZone : Interactable
     {
         var sin = new EgoSin(boostFactor, duration, effectMaterial, false);
         interactor.myEffectHandler.AddTimedEffect(sin, duration);
+        interactor.mySoundManager.PlaySound("CrowdCheer");
         Cleanup();
     }
 

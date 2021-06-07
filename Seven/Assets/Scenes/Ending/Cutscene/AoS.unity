@@ -959,7 +959,7 @@ MonoBehaviour:
   indicatorOffset: {x: 0, y: 5}
   speakerName: Woman
   yarnStartNode: Woman.AoS.Dialogue0
-  chatBoxOffset: {x: 0, y: 2, z: 0}
+  chatBoxOffset: {x: 0, y: 3, z: 0}
   npcMode: 0
 --- !u!212 &368149262
 SpriteRenderer:
@@ -2322,7 +2322,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1562341910261810668, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: orthographic size
-      value: 11.30061
+      value: 12.437435
       objectReference: {fileID: 0}
     - target: {fileID: 1562341910261810668, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_ClearFlags
@@ -2422,7 +2422,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: mainTargetTransform
@@ -2430,7 +2430,7 @@ PrefabInstance:
       objectReference: {fileID: 368149264}
     - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: offset.y
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: ignoreTargetPOIs
@@ -2849,7 +2849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1027082126515424791, guid: f530a043178fee34798cd4cc9d5060c3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.15
+      value: 3.74
       objectReference: {fileID: 0}
     - target: {fileID: 1027082126515424791, guid: f530a043178fee34798cd4cc9d5060c3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4260,8 +4260,8 @@ PolygonCollider2D:
   m_Offset: {x: -0.1, y: -0.75}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.52569044, y: 0.839944}
-    oldSize: {x: 3, y: 2.7}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.48, y: 4.46}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
