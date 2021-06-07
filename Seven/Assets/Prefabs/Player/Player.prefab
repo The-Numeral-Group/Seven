@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d1d5e7c31d60a4bac75dc1bef3276a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingMaxHealth: 7
+  startingMaxHealth: 10
   damageResistance: 0
   invincibilityDuration: 1
   startInvulnerable: 0
@@ -458,7 +458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b0a3f7841e7346459eb7d9f876182ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 60
+  cooldownPeriod: 45
   abilityName: 
   invokeBlankWhenBadArguments: 1
   laserObj: {fileID: 4417132022118089685, guid: b0818de86c2e4c0fcaeb8e849b1b5dec, type: 3}

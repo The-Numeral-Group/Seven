@@ -2893,17 +2893,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e0351665f5b59c4f924945a1bad465f, type: 3}
---- !u!114 &1857178618 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7512802453659592074, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
-  m_PrefabInstance: {fileID: 4115977273667405722}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4115977273667405723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 831d4eb40aaec838ca2d456e55407ee4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2070746792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4399,18 +4388,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1509850875, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
-      propertyPath: cooldownPeriod
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1509850875, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
-      propertyPath: chargeTime
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1509850875, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
-      propertyPath: preLaserDuration
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 1857178619, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: pauseMenuUI
       value: 
@@ -4755,18 +4732,10 @@ PrefabInstance:
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[31].x
       value: 0.35
       objectReference: {fileID: 0}
-    - target: {fileID: 4115977272152067171, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 4115977272152067176, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: startingMaxHealth
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 4115977272152067180, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
-      propertyPath: playerDodge
-      value: 
-      objectReference: {fileID: 1857178618}
     - target: {fileID: 4115977272152067185, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: m_Name
       value: Player
@@ -4799,10 +4768,6 @@ PrefabInstance:
       propertyPath: Animator
       value: 
       objectReference: {fileID: 4115977273667405725}
-    - target: {fileID: 7512802453659592074, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
-      propertyPath: invincibleDuration
-      value: 0.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
 --- !u!1 &4115977273667405723 stripped
