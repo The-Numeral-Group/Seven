@@ -226,6 +226,10 @@ public class Ego2Actor : Actor
     //When this actor dies...
     public override void DoActorDeath()
     {
+        //save the lack of sin
+        gameSaveManager.setBoolValue(false, 14);
+        //Set the defetead flag
+        gameSaveManager.setBoolValue(true, 15);
         //play the death cutscene
         GameObject.Find("TimelineManager").SendMessage("loadScene", deathCutscene);
         //StartCoroutine(Die());
