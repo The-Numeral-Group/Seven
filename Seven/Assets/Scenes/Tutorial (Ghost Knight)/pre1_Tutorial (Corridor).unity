@@ -1226,6 +1226,7 @@ MonoBehaviour:
   interactIndicatorPrefab: {fileID: 0}
   indicatorOffset: {x: 0, y: 1}
   sceneToLoad: Tutorial_Opening
+  noLoadScreen: 1
 --- !u!1 &881435571
 GameObject:
   m_ObjectHideFlags: 0

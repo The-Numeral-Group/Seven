@@ -262,6 +262,7 @@ MonoBehaviour:
   audioSource: {fileID: 297122478}
   loop: 1
   loopStartTime: 18.478
+  originalVolume: 0
 --- !u!82 &297122478
 AudioSource:
   m_ObjectHideFlags: 0
@@ -274,7 +275,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1e7136819661ffe44875f09d6e820155, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.05
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1877,6 +1878,10 @@ PrefabInstance:
     - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: minZoom
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: breakingDistance
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7897472732076878603, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_Name

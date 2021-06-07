@@ -1359,6 +1359,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1386736268, guid: 4fd57652e3fd50c4cba3355da66050d8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5.1125
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386736268, guid: 4fd57652e3fd50c4cba3355da66050d8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.9752
+      objectReference: {fileID: 0}
     - target: {fileID: 661469260769139079, guid: 4fd57652e3fd50c4cba3355da66050d8, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1730,7 +1738,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1562341910261810668, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: orthographic size
-      value: 10
+      value: 7.839983
       objectReference: {fileID: 0}
     - target: {fileID: 1562341910261810668, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_ClearFlags

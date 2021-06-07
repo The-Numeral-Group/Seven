@@ -959,7 +959,7 @@ MonoBehaviour:
   indicatorOffset: {x: 0, y: 5}
   speakerName: Woman
   yarnStartNode: Woman.AoS.Dialogue0
-  chatBoxOffset: {x: 0, y: 0, z: 0}
+  chatBoxOffset: {x: 0, y: 2, z: 0}
   npcMode: 0
 --- !u!212 &368149262
 SpriteRenderer:
@@ -2322,7 +2322,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1562341910261810668, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: orthographic size
-      value: 10
+      value: 11.30061
       objectReference: {fileID: 0}
     - target: {fileID: 1562341910261810668, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_ClearFlags
@@ -2346,7 +2346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4321893605475107958, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 12.02
       objectReference: {fileID: 0}
     - target: {fileID: 4321893605475107958, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2422,7 +2422,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: mainTargetTransform
+      value: 
+      objectReference: {fileID: 368149264}
+    - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: offset.y
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822378650959853752, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+      propertyPath: ignoreTargetPOIs
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7897472732076878603, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
       propertyPath: m_Name
@@ -2994,7 +3006,7 @@ MonoBehaviour:
   director: {fileID: 1236873151}
   loop: 1
   loopTime:
-  - 5.1
+  - 9
 --- !u!320 &1236873151
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -3052,10 +3064,12 @@ PlayableDirector:
     value: {fileID: 484148411}
   - key: {fileID: 4936533180542737086, guid: cbdb0b441d3d77646b709a24b7d3cbf5, type: 2}
     value: {fileID: 4115977272023107297}
-  - key: {fileID: 8653394223143441328, guid: cbdb0b441d3d77646b709a24b7d3cbf5, type: 2}
+  - key: {fileID: 6905469984432816341, guid: cbdb0b441d3d77646b709a24b7d3cbf5, type: 2}
     value: {fileID: 368149266}
-  - key: {fileID: 3857695467262244491, guid: cbdb0b441d3d77646b709a24b7d3cbf5, type: 2}
-    value: {fileID: 4115977272023107297}
+  - key: {fileID: 2280693270660797062, guid: cbdb0b441d3d77646b709a24b7d3cbf5, type: 2}
+    value: {fileID: 368149266}
+  - key: {fileID: -1073098456707461938, guid: cbdb0b441d3d77646b709a24b7d3cbf5, type: 2}
+    value: {fileID: 1263188208}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1236873152
@@ -3133,6 +3147,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7581123479736852973, guid: 53fb65b901c0d5e47a0854fac8fb8052, type: 3}
   m_PrefabInstance: {fileID: 1243123013}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1263188208 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5541060872299539179, guid: dc4e42c7c04303b4c8a34e259e1cdfbb, type: 3}
+  m_PrefabInstance: {fileID: 1139608412}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1340650856
 GameObject:

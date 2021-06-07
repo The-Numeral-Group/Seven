@@ -544,6 +544,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7431792500328822264, guid: f58695f9ef18332468eabad26d9dc5a0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7431792500328822264, guid: f58695f9ef18332468eabad26d9dc5a0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7431792500328822266, guid: f58695f9ef18332468eabad26d9dc5a0, type: 3}
       propertyPath: m_Name
       value: apathyRoom_v2
