@@ -658,7 +658,6 @@ MonoBehaviour:
   abilityDropObject: {fileID: 2937701324620886995, guid: 5c08485fa2471bb459e008fa7379d9c5, type: 3}
   exitDoor: {fileID: 1825103567}
   exitBarrier: {fileID: 22273870}
-  bgm: {fileID: 1758972114}
   deathCutscene: Ego_BossD
 --- !u!114 &505191981
 MonoBehaviour:
