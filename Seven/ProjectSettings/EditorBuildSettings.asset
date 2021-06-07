@@ -54,6 +54,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Ego/EgoFight.unity
     guid: 894f09a184f6a7b9db0910ff28b99cf6
   - enabled: 1
+    path: Assets/Scenes/Ego/Cutscene/Ego_Transition.unity
+    guid: 49377fcd24e992240a2fc74d5eaac6ee
+  - enabled: 1
+    path: Assets/Scenes/Ego/Ego2Fight.unity
+    guid: e3e2aa01b3786e945be04016ff70fd79
+  - enabled: 1
+    path: Assets/Scenes/Ego/Cutscene/Ego_BossD.unity
+    guid: adb4b04d83031b6499e1fc5ee38e53f2
+  - enabled: 1
+    path: Assets/Scenes/Ego/Cutscene/Ego_BossW.unity
+    guid: e23d46a1a363edb4fa7a84e68962c65e
+  - enabled: 1
     path: Assets/Scenes/Indulgence/Indulgence_Opening.unity
     guid: cdb30706057b18741b346ed08a6a41bc
   - enabled: 1

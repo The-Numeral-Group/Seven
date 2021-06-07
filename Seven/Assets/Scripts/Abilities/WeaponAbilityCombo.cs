@@ -18,14 +18,14 @@ public class WeaponAbilityCombo : WeaponAbility
     protected override int InternInvoke(params Actor[] args)
     {
         usable = false;
-        StartCoroutine(ComboInvokation());
+        StartCoroutine(ComboInvokation(args));
         return 0;
     }
 
     /*The actual combo. Invokes each WeaponAbility in comboList in order,
     waiting for each one to complete and aborting if an ability is on cooldown
     when it comes up.*/
-    IEnumerator ComboInvokation()
+    IEnumerator ComboInvokation(params Actor[] args)
     {
         //simple flag for tracking if the first combo piece has been used
         bool firstPieceUsed = false;
@@ -53,7 +53,7 @@ public class WeaponAbilityCombo : WeaponAbility
 
             //invoke the comboPiece with no argument (as weapon abilities do)
             Debug.Log($"WeaponAbilityCombo: Invoking {comboPiece.name}");
-            comboPiece.Invoke(ref user);
+            comboPiece.Invoke(ref user, args);
 
             //wait for it to finish
             yield return new WaitUntil( () => comboPiece.getIsFinished());

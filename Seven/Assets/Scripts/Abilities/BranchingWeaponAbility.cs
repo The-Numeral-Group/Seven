@@ -63,12 +63,12 @@ public class BranchingWeaponAbility : WeaponAbility
             return 1;
         }
 
-        StartCoroutine(PickAbility());
+        StartCoroutine(PickAbility(args));
         return 0;
     }
 
     /*Randomly selects a weapon ability to use, invokes it, and then waits for it to finish*/
-    IEnumerator PickAbility()
+    IEnumerator PickAbility(params Actor[] args)
     {
         //pick a random from 0 to the largestWeight - 1
         int opt = rand.Next(0, largestWeight);
@@ -102,7 +102,7 @@ public class BranchingWeaponAbility : WeaponAbility
         }
 
         //invoke that weapon
-        nextWep.Invoke(ref user);
+        nextWep.Invoke(ref user, args);
 
         //wait for it to end
         yield return new WaitUntil( () => nextWep.getIsFinished());

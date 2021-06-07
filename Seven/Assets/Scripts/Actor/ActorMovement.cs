@@ -122,6 +122,15 @@ public class ActorMovement : MonoBehaviour
         //StartCoroutine(LockActorMovement(actorMoveDisable));
     }
 
+    /*Forces the user to face a certain direction. May cause strange direction flipping
+    if used while the target is moving*/
+    public virtual void RotateActor(Vector2 direction)
+    {
+        //update the direction the actor is facing
+        this.gameObject.SendMessage("DoActorUpdateFacing", 
+           direction, SendMessageOptions.DontRequireReceiver);
+    }
+
     /*If something ever needs to lock an Actor's movement, this is the method
     to invoke. Specify a time and movement will stay locked for that long. Passing
     an argument of 0.0f (or less) will unlock movement immediately*/

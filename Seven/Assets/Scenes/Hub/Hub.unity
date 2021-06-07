@@ -2911,7 +2911,7 @@ MonoBehaviour:
   bossID: 13
   bossSinIndex: 14
   bossDefeatedIndex: 15
-  postFightScene: EgoFight
+  postFightScene: Ego2Fight
   openingScene: Ego_Opening
   retryScene: EgoFight
   gameSaveManager: {fileID: 740934186}

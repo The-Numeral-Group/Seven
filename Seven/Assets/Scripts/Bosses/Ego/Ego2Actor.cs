@@ -52,6 +52,9 @@ public class Ego2Actor : Actor
     [Tooltip("The barrier blocking the bottom of the arena.")]
     public GameObject exitBarrier;
 
+    [Tooltip("The cutscene to play when Ego2 dies")]
+    public string deathCutscene;
+
     //How many times Ego has attacked (which determines which attack it uses). Needs to start at
     //one to work with the modulo-based attack determination
     private int attackCount = 1;
@@ -84,6 +87,20 @@ public class Ego2Actor : Actor
         //do normal initialization
         base.Start();
 
+        //save the gamesave manager
+        gameSaveManager = GameObject.Find("GameSaveManager").GetComponent<GameSaveManager>();
+        if(gameSaveManager == null)
+        {
+            Debug.LogWarning("Ego1Actor: Ego can't find the gameSave!");
+        }
+        //if ego has already been defeated...
+        else if(gameSaveManager.getBoolValue(15) == true)
+        {
+            //Auto-kill ego
+            StartCoroutine(Die());
+            return;
+        }
+
         //get the player
         player = GameObject.FindGameObjectWithTag("Player");
 
@@ -111,20 +128,6 @@ public class Ego2Actor : Actor
         else
         {
             Debug.LogError("Ego2Actor: No Ego2AnimationHandler found, anims will not function");
-        }
-
-        //save the gamesave manager
-        gameSaveManager = GameObject.Find("GameSaveManager").GetComponent<GameSaveManager>();
-        if(gameSaveManager == null)
-        {
-            Debug.LogWarning("Ego1Actor: Ego can't find the gameSave!");
-        }
-        //if ego has already been defeated...
-        else if(gameSaveManager.getBoolValue(15) == true)
-        {
-            //Auto-kill ego
-            StartCoroutine(Die());
-            return;
         }
 
         //start the behaviour coroutine
@@ -223,7 +226,13 @@ public class Ego2Actor : Actor
     //When this actor dies...
     public override void DoActorDeath()
     {
-        StartCoroutine(Die());
+        //save the lack of sin
+        gameSaveManager.setBoolValue(false, 14);
+        //Set the defetead flag
+        gameSaveManager.setBoolValue(true, 15);
+        //play the death cutscene
+        GameObject.Find("TimelineManager").SendMessage("loadScene", deathCutscene);
+        //StartCoroutine(Die());
     }
 
     //yields death to next frame so UI can catch up

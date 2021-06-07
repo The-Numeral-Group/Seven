@@ -13,6 +13,9 @@ public class WindupWeaponAbility : WeaponAbility
     [Tooltip("The name of a sound clip to play when the attack becomes active.")]
     public string attackSound;
 
+    [Tooltip("The name of the sound clip to play as the weapon is winding up")]
+    public string windupSound;
+
     [Header("Screen Shake Settings")]
     [Tooltip("Whether this attack should cause the screen to shake when it is used.")]
     public bool shouldShake = false;
@@ -57,10 +60,17 @@ public class WindupWeaponAbility : WeaponAbility
         this.hitConnected = false;
         StopCoroutine(sheathe);
 
+        //play the windup sound
+        if(windupSound.Length != 0){ user.mySoundManager?.PlaySound(windupSound); }
+
         //wait for the windup
         //if the screen should shake, start the minor shake
         if(shouldShake){ cameraFunc.Shake(windupDelay, windShake); }
-        yield return new WaitForSeconds(windupDelay);
+        //yield return new WaitForSeconds(windupDelay);
+
+        yield return this.trackedWindup(this.windupDelay, args[0]);
+
+        //if(windupSound.Length != 0){ user.mySoundManager?.StopSound(windupSound); }
 
         //then do the rest of the attack as normal
         sheathe = SheatheWeapon();
@@ -72,5 +82,18 @@ public class WindupWeaponAbility : WeaponAbility
         //also play the sound here
         if(attackSound.Length != 0){ user.mySoundManager?.PlaySound(attackSound); }
         StartCoroutine(sheathe);
+    }
+
+    protected IEnumerator trackedWindup(float duration, Actor target)
+    {
+        for(float clock = 0f; clock < duration; clock += Time.deltaTime)
+        {
+            user.SendMessage("RotateActor", 
+                (Vector2)(target.gameObject.transform.position 
+                    - user.faceAnchor.position).normalized);
+            user.SendMessage("animateWalk");
+
+            yield return null;
+        }
     }
 }
