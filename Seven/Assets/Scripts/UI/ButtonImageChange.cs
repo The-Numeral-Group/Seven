@@ -45,7 +45,19 @@ public class ButtonImageChange : MonoBehaviour
         render.sprite = origImage;
     }
 
-    public void checkSaveFileExists()
+    public void checkSaveFileExists(Sprite newImage = null)
+    {
+        if (!File.Exists(Application.persistentDataPath + ("/SaveFile.dat")))
+        {
+            this.ImageChangeTemp(failImage);
+        }
+        else if (newImage != null)
+        {
+            this.ImageChangeTemp(newImage);
+        }
+    }
+
+    public void checkSaveFileExistsNoSuccessImage()
     {
         if (!File.Exists(Application.persistentDataPath + ("/SaveFile.dat")))
         {
