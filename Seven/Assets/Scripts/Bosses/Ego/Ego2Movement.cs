@@ -314,6 +314,7 @@ public class Ego2Movement : ActorMovement
         Collider2D lastObj = Physics2D.OverlapCircle(realDest, colSize);
         while(lastObj)
         {
+            //temporary fix for sword teleport in wrath phase 2
             if (lastObj.gameObject.name == "WrathFBArea")
             {
                 break;
