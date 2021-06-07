@@ -643,6 +643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactIndicatorPrefab: {fileID: 0}
   indicatorOffset: {x: 0, y: 5}
+  interactMenuPromptOffset: {x: 0, y: 0}
   speakerName: SLOTH TEST
   yarnStartNode: SlothStart
   chatBoxOffset: {x: 0, y: 0, z: 0}
@@ -1029,7 +1030,7 @@ GameObject:
   m_Component:
   - component: {fileID: 608080557}
   - component: {fileID: 608080558}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Left Lip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2008,7 +2009,7 @@ GameObject:
   m_Component:
   - component: {fileID: 942535378}
   - component: {fileID: 942535379}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bottom Right Diag Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2693,7 +2694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1121919671}
   - component: {fileID: 1121919672}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bottom Left Diag Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2750,7 +2751,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1122410382}
   - component: {fileID: 1122410383}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Right Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3080,7 +3081,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1229823199}
   - component: {fileID: 1229823200}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Top Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3308,7 +3309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1401547260}
   - component: {fileID: 1401547261}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bottom Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3482,7 +3483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1860224291}
   - component: {fileID: 1860224292}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Right Lip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3544,7 +3545,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1944359088}
   - component: {fileID: 1944359089}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Top Left Diag Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3616,7 +3617,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1999760418}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Room Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3744,7 +3745,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2022241075}
   - component: {fileID: 2022241076}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Left Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3928,7 +3929,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2048208750}
   - component: {fileID: 2048208751}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Top Right Diag Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4011,6 +4012,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactIndicatorPrefab: {fileID: 5725056411618185430, guid: 0fae7975420221144aa605f016da6481, type: 3}
   indicatorOffset: {x: -0.84, y: 9}
+  interactMenuPromptOffset: {x: 0, y: 0}
   apathyObj: {fileID: 315102708}
   abilityDropObject: {fileID: 2937701324620886995, guid: fde30141c6801f84db5abf77b9a93fd3, type: 3}
   prop: {fileID: 37142923}
@@ -4129,6 +4131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactIndicatorPrefab: {fileID: 0}
   indicatorOffset: {x: -0.7, y: 2.5}
+  interactMenuPromptOffset: {x: 0, y: 0}
   speakerName: Apathy
   yarnStartNode: OpeningScene
   chatBoxOffset: {x: -0.5, y: 10, z: 0}
