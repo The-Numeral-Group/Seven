@@ -14,6 +14,10 @@ public class ButtonImageChange : MonoBehaviour
     [Tooltip("The length of time the image should last")]
     public float switch_duration;
 
+    public Vector2 newImageSize;
+
+    private Vector2 originalImageSize;
+
     //the object's Image renderer
     private Image render;
 
@@ -24,6 +28,7 @@ public class ButtonImageChange : MonoBehaviour
     void Start()
     {
         render = this.gameObject.GetComponent<Image>();
+        originalImageSize = this.gameObject.GetComponent<RectTransform>().sizeDelta;
         origImage = render.sprite;
     }
 
@@ -41,7 +46,9 @@ public class ButtonImageChange : MonoBehaviour
     private IEnumerator changeImageDuration(Sprite newImage)
     {
         render.sprite = newImage;
+        this.gameObject.GetComponent<RectTransform>().sizeDelta = newImageSize;
         yield return new WaitForSeconds(switch_duration);
+        this.gameObject.GetComponent<RectTransform>().sizeDelta = originalImageSize;
         render.sprite = origImage;
     }
 
