@@ -223,9 +223,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1896372920}
     m_Modifications:
+    - target: {fileID: 7581123478075483716, guid: 53fb65b901c0d5e47a0854fac8fb8052, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7581123479736852971, guid: 53fb65b901c0d5e47a0854fac8fb8052, type: 3}
       propertyPath: m_Name
       value: brokenPillar
+      objectReference: {fileID: 0}
+    - target: {fileID: 7581123479736852971, guid: 53fb65b901c0d5e47a0854fac8fb8052, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7581123479736852973, guid: 53fb65b901c0d5e47a0854fac8fb8052, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3890,7 +3898,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1896372920}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: HUB
   m_TagString: Environment
   m_Icon: {fileID: 0}
