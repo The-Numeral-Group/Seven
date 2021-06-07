@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 public class PauseMenu : BaseUI
 {
     //Flag for if the game is paused
-    public static bool GAME_IS_PAUSED;
+    public bool game_is_paused { get; protected set;}
     /*[SerializeField]
     [Tooltip("Reference to the Sub Menu Container")]
     RectTransform subMenuContainer = null;*/
@@ -45,6 +45,12 @@ public class PauseMenu : BaseUI
         LocatePlayer();
     }
 
+    void SetPauseValue(bool value)
+    {
+        //Debug.Log("Setting pause value: " + value);
+        game_is_paused = value;
+    }
+
     //Function used to set the reference for the player actor.
     public void LocatePlayer()
     {
@@ -62,7 +68,7 @@ public class PauseMenu : BaseUI
     //Public Function which will pause the game
     public void PauseGame()
     {
-        if (!GAME_IS_PAUSED)
+        if (!game_is_paused)
         {
             Pause();
         }
@@ -75,14 +81,17 @@ public class PauseMenu : BaseUI
     //Paused the game
     void Pause()
     {
-        GAME_IS_PAUSED = true;
+        //Debug.Log("In here");
+        SetPauseValue(true);
+        //Debug.Log(game_is_paused);
         Time.timeScale = 0f;
     }
     
     //Overriding base class ui.
     public override void Hide()
     {
-        GAME_IS_PAUSED = false;
+        //Debug.Log("In hIde");
+        SetPauseValue(false);
         Time.timeScale = 1f;
         currentSelectedSubMenuIndex = 0;
         foreach(SubMenu menu in subMenus)

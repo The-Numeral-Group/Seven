@@ -21,6 +21,7 @@ public abstract class Interactable : MonoBehaviour
     public Vector2 indicatorOffset = new Vector2(0, 5);
     //Reference to the objects collider;
     public Collider2D colliderInfo {get; protected set;}
+    public Vector2 interactMenuPromptOffset = new Vector2(0, 0);
     // Start is called before the first frame update
 
     //Setup in class references
@@ -118,6 +119,7 @@ public abstract class Interactable : MonoBehaviour
         {
             Interactable.POTENTIAL_INTERACTABLE = this;
             MenuManager.INTERACT_MENU.target = t;
+            MenuManager.INTERACT_MENU.targetOffset = interactMenuPromptOffset;
             //MenuManager.INTERACT_MENU.uiElementTextOffset = new Vector2(2, -2);
             //MenuManager.INTERACT_MENU.uiElementImageOffset = new Vector2(-1, -2);
             MenuManager.INTERACT_MENU.Show();
@@ -129,6 +131,7 @@ public abstract class Interactable : MonoBehaviour
             if (MenuManager.INTERACT_MENU)
             {
                 MenuManager.INTERACT_MENU.target = null;
+                MenuManager.INTERACT_MENU.targetOffset = Vector2.zero;
                 MenuManager.INTERACT_MENU.Hide();
             }
         }
