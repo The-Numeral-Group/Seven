@@ -12,6 +12,7 @@ public class GhostKnightSlash : ActorAbilityFunction<Actor, int>
 
     public bool slashPlaySound = false;
 
+
     public override void Invoke(ref Actor user)
     {
         if (usable)

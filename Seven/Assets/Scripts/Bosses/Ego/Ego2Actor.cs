@@ -47,8 +47,10 @@ public class Ego2Actor : Actor
     [Tooltip("The ability Object Ego should drop when it dies if the player doesn't sin.")]
     public GameObject abilityDropObject;
 
+    [Header("Scene Behaviour Settings")]
     [Tooltip("The entry and exit door of this fight")]
     public GameObject exitDoor;
+
     [Tooltip("The barrier blocking the bottom of the arena.")]
     public GameObject exitBarrier;
 
@@ -96,7 +98,6 @@ public class Ego2Actor : Actor
         //if ego has already been defeated...
         else if(gameSaveManager.getBoolValue(15) == true)
         {
-            //Auto-kill ego
             StartCoroutine(Die());
             return;
         }

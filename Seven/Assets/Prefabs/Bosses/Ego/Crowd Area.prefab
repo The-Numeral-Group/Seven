@@ -193,6 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactIndicatorPrefab: {fileID: 4565095744627111305}
   indicatorOffset: {x: 0, y: 5}
+  interactMenuPromptOffset: {x: 0, y: -2.5}
   boostFactor: 1
   duration: 10
   effectMaterial: {fileID: 2100000, guid: 3d9dda8042690c24bab17ca1d6033137, type: 2}
