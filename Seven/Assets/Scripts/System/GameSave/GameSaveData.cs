@@ -28,6 +28,7 @@ public class GameSaveData
     public bool PlayerRespawn; // 19
 
     public float AbilityTutorial; // 20
+    public float[] wrathPosition; // 21
 
     public GameSaveData(GameSaveList gameSaveList)
     {
@@ -73,6 +74,10 @@ public class GameSaveData
         this.PlayerRespawn = gameSaveList.getBoolValue(19);
 
         this.AbilityTutorial = gameSaveList.getFloatValue(20);
+
+        this.wrathPosition = new float[2];
+        this.wrathPosition[0] = gameSaveList.getVectorValue(21).x;
+        this.wrathPosition[1] = gameSaveList.getVectorValue(21).y;
     }
 
 }

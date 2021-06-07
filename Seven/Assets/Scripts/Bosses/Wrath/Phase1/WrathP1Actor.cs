@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class WrathP1Actor : Actor
 {
     public State currentState;
+    public GameObject gameSaveManager;
 
     private Actor wrath;
     private Actor player;
@@ -69,7 +70,12 @@ public class WrathP1Actor : Actor
 
     public override void DoActorDeath()
     {
-        SceneManager.LoadScene("WrathBattlePhase2");
+        // Save Positions
+        this.gameSaveManager.GetComponent<GameSaveManager>().setVectorValue(player.gameObject.transform.position, 2);
+        this.gameSaveManager.GetComponent<GameSaveManager>().setVectorValue(transform.position, 21);
+
+        // Load Transition Scene
+        SceneManager.LoadScene("WrathTransition");
     }
 
     private void FixedUpdate()

@@ -100,4 +100,9 @@ public class TimelineManager : MonoBehaviour
     {
         director.Play();
     }
+
+    public void WrathCameraPosition()
+    {
+        cam.transform.position = new Vector3(0f, 11f, -10f);
+    }
 }

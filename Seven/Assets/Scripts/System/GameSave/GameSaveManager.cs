@@ -112,6 +112,9 @@ public class GameSaveManager : MonoBehaviour
 
             gameSaveList.setFloatValue(gameSaveData.AbilityTutorial, 20);
 
+            Vector2 newWrathPos = new Vector2(gameSaveData.wrathPosition[0], gameSaveData.wrathPosition[1]);
+            gameSaveList.setVectorValue(newWrathPos, 21);
+
             file.Close();
         }
     }
