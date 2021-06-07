@@ -304,21 +304,22 @@ public class Ego2Movement : ActorMovement
             var colBounds = collider.bounds.extents;
             colSize = colBounds.x > colBounds.y ? colBounds.x : colBounds.y;
         }
-
+        //https://answers.unity.com/questions/8715/how-do-i-use-layermasks.html
+        LayerMask mask = LayerMask.GetMask("Wall");
         Debug.Log($"Trying location {potentialDest} from {startPoint}");
 
         /*Cast a sphere into the play space centered on realDest with a radius of colSize. If
         there is anything in the sphere at all, move potentialDest backwards towards the start
         point by a distance of colSize. If this would put the destination behind the start, just
         teleport in place*/
-        Collider2D lastObj = Physics2D.OverlapCircle(realDest, colSize);
+        Collider2D lastObj = Physics2D.OverlapCircle(realDest, colSize, mask.value);
         while(lastObj)
         {
             //temporary fix for sword teleport in wrath phase 2
-            if (lastObj.gameObject.name == "WrathFBArea")
+            /*if (lastObj.gameObject.name == "WrathFBArea")
             {
                 break;
-            }
+            }*/
             Debug.Log($"Blocked by {lastObj.gameObject.name}. Shifting to {realDest -= (teleDirection * colSize)}");
             
             /*If we've gotten here, that means there isn't enough space at the destination.
@@ -336,7 +337,7 @@ public class Ego2Movement : ActorMovement
                 return startPoint;
             }
 
-            lastObj = Physics2D.OverlapCircle(realDest, colSize);
+            lastObj = Physics2D.OverlapCircle(realDest, colSize, mask.value);
         }
 
         //if we're here, that means realDest is valid.
