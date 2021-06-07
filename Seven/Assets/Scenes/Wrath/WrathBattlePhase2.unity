@@ -5021,7 +5021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7696531761945222991, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: cooldownPeriod
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7696531761945222991, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: damagePerHitbox.Array.data[0]

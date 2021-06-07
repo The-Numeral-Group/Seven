@@ -751,8 +751,8 @@ MonoBehaviour:
   initialWaitTime: 3
   shotFlightTime: 1
   leadMarkerDistance: 2
-  waitDuration: 15
-  grabDuration: 4
+  waitDuration: 10
+  grabDuration: 2
 --- !u!114 &315102725
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -465,9 +465,9 @@ MonoBehaviour:
   laserMaxDist: 100
   laserWidth: 3
   damage: 2
-  preLaserDuration: 1.5
+  preLaserDuration: 0.1
   laserDuration: 1
-  chargeTime: 1
+  chargeTime: 0.5
 --- !u!114 &4482064640987584911
 MonoBehaviour:
   m_ObjectHideFlags: 0
