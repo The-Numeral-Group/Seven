@@ -140,6 +140,9 @@ public class ApathyNPC : Interactable
         //No-Sin End
         else if(!fightAbandoned && fightCompleted)
         {
+            //also turn of this object's collider to prevent talking to sloth
+            this.GetComponent<Collider2D>().enabled = false;
+            
             //do the same, but don't drop the AOS
             //apathyObj.SetActive(false);
             Destroy(apathyObj);
@@ -349,6 +352,11 @@ public class ApathyNPC : Interactable
     //overrider interact ontriggers
     protected override void OnTriggerEnter2D(Collider2D other)
     {
+        if(fightCompleted)
+        {
+            return;
+        }
+
         if (other.tag == "Player" && !activeS.isTalking)
         {
             ShowIndicator(true);

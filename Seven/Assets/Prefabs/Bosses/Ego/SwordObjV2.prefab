@@ -257,7 +257,7 @@ MonoBehaviour:
   abilityName: 
   invokeBlankWhenBadArguments: 1
   laserObj: {fileID: 4417132022118089685, guid: b0818de86c2e4c0fcaeb8e849b1b5dec, type: 3}
-  laserMaxDist: 23
+  laserMaxDist: 10
   laserWidth: 3
   damage: 2
   preLaserDuration: 0.25
