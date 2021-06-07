@@ -77,8 +77,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alwaysDragAwayFromUser: 1
   dragBackDirection: {x: 0, y: -1}
-  dragBackIntensity: 5
-  dragBackDuration: 5
+  dragBackIntensity: 10
+  dragBackDuration: 0.1
 --- !u!60 &1926732482366689238
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -177,6 +177,9 @@ GameObject:
   - component: {fileID: 7696531761945222991}
   - component: {fileID: 412269036355777620}
   - component: {fileID: 4132197406195292903}
+  - component: {fileID: 1020262351}
+  - component: {fileID: 1020262349}
+  - component: {fileID: 1020262350}
   m_Layer: 26
   m_Name: WrathP2
   m_TagString: Boss
@@ -197,6 +200,7 @@ Transform:
   m_Children:
   - {fileID: 8989000160696563934}
   - {fileID: 1943835308}
+  - {fileID: 5805730521423874733}
   m_Father: {fileID: 6081538999315364633}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -228,7 +232,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4950743182952501645}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -384,9 +388,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53943011222afea4892e3f7c4b631c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delayBetweenAttacks: 4
+  delayBetweenAttacks: 2
   phaseChangePercentageInspector: 0.25
+  animSpeedIncrement: 0.5
   currState: 0
+  isEnraged: 0
+  canAttack: 0
 --- !u!212 &5541655781900561451
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -406,7 +413,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -540,7 +547,9 @@ MonoBehaviour:
     m_keys: []
     m_values: []
   wrathArmSweep: {fileID: 7696531761945222991}
-  wrathShockwave: {fileID: 0}
+  wrathShockwave: {fileID: 412269036355777620}
+  wrathFireBrimstone: {fileID: 4132197406195292903}
+  wrathEnraged: {fileID: 1020262349}
 --- !u!114 &7696531761945222991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,14 +562,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 249062ca42331b64986baf5b7ccb20f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownPeriod: 0
+  cooldownPeriod: 3
   abilityName: 
   invokeBlankWhenBadArguments: 1
   startingWeaponObject: {fileID: 0}
   duration: 0
   weaponPositionScale: {x: 0, y: 0}
-  damagePerHitbox: 02000000
+  damagePerHitbox: 01000000
   animTrigger: sweep
+  stunnedDuration: 0.5
   alreadyInstantiatedWeaponObject: {fileID: 1943835307}
 --- !u!114 &412269036355777620
 MonoBehaviour:
@@ -577,7 +587,17 @@ MonoBehaviour:
   cooldownPeriod: 0
   abilityName: 
   invokeBlankWhenBadArguments: 1
-  animTrigger: 
+  delayFistAnim: 0.5
+  delayPalmAnim: 0.8
+  delayPillarShockwave: 0.1
+  maxX: 4
+  maxY: 4
+  delayLargeShockwave: 0.05
+  delayAfterShockwave: 1
+  animFistTrigger: fist
+  animPalmTrigger: palm
+  pillarShockwaveObject: {fileID: 5036942542288751202, guid: fbcee8a5c07c2734aafac814693367b3, type: 3}
+  largeShockwaveObject: {fileID: 8469276887599181018, guid: d0203b4c7fd2a99429c3f327af33ba9e, type: 3}
 --- !u!114 &4132197406195292903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -590,6 +610,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ccc18a4ee87ef4cb7689b22677221c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  shadowCount: 20
+  shadowDelay: 0.1
+  shakeDelay: 0.5
+  animDelay: 0.75
+  afterShadowDelay: 0
+  animTrigger: fist
+  toInstantiateObject: {fileID: 380494465729752742, guid: de07839e75c90844bbdaea00083b88c3, type: 3}
+  areaToChoose: {fileID: 5805730521423874735}
+--- !u!70 &1020262351
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4950743182952501645}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.12357825, y: -0.7002591}
+  m_Size: {x: 0.50013804, y: 0.9252629}
+  m_Direction: 0
+--- !u!114 &1020262349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4950743182952501645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7d533f525dfc314faf251739ce48a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownPeriod: 0
+  abilityName: 
+  invokeBlankWhenBadArguments: 1
+  pushDuration: 1
+  spamDuration: 5
+  tiredDuration: 8
+  pushIntensity: 3
+  animTrigger: roar
+--- !u!114 &1020262350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4950743182952501645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 374b600226b8d4a40bf4289da5b36e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: fist
+    audioClip: {fileID: 8300000, guid: fc285f8eebd89804ea92ba4f2cbcc0b3, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: TakeDamage
+    audioClip: {fileID: 8300000, guid: 25838854649f39547b7a8639e85d31c5, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
+    hasCooldown: 0
+    playOnAwake: 0
+    source: {fileID: 0}
 --- !u!1 &7585676839348255502
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,7 +743,7 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -8.955194, y: 5.6220365}
+    - - {x: -7.9542475, y: 5.89437}
       - {x: -9.858103, y: 9.264211}
       - {x: -16.615028, y: 8.220974}
       - {x: -11.763921, y: 1.49591}
@@ -655,8 +751,8 @@ PolygonCollider2D:
       - {x: 12.0013685, y: 1.4959093}
       - {x: 17.010021, y: 8.132275}
       - {x: 11.928391, y: 8.590164}
-      - {x: 8.991473, y: 5.075492}
-      - {x: 0, y: 3.3422272}
+      - {x: 8.016036, y: 5.9611526}
+      - {x: 0.036664344, y: 5.289769}
 --- !u!114 &2754771479586472617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -669,3 +765,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aadca9ee83e1d049ab14b93750d459e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1343602100
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8581417415270867761}
+    m_Modifications:
+    - target: {fileID: 5805730522764719897, guid: 257cf9f4f10fa54409e3d2f502d261ff, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.08305648
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805730522764719897, guid: 257cf9f4f10fa54409e3d2f502d261ff, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.2679737
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805730522764719897, guid: 257cf9f4f10fa54409e3d2f502d261ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805730522764719897, guid: 257cf9f4f10fa54409e3d2f502d261ff, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805730522764719897, guid: 257cf9f4f10fa54409e3d2f502d261ff, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805730522764719897, guid: 257cf9f4f10fa54409e3d2f502d261ff, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805730522764719897, guid: 257cf9f4f10fa54409e3d2f502d261ff, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805730522764719897, guid: 257cf9f4f10fa54409e3d2f502d261ff, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805730522764719897, guid: 257cf9f4f10fa54409e3d2f502d261ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805730522764719897, guid: 257cf9f4f10fa54409e3d2f502d261ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805730522764719897, guid: 257cf9f4f10fa54409e3d2f502d261ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5805730522764719899, guid: 257cf9f4f10fa54409e3d2f502d261ff, type: 3}
+      propertyPath: m_Name
+      value: WrathFBArea
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 257cf9f4f10fa54409e3d2f502d261ff, type: 3}
+--- !u!1 &5805730521423874735 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5805730522764719899, guid: 257cf9f4f10fa54409e3d2f502d261ff, type: 3}
+  m_PrefabInstance: {fileID: 1343602100}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5805730521423874733 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5805730522764719897, guid: 257cf9f4f10fa54409e3d2f502d261ff, type: 3}
+  m_PrefabInstance: {fileID: 1343602100}
+  m_PrefabAsset: {fileID: 0}
