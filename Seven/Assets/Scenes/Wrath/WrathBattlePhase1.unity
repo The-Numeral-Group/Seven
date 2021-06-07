@@ -194,7 +194,7 @@ RectTransform:
   m_GameObject: {fileID: 379033523}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10.563, y: 5.1874, z: 1}
   m_Children:
   - {fileID: 398561275}
   m_Father: {fileID: 2070746793}
@@ -4399,6 +4399,18 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1509850875, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: cooldownPeriod
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1509850875, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: chargeTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1509850875, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
+      propertyPath: preLaserDuration
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1857178619, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: pauseMenuUI
       value: 
@@ -4749,7 +4761,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 4115977272152067176, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: startingMaxHealth
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4115977272152067180, guid: ac03aefd0f66ea63d99c2e9863f4ccf2, type: 3}
       propertyPath: playerDodge
