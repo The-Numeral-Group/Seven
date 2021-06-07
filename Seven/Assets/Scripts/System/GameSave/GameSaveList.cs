@@ -48,6 +48,8 @@ public class GameSaveList : MonoBehaviour
 
     // Element 20 - AbilityTutorial
 
+    // Element 21 - WrathPosition
+
     /* ----- BOOL VALUE ----- */
     public void setBoolValue(bool newValue, int id)
     {
@@ -216,6 +218,7 @@ public class GameSaveList : MonoBehaviour
         ((BoolValue)SaveObjects[18]).RuntimeValue = ((BoolValue)SaveObjects[18]).initialValue;
         ((BoolValue)SaveObjects[19]).RuntimeValue = ((BoolValue)SaveObjects[19]).initialValue;
         ((FloatValue)SaveObjects[20]).RuntimeValue = ((FloatValue)SaveObjects[20]).initialValue;
+        ((VectorValue)SaveObjects[21]).RuntimeValue = ((VectorValue)SaveObjects[21]).initialValue;
     }
 
 }
