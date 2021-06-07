@@ -21,10 +21,12 @@ public class InteractMenu : BaseUI
     [SerializeField]
     RectTransform interactUIElement = null;
     public Vector2 interactUIElementOffset;
+    public Vector2 targetOffset {get; set;}
 
     protected override void Awake()
     {
         base.Awake();
+        targetOffset = Vector2.zero;
     }
 
     void FixedUpdate()
@@ -53,7 +55,7 @@ public class InteractMenu : BaseUI
                 viewPortPosition.y * canvasTransform.sizeDelta.y);
             uiElementImageTransform.localPosition = proportionalPosition;*/
 
-            Vector3 uiOffset = interactUIElementOffset;
+            Vector3 uiOffset = interactUIElementOffset + targetOffset;
             Vector2 viewPortPosition = 
                 Camera.main.WorldToViewportPoint(target.transform.position + uiOffset);
             Vector2 proportionalPosition = new Vector2(
