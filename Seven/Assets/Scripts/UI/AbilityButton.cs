@@ -51,6 +51,8 @@ public class AbilityButton : MonoBehaviour
         float incrementValue = 0.1f;
         for (float i = 0; i < time; i += incrementValue)
         {
+            yield return new WaitUntil(() => MenuManager.PAUSE_MENU.game_is_paused == false);
+            //Debug.Log(MenuManager.PAUSE_MENU.game_is_paused);
             yield return new WaitForSecondsRealtime(incrementValue);
             coolDownSlider.value = 1 - (i / time);
         }
