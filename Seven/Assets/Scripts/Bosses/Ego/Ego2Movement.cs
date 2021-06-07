@@ -314,6 +314,10 @@ public class Ego2Movement : ActorMovement
         Collider2D lastObj = Physics2D.OverlapCircle(realDest, colSize);
         while(lastObj)
         {
+            if (lastObj.gameObject.name == "WrathFBArea")
+            {
+                break;
+            }
             Debug.Log($"Blocked by {lastObj.gameObject.name}. Shifting to {realDest -= (teleDirection * colSize)}");
             
             /*If we've gotten here, that means there isn't enough space at the destination.

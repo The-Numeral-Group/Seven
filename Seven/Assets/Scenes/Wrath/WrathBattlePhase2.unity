@@ -4526,6 +4526,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WrathP2Multi
       objectReference: {fileID: 0}
+    - target: {fileID: 5805730521423874735, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
+      propertyPath: m_Layer
+      value: 26
+      objectReference: {fileID: 0}
     - target: {fileID: 6081538999315364633, guid: fdd5d07e50d9caf49a738f2d85519905, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.25
