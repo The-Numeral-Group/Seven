@@ -164,7 +164,7 @@ public class Ego2Movement : ActorMovement
         var collider = this.gameObject.GetComponent<Collider2D>();
         var health = this.gameObject.GetComponent<ActorHealth>();
         if(collider){collider.enabled = false;}
-        if(health){collider.enabled = false;}
+        if(health){health.SetVulnerable(false, -1f);}
 
         //Step 2: Teleportation visuals
         var animNotDone = this.gameObject.GetComponent<ActorAnimationHandler>()
@@ -188,7 +188,7 @@ public class Ego2Movement : ActorMovement
         
         //Step 7: re-enable collisions and health
         if(collider){collider.enabled = true;}
-        if(health){collider.enabled = true;}
+        if(health){health.SetVulnerable(true, -1f);}
     }
 
     /*The exact same method, except it will run teleportation logic for any
@@ -215,7 +215,7 @@ public class Ego2Movement : ActorMovement
         var collider = user.gameObject.GetComponent<Collider2D>();
         var health = user.gameObject.GetComponent<ActorHealth>();
         if(collider){collider.enabled = false;}
-        if(health){collider.enabled = false;}
+        if(health){health.SetVulnerable(false, -1f);}
 
         ///DEBUG
         //Step 2: Fade out the teleporter's alpha channel
@@ -276,7 +276,7 @@ public class Ego2Movement : ActorMovement
 
         //Step 5: re-enable collisions and health
         if(collider){collider.enabled = true;}
-        if(health){collider.enabled = true;}
+        if(health){health.SetVulnerable(true, -1f);}
     }
 
     static Vector3 GetSafeLocation(Vector3 potentialDest, Vector3 startPoint, Collider2D collider)
