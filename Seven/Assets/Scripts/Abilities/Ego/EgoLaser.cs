@@ -120,7 +120,7 @@ public class EgoLaser : ActorAbilityFunction<Vector3, int>
         yield return new WaitForSeconds(0.55f);
 
         //Step 6: fire the actual laser
-        StartCoroutine(laser.CastDamage(user.faceAnchor.localPosition, targetDirection));
+        StartCoroutine(laser.CastDamage(user.faceAnchor.position, targetDirection));
 
         //Step 7: wait a little bit longer
         yield return new WaitForSeconds(laserDuration);
@@ -172,6 +172,9 @@ internal class EgoLaserProjectile : MonoBehaviour
 
     //how wide the laser is
     private float width = 4f;
+
+    //how far awway from the start point the hits should actually be checked from
+    //private float offset = 4f;
 
     //the lineRenderer that handles the graphics of the laser
     //private LineRenderer line;
